@@ -281,7 +281,7 @@ class PhotoSize(models.Model):
 
 
 """
-Just a little instrospection...
+Just a little introspection...
 
 """
 
