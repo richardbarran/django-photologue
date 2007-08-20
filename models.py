@@ -15,9 +15,7 @@ from django.dispatch import dispatcher
 from django.template.defaultfilters import slugify
 
 
-# define our path roots
 PHOTOLOGUE_DIR = 'photologue'
-PHOTOLOGUE_URL = '/photologue'
 
 
 class Gallery(models.Model):
@@ -43,7 +41,7 @@ class Gallery(models.Model):
 
     def get_absolute_url(self):
         args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
-        return reverse('pr-gallery-detail', args=args)
+        return reverse('pl-gallery-detail', args=args)
 
     def latest(self, limit=5):
         return self.photos.all()[:limit]
@@ -56,7 +54,7 @@ class Gallery(models.Model):
 class GalleryUpload(models.Model):
     id = models.IntegerField(default=1, editable=False, primary_key=True)
     zip_file = models.FileField('Images file (.zip)',
-                                upload_to=PRESSROOM_DIR+"/temp",
+                                upload_to=PHOTOLOGUE_DIR+"/temp",
                                 help_text="Select a .zip file of images to upload into a new Gallery.")
     title_prefix = models.CharField(maxlength=75,
                                     help_text="Photos will be titled using this prefix.")
@@ -101,13 +99,13 @@ class GalleryUpload(models.Model):
 
 
 class Photo(models.Model):
-    image = models.ImageField("Photograph", upload_to=PRESSROOM_DIR+"/photos/%Y/%b/%d")
+    image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
     title = models.CharField(maxlength=80)
     slug = models.SlugField(prepopulate_from=('title',),
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     caption = models.TextField()
-    photographer = models.CharField(maxlength=100)
+    photographer = models.CharField(maxlength=100, blank=True)
     info = models.TextField(blank=True,
                             help_text="Additional information about the photograph such as date taken, equipment used etc..")
 
@@ -134,8 +132,7 @@ class Photo(models.Model):
 
     def get_absolute_url(self):
         args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
-        return reverse('pr-photo-detail', args=args)
-
+        return reverse('pl-photo-detail', args=args)
 
     def cache_path(self):
         return os.path.join(os.path.dirname(self.get_image_filename()), "cache")
