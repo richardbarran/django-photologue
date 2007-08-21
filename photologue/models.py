@@ -125,7 +125,7 @@ class Photo(models.Model):
 
     def admin_thumbnail(self):
         if 'thumbnail' in [photosize.name for photosize in PhotoSize.objects.all()]:
-            return '<a href="%s"><img src="%s"></a>' % \
+            return u'<a href="%s"><img src="%s"></a>' % \
                             (self.get_absolute_url(), self._get_SIZE_url('thumbnail'))
         else:
             return 'A "thumbnail" photo size has not been defined.'
