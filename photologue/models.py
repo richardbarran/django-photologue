@@ -41,7 +41,7 @@ class Gallery(models.Model):
         list_filter = ['pub_date']
         date_hierarchy = 'pub_date'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):
@@ -132,7 +132,7 @@ class Photo(models.Model):
     admin_thumbnail.short_description = 'Thumbnail'
     admin_thumbnail.allow_tags = True
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):
@@ -263,7 +263,7 @@ class PhotoSize(models.Model):
     class Admin:
         list_display = ('name', 'width', 'height', 'crop')
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     def save(self):
