@@ -280,11 +280,6 @@ class PhotoSize(models.Model):
         return (self.width, self.height)
 
 
-"""
-Just a little introspection...
-
-"""
-
 # Add the TagFields to models if django-tagging is found.
 if "tagging" in AppCache().app_models:
     try:
