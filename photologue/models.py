@@ -239,9 +239,6 @@ class Photo(models.Model):
             except:
                 pass
 
-    def save(self):
-        super(Photo, self).save()
-
     def delete(self):
         super(Photo, self).delete()
         self.remove_set()
