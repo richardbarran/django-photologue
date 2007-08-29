@@ -199,8 +199,10 @@ class Photo(models.Model):
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size()
         if photosize.crop:
-            ratio = float(new_width)/cur_width if cur_width < cur_height else \
-                    float(new_height)/cur_height
+            if cur_width < cur_height:
+                ratio = float(new_width)/cur_width
+            else:
+                ratio = float(new_height)/cur_height
             x = (cur_width * ratio)
             y = (cur_height * ratio)
             x_diff = abs((new_width - x) / 2)
@@ -209,8 +211,10 @@ class Photo(models.Model):
             resized = im.resize((x, y), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
-                ratio = float(new_width)/cur_width if cur_width > cur_height else \
-                        float(new_height)/cur_height
+                if cur_width > cur_height:
+                    ratio = float(new_width)/cur_width
+                else:
+                    ratio = float(new_height)/cur_height
             else:
                 if new_width == 0:
                     ratio = float(new_height)/cur_height
