@@ -15,7 +15,6 @@ from django.core.urlresolvers import reverse
 from django.dispatch import dispatcher
 from django.template.defaultfilters import slugify
 
-
 # Get relative media path
 try:
     PHOTOLOGUE_DIR = settings.PHOTOLOGUE_DIR
@@ -84,7 +83,7 @@ class GalleryUpload(models.Model):
             zip = zipfile.ZipFile(self.get_zip_file_filename())
             bad_file = zip.testzip()
             if bad_file:
-                raise forms.ValidationError('"%s" in the .zip archive is corrupt.' % bad_file)
+                raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
             count = 0
             gallery = Gallery.objects.create(title=self.title_prefix,
                                              slug=slugify(self.title_prefix),
