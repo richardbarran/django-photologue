@@ -204,8 +204,8 @@ class Photo(models.Model):
                 ratio = float(new_height)/cur_height
             x = (cur_width * ratio)
             y = (cur_height * ratio)
-            x_diff = abs((new_width - x) / 2)
-            y_diff = abs((new_height - y) / 2)
+            x_diff = int(abs((new_width - x) / 2))
+            y_diff = int(abs((new_height - y) / 2))
             box = (x_diff, y_diff, (x-x_diff), (y-y_diff))
             resized = im.resize((x, y), Image.ANTIALIAS).crop(box)
         else:
