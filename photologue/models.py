@@ -141,11 +141,8 @@ class Photo(models.Model):
     def cache_path(self):
         return os.path.join(os.path.dirname(self.get_image_filename()), "cache")
 
-    def image_url(self):
-        return '/'.join([settings.MEDIA_URL, self.image.replace('\\', '/')])
-
     def cache_url(self):
-        return '/'.join([os.path.dirname(self.image_url()), "cache"])
+        return '/'.join([os.path.dirname(self.get_image_url()), "cache"])
 
     def image_filename(self):
         return os.path.basename(self.image)
