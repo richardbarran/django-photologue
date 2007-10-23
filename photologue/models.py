@@ -264,6 +264,8 @@ class PhotoSize(models.Model):
         return self.name
 
     def save(self):
+        if self.width + self.height == 0:
+            raise ValueError("A PhotoSize must have a positive height or width.")
         for photo in Photo.objects.all():
             photo.remove_size(self)
         super(PhotoSize, self).save()
