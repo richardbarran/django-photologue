@@ -1,6 +1,5 @@
 import os
 import zipfile
-import StringIO
 
 from datetime import datetime
 import Image
@@ -88,17 +87,34 @@ class GalleryUpload(models.Model):
             gallery = Gallery.objects.create(title=self.title_prefix,
                                              slug=slugify(self.title_prefix),
                                              description=self.description)
+            from cStringIO import StringIO
             for filename in zip.namelist():
+                if filename.startswith('__'): # do not process meta files
+                    continue
                 data = zip.read(filename)
-                title = ' '.join([self.title_prefix, str(count)])
-                slug = slugify(title)
-                photo = Photo(title=title, slug=slug,
-                              caption=self.caption,
-                              photographer=self.photographer,
-                              info=self.info)
-                photo.save_image_file(filename, data)
-                gallery.photos.add(photo)
-                count = count + 1
+                if len(data):
+                    try:
+                        # the following is taken from django.newforms.fields.ImageField:
+                        #  load() is the only method that can spot a truncated JPEG,
+                        #  but it cannot be called sanely after verify()
+                        trial_image = Image.open(StringIO(data))
+                        trial_image.load()
+                        # verify() is the only method that can spot a corrupt PNG,
+                        #  but it must be called immediately after the constructor
+                        trial_image = Image.open(StringIO(data))
+                        trial_image.verify()
+                    except Exception:
+                        # if a "bad" file is found we just skip it.
+                        continue
+                    title = ' '.join([self.title_prefix, str(count)])
+                    slug = slugify(title)
+                    photo = Photo(title=title, slug=slug,
+                                  caption=self.caption,
+                                  photographer=self.photographer,
+                                  info=self.info)
+                    photo.save_image_file(filename, data)
+                    gallery.photos.add(photo)
+                    count = count + 1
             zip.close()
 
 
