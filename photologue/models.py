@@ -219,8 +219,8 @@ class Photo(models.Model):
             y = (cur_height * ratio)
             x_diff = int(abs((new_width - x) / 2))
             y_diff = int(abs((new_height - y) / 2))
-            box = (x_diff, y_diff, (x-x_diff), (y-y_diff))
-            resized = im.resize((x, y), Image.ANTIALIAS).crop(box)
+            box = (x_diff, y_diff, int(x-x_diff), int(y-y_diff))
+            resized = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
                 if cur_width > cur_height:
