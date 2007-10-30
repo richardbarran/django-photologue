@@ -304,19 +304,6 @@ class PhotoSize(models.Model):
         return (self.width, self.height)
 
 
-# Add the TagFields to models if django-tagging is found.
-if "tagging" in AppCache().app_models:
-    try:
-        from tagging.fields import TagField
-    except ImportError:
-        pass
-    else:
-        tag_field = TagField(help_text="Tags may not contain spaces. Seperate \
-                                        multiple tags with a space or comma.")
-        Gallery.add_to_class('tags', tag_field)
-        Photo.add_to_class('tags', tag_field)
-
-
 # Set up the accessor methods
 def add_methods(sender, instance, signal, *args, **kwargs):
     """ Adds methods to access sized images (urls, paths)
