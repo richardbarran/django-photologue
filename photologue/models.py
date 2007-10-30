@@ -27,6 +27,8 @@ class Gallery(models.Model):
     slug = models.SlugField(prepopulate_from=('title',),
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     description = models.TextField()
+    is_public = models.BooleanField(default=True,
+                                    help_text="Public galleries will be displayed in the default views.")
     photos = models.ManyToManyField('Photo', related_name='galleries')
 
     class Meta:
@@ -35,8 +37,8 @@ class Gallery(models.Model):
         verbose_name_plural = "galleries"
 
     class Admin:
-        list_display = ('title', 'pub_date', 'photo_count')
-        list_filter = ['pub_date']
+        list_display = ('title', 'pub_date', 'photo_count', 'is_public')
+        list_filter = ['pub_date', 'is_public']
         date_hierarchy = 'pub_date'
 
     def __unicode__(self):
@@ -67,6 +69,8 @@ class GalleryUpload(models.Model):
     photographer = models.CharField(maxlength=100, blank=True)
     info = models.TextField(blank=True,
                             help_text="Additional information about the photograph such as date taken, equipment used etc..")
+    is_public = models.BooleanField(default=True,
+                                    help_text="Uncheck this to make the uploaded gallery and included photographs private.")
 
     class Admin:
         pass
@@ -86,7 +90,8 @@ class GalleryUpload(models.Model):
             count = 0
             gallery = Gallery.objects.create(title=self.title_prefix,
                                              slug=slugify(self.title_prefix),
-                                             description=self.description)
+                                             description=self.description,
+                                             is_public=self.is_public)
             from cStringIO import StringIO
             for filename in zip.namelist():
                 if filename.startswith('__'): # do not process meta files
@@ -111,7 +116,8 @@ class GalleryUpload(models.Model):
                     photo = Photo(title=title, slug=slug,
                                   caption=self.caption,
                                   photographer=self.photographer,
-                                  info=self.info)
+                                  info=self.info,
+                                  is_public=self.is_public)
                     photo.save_image_file(filename, data)
                     gallery.photos.add(photo)
                     count = count + 1
@@ -128,14 +134,17 @@ class Photo(models.Model):
     photographer = models.CharField(maxlength=100, blank=True)
     info = models.TextField(blank=True,
                             help_text="Additional information about the photograph such as date taken, equipment used etc..")
+    is_public = models.BooleanField(default=True,
+                                    help_text="Public photographs will be displayed in the default views.")
 
     class Meta:
         ordering = ['-pub_date']
         get_latest_by = 'pub_date'
 
     class Admin:
-        list_display = ('title', 'photographer', 'pub_date', 'admin_thumbnail')
-        list_filter = ['pub_date']
+        list_display = ('title', 'photographer', 'pub_date', 'admin_thumbnail',
+                        'is_public')
+        list_filter = ['pub_date', 'is_public']
         list_per_page = 10
 
     def admin_thumbnail(self):

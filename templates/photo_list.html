@@ -16,4 +16,11 @@
 <p>No photos were found.</p>
 {% endif %}
 
+{% if is_paginated %}
+<p>{{ hits }} photos total.</p>
+<div id="page_controls">
+    <p>{% if has_previous %}<a href="{% url pl-photo-list previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url pl-photo-list next %}">Next</a>{% endif %}</p>
+</div>
+{% endif %}
+
 {% endblock %}
