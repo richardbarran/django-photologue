@@ -1,4 +1,5 @@
 import os
+import shutil
 import zipfile
 
 from datetime import datetime
@@ -215,6 +216,10 @@ class Photo(models.Model):
         try:
             im = Image.open(self.get_image_filename())
         except IOError:
+            return
+        if im.size == photosize.size():
+            shutil.copy(self.get_image_filname(),
+                        self._get_SIZE_path(photosize.name))
             return
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size()
