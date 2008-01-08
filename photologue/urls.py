@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from django_apps.photologue.models import Gallery, Photo
+from models import Gallery, Photo
 
 
 # galleries
