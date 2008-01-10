@@ -20,3 +20,7 @@ OPTIONAL STEPS
 
 1. Create a new PhotoSize with the name "thumbnail" to get thumbnail previews in the admin interface (optional).
 2. Copy the included example templates into one of your TEMPLATE_DIRS (under a subdirectory named "photologue") and modify as needed.
+
+STILL NEED HELP?
+
+visit http://groups.google.com/group/django-photologue for questions or suggestions.
