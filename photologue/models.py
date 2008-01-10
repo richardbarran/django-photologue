@@ -4,6 +4,8 @@ import zipfile
 
 from datetime import datetime
 import Image
+import ImageFilter
+from inspect import isclass
 
 from django.db import models
 from django.db.models import signals
@@ -14,16 +16,54 @@ from django.core.urlresolvers import reverse
 from django.dispatch import dispatcher
 from django.template.defaultfilters import slugify
 
+
 # Get relative media path
 try:
     PHOTOLOGUE_DIR = settings.PHOTOLOGUE_DIR
 except:
     PHOTOLOGUE_DIR = 'photologue'
 
+# Prepare a list of image filters
+IMAGE_FILTER_CHOICES = []
+for n in dir(ImageFilter):
+    klass = getattr(ImageFilter, n)
+    if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
+       hasattr(klass, 'name'):
+        IMAGE_FILTER_CHOICES.append((klass.__name__, klass.name))
+
+# Quality options for JPEG images
+JPEG_QUALITY_CHOICES = (
+    (20, 'Very Low'),
+    (40, 'Low'),
+    (60, 'Medium'),
+    (80, 'High'),
+    (100, 'Very High'),
+)
+
+# choices for new crop_anchor field in Photo
+CROP_ANCHOR_CHOICES = (
+	('top', 'Top'),
+	('right', 'Right'),
+	('bottom', 'Bottom'),
+	('left', 'Left'),
+)
+
+
+class FilterSet(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    filters = models.ManyToManyField('PhotoFilter', related_name='filter_sets',
+                                     help_text="Selected filters will be applied to all resized images")
+
+    class Admin:
+        pass
+
+    def __unicode__(self):
+        return self.name
+
 
 class Gallery(models.Model):
     pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(maxlength=200)
+    title = models.CharField(max_length=200)
     slug = models.SlugField(prepopulate_from=('title',),
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     description = models.TextField()
@@ -61,12 +101,12 @@ class GalleryUpload(models.Model):
     zip_file = models.FileField('Images file (.zip)',
                                 upload_to=PHOTOLOGUE_DIR+"/temp",
                                 help_text="Select a .zip file of images to upload into a new Gallery.")
-    title_prefix = models.CharField(maxlength=75,
+    title_prefix = models.CharField(max_length=75,
                                     help_text="Photos will be titled using this prefix.")
     caption = models.TextField(help_text="Caption will be added to all photos.")
     description = models.TextField(blank=True,
                                    help_text="A description of this Gallery.")
-    photographer = models.CharField(maxlength=100, blank=True)
+    photographer = models.CharField(max_length=100, blank=True)
     info = models.TextField(blank=True,
                             help_text="Additional information about the photograph such as date taken, equipment used etc..")
     is_public = models.BooleanField(default=True,
@@ -127,15 +167,19 @@ class GalleryUpload(models.Model):
 class Photo(models.Model):
     image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(maxlength=80)
+    title = models.CharField(max_length=80)
     slug = models.SlugField(prepopulate_from=('title',),
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     caption = models.TextField()
-    photographer = models.CharField(maxlength=100, blank=True)
+    photographer = models.CharField(max_length=100, blank=True)
     info = models.TextField(blank=True,
                             help_text="Additional information about the photograph such as date taken, equipment used etc..")
+    crop_from = models.CharField(blank=True, max_length=10,
+                                 choices=CROP_ANCHOR_CHOICES)
     is_public = models.BooleanField(default=True,
                                     help_text="Public photographs will be displayed in the default views.")
+    filter_set = models.ForeignKey('FilterSet', null=True, blank=True,
+                                   help_text="This setting will override the photo size filter set for this photo.")
 
     class Meta:
         ordering = ['-pub_date']
@@ -230,9 +274,20 @@ class Photo(models.Model):
                 ratio = float(new_height)/cur_height
             x = (cur_width * ratio)
             y = (cur_height * ratio)
-            x_diff = int(abs((new_width - x) / 2))
-            y_diff = int(abs((new_height - y) / 2))
-            box = (x_diff, y_diff, int(x-x_diff), int(y-y_diff))
+            xd = abs(new_width - x)
+            yd = abs(new_height - y)
+            x_diff = int(xd / 2)
+            y_diff = int(yd / 2)
+            if self.crop_anchor == 'top':
+                    box = (x_diff, 0, (x-x_diff), new_height)
+            elif self.crop_anchor == 'left':
+                    box = (0, y_diff, new_width, (y-y_diff))
+            elif self.crop_anchor == 'bottom':
+                    box = (x_diff, yd, (x-x_diff), y) # y - yd = new_height
+            elif self.crop_anchor == 'right':
+                    box = (xd, y_diff, x, (y-y_diff)) # x - xd = new_width
+            else:
+                    box = (x_diff, y_diff, (x-x_diff), (y-y_diff))
             resized = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
@@ -246,7 +301,22 @@ class Photo(models.Model):
                 else:
                     ratio = float(new_width)/cur_width
             resized = im.resize((int(cur_width*ratio), int(cur_height*ratio)), Image.ANTIALIAS)
-        resized.save(getattr(self, "get_%s_path" % photosize.name)())
+        if self.filter_set is not None:
+            filter_set = self.filter_set.filters.all()
+        elif photosize.filter_set is not None:
+            filter_set = list(photosize.filter_set.filters.all())
+        else:
+            filter_set = None
+        if filter_set is not None:
+            for f in filter_set:
+                filter = getattr(ImageFilter, f.name, None)
+                if filter is not None:
+                    resized = resized.filter(filter)
+        if im.format == 'JPEG':
+            resized.save(getattr(self, "get_%s_path" % photosize.name)(),
+                         'JPEG', quality=photosize.quality, optimize=True)
+        else:
+            resized.save(getattr(self, "get_%s_path" % photosize.name)())
 
     def remove_size(self, photosize, remove_dirs=True):
         if not self.size_exists(photosize):
@@ -268,20 +338,40 @@ class Photo(models.Model):
             except:
                 pass
 
+    def save(self):
+        self.remove_set()
+        super(Photo, self).save()
+
     def delete(self):
         super(Photo, self).delete()
         self.remove_set()
 
 
+class PhotoFilter(models.Model):
+    name = models.CharField(max_length=25, unique=True,
+                            choices=IMAGE_FILTER_CHOICES,
+                            help_text="Select effect from the available image filters.")
+
+    class Admin:
+        pass
+
+    def __unicode__(self):
+        return self.get_name_display()
+
+
 class PhotoSize(models.Model):
-    name = models.CharField(maxlength=20, unique=True, help_text='Examples: "thumbnail", "display", "small"')
+    name = models.CharField(max_length=20, unique=True, help_text='Examples: "thumbnail", "display", "small"')
     width = models.PositiveIntegerField(default=0,
                                         help_text='Leave to size the image to the set height')
     height = models.PositiveIntegerField(default=0,
                                          help_text='Leave to size the image to the set width')
+    quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES,
+                                          help_text="JPEG image quality.")
     crop = models.BooleanField("Crop photo to fit?", default=False,
                                help_text="If selected the image will be scaled \
                                          and cropped to fit the supplied dimensions.")
+    filter_set = models.ForeignKey('FilterSet', null=True, blank=True,
+                                   help_text="Selected filters will be applied to all resized images")
 
     class Meta:
         ordering = ['width', 'height']
