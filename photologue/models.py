@@ -278,13 +278,13 @@ class Photo(models.Model):
             yd = abs(new_height - y)
             x_diff = int(xd / 2)
             y_diff = int(yd / 2)
-            if self.crop_anchor == 'top':
+            if self.crop_from == 'top':
                     box = (x_diff, 0, (x-x_diff), new_height)
-            elif self.crop_anchor == 'left':
+            elif self.crop_from == 'left':
                     box = (0, y_diff, new_width, (y-y_diff))
-            elif self.crop_anchor == 'bottom':
+            elif self.crop_from == 'bottom':
                     box = (x_diff, yd, (x-x_diff), y) # y - yd = new_height
-            elif self.crop_anchor == 'right':
+            elif self.crop_from == 'right':
                     box = (xd, y_diff, x, (y-y_diff)) # x - xd = new_width
             else:
                     box = (x_diff, y_diff, (x-x_diff), (y-y_diff))
