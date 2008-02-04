@@ -4,6 +4,7 @@ import zipfile
 
 from datetime import datetime
 import Image
+import ImageFile
 import ImageFilter
 from inspect import isclass
 
@@ -16,12 +17,13 @@ from django.core.urlresolvers import reverse
 from django.dispatch import dispatcher
 from django.template.defaultfilters import slugify
 
+from util import EXIF
 
-# Get relative media path
-try:
-    PHOTOLOGUE_DIR = settings.PHOTOLOGUE_DIR
-except:
-    PHOTOLOGUE_DIR = 'photologue'
+# Photologue image path relative to media root
+PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
+
+# Modify image file buffer size if set, otherwise keep PIL default (64k)
+ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 64*1024)
 
 # Prepare a list of image filters
 IMAGE_FILTER_CHOICES = []
@@ -170,10 +172,11 @@ class Photo(models.Model):
     title = models.CharField(max_length=80)
     slug = models.SlugField(prepopulate_from=('title',),
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
-    caption = models.TextField()
+    caption = models.TextField(blank=True)
     photographer = models.CharField(max_length=100, blank=True)
+    date_taken = models.DateTimeField(null=True, blank=True)
     info = models.TextField(blank=True,
-                            help_text="Additional information about the photograph such as date taken, equipment used etc..")
+                            help_text="Additional information about the photograph such location, equipment used etc..")
     crop_from = models.CharField(blank=True, max_length=10,
                                  choices=CROP_ANCHOR_CHOICES)
     is_public = models.BooleanField(default=True,
@@ -186,10 +189,18 @@ class Photo(models.Model):
         get_latest_by = 'pub_date'
 
     class Admin:
-        list_display = ('title', 'photographer', 'pub_date', 'admin_thumbnail',
-                        'is_public')
+        list_display = ('title', 'date_taken', 'pub_date', 'photographer',
+                        'admin_thumbnail')
         list_filter = ['pub_date', 'is_public']
         list_per_page = 10
+
+    @property
+    def EXIF(self):
+        try:
+            return EXIF.process_file(open(self.get_image_filename(), 'rb'),
+                                     details=False)
+        except:
+            return {}
 
     def admin_thumbnail(self):
         if 'thumbnail' in [photosize.name for photosize in PhotoSize.objects.all()]:
@@ -312,11 +323,17 @@ class Photo(models.Model):
                 filter = getattr(ImageFilter, f.name, None)
                 if filter is not None:
                     resized = resized.filter(filter)
-        if im.format == 'JPEG':
-            resized.save(getattr(self, "get_%s_path" % photosize.name)(),
-                         'JPEG', quality=photosize.quality, optimize=True)
-        else:
-            resized.save(getattr(self, "get_%s_path" % photosize.name)())
+        resized_filename = getattr(self, "get_%s_path" % photosize.name)()
+        try:
+            if im.format == 'JPEG':
+                resized.save(resized_filename, 'JPEG', quality=photosize.quality,
+                             optimize=True)
+            else:
+                resized.save(resized_filename)
+        except IOError, e:
+            if os.path.isfile(resized_filename):
+                os.unlink(resized_filename)
+            raise e
 
     def remove_size(self, photosize, remove_dirs=True):
         if not self.size_exists(photosize):
@@ -339,6 +356,15 @@ class Photo(models.Model):
                 pass
 
     def save(self):
+        exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
+        if exif_date is not None:
+            d, t = str.split(exif_date.values)
+            year, month, day = d.split(':')
+            hour, minute, second = t.split(':')
+            self.date_taken = datetime(int(year), int(month), int(day),
+                                       int(hour), int(minute), int(second))
+        else:
+            self.date_taken = datetime.now()
         self.remove_set()
         super(Photo, self).save()
 
