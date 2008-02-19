@@ -37,9 +37,11 @@ for n in dir(ImageFilter):
 JPEG_QUALITY_CHOICES = (
     (20, 'Very Low'),
     (40, 'Low'),
+    (50, 'Medium-Low'),
     (60, 'Medium'),
+    (70, 'Medium-High'),
     (80, 'High'),
-    (100, 'Very High'),
+    (90, 'Very High'),
 )
 
 # choices for new crop_anchor field in Photo
@@ -399,7 +401,7 @@ class PhotoSize(models.Model):
     height = models.PositiveIntegerField(default=0,
                                          help_text='Leave to size the image to the set width')
     quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES,
-                                          default=80,
+                                          default=70,
                                           help_text="JPEG image quality.")
     crop = models.BooleanField("Crop photo to fit?", default=False,
                                help_text="If selected the image will be scaled \
