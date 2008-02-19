@@ -8,7 +8,7 @@
 <h2>Originally published {{ object.pub_date|date:"l, F jS, Y" }}</h2>
 {% if object.description %}<p>{{ object.description }}</p>{% endif %}
 <div class="photo-gallery">
-    {% for photo in object.photos.all %}
+    {% for photo in object.public_photos %}
     <div class="gallery-photo">
         <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
     </div>
