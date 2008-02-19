@@ -23,7 +23,7 @@ from util import EXIF
 PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
 
 # Modify image file buffer size if set, otherwise keep PIL default (64k)
-ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 64*1024)
+ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256*1024)
 
 # Prepare a list of image filters
 IMAGE_FILTER_CHOICES = []
@@ -199,6 +199,11 @@ class Photo(models.Model):
         list_filter = ['pub_date', 'is_public']
         list_per_page = 10
 
+    class PhotoSizeCache(object):
+        __state = {"sizes": {}}
+        def __init__(self):
+            self.__dict__ = self.__state
+
     @property
     def EXIF(self):
         try:
@@ -208,11 +213,12 @@ class Photo(models.Model):
             return {}
 
     def admin_thumbnail(self):
-        if 'thumbnail' in [photosize.name for photosize in PhotoSize.objects.all()]:
-            return u'<a href="%s"><img src="%s"></a>' % \
-                            (self.get_absolute_url(), self._get_SIZE_url('thumbnail'))
-        else:
+        func = getattr(self, 'get_thumbnail_url', None)
+        if func is None:
             return 'A "thumbnail" photo size has not been defined.'
+        else:
+            return u'<a href="%s"><img src="%s"></a>' % \
+                (self.get_absolute_url(), func())
     admin_thumbnail.short_description = 'Thumbnail'
     admin_thumbnail.allow_tags = True
 
@@ -236,30 +242,33 @@ class Photo(models.Model):
         base, ext = os.path.splitext(self.image_filename())
         return ''.join([base, '_', size, ext])
 
-    def _get_SIZE_size(self, size):
-        return PhotoSize.objects.get(name__exact=size)
+    def _get_SIZE_size(self, photosize):
+        return photosize.size
 
-    def _get_SIZE_url(self, size):
-        try:
-            photosize = PhotoSize.objects.get(name=size)
-        except PhotoSize.DoesNotExist:
-            return ''
+    def _get_SIZE_url(self, photosize):
         if not self.size_exists(photosize):
             self.create_size(photosize)
         return '/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)])
 
-    def _get_SIZE_path(self, size):
-        try:
-            photosize = PhotoSize.objects.get(name=size)
-        except PhotoSize.DoesNotExist:
-            return ''
-        return os.path.join(self.cache_path(), self._get_filename_for_size(photosize.name))
+    def _get_SIZE_path(self, photosize):
+        return os.path.join(self.cache_path(),
+                            self._get_filename_for_size(photosize.name))
 
     def add_accessor_methods(self, *args, **kwargs):
-        for photosize in PhotoSize.objects.all():
-            setattr(self, 'get_%s_size' % photosize.name, curry(self._get_SIZE_size, size=photosize.name))
-            setattr(self, 'get_%s_url' % photosize.name, curry(self._get_SIZE_url, size=photosize.name))
-            setattr(self, 'get_%s_path' % photosize.name, curry(self._get_SIZE_path, size=photosize.name))
+        cache = self.PhotoSizeCache()
+        if len(cache.sizes):
+            sizes = cache.sizes.values()
+        else:
+            sizes = PhotoSize.objects.all()
+            for size in sizes:
+                cache.sizes[size.name] = size
+        for photosize in sizes:
+            setattr(self, 'get_%s_size' % photosize.name,
+                    curry(self._get_SIZE_size, photosize=photosize))
+            setattr(self, 'get_%s_url' % photosize.name,
+                    curry(self._get_SIZE_url, photosize=photosize))
+            setattr(self, 'get_%s_path' % photosize.name,
+                    curry(self._get_SIZE_path, photosize=photosize))
 
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_path" % photosize.name, None)
@@ -353,7 +362,8 @@ class Photo(models.Model):
                 pass
 
     def remove_set(self):
-        for photosize in PhotoSize.objects.all():
+        cache = self.PhotoSizeCache()
+        for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
             try:
                 os.removedirs(self.cache_path())
