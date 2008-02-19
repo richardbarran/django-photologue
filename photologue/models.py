@@ -273,7 +273,7 @@ class Photo(models.Model):
         except IOError:
             return
         if im.size == photosize.size():
-            shutil.copy(self.get_image_filname(),
+            shutil.copy(self.get_image_filename(),
                         self._get_SIZE_path(photosize.name))
             return
         cur_width, cur_height = im.size
