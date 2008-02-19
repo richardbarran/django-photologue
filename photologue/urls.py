@@ -5,7 +5,7 @@ from models import Gallery, Photo
 # galleries
 gallery_args = {'date_field': 'pub_date', 'allow_empty': True, 'queryset': Gallery.objects.filter(is_public=True)}
 urlpatterns = patterns('django.views.generic.date_based',
-    url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$', 'object_detail', {'date_field': 'pub_date', 'slug_field': 'slug', 'queryset': Gallery.objects.all()}, name='pl-gallery-detail'),
+    url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$', 'object_detail', {'date_field': 'pub_date', 'slug_field': 'slug', 'queryset': Gallery.objects.filter(is_public=True)}, name='pl-gallery-detail'),
     url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'archive_day', gallery_args, name='pl-gallery-archive-day'),
     url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'archive_month', gallery_args, name='pl-gallery-archive-month'),
     url(r'^gallery/(?P<year>\d{4})/$', 'archive_year', gallery_args, name='pl-gallery-archive-year'),
@@ -18,7 +18,7 @@ urlpatterns += patterns('django.views.generic.list_detail',
 # photographs
 photo_args = {'date_field': 'pub_date', 'allow_empty': True, 'queryset': Photo.objects.filter(is_public=True)}
 urlpatterns += patterns('django.views.generic.date_based',
-    url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$', 'object_detail', {'date_field': 'pub_date', 'slug_field': 'slug', 'queryset': Photo.objects.all()}, name='pl-photo-detail'),
+    url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$', 'object_detail', {'date_field': 'pub_date', 'slug_field': 'slug', 'queryset': Photo.objects.filter(is_public=True)}, name='pl-photo-detail'),
     url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'archive_day', photo_args, name='pl-photo-archive-day'),
     url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'archive_month', photo_args, name='pl-photo-archive-month'),
     url(r'^photo/(?P<year>\d{4})/$', 'archive_year', photo_args, name='pl-photo-archive-year'),

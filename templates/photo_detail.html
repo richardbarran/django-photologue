@@ -8,10 +8,10 @@
 <div class="gallery-photo">
     <a href="{{ object.get_image_url }}"><img src="{{ object.get_display_url }}" alt="{{ object.title }}"/></a>
 </div>
-{% if object.galleries.all %}
+{% if object.public_galleries %}
 <h2>This photo is found in the following galleries:</h2>
 <ol>
-{% for gallery in object.galleries.all %}
+{% for gallery in object.public_galleries %}
     <li><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></li>
 {% endfor %}
 </ol>

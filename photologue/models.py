@@ -97,7 +97,10 @@ class Gallery(models.Model):
         return self.photos.all().count()
     photo_count.short_description = 'Count'
 
+    def public_photos(self):
+        return self.photos.filter(is_public=True)
 
+        
 class GalleryUpload(models.Model):
     id = models.IntegerField(default=1, editable=False, primary_key=True)
     zip_file = models.FileField('Images file (.zip)',
@@ -372,7 +375,11 @@ class Photo(models.Model):
         super(Photo, self).delete()
         self.remove_set()
 
+    def public_galleries(self):
+        """Return the public galleries to which this photo belongs."""
+        return self.galleries.filter(is_public=True)
 
+        
 class PhotoFilter(models.Model):
     name = models.CharField(max_length=25, unique=True,
                             choices=IMAGE_FILTER_CHOICES,
