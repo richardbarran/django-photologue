@@ -100,7 +100,7 @@ class Gallery(models.Model):
     def public_photos(self):
         return self.photos.filter(is_public=True)
 
-        
+
 class GalleryUpload(models.Model):
     id = models.IntegerField(default=1, editable=False, primary_key=True)
     zip_file = models.FileField('Images file (.zip)',
@@ -379,7 +379,7 @@ class Photo(models.Model):
         """Return the public galleries to which this photo belongs."""
         return self.galleries.filter(is_public=True)
 
-        
+
 class PhotoFilter(models.Model):
     name = models.CharField(max_length=25, unique=True,
                             choices=IMAGE_FILTER_CHOICES,
@@ -399,6 +399,7 @@ class PhotoSize(models.Model):
     height = models.PositiveIntegerField(default=0,
                                          help_text='Leave to size the image to the set width')
     quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES,
+                                          default=80,
                                           help_text="JPEG image quality.")
     crop = models.BooleanField("Crop photo to fit?", default=False,
                                help_text="If selected the image will be scaled \
