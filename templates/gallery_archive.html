@@ -9,7 +9,7 @@
 {% if latest %}
     {% for gallery in latest %}
     <div class="photo-gallery">
-        <h2>{{ gallery.title }}</h2>
+        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
         {% for photo in gallery.photos.all %}
         <div class="gallery-photo">
             <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
