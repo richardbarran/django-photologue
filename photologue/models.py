@@ -199,11 +199,6 @@ class Photo(models.Model):
         list_filter = ['pub_date', 'is_public']
         list_per_page = 10
 
-    class PhotoSizeCache(object):
-        __state = {"sizes": {}}
-        def __init__(self):
-            self.__dict__ = self.__state
-
     @property
     def EXIF(self):
         try:
@@ -255,7 +250,7 @@ class Photo(models.Model):
                             self._get_filename_for_size(photosize.name))
 
     def add_accessor_methods(self, *args, **kwargs):
-        cache = self.PhotoSizeCache()
+        cache = PhotoSizeCache()
         if len(cache.sizes):
             sizes = cache.sizes.values()
         else:
@@ -293,10 +288,7 @@ class Photo(models.Model):
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size()
         if photosize.crop:
-            if cur_width < cur_height:
-                ratio = float(new_width)/cur_width
-            else:
-                ratio = float(new_height)/cur_height
+            ratio = max(float(new_width)/cur_width,float(new_height)/cur_height)
             x = (cur_width * ratio)
             y = (cur_height * ratio)
             xd = abs(new_width - x)
@@ -362,7 +354,7 @@ class Photo(models.Model):
                 pass
 
     def remove_set(self):
-        cache = self.PhotoSizeCache()
+        cache = PhotoSizeCache()
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
             try:
@@ -428,20 +420,33 @@ class PhotoSize(models.Model):
     def __unicode__(self):
         return self.name
 
+    def _clear_caches(self):
+        for photo in Photo.objects.all():
+            photo.remove_size(self)
+        PhotoSizeCache().reset()
+
     def save(self):
         if self.width + self.height == 0:
             raise ValueError("A PhotoSize must have a positive height or width.")
-        for photo in Photo.objects.all():
-            photo.remove_size(self)
+        self._clear_caches()
         super(PhotoSize, self).save()
 
     def delete(self):
-        for photo in Photo.objects.all():
-            photo.remove_size(self)
+        self._clear_caches()
         super(PhotoSize, self).delete()
 
     def size(self):
         return (self.width, self.height)
+
+
+class PhotoSizeCache(object):
+    __state = {"sizes": {}}
+
+    def __init__(self):
+        self.__dict__ = self.__state
+
+    def reset(self):
+        self.sizes = {}
 
 
 # Set up the accessor methods
