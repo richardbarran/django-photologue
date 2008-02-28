@@ -283,7 +283,7 @@ class Photo(models.Model):
             return
         if im.size == photosize.size():
             shutil.copy(self.get_image_filename(),
-                        self._get_SIZE_path(photosize.name))
+                        self._get_SIZE_path(photosize))
             return
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size()
