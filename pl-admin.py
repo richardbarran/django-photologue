@@ -109,7 +109,6 @@ def main():
         elif command == 'reset':
             reset()
 
-    raise Warning("%s, %s" % (opts, args))
     usage()
 
 
