@@ -296,15 +296,15 @@ class Photo(models.Model):
             x_diff = int(xd / 2)
             y_diff = int(yd / 2)
             if self.crop_from == 'top':
-                    box = (x_diff, 0, (x-x_diff), new_height)
+                    box = (int(x_diff), 0, int(x-x_diff), new_height)
             elif self.crop_from == 'left':
-                    box = (0, y_diff, new_width, (y-y_diff))
+                    box = (0, int(y_diff), new_width, int(y-y_diff))
             elif self.crop_from == 'bottom':
-                    box = (x_diff, yd, (x-x_diff), y) # y - yd = new_height
+                    box = (int(x_diff), int(yd), int(x-x_diff), int(y)) # y - yd = new_height
             elif self.crop_from == 'right':
-                    box = (xd, y_diff, x, (y-y_diff)) # x - xd = new_width
+                    box = (int(xd), int(y_diff), int(x), int(y-y_diff)) # x - xd = new_width
             else:
-                    box = (x_diff, y_diff, (x-x_diff), (y-y_diff))
+                    box = (int(x_diff), int(y_diff), int(x-x_diff), int(y-y_diff))
             resized = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
@@ -328,7 +328,10 @@ class Photo(models.Model):
             for f in filter_set:
                 filter = getattr(ImageFilter, f.name, None)
                 if filter is not None:
-                    resized = resized.filter(filter)
+                    try:
+                        resized = resized.filter(filter)
+                    except ValueError:
+                        pass
         resized_filename = getattr(self, "get_%s_path" % photosize.name)()
         try:
             if im.format == 'JPEG':
