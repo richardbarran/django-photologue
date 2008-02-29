@@ -135,7 +135,7 @@ class GalleryUpload(models.Model):
             bad_file = zip.testzip()
             if bad_file:
                 raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
-            count = 0
+            count = 1
             gallery = Gallery.objects.create(title=self.title_prefix,
                                              slug=slugify(self.title_prefix),
                                              description=self.description,
