@@ -50,6 +50,7 @@ CROP_ANCHOR_CHOICES = (
 	('right', 'Right'),
 	('bottom', 'Bottom'),
 	('left', 'Left'),
+	('center', 'Center (Default)'),
 )
 
 
@@ -174,7 +175,7 @@ class GalleryUpload(models.Model):
 class Photo(models.Model):
     image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(max_length=80)
+    title = models.CharField(max_length=80, unique=True)
     slug = models.SlugField(prepopulate_from=('title',),
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     caption = models.TextField(blank=True)
@@ -296,15 +297,15 @@ class Photo(models.Model):
             x_diff = int(xd / 2)
             y_diff = int(yd / 2)
             if self.crop_from == 'top':
-                    box = (int(x_diff), 0, int(x-x_diff), new_height)
+                    box = (int(x_diff), 0, int(x_diff+new_width), new_height)
             elif self.crop_from == 'left':
-                    box = (0, int(y_diff), new_width, int(y-y_diff))
+                    box = (0, int(y_diff), new_width, int(y_diff+new_height))
             elif self.crop_from == 'bottom':
-                    box = (int(x_diff), int(yd), int(x-x_diff), int(y)) # y - yd = new_height
+                    box = (int(x_diff), int(yd), int(x_diff+new_width), int(y)) # y - yd = new_height
             elif self.crop_from == 'right':
-                    box = (int(xd), int(y_diff), int(x), int(y-y_diff)) # x - xd = new_width
+                    box = (int(xd), int(y_diff), int(x), int(y_diff+new_height)) # x - xd = new_width
             else:
-                    box = (int(x_diff), int(y_diff), int(x-x_diff), int(y-y_diff))
+                    box = (int(x_diff), int(y_diff), int(x_diff+new_width), int(y_diff+new_height))
             resized = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
