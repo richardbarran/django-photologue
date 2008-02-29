@@ -318,20 +318,23 @@ class Photo(models.Model):
                 else:
                     ratio = float(new_width)/cur_width
             resized = im.resize((int(cur_width*ratio), int(cur_height*ratio)), Image.ANTIALIAS)
-        if self.filter_set is not None:
-            filter_set = self.filter_set.filters.all()
-        elif photosize.filter_set is not None:
-            filter_set = list(photosize.filter_set.filters.all())
-        else:
-            filter_set = None
-        if filter_set is not None:
-            for f in filter_set:
-                filter = getattr(ImageFilter, f.name, None)
-                if filter is not None:
-                    try:
-                        resized = resized.filter(filter)
-                    except ValueError:
-                        pass
+        # Paletted images can not be filtered.
+        # TODO: look into converting the image, applying the filter and then converting back.
+        if resized.palette is None:
+            if self.filter_set is not None:
+                filter_set = self.filter_set.filters.all()
+            elif photosize.filter_set is not None:
+                filter_set = list(photosize.filter_set.filters.all())
+            else:
+                filter_set = None
+            if filter_set is not None:
+                for f in filter_set:
+                    filter = getattr(ImageFilter, f.name, None)
+                    if filter is not None:
+                        try:
+                            resized = resized.filter(filter)
+                        except ValueError:
+                            pass
         resized_filename = getattr(self, "get_%s_path" % photosize.name)()
         try:
             if im.format == 'JPEG':
