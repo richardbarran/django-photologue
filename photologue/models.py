@@ -3,11 +3,24 @@ import shutil
 import zipfile
 
 from datetime import datetime
-import Image
-import ImageFile
-import ImageFilter
 from inspect import isclass
 
+# Required PIL classes may or may not be avaiable from the root namespace
+# depending on the installation method used.
+try:
+	import Image
+	import ImageFile
+	import ImageFilter
+except ImportError:
+	try:
+		from PIL import Image
+		from PIL import ImageFile
+		from PIL import ImageFilter
+	except ImportError:
+		raise ImportError("Photologue was unable to import the Python " \
+		                  "Imaging Library. Please confirm it's installed " \
+		                  "and available on your current Python path.")
+		
 from django.db import models
 from django.db.models import signals
 from django.conf import settings
