@@ -68,7 +68,7 @@ class FilterSet(models.Model):
 
 class Gallery(models.Model):
     pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=100)
     slug = models.SlugField(prepopulate_from=('title',), unique=True,
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     description = models.TextField()
@@ -175,7 +175,7 @@ class GalleryUpload(models.Model):
 class Photo(models.Model):
     image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(max_length=80)
+    title = models.CharField(max_length=100)
     slug = models.SlugField(prepopulate_from=('title',), unique=True,
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     caption = models.TextField(blank=True)
