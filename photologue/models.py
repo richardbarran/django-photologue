@@ -5,7 +5,7 @@ import zipfile
 from datetime import datetime
 from inspect import isclass
 
-# Required PIL classes may or may not be avaiable from the root namespace
+# Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
 try:
 	import Image
