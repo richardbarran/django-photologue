@@ -69,7 +69,7 @@ class FilterSet(models.Model):
 class Gallery(models.Model):
     pub_date = models.DateTimeField("Date published", default=datetime.now)
     title = models.CharField(max_length=200)
-    slug = models.SlugField(prepopulate_from=('title',),
+    slug = models.SlugField(prepopulate_from=('title',), unique=True,
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     description = models.TextField()
     is_public = models.BooleanField(default=True,
@@ -110,7 +110,7 @@ class GalleryUpload(models.Model):
                                 upload_to=PHOTOLOGUE_DIR+"/temp",
                                 help_text="Select a .zip file of images to upload into a new Gallery.")
     title_prefix = models.CharField(max_length=75,
-                                    help_text="Photos will be titled using this prefix.")
+                                    help_text="All photos in the gallery will be given a title made up of this prefix + a sequential number.")
     caption = models.TextField(help_text="Caption will be added to all photos.")
     description = models.TextField(blank=True,
                                    help_text="A description of this Gallery.")
@@ -175,8 +175,8 @@ class GalleryUpload(models.Model):
 class Photo(models.Model):
     image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(max_length=80, unique=True)
-    slug = models.SlugField(prepopulate_from=('title',),
+    title = models.CharField(max_length=80)
+    slug = models.SlugField(prepopulate_from=('title',), unique=True,
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
     caption = models.TextField(blank=True)
     photographer = models.CharField(max_length=100, blank=True)
