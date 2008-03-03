@@ -30,7 +30,21 @@ from django.core.urlresolvers import reverse
 from django.dispatch import dispatcher
 from django.template.defaultfilters import slugify
 
+# attempt to load the django-tagging TagField from default location,
+# otherwise we substitude a dummy TagField.
+try:
+    from tagging.fields import TagField
+    tagfield_help_text = 'Separate tags with spaces, put quotes around multiple-word tags.'
+except ImportError:
+    class TagField(models.CharField):
+        def __init__(self, **kwargs):
+            default_kwargs = {'max_length': 255, 'blank': True}
+            default_kwargs.update(kwargs)
+            super(TagField, self).__init__(**default_kwargs)
+    tagfield_help_text = 'Django-tagging was not found, tags will be treated as plain text.'
+    
 from util import EXIF
+
 
 # Photologue image path relative to media root
 PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
@@ -88,6 +102,7 @@ class Gallery(models.Model):
     is_public = models.BooleanField(default=True,
                                     help_text="Public galleries will be displayed in the default views.")
     photos = models.ManyToManyField('Photo', related_name='galleries')
+    tags = TagField(help_text=tagfield_help_text)
 
     class Meta:
         ordering = ['-pub_date']
@@ -124,7 +139,7 @@ class GalleryUpload(models.Model):
                                 help_text="Select a .zip file of images to upload into a new Gallery.")
     title_prefix = models.CharField(max_length=75,
                                     help_text="All photos in the gallery will be given a title made up of this prefix + a sequential number.")
-    caption = models.TextField(help_text="Caption will be added to all photos.")
+    caption = models.TextField(blank=True, help_text="Caption will be added to all photos.")
     description = models.TextField(blank=True,
                                    help_text="A description of this Gallery.")
     photographer = models.CharField(max_length=100, blank=True)
@@ -132,7 +147,8 @@ class GalleryUpload(models.Model):
                             help_text="Additional information about the photograph such as date taken, equipment used etc..")
     is_public = models.BooleanField(default=True,
                                     help_text="Uncheck this to make the uploaded gallery and included photographs private.")
-
+    tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text)
+    
     class Admin:
         pass
 
@@ -152,7 +168,8 @@ class GalleryUpload(models.Model):
             gallery = Gallery.objects.create(title=self.title_prefix,
                                              slug=slugify(self.title_prefix),
                                              description=self.description,
-                                             is_public=self.is_public)
+                                             is_public=self.is_public,
+                                             tags=self.tags)
             from cStringIO import StringIO
             for filename in zip.namelist():
                 if filename.startswith('__'): # do not process meta files
@@ -178,11 +195,16 @@ class GalleryUpload(models.Model):
                                   caption=self.caption,
                                   photographer=self.photographer,
                                   info=self.info,
-                                  is_public=self.is_public)
+                                  is_public=self.is_public,
+                                  tags=self.tags)
                     photo.save_image_file(filename, data)
                     gallery.photos.add(photo)
                     count = count + 1
             zip.close()
+            try:
+                os.remove(self.get_zip_file_filename())
+            except:
+                pass
 
 
 class Photo(models.Model):
@@ -202,6 +224,7 @@ class Photo(models.Model):
                                     help_text="Public photographs will be displayed in the default views.")
     filter_set = models.ForeignKey('FilterSet', null=True, blank=True,
                                    help_text="This setting will override the photo size filter set for this photo.")
+    tags = TagField(help_text=tagfield_help_text)
 
     class Meta:
         ordering = ['-pub_date']
