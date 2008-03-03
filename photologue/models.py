@@ -49,7 +49,7 @@ from util import EXIF
 # Photologue image path relative to media root
 PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
 
-# Modify image file buffer size if set, otherwise keep PIL default (64k)
+# Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256*1024)
 
 # Prepare a list of image filters
