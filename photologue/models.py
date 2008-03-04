@@ -375,7 +375,7 @@ class Photo(models.Model):
         resized_filename = getattr(self, "get_%s_path" % photosize.name)()
         try:
             if im.format == 'JPEG':
-                resized.save(resized_filename, 'JPEG', quality=photosize.quality,
+                resized.save(resized_filename, 'JPEG', quality=int(photosize.quality),
                              optimize=True)
             else:
                 resized.save(resized_filename)
@@ -391,19 +391,25 @@ class Photo(models.Model):
         if os.path.isfile(filename):
             os.remove(filename)
         if remove_dirs:
-            try:
-                os.removedirs(self.cache_path())
-            except:
-                pass
+            self.remove_cache_dirs()
 
-    def remove_set(self):
+    def clear_cache(self):
         cache = PhotoSizeCache()
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
-            try:
-                os.removedirs(self.cache_path())
-            except:
-                pass
+        self.remove_cache_dirs()
+            
+    def pre_cache(self):
+        cache = PhotoSizeCache()
+        for photosize in cache.sizes.values():
+            if photosize.pre_cache:
+                self.create_size(photosize)
+                            
+    def remove_cache_dirs(self):
+        try:
+            os.removedirs(self.cache_path())
+        except:
+            pass
 
     def save(self):
         exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
@@ -415,12 +421,14 @@ class Photo(models.Model):
                                        int(hour), int(minute), int(second))
         else:
             self.date_taken = datetime.now()
-        self.remove_set()
+        if self._get_pk_val():
+            self.clear_cache()
         super(Photo, self).save()
+        self.pre_cache()
 
     def delete(self):
         super(Photo, self).delete()
-        self.remove_set()
+        self.clear_cache()
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
@@ -448,17 +456,18 @@ class PhotoSize(models.Model):
     quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES,
                                           default=70,
                                           help_text="JPEG image quality.")
-    crop = models.BooleanField("Crop photo to fit?", default=False,
-                               help_text="If selected the image will be scaled \
-                                         and cropped to fit the supplied dimensions.")
-    filter_set = models.ForeignKey('FilterSet', null=True, blank=True,
-                                   help_text="Selected filters will be applied to all resized images")
-
+    crop = models.BooleanField("crop to fit?", default=False,
+                               help_text="If selected the image will be scaled and cropped to fit the supplied dimensions.")
+    pre_cache = models.BooleanField('pre-cache?', default=False,
+                                    help_text="If selected this photo size will be pre-cached as photos are added.")
+    filter_set = models.ForeignKey(FilterSet, null=True, blank=True,
+                                   help_text="Selected filters will be applied to all resized images.")
+    
     class Meta:
         ordering = ['width', 'height']
 
     class Admin:
-        list_display = ('name', 'width', 'height', 'crop')
+        list_display = ('name', 'width', 'height', 'crop', 'pre_cache')
 
     def __unicode__(self):
         return self.name
@@ -466,6 +475,8 @@ class PhotoSize(models.Model):
     def _clear_caches(self):
         for photo in Photo.objects.all():
             photo.remove_size(self)
+            if self.pre_cache:
+                photo.create_size(self)
         PhotoSizeCache().reset()
 
     def save(self):
