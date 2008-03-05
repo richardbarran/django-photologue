@@ -61,8 +61,8 @@ filter_names = []
 for n in dir(ImageFilter):
     klass = getattr(ImageFilter, n)
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
-       hasattr(klass, 'name'):
-        filter_names.append(klass.__name__)
+        hasattr(klass, 'name'):
+            filter_names.append(klass.__name__)
 image_filters_help_text = 'Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". ' \
                           'Image filters will be applied in order. The following filter are available: %s' % \
                           ', '.join(filter_names)
