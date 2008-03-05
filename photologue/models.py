@@ -238,9 +238,9 @@ class Photo(models.Model):
             return {}
 
     def admin_thumbnail(self):
-        func = getattr(self, 'get_thumbnail_url', None)
+        func = getattr(self, 'get_admin_thumbnail_url', None)
         if func is None:
-            return 'A "thumbnail" photo size has not been defined.'
+            return 'An "admin_thumbnail" photo size has not been defined.'
         else:
             return u'<a href="%s"><img src="%s"></a>' % \
                 (self.get_absolute_url(), func())
