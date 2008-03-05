@@ -472,6 +472,10 @@ class PhotoEffect(models.Model):
         return im      
             
     def save(self):
+        try:
+            os.remove(self.sample_filename())
+        except:
+            pass
         for photo in self.photos.all():
             photo.clear_cache()
             photo.pre_cache()
