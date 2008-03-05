@@ -493,7 +493,7 @@ class PhotoEffect(models.Model):
             
 
 class PhotoSize(models.Model):
-    name = models.CharField(max_length=20, unique=True, help_text='Examples: "thumbnail", "display", "small"')
+    name = models.CharField(max_length=20, unique=True, help_text='Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".')
     width = models.PositiveIntegerField(default=0,
                                         help_text='Leave to size the image to the set height')
     height = models.PositiveIntegerField(default=0,
