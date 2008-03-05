@@ -69,7 +69,7 @@ image_filters_help_text = 'Chain multiple filters using the following pattern "F
 
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
-    (20, 'Very Low'),
+    (30, 'Very Low'),
     (40, 'Low'),
     (50, 'Medium-Low'),
     (60, 'Medium'),
@@ -129,19 +129,14 @@ class Gallery(models.Model):
 
 class GalleryUpload(models.Model):
     id = models.IntegerField(default=1, editable=False, primary_key=True)
-    zip_file = models.FileField('Images file (.zip)',
-                                upload_to=PHOTOLOGUE_DIR+"/temp",
+    zip_file = models.FileField('Images file (.zip)', upload_to=PHOTOLOGUE_DIR+"/temp",
                                 help_text="Select a .zip file of images to upload into a new Gallery.")
-    title_prefix = models.CharField(max_length=75,
-                                    help_text="All photos in the gallery will be given a title made up of this prefix + a sequential number.")
+    title_prefix = models.CharField(max_length=75, help_text="All photos in the gallery will be given a title made up of this prefix + a sequential number.")
     caption = models.TextField(blank=True, help_text="Caption will be added to all photos.")
-    description = models.TextField(blank=True,
-                                   help_text="A description of this Gallery.")
+    description = models.TextField(blank=True, help_text="A description of this Gallery.")
     photographer = models.CharField(max_length=100, blank=True)
-    info = models.TextField(blank=True,
-                            help_text="Additional information about the photograph such as date taken, equipment used etc..")
-    is_public = models.BooleanField(default=True,
-                                    help_text="Uncheck this to make the uploaded gallery and included photographs private.")
+    info = models.TextField(blank=True, help_text="Additional information about the photograph such as date taken, equipment used etc..")
+    is_public = models.BooleanField(default=True, help_text="Uncheck this to make the uploaded gallery and included photographs private.")
     tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text)
     
     class Admin:
@@ -211,12 +206,9 @@ class Photo(models.Model):
     caption = models.TextField(blank=True)
     photographer = models.CharField(max_length=100, blank=True)
     date_taken = models.DateTimeField(null=True, blank=True)
-    info = models.TextField(blank=True,
-                            help_text="Additional information about the photograph such location, equipment used etc..")
-    crop_from = models.CharField(blank=True, max_length=10,
-                                 choices=CROP_ANCHOR_CHOICES)
-    is_public = models.BooleanField(default=True,
-                                    help_text="Public photographs will be displayed in the default views.")
+    info = models.TextField(blank=True, help_text="Additional information about the photograph such location, equipment used etc..")
+    crop_from = models.CharField(blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
+    is_public = models.BooleanField(default=True, help_text="Public photographs will be displayed in the default views.")
     tags = TagField(help_text=tagfield_help_text)
     effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photos')
 
@@ -326,15 +318,15 @@ class Photo(models.Model):
             x_diff = int(xd / 2)
             y_diff = int(yd / 2)
             if self.crop_from == 'top':
-                    box = (int(x_diff), 0, int(x_diff+new_width), new_height)
+                box = (int(x_diff), 0, int(x_diff+new_width), new_height)
             elif self.crop_from == 'left':
-                    box = (0, int(y_diff), new_width, int(y_diff+new_height))
+                box = (0, int(y_diff), new_width, int(y_diff+new_height))
             elif self.crop_from == 'bottom':
-                    box = (int(x_diff), int(yd), int(x_diff+new_width), int(y)) # y - yd = new_height
+                box = (int(x_diff), int(yd), int(x_diff+new_width), int(y)) # y - yd = new_height
             elif self.crop_from == 'right':
-                    box = (int(xd), int(y_diff), int(x), int(y_diff+new_height)) # x - xd = new_width
+                box = (int(xd), int(y_diff), int(x), int(y_diff+new_height)) # x - xd = new_width
             else:
-                    box = (int(x_diff), int(y_diff), int(x_diff+new_width), int(y_diff+new_height))
+                box = (int(x_diff), int(y_diff), int(x_diff+new_width), int(y_diff+new_height))
             resized = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
@@ -359,8 +351,7 @@ class Photo(models.Model):
         resized_filename = getattr(self, "get_%s_path" % photosize.name)()
         try:
             if im.format == 'JPEG':
-                resized.save(resized_filename, 'JPEG', quality=int(photosize.quality),
-                             optimize=True)
+                resized.save(resized_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
             else:
                 resized.save(resized_filename)
         except IOError, e:
@@ -396,15 +387,16 @@ class Photo(models.Model):
             pass
 
     def save(self):
-        exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
-        if exif_date is not None:
-            d, t = str.split(exif_date.values)
-            year, month, day = d.split(':')
-            hour, minute, second = t.split(':')
-            self.date_taken = datetime(int(year), int(month), int(day),
-                                       int(hour), int(minute), int(second))
-        else:
-            self.date_taken = datetime.now()
+        if self.date_taken is None:
+            exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
+            if exif_date is not None:
+                d, t = str.split(exif_date.values)
+                year, month, day = d.split(':')
+                hour, minute, second = t.split(':')
+                self.date_taken = datetime(int(year), int(month), int(day),
+                                           int(hour), int(minute), int(second))
+            else:
+                self.date_taken = datetime.now()
         if self._get_pk_val():
             self.clear_cache()
         super(Photo, self).save()
@@ -446,7 +438,10 @@ class PhotoEffect(models.Model):
     def create_sample(self):
         if not os.path.isdir(self.sample_dir()):
             os.makedirs(self.sample_dir())
-        im = Image.open(SAMPLE_IMAGE_PATH)
+        try:
+            im = Image.open(SAMPLE_IMAGE_PATH)
+        except IOError:
+            raise IOError('Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
         im.save(self.sample_filename(), 'JPEG', quality=90, optimize=True)
         
@@ -494,17 +489,12 @@ class PhotoEffect(models.Model):
 
 class PhotoSize(models.Model):
     name = models.CharField(max_length=20, unique=True, help_text='Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".')
-    width = models.PositiveIntegerField(default=0,
-                                        help_text='Leave to size the image to the set height')
-    height = models.PositiveIntegerField(default=0,
-                                         help_text='Leave to size the image to the set width')
-    quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES,
-                                          default=70,
+    width = models.PositiveIntegerField(default=0, help_text='Leave to size the image to the set height')
+    height = models.PositiveIntegerField(default=0, help_text='Leave to size the image to the set width')
+    quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES, default=70,
                                           help_text="JPEG image quality.")
-    crop = models.BooleanField("crop to fit?", default=False,
-                               help_text="If selected the image will be scaled and cropped to fit the supplied dimensions.")
-    pre_cache = models.BooleanField('pre-cache?', default=False,
-                                    help_text="If selected this photo size will be pre-cached as photos are added.")
+    crop = models.BooleanField("crop to fit?", default=False, help_text="If selected the image will be scaled and cropped to fit the supplied dimensions.")
+    pre_cache = models.BooleanField('pre-cache?', default=False, help_text="If selected this photo size will be pre-cached as photos are added.")
     effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes')
     
     class Meta:
