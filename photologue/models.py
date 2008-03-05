@@ -22,7 +22,7 @@ except ImportError:
         raise ImportError("Photologue was unable to import the Python " \
                           "Imaging Library. Please confirm it's installed " \
                           "and available on your current Python path.")
-        
+
 from django.db import models
 from django.db.models import signals
 from django.conf import settings
@@ -44,7 +44,7 @@ except ImportError:
             default_kwargs.update(kwargs)
             super(TagField, self).__init__(**default_kwargs)
     tagfield_help_text = 'Django-tagging was not found, tags will be treated as plain text.'
-    
+
 from util import EXIF
 
 # Path to sample image
@@ -138,7 +138,7 @@ class GalleryUpload(models.Model):
     info = models.TextField(blank=True, help_text="Additional information about the photograph such as date taken, equipment used etc..")
     is_public = models.BooleanField(default=True, help_text="Uncheck this to make the uploaded gallery and included photographs private.")
     tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text)
-    
+
     class Admin:
         pass
 
@@ -194,9 +194,9 @@ class GalleryUpload(models.Model):
             try:
                 os.remove(self.get_zip_file_filename())
             except:
-                pass  
+                pass
 
-    
+
 class Photo(models.Model):
     image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
@@ -340,13 +340,13 @@ class Photo(models.Model):
                 else:
                     ratio = float(new_width)/cur_width
             resized = im.resize((int(cur_width*ratio), int(cur_height*ratio)), Image.ANTIALIAS)
-            
+
         # Apply effect if found
         if self.effect is not None:
             resized = self.effect.process(resized)
         elif photosize.effect is not None:
-            resized = photosize.effect.process(resized) 
-            
+            resized = photosize.effect.process(resized)
+
         # save resized file
         resized_filename = getattr(self, "get_%s_path" % photosize.name)()
         try:
@@ -373,13 +373,13 @@ class Photo(models.Model):
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
         self.remove_cache_dirs()
-            
+
     def pre_cache(self):
         cache = PhotoSizeCache()
         for photosize in cache.sizes.values():
             if photosize.pre_cache:
                 self.create_size(photosize)
-                            
+
     def remove_cache_dirs(self):
         try:
             os.removedirs(self.cache_path())
@@ -409,7 +409,7 @@ class Photo(models.Model):
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
         return self.galleries.filter(is_public=True)
-        
+
 
 class PhotoEffect(models.Model):
     """ A pre-defined effect to apply to photos """
@@ -419,22 +419,22 @@ class PhotoEffect(models.Model):
     contrast = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.")
     sharpness = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.")
     filters = models.CharField(max_length=200, blank=True, help_text=image_filters_help_text)
-    
+
     class Admin:
         list_display = ['name', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample']
-        
+
     def __unicode__(self):
         return self.name
-        
+
     def sample_dir(self):
         return os.path.join(settings.MEDIA_ROOT, PHOTOLOGUE_DIR, 'samples')
-        
+
     def sample_url(self):
         return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples', '%s %s.jpg' % (self.name.lower(), 'sample')])
-    
+
     def sample_filename(self):
-        return os.path.join(self.sample_dir(), '%s %s.jpg' % (self.name.lower(), 'sample'))    
-        
+        return os.path.join(self.sample_dir(), '%s %s.jpg' % (self.name.lower(), 'sample'))
+
     def create_sample(self):
         if not os.path.isdir(self.sample_dir()):
             os.makedirs(self.sample_dir())
@@ -444,12 +444,12 @@ class PhotoEffect(models.Model):
             raise IOError('Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
         im.save(self.sample_filename(), 'JPEG', quality=90, optimize=True)
-        
+
     def admin_sample(self):
         return u'<img src="%s">' % self.sample_url()
     admin_sample.short_description = 'Sample'
     admin_sample.allow_tags = True
-    
+
     def process(self, im):
         if im.mode != 'RGB':
             return im
@@ -464,8 +464,8 @@ class PhotoEffect(models.Model):
                     im = im.filter(image_filter)
                 except ValueError:
                     pass
-        return im      
-            
+        return im
+
     def save(self):
         try:
             os.remove(self.sample_filename())
@@ -478,14 +478,14 @@ class PhotoEffect(models.Model):
             size.clear_cache()
         super(PhotoEffect, self).save()
         self.create_sample()
-        
+
     def delete(self):
         try:
             os.remove(self.sample_filename())
         except:
             pass
         super(PhotoEffect, self).delete()
-            
+
 
 class PhotoSize(models.Model):
     name = models.CharField(max_length=20, unique=True, help_text='Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".')
@@ -496,7 +496,7 @@ class PhotoSize(models.Model):
     crop = models.BooleanField("crop to fit?", default=False, help_text="If selected the image will be scaled and cropped to fit the supplied dimensions.")
     pre_cache = models.BooleanField('pre-cache?', default=False, help_text="If selected this photo size will be pre-cached as photos are added.")
     effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes')
-    
+
     class Meta:
         ordering = ['width', 'height']
 
