@@ -11,11 +11,13 @@ try:
     import Image
     import ImageFile
     import ImageFilter
+    import ImageEnhance
 except ImportError:
     try:
         from PIL import Image
         from PIL import ImageFile
         from PIL import ImageFilter
+        from PIL import ImageEnhance
     except ImportError:
         raise ImportError("Photologue was unable to import the Python " \
                           "Imaging Library. Please confirm it's installed " \
@@ -45,6 +47,8 @@ except ImportError:
     
 from util import EXIF
 
+# Path to sample image
+SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg')) # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
 
 # Photologue image path relative to media root
 PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
@@ -53,12 +57,15 @@ PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256*1024)
 
 # Prepare a list of image filters
-IMAGE_FILTER_CHOICES = []
+filter_names = []
 for n in dir(ImageFilter):
     klass = getattr(ImageFilter, n)
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
        hasattr(klass, 'name'):
-        IMAGE_FILTER_CHOICES.append((klass.__name__, klass.name))
+        filter_names.append(klass.__name__)
+image_filters_help_text = 'Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". ' \
+                          'Image filters will be applied in order. The following filter are available: %s' % \
+                          ', '.join(filter_names)
 
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
@@ -79,18 +86,6 @@ CROP_ANCHOR_CHOICES = (
     ('left', 'Left'),
     ('center', 'Center (Default)'),
 )
-
-
-class FilterSet(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    filters = models.ManyToManyField('PhotoFilter', related_name='filter_sets',
-                                     help_text="Selected filters will be applied to all resized images")
-
-    class Admin:
-        pass
-
-    def __unicode__(self):
-        return self.name
 
 
 class Gallery(models.Model):
@@ -204,9 +199,9 @@ class GalleryUpload(models.Model):
             try:
                 os.remove(self.get_zip_file_filename())
             except:
-                pass
+                pass  
 
-
+    
 class Photo(models.Model):
     image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
     pub_date = models.DateTimeField("Date published", default=datetime.now)
@@ -222,17 +217,15 @@ class Photo(models.Model):
                                  choices=CROP_ANCHOR_CHOICES)
     is_public = models.BooleanField(default=True,
                                     help_text="Public photographs will be displayed in the default views.")
-    filter_set = models.ForeignKey('FilterSet', null=True, blank=True,
-                                   help_text="This setting will override the photo size filter set for this photo.")
     tags = TagField(help_text=tagfield_help_text)
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photos')
 
     class Meta:
         ordering = ['-pub_date']
         get_latest_by = 'pub_date'
 
     class Admin:
-        list_display = ('title', 'date_taken', 'pub_date', 'photographer',
-                        'admin_thumbnail')
+        list_display = ('title', 'date_taken', 'pub_date', 'photographer', 'is_public', 'tags', 'admin_thumbnail')
         list_filter = ['pub_date', 'is_public']
         list_per_page = 10
 
@@ -355,23 +348,14 @@ class Photo(models.Model):
                 else:
                     ratio = float(new_width)/cur_width
             resized = im.resize((int(cur_width*ratio), int(cur_height*ratio)), Image.ANTIALIAS)
-        # Paletted images can not be filtered.
-        # TODO: look into converting the image, applying the filter and then converting back.
-        if resized.palette is None:
-            if self.filter_set is not None:
-                filter_set = self.filter_set.filters.all()
-            elif photosize.filter_set is not None:
-                filter_set = list(photosize.filter_set.filters.all())
-            else:
-                filter_set = None
-            if filter_set is not None:
-                for f in filter_set:
-                    filter = getattr(ImageFilter, f.name, None)
-                    if filter is not None:
-                        try:
-                            resized = resized.filter(filter)
-                        except ValueError:
-                            pass
+            
+        # Apply effect if found
+        if self.effect is not None:
+            resized = self.effect.process(resized)
+        elif photosize.effect is not None:
+            resized = photosize.effect.process(resized) 
+            
+        # save resized file
         resized_filename = getattr(self, "get_%s_path" % photosize.name)()
         try:
             if im.format == 'JPEG':
@@ -433,19 +417,76 @@ class Photo(models.Model):
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
         return self.galleries.filter(is_public=True)
+        
 
-
-class PhotoFilter(models.Model):
-    name = models.CharField(max_length=25, unique=True,
-                            choices=IMAGE_FILTER_CHOICES,
-                            help_text="Select effect from the available image filters.")
-
+class PhotoEffect(models.Model):
+    """ A pre-defined effect to apply to photos """
+    name = models.CharField(max_length=30, unique=True)
+    color = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image.")
+    brightness = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a black image, a factor of 1.0 gives the original image.")
+    contrast = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.")
+    sharpness = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.")
+    filters = models.CharField(max_length=200, blank=True, help_text=image_filters_help_text)
+    
     class Admin:
-        pass
-
+        list_display = ['name', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample']
+        
     def __unicode__(self):
-        return self.get_name_display()
-
+        return self.name
+        
+    def sample_dir(self):
+        return os.path.join(settings.MEDIA_ROOT, PHOTOLOGUE_DIR, 'samples')
+        
+    def sample_url(self):
+        return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples', '%s %s.jpg' % (self.name.lower(), 'sample')])
+    
+    def sample_filename(self):
+        return os.path.join(self.sample_dir(), '%s %s.jpg' % (self.name.lower(), 'sample'))    
+        
+    def create_sample(self):
+        if not os.path.isdir(self.sample_dir()):
+            os.makedirs(self.sample_dir())
+        im = Image.open(SAMPLE_IMAGE_PATH)
+        im = self.process(im)
+        im.save(self.sample_filename(), 'JPEG', quality=90, optimize=True)
+        
+    def admin_sample(self):
+        return u'<img src="%s">' % self.sample_url()
+    admin_sample.short_description = 'Sample'
+    admin_sample.allow_tags = True
+    
+    def process(self, im):
+        if im.mode != 'RGB':
+            return im
+        for name in ['Color', 'Brightness', 'Contrast', 'Sharpness']:
+            factor = getattr(self, name.lower())
+            if factor != 1.0:
+                im = getattr(ImageEnhance, name)(im).enhance(factor)
+        for name in self.filters.split('->'):
+            image_filter = getattr(ImageFilter, name, None)
+            if image_filter is not None:
+                try:
+                    im = im.filter(image_filter)
+                except ValueError:
+                    pass
+        return im      
+            
+    def save(self):
+        for photo in self.photos.all():
+            photo.clear_cache()
+            photo.pre_cache()
+        for size in self.photo_sizes.all():
+            size.clear_cache()
+        super(PhotoEffect, self).save()
+        self.create_sample()
+        
+    def delete(self):
+        try:
+            os.remove(self.sample_filename())
+        except:
+            pass
+        super(PhotoEffect, self).delete()
+            
 
 class PhotoSize(models.Model):
     name = models.CharField(max_length=20, unique=True, help_text='Examples: "thumbnail", "display", "small"')
@@ -460,19 +501,18 @@ class PhotoSize(models.Model):
                                help_text="If selected the image will be scaled and cropped to fit the supplied dimensions.")
     pre_cache = models.BooleanField('pre-cache?', default=False,
                                     help_text="If selected this photo size will be pre-cached as photos are added.")
-    filter_set = models.ForeignKey(FilterSet, null=True, blank=True,
-                                   help_text="Selected filters will be applied to all resized images.")
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes')
     
     class Meta:
         ordering = ['width', 'height']
 
     class Admin:
-        list_display = ('name', 'width', 'height', 'crop', 'pre_cache')
+        list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'effect')
 
     def __unicode__(self):
         return self.name
 
-    def _clear_caches(self):
+    def clear_cache(self):
         for photo in Photo.objects.all():
             photo.remove_size(self)
             if self.pre_cache:
@@ -482,11 +522,11 @@ class PhotoSize(models.Model):
     def save(self):
         if self.width + self.height == 0:
             raise ValueError("A PhotoSize must have a positive height or width.")
-        self._clear_caches()
+        self.clear_cache()
         super(PhotoSize, self).save()
 
     def delete(self):
-        self._clear_caches()
+        self.clear_cache()
         super(PhotoSize, self).delete()
 
     def size(self):
