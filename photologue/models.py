@@ -463,7 +463,7 @@ class PhotoEffect(models.Model):
             if factor != 1.0:
                 im = getattr(ImageEnhance, name)(im).enhance(factor)
         for name in self.filters.split('->'):
-            image_filter = getattr(ImageFilter, name, None)
+            image_filter = getattr(ImageFilter, name.upper(), None)
             if image_filter is not None:
                 try:
                     im = im.filter(image_filter)
