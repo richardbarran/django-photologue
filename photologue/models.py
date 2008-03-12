@@ -95,7 +95,7 @@ class Gallery(models.Model):
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(prepopulate_from=('title',), unique=True,
                             help_text='A "Slug" is a unique URL-friendly title for an object.')
-    description = models.TextField()
+    description = models.TextField(blank=True)
     is_public = models.BooleanField(default=True,
                                     help_text="Public galleries will be displayed in the default views.")
     photos = models.ManyToManyField('Photo', related_name='galleries')
