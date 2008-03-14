@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <django-objects version="1.0">
+	<object pk="1" model="photologue.photoeffect">
+        <field type="CharField" name="name">Enhance Thumbnail</field>
+        <field type="FloatField" name="color">1.0</field>
+        <field type="FloatField" name="brightness">1.0</field>
+        <field type="FloatField" name="contrast">1.2</field>
+        <field type="FloatField" name="sharpness">1.3</field>
+        <field type="CharField" name="filters"></field>
+    </object>
     <object pk="1" model="photologue.photosize">
         <field type="CharField" name="name">admin_thumbnail</field>
         <field type="PositiveIntegerField" name="width">100</field>
@@ -8,13 +16,5 @@
         <field type="BooleanField" name="crop">True</field>
         <field type="BooleanField" name="pre_cache">False</field>
         <field to="photologue.photoeffect" name="effect" rel="ManyToOneRel">1</field>
-    </object>
-    <object pk="1" model="photologue.photoeffect">
-        <field type="CharField" name="name">Enhance Thumbnail</field>
-        <field type="FloatField" name="color">1.0</field>
-        <field type="FloatField" name="brightness">1.0</field>
-        <field type="FloatField" name="contrast">1.2</field>
-        <field type="FloatField" name="sharpness">1.3</field>
-        <field type="CharField" name="filters"></field>
     </object>
 </django-objects>
