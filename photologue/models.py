@@ -530,9 +530,9 @@ class PhotoSize(models.Model):
     def save(self):
         if self.width + self.height == 0:
             raise ValueError("A PhotoSize must have a positive height or width.")
-        self.clear_cache()
         super(PhotoSize, self).save()
-
+        self.clear_cache()
+        
     def delete(self):
         self.clear_cache()
         super(PhotoSize, self).delete()
