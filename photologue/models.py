@@ -113,6 +113,9 @@ class Gallery(models.Model):
 
     def __unicode__(self):
         return self.title
+        
+    def __str__(self):
+        return self.__unicode__()
 
     def get_absolute_url(self):
         args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
@@ -243,6 +246,9 @@ class Photo(models.Model):
 
     def __unicode__(self):
         return self.title
+        
+    def __str__(self):
+        return self.__unicode__()
 
     def get_absolute_url(self):
         args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
@@ -427,6 +433,9 @@ class PhotoEffect(models.Model):
 
     def __unicode__(self):
         return self.name
+        
+    def __str__(self):
+        return self.__unicode__()
 
     def sample_dir(self):
         return os.path.join(settings.MEDIA_ROOT, PHOTOLOGUE_DIR, 'samples')
@@ -507,6 +516,9 @@ class PhotoSize(models.Model):
 
     def __unicode__(self):
         return self.name
+        
+    def __str__(self):
+        return self.__unicode__()
 
     def clear_cache(self):
         for photo in Photo.objects.all():
