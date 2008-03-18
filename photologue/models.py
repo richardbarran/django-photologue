@@ -521,8 +521,7 @@ class PhotoSize(models.Model):
     name = models.CharField(_('name'), max_length=20, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
     width = models.PositiveIntegerField(_('width'), default=0, help_text=_('Leave to size the image to the set height'))
     height = models.PositiveIntegerField(_('height'), default=0, help_text=_('Leave to size the image to the set width'))
-    quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70,
-                                          help_text=_('JPEG image quality.'))
+    quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
     crop = models.BooleanField(_('crop to fit?'), default=False, help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
     pre_cache = models.BooleanField(_('pre-cache?'), default=False, help_text=_('If selected this photo size will be pre-cached as photos are added.'))
     effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes', verbose_name=_('effect'))
