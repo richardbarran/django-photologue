@@ -5,6 +5,16 @@ import zipfile
 from datetime import datetime
 from inspect import isclass
 
+from django.db import models
+from django.db.models import signals
+from django.conf import settings
+from django.utils.functional import curry
+from django.core.validators import ValidationError
+from django.core.urlresolvers import reverse
+from django.dispatch import dispatcher
+from django.template.defaultfilters import slugify
+from django.utils.translation import ugettext_lazy as _
+
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
 try:
@@ -19,24 +29,13 @@ except ImportError:
         from PIL import ImageFilter
         from PIL import ImageEnhance
     except ImportError:
-        raise ImportError("Photologue was unable to import the Python " \
-                          "Imaging Library. Please confirm it's installed " \
-                          "and available on your current Python path.")
-
-from django.db import models
-from django.db.models import signals
-from django.conf import settings
-from django.utils.functional import curry
-from django.core.validators import ValidationError
-from django.core.urlresolvers import reverse
-from django.dispatch import dispatcher
-from django.template.defaultfilters import slugify
+        raise ImportError(_('Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available on your current Python path.'))
 
 # attempt to load the django-tagging TagField from default location,
 # otherwise we substitude a dummy TagField.
 try:
     from tagging.fields import TagField
-    tagfield_help_text = 'Separate tags with spaces, put quotes around multiple-word tags.'
+    tagfield_help_text = _('Separate tags with spaces, put quotes around multiple-word tags.')
 except ImportError:
     class TagField(models.CharField):
         def __init__(self, **kwargs):
@@ -45,7 +44,7 @@ except ImportError:
             super(TagField, self).__init__(**default_kwargs)
         def get_internal_type(self):
             return 'CharField'
-    tagfield_help_text = 'Django-tagging was not found, tags will be treated as plain text.'
+    tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
 
 from util import EXIF
 
@@ -65,32 +64,38 @@ for n in dir(ImageFilter):
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
         hasattr(klass, 'name'):
             filter_names.append(klass.__name__)
-image_filters_help_text = 'Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". ' \
-                          'Image filters will be applied in order. The following filter are available: %s' % \
+image_filters_help_text = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filter are available: %s') % \
                           ', '.join(filter_names)
 
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
-    (30, 'Very Low'),
-    (40, 'Low'),
-    (50, 'Medium-Low'),
-    (60, 'Medium'),
-    (70, 'Medium-High'),
-    (80, 'High'),
-    (90, 'Very High'),
+    (30, _('Very Low')),
+    (40, _('Low')),
+    (50, _('Medium-Low')),
+    (60, _('Medium')),
+    (70, _('Medium-High')),
+    (80, _('High')),
+    (90, _('Very High')),
 )
 
 # choices for new crop_anchor field in Photo
 CROP_ANCHOR_CHOICES = (
-    ('top', 'Top'),
-    ('right', 'Right'),
-    ('bottom', 'Bottom'),
-    ('left', 'Left'),
-    ('center', 'Center (Default)'),
+    ('top', _('Top')),
+    ('right', _('Right')),
+    ('bottom', _('Bottom')),
+    ('left', _('Left')),
+    ('center', _('Center (Default)')),
 )
 
 
 class Gallery(models.Model):
+    pub_date = models.DateTimeField(_('date published'), default=datetime.now)
+    title = models.CharField(_('title'), max_length=100, unique=True)
+    slug = models.SlugField(_('slug'), prepopulate_from=('title',), unique=True,
+                            help_text=_('A "Slug" is a unique URL-friendly title for an object.'))
+    description = models.TextField(_('description'), blank=True)
+    is_public = models.BooleanField(_('is public'), default=True,
+                                    help_text=_('Public galleries will be displayed in the default views.'))
     pub_date = models.DateTimeField("Date published", default=datetime.now)
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(prepopulate_from=('title',), unique=True,
@@ -98,13 +103,14 @@ class Gallery(models.Model):
     description = models.TextField(blank=True)
     is_public = models.BooleanField(default=True,
                                     help_text="Public galleries will be displayed in the default views.")
-    photos = models.ManyToManyField('Photo', related_name='galleries', filter_interface=models.HORIZONTAL)
-    tags = TagField(help_text=tagfield_help_text)
+    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'), filter_interface=models.HORIZONTAL)
+    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
         ordering = ['-pub_date']
         get_latest_by = 'pub_date'
-        verbose_name_plural = "galleries"
+        verbose_name = _('gallery')
+        verbose_name_plural = _('galleries')
 
     class Admin:
         list_display = ('title', 'pub_date', 'photo_count', 'is_public')
@@ -126,7 +132,7 @@ class Gallery(models.Model):
 
     def photo_count(self):
         return self.photos.all().count()
-    photo_count.short_description = 'Count'
+    photo_count.short_description = _('count')
 
     def public_photos(self):
         return self.photos.filter(is_public=True)
@@ -134,19 +140,23 @@ class Gallery(models.Model):
 
 class GalleryUpload(models.Model):
     id = models.IntegerField(default=1, editable=False, primary_key=True)
-    zip_file = models.FileField('Images file (.zip)', upload_to=PHOTOLOGUE_DIR+"/temp",
-                                help_text="Select a .zip file of images to upload into a new Gallery.")
-    title_prefix = models.CharField(max_length=75, help_text="All photos in the gallery will be given a title made up of this prefix + a sequential number.")
-    caption = models.TextField(blank=True, help_text="Caption will be added to all photos.")
-    description = models.TextField(blank=True, help_text="A description of this Gallery.")
-    photographer = models.CharField(max_length=100, blank=True)
-    info = models.TextField(blank=True, help_text="Additional information about the photograph such as date taken, equipment used etc..")
-    is_public = models.BooleanField(default=True, help_text="Uncheck this to make the uploaded gallery and included photographs private.")
-    tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text)
+    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR+"/temp",
+                                help_text=_('Select a .zip file of images to upload into a new Gallery.'))
+    title_prefix = models.CharField(_('title prefix'), max_length=75, help_text=_('All photos in the gallery will be given a title made up of this prefix + a sequential number.'))
+    caption = models.TextField(_('caption'), blank=True, help_text=_('Caption will be added to all photos.'))
+    description = models.TextField(_('description'), blank=True, help_text=_('A description of this Gallery.'))
+    photographer = models.CharField(_('photographer'), max_length=100, blank=True)
+    info = models.TextField(_('info'), blank=True, help_text=_('Additional information about the photograph such as date taken, equipment used etc..'))
+    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Uncheck this to make the uploaded gallery and included photographs private.'))
+    tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Admin:
         pass
 
+    class Meta:
+        verbose_name = _('gallery upload')
+        verbose_name_plural = _('gallery uploads')
+        
     def save(self):
         super(GalleryUpload, self).save()
         self.process_zipfile()
@@ -203,23 +213,25 @@ class GalleryUpload(models.Model):
 
 
 class Photo(models.Model):
-    image = models.ImageField("Photograph", upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
-    pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(prepopulate_from=('title',), unique=True,
-                            help_text='A "Slug" is a unique URL-friendly title for an object.')
-    caption = models.TextField(blank=True)
-    photographer = models.CharField(max_length=100, blank=True)
-    date_taken = models.DateTimeField(null=True, blank=True)
-    info = models.TextField(blank=True, help_text="Additional information about the photograph such location, equipment used etc..")
-    crop_from = models.CharField(blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
-    is_public = models.BooleanField(default=True, help_text="Public photographs will be displayed in the default views.")
-    tags = TagField(help_text=tagfield_help_text)
-    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photos')
+    image = models.ImageField(_('photograph'), upload_to=PHOTOLOGUE_DIR+"/photos/%Y/%b/%d")
+    pub_date = models.DateTimeField(_('date published'), default=datetime.now)
+    title = models.CharField(_('title'), max_length=100, unique=True)
+    slug = models.SlugField(_('slug'), prepopulate_from=('title',), unique=True,
+                            help_text=('A "Slug" is a unique URL-friendly title for an object.'))
+    caption = models.TextField(_('caption'), blank=True)
+    photographer = models.CharField(_('photographer'), max_length=100, blank=True)
+    date_taken = models.DateTimeField(_('date taken'), null=True, blank=True)
+    info = models.TextField(_('info'), blank=True, help_text=_('Additional information about the photograph such location, equipment used etc..'))
+    crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
+    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
+    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photos', verbose_name=_('effect'))
 
     class Meta:
         ordering = ['-pub_date']
         get_latest_by = 'pub_date'
+        verbose_name = _("photo")
+        verbose_name_plural = _("photos")
 
     class Admin:
         list_display = ('title', 'date_taken', 'pub_date', 'photographer', 'is_public', 'tags', 'admin_thumbnail')
@@ -237,11 +249,11 @@ class Photo(models.Model):
     def admin_thumbnail(self):
         func = getattr(self, 'get_admin_thumbnail_url', None)
         if func is None:
-            return 'An "admin_thumbnail" photo size has not been defined.'
+            return _('An "admin_thumbnail" photo size has not been defined.')
         else:
             return u'<a href="%s"><img src="%s"></a>' % \
                 (self.get_absolute_url(), func())
-    admin_thumbnail.short_description = 'Thumbnail'
+    admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
     def __unicode__(self):
@@ -396,14 +408,17 @@ class Photo(models.Model):
 
     def save(self):
         if self.date_taken is None:
-            exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
-            if exif_date is not None:
-                d, t = str.split(exif_date.values)
-                year, month, day = d.split(':')
-                hour, minute, second = t.split(':')
-                self.date_taken = datetime(int(year), int(month), int(day),
-                                           int(hour), int(minute), int(second))
-            else:
+            try:
+                exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
+                if exif_date is None:
+                    self.date_taken = datetime.now()
+                else:
+                    d, t = str.split(exif_date.values)
+                    year, month, day = d.split(':')
+                    hour, minute, second = t.split(':')
+                    self.date_taken = datetime(int(year), int(month), int(day),
+                                               int(hour), int(minute), int(second))
+            except:
                 self.date_taken = datetime.now()
         if self._get_pk_val():
             self.clear_cache()
@@ -421,15 +436,19 @@ class Photo(models.Model):
 
 class PhotoEffect(models.Model):
     """ A pre-defined effect to apply to photos """
-    name = models.CharField(max_length=30, unique=True)
-    color = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image.")
-    brightness = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a black image, a factor of 1.0 gives the original image.")
-    contrast = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.")
-    sharpness = models.FloatField(default=1.0, help_text="A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.")
-    filters = models.CharField(max_length=200, blank=True, help_text=image_filters_help_text)
+    name = models.CharField(_('name'), max_length=30, unique=True)
+    color = models.FloatField(_('color'), default=1.0, help_text='A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image.')
+    brightness = models.FloatField(_('brightness'), default=1.0, help_text='A factor of 0.0 gives a black image, a factor of 1.0 gives the original image.')
+    contrast = models.FloatField(_('contrast'), default=1.0, help_text='A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.')
+    sharpness = models.FloatField(_('sharpness'), default=1.0, help_text='A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.')
+    filters = models.CharField(_('filters'), max_length=200, blank=True, help_text=image_filters_help_text)
 
     class Admin:
         list_display = ['name', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample']
+        
+    class Meta:
+        verbose_name = _('photo effect')
+        verbose_name_plural = _('photo effects')
 
     def __unicode__(self):
         return self.name
@@ -452,13 +471,13 @@ class PhotoEffect(models.Model):
         try:
             im = Image.open(SAMPLE_IMAGE_PATH)
         except IOError:
-            raise IOError('Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
+            raise IOError(_('Photologue was unable to open the sample image: %s.') % SAMPLE_IMAGE_PATH)
         im = self.process(im)
         im.save(self.sample_filename(), 'JPEG', quality=90, optimize=True)
 
     def admin_sample(self):
         return u'<img src="%s">' % self.sample_url()
-    admin_sample.short_description = 'Sample'
+    admin_sample.short_description = _('Sample')
     admin_sample.allow_tags = True
 
     def process(self, im):
@@ -499,17 +518,19 @@ class PhotoEffect(models.Model):
 
 
 class PhotoSize(models.Model):
-    name = models.CharField(max_length=20, unique=True, help_text='Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".')
-    width = models.PositiveIntegerField(default=0, help_text='Leave to size the image to the set height')
-    height = models.PositiveIntegerField(default=0, help_text='Leave to size the image to the set width')
-    quality = models.PositiveIntegerField(choices=JPEG_QUALITY_CHOICES, default=70,
-                                          help_text="JPEG image quality.")
-    crop = models.BooleanField("crop to fit?", default=False, help_text="If selected the image will be scaled and cropped to fit the supplied dimensions.")
-    pre_cache = models.BooleanField('pre-cache?', default=False, help_text="If selected this photo size will be pre-cached as photos are added.")
-    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes')
+    name = models.CharField(_('name'), max_length=20, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
+    width = models.PositiveIntegerField(_('width'), default=0, help_text=_('Leave to size the image to the set height'))
+    height = models.PositiveIntegerField(_('height'), default=0, help_text=_('Leave to size the image to the set width'))
+    quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70,
+                                          help_text=_('JPEG image quality.'))
+    crop = models.BooleanField(_('crop to fit?'), default=False, help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
+    pre_cache = models.BooleanField(_('pre-cache?'), default=False, help_text=_('If selected this photo size will be pre-cached as photos are added.'))
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes', verbose_name=_('effect'))
 
     class Meta:
         ordering = ['width', 'height']
+        verbose_name = _('photo size')
+        verbose_name_plural = _('photo sizes')
 
     class Admin:
         list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'effect')
@@ -529,7 +550,7 @@ class PhotoSize(models.Model):
 
     def save(self):
         if self.width + self.height == 0:
-            raise ValueError("A PhotoSize must have a positive height or width.")
+            raise ValueError(_('A PhotoSize must have a positive height or width.'))
         super(PhotoSize, self).save()
         self.clear_cache()
         
