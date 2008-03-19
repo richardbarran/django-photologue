@@ -96,13 +96,6 @@ class Gallery(models.Model):
     description = models.TextField(_('description'), blank=True)
     is_public = models.BooleanField(_('is public'), default=True,
                                     help_text=_('Public galleries will be displayed in the default views.'))
-    pub_date = models.DateTimeField("Date published", default=datetime.now)
-    title = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(prepopulate_from=('title',), unique=True,
-                            help_text='A "Slug" is a unique URL-friendly title for an object.')
-    description = models.TextField(blank=True)
-    is_public = models.BooleanField(default=True,
-                                    help_text="Public galleries will be displayed in the default views.")
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'), filter_interface=models.HORIZONTAL)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
@@ -437,10 +430,10 @@ class Photo(models.Model):
 class PhotoEffect(models.Model):
     """ A pre-defined effect to apply to photos """
     name = models.CharField(_('name'), max_length=30, unique=True)
-    color = models.FloatField(_('color'), default=1.0, help_text='A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image.')
-    brightness = models.FloatField(_('brightness'), default=1.0, help_text='A factor of 0.0 gives a black image, a factor of 1.0 gives the original image.')
-    contrast = models.FloatField(_('contrast'), default=1.0, help_text='A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.')
-    sharpness = models.FloatField(_('sharpness'), default=1.0, help_text='A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.')
+    color = models.FloatField(_('color'), default=1.0, help_text=_('A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image.'))
+    brightness = models.FloatField(_('brightness'), default=1.0, help_text=_('A factor of 0.0 gives a black image, a factor of 1.0 gives the original image.'))
+    contrast = models.FloatField(_('contrast'), default=1.0, help_text=_('A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.'))
+    sharpness = models.FloatField(_('sharpness'), default=1.0, help_text=_('A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.'))
     filters = models.CharField(_('filters'), max_length=200, blank=True, help_text=image_filters_help_text)
 
     class Admin:
