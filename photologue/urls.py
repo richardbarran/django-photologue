@@ -3,7 +3,7 @@ from django.conf.urls.defaults import *
 from models import Gallery, Photo
 
 # Number of random images from the gallery to display.
-SAMPLE_SIZE = ":%s" % getattr(settings, 'PL_GALLERY_SAMPLE_SIZE', 5)
+SAMPLE_SIZE = ":%s" % getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 
 # galleries
 gallery_args = {'date_field': 'pub_date', 'allow_empty': True, 'queryset': Gallery.objects.filter(is_public=True), 'extra_context':{'sample_size':SAMPLE_SIZE}}
