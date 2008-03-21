@@ -1,4 +1,5 @@
 import os
+import random
 import shutil
 import zipfile
 
@@ -120,14 +121,31 @@ class Gallery(models.Model):
         args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
         return reverse('pl-gallery-detail', args=args)
 
-    def latest(self, limit=5):
-        return self.photos.all()[:limit]
+    def latest(self, limit=0, public=True):
+        if limit == 0:
+            limit = self.photo_count()
+        if public:
+            return self.public()[:limit]
+        else:
+            return self.photos.all()[:limit]
+        
+    def sample(self, count=0, public=True):
+        if count == 0 or count > self.photo_count():
+            count = self.photo_count()
+        if public:
+            photo_set = self.public()
+        else:
+            photo_set = self.photos.all()
+        return random.sample(photo_set, count) 
 
-    def photo_count(self):
-        return self.photos.all().count()
+    def photo_count(self, public=True):
+        if public:
+            return self.public().count()
+        else:
+            return self.photos.all().count()
     photo_count.short_description = _('count')
 
-    def public_photos(self):
+    def public(self):
         return self.photos.filter(is_public=True)
 
 
