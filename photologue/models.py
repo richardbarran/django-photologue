@@ -291,7 +291,7 @@ class Photo(models.Model):
         return ''.join([base, '_', size, ext])
 
     def _get_SIZE_photosize(self, photosize):
-        return photosize.size()
+        return photosize
         
     def _get_SIZE_size(self, photosize):
         return Image.open(self._get_SIZE_path(photosize)).size        
