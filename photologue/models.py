@@ -290,8 +290,11 @@ class Photo(models.Model):
         base, ext = os.path.splitext(self.image_filename())
         return ''.join([base, '_', size, ext])
 
+    def _get_SIZE_photosize(self, photosize):
+        return photosize.size()
+        
     def _get_SIZE_size(self, photosize):
-        return photosize.size
+        return Image.open(self._get_SIZE_path(photosize)).size        
 
     def _get_SIZE_url(self, photosize):
         if not self.size_exists(photosize):
@@ -313,6 +316,8 @@ class Photo(models.Model):
         for photosize in sizes:
             setattr(self, 'get_%s_size' % photosize.name,
                     curry(self._get_SIZE_size, photosize=photosize))
+            setattr(self, 'get_%s_photosize' % photosize.name,
+                    curry(self._get_SIZE_photosize, photosize=photosize))
             setattr(self, 'get_%s_url' % photosize.name,
                     curry(self._get_SIZE_url, photosize=photosize))
             setattr(self, 'get_%s_path' % photosize.name,
