@@ -17,4 +17,21 @@
         <field type="BooleanField" name="pre_cache">False</field>
         <field to="photologue.photoeffect" name="effect" rel="ManyToOneRel">1</field>
     </object>
+    <object pk="2" model="photologue.photosize">
+        <field type="CharField" name="name">thumbnail</field>
+        <field type="PositiveIntegerField" name="width">100</field>
+        <field type="PositiveIntegerField" name="height">75</field>
+        <field type="PositiveIntegerField" name="quality">70</field>
+        <field type="BooleanField" name="crop">True</field>
+        <field type="BooleanField" name="pre_cache">False</field>
+        <field to="photologue.photoeffect" name="effect" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="3" model="photologue.photosize">
+        <field type="CharField" name="name">display</field>
+        <field type="PositiveIntegerField" name="width">400</field>
+        <field type="PositiveIntegerField" name="height">0</field>
+        <field type="PositiveIntegerField" name="quality">70</field>
+        <field type="BooleanField" name="crop">False</field>
+        <field type="BooleanField" name="pre_cache">False</field>
+    </object>
 </django-objects>
