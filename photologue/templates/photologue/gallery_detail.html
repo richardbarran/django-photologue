@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "photologue/root.html" %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
 
 <h1>{{ object.title }}</h1>
-<h2>Originally published {{ object.pub_date|date:"l, F jS, Y" }}</h2>
+<h2>Originally published {{ object.date_added|date:"l, F jS, Y" }}</h2>
 {% if object.description %}<p>{{ object.description }}</p>{% endif %}
 <div class="photo-gallery">
     {% for photo in object.public %}
