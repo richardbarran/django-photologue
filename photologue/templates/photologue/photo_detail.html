@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "photologue/root.html" %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
@@ -7,6 +7,7 @@
 <h1>{{ object.title }}</h1>
 <div class="gallery-photo">
     <a href="{{ object.get_image_url }}"><img src="{{ object.get_display_url }}" alt="{{ object.title }}"/></a>
+    {% if object.caption %}<p>{{ object.caption }}</p>{% endif %}
 </div>
 {% if object.public_galleries %}
 <h2>This photo is found in the following galleries:</h2>
