@@ -7,8 +7,7 @@ from datetime import datetime
 from inspect import isclass
 
 from django.db import models
-from django.db.models import signals
-from django.dispatch import dispatcher
+from django.db.models.signals import post_init
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
@@ -678,4 +677,4 @@ def add_methods(sender, instance, signal, *args, **kwargs):
         instance.add_accessor_methods()        
 
 # connect the add_accessor_methods function to the post_init signal
-dispatcher.connect(add_methods, signal=signals.post_init)
+post_init.connect(add_methods)

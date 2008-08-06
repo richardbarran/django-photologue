@@ -1,4 +1,4 @@
-from django.db.models import signals
+from django.db.models.signals import post_syncdb
 from django.dispatch import dispatcher
 from django.db.models.loading import get_model
 
@@ -14,7 +14,7 @@ except:
     
 PhotoEffect = get_model(APP_NAME, 'PhotoEffect')
 
-def post_sync(sender, app, created_models, verbosity, interactive):
+def post_sync(sender, app, created_models, verbosity, interactive, **kwargs):
     if interactive:
         print '\nInitializing %s' % APP_NAME
         msg = '\nPhotologue requires a specific photo size to display thumbnail previews in the Django admin application.\nWould you like to generate this size now? (yes, no):'
@@ -35,4 +35,4 @@ def post_sync(sender, app, created_models, verbosity, interactive):
                 display.effect = effect
                 display.save()
 
-dispatcher.connect(post_sync, sender=models, signal=signals.post_syncdb)
+post_syncdb.connect(post_sync, sender=models)
