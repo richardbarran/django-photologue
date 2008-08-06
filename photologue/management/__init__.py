@@ -1,5 +1,4 @@
 from django.db.models.signals import post_syncdb
-from django.dispatch import dispatcher
 from django.db.models.loading import get_model
 
 from commands.plcreatesize import create_size
