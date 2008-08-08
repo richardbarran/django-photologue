@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
-
-APP_NAME = __name__.split('.')[0]
+from photologue.models import PhotoSize, ImageModel
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
@@ -21,9 +20,6 @@ def create_cache(sizes, options):
     """
     Creates the cache for the given files
     """
-    from django.db.models.loading import get_model
-    Photo = get_model(APP_NAME, 'Photo')
-    PhotoSize = get_model(APP_NAME, 'PhotoSize')
     reset = options.get('reset', None)
     
     size_list = [size.strip(' ,') for size in sizes]
@@ -37,13 +33,11 @@ def create_cache(sizes, options):
         raise CommandError('No photo sizes were found.')
         
     print 'Caching photos, this may take a while...'
-        
-    for photo in Photo.objects.all():
-       for photosize in sizes:
-           print 'Creating %s size images' % photosize.name
-           for photo in Photo.objects.all():
-               if reset:
-                    photo.remove_size(photosize)
-               photo.create_size(photosize)
-
-
+    
+    for cls in ImageModel.__subclasses__():
+        for photosize in sizes:
+            print 'Cacheing %s size images' % photosize.name
+            for obj in cls.objects.all():
+                if reset:
+                    obj.remove_size(photosize)
+                obj.create_size(photosize)
