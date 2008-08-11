@@ -1,7 +1,7 @@
 import os
 import unittest
 from django.conf import settings
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
 from django.test import TestCase
 
 from models import *
@@ -11,18 +11,6 @@ RES_DIR = os.path.join(os.path.dirname(__file__), 'res')
 LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_landscape.jpg')
 PORTRAIT_IMAGE_PATH = os.path.join(RES_DIR, 'test_portrait.jpg')
 SQUARE_IMAGE_PATH = os.path.join(RES_DIR, 'test_square.jpg')
-
-
-class TestUploadedFile(InMemoryUploadedFile):
-    """ Simplified uploadedfile wrapper
-    
-    Django's save_FIELD_file method expects an object that has the method
-    "chunks" so we need to pass the file data in the appropriate wrapper.
-    """
-    def __init__(self, file):
-        self.file = file
-        self.field_name = None
-        self.file.seek(0)
         
         
 class TestPhoto(ImageModel):
@@ -36,32 +24,33 @@ class PLTest(TestCase):
         self.s = PhotoSize(name='test', width=100, height=100)
         self.s.save()
         self.pl = TestPhoto(name='landscape')
-        self.pl.save_image_file(os.path.basename(LANDSCAPE_IMAGE_PATH),
-                               TestUploadedFile(open(LANDSCAPE_IMAGE_PATH, 'rb')))
+        self.pl.image.save(os.path.basename(LANDSCAPE_IMAGE_PATH),
+                           ContentFile(open(LANDSCAPE_IMAGE_PATH, 'rb').read()))
         self.pl.save()
 
     def tearDown(self):
+        path = self.pl.image.path
         self.pl.delete()
-        self.failIf(os.path.isfile(self.pl.get_image_filename()))
-        self.s.delete()     
+        self.failIf(os.path.isfile(path))
+        self.s.delete()
 
 
 class PhotoTest(PLTest):    
     def test_new_photo(self):
         self.assertEqual(TestPhoto.objects.count(), 1)
-        self.failUnless(os.path.isfile(self.pl.get_image_filename()))
-        self.assertEqual(os.path.getsize(self.pl.get_image_filename()),
-                                         os.path.getsize(LANDSCAPE_IMAGE_PATH))
+        self.failUnless(os.path.isfile(self.pl.image.path))
+        self.assertEqual(os.path.getsize(self.pl.image.path),
+                         os.path.getsize(LANDSCAPE_IMAGE_PATH))
                                          
     def test_exif(self):
         self.assert_(len(self.pl.EXIF.keys()) > 0)
 
     def test_paths(self):
-        self.assertEqual(os.path.normpath(self.pl.cache_path()),
+        self.assertEqual(os.path.normpath(str(self.pl.cache_path())).lower(),
                          os.path.normpath(os.path.join(settings.MEDIA_ROOT,
                                       PHOTOLOGUE_DIR,
                                       'photos',
-                                      'cache')))
+                                      'cache')).lower())
         self.assertEqual(self.pl.cache_url(),
                          settings.MEDIA_URL + PHOTOLOGUE_DIR + '/photos/cache')
 
@@ -103,12 +92,12 @@ class ImageResizeTest(PLTest):
     def setUp(self):
         super(ImageResizeTest, self).setUp()
         self.pp = TestPhoto(name='portrait')
-        self.pp.save_image_file(os.path.basename(PORTRAIT_IMAGE_PATH),
-                               TestUploadedFile(open(PORTRAIT_IMAGE_PATH, 'rb')))
+        self.pp.image.save(os.path.basename(PORTRAIT_IMAGE_PATH),
+                           ContentFile(open(PORTRAIT_IMAGE_PATH, 'rb').read()))
         self.pp.save()
         self.ps = TestPhoto(name='square')
-        self.ps.save_image_file(os.path.basename(SQUARE_IMAGE_PATH),
-                               TestUploadedFile(open(SQUARE_IMAGE_PATH, 'rb')))
+        self.ps.image.save(os.path.basename(SQUARE_IMAGE_PATH),
+                           ContentFile(open(SQUARE_IMAGE_PATH, 'rb').read()))
         self.ps.save()
         
     def tearDown(self):
@@ -216,7 +205,7 @@ class ImageResizeTest(PLTest):
 class PhotoEffectTest(PLTest):
     def test(self):
         effect = PhotoEffect(name='test')
-        im = Image.open(self.pl.get_image_filename())
+        im = Image.open(self.pl.image.path)
         self.assert_(isinstance(effect.pre_process(im), Image.Image))
         self.assert_(isinstance(effect.post_process(im), Image.Image))
         self.assert_(isinstance(effect.process(im), Image.Image))
