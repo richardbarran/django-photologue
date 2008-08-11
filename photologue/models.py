@@ -59,6 +59,20 @@ PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
 
+# Look for user function to define file paths
+STORAGE_PATH_FUNC = getattr(settings, 'PHOTOLOGUE_PATH', None)
+if STORAGE_PATH_FUNC is not None:
+    if callable(STORAGE_PATH_FUNC):
+        get_storage_path = STORAGE_PATH_FUNC
+    else:
+        parts = STORAGE_PATH_FUNC.split('.')
+        module_name = '.'.join(parts[:-1])
+        module = __import__(module_name)
+        get_storage_path = getattr(module, parts[-1])
+else:
+    def get_storage_path(instance, filename):
+        return os.path.join(PHOTOLOGUE_DIR, 'photos', filename)
+
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
     (30, _('Very Low')),
@@ -219,9 +233,8 @@ class GalleryUpload(models.Model):
                     count = count + 1
             zip.close()
 
-
 class ImageModel(models.Model):
-    image = models.ImageField(_('image'), upload_to=PHOTOLOGUE_DIR+"/photos")
+    image = models.ImageField(_('image'), upload_to=get_storage_path)
     date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
     view_count = models.PositiveIntegerField(default=0, editable=False)
     crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
