@@ -9,6 +9,7 @@ from inspect import isclass
 from django.db import models
 from django.db.models.signals import post_init
 from django.conf import settings
+from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.utils.functional import curry
@@ -176,9 +177,9 @@ class GalleryUpload(models.Model):
         super(GalleryUpload, self).delete()
 
     def process_zipfile(self):
-        if os.path.isfile(self.get_zip_file_filename()):
+        if os.path.isfile(self.zip_file.path):
             # TODO: implement try-except here
-            zip = zipfile.ZipFile(self.get_zip_file_filename())
+            zip = zipfile.ZipFile(self.zip_file.path)
             bad_file = zip.testzip()
             if bad_file:
                 raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
@@ -213,14 +214,10 @@ class GalleryUpload(models.Model):
                                   caption=self.caption,
                                   is_public=self.is_public,
                                   tags=self.tags)
-                    photo.save_image_file(filename, data)
+                    photo.image.save(filename, ContentFile(data))
                     gallery.photos.add(photo)
                     count = count + 1
             zip.close()
-            try:
-                os.remove(self.get_zip_file_filename())
-            except:
-                pass
 
 
 class ImageModel(models.Model):
@@ -236,10 +233,10 @@ class ImageModel(models.Model):
     @property
     def EXIF(self):
         try:
-            return EXIF.process_file(open(self.get_image_filename(), 'rb'))
+            return EXIF.process_file(open(self.image.path, 'rb'))
         except:
             try:
-                return EXIF.process_file(open(self.get_image_filename(), 'rb'), details=False)
+                return EXIF.process_file(open(self.image.path, 'rb'), details=False)
             except:
                 return {}
 
@@ -253,18 +250,18 @@ class ImageModel(models.Model):
                     (self.get_absolute_url(), func())
             else:
                 return u'<a href="%s"><img src="%s"></a>' % \
-                    (self.get_image_url(), func())
+                    (self.image.url, func())
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
     def cache_path(self):
-        return os.path.join(os.path.dirname(self.get_image_filename()), "cache")
+        return os.path.join(os.path.dirname(self.image.path), "cache")
 
     def cache_url(self):
-        return '/'.join([os.path.dirname(self.get_image_url()), "cache"])
+        return '/'.join([os.path.dirname(self.image.url), "cache"])
 
     def image_filename(self):
-        return os.path.basename(self.image)
+        return os.path.basename(self.image.path)
 
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
@@ -358,7 +355,7 @@ class ImageModel(models.Model):
         if not os.path.isdir(self.cache_path()):
             os.makedirs(self.cache_path())
         try:
-            im = Image.open(self.get_image_filename())
+            im = Image.open(self.image.path)
         except IOError:
             return
         # Apply effect if found
@@ -439,8 +436,8 @@ class ImageModel(models.Model):
         self.pre_cache()
 
     def delete(self):
-        super(ImageModel, self).delete()
         self.clear_cache()
+        super(ImageModel, self).delete()
 
 
 class Photo(ImageModel):
@@ -599,7 +596,7 @@ class Watermark(BaseEffect):
         verbose_name_plural = _('watermarks')
         
     def post_process(self, im):
-        mark = Image.open(self.get_image_filename())
+        mark = Image.open(self.image.path)
         return apply_watermark(im, mark, self.style, self.opacity)
     
 
