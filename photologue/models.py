@@ -137,7 +137,7 @@ class Gallery(models.Model):
 
     def __unicode__(self):
         return self.title
-        
+
     def __str__(self):
         return self.__unicode__()
 
@@ -151,7 +151,7 @@ class Gallery(models.Model):
             return self.public()[:limit]
         else:
             return self.photos.all()[:limit]
-        
+
     def sample(self, count=0, public=True):
         if count == 0 or count > self.photo_count():
             count = self.photo_count()
@@ -159,7 +159,7 @@ class Gallery(models.Model):
             photo_set = self.public()
         else:
             photo_set = self.photos.all()
-        return random.sample(photo_set, count) 
+        return random.sample(photo_set, count)
 
     def photo_count(self, public=True):
         if public:
@@ -184,7 +184,7 @@ class GalleryUpload(models.Model):
     class Meta:
         verbose_name = _('gallery upload')
         verbose_name_plural = _('gallery uploads')
-        
+
     def save(self):
         super(GalleryUpload, self).save()
         self.process_zipfile()
@@ -239,7 +239,7 @@ class ImageModel(models.Model):
     view_count = models.PositiveIntegerField(default=0, editable=False)
     crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
     effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name="%(class)s_related", verbose_name=_('effect'))
-    
+
     class Meta:
         abstract = True
 
@@ -283,12 +283,12 @@ class ImageModel(models.Model):
 
     def _get_SIZE_photosize(self, size):
         return PhotoSizeCache().sizes.get(size)
-        
+
     def _get_SIZE_size(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
         if not self.size_exists(photosize):
             self.create_size(photosize)
-        return Image.open(self._get_SIZE_filename(size)).size                    
+        return Image.open(self._get_SIZE_filename(size)).size
 
     def _get_SIZE_url(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
@@ -321,7 +321,7 @@ class ImageModel(models.Model):
             if os.path.isfile(func()):
                 return True
         return False
-        
+
     def resize_image(self, im, photosize):
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size
@@ -378,10 +378,10 @@ class ImageModel(models.Model):
             im = photosize.effect.pre_process(im)
         # Resize/crop image
         if im.size != photosize.size:
-            im = self.resize_image(im, photosize)    
+            im = self.resize_image(im, photosize)
         # Apply watermark if found
         if photosize.watermark is not None:
-            im = photosize.watermark.post_process(im)   
+            im = photosize.watermark.post_process(im)
         # Apply effect if found
         if self.effect is not None:
             im = self.effect.post_process(im)
@@ -473,7 +473,7 @@ class Photo(ImageModel):
 
     def __str__(self):
         return self.__unicode__()
-    
+
     def save(self, update=False):
         if self.title_slug is None:
             self.title_slug = slugify(self.title)
@@ -490,10 +490,10 @@ class Photo(ImageModel):
 class BaseEffect(models.Model):
     name = models.CharField(_('name'), max_length=30, unique=True)
     description = models.TextField(_('description'), blank=True)
-    
+
     class Meta:
         abstract = True
-        
+
     def sample_dir(self):
         return os.path.join(settings.MEDIA_ROOT, PHOTOLOGUE_DIR, 'samples')
 
@@ -517,21 +517,21 @@ class BaseEffect(models.Model):
         return u'<img src="%s">' % self.sample_url()
     admin_sample.short_description = 'Sample'
     admin_sample.allow_tags = True
-    
+
     def pre_process(self, im):
         return im
-        
+
     def post_process(self, im):
         return im
-        
+
     def process(self, im):
         im = self.pre_process(im)
         im = self.post_process(im)
         return im
-    
+
     def __unicode__(self):
         return self.name
-        
+
     def __str__(self):
         return self.__unicode__()
 
@@ -556,7 +556,7 @@ class BaseEffect(models.Model):
         except:
             pass
         super(PhotoEffect, self).delete()
-    
+
 
 class PhotoEffect(BaseEffect):
     """ A pre-defined effect to apply to photos """
@@ -573,7 +573,7 @@ class PhotoEffect(BaseEffect):
     class Meta:
         verbose_name = _("photo effect")
         verbose_name_plural = _("photo effects")
-        
+
     def pre_process(self, im):
         if self.transpose_method != '':
             method = getattr(Image, self.transpose_method)
@@ -590,9 +590,9 @@ class PhotoEffect(BaseEffect):
                 try:
                     im = im.filter(image_filter)
                 except ValueError:
-                    pass            
+                    pass
         return im
-        
+
     def post_process(self, im):
         if self.reflection_size != 0.0:
             im = add_reflection(im, bgcolor=self.background_color, amount=self.reflection_size, opacity=self.reflection_strength)
@@ -603,15 +603,15 @@ class Watermark(BaseEffect):
     image = models.ImageField(_('image'), upload_to=PHOTOLOGUE_DIR+"/watermarks")
     style = models.CharField(_('style'), max_length=5, choices=WATERMARK_STYLE_CHOICES, default='scale')
     opacity = models.FloatField(_('opacity'), default=1, help_text=_("The opacity of the overlay."))
-    
+
     class Meta:
         verbose_name = _('watermark')
         verbose_name_plural = _('watermarks')
-        
+
     def post_process(self, im):
         mark = Image.open(self.image.path)
         return apply_watermark(im, mark, self.style, self.opacity)
-    
+
 
 class PhotoSize(models.Model):
     name = models.CharField(_('name'), max_length=20, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
@@ -632,7 +632,7 @@ class PhotoSize(models.Model):
 
     def __unicode__(self):
         return self.name
-        
+
     def __str__(self):
         return self.__unicode__()
 
@@ -650,7 +650,7 @@ class PhotoSize(models.Model):
         super(PhotoSize, self).save()
         PhotoSizeCache().reset()
         self.clear_cache()
-        
+
     def delete(self):
         self.clear_cache()
         super(PhotoSize, self).delete()
@@ -684,7 +684,7 @@ def add_methods(sender, instance, signal, *args, **kwargs):
     this method calls "add_accessor_methods" on each instance.
     """
     if hasattr(instance, 'add_accessor_methods'):
-        instance.add_accessor_methods()        
+        instance.add_accessor_methods()
 
 # connect the add_accessor_methods function to the post_init signal
 post_init.connect(add_methods)
