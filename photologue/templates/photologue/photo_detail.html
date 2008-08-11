@@ -6,7 +6,7 @@
 
 <h1>{{ object.title }}</h1>
 <div class="gallery-photo">
-    <a href="{{ object.get_image_url }}"><img src="{{ object.get_display_url }}" alt="{{ object.title }}"/></a>
+    <a href="{{ object.image.url }}"><img src="{{ object.get_display_url }}" alt="{{ object.title }}"/></a>
     {% if object.caption %}<p>{{ object.caption }}</p>{% endif %}
 </div>
 {% if object.public_galleries %}
