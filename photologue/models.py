@@ -113,8 +113,7 @@ for n in dir(ImageFilter):
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
         hasattr(klass, 'name'):
             filter_names.append(klass.__name__)
-IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filter are available: %s.') % \
-                          ', '.join(filter_names)
+IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
 
 class Gallery(models.Model):
