@@ -15,16 +15,6 @@ Source Distribution
 Download the .zip distribution file and unpack it. From within the extracted directory run the following command:
 
    python setup.py install
-   
-
-Windows Installer
------------------
-
-A Windows installer is also made available - download the .exe
-distribution file and launch it to install the application.
-
-An uninstaller will also be created, accessible through Add/Remove
-Programs in your Control Panel.
 
 
 Tracking the Development Version
@@ -33,17 +23,17 @@ Tracking the Development Version
 The current development version of Photologue can be checked out via Subversion from the project site using the following command:
 
     svn checkout http://django-photologue.googlecode.com/svn/trunk/ photologue-trunk
-    
-Next either copy the photologue-trunk/photologue directory or create a symlink to the photologue-trunk/photologue directory somewhere on your python path, such as your Django project directory or site-packages.
+
+Then either copy the photologue-trunk/photologue directory or create a symlink to the photologue-trunk/photologue directory somewhere on your python path, such as your Django project or site-packages directory.
 
 You can verify Photologue is available to your project by running the following commands from within your project directory:
 
     manage.py shell
-    
+
     >>> import photologue
     >>> photologue.VERSION
     (2, 0, 'rc1')
-    
+
 
 Configure Your Django Settings
 ------------------------------
@@ -64,9 +54,9 @@ Register Photologue with the Django Admin
 Add the following to your projects urls.py file:
 
     from django.contrib import admin
-    
+
     admin.autodiscover()
-    
+
 
 Sync Your Database
 ------------------
@@ -74,7 +64,7 @@ Sync Your Database
 Run the Django 'syndb' command to create the appropriate tables. After the database in initialized, run the following command to initialize Photologue:
 
     python manage.py plinit
-    
+
 Additional Documentation and Support
 ------------------------------------
 
