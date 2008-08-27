@@ -9,14 +9,14 @@ class GalleryAdmin(admin.ModelAdmin):
     list_filter = ['date_added', 'is_public']
     date_hierarchy = 'date_added'
     prepopulated_fields = {'title_slug': ('title',)}
-    filter_horizontal = ('photos',)    
-    
+    filter_horizontal = ('photos',)
+
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'tags', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     list_per_page = 10
     prepopulated_fields = {'title_slug': ('title',)}
-    
+
 class PhotoEffectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'admin_sample')
     fieldsets = (
@@ -47,7 +47,7 @@ class PhotoSizeAdmin(admin.ModelAdmin):
             'fields': ('effect', 'watermark',)
         }),
     )
-    
+
 class WatermarkAdmin(admin.ModelAdmin):
     list_display = ('name', 'opacity', 'style')
 

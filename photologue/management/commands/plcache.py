@@ -21,19 +21,19 @@ def create_cache(sizes, options):
     Creates the cache for the given files
     """
     reset = options.get('reset', None)
-    
+
     size_list = [size.strip(' ,') for size in sizes]
-    
+
     if len(size_list) < 1:
         sizes = PhotoSize.objects.filter(pre_cache=True)
     else:
         sizes = PhotoSize.objects.filter(name__in=size_list)
-        
+
     if not len(sizes):
         raise CommandError('No photo sizes were found.')
-        
+
     print 'Caching photos, this may take a while...'
-    
+
     for cls in ImageModel.__subclasses__():
         for photosize in sizes:
             print 'Cacheing %s size images' % photosize.name
