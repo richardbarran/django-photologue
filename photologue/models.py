@@ -230,7 +230,7 @@ class GalleryUpload(models.Model):
                         slug = slugify(title)
                         try:
                             p = Photo.objects.get(title_slug=slug)
-                        except Photo.DoesNotExist:                            
+                        except Photo.DoesNotExist:
                             photo = Photo(title=title, title_slug=slug,
                                           caption=self.caption,
                                           is_public=self.is_public,

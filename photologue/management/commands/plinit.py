@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from photologue.management.commands import get_response, create_photosize
 from photologue.models import PhotoEffect
 
-class Command(BaseCommand):  
+class Command(BaseCommand):
     help = ('Prompts the user to set up the default photo sizes required by Photologue.')
     requires_model_validation = True
     can_import_settings = True
@@ -18,7 +18,7 @@ def init(*args, **kwargs):
         if get_response(msg, lambda inp: inp == 'yes', False):
             effect, created = PhotoEffect.objects.get_or_create(name='Enhance Thumbnail', description="Increases sharpness and contrast. Works well for smaller image sizes such as thumbnails.", contrast=1.2, sharpness=1.3)
             admin_thumbnail.effect = effect
-            admin_thumbnail.save()                
+            admin_thumbnail.save()
     msg = '\nPhotologue comes with a set of templates for setting up a complete photo gallery. These templates require you to define both a "thumbnail" and "display" size.\nWould you like to define them now? (yes, no):'
     if get_response(msg, lambda inp: inp == 'yes', False):
         thumbnail = create_photosize('thumbnail', width=100, height=75)

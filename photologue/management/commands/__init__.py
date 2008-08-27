@@ -4,12 +4,12 @@ def get_response(msg, func=int, default=None):
     while True:
         resp = raw_input(msg)
         if not resp and default is not None:
-            return default            
+            return default
         try:
             return func(resp)
         except:
             print 'Invalid input.'
-            
+
 def create_photosize(name, width=0, height=0, crop=False, pre_cache=False, increment_count=False):
     try:
         size = PhotoSize.objects.get(name=name)

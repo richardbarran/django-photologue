@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from photologue.management.commands import create_photosize
 
-class Command(BaseCommand):  
+class Command(BaseCommand):
     help = ('Creates a new Photologue photo size interactively.')
     requires_model_validation = True
     can_import_settings = True
