@@ -187,8 +187,9 @@ class GalleryUpload(models.Model):
 
     def save(self):
         super(GalleryUpload, self).save()
-        self.process_zipfile()
+        gallery = self.process_zipfile()
         super(GalleryUpload, self).delete()
+        return gallery
 
     def process_zipfile(self):
         if os.path.isfile(self.zip_file.path):
@@ -231,7 +232,8 @@ class GalleryUpload(models.Model):
                         try:
                             p = Photo.objects.get(title_slug=slug)
                         except Photo.DoesNotExist:
-                            photo = Photo(title=title, title_slug=slug,
+                            photo = Photo(title=title,
+                                          title_slug=slug,
                                           caption=self.caption,
                                           is_public=self.is_public,
                                           tags=self.tags)
@@ -241,6 +243,7 @@ class GalleryUpload(models.Model):
                             break
                         count = count + 1
             zip.close()
+            return gallery
 
 
 class ImageModel(models.Model):
@@ -305,14 +308,17 @@ class ImageModel(models.Model):
         if not self.size_exists(photosize):
             self.create_size(photosize)
         if photosize.increment_count:
-            self.view_count += 1
-            self.save(update=True)
+            self.increment_count()
         return '/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)])
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
         return os.path.join(self.cache_path(),
                             self._get_filename_for_size(photosize.name))
+                            
+    def increment_count(self):
+        self.view_count += 1
+        models.Model.save(self)
 
     def add_accessor_methods(self, *args, **kwargs):
         for size in PhotoSizeCache().sizes.keys():
@@ -436,10 +442,7 @@ class ImageModel(models.Model):
         except:
             pass
 
-    def save(self, update=False):
-        if update:
-            models.Model.save(self)
-            return
+    def save(self, **kwargs):
         if self.date_taken is None:
             try:
                 exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
@@ -455,7 +458,7 @@ class ImageModel(models.Model):
             self.date_taken = datetime.now()
         if self._get_pk_val():
             self.clear_cache()
-        super(ImageModel, self).save()
+        super(ImageModel, self).save(**kwargs)
         self.pre_cache()
 
     def delete(self):
@@ -484,10 +487,10 @@ class Photo(ImageModel):
     def __str__(self):
         return self.__unicode__()
 
-    def save(self, update=False):
+    def save(self, **kwargs):
         if self.title_slug is None:
             self.title_slug = slugify(self.title)
-        super(Photo, self).save(update)
+        super(Photo, self).save(**kwargs)
 
     def get_absolute_url(self):
         return reverse('pl-photo', args=[self.title_slug])
