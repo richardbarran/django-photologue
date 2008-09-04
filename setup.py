@@ -13,7 +13,7 @@ for scheme in INSTALL_SCHEMES.values():
 
 # Dynamically calculate the version based on photologue.VERSION
 version_tuple = __import__('photologue').VERSION
-if version_tuple[2] is not None:
+if len(version_tuple) == 3:
     version = "%d.%d_%s" % version_tuple
 else:
     version = "%d.%d" % version_tuple[:2]
