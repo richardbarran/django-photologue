@@ -32,6 +32,9 @@ class PhotoEffectAdmin(admin.ModelAdmin):
         ('Reflection', {
             'fields': ('reflection_size', 'reflection_strength', 'background_color')
         }),
+        ('Transpose', {
+            'fields': ('transpose_method',)
+        }),
     )
 
 class PhotoSizeAdmin(admin.ModelAdmin):
