@@ -65,6 +65,33 @@ Run the Django 'syndb' command to create the appropriate tables. After the datab
 
     python manage.py plinit
 
+
+Instant Photo Gallery
+---------------------
+
+To use the included photo gallery templates and views you need to first add photologue to your projects urls.py file.
+
+    # urls.py:
+    urlpatterns += patterns('',
+        (r'^admin/(.*)', admin.site.root),
+        (r'^photologue/', include('photologue.urls')),
+    )
+    
+Once your urls are configured you need to copy the directory photologue/templates/photologue to your projects "templates" directory:
+
+    myproject/
+        myapp/
+            ...
+        templates/
+            photologue/
+                ...
+
+If you'd rather, you can also add the absolute path to the photologue/templates directory to your TEMPLATE_DIRS setting.
+
+    # settings.py:
+    TEMPLATE_DIRS = ('/path/to/photologue/templates',)
+
+
 Additional Documentation and Support
 ------------------------------------
 
@@ -72,6 +99,6 @@ Offical docs:
 
     http://code.google.com/p/django-photologue/w/list
 
-Discussion group:
+If you have any questions or need help with any aspect of Photologue please feel free to join the discussion group:
 
     http://groups.google.com/group/django-photologue
