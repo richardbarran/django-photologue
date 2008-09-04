@@ -18,7 +18,7 @@ class PhotoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'title_slug': ('title',)}
 
 class PhotoEffectAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'admin_sample')
+    list_display = ('name', 'description', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample')
     fieldsets = (
         (None, {
             'fields': ('name', 'description')
