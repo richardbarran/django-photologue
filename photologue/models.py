@@ -406,10 +406,13 @@ class ImageModel(models.Model):
         # Save file
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
-            if im.format == 'JPEG':
-                im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
-            else:
-                im.save(im_filename)
+            if im.format != 'JPEG':
+                try:
+                    im.save(im_filename)
+                    return
+                except KeyError:
+                    pass
+            im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
         except IOError, e:
             if os.path.isfile(im_filename):
                 os.unlink(im_filename)
