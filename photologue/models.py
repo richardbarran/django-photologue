@@ -315,7 +315,7 @@ class ImageModel(models.Model):
         photosize = PhotoSizeCache().sizes.get(size)
         return os.path.join(self.cache_path(),
                             self._get_filename_for_size(photosize.name))
-                            
+
     def increment_count(self):
         self.view_count += 1
         models.Model.save(self)
@@ -504,13 +504,15 @@ class Photo(ImageModel):
 
     def get_previous_in_gallery(self, gallery):
         try:
-            return self.get_previous_by_date_added(galleries__exact=gallery)
+            return self.get_previous_by_date_added(galleries__exact=gallery,
+                                                   is_public=True)
         except Photo.DoesNotExist:
             return None
 
     def get_next_in_gallery(self, gallery):
         try:
-            return self.get_next_by_date_added(galleries__exact=gallery)
+            return self.get_next_by_date_added(galleries__exact=gallery,
+                                               is_public=True)
         except Photo.DoesNotExist:
             return None
 
