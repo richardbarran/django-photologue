@@ -465,6 +465,7 @@ class ImageModel(models.Model):
         self.pre_cache()
 
     def delete(self):
+        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
         super(ImageModel, self).delete()
 
@@ -682,6 +683,7 @@ class PhotoSize(models.Model):
         self.clear_cache()
 
     def delete(self):
+        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
         super(PhotoSize, self).delete()
 
