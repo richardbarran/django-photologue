@@ -393,7 +393,7 @@ class ImageModel(models.Model):
         elif photosize.effect is not None:
             im = photosize.effect.pre_process(im)
         # Resize/crop image
-        if im.size != photosize.size:
+        if im.size != photosize.size and photosize.size != (0, 0):
             im = self.resize_image(im, photosize)
         # Apply watermark if found
         if photosize.watermark is not None:
@@ -676,8 +676,6 @@ class PhotoSize(models.Model):
         PhotoSizeCache().reset()
 
     def save(self, *args, **kwargs):
-        if self.width + self.height <= 0:
-            raise ValueError(_('A PhotoSize must have a positive height or width.'))
         super(PhotoSize, self).save(*args, **kwargs)
         PhotoSizeCache().reset()
         self.clear_cache()
