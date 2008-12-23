@@ -586,7 +586,7 @@ class BaseEffect(models.Model):
             os.remove(self.sample_filename())
         except:
             pass
-        super(PhotoEffect, self).delete()
+        models.Model.delete(self)
 
 
 class PhotoEffect(BaseEffect):
