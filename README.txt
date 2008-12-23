@@ -61,7 +61,7 @@ Add the following to your projects urls.py file:
 Sync Your Database
 ------------------
 
-Run the Django 'syndb' command to create the appropriate tables. After the database in initialized, run the following command to initialize Photologue:
+Run the Django 'syncdb' command to create the appropriate tables. After the database in initialized, run the following command to initialize Photologue:
 
     python manage.py plinit
 
