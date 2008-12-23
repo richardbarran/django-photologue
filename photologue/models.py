@@ -678,6 +678,9 @@ class PhotoSize(models.Model):
         PhotoSizeCache().reset()
 
     def save(self, *args, **kwargs):
+        if self.crop is True:
+            if self.width == 0 or self.height == 0:
+                raise ValueError("PhotoSize width and/or height can not be zero if crop=True.")
         super(PhotoSize, self).save(*args, **kwargs)
         PhotoSizeCache().reset()
         self.clear_cache()
