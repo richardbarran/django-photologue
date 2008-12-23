@@ -387,6 +387,8 @@ class ImageModel(models.Model):
             im = Image.open(self.image.path)
         except IOError:
             return
+        # Save the original format
+        im_format = im.format
         # Apply effect if found
         if self.effect is not None:
             im = self.effect.pre_process(im)
@@ -406,7 +408,7 @@ class ImageModel(models.Model):
         # Save file
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
-            if im.format != 'JPEG':
+            if im_format != 'JPEG':
                 try:
                     im.save(im_filename)
                     return
