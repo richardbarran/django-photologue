@@ -600,8 +600,8 @@ class PhotoEffect(BaseEffect):
     sharpness = models.FloatField(_('sharpness'), default=1.0, help_text=_("A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image."))
     filters = models.CharField(_('filters'), max_length=200, blank=True, help_text=_(IMAGE_FILTERS_HELP_TEXT))
     reflection_size = models.FloatField(_('size'), default=0, help_text=_("The height of the reflection as a percentage of the orignal image. A factor of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the height of the orignal image."))
-    reflection_strength = models.FloatField(_('strength'), default=0.6, help_text="The initial opacity of the reflection gradient.")
-    background_color = models.CharField(_('color'), max_length=7, default="#FFFFFF", help_text="The background color of the reflection gradient. Set this to match the background color of your page.")
+    reflection_strength = models.FloatField(_('strength'), default=0.6, help_text=_("The initial opacity of the reflection gradient."))
+    background_color = models.CharField(_('color'), max_length=7, default="#FFFFFF", help_text=_("The background color of the reflection gradient. Set this to match the background color of your page."))
 
     class Meta:
         verbose_name = _("photo effect")
