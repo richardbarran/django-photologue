@@ -214,7 +214,7 @@ class GalleryUpload(models.Model):
                                                  is_public=self.is_public,
                                                  tags=self.tags)
             from cStringIO import StringIO
-            for filename in zip.namelist():
+            for filename in sorted(zip.namelist()):
                 if filename.startswith('__'): # do not process meta files
                     continue
                 data = zip.read(filename)
