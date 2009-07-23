@@ -50,6 +50,9 @@ from utils import EXIF
 from utils.reflection import add_reflection
 from utils.watermark import apply_watermark
 
+# Default limit for gallery.latest
+PHOTOLOGUE_GALLERY_LATEST_LIMIT = None
+
 # Path to sample image
 SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg')) # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
 
@@ -143,8 +146,8 @@ class Gallery(models.Model):
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.title_slug])
 
-    def latest(self, limit=0, public=True):
-        if limit == 0:
+    def latest(self, limit=PHOTOLOGUE_GALLERY_LATEST_LIMIT, public=True):
+        if not limit:
             limit = self.photo_count()
         if public:
             return self.public()[:limit]
