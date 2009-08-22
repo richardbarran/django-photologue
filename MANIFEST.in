@@ -1,4 +1,4 @@
-include README.txt
-include LICENSE.txt
-recursive-include photologue *
-global-exclude *pyc
+recursive-include photologue/locale *
+recursive-include photologue/res *.jpg
+recursive-include photologue/templates/photologue *.html
+global-exclude *.pyc

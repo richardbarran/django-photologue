@@ -17,13 +17,18 @@ setup(
     version = version,
     description = "Powerful image management for the Django web framework.",
     author = "Justin Driscoll",
-    author_email = "justin.driscoll@gmail.com",
+    author_email = "justin@driscolldev.com",
     url = "http://code.google.com/p/django-photologue/",
-    packages=find_packages(),
-    # Make setuptools include all data files under version control,
-    # svn and CVS by default
-    include_package_data=True,
-    zip_safe=False,
+    packages = find_packages(),
+    package_data = {
+        'photologue': [
+            'res/*.jpg',
+            'locale/*/LC_MESSAGES/*',
+            'templates/photologue/*.html',
+            'templates/photologue/tags/*.html',
+        ]
+    },
+    zip_safe = False,
     classifiers = ['Development Status :: 5 - Production/Stable',
                    'Environment :: Web Environment',
                    'Framework :: Django',
