@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str, force_unicode
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 
@@ -295,7 +295,7 @@ class ImageModel(models.Model):
         return '/'.join([os.path.dirname(self.image.url), "cache"])
 
     def image_filename(self):
-        return os.path.basename(self.image.path)
+        return os.path.basename(force_unicode(self.image.path))
 
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
