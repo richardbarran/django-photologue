@@ -1,4 +1,4 @@
 include README.txt
 include LICENSE.txt
 recursive-include photologue *
-global-exclude *py
+global-exclude *pyc
