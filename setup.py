@@ -43,7 +43,7 @@ setup(
                 'photologue.templatetags',
                 'photologue.utils'],
     data_files = data_files,
-    classifiers = ['Development Status :: 4 - Beta',
+    classifiers = ['Development Status :: 5 - Production/Stable',
                    'Environment :: Web Environment',
                    'Framework :: Django',
                    'Intended Audience :: Developers',
