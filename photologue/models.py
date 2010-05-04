@@ -255,7 +255,7 @@ class GalleryUpload(models.Model):
 
 class ImageModel(models.Model):
     image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH, 
-                              upload_to=get_storage_path)
+                              upload_to=get_storage_path, blank=True)
     date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
     view_count = models.PositiveIntegerField(default=0, editable=False)
     crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
@@ -342,8 +342,11 @@ class ImageModel(models.Model):
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_filename" % photosize.name, None)
         if func is not None:
-            if os.path.isfile(func()):
-                return True
+            try:
+                if os.path.isfile(func()):
+                    return True
+            except ValueError:
+                return False
         return False
 
     def resize_image(self, im, photosize):
@@ -655,7 +658,7 @@ class Watermark(BaseEffect):
 
 
 class PhotoSize(models.Model):
-    name = models.CharField(_('name'), max_length=20, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
+    name = models.CharField(_('name'), max_length=64, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
     width = models.PositiveIntegerField(_('width'), default=0, help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
     height = models.PositiveIntegerField(_('height'), default=0, help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
     quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
