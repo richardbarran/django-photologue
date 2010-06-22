@@ -8,7 +8,7 @@ SOURCE_DIR = os.path.join(ROOT_DIR)
 # Dynamically calculate the version based on photologue.VERSION
 version_tuple = __import__('photologue').VERSION
 if len(version_tuple) == 3:
-    version = "%d.%d_%s" % version_tuple
+    version = "%d.%d.%s" % version_tuple
 else:
     version = "%d.%d" % version_tuple[:2]
 
