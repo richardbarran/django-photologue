@@ -685,10 +685,11 @@ class PhotoSize(models.Model):
 
     def clear_cache(self):
         for cls in ImageModel.__subclasses__():
-            for obj in cls.objects.all():
-                obj.remove_size(self)
-                if self.pre_cache:
-                    obj.create_size(self)
+            if not cls._meta.abstract:
+                for obj in cls.objects.all():
+                    obj.remove_size(self)
+                    if self.pre_cache:
+                        obj.create_size(self)
         PhotoSizeCache().reset()
 
     def save(self, *args, **kwargs):
