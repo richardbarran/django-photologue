@@ -2,7 +2,9 @@
 
 """
 from django.contrib import admin
+from django.contrib.contenttypes import generic
 from models import *
+
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
@@ -61,6 +63,8 @@ class GalleryUploadAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False # To remove the 'Save and continue editing' button
 
+class ImageOverrideInline(generic.GenericTabularInline):
+    model = ImageOverride
 
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(GalleryUpload, GalleryUploadAdmin)
