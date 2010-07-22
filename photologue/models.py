@@ -9,6 +9,7 @@ from inspect import isclass
 from django.db import models
 from django.db.models.signals import post_init
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
@@ -392,31 +393,47 @@ class ImageModel(models.Model):
             im = im.resize(new_dimensions, Image.ANTIALIAS)
         return im
 
+    def get_override(self, photosize):
+        """
+        Returns the first ImageOverride object found for this object and photosize.
+        """
+        content_type = ContentType.objects.get_for_model(self)
+        overrides = ImageOverride.objects.filter(object_id=self.id, content_type=content_type, photosize=photosize)
+        if overrides:
+            return overrides[0]
+        else:
+            return None
+
     def create_size(self, photosize):
         if self.size_exists(photosize):
             return
         if not os.path.isdir(self.cache_path()):
             os.makedirs(self.cache_path())
+
+        # check if we have overrides and use that instead
+        override = self.get_override(photosize)
+        image_model_obj = override if override else self
+        
         try:
-            im = Image.open(self.image.path)
+            im = Image.open(image_model_obj.image.path)
         except IOError:
             return
         # Save the original format
         im_format = im.format
         # Apply effect if found
-        if self.effect is not None:
-            im = self.effect.pre_process(im)
+        if image_model_obj.effect is not None:
+            im = image_model_obj.effect.pre_process(im)
         elif photosize.effect is not None:
             im = photosize.effect.pre_process(im)
         # Resize/crop image
         if im.size != photosize.size and photosize.size != (0, 0):
-            im = self.resize_image(im, photosize)
+            im = image_model_obj.resize_image(im, photosize)
         # Apply watermark if found
         if photosize.watermark is not None:
             im = photosize.watermark.post_process(im)
         # Apply effect if found
-        if self.effect is not None:
-            im = self.effect.post_process(im)
+        if image_model_obj.effect is not None:
+            im = image_model_obj.effect.post_process(im)
         elif photosize.effect is not None:
             im = photosize.effect.post_process(im)
         # Save file
@@ -485,6 +502,18 @@ class ImageModel(models.Model):
         self.clear_cache()
         super(ImageModel, self).delete()
 
+
+from django.contrib.contenttypes import generic
+
+class ImageOverride(ImageModel):
+    content_type = models.ForeignKey('contenttypes.ContentType')
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey("content_type", "object_id")
+    photosize = models.ForeignKey('photologue.PhotoSize')
+
+    class Meta():
+        verbose_name = "image override"
+        verbose_name_plural = "image overrides"
 
 class Photo(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
