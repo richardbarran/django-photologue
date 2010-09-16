@@ -284,8 +284,11 @@ class ImageModel(models.Model):
                 return u'<a href="%s"><img src="%s"></a>' % \
                     (self.get_absolute_url(), func())
             else:
-                return u'<a href="%s"><img src="%s"></a>' % \
+                try:
+                    return u'<a href="%s"><img src="%s"></a>' % \
                     (self.image.url, func())
+                except:
+                    return None
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
