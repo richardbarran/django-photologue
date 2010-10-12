@@ -284,11 +284,8 @@ class ImageModel(models.Model):
                 return u'<a href="%s"><img src="%s"></a>' % \
                     (self.get_absolute_url(), func())
             else:
-                try:
-                    return u'<a href="%s"><img src="%s"></a>' % \
-                    (self.image.url, func())
-                except:
-                    return None
+                return u'<a href="%s"><img src="%s"></a>' % \
+                    (self.image.url, func()) if self.image else ''
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
@@ -408,8 +405,8 @@ class ImageModel(models.Model):
             return None
 
     def create_size(self, photosize):
-
-        if not self.image: # fix for django 1.2
+        # Fail gracefully if we don't have an image.
+        if not self.image: 
             return
 
         if self.size_exists(photosize):
