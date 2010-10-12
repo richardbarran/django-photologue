@@ -408,6 +408,10 @@ class ImageModel(models.Model):
             return None
 
     def create_size(self, photosize):
+
+        if not self.image: # fix for django 1.2
+            return
+
         if self.size_exists(photosize):
             return
         if not os.path.isdir(self.cache_path()):
