@@ -14,6 +14,7 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str, force_unicode
 from django.utils.functional import curry
+from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 
 # Required PIL classes may or may not be available from the root namespace
@@ -74,7 +75,7 @@ if PHOTOLOGUE_PATH is not None:
     else:
         parts = PHOTOLOGUE_PATH.split('.')
         module_name = '.'.join(parts[:-1])
-        module = __import__(module_name)
+        module = import_module(module_name)
         get_storage_path = getattr(module, parts[-1])
 else:
     def get_storage_path(instance, filename):
