@@ -1,1 +1,1 @@
-VERSION = (2, 5, 'praekelt')
+VERSION = (2, 6, 'praekelt')
