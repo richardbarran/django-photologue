@@ -1,21 +1,17 @@
+import Image
 import os
-import unittest
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.test import TestCase
+from photologue.models import PhotoSize, Photo, PHOTOLOGUE_DIR, PhotoSizeCache, PhotoEffect
 
-from models import *
-
-# Path to sample image
 RES_DIR = os.path.join(os.path.dirname(__file__), 'res')
 LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_landscape.jpg')
 PORTRAIT_IMAGE_PATH = os.path.join(RES_DIR, 'test_portrait.jpg')
 SQUARE_IMAGE_PATH = os.path.join(RES_DIR, 'test_square.jpg')
 
 
-class TestPhoto(ImageModel):
-    """ Minimal ImageModel class for testing """
-    name = models.CharField(max_length=30)
+
 
 
 class PLTest(TestCase):
@@ -23,7 +19,7 @@ class PLTest(TestCase):
     def setUp(self):
         self.s = PhotoSize(name='test', width=100, height=100)
         self.s.save()
-        self.pl = TestPhoto(name='landscape')
+        self.pl = Photo(title='landscape', title_slug='landscape')
         self.pl.image.save(os.path.basename(LANDSCAPE_IMAGE_PATH),
                            ContentFile(open(LANDSCAPE_IMAGE_PATH, 'rb').read()))
         self.pl.save()
@@ -37,7 +33,7 @@ class PLTest(TestCase):
 
 class PhotoTest(PLTest):
     def test_new_photo(self):
-        self.assertEqual(TestPhoto.objects.count(), 1)
+        self.assertEqual(Photo.objects.count(), 1)
         self.failUnless(os.path.isfile(self.pl.image.path))
         self.assertEqual(os.path.getsize(self.pl.image.path),
                          os.path.getsize(LANDSCAPE_IMAGE_PATH))
@@ -91,11 +87,15 @@ class PhotoTest(PLTest):
 class ImageResizeTest(PLTest):
     def setUp(self):
         super(ImageResizeTest, self).setUp()
-        self.pp = TestPhoto(name='portrait')
+        self.pp = Photo(title='portrait',
+            title_slug='portrait'
+        )
         self.pp.image.save(os.path.basename(PORTRAIT_IMAGE_PATH),
                            ContentFile(open(PORTRAIT_IMAGE_PATH, 'rb').read()))
         self.pp.save()
-        self.ps = TestPhoto(name='square')
+        self.ps = Photo(title='square',
+            title_slug='square',
+        )
         self.ps.image.save(os.path.basename(SQUARE_IMAGE_PATH),
                            ContentFile(open(SQUARE_IMAGE_PATH, 'rb').read()))
         self.ps.save()
