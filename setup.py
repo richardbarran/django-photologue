@@ -16,9 +16,9 @@ setup(
     name = "django-photologue",
     version = version,
     description = "Powerful image management for the Django web framework.",
-    author = "Justin Driscoll",
-    author_email = "justin@driscolldev.com",
-    url = "http://code.google.com/p/django-photologue/",
+    author = "Justin Driscoll, Marcos Daniel Petry",
+    author_email = "justin@driscolldev.com, marcospetry@gmail.com",
+    url = "https://github.com/petry/django-photologue",
     packages = find_packages(),
     package_data = {
         'photologue': [
