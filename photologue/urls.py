@@ -1,8 +1,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 from models import *
+from django.views.generic.list import ListView
 
 # Number of random images from the gallery to display.
+from photologue.views import PhotoListView, PhotoDetailView
+
 SAMPLE_SIZE = ":%s" % getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 
 # galleries
@@ -28,9 +31,11 @@ urlpatterns += patterns('django.views.generic.date_based',
     url(r'^photo/(?P<year>\d{4})/$', 'archive_year', photo_args, name='pl-photo-archive-year'),
     url(r'^photo/$', 'archive_index', photo_args, name='pl-photo-archive'),
 )
-urlpatterns += patterns('django.views.generic.list_detail',
-    url(r'^photo/(?P<slug>[\-\d\w]+)/$', 'object_detail', {'slug_field': 'title_slug', 'queryset': Photo.objects.filter(is_public=True)}, name='pl-photo'),
-    url(r'^photo/page/(?P<page>[0-9]+)/$', 'object_list', {'queryset': Photo.objects.filter(is_public=True), 'allow_empty': True, 'paginate_by': 20}, name='pl-photo-list'),
+
+urlpatterns += patterns('',
+    url(r'^photo/(?P<slug>[\-\d\w]+)/$', PhotoDetailView.as_view() , name='pl-photo'),
+    url(r'^photo/page/(?P<page>[0-9]+)/$', PhotoListView.as_view(), name='pl-photo-list'),
+
 )
 
 
