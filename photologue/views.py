@@ -4,24 +4,26 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from photologue.models import Photo, Gallery
 
-
-class PhotoListView(ListView):
+class PhotoView(object):
     queryset = Photo.objects.filter(is_public=True)
+
+
+class GalleryView(object):
+    queryset = Gallery.objects.filter(is_public=True)
+
+
+class PhotoListView(PhotoView, ListView):
     paginate_by = 20
     allow_empty = True
 
 
-
-class PhotoDetailView(DetailView):
+class PhotoDetailView(PhotoView, DetailView):
     slug_field = 'title_slug'
-    queryset = Photo.objects.filter(is_public=True)
 
 
-class GalleryListView(ListView):
-    queryset = Gallery.objects.filter(is_public=True)
+class GalleryListView(GalleryView, ListView):
     paginate_by = 20
     allow_empty = True
 
-class GalleryDetailView(DetailView):
+class GalleryDetailView(GalleryView, DetailView):
     slug_field = 'title_slug'
-    queryset = Gallery.objects.filter(is_public=True)
