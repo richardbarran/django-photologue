@@ -2,6 +2,7 @@ import os
 import random
 import shutil
 import zipfile
+import utils
 
 from datetime import datetime
 from inspect import isclass
@@ -424,6 +425,8 @@ class ImageModel(models.Model):
             im = Image.open(image_model_obj.image.path)
         except IOError:
             return
+        # Correct colorspace
+        im = utils.colorspace(im)
         # Save the original format
         im_format = im.format
         # Apply effect if found
