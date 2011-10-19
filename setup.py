@@ -29,6 +29,10 @@ setup(
         ]
     },
     zip_safe = False,
+    test_suite="setuptest.SetupTestSuite",
+    tests_require=[
+        'django-setuptest>=0.0.6',
+    ],
     classifiers = ['Development Status :: 5 - Production/Stable',
                    'Environment :: Web Environment',
                    'Framework :: Django',

@@ -509,6 +509,7 @@ class ImageModel(models.Model):
     def delete(self):
         assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
+        os.remove(self.image.path)
         super(ImageModel, self).delete()
 
 

@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.test import TestCase
 
-from models import *
+from photologue.models import *
 
 # Path to sample image
 RES_DIR = os.path.join(os.path.dirname(__file__), 'res')
