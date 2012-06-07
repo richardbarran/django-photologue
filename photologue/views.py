@@ -41,16 +41,19 @@ class PhotoYearArchiveView(PhotoDateView, YearArchiveView):
 class GalleryView(object):
     queryset = Gallery.objects.filter(is_public=True)
 
+    def get_context_data(self, **kwargs):
+        context = super(GalleryView, self).get_context_data(**kwargs)
+        context['sample_size'] = SAMPLE_SIZE
+        return context
+
 class GalleryListView(GalleryView, ListView):
     paginate_by = 20
-
 
 class GalleryDetailView(GalleryView, DetailView):
     slug_field = 'title_slug'
 
 class GalleryDateView(GalleryView):
     date_field = 'date_added'
-    extra_context = {'sample_size':SAMPLE_SIZE}
 
 class GalleryDateDetailView(GalleryDateView, DateDetailView):
     slug_field = 'title_slug'
