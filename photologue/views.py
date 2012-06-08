@@ -6,9 +6,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from photologue.models import Photo, Gallery
 
-# Number of random images from the gallery to display.
-SAMPLE_SIZE = ":%s" % getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
-
 class PhotoView(object):
     queryset = Photo.objects.filter(is_public=True)
 
@@ -40,11 +37,6 @@ class PhotoYearArchiveView(PhotoDateView, YearArchiveView):
 #gallery Views
 class GalleryView(object):
     queryset = Gallery.objects.filter(is_public=True)
-
-    def get_context_data(self, **kwargs):
-        context = super(GalleryView, self).get_context_data(**kwargs)
-        context['sample_size'] = SAMPLE_SIZE
-        return context
 
 class GalleryListView(GalleryView, ListView):
     paginate_by = 20

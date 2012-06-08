@@ -56,7 +56,7 @@ from utils.watermark import apply_watermark
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
 # Number of random images from the gallery to display.
-SAMPLE_SIZE = ":%s" % getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
+SAMPLE_SIZE = getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 
 # max_length setting for the ImageModel ImageField
 IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 100)
