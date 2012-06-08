@@ -55,6 +55,9 @@ from utils.watermark import apply_watermark
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
+# Number of random images from the gallery to display.
+SAMPLE_SIZE = ":%s" % getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
+
 # max_length setting for the ImageModel ImageField
 IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 100)
 
@@ -159,9 +162,14 @@ class Gallery(models.Model):
         else:
             return self.photos.all()[:limit]
 
-    def sample(self, count=0, public=True):
-        """Return a sample of photos, ordered at random."""
-        if count == 0 or count > self.photo_count():
+    def sample(self, count=None, public=True):
+        """Return a sample of photos, ordered at random.
+        If the 'count' is not specified, it will return a number of photos 
+        limited by the GALLERY_SAMPLE_SIZE setting.
+        """
+        if not count:
+            count = SAMPLE_SIZE
+        if count > self.photo_count():
             count = self.photo_count()
         if public:
             photo_set = self.public()
