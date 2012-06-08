@@ -160,6 +160,7 @@ class Gallery(models.Model):
             return self.photos.all()[:limit]
 
     def sample(self, count=0, public=True):
+        """Return a sample of photos, ordered at random."""
         if count == 0 or count > self.photo_count():
             count = self.photo_count()
         if public:
@@ -169,6 +170,7 @@ class Gallery(models.Model):
         return random.sample(photo_set, count)
 
     def photo_count(self, public=True):
+        """Return a count of all the photos in this gallery."""
         if public:
             return self.public().count()
         else:
@@ -176,6 +178,7 @@ class Gallery(models.Model):
     photo_count.short_description = _('count')
 
     def public(self):
+        """Return a queryset of all the public photos in this gallery."""
         return self.photos.filter(is_public=True)
 
 
