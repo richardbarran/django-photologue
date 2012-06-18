@@ -4,6 +4,10 @@ import shutil
 import zipfile
 
 from datetime import datetime
+try:
+    from django.utils.timezone import now
+except ImportError:
+    from datetime.datetime import now
 from inspect import isclass
 
 from django.db import models
@@ -132,7 +136,7 @@ IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern 
 
 
 class Gallery(models.Model):
-    date_added = models.DateTimeField(_('date published'), default=datetime.now)
+    date_added = models.DateTimeField(_('date published'), default=now)
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('title slug'), unique=True,
                                   help_text=_('A "slug" is a unique URL-friendly title for an object.'))
@@ -486,7 +490,7 @@ class ImageModel(models.Model):
             except:
                 pass
         if self.date_taken is None:
-            self.date_taken = datetime.now()
+            self.date_taken = now()
         if self._get_pk_val():
             self.clear_cache()
         super(ImageModel, self).save(*args, **kwargs)
@@ -510,7 +514,7 @@ class Photo(ImageModel):
     title_slug = models.SlugField(_('slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
-    date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
+    date_added = models.DateTimeField(_('date added'), default=now, editable=False)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
