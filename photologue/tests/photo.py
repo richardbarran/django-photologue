@@ -9,7 +9,7 @@ from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PORTRAIT_IMAGE_PATH, 
 class PhotoTest(PhotologueBaseTest):
     def test_new_photo(self):
         self.assertEqual(Photo.objects.count(), 1)
-        self.failUnless(os.path.isfile(self.pl.image.path))
+        self.assertTrue(os.path.isfile(self.pl.image.path))
         self.assertEqual(os.path.getsize(self.pl.image.path),
                          os.path.getsize(LANDSCAPE_IMAGE_PATH))
 
@@ -40,12 +40,12 @@ class PhotoTest(PhotologueBaseTest):
         self.s.pre_cache = True
         self.s.save()
         # make sure it created the file
-        self.failUnless(os.path.isfile(self.pl.get_test_filename()))
+        self.assertTrue(os.path.isfile(self.pl.get_test_filename()))
         self.s.pre_cache = False
         self.s.save()
         # clear the cache and make sure the file's deleted
         self.pl.clear_cache()
-        self.failIf(os.path.isfile(self.pl.get_test_filename()))
+        self.assertFalse(os.path.isfile(self.pl.get_test_filename()))
 
     def test_accessor_methods(self):
         self.assertEquals(self.pl.get_test_photosize(), self.s)

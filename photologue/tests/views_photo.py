@@ -12,7 +12,7 @@ DAY = datetime.now().day
 
 class RequestPhotoTest(RequestTest):
 
-    
+
     def setUp(self):
         super(RequestPhotoTest, self).setUp()
         self.photo = helpers._create_new_photo(name='Fake Photo', slug='fake-photo')

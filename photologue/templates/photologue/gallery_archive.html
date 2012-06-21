@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load url from future %}
 
 {% block title %}Latest Photo Galleries{% endblock %}
 
@@ -21,6 +22,6 @@
     <p>No galleries were found.</p>
 {% endif %}
 
-<p><a href="{% url pl-gallery-list 1 %}">View all galleries.</a></p>
+<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries.</a></p>
 
 {% endblock %}
