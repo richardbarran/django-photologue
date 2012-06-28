@@ -15,7 +15,7 @@ class GalleryAdmin(ModelAdmin):
     filter_horizontal = ('photos',)
     
 class PhotoAdmin(SortableAdmin):
-    list_display = ('id', 'title', 'caption', 'tags', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
+    list_display = ('id', 'order', 'title', 'caption', 'tags', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
     list_editable = ('title', 'caption', 'tags', 'is_public')
     list_filter = ['date_added', 'is_public', 'tags', 'galleries']
     search_fields = ['title', 'title_slug', 'caption', 'tags']
