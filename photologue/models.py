@@ -1,6 +1,5 @@
 import os
 import random
-import shutil
 import zipfile
 import utils
 
@@ -17,6 +16,8 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str, force_unicode
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
+
+#from adminsortable.models import Sortable
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.

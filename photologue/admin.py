@@ -2,9 +2,10 @@
 
 """
 from django.contrib import admin
+from django import forms
 from django.contrib.contenttypes import generic
 from models import *
-
+#from adminsortable.admin import SortableAdmin
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
@@ -14,11 +15,17 @@ class GalleryAdmin(admin.ModelAdmin):
     filter_horizontal = ('photos',)
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_taken', 'date_added', 'is_public', 'tags', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public']
-    search_fields = ['title', 'title_slug', 'caption']
-    list_per_page = 10
+    list_display = ('id', 'title', 'caption', 'tags', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
+    list_editable = ('title', 'caption', 'tags', 'is_public')
+    list_filter = ['date_added', 'is_public', 'tags', 'galleries']
+    search_fields = ['title', 'title_slug', 'caption', 'tags']
     prepopulated_fields = {'title_slug': ('title',)}
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super(PhotoAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'caption':
+            formfield.widget = forms.Textarea(attrs={'cols': 60, 'rows': 2})
+        return formfield
 
 class PhotoEffectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample')
