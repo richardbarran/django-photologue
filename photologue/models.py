@@ -17,7 +17,7 @@ from django.utils.encoding import smart_str, force_unicode
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 
-#from adminsortable.models import Sortable
+from adminsortable.models import Sortable
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -526,7 +526,7 @@ class ImageOverride(ImageModel):
         verbose_name = "image override"
         verbose_name_plural = "image overrides"
 
-class Photo(ImageModel):
+class Photo(Sortable, ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))
@@ -535,11 +535,10 @@ class Photo(ImageModel):
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
-    class Meta:
-        ordering = ['-date_added']
-        get_latest_by = 'date_added'
+    class Meta(Sortable.Meta):
         verbose_name = _("photo")
         verbose_name_plural = _("photos")
+
 
     def __unicode__(self):
         return self.title
@@ -559,19 +558,19 @@ class Photo(ImageModel):
         """Return the public galleries to which this photo belongs."""
         return self.galleries.filter(is_public=True)
 
-    def get_previous_in_gallery(self, gallery):
-        try:
-            return self.get_previous_by_date_added(galleries__exact=gallery,
-                                                   is_public=True)
-        except Photo.DoesNotExist:
-            return None
-
-    def get_next_in_gallery(self, gallery):
-        try:
-            return self.get_next_by_date_added(galleries__exact=gallery,
-                                               is_public=True)
-        except Photo.DoesNotExist:
-            return None
+#    def get_previous_in_gallery(self, gallery):
+#        try:
+#            return self.get_previous_by_order(galleries__exact=gallery,
+#                                                   is_public=True)
+#        except Photo.DoesNotExist:
+#            return None
+#
+#    def get_next_in_gallery(self, gallery):
+#        try:
+#            return self.get_next_by_order(galleries__exact=gallery,
+#                                               is_public=True)
+#        except Photo.DoesNotExist:
+#            return None
 
 
 class BaseEffect(models.Model):
@@ -764,6 +763,7 @@ class PhotoSizeCache(object):
 
     def reset(self):
         self.sizes = {}
+
 
 
 # Set up the accessor methods
