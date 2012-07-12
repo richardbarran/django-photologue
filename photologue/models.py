@@ -558,19 +558,19 @@ class Photo(Sortable, ImageModel):
         """Return the public galleries to which this photo belongs."""
         return self.galleries.filter(is_public=True)
 
-#    def get_previous_in_gallery(self, gallery):
-#        try:
-#            return self.get_previous_by_order(galleries__exact=gallery,
-#                                                   is_public=True)
-#        except Photo.DoesNotExist:
-#            return None
-#
-#    def get_next_in_gallery(self, gallery):
-#        try:
-#            return self.get_next_by_order(galleries__exact=gallery,
-#                                               is_public=True)
-#        except Photo.DoesNotExist:
-#            return None
+    def get_previous_in_gallery(self, gallery):
+        try:
+            return self.get_previous_by_order(galleries__exact=gallery,
+                                                   is_public=True)
+        except Photo.DoesNotExist:
+            return None
+
+    def get_next_in_gallery(self, gallery):
+        try:
+            return self.get_next_by_order(galleries__exact=gallery,
+                                               is_public=True)
+        except Photo.DoesNotExist:
+            return None
 
 
 class BaseEffect(models.Model):
