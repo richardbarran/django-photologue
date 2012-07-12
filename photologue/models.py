@@ -526,6 +526,8 @@ class ImageOverride(ImageModel):
         verbose_name = "image override"
         verbose_name_plural = "image overrides"
 
+from pprint import pprint
+
 class Photo(Sortable, ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
@@ -560,14 +562,14 @@ class Photo(Sortable, ImageModel):
 
     def get_previous_in_gallery(self, gallery):
         try:
-            return gallery.photos.exclude(order__lte=self.order)[0]
-        except Photo.DoesNotExist:
+             return gallery.photos.exclude(order__lte=self.order)[0]
+        except:
             return None
 
     def get_next_in_gallery(self, gallery):
         try:
-            return gallery.photos.exclude(order__gte=self.order).order_by(-order)[0]
-        except Photo.DoesNotExist:
+            return gallery.photos.exclude(order__gte=self.order).order_by('-order')[0]
+        except:
             return None
 
 
