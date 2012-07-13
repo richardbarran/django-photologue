@@ -562,13 +562,13 @@ class Photo(Sortable, ImageModel):
 
     def get_previous_in_gallery(self, gallery):
         try:
-             return gallery.photos.exclude(order__lte=self.order)[0]
+             return gallery.photos.exclude(order__gte=self.order).order_by('-order')[0]
         except:
             return None
 
     def get_next_in_gallery(self, gallery):
         try:
-            return gallery.photos.exclude(order__gte=self.order).order_by('-order')[0]
+            return gallery.photos.exclude(order__lte=self.order)[0]
         except:
             return None
 
