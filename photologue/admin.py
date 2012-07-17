@@ -13,13 +13,18 @@ class GalleryAdmin(ModelAdmin):
     date_hierarchy = 'date_added'
     prepopulated_fields = {'title_slug': ('title',)}
     filter_horizontal = ('photos',)
-    
+
+def crop_from_top(modeladmin, request, queryset):
+    queryset.update(crop_from='top')
+crop_from_top.short_description = "Crop photos from Top"
+
 class PhotoAdmin(SortableAdmin):
     list_display = ('id', 'title', 'caption', 'tags', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
     list_editable = ('title', 'caption', 'tags', 'is_public')
     list_filter = ['date_added', 'is_public', 'tags', 'galleries']
     search_fields = ['title', 'title_slug', 'caption', 'tags']
     prepopulated_fields = {'title_slug': ('title',)}
+    actions = [crop_from_top]
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(PhotoAdmin, self).formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'caption':
