@@ -306,7 +306,7 @@ class ImageModel(models.Model):
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
         base, ext = os.path.splitext(self.image_filename())
-        return filepath_to_uri(''.join([base, '_', size, ext]))
+        return ''.join([base, '_', size, ext])
 
     def _get_SIZE_photosize(self, size):
         return PhotoSizeCache().sizes.get(size)
@@ -325,7 +325,7 @@ class ImageModel(models.Model):
             self.increment_count()
         if not self.image: 
             return
-        return '/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)])
+        return filepath_to_uri('/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)]))
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
