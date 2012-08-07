@@ -58,6 +58,10 @@ Run the Django 'syncdb' command to create the appropriate tables. After the data
 Instant Photo Gallery
 ---------------------
 
+Photologue comes with basic templates for galleries and photos. You can of course override them, or completely
+replace them. Note that all Photologue templates inherit from ``photologue/root.html``, which itself just inherits from
+a site-wide ``base.html`` - you can change this to use a different base template.
+
 To use the included photo gallery templates and views you need to first add photologue to your projects urls.py file::
 
     urlpatterns += patterns('',
@@ -65,19 +69,6 @@ To use the included photo gallery templates and views you need to first add phot
         (r'^photologue/', include('photologue.urls')),
     )
     
-Once your urls are configured you need to copy the directory photologue/templates/photologue to your projects "templates" directory::
-
-    myproject/
-        myapp/
-            ...
-        templates/
-            photologue/
-                ...
-
-If you'd rather, you can also add the absolute path to the photologue/templates directory to your TEMPLATE_DIRS setting::
-
-    TEMPLATE_DIRS = ('/path/to/photologue/templates',)
-
 Additional Documentation and Support
 ------------------------------------
 
