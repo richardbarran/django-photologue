@@ -1,10 +1,11 @@
 Photologue
+==========
 
-Powerful image management for the Django web framework.
+Improved image management for the Django web framework.
 
 
 Installation
-============
+------------
 
 Offical releases are available from: http://code.google.com/p/django-photologue/
 
@@ -22,11 +23,10 @@ Tracking the Development Version
 
 The current development version of Photologue can be checked out via Subversion from the project site using the following command:
 
-    svn checkout http://django-photologue.googlecode.com/svn/trunk/ photologue-trunk
+    git clone https://github.com/phretor/django-photologue
 
-Then either copy the photologue-trunk/photologue directory or create a symlink to the photologue-trunk/photologue directory somewhere on your python path, such as your Django project or site-packages directory.
-
-You can verify Photologue is available to your project by running the following commands from within your project directory:
+You can verify Photologue is available to your project by running the following
+commands from within your project directory:
 
     manage.py shell
 
@@ -91,14 +91,3 @@ If you'd rather, you can also add the absolute path to the photologue/templates 
     # settings.py:
     TEMPLATE_DIRS = ('/path/to/photologue/templates',)
 
-
-Additional Documentation and Support
-------------------------------------
-
-Offical docs:
-
-    http://code.google.com/p/django-photologue/w/list
-
-If you have any questions or need help with any aspect of Photologue please feel free to join the discussion group:
-
-    http://groups.google.com/group/django-photologue
