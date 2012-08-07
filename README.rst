@@ -26,6 +26,11 @@ The current development version of Photologue can be checked out via Git from th
 
     git clone git://github.com/jdriscoll/django-photologue.git
 
+Dependencies
+------------
+
+Photologue uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
+
 Configure Your Django Settings
 ------------------------------
 
@@ -37,15 +42,6 @@ Add 'photologue' to your INSTALLED_APPS setting::
     )
 
 **Confirm that your MEDIA_ROOT and MEDIA_URL settings are correct.**
-
-
-Register Photologue with the Django Admin
------------------------------------------
-
-Add the following to your projects urls.py file::
-
-    from django.contrib import admin
-    admin.autodiscover()
 
 Sync Your Database
 ------------------
