@@ -7,23 +7,9 @@ Improved image management for the Django web framework.
 Installation
 ------------
 
-Offical releases are available from: http://code.google.com/p/django-photologue/
+The easiest way to install Photologue is with pip::
 
-
-Source Distribution
--------------------
-
-Download the .zip distribution file and unpack it. From within the extracted directory run the following command::
-
-   python setup.py install
-
-
-Tracking the Development Version
---------------------------------
-
-The current development version of Photologue can be checked out via Subversion from the project site using the following command::
-
-    git clone https://github.com/phretor/django-photologue
+   pip install django-photologue
 
 You can verify Photologue is available to your project by running the following
 commands from within your project directory::
@@ -32,6 +18,13 @@ commands from within your project directory::
     >>> import photologue
     >>> photologue.VERSION
     (2, 0, 'rc1')
+
+Tracking the Development Version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The current development version of Photologue can be checked out via Git from the project site using the following command::
+
+    git clone git://github.com/jdriscoll/django-photologue.git
 
 Configure Your Django Settings
 ------------------------------
@@ -84,4 +77,11 @@ Once your urls are configured you need to copy the directory photologue/template
 If you'd rather, you can also add the absolute path to the photologue/templates directory to your TEMPLATE_DIRS setting::
 
     TEMPLATE_DIRS = ('/path/to/photologue/templates',)
+
+Additional Documentation and Support
+------------------------------------
+
+Offical docs: http://code.google.com/p/django-photologue/w/list.
+
+If you have any questions or need help with any aspect of Photologue please feel free to join the discussion group at http://groups.google.com/group/django-photologue.
 
