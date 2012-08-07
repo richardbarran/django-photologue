@@ -72,7 +72,8 @@ To use the included photo gallery templates and views you need to first add phot
 Additional Documentation and Support
 ------------------------------------
 
-Offical docs: http://code.google.com/p/django-photologue/w/list.
+Offical docs are available on Google Code: http://code.google.com/p/django-photologue/w/list (Photologue is 
+in the process of tranferring from Google Code to Github).
 
 If you have any questions or need help with any aspect of Photologue please feel free to join the discussion group at http://groups.google.com/group/django-photologue.
 
