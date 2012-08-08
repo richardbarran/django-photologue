@@ -76,6 +76,6 @@ Additional Documentation and Support
 `Offical docs are available on Google Code <http://code.google.com/p/django-photologue/w/list>`_ (Photologue is 
 in the process of tranferring from Google Code to Github).
 
-If you have any questions or need help with any aspect of Photologue please feel free to `join the discussion 
-group <http://groups.google.com/group/django-photologue>`_.
+If you have any questions or need help with any aspect of Photologue then please `join the mailing list
+<http://groups.google.com/group/django-photologue>`_.
 
