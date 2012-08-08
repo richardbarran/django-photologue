@@ -34,14 +34,16 @@ Photologue uses the Django admin app, `so enable it if you have not already done
 Configure Your Django Settings
 ------------------------------
 
-#. Add 'photologue' to your INSTALLED_APPS setting::
+#. Add 'photologue' to your ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
          # ...other installed applications,
          'photologue',
     )
 
-#. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and `MEDIA_URL <https://docs.djangoproject.com/en/1.4/ref/settings/#std:setting-MEDIA_URL>`_ settings are correct (Photologue will store uploaded files in a folder called 'photologue' under your MEDIA_ROOT).
+#. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and
+   `MEDIA_URL <https://docs.djangoproject.com/en/1.4/ref/settings/#std:setting-MEDIA_URL>`_ settings 
+   are correct (Photologue will store uploaded files in a folder called 'photologue' under your ``MEDIA_ROOT``).
 
 Add the urls
 ------------
@@ -71,8 +73,9 @@ a site-wide ``base.html`` - you can change this to use a different base template
 Additional Documentation and Support
 ------------------------------------
 
-Offical docs are available on Google Code: http://code.google.com/p/django-photologue/w/list (Photologue is 
+`Offical docs are available on Google Code <http://code.google.com/p/django-photologue/w/list>`_ (Photologue is 
 in the process of tranferring from Google Code to Github).
 
-If you have any questions or need help with any aspect of Photologue please feel free to join the discussion group at http://groups.google.com/group/django-photologue.
+If you have any questions or need help with any aspect of Photologue please feel free to `join the discussion 
+group <http://groups.google.com/group/django-photologue>`_.
 
