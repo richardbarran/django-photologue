@@ -34,14 +34,14 @@ Photologue uses the Django admin app, `so enable it if you have not already done
 Configure Your Django Settings
 ------------------------------
 
-Add 'photologue' to your INSTALLED_APPS setting::
+#. Add 'photologue' to your INSTALLED_APPS setting::
 
     INSTALLED_APPS = (
          # ...other installed applications,
          'photologue',
     )
 
-**Confirm that your MEDIA_ROOT and MEDIA_URL settings are correct.**
+#. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and `MEDIA_URL <https://docs.djangoproject.com/en/1.4/ref/settings/#std:setting-MEDIA_URL>`_ settings are correct (Photologue will store uploaded files in a folder called 'photologue' under your MEDIA_ROOT).
 
 Sync Your Database
 ------------------
