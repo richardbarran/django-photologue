@@ -43,6 +43,16 @@ Configure Your Django Settings
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and `MEDIA_URL <https://docs.djangoproject.com/en/1.4/ref/settings/#std:setting-MEDIA_URL>`_ settings are correct (Photologue will store uploaded files in a folder called 'photologue' under your MEDIA_ROOT).
 
+Add the urls
+------------
+
+Add photologue to your projects urls.py file::
+
+    urlpatterns += patterns('',
+        ...
+        (r'^photologue/', include('photologue.urls')),
+    )
+    
 Sync Your Database
 ------------------
 
@@ -58,13 +68,6 @@ Photologue comes with basic templates for galleries and photos. You can of cours
 replace them. Note that all Photologue templates inherit from ``photologue/root.html``, which itself just inherits from
 a site-wide ``base.html`` - you can change this to use a different base template.
 
-To use the included photo gallery templates and views you need to first add photologue to your projects urls.py file::
-
-    urlpatterns += patterns('',
-        ...
-        (r'^photologue/', include('photologue.urls')),
-    )
-    
 Additional Documentation and Support
 ------------------------------------
 
