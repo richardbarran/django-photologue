@@ -1,3 +1,6 @@
+.. Note: the README is formatted as reStructedText as the plan is to (one day) move most of it into a 
+   Sphinx-generated official documentation for Photologue :-)
+
 Photologue
 ==========
 
