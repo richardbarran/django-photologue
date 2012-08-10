@@ -82,7 +82,7 @@ def add_reflection(im, bgcolor="#00000", amount=0.4, opacity=0.6):
     reflection = reflection.crop((0, 0, im.size[0], reflection_height))
 
     # create new image sized to hold both the original image and the reflection
-    composite = Image.new("RGB", (im.size[0], im.size[1]+reflection_height), background_color)
+    composite = Image.new("RGB", (im.size[0], im.size[1] + reflection_height), background_color)
 
     # paste the orignal image and the reflection into the composite image
     composite.paste(im, (0, 0))

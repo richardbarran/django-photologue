@@ -1,0 +1,10 @@
+These are the work-in-progress release notes for 2.4:
+
+South database migrations
+-------------------------
+
+Starting with this version, Photologue uses South to manage the database schema.
+If you are upgrading an existing Photologue installation, please follow the
+South instructions on this subject: http://south.readthedocs.org/en/latest/convertinganapp.html#converting-other-installations-and-servers
+
+

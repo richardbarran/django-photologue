@@ -123,9 +123,9 @@ FIELD_TYPES = (
 # first element of tuple is tag name, optional second element is
 # another dictionary giving names to values
 EXIF_TAGS = {
-    0x0100: ('ImageWidth', ),
-    0x0101: ('ImageLength', ),
-    0x0102: ('BitsPerSample', ),
+    0x0100: ('ImageWidth',),
+    0x0101: ('ImageLength',),
+    0x0102: ('BitsPerSample',),
     0x0103: ('Compression',
              {1: 'Uncompressed',
               2: 'CCITT 1D',
@@ -157,14 +157,14 @@ EXIF_TAGS = {
               34713: 'Nikon NEF Compressed',
               65000: 'Kodak DCR Compressed',
               65535: 'Pentax PEF Compressed'}),
-    0x0106: ('PhotometricInterpretation', ),
-    0x0107: ('Thresholding', ),
-    0x010A: ('FillOrder', ),
-    0x010D: ('DocumentName', ),
-    0x010E: ('ImageDescription', ),
-    0x010F: ('Make', ),
-    0x0110: ('Model', ),
-    0x0111: ('StripOffsets', ),
+    0x0106: ('PhotometricInterpretation',),
+    0x0107: ('Thresholding',),
+    0x010A: ('FillOrder',),
+    0x010D: ('DocumentName',),
+    0x010E: ('ImageDescription',),
+    0x010F: ('Make',),
+    0x0110: ('Model',),
+    0x0111: ('StripOffsets',),
     0x0112: ('Orientation',
              {1: 'Horizontal (normal)',
               2: 'Mirrored horizontal',
@@ -174,45 +174,45 @@ EXIF_TAGS = {
               6: 'Rotated 90 CW',
               7: 'Mirrored horizontal then rotated 90 CW',
               8: 'Rotated 90 CCW'}),
-    0x0115: ('SamplesPerPixel', ),
-    0x0116: ('RowsPerStrip', ),
-    0x0117: ('StripByteCounts', ),
-    0x011A: ('XResolution', ),
-    0x011B: ('YResolution', ),
-    0x011C: ('PlanarConfiguration', ),
+    0x0115: ('SamplesPerPixel',),
+    0x0116: ('RowsPerStrip',),
+    0x0117: ('StripByteCounts',),
+    0x011A: ('XResolution',),
+    0x011B: ('YResolution',),
+    0x011C: ('PlanarConfiguration',),
     0x011D: ('PageName', make_string),
     0x0128: ('ResolutionUnit',
              {1: 'Not Absolute',
               2: 'Pixels/Inch',
               3: 'Pixels/Centimeter'}),
-    0x012D: ('TransferFunction', ),
-    0x0131: ('Software', ),
-    0x0132: ('DateTime', ),
-    0x013B: ('Artist', ),
-    0x013E: ('WhitePoint', ),
-    0x013F: ('PrimaryChromaticities', ),
-    0x0156: ('TransferRange', ),
-    0x0200: ('JPEGProc', ),
-    0x0201: ('JPEGInterchangeFormat', ),
-    0x0202: ('JPEGInterchangeFormatLength', ),
-    0x0211: ('YCbCrCoefficients', ),
-    0x0212: ('YCbCrSubSampling', ),
+    0x012D: ('TransferFunction',),
+    0x0131: ('Software',),
+    0x0132: ('DateTime',),
+    0x013B: ('Artist',),
+    0x013E: ('WhitePoint',),
+    0x013F: ('PrimaryChromaticities',),
+    0x0156: ('TransferRange',),
+    0x0200: ('JPEGProc',),
+    0x0201: ('JPEGInterchangeFormat',),
+    0x0202: ('JPEGInterchangeFormatLength',),
+    0x0211: ('YCbCrCoefficients',),
+    0x0212: ('YCbCrSubSampling',),
     0x0213: ('YCbCrPositioning',
              {1: 'Centered',
               2: 'Co-sited'}),
-    0x0214: ('ReferenceBlackWhite', ),
-    
-    0x4746: ('Rating', ),
-    
-    0x828D: ('CFARepeatPatternDim', ),
-    0x828E: ('CFAPattern', ),
-    0x828F: ('BatteryLevel', ),
-    0x8298: ('Copyright', ),
-    0x829A: ('ExposureTime', ),
-    0x829D: ('FNumber', ),
-    0x83BB: ('IPTC/NAA', ),
-    0x8769: ('ExifOffset', ),
-    0x8773: ('InterColorProfile', ),
+    0x0214: ('ReferenceBlackWhite',),
+
+    0x4746: ('Rating',),
+
+    0x828D: ('CFARepeatPatternDim',),
+    0x828E: ('CFAPattern',),
+    0x828F: ('BatteryLevel',),
+    0x8298: ('Copyright',),
+    0x829A: ('ExposureTime',),
+    0x829D: ('FNumber',),
+    0x83BB: ('IPTC/NAA',),
+    0x8769: ('ExifOffset',),
+    0x8773: ('InterColorProfile',),
     0x8822: ('ExposureProgram',
              {0: 'Unidentified',
               1: 'Manual',
@@ -223,13 +223,13 @@ EXIF_TAGS = {
               6: 'Program Action',
               7: 'Portrait Mode',
               8: 'Landscape Mode'}),
-    0x8824: ('SpectralSensitivity', ),
-    0x8825: ('GPSInfo', ),
-    0x8827: ('ISOSpeedRatings', ),
-    0x8828: ('OECF', ),
+    0x8824: ('SpectralSensitivity',),
+    0x8825: ('GPSInfo',),
+    0x8827: ('ISOSpeedRatings',),
+    0x8828: ('OECF',),
     0x9000: ('ExifVersion', make_string),
-    0x9003: ('DateTimeOriginal', ),
-    0x9004: ('DateTimeDigitized', ),
+    0x9003: ('DateTimeOriginal',),
+    0x9004: ('DateTimeDigitized',),
     0x9101: ('ComponentsConfiguration',
              {0: '',
               1: 'Y',
@@ -238,13 +238,13 @@ EXIF_TAGS = {
               4: 'Red',
               5: 'Green',
               6: 'Blue'}),
-    0x9102: ('CompressedBitsPerPixel', ),
-    0x9201: ('ShutterSpeedValue', ),
-    0x9202: ('ApertureValue', ),
-    0x9203: ('BrightnessValue', ),
-    0x9204: ('ExposureBiasValue', ),
-    0x9205: ('MaxApertureValue', ),
-    0x9206: ('SubjectDistance', ),
+    0x9102: ('CompressedBitsPerPixel',),
+    0x9201: ('ShutterSpeedValue',),
+    0x9202: ('ApertureValue',),
+    0x9203: ('BrightnessValue',),
+    0x9204: ('ExposureBiasValue',),
+    0x9205: ('MaxApertureValue',),
+    0x9206: ('SubjectDistance',),
     0x9207: ('MeteringMode',
              {0: 'Unidentified',
               1: 'Average',
@@ -285,51 +285,51 @@ EXIF_TAGS = {
               29: 'Auto Fired (?)',
               31: 'Auto Fired (!)',
               32: 'Not Available'}),
-    0x920A: ('FocalLength', ),
-    0x9214: ('SubjectArea', ),
-    0x927C: ('MakerNote', ),
+    0x920A: ('FocalLength',),
+    0x9214: ('SubjectArea',),
+    0x927C: ('MakerNote',),
     0x9286: ('UserComment', make_string_uc),
-    0x9290: ('SubSecTime', ),
-    0x9291: ('SubSecTimeOriginal', ),
-    0x9292: ('SubSecTimeDigitized', ),
-    
+    0x9290: ('SubSecTime',),
+    0x9291: ('SubSecTimeOriginal',),
+    0x9292: ('SubSecTimeDigitized',),
+
     # used by Windows Explorer
-    0x9C9B: ('XPTitle', ),
-    0x9C9C: ('XPComment', ),
-    0x9C9D: ('XPAuthor', ), #(ignored by Windows Explorer if Artist exists)
-    0x9C9E: ('XPKeywords', ),
-    0x9C9F: ('XPSubject', ),
+    0x9C9B: ('XPTitle',),
+    0x9C9C: ('XPComment',),
+    0x9C9D: ('XPAuthor',), #(ignored by Windows Explorer if Artist exists)
+    0x9C9E: ('XPKeywords',),
+    0x9C9F: ('XPSubject',),
 
     0xA000: ('FlashPixVersion', make_string),
     0xA001: ('ColorSpace',
              {1: 'sRGB',
               2: 'Adobe RGB',
               65535: 'Uncalibrated'}),
-    0xA002: ('ExifImageWidth', ),
-    0xA003: ('ExifImageLength', ),
-    0xA005: ('InteroperabilityOffset', ),
-    0xA20B: ('FlashEnergy', ),               # 0x920B in TIFF/EP
-    0xA20C: ('SpatialFrequencyResponse', ),  # 0x920C
-    0xA20E: ('FocalPlaneXResolution', ),     # 0x920E
-    0xA20F: ('FocalPlaneYResolution', ),     # 0x920F
-    0xA210: ('FocalPlaneResolutionUnit', ),  # 0x9210
-    0xA214: ('SubjectLocation', ),           # 0x9214
-    0xA215: ('ExposureIndex', ),             # 0x9215
-    0xA217: ('SensingMethod',                # 0x9217
+    0xA002: ('ExifImageWidth',),
+    0xA003: ('ExifImageLength',),
+    0xA005: ('InteroperabilityOffset',),
+    0xA20B: ('FlashEnergy',), # 0x920B in TIFF/EP
+    0xA20C: ('SpatialFrequencyResponse',), # 0x920C
+    0xA20E: ('FocalPlaneXResolution',), # 0x920E
+    0xA20F: ('FocalPlaneYResolution',), # 0x920F
+    0xA210: ('FocalPlaneResolutionUnit',), # 0x9210
+    0xA214: ('SubjectLocation',), # 0x9214
+    0xA215: ('ExposureIndex',), # 0x9215
+    0xA217: ('SensingMethod', # 0x9217
              {1: 'Not defined',
               2: 'One-chip color area',
               3: 'Two-chip color area',
               4: 'Three-chip color area',
               5: 'Color sequential area',
               7: 'Trilinear',
-              8: 'Color sequential linear'}),             
+              8: 'Color sequential linear'}),
     0xA300: ('FileSource',
              {1: 'Film Scanner',
               2: 'Reflection Print Scanner',
               3: 'Digital Camera'}),
     0xA301: ('SceneType',
              {1: 'Directly Photographed'}),
-    0xA302: ('CVAPattern', ),
+    0xA302: ('CVAPattern',),
     0xA401: ('CustomRendered',
              {0: 'Normal',
               1: 'Custom'}),
@@ -340,8 +340,8 @@ EXIF_TAGS = {
     0xA403: ('WhiteBalance',
              {0: 'Auto',
               1: 'Manual'}),
-    0xA404: ('DigitalZoomRatio', ),
-    0xA405: ('FocalLengthIn35mmFilm', ),
+    0xA404: ('DigitalZoomRatio',),
+    0xA405: ('FocalLengthIn35mmFilm',),
     0xA406: ('SceneCaptureType',
              {0: 'Standard',
               1: 'Landscape',
@@ -365,58 +365,58 @@ EXIF_TAGS = {
              {0: 'Normal',
               1: 'Soft',
               2: 'Hard'}),
-    0xA40B: ('DeviceSettingDescription', ),
-    0xA40C: ('SubjectDistanceRange', ),
-    0xA500: ('Gamma', ),
-    0xC4A5: ('PrintIM', ),
-    0xEA1C:	('Padding', ),
+    0xA40B: ('DeviceSettingDescription',),
+    0xA40C: ('SubjectDistanceRange',),
+    0xA500: ('Gamma',),
+    0xC4A5: ('PrintIM',),
+    0xEA1C:	('Padding',),
     }
 
 # interoperability tags
 INTR_TAGS = {
-    0x0001: ('InteroperabilityIndex', ),
-    0x0002: ('InteroperabilityVersion', ),
-    0x1000: ('RelatedImageFileFormat', ),
-    0x1001: ('RelatedImageWidth', ),
-    0x1002: ('RelatedImageLength', ),
+    0x0001: ('InteroperabilityIndex',),
+    0x0002: ('InteroperabilityVersion',),
+    0x1000: ('RelatedImageFileFormat',),
+    0x1001: ('RelatedImageWidth',),
+    0x1002: ('RelatedImageLength',),
     }
 
 # GPS tags (not used yet, haven't seen camera with GPS)
 GPS_TAGS = {
-    0x0000: ('GPSVersionID', ),
-    0x0001: ('GPSLatitudeRef', ),
-    0x0002: ('GPSLatitude', ),
-    0x0003: ('GPSLongitudeRef', ),
-    0x0004: ('GPSLongitude', ),
-    0x0005: ('GPSAltitudeRef', ),
-    0x0006: ('GPSAltitude', ),
-    0x0007: ('GPSTimeStamp', ),
-    0x0008: ('GPSSatellites', ),
-    0x0009: ('GPSStatus', ),
-    0x000A: ('GPSMeasureMode', ),
-    0x000B: ('GPSDOP', ),
-    0x000C: ('GPSSpeedRef', ),
-    0x000D: ('GPSSpeed', ),
-    0x000E: ('GPSTrackRef', ),
-    0x000F: ('GPSTrack', ),
-    0x0010: ('GPSImgDirectionRef', ),
-    0x0011: ('GPSImgDirection', ),
-    0x0012: ('GPSMapDatum', ),
-    0x0013: ('GPSDestLatitudeRef', ),
-    0x0014: ('GPSDestLatitude', ),
-    0x0015: ('GPSDestLongitudeRef', ),
-    0x0016: ('GPSDestLongitude', ),
-    0x0017: ('GPSDestBearingRef', ),
-    0x0018: ('GPSDestBearing', ),
-    0x0019: ('GPSDestDistanceRef', ),
-    0x001A: ('GPSDestDistance', ),
-    0x001D: ('GPSDate', ),
+    0x0000: ('GPSVersionID',),
+    0x0001: ('GPSLatitudeRef',),
+    0x0002: ('GPSLatitude',),
+    0x0003: ('GPSLongitudeRef',),
+    0x0004: ('GPSLongitude',),
+    0x0005: ('GPSAltitudeRef',),
+    0x0006: ('GPSAltitude',),
+    0x0007: ('GPSTimeStamp',),
+    0x0008: ('GPSSatellites',),
+    0x0009: ('GPSStatus',),
+    0x000A: ('GPSMeasureMode',),
+    0x000B: ('GPSDOP',),
+    0x000C: ('GPSSpeedRef',),
+    0x000D: ('GPSSpeed',),
+    0x000E: ('GPSTrackRef',),
+    0x000F: ('GPSTrack',),
+    0x0010: ('GPSImgDirectionRef',),
+    0x0011: ('GPSImgDirection',),
+    0x0012: ('GPSMapDatum',),
+    0x0013: ('GPSDestLatitudeRef',),
+    0x0014: ('GPSDestLatitude',),
+    0x0015: ('GPSDestLongitudeRef',),
+    0x0016: ('GPSDestLongitude',),
+    0x0017: ('GPSDestBearingRef',),
+    0x0018: ('GPSDestBearing',),
+    0x0019: ('GPSDestDistanceRef',),
+    0x001A: ('GPSDestDistance',),
+    0x001D: ('GPSDate',),
     }
 
 # Ignore these tags when quick processing
 # 0x927C is MakerNote Tags
 # 0x9286 is user comment
-IGNORE_TAGS=(0x9286, 0x927C)
+IGNORE_TAGS = (0x9286, 0x927C)
 
 # http://tomtia.plala.jp/DigitalCamera/MakerNote/index.asp
 def nikon_ev_bias(seq):
@@ -427,7 +427,7 @@ def nikon_ev_bias(seq):
     # Check for an error condition that could cause a crash.
     # This only happens if something has gone really wrong in
     # reading the Nikon MakerNote.
-    if len( seq ) < 4 : return ""
+    if len(seq) < 4 : return ""
     #
     if seq == [252, 1, 6, 0]:
         return "-2/3 EV"
@@ -466,46 +466,46 @@ def nikon_ev_bias(seq):
     return ret_str
 
 # Nikon E99x MakerNote Tags
-MAKERNOTE_NIKON_NEWER_TAGS={
-    0x0001: ('MakernoteVersion', make_string),	# Sometimes binary
+MAKERNOTE_NIKON_NEWER_TAGS = {
+    0x0001: ('MakernoteVersion', make_string), 	# Sometimes binary
     0x0002: ('ISOSetting', make_string),
-    0x0003: ('ColorMode', ),
-    0x0004: ('Quality', ),
-    0x0005: ('Whitebalance', ),
-    0x0006: ('ImageSharpening', ),
-    0x0007: ('FocusMode', ),
-    0x0008: ('FlashSetting', ),
-    0x0009: ('AutoFlashMode', ),
-    0x000B: ('WhiteBalanceBias', ),
-    0x000C: ('WhiteBalanceRBCoeff', ),
+    0x0003: ('ColorMode',),
+    0x0004: ('Quality',),
+    0x0005: ('Whitebalance',),
+    0x0006: ('ImageSharpening',),
+    0x0007: ('FocusMode',),
+    0x0008: ('FlashSetting',),
+    0x0009: ('AutoFlashMode',),
+    0x000B: ('WhiteBalanceBias',),
+    0x000C: ('WhiteBalanceRBCoeff',),
     0x000D: ('ProgramShift', nikon_ev_bias),
     # Nearly the same as the other EV vals, but step size is 1/12 EV (?)
     0x000E: ('ExposureDifference', nikon_ev_bias),
-    0x000F: ('ISOSelection', ),
-    0x0011: ('NikonPreview', ),
+    0x000F: ('ISOSelection',),
+    0x0011: ('NikonPreview',),
     0x0012: ('FlashCompensation', nikon_ev_bias),
-    0x0013: ('ISOSpeedRequested', ),
-    0x0016: ('PhotoCornerCoordinates', ),
+    0x0013: ('ISOSpeedRequested',),
+    0x0016: ('PhotoCornerCoordinates',),
     # 0x0017: Unknown, but most likely an EV value
     0x0018: ('FlashBracketCompensationApplied', nikon_ev_bias),
-    0x0019: ('AEBracketCompensationApplied', ),
-    0x001A: ('ImageProcessing', ),
-    0x001B: ('CropHiSpeed', ),
-    0x001D: ('SerialNumber', ),	# Conflict with 0x00A0 ?
-    0x001E: ('ColorSpace', ),
-    0x001F: ('VRInfo', ),
-    0x0020: ('ImageAuthentication', ),
-    0x0022: ('ActiveDLighting', ),
-    0x0023: ('PictureControl', ),
-    0x0024: ('WorldTime', ),
-    0x0025: ('ISOInfo', ),
-    0x0080: ('ImageAdjustment', ),
-    0x0081: ('ToneCompensation', ),
-    0x0082: ('AuxiliaryLens', ),
-    0x0083: ('LensType', ),
-    0x0084: ('LensMinMaxFocalMaxAperture', ),
-    0x0085: ('ManualFocusDistance', ),
-    0x0086: ('DigitalZoomFactor', ),
+    0x0019: ('AEBracketCompensationApplied',),
+    0x001A: ('ImageProcessing',),
+    0x001B: ('CropHiSpeed',),
+    0x001D: ('SerialNumber',), 	# Conflict with 0x00A0 ?
+    0x001E: ('ColorSpace',),
+    0x001F: ('VRInfo',),
+    0x0020: ('ImageAuthentication',),
+    0x0022: ('ActiveDLighting',),
+    0x0023: ('PictureControl',),
+    0x0024: ('WorldTime',),
+    0x0025: ('ISOInfo',),
+    0x0080: ('ImageAdjustment',),
+    0x0081: ('ToneCompensation',),
+    0x0082: ('AuxiliaryLens',),
+    0x0083: ('LensType',),
+    0x0084: ('LensMinMaxFocalMaxAperture',),
+    0x0085: ('ManualFocusDistance',),
+    0x0086: ('DigitalZoomFactor',),
     0x0087: ('FlashMode',
              {0x00: 'Did Not Fire',
               0x01: 'Fired, Manual',
@@ -528,52 +528,52 @@ MAKERNOTE_NIKON_NEWER_TAGS={
               0x40: 'Single frame, white balance bracketing',
               0x41: 'Continuous, white balance bracketing',
               0x42: 'Timer, white balance bracketing'}),
-    0x008A: ('AutoBracketRelease', ),
-    0x008B: ('LensFStops', ),
-    0x008C: ('NEFCurve1', ),	# ExifTool calls this 'ContrastCurve'
-    0x008D: ('ColorMode', ),
-    0x008F: ('SceneMode', ),
-    0x0090: ('LightingType', ),
-    0x0091: ('ShotInfo', ),	# First 4 bytes are a version number in ASCII
-    0x0092: ('HueAdjustment', ),
+    0x008A: ('AutoBracketRelease',),
+    0x008B: ('LensFStops',),
+    0x008C: ('NEFCurve1',), 	# ExifTool calls this 'ContrastCurve'
+    0x008D: ('ColorMode',),
+    0x008F: ('SceneMode',),
+    0x0090: ('LightingType',),
+    0x0091: ('ShotInfo',), 	# First 4 bytes are a version number in ASCII
+    0x0092: ('HueAdjustment',),
     # ExifTool calls this 'NEFCompression', should be 1-4
-    0x0093: ('Compression', ),
+    0x0093: ('Compression',),
     0x0094: ('Saturation',
              {-3: 'B&W',
-              -2: '-2',
-              -1: '-1',
+              - 2: '-2',
+              - 1: '-1',
               0: '0',
               1: '1',
               2: '2'}),
-    0x0095: ('NoiseReduction', ),
-    0x0096: ('NEFCurve2', ),	# ExifTool calls this 'LinearizationTable'
-    0x0097: ('ColorBalance', ),	# First 4 bytes are a version number in ASCII
-    0x0098: ('LensData', ),	# First 4 bytes are a version number in ASCII
-    0x0099: ('RawImageCenter', ),
-    0x009A: ('SensorPixelSize', ),
-    0x009C: ('Scene Assist', ),
-    0x009E: ('RetouchHistory', ),
-    0x00A0: ('SerialNumber', ),
-    0x00A2: ('ImageDataSize', ),
+    0x0095: ('NoiseReduction',),
+    0x0096: ('NEFCurve2',), 	# ExifTool calls this 'LinearizationTable'
+    0x0097: ('ColorBalance',), 	# First 4 bytes are a version number in ASCII
+    0x0098: ('LensData',), 	# First 4 bytes are a version number in ASCII
+    0x0099: ('RawImageCenter',),
+    0x009A: ('SensorPixelSize',),
+    0x009C: ('Scene Assist',),
+    0x009E: ('RetouchHistory',),
+    0x00A0: ('SerialNumber',),
+    0x00A2: ('ImageDataSize',),
     # 00A3: unknown - a single byte 0
     # 00A4: In NEF, looks like a 4 byte ASCII version number ('0200')
-    0x00A5: ('ImageCount', ),
-    0x00A6: ('DeletedImageCount', ),
-    0x00A7: ('TotalShutterReleases', ),
+    0x00A5: ('ImageCount',),
+    0x00A6: ('DeletedImageCount',),
+    0x00A7: ('TotalShutterReleases',),
     # First 4 bytes are a version number in ASCII, with version specific
     # info to follow.  Its hard to treat it as a string due to embedded nulls.
-    0x00A8: ('FlashInfo', ),
-    0x00A9: ('ImageOptimization', ),
-    0x00AA: ('Saturation', ),
-    0x00AB: ('DigitalVariProgram', ),
-    0x00AC: ('ImageStabilization', ),
-    0x00AD: ('Responsive AF', ),	# 'AFResponse'
-    0x00B0: ('MultiExposure', ),
-    0x00B1: ('HighISONoiseReduction', ),
-    0x00B7: ('AFInfo', ),
-    0x00B8: ('FileInfo', ),
+    0x00A8: ('FlashInfo',),
+    0x00A9: ('ImageOptimization',),
+    0x00AA: ('Saturation',),
+    0x00AB: ('DigitalVariProgram',),
+    0x00AC: ('ImageStabilization',),
+    0x00AD: ('Responsive AF',), 	# 'AFResponse'
+    0x00B0: ('MultiExposure',),
+    0x00B1: ('HighISONoiseReduction',),
+    0x00B7: ('AFInfo',),
+    0x00B8: ('FileInfo',),
     # 00B9: unknown
-    0x0100: ('DigitalICE', ),
+    0x0100: ('DigitalICE',),
     0x0103: ('PreviewCompression',
              {1: 'Uncompressed',
               2: 'CCITT 1D',
@@ -604,13 +604,13 @@ MAKERNOTE_NIKON_NEWER_TAGS={
               34712: 'JPEG 2000',
               34713: 'Nikon NEF Compressed',
               65000: 'Kodak DCR Compressed',
-              65535: 'Pentax PEF Compressed',}),
-    0x0201: ('PreviewImageStart', ),
-    0x0202: ('PreviewImageLength', ),
+              65535: 'Pentax PEF Compressed', }),
+    0x0201: ('PreviewImageStart',),
+    0x0202: ('PreviewImageLength',),
     0x0213: ('PreviewYCbCrPositioning',
              {1: 'Centered',
-              2: 'Co-sited'}), 
-    0x0010: ('DataDump', ),
+              2: 'Co-sited'}),
+    0x0010: ('DataDump',),
     }
 
 MAKERNOTE_NIKON_OLDER_TAGS = {
@@ -647,12 +647,12 @@ MAKERNOTE_NIKON_OLDER_TAGS = {
 
 # decode Olympus SpecialMode tag in MakerNote
 def olympus_special_mode(v):
-    a={
+    a = {
         0: 'Normal',
         1: 'Unknown',
         2: 'Fast',
         3: 'Panorama'}
-    b={
+    b = {
         0: 'Non-panoramic',
         1: 'Left to right',
         2: 'Right to left',
@@ -662,10 +662,10 @@ def olympus_special_mode(v):
         return v
     return '%s - sequence %d - %s' % (a[v[0]], v[1], b[v[2]])
 
-MAKERNOTE_OLYMPUS_TAGS={
+MAKERNOTE_OLYMPUS_TAGS = {
     # ah HAH! those sneeeeeaky bastids! this is how they get past the fact
     # that a JPEG thumbnail is not allowed in an uncompressed TIFF file
-    0x0100: ('JPEGThumbnail', ),
+    0x0100: ('JPEGThumbnail',),
     0x0200: ('SpecialMode', olympus_special_mode),
     0x0201: ('JPEGQual',
              {1: 'SQ',
@@ -678,20 +678,20 @@ MAKERNOTE_OLYMPUS_TAGS={
     0x0203: ('BWMode',
              {0: 'Off',
              1: 'On'}),
-    0x0204: ('DigitalZoom', ),
-    0x0205: ('FocalPlaneDiagonal', ),
-    0x0206: ('LensDistortionParams', ),
-    0x0207: ('SoftwareRelease', ),
-    0x0208: ('PictureInfo', ),
+    0x0204: ('DigitalZoom',),
+    0x0205: ('FocalPlaneDiagonal',),
+    0x0206: ('LensDistortionParams',),
+    0x0207: ('SoftwareRelease',),
+    0x0208: ('PictureInfo',),
     0x0209: ('CameraID', make_string), # print as string
-    0x0F00: ('DataDump', ),
-    0x0300: ('PreCaptureFrames', ),
-    0x0404: ('SerialNumber', ),
-    0x1000: ('ShutterSpeedValue', ),
-    0x1001: ('ISOValue', ),
-    0x1002: ('ApertureValue', ),
-    0x1003: ('BrightnessValue', ),
-    0x1004: ('FlashMode', ),
+    0x0F00: ('DataDump',),
+    0x0300: ('PreCaptureFrames',),
+    0x0404: ('SerialNumber',),
+    0x1000: ('ShutterSpeedValue',),
+    0x1001: ('ISOValue',),
+    0x1002: ('ApertureValue',),
+    0x1003: ('BrightnessValue',),
+    0x1004: ('FlashMode',),
     0x1004: ('FlashMode',
        {2: 'On',
         3: 'Off'}),
@@ -700,63 +700,63 @@ MAKERNOTE_OLYMPUS_TAGS={
         1: 'Internal',
         4: 'External',
         5: 'Internal + External'}),
-    0x1006: ('ExposureCompensation', ),
-    0x1007: ('SensorTemperature', ),
-    0x1008: ('LensTemperature', ),
+    0x1006: ('ExposureCompensation',),
+    0x1007: ('SensorTemperature',),
+    0x1008: ('LensTemperature',),
     0x100b: ('FocusMode',
        {0: 'Auto',
         1: 'Manual'}),
-    0x1017: ('RedBalance', ),
-    0x1018: ('BlueBalance', ),
-    0x101a: ('SerialNumber', ),
-    0x1023: ('FlashExposureComp', ),
+    0x1017: ('RedBalance',),
+    0x1018: ('BlueBalance',),
+    0x101a: ('SerialNumber',),
+    0x1023: ('FlashExposureComp',),
     0x1026: ('ExternalFlashBounce',
        {0: 'No',
         1: 'Yes'}),
-    0x1027: ('ExternalFlashZoom', ),
-    0x1028: ('ExternalFlashMode', ),
+    0x1027: ('ExternalFlashZoom',),
+    0x1028: ('ExternalFlashMode',),
     0x1029: ('Contrast 	int16u',
        {0: 'High',
         1: 'Normal',
         2: 'Low'}),
-    0x102a: ('SharpnessFactor', ),
-    0x102b: ('ColorControl', ),
-    0x102c: ('ValidBits', ),
-    0x102d: ('CoringFilter', ),
-    0x102e: ('OlympusImageWidth', ),
-    0x102f: ('OlympusImageHeight', ),
-    0x1034: ('CompressionRatio', ),
+    0x102a: ('SharpnessFactor',),
+    0x102b: ('ColorControl',),
+    0x102c: ('ValidBits',),
+    0x102d: ('CoringFilter',),
+    0x102e: ('OlympusImageWidth',),
+    0x102f: ('OlympusImageHeight',),
+    0x1034: ('CompressionRatio',),
     0x1035: ('PreviewImageValid',
        {0: 'No',
         1: 'Yes'}),
-    0x1036: ('PreviewImageStart', ),
-    0x1037: ('PreviewImageLength', ),
+    0x1036: ('PreviewImageStart',),
+    0x1037: ('PreviewImageLength',),
     0x1039: ('CCDScanMode',
        {0: 'Interlaced',
         1: 'Progressive'}),
     0x103a: ('NoiseReduction',
        {0: 'Off',
         1: 'On'}),
-    0x103b: ('InfinityLensStep', ),
-    0x103c: ('NearLensStep', ),
+    0x103b: ('InfinityLensStep',),
+    0x103c: ('NearLensStep',),
 
     # TODO - these need extra definitions
     # http://search.cpan.org/src/EXIFTOOL/Image-ExifTool-6.90/html/TagNames/Olympus.html
-    0x2010: ('Equipment', ),
-    0x2020: ('CameraSettings', ),
-    0x2030: ('RawDevelopment', ),
-    0x2040: ('ImageProcessing', ),
-    0x2050: ('FocusInfo', ),
-    0x3000: ('RawInfo ', ),
+    0x2010: ('Equipment',),
+    0x2020: ('CameraSettings',),
+    0x2030: ('RawDevelopment',),
+    0x2040: ('ImageProcessing',),
+    0x2050: ('FocusInfo',),
+    0x3000: ('RawInfo ',),
     }
 
 # 0x2020 CameraSettings
-MAKERNOTE_OLYMPUS_TAG_0x2020={
+MAKERNOTE_OLYMPUS_TAG_0x2020 = {
     0x0100: ('PreviewImageValid',
              {0: 'No',
               1: 'Yes'}),
-    0x0101: ('PreviewImageStart', ),
-    0x0102: ('PreviewImageLength', ),
+    0x0101: ('PreviewImageStart',),
+    0x0102: ('PreviewImageLength',),
     0x0200: ('ExposureMode',
              {1: 'Manual',
               2: 'Program',
@@ -788,8 +788,8 @@ MAKERNOTE_OLYMPUS_TAG_0x2020={
     0x0303: ('AFSearch',
              {0: 'Not Ready',
               1: 'Ready'}),
-    0x0304: ('AFAreas', ),
-    0x0401: ('FlashExposureCompensation', ),
+    0x0304: ('AFAreas',),
+    0x0401: ('FlashExposureCompensation',),
     0x0500: ('WhiteBalance2',
              {0: 'Auto',
              16: '7500K (Fine Weather with Shade)',
@@ -808,17 +808,17 @@ MAKERNOTE_OLYMPUS_TAG_0x2020={
              512: 'Custom WB 5400K',
              513: 'Custom WB 2900K',
              514: 'Custom WB 8000K', }),
-    0x0501: ('WhiteBalanceTemperature', ),
-    0x0502: ('WhiteBalanceBracket', ),
-    0x0503: ('CustomSaturation', ), # (3 numbers: 1. CS Value, 2. Min, 3. Max)
+    0x0501: ('WhiteBalanceTemperature',),
+    0x0502: ('WhiteBalanceBracket',),
+    0x0503: ('CustomSaturation',), # (3 numbers: 1. CS Value, 2. Min, 3. Max)
     0x0504: ('ModifiedSaturation',
              {0: 'Off',
               1: 'CM1 (Red Enhance)',
               2: 'CM2 (Green Enhance)',
               3: 'CM3 (Blue Enhance)',
               4: 'CM4 (Skin Tones)'}),
-    0x0505: ('ContrastSetting', ), # (3 numbers: 1. Contrast, 2. Min, 3. Max)
-    0x0506: ('SharpnessSetting', ), # (3 numbers: 1. Sharpness, 2. Min, 3. Max)
+    0x0505: ('ContrastSetting',), # (3 numbers: 1. Contrast, 2. Min, 3. Max)
+    0x0506: ('SharpnessSetting',), # (3 numbers: 1. Sharpness, 2. Min, 3. Max)
     0x0507: ('ColorSpace',
              {0: 'sRGB',
               1: 'Adobe RGB',
@@ -862,7 +862,7 @@ MAKERNOTE_OLYMPUS_TAG_0x2020={
     0x050c: ('ShadingCompensation',
              {0: 'Off',
               1: 'On'}),
-    0x050d: ('CompressionFactor', ),
+    0x050d: ('CompressionFactor',),
     0x050f: ('Gradation',
              {'-1 -1 1': 'Low Key',
               '0 -1 1': 'Normal',
@@ -873,10 +873,10 @@ MAKERNOTE_OLYMPUS_TAG_0x2020={
               3: 'Muted',
               256: 'Monotone',
               512: 'Sepia'}),
-    0x0521: ('PictureModeSaturation', ),
-    0x0522: ('PictureModeHue?', ),
-    0x0523: ('PictureModeContrast', ),
-    0x0524: ('PictureModeSharpness', ),
+    0x0521: ('PictureModeSaturation',),
+    0x0522: ('PictureModeHue?',),
+    0x0523: ('PictureModeContrast',),
+    0x0524: ('PictureModeSharpness',),
     0x0525: ('PictureModeBWFilter',
              {0: 'n/a',
               1: 'Neutral',
@@ -891,18 +891,18 @@ MAKERNOTE_OLYMPUS_TAG_0x2020={
               3: 'Blue',
               4: 'Purple',
               5: 'Green'}),
-    0x0600: ('Sequence', ), # 2 or 3 numbers: 1. Mode, 2. Shot number, 3. Mode bits
-    0x0601: ('PanoramaMode', ), # (2 numbers: 1. Mode, 2. Shot number)
+    0x0600: ('Sequence',), # 2 or 3 numbers: 1. Mode, 2. Shot number, 3. Mode bits
+    0x0601: ('PanoramaMode',), # (2 numbers: 1. Mode, 2. Shot number)
     0x0603: ('ImageQuality2',
              {1: 'SQ',
               2: 'HQ',
               3: 'SHQ',
               4: 'RAW'}),
-    0x0901: ('ManometerReading', ),
+    0x0901: ('ManometerReading',),
     }
 
 
-MAKERNOTE_CASIO_TAGS={
+MAKERNOTE_CASIO_TAGS = {
     0x0001: ('RecordingMode',
              {1: 'Single Shutter',
               2: 'Panorama',
@@ -927,7 +927,7 @@ MAKERNOTE_CASIO_TAGS={
              {11: 'Weak',
               13: 'Normal',
               15: 'Strong'}),
-    0x0006: ('Object Distance', ),
+    0x0006: ('Object Distance',),
     0x0007: ('WhiteBalance',
              {1: 'Auto',
               2: 'Tungsten',
@@ -956,9 +956,9 @@ MAKERNOTE_CASIO_TAGS={
               250: '+2.0'}),
     }
 
-MAKERNOTE_FUJIFILM_TAGS={
+MAKERNOTE_FUJIFILM_TAGS = {
     0x0000: ('NoteVersion', make_string),
-    0x1000: ('Quality', ),
+    0x1000: ('Quality',),
     0x1001: ('Sharpness',
              {1: 'Soft',
               2: 'Soft',
@@ -987,7 +987,7 @@ MAKERNOTE_FUJIFILM_TAGS={
               1: 'On',
               2: 'Off',
               3: 'Red Eye Reduction'}),
-    0x1011: ('FlashStrength', ),
+    0x1011: ('FlashStrength',),
     0x1020: ('Macro',
              {0: 'Off',
               1: 'On'}),
@@ -1022,10 +1022,10 @@ MAKERNOTE_FUJIFILM_TAGS={
     }
 
 MAKERNOTE_CANON_TAGS = {
-    0x0006: ('ImageType', ),
-    0x0007: ('FirmwareVersion', ),
-    0x0008: ('ImageNumber', ),
-    0x0009: ('OwnerName', ),
+    0x0006: ('ImageType',),
+    0x0007: ('FirmwareVersion',),
+    0x0008: ('ImageNumber',),
+    0x0009: ('OwnerName',),
     }
 
 # this is in element offset, name, optional value dictionary format
@@ -1033,7 +1033,7 @@ MAKERNOTE_CANON_TAG_0x001 = {
     1: ('Macromode',
         {1: 'Macro',
          2: 'Normal'}),
-    2: ('SelfTimer', ),
+    2: ('SelfTimer',),
     3: ('Quality',
         {2: 'Normal',
          3: 'Fine',
@@ -1120,9 +1120,9 @@ MAKERNOTE_CANON_TAG_0x001 = {
           3: 'Av-priority',
           4: 'Manual',
           5: 'A-DEP'}),
-    23: ('LongFocalLengthOfLensInFocalUnits', ),
-    24: ('ShortFocalLengthOfLensInFocalUnits', ),
-    25: ('FocalUnitsPerMM', ),
+    23: ('LongFocalLengthOfLensInFocalUnits',),
+    24: ('ShortFocalLengthOfLensInFocalUnits',),
+    25: ('FocalUnitsPerMM',),
     28: ('FlashActivity',
          {0: 'Did Not Fire',
           1: 'Fired'}),
@@ -1146,8 +1146,8 @@ MAKERNOTE_CANON_TAG_0x004 = {
          4: 'Fluorescent',
          5: 'Flash',
          6: 'Custom'}),
-    9: ('SequenceNumber', ),
-    14: ('AFPointUsed', ),
+    9: ('SequenceNumber',),
+    14: ('AFPointUsed',),
     15: ('FlashBias',
          {0xFFC0: '-2 EV',
           0xFFCC: '-1.67 EV',
@@ -1166,7 +1166,7 @@ MAKERNOTE_CANON_TAG_0x004 = {
           0x0030: '1.50 EV',
           0x0034: '1.67 EV',
           0x0040: '2 EV'}),
-    19: ('SubjectDistance', ),
+    19: ('SubjectDistance',),
     }
 
 # extract multibyte integer in Motorola format (little endian)
@@ -1252,17 +1252,17 @@ class EXIF_header:
     # start of the EXIF information.  For some cameras that use relative tags,
     # this offset may be relative to some other starting point.
     def s2n(self, offset, length, signed=0):
-        self.file.seek(self.offset+offset)
-        slice=self.file.read(length)
+        self.file.seek(self.offset + offset)
+        slice = self.file.read(length)
         if self.endian == 'I':
-            val=s2n_intel(slice)
+            val = s2n_intel(slice)
         else:
-            val=s2n_motorola(slice)
+            val = s2n_motorola(slice)
         # Sign extension ?
         if signed:
-            msb=1L << (8*length-1)
+            msb = 1L << (8 * length - 1)
             if val & msb:
-                val=val-(msb << 1)
+                val = val - (msb << 1)
         return val
 
     # convert offset to string
@@ -1282,21 +1282,21 @@ class EXIF_header:
 
     # return pointer to next IFD
     def next_IFD(self, ifd):
-        entries=self.s2n(ifd, 2)
-        return self.s2n(ifd+2+12*entries, 4)
+        entries = self.s2n(ifd, 2)
+        return self.s2n(ifd + 2 + 12 * entries, 4)
 
     # return list of IFDs in header
     def list_IFDs(self):
-        i=self.first_IFD()
-        a=[]
+        i = self.first_IFD()
+        a = []
         while i:
             a.append(i)
-            i=self.next_IFD(i)
+            i = self.next_IFD(i)
         return a
 
     # return list of entries in this IFD
     def dump_IFD(self, ifd, ifd_name, dict=EXIF_TAGS, relative=0, stop_tag='UNDEF'):
-        entries=self.s2n(ifd, 2)
+        entries = self.s2n(ifd, 2)
         for i in range(entries):
             # entry is index of start of this IFD in the file
             entry = ifd + 2 + 12 * i
@@ -1312,7 +1312,7 @@ class EXIF_header:
             # ignore certain tags for faster processing
             if not (not detailed and tag in IGNORE_TAGS):
                 field_type = self.s2n(entry + 2, 2)
-                
+
                 # unknown field type
                 if not 0 < field_type < len(FIELD_TYPES):
                     if not self.strict:
@@ -1348,7 +1348,7 @@ class EXIF_header:
                     # special case: null-terminated ASCII string
                     # XXX investigate
                     # sometimes gets too big to fit in int value
-                    if count != 0 and count < (2**31):
+                    if count != 0 and count < (2 ** 31):
                         self.file.seek(self.offset + offset)
                         values = self.file.read(count)
                         #print values
@@ -1359,7 +1359,7 @@ class EXIF_header:
                 else:
                     values = []
                     signed = (field_type in [6, 8, 9, 10])
-                    
+
                     # XXX investigate
                     # some entries get too big to handle could be malformed
                     # file or problem with self.s2n
@@ -1382,14 +1382,14 @@ class EXIF_header:
                             offset = offset + typelen
                     #else :
                     #    print "Warning: dropping large tag:", tag, tag_name
-                
+
                 # now 'values' is either a string or an array
                 if count == 1 and field_type != 2:
-                    printable=str(values[0])
+                    printable = str(values[0])
                 elif count > 50 and len(values) > 20 :
-                    printable=str( values[0:20] )[0:-1] + ", ... ]"
+                    printable = str(values[0:20])[0:-1] + ", ... ]"
                 else:
-                    printable=str(values)
+                    printable = str(values)
 
                 # compute printable version of values
                 if tag_entry:
@@ -1426,17 +1426,17 @@ class EXIF_header:
         else:
             tiff = 'II*\x00\x08\x00\x00\x00'
         # ... plus thumbnail IFD data plus a null "next IFD" pointer
-        self.file.seek(self.offset+thumb_ifd)
-        tiff += self.file.read(entries*12+2)+'\x00\x00\x00\x00'
+        self.file.seek(self.offset + thumb_ifd)
+        tiff += self.file.read(entries * 12 + 2) + '\x00\x00\x00\x00'
 
         # fix up large value offset pointers into data area
         for i in range(entries):
             entry = thumb_ifd + 2 + 12 * i
             tag = self.s2n(entry, 2)
-            field_type = self.s2n(entry+2, 2)
+            field_type = self.s2n(entry + 2, 2)
             typelen = FIELD_TYPES[field_type][0]
-            count = self.s2n(entry+4, 4)
-            oldoff = self.s2n(entry+8, 4)
+            count = self.s2n(entry + 4, 4)
+            oldoff = self.s2n(entry + 8, 4)
             # start of the 4-byte pointer area in entry
             ptr = i * 12 + 18
             # remember strip offsets location
@@ -1448,7 +1448,7 @@ class EXIF_header:
                 # update offset pointer (nasty "strings are immutable" crap)
                 # should be able to say "tiff[ptr:ptr+4]=newoff"
                 newoff = len(tiff)
-                tiff = tiff[:ptr] + self.n2s(newoff, 4) + tiff[ptr+4:]
+                tiff = tiff[:ptr] + self.n2s(newoff, 4) + tiff[ptr + 4:]
                 # remember strip offsets location
                 if tag == 0x0111:
                     strip_off = newoff
@@ -1492,7 +1492,7 @@ class EXIF_header:
     # or from the header at the start of the makernote.)
     def decode_maker_note(self):
         note = self.tags['EXIF MakerNote']
-        
+
         # Some apps use MakerNote tags but do not use a format for which we
         # have a description, so just do a raw dump for these.
         #if self.tags.has_key('Image Make'):
@@ -1511,7 +1511,7 @@ class EXIF_header:
             if note.values[0:7] == [78, 105, 107, 111, 110, 0, 1]:
                 if self.debug:
                     print "Looks like a type 1 Nikon MakerNote."
-                self.dump_IFD(note.field_offset+8, 'MakerNote',
+                self.dump_IFD(note.field_offset + 8, 'MakerNote',
                               dict=MAKERNOTE_NIKON_OLDER_TAGS)
             elif note.values[0:7] == [78, 105, 107, 111, 110, 0, 2]:
                 if self.debug:
@@ -1519,7 +1519,7 @@ class EXIF_header:
                 if note.values[12:14] != [0, 42] and note.values[12:14] != [42L, 0L]:
                     raise ValueError("Missing marker tag '42' in MakerNote.")
                 # skip the Makernote label and the TIFF header
-                self.dump_IFD(note.field_offset+10+8, 'MakerNote',
+                self.dump_IFD(note.field_offset + 10 + 8, 'MakerNote',
                               dict=MAKERNOTE_NIKON_NEWER_TAGS, relative=1)
             else:
                 # E99x or D1
@@ -1531,7 +1531,7 @@ class EXIF_header:
 
         # Olympus
         if make.startswith('OLYMPUS'):
-            self.dump_IFD(note.field_offset+8, 'MakerNote',
+            self.dump_IFD(note.field_offset + 8, 'MakerNote',
                           dict=MAKERNOTE_OLYMPUS_TAGS)
             # XXX TODO
             #for i in (('MakerNote Tag 0x2020', MAKERNOTE_OLYMPUS_TAG_0x2020),):
@@ -1579,17 +1579,17 @@ class EXIF_header:
     # see http://www.burren.cx/david/canon.html by David Burren
     def canon_decode_tag(self, value, dict):
         for i in range(1, len(value)):
-            x=dict.get(i, ('Unknown', ))
+            x = dict.get(i, ('Unknown',))
             if self.debug:
                 print i, x
-            name=x[0]
+            name = x[0]
             if len(x) > 1:
-                val=x[1].get(value[i], 'Unknown')
+                val = x[1].get(value[i], 'Unknown')
             else:
-                val=value[i]
+                val = value[i]
             # it's not a real IFD Tag but we fake one to make everybody
             # happy. this will have a "proprietary" type
-            self.tags['MakerNote '+name]=IFD_Tag(str(val), None, 0, None,
+            self.tags['MakerNote ' + name] = IFD_Tag(str(val), None, 0, None,
                                                  None, None)
 
 # process an image file (expects an open file object)
@@ -1614,10 +1614,10 @@ def process_file(f, stop_tag='UNDEF', details=True, strict=False, debug=False):
     elif data[0:2] == '\xFF\xD8':
         # it's a JPEG file
         while data[2] == '\xFF' and data[6:10] in ('JFIF', 'JFXX', 'OLYM', 'Phot'):
-            length = ord(data[4])*256+ord(data[5])
-            f.read(length-8)
+            length = ord(data[4]) * 256 + ord(data[5])
+            f.read(length - 8)
             # fake an EXIF beginning of file
-            data = '\xFF\x00'+f.read(10)
+            data = '\xFF\x00' + f.read(10)
             fake_exif = 1
         if data[2] == '\xFF' and data[6:10] == 'Exif':
             # detected EXIF header
@@ -1648,7 +1648,7 @@ def process_file(f, stop_tag='UNDEF', details=True, strict=False, debug=False):
             print ' IFD %d (%s) at offset %d:' % (ctr, IFD_name, i)
         hdr.dump_IFD(i, IFD_name, stop_tag=stop_tag)
         # EXIF IFD
-        exif_off = hdr.tags.get(IFD_name+' ExifOffset')
+        exif_off = hdr.tags.get(IFD_name + ' ExifOffset')
         if exif_off:
             if debug:
                 print ' EXIF SubIFD at offset %d:' % exif_off.values[0]
@@ -1662,7 +1662,7 @@ def process_file(f, stop_tag='UNDEF', details=True, strict=False, debug=False):
                 hdr.dump_IFD(intr_off.values[0], 'EXIF Interoperability',
                              dict=INTR_TAGS, stop_tag=stop_tag)
         # GPS IFD
-        gps_off = hdr.tags.get(IFD_name+' GPSInfo')
+        gps_off = hdr.tags.get(IFD_name + ' GPSInfo')
         if gps_off:
             if debug:
                 print ' GPS SubIFD at offset %d:' % gps_off.values[0]
@@ -1677,7 +1677,7 @@ def process_file(f, stop_tag='UNDEF', details=True, strict=False, debug=False):
     # JPEG thumbnail (thankfully the JPEG data is stored as a unit)
     thumb_off = hdr.tags.get('Thumbnail JPEGInterchangeFormat')
     if thumb_off:
-        f.seek(offset+thumb_off.values[0])
+        f.seek(offset + thumb_off.values[0])
         size = hdr.tags['Thumbnail JPEGInterchangeFormatLength'].values[0]
         hdr.tags['JPEGThumbnail'] = f.read(size)
 
@@ -1690,10 +1690,10 @@ def process_file(f, stop_tag='UNDEF', details=True, strict=False, debug=False):
     # Sometimes in a TIFF file, a JPEG thumbnail is hidden in the MakerNote
     # since it's not allowed in a uncompressed TIFF IFD
     if 'JPEGThumbnail' not in hdr.tags:
-        thumb_off=hdr.tags.get('MakerNote JPEGThumbnail')
+        thumb_off = hdr.tags.get('MakerNote JPEGThumbnail')
         if thumb_off:
-            f.seek(offset+thumb_off.values[0])
-            hdr.tags['JPEGThumbnail']=file.read(thumb_off.field_length)
+            f.seek(offset + thumb_off.values[0])
+            hdr.tags['JPEGThumbnail'] = file.read(thumb_off.field_length)
 
     return hdr.tags
 
@@ -1740,9 +1740,9 @@ if __name__ == '__main__':
     # output info for each file
     for filename in args:
         try:
-            file=open(filename, 'rb')
+            file = open(filename, 'rb')
         except:
-            print "'%s' is unreadable\n"%filename
+            print "'%s' is unreadable\n" % filename
             continue
         print filename + ':'
         # get the tags
@@ -1751,7 +1751,7 @@ if __name__ == '__main__':
             print 'No EXIF information found'
             continue
 
-        x=data.keys()
+        x = data.keys()
         x.sort()
         for i in x:
             if i in ('JPEGThumbnail', 'TIFFThumbnail'):
