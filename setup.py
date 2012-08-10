@@ -37,4 +37,6 @@ setup(
                    'Operating System :: OS Independent',
                    'Programming Language :: Python',
                    'Topic :: Utilities'],
+    install_requires=['Django>=1.3', # Change to class-based views means 1.3 minimum. 
+                      ],
 )
