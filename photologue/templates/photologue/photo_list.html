@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load url from future %}
 
 {% block title %}All Photos{% endblock %}
 
@@ -19,7 +20,7 @@
 {% if is_paginated %}
 <p>{{ hits }} photos total.</p>
 <div id="page_controls">
-    <p>{% if has_previous %}<a href="{% url pl-photo-list previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url pl-photo-list next %}">Next</a>{% endif %}</p>
+    <p>{% if has_previous %}<a href="{% url 'pl-photo-list' previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url 'pl-photo-list' next %}">Next</a>{% endif %}</p>
 </div>
 {% endif %}
 

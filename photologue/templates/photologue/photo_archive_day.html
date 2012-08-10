@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load url from future %}
 
 {% block title %}Photos for {{ day|date }}{% endblock %}
 
@@ -15,6 +16,6 @@
 {% else %}
 <p>No photos were found.</p>
 {% endif %}
-<p><a href="{% url pl-photo-list 1 %}">View all photographs</a></p>
+<p><a href="{% url 'pl-photo-list' 1 %}">View all photographs</a></p>
 
 {% endblock %}

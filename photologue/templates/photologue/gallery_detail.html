@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load url from future %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
@@ -14,6 +15,6 @@
     </div>
     {% endfor %}
 </div>
-<p><a href="{% url pl-gallery-list 1 %}">View all galleries</a></p>
+<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries</a></p>
 
 {% endblock %}

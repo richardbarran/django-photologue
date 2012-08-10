@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load url from future %}
 
 {% block title %}Galleries for {{ month|date:"F Y" }}{% endblock %}
 
@@ -10,7 +11,7 @@
     {% for gallery in object_list %}
     <div class="photo-gallery">
         <h2>{{ gallery.title }}</h2>
-        {% for photo in gallery.sample|slice:sample_size %}
+        {% for photo in gallery.sample %}
         <div class="gallery-photo">
             <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
         </div>
@@ -21,6 +22,6 @@
     <p>No galleries were found.</p>
 {% endif %}
 
-<p><a href="{% url pl-gallery-list 1 %}">View all galleries.</a></p>
+<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries.</a></p>
 
 {% endblock %}

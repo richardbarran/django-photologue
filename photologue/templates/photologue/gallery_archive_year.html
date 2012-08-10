@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load url from future %}
 
 {% block title %}Galleries for {{ year }}{% endblock %}
 
@@ -11,6 +12,6 @@
 {% endfor %}
 </ul>
 
-<p><a href="{% url pl-gallery-list 1 %}">View all galleries.</a></p>
+<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries.</a></p>
 
 {% endblock %}

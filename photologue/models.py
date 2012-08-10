@@ -48,12 +48,19 @@ except ImportError:
             return 'CharField'
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
 
+    # Tell South how to handle this custom field.
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^photologue\.models\.TagField"])
+
 from utils import EXIF
 from utils.reflection import add_reflection
 from utils.watermark import apply_watermark
 
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
+
+# Number of random images from the gallery to display.
+SAMPLE_SIZE = getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 
 # max_length setting for the ImageModel ImageField
 IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 100)
@@ -126,7 +133,7 @@ IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern 
 
 class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'), default=datetime.now)
-    title = models.CharField(_('title'), max_length=100, unique=True)
+    title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('title slug'), unique=True,
                                   help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     description = models.TextField(_('description'), blank=True)
@@ -159,8 +166,14 @@ class Gallery(models.Model):
         else:
             return self.photos.all()[:limit]
 
-    def sample(self, count=0, public=True):
-        if count == 0 or count > self.photo_count():
+    def sample(self, count=None, public=True):
+        """Return a sample of photos, ordered at random.
+        If the 'count' is not specified, it will return a number of photos 
+        limited by the GALLERY_SAMPLE_SIZE setting.
+        """
+        if not count:
+            count = SAMPLE_SIZE
+        if count > self.photo_count():
             count = self.photo_count()
         if public:
             photo_set = self.public()
@@ -169,6 +182,7 @@ class Gallery(models.Model):
         return random.sample(photo_set, count)
 
     def photo_count(self, public=True):
+        """Return a count of all the photos in this gallery."""
         if public:
             return self.public().count()
         else:
@@ -176,14 +190,15 @@ class Gallery(models.Model):
     photo_count.short_description = _('count')
 
     def public(self):
+        """Return a queryset of all the public photos in this gallery."""
         return self.photos.filter(is_public=True)
 
 
 class GalleryUpload(models.Model):
-    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR+"/temp",
+    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR + "/temp",
                                 help_text=_('Select a .zip file of images to upload into a new Gallery.'))
     gallery = models.ForeignKey(Gallery, null=True, blank=True, help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
-    title = models.CharField(_('title'), max_length=75, help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
+    title = models.CharField(_('title'), max_length=50, help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
     caption = models.TextField(_('caption'), blank=True, help_text=_('Caption will be added to all photos.'))
     description = models.TextField(_('description'), blank=True, help_text=_('A description of this Gallery.'))
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Uncheck this to make the uploaded gallery and included photographs private.'))
@@ -255,7 +270,7 @@ class GalleryUpload(models.Model):
 
 
 class ImageModel(models.Model):
-    image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH, 
+    image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH,
                               upload_to=get_storage_path)
     date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
     view_count = models.PositiveIntegerField(default=0, editable=False)
@@ -351,7 +366,7 @@ class ImageModel(models.Model):
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size
         if photosize.crop:
-            ratio = max(float(new_width)/cur_width,float(new_height)/cur_height)
+            ratio = max(float(new_width) / cur_width, float(new_height) / cur_height)
             x = (cur_width * ratio)
             y = (cur_height * ratio)
             xd = abs(new_width - x)
@@ -359,27 +374,27 @@ class ImageModel(models.Model):
             x_diff = int(xd / 2)
             y_diff = int(yd / 2)
             if self.crop_from == 'top':
-                box = (int(x_diff), 0, int(x_diff+new_width), new_height)
+                box = (int(x_diff), 0, int(x_diff + new_width), new_height)
             elif self.crop_from == 'left':
-                box = (0, int(y_diff), new_width, int(y_diff+new_height))
+                box = (0, int(y_diff), new_width, int(y_diff + new_height))
             elif self.crop_from == 'bottom':
-                box = (int(x_diff), int(yd), int(x_diff+new_width), int(y)) # y - yd = new_height
+                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y)) # y - yd = new_height
             elif self.crop_from == 'right':
-                box = (int(xd), int(y_diff), int(x), int(y_diff+new_height)) # x - xd = new_width
+                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height)) # x - xd = new_width
             else:
-                box = (int(x_diff), int(y_diff), int(x_diff+new_width), int(y_diff+new_height))
+                box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
             im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
-                ratio = min(float(new_width)/cur_width,
-                            float(new_height)/cur_height)
+                ratio = min(float(new_width) / cur_width,
+                            float(new_height) / cur_height)
             else:
                 if new_width == 0:
-                    ratio = float(new_height)/cur_height
+                    ratio = float(new_height) / cur_height
                 else:
-                    ratio = float(new_width)/cur_width
-            new_dimensions = (int(round(cur_width*ratio)),
-                              int(round(cur_height*ratio)))
+                    ratio = float(new_width) / cur_width
+            new_dimensions = (int(round(cur_width * ratio)),
+                              int(round(cur_height * ratio)))
             if new_dimensions[0] > cur_width or \
                new_dimensions[1] > cur_height:
                 if not photosize.upscale:
@@ -478,11 +493,18 @@ class ImageModel(models.Model):
     def delete(self):
         assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
+        # Files associated to a FileField have to be manually deleted:
+        # https://docs.djangoproject.com/en/dev/releases/1.3/#deleting-a-model-doesn-t-delete-associated-files
+        # http://haineault.com/blog/147/
+        # The data loss scenarios mentioned in the docs hopefully do not apply
+        # to Photologue!
+        path = self.image.path
         super(ImageModel, self).delete()
+        os.remove(path)
 
 
 class Photo(ImageModel):
-    title = models.CharField(_('title'), max_length=100, unique=True)
+    title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
@@ -642,7 +664,7 @@ class PhotoEffect(BaseEffect):
 
 
 class Watermark(BaseEffect):
-    image = models.ImageField(_('image'), upload_to=PHOTOLOGUE_DIR+"/watermarks")
+    image = models.ImageField(_('image'), upload_to=PHOTOLOGUE_DIR + "/watermarks")
     style = models.CharField(_('style'), max_length=5, choices=WATERMARK_STYLE_CHOICES, default='scale')
     opacity = models.FloatField(_('opacity'), default=1, help_text=_("The opacity of the overlay."))
 
@@ -656,7 +678,7 @@ class Watermark(BaseEffect):
 
 
 class PhotoSize(models.Model):
-    name = models.CharField(_('name'), max_length=20, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
+    name = models.CharField(_('name'), max_length=40, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
     width = models.PositiveIntegerField(_('width'), default=0, help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
     height = models.PositiveIntegerField(_('height'), default=0, help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
     quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
