@@ -14,6 +14,9 @@ The easiest way to install Photologue is with pip::
 
    pip install django-photologue
 
+Photologue uses the Python Imaging Library and South; these will be installed
+automatically if they are not already there.
+
 You can verify Photologue is available to your project by running the following
 commands from within your project directory::
 
