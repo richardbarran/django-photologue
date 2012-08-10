@@ -478,7 +478,14 @@ class ImageModel(models.Model):
     def delete(self):
         assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
+        # Files associated to a FileField have to be manually deleted:
+        # https://docs.djangoproject.com/en/dev/releases/1.3/#deleting-a-model-doesn-t-delete-associated-files
+        # http://haineault.com/blog/147/
+        # The data loss scenarios mentioned in the docs hopefully do not apply
+        # to Photologue!
+        path = self.image.path
         super(ImageModel, self).delete()
+        os.remove(path)
 
 
 class Photo(ImageModel):
