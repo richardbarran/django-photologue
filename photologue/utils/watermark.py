@@ -35,7 +35,7 @@ def apply_watermark(im, mark, position, opacity=1):
         im = im.convert('RGBA')
     # create a transparent layer the size of the image and draw the
     # watermark in that layer.
-    layer = Image.new('RGBA', im.size, (0,0,0,0))
+    layer = Image.new('RGBA', im.size, (0, 0, 0, 0))
     if position == 'tile':
         for y in range(0, im.size[1], mark.size[1]):
             for x in range(0, im.size[0], mark.size[0]):

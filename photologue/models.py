@@ -180,7 +180,7 @@ class Gallery(models.Model):
 
 
 class GalleryUpload(models.Model):
-    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR+"/temp",
+    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR + "/temp",
                                 help_text=_('Select a .zip file of images to upload into a new Gallery.'))
     gallery = models.ForeignKey(Gallery, null=True, blank=True, help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
     title = models.CharField(_('title'), max_length=75, help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
@@ -255,7 +255,7 @@ class GalleryUpload(models.Model):
 
 
 class ImageModel(models.Model):
-    image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH, 
+    image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH,
                               upload_to=get_storage_path)
     date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
     view_count = models.PositiveIntegerField(default=0, editable=False)
@@ -351,7 +351,7 @@ class ImageModel(models.Model):
         cur_width, cur_height = im.size
         new_width, new_height = photosize.size
         if photosize.crop:
-            ratio = max(float(new_width)/cur_width,float(new_height)/cur_height)
+            ratio = max(float(new_width) / cur_width, float(new_height) / cur_height)
             x = (cur_width * ratio)
             y = (cur_height * ratio)
             xd = abs(new_width - x)
@@ -359,27 +359,27 @@ class ImageModel(models.Model):
             x_diff = int(xd / 2)
             y_diff = int(yd / 2)
             if self.crop_from == 'top':
-                box = (int(x_diff), 0, int(x_diff+new_width), new_height)
+                box = (int(x_diff), 0, int(x_diff + new_width), new_height)
             elif self.crop_from == 'left':
-                box = (0, int(y_diff), new_width, int(y_diff+new_height))
+                box = (0, int(y_diff), new_width, int(y_diff + new_height))
             elif self.crop_from == 'bottom':
-                box = (int(x_diff), int(yd), int(x_diff+new_width), int(y)) # y - yd = new_height
+                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y)) # y - yd = new_height
             elif self.crop_from == 'right':
-                box = (int(xd), int(y_diff), int(x), int(y_diff+new_height)) # x - xd = new_width
+                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height)) # x - xd = new_width
             else:
-                box = (int(x_diff), int(y_diff), int(x_diff+new_width), int(y_diff+new_height))
+                box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
             im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
-                ratio = min(float(new_width)/cur_width,
-                            float(new_height)/cur_height)
+                ratio = min(float(new_width) / cur_width,
+                            float(new_height) / cur_height)
             else:
                 if new_width == 0:
-                    ratio = float(new_height)/cur_height
+                    ratio = float(new_height) / cur_height
                 else:
-                    ratio = float(new_width)/cur_width
-            new_dimensions = (int(round(cur_width*ratio)),
-                              int(round(cur_height*ratio)))
+                    ratio = float(new_width) / cur_width
+            new_dimensions = (int(round(cur_width * ratio)),
+                              int(round(cur_height * ratio)))
             if new_dimensions[0] > cur_width or \
                new_dimensions[1] > cur_height:
                 if not photosize.upscale:
@@ -649,7 +649,7 @@ class PhotoEffect(BaseEffect):
 
 
 class Watermark(BaseEffect):
-    image = models.ImageField(_('image'), upload_to=PHOTOLOGUE_DIR+"/watermarks")
+    image = models.ImageField(_('image'), upload_to=PHOTOLOGUE_DIR + "/watermarks")
     style = models.CharField(_('style'), max_length=5, choices=WATERMARK_STYLE_CHOICES, default='scale')
     opacity = models.FloatField(_('opacity'), default=1, help_text=_("The opacity of the overlay."))
 
