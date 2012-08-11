@@ -11,6 +11,10 @@ class GalleryTest(helpers.PhotologueBaseTest):
         self.test_gallery.photos.add(self.pl)
         self.test_gallery.photos.add(self.pl2)
 
+    def tearDown(self):
+        super(GalleryTest, self).tearDown()
+        self.pl2.delete()
+
     def test_public(self):
         """Method 'public' should only return photos flagged as public."""
         self.assert_(self.test_gallery.public().count() == 2)
