@@ -1,6 +1,6 @@
 
 
-===== 2.4 (in development) ====
+===== 2.4 (13/08/2012) ====
 
 Please note:
 
@@ -16,6 +16,9 @@ List of changes:
 - updated installation instructions.
 - fixed issue #9 (In Django 1.3, FileField no longer deletes files).
 - switched from function-based generic views to class-based views.
+- fixed PendingDeprecationWarnings seen when running Django 1.3 - this will make
+  the move to Django 1.5 easier.
+- added unit tests.
 - fixed bug where GALLERY_SAMPLE_SIZE setting was not being used.
 - fixed issue #11 (GalleryUpload with len(title) > 50 causes a crash).
 - fixed issue #10 (Increase the size of the name field for photosize).
