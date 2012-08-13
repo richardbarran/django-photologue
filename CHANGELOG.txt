@@ -1,4 +1,10 @@
 
+===== 2.5 (in development) ====
+
+List of changes:
+
+- added a sitemap.xml.
+- added some templatetags.
 
 ===== 2.4 (13/08/2012) ====
 
