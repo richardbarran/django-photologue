@@ -6,6 +6,7 @@ Photologue
 
 Improved image management for the Django web framework.
 
+.. image:: https://secure.travis-ci.org/petry/django-photologue.png?branch=master
 
 Installation
 ------------
