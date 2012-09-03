@@ -20,86 +20,89 @@ msgstr ""
 #: models.py:40
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
 msgstr ""
+"A címkéket szóközzel kell elválasztani, a több szavas címkék idézőjelek közé "
+"írhatóak."
 
 #: models.py:49
 msgid "Django-tagging was not found, tags will be treated as plain text."
 msgstr ""
+"A Django-tagging nem található, a címkék sima szövegként lesznek kezelve."
 
 #: models.py:93
 msgid "Very Low"
-msgstr ""
+msgstr "Nagyon alacsony"
 
 #: models.py:94
 msgid "Low"
-msgstr ""
+msgstr "Alacsony"
 
 #: models.py:95
 msgid "Medium-Low"
-msgstr ""
+msgstr "Közepesen alacsony"
 
 #: models.py:96
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 #: models.py:97
 msgid "Medium-High"
-msgstr ""
+msgstr "Közepesen magas"
 
 #: models.py:98
 msgid "High"
-msgstr ""
+msgstr "Magas"
 
 #: models.py:99
 msgid "Very High"
-msgstr ""
+msgstr "Nagyon magas"
 
 #: models.py:104
 msgid "Top"
-msgstr ""
+msgstr "Teteje"
 
 #: models.py:105
 msgid "Right"
-msgstr ""
+msgstr "Jobb oldala"
 
 #: models.py:106
 msgid "Bottom"
-msgstr ""
+msgstr "Alja"
 
 #: models.py:107
 msgid "Left"
-msgstr ""
+msgstr "Bal oldala"
 
 #: models.py:108
 msgid "Center (Default)"
-msgstr ""
+msgstr "Közepe (Alapértelmezett)"
 
 #: models.py:112
 msgid "Flip left to right"
-msgstr ""
+msgstr "Függőleges tengely mentén tükrözés"
 
 #: models.py:113
 msgid "Flip top to bottom"
-msgstr ""
+msgstr "Vízszintes tengely mentén tükrözés"
 
 #: models.py:114
 msgid "Rotate 90 degrees counter-clockwise"
-msgstr ""
+msgstr "Óramutató járásával ellenkező irányba 90 fok forgatása"
 
 #: models.py:115
 msgid "Rotate 90 degrees clockwise"
-msgstr ""
+msgstr "Óramutató járásával megegyező irányba 90 fok forgatás"
 
 #: models.py:116
 msgid "Rotate 180 degrees"
-msgstr ""
+msgstr "180 fokos forgtás"
 
 #: models.py:120
 msgid "Tile"
-msgstr ""
+msgstr "Cím"
 
 #: models.py:121
 msgid "Scale"
-msgstr ""
+msgstr "Skála"
 
 #: models.py:131
 #, python-format
@@ -108,195 +111,213 @@ msgid ""
 ">FILTER_THREE\". Image filters will be applied in order. The following "
 "filters are available: %s."
 msgstr ""
+"Több szűrőt is alkalmazhat egymás után a következő mintára:\"SZŰRŐ_EGY-"
+">SZŰRŐ_KETTŐ->SZŰRŐ_HÁROM\". A szűrők a megadott sorrendben, egymás után "
+"lesznek a képre alkalmazva. A következő szűrők állnak  rendelkezésére: %s"
 
 #: models.py:135
 msgid "date published"
-msgstr ""
+msgstr "publikálás dátuma"
 
 #: models.py:136 models.py:201 models.py:507
 msgid "title"
-msgstr ""
+msgstr "cím"
 
 #: models.py:137
 msgid "title slug"
-msgstr ""
+msgstr "cím slug"
 
 #: models.py:138
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr ""
+msgstr "A \"slug\" egy objektum egyedi, URL-be ágyazható leírása."
 
 #: models.py:139 models.py:203 models.py:556
 msgid "description"
-msgstr ""
+msgstr "leírás"
 
 #: models.py:140 models.py:204 models.py:512
 msgid "is public"
-msgstr ""
+msgstr "publikus"
 
 #: models.py:141
 msgid "Public galleries will be displayed in the default views."
-msgstr ""
+msgstr "A publikus galériák láthatóak lesznek az alapértelmezett nézetekben."
 
 #: models.py:142 models.py:519
 msgid "photos"
-msgstr ""
+msgstr "fotók"
 
 #: models.py:144 models.py:205 models.py:513
 msgid "tags"
-msgstr ""
+msgstr "címkék"
 
 #: models.py:149
 msgid "gallery"
-msgstr ""
+msgstr "galéria"
 
 #: models.py:150
 msgid "galleries"
-msgstr ""
+msgstr "galériák"
 
 #: models.py:190
 msgid "count"
-msgstr ""
+msgstr "számláló"
 
 #: models.py:198
 msgid "images file (.zip)"
-msgstr ""
+msgstr "tömörített fájl (.zip)"
 
 #: models.py:199
 msgid "Select a .zip file of images to upload into a new Gallery."
 msgstr ""
+"Válasszon ki egy .zip fájl, amely a galériába kerülő képeket tartalmazza''"
 
 #: models.py:200
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
 msgstr ""
+"Válasszon ki egy galériát, amelyhez a képek hozzáadásra kerüljenek! Hagyja "
+"üresen, ha új galériát akar létrehozni a megadott címmel!"
 
 #: models.py:201
 msgid ""
 "All photos in the gallery will be given a title made up of the gallery title "
 "+ a sequential number."
 msgstr ""
+"Minden, a galériában szereplő fotónak az lesz a címe, ami a galéria címe is,"
+"+ egy növekvő számláló"
 
 #: models.py:202 models.py:510
 msgid "caption"
-msgstr ""
+msgstr "képaláírás"
 
 #: models.py:202
 msgid "Caption will be added to all photos."
-msgstr ""
+msgstr "A képaláírás minden új fotóra érvényes lesz."
 
 #: models.py:203
 msgid "A description of this Gallery."
-msgstr ""
+msgstr "A galéria leírása."
 
 #: models.py:204
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr ""
+"Vegye ki a pipát, ha a feltöltött galériát és a benne lévő fotókat priváttá "
+"akarja tenni."
 
 #: models.py:208
 msgid "gallery upload"
-msgstr ""
+msgstr "galéria feltöltés"
 
 #: models.py:209
 msgid "gallery uploads"
-msgstr ""
+msgstr "galéria feltöltések"
 
 #: models.py:273 models.py:667
 msgid "image"
-msgstr ""
+msgstr "kép"
 
 #: models.py:275
 msgid "date taken"
-msgstr ""
+msgstr "készítés dátuma"
 
 #: models.py:277
 msgid "crop from"
-msgstr ""
+msgstr "kivágás"
 
 #: models.py:278
 msgid "effect"
-msgstr ""
+msgstr "szűrő"
 
 #: models.py:296
 msgid "An \"admin_thumbnail\" photo size has not been defined."
-msgstr ""
+msgstr "Nincs definiálva \"admin_thumbnail\" fotó méret."
 
 #: models.py:304
 msgid "Thumbnail"
-msgstr ""
+msgstr "Kicsinyített kép"
 
 #: models.py:508
 msgid "slug"
-msgstr ""
+msgstr "slug"
 
 #: models.py:511
 msgid "date added"
-msgstr ""
+msgstr "hozzáadva"
 
 #: models.py:512
 msgid "Public photographs will be displayed in the default views."
-msgstr ""
+msgstr "A publikus fotók megjelennek az alapértelmezett nézetekben."
 
 #: models.py:518
 msgid "photo"
-msgstr ""
+msgstr "fotó"
 
 #: models.py:555 models.py:681
 msgid "name"
-msgstr ""
+msgstr "név"
 
 #: models.py:627
 msgid "rotate or flip"
-msgstr ""
+msgstr "forgatás vagy türközés"
 
 #: models.py:628 models.py:635
 msgid "color"
-msgstr ""
+msgstr "színek"
 
 #: models.py:628
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr ""
+"A 0.0-ás érték fekete-fehér képet, az 1.0-ás pedig az eredeti, színek képet "
+"eredményezi"
 
 #: models.py:629
 msgid "brightness"
-msgstr ""
+msgstr "fényerő"
 
 #: models.py:629
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
+"A 0.0-ás érték egy fekete képet, az 1.0-ás pedig az eredeti képet "
+"eredményezi."
 
 #: models.py:630
 msgid "contrast"
-msgstr ""
+msgstr "kontraszt"
 
 #: models.py:630
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
+"A 0.0-ás érték egy egyszínű, szürke képet, az 1.0-ás érték pedig az eredeti "
+"képet eredményezi."
 
 #: models.py:631
 msgid "sharpness"
-msgstr ""
+msgstr "élesség"
 
 #: models.py:631
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
+"A 0.0-ás érték egy elmosott képet, az 1.0-ás érték pedig az eredeti képet "
+"eredményezi."
 
 #: models.py:632
 msgid "filters"
-msgstr ""
+msgstr "szűrők"
 
 #: models.py:633
 msgid "size"
-msgstr ""
+msgstr "méret"
 
 #: models.py:633
 msgid ""
@@ -304,127 +325,150 @@ msgid ""
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
 msgstr ""
+"A tükröződés magasságát az eredeti kép magasságának százalékában kell "
+"megadni. A 0.0-ás érték egy tükröződés nélküli képet, az 1.0-ás érték pedig "
+"egy, Az eredeti kép magasságával megegyező magasságú tükröződést tartalmazó "
+"képet eremdényez."
 
 #: models.py:634
 msgid "strength"
-msgstr ""
+msgstr "erősség"
 
 #: models.py:634
 msgid "The initial opacity of the reflection gradient."
-msgstr ""
+msgstr "A tükröződés elhalványodásának kezdő átlátszósága."
 
 #: models.py:635
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr ""
+"A tükröződés színátmenetének háttérszíne. Állítsa be olyan színűre, amilyen "
+"színű háttérre kerül a kép!"
 
 #: models.py:638 models.py:689
 msgid "photo effect"
-msgstr ""
+msgstr "fotó effekt"
 
 #: models.py:639
 msgid "photo effects"
-msgstr ""
+msgstr "fotó effektek"
 
 #: models.py:668
 msgid "style"
-msgstr ""
+msgstr "stílus"
 
 #: models.py:669
 msgid "opacity"
-msgstr ""
+msgstr "átlátszóság"
 
 #: models.py:669
 msgid "The opacity of the overlay."
-msgstr ""
+msgstr "A felső réteg átlátszósága."
 
 #: models.py:672
 msgid "watermark"
-msgstr ""
+msgstr "vízjel"
 
 #: models.py:673
 msgid "watermarks"
-msgstr ""
+msgstr "vízjelek"
 
 #: models.py:681
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 msgstr ""
+"A fotó méretek neve csak kis betűket, számokat és aláhúzásjeleket "
+"tartalmazhat. Pl.: \"thumbnail\", \"display\", \"small\", \"main_page_widget"
+"\"."
 
 #: models.py:682
 msgid "width"
-msgstr ""
+msgstr "szélesség"
 
 #: models.py:682
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
+"Ha a szélességet 0-ra állítja, a kép a megadott magasság alapján arányosan "
+"fog méreteződni."
 
 #: models.py:683
 msgid "height"
-msgstr ""
+msgstr "magasság"
 
 #: models.py:683
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
+"Ha a magasságot 0-ra állítja, a kép a megadott magasság alapján arányosan "
+"fog méreteződni."
 
 #: models.py:684
 msgid "quality"
-msgstr ""
+msgstr "minőség"
 
 #: models.py:684
 msgid "JPEG image quality."
-msgstr ""
+msgstr "JPEG minőség"
 
 #: models.py:685
 msgid "upscale images?"
-msgstr ""
+msgstr "képek felméretezése?"
 
 #: models.py:685
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 msgstr ""
+"Ha be van állítva, akkor a megadott méretnél kisebb képek fel lesznek "
+"méretezve, hogy kitöltsék a rendelkezésre álló helyet. Képkivágás esetén "
+"ettől az opciótól függetlenül mindenképpen fel lesznek méretezve a képek "
+"szükség esetén."
 
 #: models.py:686
 msgid "crop to fit?"
-msgstr ""
+msgstr "képkivágás?"
 
 #: models.py:686
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr ""
+"Ha be van állítva, akkor a képek úgy lesznek átméretezve a megadott "
+"képarárnyra, hogy egy részük le lesz vágva."
 
 #: models.py:687
 msgid "pre-cache?"
-msgstr ""
+msgstr "előre generálás?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
+"Ha be van állítva, akkor a hozzáadáskor előre le lesz a fotó generálva erre "
+"a méretre."
 
 #: models.py:688
 msgid "increment view count?"
-msgstr ""
+msgstr "nézettségi számláló növelése?"
 
 #: models.py:688
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 msgstr ""
+"Ha be van állítva, akkor a kép \"view_count\" mezőjében lévő érték minden "
+"megjelenítés után egyel növekedni fog."
 
 #: models.py:690
 msgid "watermark image"
-msgstr ""
+msgstr "vízjelhez felhasznált kép"
 
 #: models.py:694
 msgid "photo size"
-msgstr ""
+msgstr "fotó méret"
 
 #: models.py:695
 msgid "photo sizes"
-msgstr ""
+msgstr "fotó méretek"
