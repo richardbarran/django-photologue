@@ -5,107 +5,106 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Photologue Preview 2\n"
+"Project-Id-Version: django-photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 22:52+0100\n"
-"PO-Revision-Date: 2008-07-22 23:08+0100\n"
-"Last-Translator: Jakub Wiśniowski <restless.being@gmail.com>\n"
-"Language-Team: Jakub Wiśniowski <restless.being@gmail.com>\n"
+"POT-Creation-Date: 2012-09-03 22:51+0100\n"
+"PO-Revision-Date: 2008-08-09 22:29+0100\n"
+"Last-Translator: Roland Frédéric <frederic.roland@creativeconvergence.be>\n"
+"Language-Team: Creative Convergence <frederic.roland@creativeconvergence."
+"be>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\\n\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: POLAND\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: French\n"
 
 #: models.py:40
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr "Rozdziel tagi spacjami, ujmij w cudzysłowy tagi złożone z wielu słów."
+msgstr ""
+"Séparez les étiquettes par des espaces, mettez les étiquettes constituées de "
+"plusieurs mots entre guillemets."
 
 #: models.py:49
 msgid "Django-tagging was not found, tags will be treated as plain text."
 msgstr ""
-"Django-tagging nie zostało znalezione. Tagi będą traktowane jako czysty "
-"tekst."
+"Django-tagging n'a pas été trouvé, les étiquettes seront traitées comme du "
+"texte simple."
 
 #: models.py:93
 msgid "Very Low"
-msgstr "Bardzo niska"
+msgstr "Très Bas"
 
 #: models.py:94
 msgid "Low"
-msgstr "Niska"
+msgstr "Bas"
 
 #: models.py:95
 msgid "Medium-Low"
-msgstr "Niższa średnia"
+msgstr "Moyen-Bas"
 
 #: models.py:96
 msgid "Medium"
-msgstr "Średnia"
+msgstr "Moyen"
 
 #: models.py:97
 msgid "Medium-High"
-msgstr "Wyższa średnia"
+msgstr "Moyen-Haut"
 
 #: models.py:98
 msgid "High"
-msgstr "Wysoka"
+msgstr "Haut"
 
 #: models.py:99
 msgid "Very High"
-msgstr "Bardzo wysoka"
+msgstr "Très Haut"
 
 #: models.py:104
 msgid "Top"
-msgstr "Góra"
+msgstr "Sommet"
 
 #: models.py:105
 msgid "Right"
-msgstr "Prawo"
+msgstr "Droite"
 
 #: models.py:106
 msgid "Bottom"
-msgstr "Dół"
+msgstr "Bas"
 
 #: models.py:107
 msgid "Left"
-msgstr "Lewo"
+msgstr "Gauche"
 
 #: models.py:108
 msgid "Center (Default)"
-msgstr "Środek (Domyślnie)"
+msgstr "Centré (par défaut)"
 
 #: models.py:112
 msgid "Flip left to right"
-msgstr "Odbij w poziomie"
+msgstr "Inversion de gauche à droite"
 
 #: models.py:113
 msgid "Flip top to bottom"
-msgstr "Odbij w pionie"
+msgstr "Inversion de haut en bas"
 
 #: models.py:114
 msgid "Rotate 90 degrees counter-clockwise"
-msgstr "Odwróć 90 stopni w lewo"
+msgstr "Rotation de 90 degrés dans le sens anti-horloger"
 
 #: models.py:115
 msgid "Rotate 90 degrees clockwise"
-msgstr "Odwróć 90 stopni w prawo"
+msgstr "Rotation de 90 degrés dans le sens horloger"
 
 #: models.py:116
 msgid "Rotate 180 degrees"
-msgstr "Obróć o 180 stopni"
+msgstr "Rotation de 180 degrés"
 
 #: models.py:120
 msgid "Tile"
-msgstr "Kafelki"
+msgstr "Mozaïque"
 
 #: models.py:121
 msgid "Scale"
-msgstr "Skaluj"
+msgstr "Redimensionner"
 
 #: models.py:131
 #, fuzzy, python-format
@@ -114,67 +113,69 @@ msgid ""
 ">FILTER_THREE\". Image filters will be applied in order. The following "
 "filters are available: %s."
 msgstr ""
-"Połącz wiele filtrów używając następującego wzorca: \"FILTR_PIERWSZY-"
-">FILTR_DRUGI->FILTR_TRZECI\". Filtry obrazów będą zastosowane w kolejności. "
-"Dostępne są następujące filtry: %s."
+"Faite suivre de multiple filtres en utilisant la forme suivante \"FILTRE_UN-"
+">FILTRE_DEUX->FILTRE_TROIS\". Les filtres d'image seront appliqués dans "
+"l'ordre. Les filtres suivants sont disponibles: %s."
 
 #: models.py:135
 msgid "date published"
-msgstr "data publikacji"
+msgstr "date de publication"
 
 #: models.py:136 models.py:201 models.py:507
 msgid "title"
-msgstr "tytuł"
+msgstr "titre"
 
 #: models.py:137
 msgid "title slug"
-msgstr "tytuł - slug "
+msgstr "version abrégée du titre"
 
 #: models.py:138
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr "\"Slug\" jest unikalnym, zgodnym z formatem dla URL-i tytułem obiektu."
+msgstr ""
+"Un \"slug\" est un titre abrégé et unique, compatible avec les URL, pour un "
+"objet."
 
 #: models.py:139 models.py:203 models.py:556
 msgid "description"
-msgstr "opis"
+msgstr "description"
 
 #: models.py:140 models.py:204 models.py:512
 msgid "is public"
-msgstr "jest publiczna"
+msgstr "est public"
 
 #: models.py:141
 msgid "Public galleries will be displayed in the default views."
-msgstr "Galerie publiczne będą wyświetlana w domyślnych widokach."
+msgstr "Les galeries publiques seront affichée dans les vues par défaut."
 
 #: models.py:142 models.py:519
 msgid "photos"
-msgstr "zdjęcia"
+msgstr "photos"
 
 #: models.py:144 models.py:205 models.py:513
 msgid "tags"
-msgstr "tagi"
+msgstr "étiquettes"
 
 #: models.py:149
 msgid "gallery"
-msgstr "galeria"
+msgstr "galerie"
 
 #: models.py:150
 msgid "galleries"
-msgstr "galerie"
+msgstr "galleries"
 
 #: models.py:190
 msgid "count"
-msgstr "ilość"
+msgstr "nombre"
 
 #: models.py:198
 msgid "images file (.zip)"
-msgstr "plik z obrazami (.zip)"
+msgstr "fichier d'images (.zip)"
 
 #: models.py:199
 msgid "Select a .zip file of images to upload into a new Gallery."
 msgstr ""
-"Wybierz plik .zip zawierający zdjęcia które chcesz załadować do nowej "
-"Galerii."
+"Selectionnez un fichier .zip contenant des images à envoyer sur le serveur "
+"dans une nouvelle Galerie."
 
 #: models.py:200
 msgid ""
@@ -186,136 +187,140 @@ msgstr ""
 msgid ""
 "All photos in the gallery will be given a title made up of the gallery title "
 "+ a sequential number."
-msgstr "Wszystkie "
+msgstr ""
+"Toutes les photos de la galerie auront un titre constitué du titre de la "
+"galerie + un numéro de séquence."
 
 #: models.py:202 models.py:510
 msgid "caption"
-msgstr "podpis"
+msgstr "légende"
 
 #: models.py:202
 msgid "Caption will be added to all photos."
-msgstr "Podpis będzie dodany do wszystkich zdjęć."
+msgstr "La légende sera ajoutée a toutes les photos."
 
 #: models.py:203
 msgid "A description of this Gallery."
-msgstr "Opis tej Galerii."
+msgstr "Une description de cette Galerie."
 
 #: models.py:204
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr ""
-"Odznacz aby uczynić wrzucaną galerię oraz zawarte w niej zdjęcia prywatnymi."
+"Décochez cette case pour rendre la galerie des photos envoyées sur le "
+"serveur et son contenu privés."
 
 #: models.py:208
 msgid "gallery upload"
-msgstr "wrzucona galeria"
+msgstr "télécharger vers la gallerie"
 
 #: models.py:209
 msgid "gallery uploads"
-msgstr "wrzucone galerie"
+msgstr "fichiers envoyés vers la galerie"
 
 #: models.py:273 models.py:667
 msgid "image"
-msgstr "obraz"
+msgstr "image"
 
 #: models.py:275
 msgid "date taken"
-msgstr "data wykonania"
+msgstr "date de prise de vue"
 
 #: models.py:277
 msgid "crop from"
-msgstr "obetnij z"
+msgstr "découper à partir de"
 
 #: models.py:278
 msgid "effect"
-msgstr "efekt"
+msgstr "effet"
 
 #: models.py:296
 msgid "An \"admin_thumbnail\" photo size has not been defined."
-msgstr "Rozmiar zdjęcia \"admin_thumbnail\" nie został zdefiniowany."
+msgstr "Une taille de photo \"admin_thumbnail\" n'a pas encore été définie."
 
 #: models.py:304
 msgid "Thumbnail"
-msgstr "Miniaturka"
+msgstr "Miniature"
 
 #: models.py:508
 msgid "slug"
-msgstr "slug"
+msgstr "libellé court"
 
 #: models.py:511
 msgid "date added"
-msgstr "data dodania"
+msgstr "date d'ajout"
 
 #: models.py:512
 msgid "Public photographs will be displayed in the default views."
-msgstr "Publiczne zdjęcia będą wyświetlane w domyślnych widokach."
+msgstr "Les photographies publique seront affichées dans les vues par défaut."
 
 #: models.py:518
 msgid "photo"
-msgstr "zdjęcie"
+msgstr "photo"
 
 #: models.py:555 models.py:681
 msgid "name"
-msgstr "nazwa"
+msgstr "nom"
 
 #: models.py:627
 msgid "rotate or flip"
-msgstr "obróć lub odbij"
+msgstr "rotation ou inversion"
 
 #: models.py:628 models.py:635
 msgid "color"
-msgstr "kolor"
+msgstr "couleur"
 
 #: models.py:628
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr ""
-"Współczynnik 0.0 daje czarno-biały obraz, współczynnik 1.0 daje obraz "
-"oryginalny."
+"Un facteur de 0.0 donne une image en noir et blanc, un facteur de 1.0 donne "
+"l'image originale."
 
 #: models.py:629
 msgid "brightness"
-msgstr "jasność"
+msgstr "brillance"
 
 #: models.py:629
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
-"Współczynnik 0.0 daje czarny obraz, współczynnik 1.0 daje obraz oryginalny."
+"Un facteur de 0.0 donne une image noire, un facteur de 1.0 donne l'image "
+"originale."
 
 #: models.py:630
 msgid "contrast"
-msgstr "kontrast"
+msgstr "contraste"
 
 #: models.py:630
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
-"Współczynnik 0.0 daje jednolity szary obraz, współczynnik 1.0 daje obraz "
-"oryginalny."
+"Un facteur de 0.0 donne une image grise, un facteur de 1.0 donne l'image "
+"originale."
 
 #: models.py:631
 msgid "sharpness"
-msgstr "ostrość"
+msgstr "netteté"
 
 #: models.py:631
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
-"Współczynnik 0.0 daje rozmazany obraz, współczynnik 1.0 daje obraz "
-"oryginalny."
+"Une facteur de 0.0 donne une image floue, un facteur de 1.0 donne l'image "
+"d'origine."
 
 #: models.py:632
 msgid "filters"
-msgstr "filtry"
+msgstr "filtres"
 
 #: models.py:633
 msgid "size"
-msgstr "rozmiar"
+msgstr "taille"
 
 #: models.py:633
 msgid ""
@@ -323,18 +328,18 @@ msgid ""
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
 msgstr ""
-"Wysokość odbicia jako procent oryginalnego obrazu. Współczynnik 0.0 nie "
-"dodaje odbicia, współczynnik 1.0 dodaje odbicie równe wysokości oryginalnego "
-"obrazu."
+"La hauteur de la réflection sous la forme d'un pourcentage de l'image "
+"d'origine. Un facteur de 0.0 n'ajoute aucune réflection, un facteur de 1.0 "
+"ajoute une réflection égale à la hauteur de l'image d'origine."
 
 #: models.py:634
 msgid "strength"
-msgstr "intensywność"
+msgstr "force"
 
 #: models.py:634
 #, fuzzy
 msgid "The initial opacity of the reflection gradient."
-msgstr "Poziom przezroczystości"
+msgstr "L'opacité de la surcouche."
 
 #: models.py:635
 msgid ""
@@ -344,145 +349,139 @@ msgstr ""
 
 #: models.py:638 models.py:689
 msgid "photo effect"
-msgstr "efekt zdjęcia"
+msgstr "effet photo"
 
 #: models.py:639
 msgid "photo effects"
-msgstr "efekty zdjęć"
+msgstr "effets photo"
 
 #: models.py:668
 msgid "style"
-msgstr "styl"
+msgstr "style"
 
 #: models.py:669
 msgid "opacity"
-msgstr "przeźroczystość"
+msgstr "opacité"
 
 #: models.py:669
 msgid "The opacity of the overlay."
-msgstr "Poziom przezroczystości"
+msgstr "L'opacité de la surcouche."
 
 #: models.py:672
 msgid "watermark"
-msgstr "znak wodny"
+msgstr "filigrane"
 
 #: models.py:673
 msgid "watermarks"
-msgstr "znaki wodne"
+msgstr "filigranes"
 
 #: models.py:681
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 msgstr ""
-"Nazwa rozmiaru zdjęcia powinna zawierać tylko litery, cyfry i podkreślenia. "
-"Przykłady: \"miniatura\", \"wystawa\", \"male\", \"widget_strony_glownej\"."
+"Le nom de la taille de la photo ne doit contenir que des lettres, des "
+"chiffres et des caractères de soulignement. Exemples: \"miniature\", "
+"\"affichage\", \"petit\", \"widget_page_principale\"."
 
 #: models.py:682
 msgid "width"
-msgstr "szerokość"
+msgstr "largeur"
 
 #: models.py:682
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
-"Jeśli szerokość jest ustawiona na \"0\" to obraz będzie skalowany do podanej "
-"wysokości."
+"Si la largeur est réglée à \"0\" l l'image sera redimensionnée par rapport à "
+"la hauteur fournie."
 
 #: models.py:683
 msgid "height"
-msgstr "wysokość"
+msgstr "hauteur"
 
 #: models.py:683
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
-"Jeśli wysokość jest ustawiona na \"0\" to obraz będzie skalowany do podanej "
-"szerokości."
+"Si la hauteur est réglée à \"0\" l l'image sera redimensionnée par rapport à "
+"la largeur fournie."
 
 #: models.py:684
 msgid "quality"
-msgstr "jakość"
+msgstr "qualité"
 
 #: models.py:684
 msgid "JPEG image quality."
-msgstr "Jakość obrazu JPEG"
+msgstr "Qualité JPEG de l'image."
 
 #: models.py:685
 msgid "upscale images?"
-msgstr "skalować obrazy w górę?"
+msgstr "agrandir les images ?"
 
 #: models.py:685
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 msgstr ""
-"Jeśli zaznaczone to obraz będzie skalowany w górę tak aby pasował do "
-"podanych wymiarów. Obcinane rozmiary będą skalowane niezależnie od tego "
-"ustawienia."
+"Si sélectionné l'image sera agrandie si nécessaire pour coïncider avec les "
+"dimensions fournies. Les dimensions ajustées seront agrandies sans prendre "
+"en compte ce paramètre."
 
 #: models.py:686
 msgid "crop to fit?"
-msgstr "przyciąć aby pasował?"
+msgstr "découper pour adapter à la taille ?"
 
 #: models.py:686
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr ""
-"Jeśli zaznaczone to obraz będzie skalowany i przycinany tak aby pasował do "
-"podanych wymiarów."
+"Si sélectionné l'image sera redimensionnée et recadrée pour coïncider avec "
+"les dimensions fournies."
 
 #: models.py:687
 msgid "pre-cache?"
-msgstr "wstępnie cachować?"
+msgstr "mise en cache ?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
-"Jesli zaznaczone to ten rozmiar zdjęć będzie wstępnie cachowany przy "
-"dodawaniu zdjęć."
+"Si sélectionné cette taille de photo sera mise en cache au moment au les "
+"photos sont ajoutées."
 
 #: models.py:688
 msgid "increment view count?"
-msgstr "zwiększyć licznik odsłon?"
+msgstr "incrémenter le nombre d'affichages ?"
 
 #: models.py:688
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 msgstr ""
-"Jeśli zaznaczone to \"licznik_odslon\" będzie zwiększany gdy ten rozmiar "
-"zdjęcia będzie wyświetlany."
+"Si sélectionné le \"view_count\" (nombre d'affichage) de l'image sera "
+"incrémenté quand cette taille de photo sera affichée."
 
 #: models.py:690
 msgid "watermark image"
-msgstr "oznacz kluczem wodnym"
+msgstr "placer un filigrane sur l'image"
 
 #: models.py:694
 msgid "photo size"
-msgstr "rozmiar zdjęcia"
+msgstr "taille de la photo"
 
 #: models.py:695
 msgid "photo sizes"
-msgstr "rozmiary zdjęć"
+msgstr "tailles des photos"
 
 #~ msgid ""
 #~ "Photologue was unable to import the Python Imaging Library. Please "
 #~ "confirm it`s installed and available on your current Python path."
 #~ msgstr ""
-#~ "Photologue nie był w stanie zaimportować Python Imaging Library. Upewnij "
-#~ "się, że pakiet ten jest zainstalowany i znajduje się w ścieżce dostępnej "
-#~ "dla Pythona."
+#~ "Photologue a été incapable d'importer Python Imaging Library. Veuillez "
+#~ "vérifier que cette librairie est installée et disponible dans votre path "
+#~ "Python actuel."
 
 #~ msgid "A PhotoSize must have a positive height or width."
-#~ msgstr "PhotoSize musi mieć dodatnią wysokość i szerokość."
-
-#~ msgid "Leave to size the image to the set height"
-#~ msgstr "Ustaw aby przeskalować obraz do wybranej wysokości"
-
-#~ msgid "Leave to size the image to the set width"
-#~ msgstr "Ustaw aby przeskalować obraz do wybranej szerokości"
-
-#~ msgid "original image"
-#~ msgstr "oryginalny obraz"
+#~ msgstr ""
+#~ "La PhotoSize (taille de la photo) doit avoir une hauteur ou une largeur "
+#~ "positive."

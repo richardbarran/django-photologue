@@ -1,242 +1,243 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Dutch translations for the Django app 'Photologue'.
+# Copyright (C) 2009 Peter-Paul van Gemerden
+# This file is distributed under the same license as the django-photologue package.
+# Peter-Paul van Gemerden <info@ppvg.nl>, 2009.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Photologue Preview 2\n"
+"Project-Id-Version: 2,2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-03 22:52+0100\n"
-"PO-Revision-Date: 2008-07-22 23:08+0100\n"
-"Last-Translator: Jakub Wiśniowski <restless.being@gmail.com>\n"
-"Language-Team: Jakub Wiśniowski <restless.being@gmail.com>\n"
-"Language: \n"
+"Last-Translator: Peter-Paul van Gemerden <info@ppvg.nl>\n"
+"Language-Team: Dutch <LL@li.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\\n\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: POLAND\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: models.py:40
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr "Rozdziel tagi spacjami, ujmij w cudzysłowy tagi złożone z wielu słów."
+msgstr ""
+"Scheid labels met spaties, plaats aanhalingstekens rond labels met meerdere "
+"woorden."
 
 #: models.py:49
 msgid "Django-tagging was not found, tags will be treated as plain text."
 msgstr ""
-"Django-tagging nie zostało znalezione. Tagi będą traktowane jako czysty "
+"Django-tagging kon niet gevonden worden, labels worden behandeld als platte "
 "tekst."
 
 #: models.py:93
 msgid "Very Low"
-msgstr "Bardzo niska"
+msgstr "Zeer laag"
 
 #: models.py:94
 msgid "Low"
-msgstr "Niska"
+msgstr "Laag"
 
 #: models.py:95
 msgid "Medium-Low"
-msgstr "Niższa średnia"
+msgstr "Middel-laag"
 
 #: models.py:96
 msgid "Medium"
-msgstr "Średnia"
+msgstr "Gemiddeld"
 
 #: models.py:97
 msgid "Medium-High"
-msgstr "Wyższa średnia"
+msgstr "Middel-hoog"
 
 #: models.py:98
 msgid "High"
-msgstr "Wysoka"
+msgstr "Hoog"
 
 #: models.py:99
 msgid "Very High"
-msgstr "Bardzo wysoka"
+msgstr "Zeer hoog"
 
 #: models.py:104
 msgid "Top"
-msgstr "Góra"
+msgstr "Boven"
 
 #: models.py:105
 msgid "Right"
-msgstr "Prawo"
+msgstr "Rechts"
 
 #: models.py:106
 msgid "Bottom"
-msgstr "Dół"
+msgstr "Onder"
 
 #: models.py:107
 msgid "Left"
-msgstr "Lewo"
+msgstr "Links"
 
 #: models.py:108
 msgid "Center (Default)"
-msgstr "Środek (Domyślnie)"
+msgstr "Midden (standaard)"
 
 #: models.py:112
 msgid "Flip left to right"
-msgstr "Odbij w poziomie"
+msgstr "Spiegel horizontaal"
 
 #: models.py:113
 msgid "Flip top to bottom"
-msgstr "Odbij w pionie"
+msgstr "Spiegel verticaal"
 
 #: models.py:114
 msgid "Rotate 90 degrees counter-clockwise"
-msgstr "Odwróć 90 stopni w lewo"
+msgstr "Roteer 90 graden linksom"
 
 #: models.py:115
 msgid "Rotate 90 degrees clockwise"
-msgstr "Odwróć 90 stopni w prawo"
+msgstr "Roteer 90 graden rechtsom"
 
 #: models.py:116
 msgid "Rotate 180 degrees"
-msgstr "Obróć o 180 stopni"
+msgstr "Roteer 180 graden"
 
 #: models.py:120
 msgid "Tile"
-msgstr "Kafelki"
+msgstr "Tegelen"
 
 #: models.py:121
 msgid "Scale"
-msgstr "Skaluj"
+msgstr "Schalen"
 
 #: models.py:131
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
 ">FILTER_THREE\". Image filters will be applied in order. The following "
 "filters are available: %s."
 msgstr ""
-"Połącz wiele filtrów używając następującego wzorca: \"FILTR_PIERWSZY-"
-">FILTR_DRUGI->FILTR_TRZECI\". Filtry obrazów będą zastosowane w kolejności. "
-"Dostępne są następujące filtry: %s."
+"Keten meerdere filters aan elkaar met het patroon: \"FILTER_EEN->FILTER_TWEE-"
+">FILTER_DRIE\". Afbeeldingsfilters worden in volgorde toegepast. De volgende "
+"filters zijn beschikbaar: %s."
 
 #: models.py:135
 msgid "date published"
-msgstr "data publikacji"
+msgstr "datum gepubliceerd"
 
 #: models.py:136 models.py:201 models.py:507
 msgid "title"
-msgstr "tytuł"
+msgstr "titel"
 
 #: models.py:137
 msgid "title slug"
-msgstr "tytuł - slug "
+msgstr "titel 'slug'"
 
 #: models.py:138
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr "\"Slug\" jest unikalnym, zgodnym z formatem dla URL-i tytułem obiektu."
+msgstr "Een \"slug\" is een unieke URL-vriendelijke titel voor een object."
 
 #: models.py:139 models.py:203 models.py:556
 msgid "description"
-msgstr "opis"
+msgstr "beschrijving"
 
 #: models.py:140 models.py:204 models.py:512
 msgid "is public"
-msgstr "jest publiczna"
+msgstr "is openbaar"
 
 #: models.py:141
 msgid "Public galleries will be displayed in the default views."
-msgstr "Galerie publiczne będą wyświetlana w domyślnych widokach."
+msgstr "Openbare galerijen worden weergegeven in de standaardviews."
 
 #: models.py:142 models.py:519
 msgid "photos"
-msgstr "zdjęcia"
+msgstr "foto's"
 
 #: models.py:144 models.py:205 models.py:513
 msgid "tags"
-msgstr "tagi"
+msgstr "labels"
 
 #: models.py:149
 msgid "gallery"
-msgstr "galeria"
+msgstr "galerij"
 
 #: models.py:150
 msgid "galleries"
-msgstr "galerie"
+msgstr "galerijen"
 
 #: models.py:190
 msgid "count"
-msgstr "ilość"
+msgstr "aantal"
 
 #: models.py:198
 msgid "images file (.zip)"
-msgstr "plik z obrazami (.zip)"
+msgstr "afbeeldingenbestand (.zip)"
 
 #: models.py:199
 msgid "Select a .zip file of images to upload into a new Gallery."
 msgstr ""
-"Wybierz plik .zip zawierający zdjęcia które chcesz załadować do nowej "
-"Galerii."
+"Kies een .zip-bestand met afbeeldingen om te uploaden naar een nieuwe "
+"Galerij."
 
 #: models.py:200
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
 msgstr ""
+"Kies een galerij om deze afbeeldingen aan toe te voegen. Laat dit leeg om "
+"een nieuwe galerij te creëren met de opgegeven titel."
 
 #: models.py:201
+#, fuzzy
 msgid ""
 "All photos in the gallery will be given a title made up of the gallery title "
 "+ a sequential number."
-msgstr "Wszystkie "
+msgstr ""
+"Alle foto's in de galerij krijgen een naam die is gebaseerd op de titel van "
+"de Galerij  een opeenvolgend nummer."
 
 #: models.py:202 models.py:510
 msgid "caption"
-msgstr "podpis"
+msgstr "onderschrift"
 
 #: models.py:202
 msgid "Caption will be added to all photos."
-msgstr "Podpis będzie dodany do wszystkich zdjęć."
+msgstr "Onderschrift wordt toegevoegd aan alle foto's."
 
 #: models.py:203
 msgid "A description of this Gallery."
-msgstr "Opis tej Galerii."
+msgstr "Een beschrijving van deze Galerij."
 
 #: models.py:204
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Odznacz aby uczynić wrzucaną galerię oraz zawarte w niej zdjęcia prywatnymi."
+msgstr "Haal dit vinkje weg om de geüploade galerij en foto's privé te maken."
 
 #: models.py:208
 msgid "gallery upload"
-msgstr "wrzucona galeria"
+msgstr "galerij-upload"
 
 #: models.py:209
 msgid "gallery uploads"
-msgstr "wrzucone galerie"
+msgstr "galerij-uploads"
 
 #: models.py:273 models.py:667
 msgid "image"
-msgstr "obraz"
+msgstr "afbeelding"
 
 #: models.py:275
 msgid "date taken"
-msgstr "data wykonania"
+msgstr "datum genomen"
 
 #: models.py:277
 msgid "crop from"
-msgstr "obetnij z"
+msgstr "afknippen vanaf"
 
 #: models.py:278
 msgid "effect"
-msgstr "efekt"
+msgstr "effect"
 
 #: models.py:296
 msgid "An \"admin_thumbnail\" photo size has not been defined."
-msgstr "Rozmiar zdjęcia \"admin_thumbnail\" nie został zdefiniowany."
+msgstr "Er is geen \"admin_thumbnail\" foto-maat vastgelegd."
 
 #: models.py:304
 msgid "Thumbnail"
-msgstr "Miniaturka"
+msgstr "Miniatuur"
 
 #: models.py:508
 msgid "slug"
@@ -244,78 +245,79 @@ msgstr "slug"
 
 #: models.py:511
 msgid "date added"
-msgstr "data dodania"
+msgstr "datum toegevoegd"
 
 #: models.py:512
 msgid "Public photographs will be displayed in the default views."
-msgstr "Publiczne zdjęcia będą wyświetlane w domyślnych widokach."
+msgstr "Openbare foto's worden weergegeven in de standaardviews."
 
 #: models.py:518
 msgid "photo"
-msgstr "zdjęcie"
+msgstr "foto"
 
 #: models.py:555 models.py:681
 msgid "name"
-msgstr "nazwa"
+msgstr "naam"
 
 #: models.py:627
 msgid "rotate or flip"
-msgstr "obróć lub odbij"
+msgstr "roteer of spiegel"
 
 #: models.py:628 models.py:635
 msgid "color"
-msgstr "kolor"
+msgstr "kleur"
 
 #: models.py:628
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr ""
-"Współczynnik 0.0 daje czarno-biały obraz, współczynnik 1.0 daje obraz "
-"oryginalny."
+"Een factor van 0.0 geeft een zwart-wit afbeelding, een factor van 1.0 geeft "
+"de originele afbeelding."
 
 #: models.py:629
 msgid "brightness"
-msgstr "jasność"
+msgstr "helderheid"
 
 #: models.py:629
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
-"Współczynnik 0.0 daje czarny obraz, współczynnik 1.0 daje obraz oryginalny."
+"Een factor van 0.0 geeft een zwarte afbeelding, een factor van 1.0 geeft de "
+"originele afbeelding."
 
 #: models.py:630
 msgid "contrast"
-msgstr "kontrast"
+msgstr "contrast"
 
 #: models.py:630
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
-"Współczynnik 0.0 daje jednolity szary obraz, współczynnik 1.0 daje obraz "
-"oryginalny."
+"Een factor van 0.0 geeft een egaal grijze afbeelding, een factor van 1.0 "
+"geeft de originele afbeelding."
 
 #: models.py:631
 msgid "sharpness"
-msgstr "ostrość"
+msgstr "scherpte"
 
 #: models.py:631
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
-"Współczynnik 0.0 daje rozmazany obraz, współczynnik 1.0 daje obraz "
-"oryginalny."
+"Een factor van 0.0 geeft een vervaagde afbeelding, een factor van 1.0 geeft "
+"de originele afbeelding."
 
 #: models.py:632
 msgid "filters"
-msgstr "filtry"
+msgstr "filters"
 
 #: models.py:633
 msgid "size"
-msgstr "rozmiar"
+msgstr "afmeting"
 
 #: models.py:633
 msgid ""
@@ -323,166 +325,158 @@ msgid ""
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
 msgstr ""
-"Wysokość odbicia jako procent oryginalnego obrazu. Współczynnik 0.0 nie "
-"dodaje odbicia, współczynnik 1.0 dodaje odbicie równe wysokości oryginalnego "
-"obrazu."
+"De hoogte van de reflectie als precentage van de originele afbeelding. Een "
+"factor van 0.0 voegt geen reflectie toe, een factor van 1.0 voegt een "
+"reflectie toe met een gelijke hoogte als de originele afbeelding."
 
 #: models.py:634
 msgid "strength"
-msgstr "intensywność"
+msgstr "sterkte"
 
 #: models.py:634
-#, fuzzy
 msgid "The initial opacity of the reflection gradient."
-msgstr "Poziom przezroczystości"
+msgstr "De initiële doorzichtigheid van de reflectie-gradatie."
 
 #: models.py:635
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr ""
+"De achtergrondkleur van de reflectie-gradatie. Stel dit in als hetzelfde als "
+"de achtergrondkleur van je pagina."
 
 #: models.py:638 models.py:689
 msgid "photo effect"
-msgstr "efekt zdjęcia"
+msgstr "foto-effect"
 
 #: models.py:639
 msgid "photo effects"
-msgstr "efekty zdjęć"
+msgstr "foto-effecten"
 
 #: models.py:668
 msgid "style"
-msgstr "styl"
+msgstr "stijl"
 
 #: models.py:669
 msgid "opacity"
-msgstr "przeźroczystość"
+msgstr "doorzichtigheid"
 
 #: models.py:669
 msgid "The opacity of the overlay."
-msgstr "Poziom przezroczystości"
+msgstr "De doorzichtigheid van overliggende afbeelding."
 
 #: models.py:672
 msgid "watermark"
-msgstr "znak wodny"
+msgstr "watermerk"
 
 #: models.py:673
 msgid "watermarks"
-msgstr "znaki wodne"
+msgstr "watermerken"
 
 #: models.py:681
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 msgstr ""
-"Nazwa rozmiaru zdjęcia powinna zawierać tylko litery, cyfry i podkreślenia. "
-"Przykłady: \"miniatura\", \"wystawa\", \"male\", \"widget_strony_glownej\"."
+"De naam van de foto-maat mag alleen letters, nummers en underscores "
+"bevatten. Voorbeelden: \"miniatuur\", \"weergave\", \"klein\", "
+"\"hoofdpagina_zijbalk_miniatuur\"."
 
 #: models.py:682
 msgid "width"
-msgstr "szerokość"
+msgstr "breedte"
 
 #: models.py:682
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
-"Jeśli szerokość jest ustawiona na \"0\" to obraz będzie skalowany do podanej "
-"wysokości."
+"Als de breedte op \"0\" wordt gezet zal de afbeelding geschaald worden naar "
+"de opgegeven hoogte."
 
 #: models.py:683
 msgid "height"
-msgstr "wysokość"
+msgstr "hoogte"
 
 #: models.py:683
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
-"Jeśli wysokość jest ustawiona na \"0\" to obraz będzie skalowany do podanej "
-"szerokości."
+"Als de hoogte op \"0\" wordt gezet zal de afbeelding geschaald worden naar "
+"de opgegeven breedte."
 
 #: models.py:684
 msgid "quality"
-msgstr "jakość"
+msgstr "kwaliteit"
 
 #: models.py:684
 msgid "JPEG image quality."
-msgstr "Jakość obrazu JPEG"
+msgstr "JPEG afbeeldingskwaliteit"
 
 #: models.py:685
 msgid "upscale images?"
-msgstr "skalować obrazy w górę?"
+msgstr "afbeeldingen opschalen?"
 
 #: models.py:685
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 msgstr ""
-"Jeśli zaznaczone to obraz będzie skalowany w górę tak aby pasował do "
-"podanych wymiarów. Obcinane rozmiary będą skalowane niezależnie od tego "
-"ustawienia."
+"Als dit is gekozen zal de afbeelding, indien nodig, opgeschaald worden naar "
+"opgegeven afmetingen. Afgeknipte maten worden altijd opgeschaald, ongeacht "
+"deze instelling."
 
 #: models.py:686
 msgid "crop to fit?"
-msgstr "przyciąć aby pasował?"
+msgstr "gepast afknippen?"
 
 #: models.py:686
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr ""
-"Jeśli zaznaczone to obraz będzie skalowany i przycinany tak aby pasował do "
-"podanych wymiarów."
+"Als dit is gekozen zal de afbeelding geschaald en afgeknipt worden naar de "
+"opgegeven afmetingen."
 
 #: models.py:687
 msgid "pre-cache?"
-msgstr "wstępnie cachować?"
+msgstr "vooraf cachen?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
-"Jesli zaznaczone to ten rozmiar zdjęć będzie wstępnie cachowany przy "
-"dodawaniu zdjęć."
+"Als dit is gekozen zullen foto's met deze foto-maat van te voren worden "
+"gecached wanneer ze worden toegevoegd."
 
 #: models.py:688
 msgid "increment view count?"
-msgstr "zwiększyć licznik odsłon?"
+msgstr "aantal vertoningen ophogen?"
 
 #: models.py:688
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 msgstr ""
-"Jeśli zaznaczone to \"licznik_odslon\" będzie zwiększany gdy ten rozmiar "
-"zdjęcia będzie wyświetlany."
+"Als dit is gekozen zal het aantal vertoningen van de afbeelding worden "
+"opgehoogd wanneer deze foto-maat wordt weergegeven."
 
 #: models.py:690
 msgid "watermark image"
-msgstr "oznacz kluczem wodnym"
+msgstr "watermerk-afbeelding"
 
 #: models.py:694
 msgid "photo size"
-msgstr "rozmiar zdjęcia"
+msgstr "foto-maat"
 
 #: models.py:695
 msgid "photo sizes"
-msgstr "rozmiary zdjęć"
+msgstr "foto-maten"
 
 #~ msgid ""
 #~ "Photologue was unable to import the Python Imaging Library. Please "
 #~ "confirm it`s installed and available on your current Python path."
 #~ msgstr ""
-#~ "Photologue nie był w stanie zaimportować Python Imaging Library. Upewnij "
-#~ "się, że pakiet ten jest zainstalowany i znajduje się w ścieżce dostępnej "
-#~ "dla Pythona."
+#~ "Photologue kon de Python Imaging Library niet importeren. Bevestig a.u.b. "
+#~ "dat deze is geïnstalleerd en beschikbaar is binnen uw huidige Python pad."
 
-#~ msgid "A PhotoSize must have a positive height or width."
-#~ msgstr "PhotoSize musi mieć dodatnią wysokość i szerokość."
-
-#~ msgid "Leave to size the image to the set height"
-#~ msgstr "Ustaw aby przeskalować obraz do wybranej wysokości"
-
-#~ msgid "Leave to size the image to the set width"
-#~ msgstr "Ustaw aby przeskalować obraz do wybranej szerokości"
-
-#~ msgid "original image"
-#~ msgstr "oryginalny obraz"
+#~ msgid "view count"
+#~ msgstr "aantal vertoningen"

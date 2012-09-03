@@ -12,7 +12,8 @@ as simple as possible, so we more-or-less follow the recommendations in the
 `"GitHub Flow" blog post <http://scottchacon.com/2011/08/31/github-flow.html>`_.
 
 * The "more or less" is because we don't do immediate releases.
-* One very important point is: don't take it personaly if your pull request is rejected at first; view a pull
+* One very important point for people unused to contributing to open source
+  projects is: your pull request might well be rejected at first, but that's not the end; view a pull
   request as the start of a conversation, with the goal of improving your code, so that it is of the best 
   possible quality when it gets merged into Photologue.
 
@@ -44,3 +45,10 @@ on that site for help.
 P.S. The CHANGELOG is part of the documentation :-) so if your patch needs the
 end user to do something - e.g. run a South migration - don't forget to update
 it!
+
+Translations
+------------
+`Photologue manages the application translations with Transifex 
+<https://www.transifex.com/projects/p/django-photologue/>`_. Contributions
+are very welcome, either by editing the translations directly on the Transifex
+site, or by submitting pull requests with .po files.
