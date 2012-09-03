@@ -45,3 +45,10 @@ on that site for help.
 P.S. The CHANGELOG is part of the documentation :-) so if your patch needs the
 end user to do something - e.g. run a South migration - don't forget to update
 it!
+
+Translations
+------------
+`Photologue manages the application translations with Transifex 
+<https://www.transifex.com/projects/p/django-photologue/>`_. Contributions
+are very welcome, either by editing the translations directly on the Transifex
+site, or by submitting pull requests with .po files.
