@@ -20,6 +20,7 @@ Contents:
 
     essentials/installation
     essentials/contributing
+    misc/examples_and_forks
 
 Indices and tables
 ==================

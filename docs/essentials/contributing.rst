@@ -34,10 +34,13 @@ plenty of tests.
 
 Documentation
 -------------
-Keeping the documentation up-to-date is very important - so if your code changes how Photologue works,
-check that the documentation is still accurate.
+Keeping the documentation up-to-date is very important - so if your code changes
+how Photologue works, please check that the documentation is still accurate, and
+update it if required.
 
-.. note:: Right now, this README is the only up-to-date documentation for Photologue (the plan is to use Sphinx in the near future). 
+We use `Sphinx <http://sphinx.pocoo.org/>`_ to prepare the documentation; please refer to the excellent docs
+on that site for help.
 
-Oh, and in a more general sense, the CHANGELOG is part of the documentation - so if your patch needs 
-the end user to be aware of something e.g. need to run a South migration, mention it in the CHANGELOG!
+P.S. The CHANGELOG is part of the documentation :-) so if your patch needs the
+end user to do something - e.g. run a South migration - don't forget to update
+it!

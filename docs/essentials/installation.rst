@@ -9,9 +9,6 @@ The easiest way to install Photologue is with pip::
 
    pip install django-photologue
 
-Photologue uses the Python Imaging Library and South; these will be installed
-automatically if they are not already there.
-
 You can verify Photologue is available to your project by running the following
 commands from within your project directory::
 
@@ -20,17 +17,15 @@ commands from within your project directory::
     >>> photologue.VERSION
     (2, 0, 'rc1')
 
-Tracking the Development Version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The current development version of Photologue can be checked out via Git from the project site using the following command::
-
-    git clone git://github.com/jdriscoll/django-photologue.git
-
 Dependencies
 ------------
 
-Photologue uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
+* `PIL <http://www.pythonware.com/products/pil/>`_.
+* `South <http://south.aeracode.org/>`_.
+
+These 2 apps will be installed automatically if they are not already there.
+
+Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 
 Configure Your Django Settings
 ------------------------------
@@ -40,6 +35,7 @@ Configure Your Django Settings
     INSTALLED_APPS = (
          # ...other installed applications,
          'photologue',
+         'south',
     )
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and
@@ -59,7 +55,12 @@ Add photologue to your projects urls.py file::
 Sync Your Database
 ------------------
 
-Run the Django 'syncdb' command to create the appropriate tables. After the database in initialized, run the following command to initialize Photologue::
+Use South to setup the new tables::
+
+    python manage.py migrate photologue
+
+After the database in initialized, run the following command to setup some 
+default values for Photologue::
 
     python manage.py plinit
 
