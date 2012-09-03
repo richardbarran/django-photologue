@@ -6,6 +6,8 @@ List of changes:
 - added a sitemap.xml.
 - added some templatetags.
 - started using Sphinx for managing documentation.
+- started using Transifex for managing translations.
+- added 12 new translations.
 
 ===== 2.4 (13/08/2012) ====
 
