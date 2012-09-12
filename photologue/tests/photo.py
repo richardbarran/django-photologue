@@ -1,9 +1,8 @@
 import Image
 import os
 from django.conf import settings
-from django.core.files.base import ContentFile
-from photologue.models import Photo, PHOTOLOGUE_DIR, PhotoSizeCache, PhotoEffect
-from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PORTRAIT_IMAGE_PATH, SQUARE_IMAGE_PATH, PhotologueBaseTest
+from photologue.models import Photo, PHOTOLOGUE_DIR
+from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PhotologueBaseTest
 
 
 class PhotoTest(PhotologueBaseTest):
