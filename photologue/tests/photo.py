@@ -2,11 +2,19 @@ import Image
 import os
 from django.conf import settings
 from django.core.files.base import ContentFile
-from photologue.models import Photo, PHOTOLOGUE_DIR, PhotoSizeCache, PhotoEffect
-from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PORTRAIT_IMAGE_PATH, SQUARE_IMAGE_PATH, PhotologueBaseTest
-
+from photologue.models import Photo, PHOTOLOGUE_DIR
+from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PhotologueBaseTest, \
+QUOTING_IMAGE_PATH
 
 class PhotoTest(PhotologueBaseTest):
+    def tearDown(self):
+        """Delete any extra test files (if created)."""
+        super(PhotoTest, self).tearDown()
+        try:
+            self.pl2.delete()
+        except:
+            pass
+
     def test_new_photo(self):
         self.assertEqual(Photo.objects.count(), 1)
         self.assertTrue(os.path.isfile(self.pl.image.path))
@@ -58,6 +66,21 @@ class PhotoTest(PhotologueBaseTest):
                           os.path.join(self.pl.cache_path(),
                           self.pl._get_filename_for_size(self.s)))
 
+    def test_quoted_url(self):
+        """Test for issue #29 - filenames of photos are incorrectly quoted when
+        building a URL."""
+
+        # Check that a 'normal' path works ok.
+        self.assertEquals(self.pl.get_display_url(),
+                          self.pl.cache_url() + '/test_landscape_display.jpg')
+
+        # Now create a Photo with a name that needs quoting.
+        self.pl2 = Photo(title='test', title_slug='test')
+        self.pl2.image.save(os.path.basename(QUOTING_IMAGE_PATH),
+                           ContentFile(open(QUOTING_IMAGE_PATH, 'rb').read()))
+        self.pl2.save()
+        self.assertEquals(self.pl2.get_display_url(),
+                          self.pl2.cache_url() + '/test_%26quoting_display.jpg')
 
 
 

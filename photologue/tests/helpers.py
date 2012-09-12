@@ -9,6 +9,7 @@ RES_DIR = os.path.join(os.path.dirname(__file__), '../res')
 LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_landscape.jpg')
 PORTRAIT_IMAGE_PATH = os.path.join(RES_DIR, 'test_portrait.jpg')
 SQUARE_IMAGE_PATH = os.path.join(RES_DIR, 'test_square.jpg')
+QUOTING_IMAGE_PATH = os.path.join(RES_DIR, 'test_&quoting.jpg')
 
 def _create_new_photo(name, slug):
     pl = Photo(title=name, title_slug=slug)
