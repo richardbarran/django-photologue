@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
-from django.utils.encoding import smart_str, force_unicode
+from django.utils.encoding import smart_str, force_unicode, filepath_to_uri
 from django.utils.functional import curry
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
@@ -333,7 +333,9 @@ class ImageModel(models.Model):
             self.create_size(photosize)
         if photosize.increment_count:
             self.increment_count()
-        return '/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)])
+        return '/'.join([
+            self.cache_url(),
+            filepath_to_uri(self._get_filename_for_size(photosize.name))])
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
