@@ -2,7 +2,10 @@
 Contributing to Photologue
 ##########################
 
-Contributions are always very welcome.
+Contributions are always very welcome. Even if you have never contributed to an
+open-source project before - please do not hesitate to offer help. Fixes for typos in the
+documentation, extra unit tests, etc... are welcome. And look in the issues
+list for anything tagged "easy_win".
 
 Workflow
 --------
@@ -12,10 +15,6 @@ as simple as possible, so we more-or-less follow the recommendations in the
 `"GitHub Flow" blog post <http://scottchacon.com/2011/08/31/github-flow.html>`_.
 
 * The "more or less" is because we don't do immediate releases.
-* One very important point for people unused to contributing to open source
-  projects is: your pull request might well be rejected at first, but that's not the end; view a pull
-  request as the start of a conversation, with the goal of improving your code, so that it is of the best 
-  possible quality when it gets merged into Photologue.
 
 Coding style
 ------------
@@ -26,7 +25,7 @@ New features
 ------------
 If you’re interested in developing a new feature for Photologue, it is recommended that you first 
 discuss it on the `mailing list <http://groups.google.com/group/django-photologue>`_ so as not to 
-do any work that will not get merged in anyway.
+do any work that might not get merged in anyway.
 
 Unit tests
 ----------
@@ -51,4 +50,11 @@ Translations
 `Photologue manages the application translations with Transifex 
 <https://www.transifex.com/projects/p/django-photologue/>`_. Contributions
 are very welcome, either by editing the translations directly on the Transifex
-site, or by submitting pull requests with .po files.
+site, or by submitting pull requests with updated .po files.
+
+Finally
+-------
+Remember that the maintainer looks after django-photologue in his spare time -
+so it might be a few weeks before your pull request gets looked at... and the pull
+requests that are nicely formatted, with code, tests and docs included, will 
+always get reviewed first :-)
