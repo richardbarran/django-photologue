@@ -71,16 +71,16 @@ class PhotoTest(PhotologueBaseTest):
         building a URL."""
 
         # Check that a 'normal' path works ok.
-        self.assertEquals(self.pl.get_display_url(),
-                          self.pl.cache_url() + '/test_landscape_display.jpg')
+        self.assertEquals(self.pl.get_testPhotoSize_url(),
+                          self.pl.cache_url() + '/test_landscape_testPhotoSize.jpg')
 
         # Now create a Photo with a name that needs quoting.
         self.pl2 = Photo(title='test', title_slug='test')
         self.pl2.image.save(os.path.basename(QUOTING_IMAGE_PATH),
                            ContentFile(open(QUOTING_IMAGE_PATH, 'rb').read()))
         self.pl2.save()
-        self.assertEquals(self.pl2.get_display_url(),
-                          self.pl2.cache_url() + '/test_%26quoting_display.jpg')
+        self.assertEquals(self.pl2.get_testPhotoSize_url(),
+                          self.pl2.cache_url() + '/test_%26quoting_testPhotoSize.jpg')
 
 
 
