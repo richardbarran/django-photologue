@@ -1,7 +1,12 @@
 Photologue
 ==========
 
-Improved image management and photo gallery application for the Django web framework.
+Improved image management and photo gallery application for the Django web framework. Use it 
+to quickly put together photo galleries like this:
+
+.. image:: http://django-photologue.readthedocs.org/en/latest/_images/screenshot_mahoTBD.png
+   :align: center
+
 
 Documentation
 -------------
@@ -16,3 +21,5 @@ Travis CI status
 ----------------
 .. image:: https://secure.travis-ci.org/richardbarran/django-photologue.png?branch=master
 
+We use Travis to check that the unit test suite is working against various combinations
+of Python, Django, etc... `Click here for the full report <http://travis-ci.org/#!/jdriscoll/django-photologue>`_.
