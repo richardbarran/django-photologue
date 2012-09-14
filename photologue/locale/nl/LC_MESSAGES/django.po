@@ -1,32 +1,30 @@
-# Dutch translations for the Django app 'Photologue'.
-# Copyright (C) 2009 Peter-Paul van Gemerden
-# This file is distributed under the same license as the django-photologue package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 # Peter-Paul van Gemerden <info@ppvg.nl>, 2009.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 2,2\n"
+"Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 22:52+0100\n"
-"Last-Translator: Peter-Paul van Gemerden <info@ppvg.nl>\n"
-"Language-Team: Dutch <LL@li.org>\n"
-"Language: nl\n"
+"POT-Creation-Date: 2012-09-03 20:47+0100\n"
+"PO-Revision-Date: 2012-09-03 21:55+0000\n"
+"Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: models.py:40
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr ""
-"Scheid labels met spaties, plaats aanhalingstekens rond labels met meerdere "
-"woorden."
+msgstr "Scheid labels met spaties, plaats aanhalingstekens rond labels met meerdere woorden."
 
 #: models.py:49
 msgid "Django-tagging was not found, tags will be treated as plain text."
-msgstr ""
-"Django-tagging kon niet gevonden worden, labels worden behandeld als platte "
-"tekst."
+msgstr "Django-tagging kon niet gevonden worden, labels worden behandeld als platte tekst."
 
 #: models.py:93
 msgid "Very Low"
@@ -107,13 +105,10 @@ msgstr "Schalen"
 #: models.py:131
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
-msgstr ""
-"Keten meerdere filters aan elkaar met het patroon: \"FILTER_EEN->FILTER_TWEE-"
-">FILTER_DRIE\". Afbeeldingsfilters worden in volgorde toegepast. De volgende "
-"filters zijn beschikbaar: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
+msgstr "Keten meerdere filters aan elkaar met het patroon: \"FILTER_EEN->FILTER_TWEE->FILTER_DRIE\". Afbeeldingsfilters worden in volgorde toegepast. De volgende filters zijn beschikbaar: %s."
 
 #: models.py:135
 msgid "date published"
@@ -169,26 +164,19 @@ msgstr "afbeeldingenbestand (.zip)"
 
 #: models.py:199
 msgid "Select a .zip file of images to upload into a new Gallery."
-msgstr ""
-"Kies een .zip-bestand met afbeeldingen om te uploaden naar een nieuwe "
-"Galerij."
+msgstr "Kies een .zip-bestand met afbeeldingen om te uploaden naar een nieuwe Galerij."
 
 #: models.py:200
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
-"Kies een galerij om deze afbeeldingen aan toe te voegen. Laat dit leeg om "
-"een nieuwe galerij te creëren met de opgegeven titel."
+msgstr "Kies een galerij om deze afbeeldingen aan toe te voegen. Laat dit leeg om een nieuwe galerij te creëren met de opgegeven titel."
 
 #: models.py:201
-#, fuzzy
 msgid ""
-"All photos in the gallery will be given a title made up of the gallery title "
-"+ a sequential number."
+"All photos in the gallery will be given a title made up of the gallery title"
+" + a sequential number."
 msgstr ""
-"Alle foto's in de galerij krijgen een naam die is gebaseerd op de titel van "
-"de Galerij  een opeenvolgend nummer."
 
 #: models.py:202 models.py:510
 msgid "caption"
@@ -271,9 +259,7 @@ msgstr "kleur"
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr ""
-"Een factor van 0.0 geeft een zwart-wit afbeelding, een factor van 1.0 geeft "
-"de originele afbeelding."
+msgstr "Een factor van 0.0 geeft een zwart-wit afbeelding, een factor van 1.0 geeft de originele afbeelding."
 
 #: models.py:629
 msgid "brightness"
@@ -283,9 +269,7 @@ msgstr "helderheid"
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Een factor van 0.0 geeft een zwarte afbeelding, een factor van 1.0 geeft de "
-"originele afbeelding."
+msgstr "Een factor van 0.0 geeft een zwarte afbeelding, een factor van 1.0 geeft de originele afbeelding."
 
 #: models.py:630
 msgid "contrast"
@@ -293,11 +277,9 @@ msgstr "contrast"
 
 #: models.py:630
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
-msgstr ""
-"Een factor van 0.0 geeft een egaal grijze afbeelding, een factor van 1.0 "
-"geeft de originele afbeelding."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
+msgstr "Een factor van 0.0 geeft een egaal grijze afbeelding, een factor van 1.0 geeft de originele afbeelding."
 
 #: models.py:631
 msgid "sharpness"
@@ -307,9 +289,7 @@ msgstr "scherpte"
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Een factor van 0.0 geeft een vervaagde afbeelding, een factor van 1.0 geeft "
-"de originele afbeelding."
+msgstr "Een factor van 0.0 geeft een vervaagde afbeelding, een factor van 1.0 geeft de originele afbeelding."
 
 #: models.py:632
 msgid "filters"
@@ -324,10 +304,7 @@ msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr ""
-"De hoogte van de reflectie als precentage van de originele afbeelding. Een "
-"factor van 0.0 voegt geen reflectie toe, een factor van 1.0 voegt een "
-"reflectie toe met een gelijke hoogte als de originele afbeelding."
+msgstr "De hoogte van de reflectie als precentage van de originele afbeelding. Een factor van 0.0 voegt geen reflectie toe, een factor van 1.0 voegt een reflectie toe met een gelijke hoogte als de originele afbeelding."
 
 #: models.py:634
 msgid "strength"
@@ -341,9 +318,7 @@ msgstr "De initiële doorzichtigheid van de reflectie-gradatie."
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr ""
-"De achtergrondkleur van de reflectie-gradatie. Stel dit in als hetzelfde als "
-"de achtergrondkleur van je pagina."
+msgstr "De achtergrondkleur van de reflectie-gradatie. Stel dit in als hetzelfde als de achtergrondkleur van je pagina."
 
 #: models.py:638 models.py:689
 msgid "photo effect"
@@ -377,32 +352,23 @@ msgstr "watermerken"
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"De naam van de foto-maat mag alleen letters, nummers en underscores "
-"bevatten. Voorbeelden: \"miniatuur\", \"weergave\", \"klein\", "
-"\"hoofdpagina_zijbalk_miniatuur\"."
+msgstr "De naam van de foto-maat mag alleen letters, nummers en underscores bevatten. Voorbeelden: \"miniatuur\", \"weergave\", \"klein\", \"hoofdpagina_zijbalk_miniatuur\"."
 
 #: models.py:682
 msgid "width"
 msgstr "breedte"
 
 #: models.py:682
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr ""
-"Als de breedte op \"0\" wordt gezet zal de afbeelding geschaald worden naar "
-"de opgegeven hoogte."
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Als de breedte op \"0\" wordt gezet zal de afbeelding geschaald worden naar de opgegeven hoogte."
 
 #: models.py:683
 msgid "height"
 msgstr "hoogte"
 
 #: models.py:683
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr ""
-"Als de hoogte op \"0\" wordt gezet zal de afbeelding geschaald worden naar "
-"de opgegeven breedte."
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Als de hoogte op \"0\" wordt gezet zal de afbeelding geschaald worden naar de opgegeven breedte."
 
 #: models.py:684
 msgid "quality"
@@ -420,10 +386,7 @@ msgstr "afbeeldingen opschalen?"
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr ""
-"Als dit is gekozen zal de afbeelding, indien nodig, opgeschaald worden naar "
-"opgegeven afmetingen. Afgeknipte maten worden altijd opgeschaald, ongeacht "
-"deze instelling."
+msgstr "Als dit is gekozen zal de afbeelding, indien nodig, opgeschaald worden naar opgegeven afmetingen. Afgeknipte maten worden altijd opgeschaald, ongeacht deze instelling."
 
 #: models.py:686
 msgid "crop to fit?"
@@ -433,9 +396,7 @@ msgstr "gepast afknippen?"
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr ""
-"Als dit is gekozen zal de afbeelding geschaald en afgeknipt worden naar de "
-"opgegeven afmetingen."
+msgstr "Als dit is gekozen zal de afbeelding geschaald en afgeknipt worden naar de opgegeven afmetingen."
 
 #: models.py:687
 msgid "pre-cache?"
@@ -443,9 +404,7 @@ msgstr "vooraf cachen?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr ""
-"Als dit is gekozen zullen foto's met deze foto-maat van te voren worden "
-"gecached wanneer ze worden toegevoegd."
+msgstr "Als dit is gekozen zullen foto's met deze foto-maat van te voren worden gecached wanneer ze worden toegevoegd."
 
 #: models.py:688
 msgid "increment view count?"
@@ -455,9 +414,7 @@ msgstr "aantal vertoningen ophogen?"
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr ""
-"Als dit is gekozen zal het aantal vertoningen van de afbeelding worden "
-"opgehoogd wanneer deze foto-maat wordt weergegeven."
+msgstr "Als dit is gekozen zal het aantal vertoningen van de afbeelding worden opgehoogd wanneer deze foto-maat wordt weergegeven."
 
 #: models.py:690
 msgid "watermark image"
@@ -470,13 +427,3 @@ msgstr "foto-maat"
 #: models.py:695
 msgid "photo sizes"
 msgstr "foto-maten"
-
-#~ msgid ""
-#~ "Photologue was unable to import the Python Imaging Library. Please "
-#~ "confirm it`s installed and available on your current Python path."
-#~ msgstr ""
-#~ "Photologue kon de Python Imaging Library niet importeren. Bevestig a.u.b. "
-#~ "dat deze is geïnstalleerd en beschikbaar is binnen uw huidige Python pad."
-
-#~ msgid "view count"
-#~ msgstr "aantal vertoningen"

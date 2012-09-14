@@ -3,40 +3,39 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Michael Lind Mortensen <illio@cs.au.dk>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-03 20:47+0100\n"
-"PO-Revision-Date: 2012-09-03 21:55+0000\n"
-"Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
+"PO-Revision-Date: 2012-09-03 20:28+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
+"Language: en_US\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: models.py:40
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr "Adskil tags med mellemrum, placer anførselstegn omkring flerordstags."
+msgstr "Separate tags with spaces, put quotes around multiple-word tags."
 
 #: models.py:49
 msgid "Django-tagging was not found, tags will be treated as plain text."
-msgstr "Django-tagging blev ikke fundet, tags vil blive behandlet som normal tekst."
+msgstr "Django-tagging was not found, tags will be treated as plain text."
 
 #: models.py:93
 msgid "Very Low"
-msgstr "Meget Lav"
+msgstr "Very Low"
 
 #: models.py:94
 msgid "Low"
-msgstr "Lav"
+msgstr "Low"
 
 #: models.py:95
 msgid "Medium-Low"
-msgstr "Medium Lav"
+msgstr "Medium-Low"
 
 #: models.py:96
 msgid "Medium"
@@ -44,15 +43,15 @@ msgstr "Medium"
 
 #: models.py:97
 msgid "Medium-High"
-msgstr "Medium Høj"
+msgstr "Medium-High"
 
 #: models.py:98
 msgid "High"
-msgstr "Høj"
+msgstr "High"
 
 #: models.py:99
 msgid "Very High"
-msgstr "Meget Høj"
+msgstr "Very High"
 
 #: models.py:104
 msgid "Top"
@@ -60,39 +59,39 @@ msgstr "Top"
 
 #: models.py:105
 msgid "Right"
-msgstr "Højre"
+msgstr "Right"
 
 #: models.py:106
 msgid "Bottom"
-msgstr "Bund"
+msgstr "Bottom"
 
 #: models.py:107
 msgid "Left"
-msgstr "Venstre"
+msgstr "Left"
 
 #: models.py:108
 msgid "Center (Default)"
-msgstr "Center (Standard)"
+msgstr "Center (Default)"
 
 #: models.py:112
 msgid "Flip left to right"
-msgstr "Flip venstre til højre"
+msgstr "Flip left to right"
 
 #: models.py:113
 msgid "Flip top to bottom"
-msgstr "Flip top til bund"
+msgstr "Flip top to bottom"
 
 #: models.py:114
 msgid "Rotate 90 degrees counter-clockwise"
-msgstr "Roter 90 grader mod uret"
+msgstr "Rotate 90 degrees counter-clockwise"
 
 #: models.py:115
 msgid "Rotate 90 degrees clockwise"
-msgstr "Roter 90 grader med uret"
+msgstr "Rotate 90 degrees clockwise"
 
 #: models.py:116
 msgid "Rotate 180 degrees"
-msgstr "Roter 180 grader"
+msgstr "Rotate 180 degrees"
 
 #: models.py:120
 msgid "Tile"
@@ -100,7 +99,7 @@ msgstr "Tile"
 
 #: models.py:121
 msgid "Scale"
-msgstr "Skala"
+msgstr "Scale"
 
 #: models.py:131
 #, python-format
@@ -108,39 +107,39 @@ msgid ""
 "Chain multiple filters using the following pattern "
 "\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
 "order. The following filters are available: %s."
-msgstr "Sæt adskillige filtre i kæde vha. følgende mønster \"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Billedefiltre vil blive påført i den anførte rækkefølge. De følgende filtre er tilgænglige: %s."
+msgstr "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in order. The following filters are available: %s."
 
 #: models.py:135
 msgid "date published"
-msgstr "dato offentliggjort"
+msgstr "date published"
 
 #: models.py:136 models.py:201 models.py:507
 msgid "title"
-msgstr "titel"
+msgstr "title"
 
 #: models.py:137
 msgid "title slug"
-msgstr "titel slug"
+msgstr "title slug"
 
 #: models.py:138
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr "En \"slug\" er en unik URL-venlig titel for et objekt"
+msgstr "A \"slug\" is a unique URL-friendly title for an object."
 
 #: models.py:139 models.py:203 models.py:556
 msgid "description"
-msgstr "beskrivelse"
+msgstr "description"
 
 #: models.py:140 models.py:204 models.py:512
 msgid "is public"
-msgstr "er offentlig"
+msgstr "is public"
 
 #: models.py:141
 msgid "Public galleries will be displayed in the default views."
-msgstr "Offentlige gallerier vil blive vist i standard views."
+msgstr "Public galleries will be displayed in the default views."
 
 #: models.py:142 models.py:519
 msgid "photos"
-msgstr "billeder"
+msgstr "photos"
 
 #: models.py:144 models.py:205 models.py:513
 msgid "tags"
@@ -148,80 +147,80 @@ msgstr "tags"
 
 #: models.py:149
 msgid "gallery"
-msgstr "galleri"
+msgstr "gallery"
 
 #: models.py:150
 msgid "galleries"
-msgstr "gallerier"
+msgstr "galleries"
 
 #: models.py:190
 msgid "count"
-msgstr "tæller"
+msgstr "count"
 
 #: models.py:198
 msgid "images file (.zip)"
-msgstr "billedefil (.zip)"
+msgstr "images file (.zip)"
 
 #: models.py:199
 msgid "Select a .zip file of images to upload into a new Gallery."
-msgstr "Vælg en .zip-fil af billeder til at uploade ind i det nye Galleri"
+msgstr "Select a .zip file of images to upload into a new Gallery."
 
 #: models.py:200
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
-msgstr "Vælg et galleri at tilføje disse billeder til. efterlad denne tom for at skabe et nyt galleri ud fra den givne titel."
+msgstr "Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title."
 
 #: models.py:201
 msgid ""
 "All photos in the gallery will be given a title made up of the gallery title"
 " + a sequential number."
-msgstr "Alle billeder i galleriet vil blive givet en titel ud fra galleriets titel + et sekventielt nummer."
+msgstr "All photos in the gallery will be given a title made up of the gallery title + a sequential number."
 
 #: models.py:202 models.py:510
 msgid "caption"
-msgstr "billedetekst"
+msgstr "caption"
 
 #: models.py:202
 msgid "Caption will be added to all photos."
-msgstr "Billedeteksten vil blive tilføjet til alle billeder."
+msgstr "Caption will be added to all photos."
 
 #: models.py:203
 msgid "A description of this Gallery."
-msgstr "En beskrivelse af dette Galleri"
+msgstr "A description of this Gallery."
 
 #: models.py:204
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr "Fjern afkrydsningen her for at gøre det uploadede galleri og alle inkluderede billeder private."
+msgstr "Uncheck this to make the uploaded gallery and included photographs private."
 
 #: models.py:208
 msgid "gallery upload"
-msgstr "galleri uploadet"
+msgstr "gallery upload"
 
 #: models.py:209
 msgid "gallery uploads"
-msgstr "galleri uploads"
+msgstr "gallery uploads"
 
 #: models.py:273 models.py:667
 msgid "image"
-msgstr "billede"
+msgstr "image"
 
 #: models.py:275
 msgid "date taken"
-msgstr "dato taget"
+msgstr "date taken"
 
 #: models.py:277
 msgid "crop from"
-msgstr "beskær fra"
+msgstr "crop from"
 
 #: models.py:278
 msgid "effect"
-msgstr "effekt"
+msgstr "effect"
 
 #: models.py:296
 msgid "An \"admin_thumbnail\" photo size has not been defined."
-msgstr "En \"admin_thumbnail\" billedestørrelse er ikke blevet defineret."
+msgstr "An \"admin_thumbnail\" photo size has not been defined."
 
 #: models.py:304
 msgid "Thumbnail"
@@ -233,170 +232,170 @@ msgstr "slug"
 
 #: models.py:511
 msgid "date added"
-msgstr "dato tilføjet"
+msgstr "date added"
 
 #: models.py:512
 msgid "Public photographs will be displayed in the default views."
-msgstr "Offentlige billeder vil blive vist i standard views."
+msgstr "Public photographs will be displayed in the default views."
 
 #: models.py:518
 msgid "photo"
-msgstr "billede"
+msgstr "photo"
 
 #: models.py:555 models.py:681
 msgid "name"
-msgstr "navn"
+msgstr "name"
 
 #: models.py:627
 msgid "rotate or flip"
-msgstr "roter eller flip"
+msgstr "rotate or flip"
 
 #: models.py:628 models.py:635
 msgid "color"
-msgstr "farve"
+msgstr "color"
 
 #: models.py:628
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr "En faktor af 0.0 giver et sort og hvidt billede, en faktor af 1.0 giver det originale billede."
+msgstr "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image."
 
 #: models.py:629
 msgid "brightness"
-msgstr "lysstyrke"
+msgstr "brightness"
 
 #: models.py:629
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr "En faktor af 0.0 giver et sort billede, en faktor af 1.0 giver det originale billede."
+msgstr "A factor of 0.0 gives a black image, a factor of 1.0 gives the original image."
 
 #: models.py:630
 msgid "contrast"
-msgstr "kontrast"
+msgstr "contrast"
 
 #: models.py:630
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
 " image."
-msgstr "En faktor af 0.0 giver et solidt gråt billede, en faktor af 1.0 giver det originale billede."
+msgstr "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image."
 
 #: models.py:631
 msgid "sharpness"
-msgstr "skarphed"
+msgstr "sharpness"
 
 #: models.py:631
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr "En faktor af 0.0 giver et sløret billede, en faktor af 1.0 giver det originale billede."
+msgstr "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image."
 
 #: models.py:632
 msgid "filters"
-msgstr "filtre"
+msgstr "filters"
 
 #: models.py:633
 msgid "size"
-msgstr "størrelse"
+msgstr "size"
 
 #: models.py:633
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr "Højden af reflektionen som en procentdel af det originale billede. En faktor af 0.0 tilføjer ingen reflektion, en faktor af 1.0 tilføjer en reflektion lig med højden af det oprindelige billede."
+msgstr "The height of the reflection as a percentage of the orignal image. A factor of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the height of the orignal image."
 
 #: models.py:634
 msgid "strength"
-msgstr "styrke"
+msgstr "strength"
 
 #: models.py:634
 msgid "The initial opacity of the reflection gradient."
-msgstr "Den initielle uigennemsigtighed af den reflektive gradient."
+msgstr "The initial opacity of the reflection gradient."
 
 #: models.py:635
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr "Baggrundsfarven af den reflektive gradient. Sæt dette til at passe med baggrundsfarven af din side."
+msgstr "The background color of the reflection gradient. Set this to match the background color of your page."
 
 #: models.py:638 models.py:689
 msgid "photo effect"
-msgstr "billedeeffekt"
+msgstr "photo effect"
 
 #: models.py:639
 msgid "photo effects"
-msgstr "billedeeffekter"
+msgstr "photo effects"
 
 #: models.py:668
 msgid "style"
-msgstr "stil"
+msgstr "style"
 
 #: models.py:669
 msgid "opacity"
-msgstr "uigennemsigtighed"
+msgstr "opacity"
 
 #: models.py:669
 msgid "The opacity of the overlay."
-msgstr "Uigennemsigtigheden af overlaget."
+msgstr "The opacity of the overlay."
 
 #: models.py:672
 msgid "watermark"
-msgstr "vandmærke"
+msgstr "watermark"
 
 #: models.py:673
 msgid "watermarks"
-msgstr "vandmærker"
+msgstr "watermarks"
 
 #: models.py:681
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr "Billede størrelse navn må kun indeholde bogstaver, numre og underscores. Eksempler: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr "Photo size name should contain only letters, numbers and underscores. Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
 #: models.py:682
 msgid "width"
-msgstr "bredde"
+msgstr "width"
 
 #: models.py:682
 msgid "If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr "Hvis bredden er sat til \"0\" vil billede blive skaleret til den givne højde."
+msgstr "If width is set to \"0\" the image will be scaled to the supplied height."
 
 #: models.py:683
 msgid "height"
-msgstr "højde"
+msgstr "height"
 
 #: models.py:683
 msgid "If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr "Hvis højden er sat til \"0\" vil billede blive skaleret til den givne bredde."
+msgstr "If height is set to \"0\" the image will be scaled to the supplied width"
 
 #: models.py:684
 msgid "quality"
-msgstr "kvalitet"
+msgstr "quality"
 
 #: models.py:684
 msgid "JPEG image quality."
-msgstr "JPEG billedekvalitet"
+msgstr "JPEG image quality."
 
 #: models.py:685
 msgid "upscale images?"
-msgstr "opskaler billeder?"
+msgstr "upscale images?"
 
 #: models.py:685
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr "Hvis valgt, vil billedet blive skaleret op såfremt det er nødvendigt for at passe til de givne dimensioner. Beskårede størrelser vil blive opskaleret uanset denne indstilling."
+msgstr "If selected the image will be scaled up if necessary to fit the supplied dimensions. Cropped sizes will be upscaled regardless of this setting."
 
 #: models.py:686
 msgid "crop to fit?"
-msgstr "beskær til at passe?"
+msgstr "crop to fit?"
 
 #: models.py:686
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr "Hvis valgt, vil billedet blive skaleret og beskåret for at passe til de givne dimensioner."
+msgstr "If selected the image will be scaled and cropped to fit the supplied dimensions."
 
 #: models.py:687
 msgid "pre-cache?"
@@ -404,26 +403,26 @@ msgstr "pre-cache?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr "Hvis valgt, vil dette billedes størrelse blive pre-cached som billeder bliver tilføjet."
+msgstr "If selected this photo size will be pre-cached as photos are added."
 
 #: models.py:688
 msgid "increment view count?"
-msgstr "inkrementer set tæller?"
+msgstr "increment view count?"
 
 #: models.py:688
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr "Hvis valgt, vil billedets \"view_count\" blive inkrementeret når billedets størrelse vises."
+msgstr "If selected the image's \"view_count\" will be incremented when this photo size is displayed."
 
 #: models.py:690
 msgid "watermark image"
-msgstr "vandmærkebillede"
+msgstr "watermark image"
 
 #: models.py:694
 msgid "photo size"
-msgstr "billedestørrelse"
+msgstr "photo size"
 
 #: models.py:695
 msgid "photo sizes"
-msgstr "billedestørrelser"
+msgstr "photo sizes"

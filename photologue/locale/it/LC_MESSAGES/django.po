@@ -1,37 +1,29 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Photologue Preview 2\n"
+"Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 22:52+0100\n"
-"PO-Revision-Date: 2008-12-23 12:13+0100\n"
-"Last-Translator: Marco Beri <marcoberi@gmail.com>\n"
-"Language-Team: Jakub Wiśniowski <restless.being@gmail.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-09-03 20:47+0100\n"
+"PO-Revision-Date: 2012-09-03 21:55+0000\n"
+"Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\\n\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: POLAND\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: models.py:40
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr ""
-"Separa i tag con gli spazi e racchiudi tra virgolette tag composti da più "
-"parole."
+msgstr "Separa i tag con gli spazi e racchiudi tra virgolette tag composti da più parole."
 
 #: models.py:49
 msgid "Django-tagging was not found, tags will be treated as plain text."
-msgstr ""
-"Django-tagging non è stata trovata, i tag verranno trattati come testo "
-"normale."
+msgstr "Django-tagging non è stata trovata, i tag verranno trattati come testo normale."
 
 #: models.py:93
 msgid "Very Low"
@@ -112,13 +104,10 @@ msgstr "Ridimensiona"
 #: models.py:131
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
-msgstr ""
-"Collega filtri multipli in cascata con il seguente schema \"FILTRO_UNO-"
-">FILTRO_DUE->FILTER_TRE\". I filtri saranno applicati in ordine alle "
-"immagini. I seguenti filtri sono disponibili: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
+msgstr "Collega filtri multipli in cascata con il seguente schema \"FILTRO_UNO->FILTRO_DUE->FILTER_TRE\". I filtri saranno applicati in ordine alle immagini. I seguenti filtri sono disponibili: %s."
 
 #: models.py:135
 msgid "date published"
@@ -180,17 +169,13 @@ msgstr "Scegli un file .zip con le immagini da caricare in una nuova Galleria"
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
-"Scegli una galleria a cui aggiungere le immagini. Lascia il campo vuoto se "
-"vuoi creare una nuova galleria a partire dal titolo indicato."
+msgstr "Scegli una galleria a cui aggiungere le immagini. Lascia il campo vuoto se vuoi creare una nuova galleria a partire dal titolo indicato."
 
 #: models.py:201
 msgid ""
-"All photos in the gallery will be given a title made up of the gallery title "
-"+ a sequential number."
-msgstr ""
-"Tutte le foto di una galleria avranno un titolo composto dal titolo della "
-"galleria più un numero sequenziale."
+"All photos in the gallery will be given a title made up of the gallery title"
+" + a sequential number."
+msgstr "Tutte le foto di una galleria avranno un titolo composto dal titolo della galleria più un numero sequenziale."
 
 #: models.py:202 models.py:510
 msgid "caption"
@@ -207,9 +192,7 @@ msgstr "Una descrizione di questa Galleria."
 #: models.py:204
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Deseleziona l'opzione per rendere private le immagini e la galleria una "
-"volta caricata."
+msgstr "Deseleziona l'opzione per rendere private le immagini e la galleria una volta caricata."
 
 #: models.py:208
 msgid "gallery upload"
@@ -275,9 +258,7 @@ msgstr "colore"
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr ""
-"Un fattore di 0.0 restituisce un'immagine in bianco e nero, un fattore di "
-"1.0 restituisce l'immagine originale."
+msgstr "Un fattore di 0.0 restituisce un'immagine in bianco e nero, un fattore di 1.0 restituisce l'immagine originale."
 
 #: models.py:629
 msgid "brightness"
@@ -287,9 +268,7 @@ msgstr "luminosità"
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Un fattore di 0.0 restituisce un'immagine nera, un fattore di 1.0 "
-"restituisce l'immagine originale."
+msgstr "Un fattore di 0.0 restituisce un'immagine nera, un fattore di 1.0 restituisce l'immagine originale."
 
 #: models.py:630
 msgid "contrast"
@@ -297,11 +276,9 @@ msgstr "contrasto"
 
 #: models.py:630
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
-msgstr ""
-"Un fattore di 0.0 restituisce un'immagine grigia, un fattore di 1.0 "
-"restituisce l'immagine originale."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
+msgstr "Un fattore di 0.0 restituisce un'immagine grigia, un fattore di 1.0 restituisce l'immagine originale."
 
 #: models.py:631
 msgid "sharpness"
@@ -311,9 +288,7 @@ msgstr "nitidezza"
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Un fattore di 0.0 restituisce un'immagine sfuocata, un fattore di 1.0 "
-"restituisce l'immagine originale."
+msgstr "Un fattore di 0.0 restituisce un'immagine sfuocata, un fattore di 1.0 restituisce l'immagine originale."
 
 #: models.py:632
 msgid "filters"
@@ -328,10 +303,7 @@ msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr ""
-"L'altezza del riflesso come percentuale dell'immagine originale. Un fattore "
-"di 0.0 non aggiunge nessun riflesso, un fattore di 1.0 aggiunge un riflesso "
-"della stessa altezza dell'immagine originale."
+msgstr "L'altezza del riflesso come percentuale dell'immagine originale. Un fattore di 0.0 non aggiunge nessun riflesso, un fattore di 1.0 aggiunge un riflesso della stessa altezza dell'immagine originale."
 
 #: models.py:634
 msgid "strength"
@@ -345,9 +317,7 @@ msgstr "Opacità iniziale del gradiente del riflesso."
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr ""
-"Il colore di sfondo del gradiente di riflesso. Sceglilo in modo che "
-"corrisponda al colore dello sfondo della tua immagine."
+msgstr "Il colore di sfondo del gradiente di riflesso. Sceglilo in modo che corrisponda al colore dello sfondo della tua immagine."
 
 #: models.py:638 models.py:689
 msgid "photo effect"
@@ -381,32 +351,23 @@ msgstr "watermark"
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"Le dimensioni fotografiche devono contenere solo lettere, numeri o caratteri "
-"di sottolineatura. Per esempio: : \"thumbnail\", \"display\", \"small\", "
-"\"main_page_widget\"."
+msgstr "Le dimensioni fotografiche devono contenere solo lettere, numeri o caratteri di sottolineatura. Per esempio: : \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
 #: models.py:682
 msgid "width"
 msgstr "larghezza"
 
 #: models.py:682
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr ""
-"Se la dimensione è \"0\", l'immagine verrà ridimensionata all'altezza "
-"specificata."
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Se la dimensione è \"0\", l'immagine verrà ridimensionata all'altezza specificata."
 
 #: models.py:683
 msgid "height"
 msgstr "altezza"
 
 #: models.py:683
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr ""
-"Se l'altezza è \"0\", l'immagine verrà ridimensionata alla larghezza "
-"specificata."
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Se l'altezza è \"0\", l'immagine verrà ridimensionata alla larghezza specificata."
 
 #: models.py:684
 msgid "quality"
@@ -424,10 +385,7 @@ msgstr "ingrandisco le immagini?"
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr ""
-"Se selezionato, l'immagine verrà ingrandita (se necessario) per "
-"corrispondere alle dimensioni specificate. Dimensioni ritagliate verranno "
-"ridimensionate senza tenere conto di questa configurazione."
+msgstr "Se selezionato, l'immagine verrà ingrandita (se necessario) per corrispondere alle dimensioni specificate. Dimensioni ritagliate verranno ridimensionate senza tenere conto di questa configurazione."
 
 #: models.py:686
 msgid "crop to fit?"
@@ -437,9 +395,7 @@ msgstr "Ritaglio per stare nelle dimensioni?"
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr ""
-"Se selezionato, l'immagine verrà ridimensionata e ritagliata per rientrare "
-"nelle dimensioni specificate."
+msgstr "Se selezionato, l'immagine verrà ridimensionata e ritagliata per rientrare nelle dimensioni specificate."
 
 #: models.py:687
 msgid "pre-cache?"
@@ -447,9 +403,7 @@ msgstr "pre-cache?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr ""
-"Se selezionato, questa dimensione di foto verrà pre-salvata mentre le foto "
-"sono inserite."
+msgstr "Se selezionato, questa dimensione di foto verrà pre-salvata mentre le foto sono inserite."
 
 #: models.py:688
 msgid "increment view count?"
@@ -459,9 +413,7 @@ msgstr "incrementa il contatore di visualizzazioni?"
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr ""
-"Se selezionato, il \"contatore di visualizzazioni\" dell'immagine sarà "
-"incrementato ad ogni visualizzazione dell'immagine."
+msgstr "Se selezionato, il \"contatore di visualizzazioni\" dell'immagine sarà incrementato ad ogni visualizzazione dell'immagine."
 
 #: models.py:690
 msgid "watermark image"
@@ -474,24 +426,3 @@ msgstr "dimensione della foto"
 #: models.py:695
 msgid "photo sizes"
 msgstr "dimensioni delle foto"
-
-#~ msgid ""
-#~ "Photologue was unable to import the Python Imaging Library. Please "
-#~ "confirm it`s installed and available on your current Python path."
-#~ msgstr ""
-#~ "Photologue non è riuscito a importare la Python Imaging Library. Verifica "
-#~ "che sia installata e disponibile attraverso l'attuale Python path."
-
-#~ msgid "A PhotoSize must have a positive height or width."
-#~ msgstr ""
-#~ "Una dimensione di fotografia deve avere un'altezza e una larghezza "
-#~ "positive."
-
-#~ msgid "Leave to size the image to the set height"
-#~ msgstr "Ustaw aby przeskalować obraz do wybranej wysokości"
-
-#~ msgid "Leave to size the image to the set width"
-#~ msgstr "Ustaw aby przeskalować obraz do wybranej szerokości"
-
-#~ msgid "original image"
-#~ msgstr "oryginalny obraz"
