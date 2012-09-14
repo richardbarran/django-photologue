@@ -35,12 +35,12 @@ class PhotoTest(PhotologueBaseTest):
 
     def test_count(self):
         for i in range(5):
-            self.pl.get_test_url()
+            self.pl.get_testPhotoSize_url()
         self.assertEquals(self.pl.view_count, 0)
         self.s.increment_count = True
         self.s.save()
         for i in range(5):
-            self.pl.get_test_url()
+            self.pl.get_testPhotoSize_url()
         self.assertEquals(self.pl.view_count, 5)
 
     def test_precache(self):
@@ -48,21 +48,21 @@ class PhotoTest(PhotologueBaseTest):
         self.s.pre_cache = True
         self.s.save()
         # make sure it created the file
-        self.assertTrue(os.path.isfile(self.pl.get_test_filename()))
+        self.assertTrue(os.path.isfile(self.pl.get_testPhotoSize_filename()))
         self.s.pre_cache = False
         self.s.save()
         # clear the cache and make sure the file's deleted
         self.pl.clear_cache()
-        self.assertFalse(os.path.isfile(self.pl.get_test_filename()))
+        self.assertFalse(os.path.isfile(self.pl.get_testPhotoSize_filename()))
 
     def test_accessor_methods(self):
-        self.assertEquals(self.pl.get_test_photosize(), self.s)
-        self.assertEquals(self.pl.get_test_size(),
-                          Image.open(self.pl.get_test_filename()).size)
-        self.assertEquals(self.pl.get_test_url(),
+        self.assertEquals(self.pl.get_testPhotoSize_photosize(), self.s)
+        self.assertEquals(self.pl.get_testPhotoSize_size(),
+                          Image.open(self.pl.get_testPhotoSize_filename()).size)
+        self.assertEquals(self.pl.get_testPhotoSize_url(),
                           self.pl.cache_url() + '/' + \
                           self.pl._get_filename_for_size(self.s))
-        self.assertEquals(self.pl.get_test_filename(),
+        self.assertEquals(self.pl.get_testPhotoSize_filename(),
                           os.path.join(self.pl.cache_path(),
                           self.pl._get_filename_for_size(self.s)))
 
@@ -71,16 +71,16 @@ class PhotoTest(PhotologueBaseTest):
         building a URL."""
 
         # Check that a 'normal' path works ok.
-        self.assertEquals(self.pl.get_display_url(),
-                          self.pl.cache_url() + '/test_landscape_display.jpg')
+        self.assertEquals(self.pl.get_testPhotoSize_url(),
+                          self.pl.cache_url() + '/test_landscape_testPhotoSize.jpg')
 
         # Now create a Photo with a name that needs quoting.
         self.pl2 = Photo(title='test', title_slug='test')
         self.pl2.image.save(os.path.basename(QUOTING_IMAGE_PATH),
                            ContentFile(open(QUOTING_IMAGE_PATH, 'rb').read()))
         self.pl2.save()
-        self.assertEquals(self.pl2.get_display_url(),
-                          self.pl2.cache_url() + '/test_%26quoting_display.jpg')
+        self.assertEquals(self.pl2.get_testPhotoSize_url(),
+                          self.pl2.cache_url() + '/test_%26quoting_testPhotoSize.jpg')
 
 
 
