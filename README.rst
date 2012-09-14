@@ -9,7 +9,10 @@ Please head over to our `online documentation <http://django-photologue.readthed
 
 Support
 -------
-
 If you have any questions or need help with any aspect of Photologue then please `join the mailing list
 <http://groups.google.com/group/django-photologue>`_.
+
+Travis CI status
+----------------
+.. image:: https://secure.travis-ci.org/richardbarran/django-photologue.png?branch=master
 
