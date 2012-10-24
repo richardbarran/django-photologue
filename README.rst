@@ -2,11 +2,7 @@ Photologue
 ==========
 
 Improved image management and photo gallery application for the Django web framework. Use it 
-to quickly put together photo galleries like this:
-
-.. image:: http://django-photologue.readthedocs.org/en/latest/_images/screenshot_mahoTBD.png
-   :align: center
-
+to quickly put together photo galleries.
 
 Documentation
 -------------
