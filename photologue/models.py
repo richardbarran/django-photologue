@@ -7,7 +7,7 @@ from datetime import datetime
 try:
     from django.utils.timezone import now
 except ImportError:
-    from datetime.datetime import now
+    now = datetime.now
 from inspect import isclass
 
 from django.db import models
