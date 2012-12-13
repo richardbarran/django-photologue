@@ -7,7 +7,10 @@ List of changes:
 - added some templatetags.
 - started using Sphinx for managing documentation.
 - started using Transifex for managing translations.
-- added 12 new translations.
+- added 12 new translations and improved some of the existing translations.
+- fixed issue #29 (quote URL of resized image properly).
+- misc improvements to clarity of unit tests.
+- added Django 1.4 timezone support.
 
 ===== 2.4 (13/08/2012) ====
 
