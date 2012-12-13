@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
-version = "2.4"
+version = '2.5'
 
 setup(
     name="django-photologue",
