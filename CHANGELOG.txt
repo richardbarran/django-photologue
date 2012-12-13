@@ -1,7 +1,8 @@
+Changelog for django-photologue
+===============================
 
-===== 2.5 (in development) ====
-
-List of changes:
+2.5 (unreleased)
+----------------
 
 - added a sitemap.xml.
 - added some templatetags.
@@ -12,7 +13,8 @@ List of changes:
 - misc improvements to clarity of unit tests.
 - added Django 1.4 timezone support.
 
-===== 2.4 (13/08/2012) ====
+2.4 (13/08/2012)
+----------------
 
 Please note:
 
