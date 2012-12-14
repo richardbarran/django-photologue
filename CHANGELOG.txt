@@ -14,6 +14,7 @@ Changelog for django-photologue
 - added some templatetags.
 - started using Sphinx for managing documentation.
 - started using Transifex for managing translations.
+- started using Travis CI.
 - added 12 new translations and improved some of the existing translations.
 - fixed issue #29 (quote URL of resized image properly).
 - misc improvements to clarity of unit tests.
