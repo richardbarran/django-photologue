@@ -26,100 +26,100 @@ class ImageResizeTest(PhotologueBaseTest):
         self.ps.delete()
 
     def test_resize_to_fit(self):
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (100, 75))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (75, 100))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (100, 100))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (100, 75))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (75, 100))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (100, 100))
 
     def test_resize_to_fit_width(self):
         self.s.size = (100, 0)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (100, 75))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (100, 133))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (100, 100))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (100, 75))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (100, 133))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (100, 100))
 
     def test_resize_to_fit_width_enlarge(self):
         self.s.size = (400, 0)
         self.s.upscale = True
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (400, 300))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (400, 533))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (400, 400))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (400, 300))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (400, 533))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (400, 400))
 
     def test_resize_to_fit_height(self):
         self.s.size = (0, 100)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (133, 100))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (75, 100))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (100, 100))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (133, 100))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (75, 100))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (100, 100))
 
     def test_resize_to_fit_height_enlarge(self):
         self.s.size = (0, 400)
         self.s.upscale = True
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (533, 400))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (300, 400))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (400, 400))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (533, 400))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (300, 400))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (400, 400))
 
     def test_resize_and_crop(self):
         self.s.crop = True
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), self.s.size)
-        self.assertEquals(self.pp.get_testPhotoSize_size(), self.s.size)
-        self.assertEquals(self.ps.get_testPhotoSize_size(), self.s.size)
+        self.assertEqual(self.pl.get_testPhotoSize_size(), self.s.size)
+        self.assertEqual(self.pp.get_testPhotoSize_size(), self.s.size)
+        self.assertEqual(self.ps.get_testPhotoSize_size(), self.s.size)
 
     def test_resize_rounding_to_fit(self):
         self.s.size = (113, 113)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (113, 85))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (85, 113))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (113, 113))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (113, 85))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (85, 113))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (113, 113))
 
     def test_resize_rounding_cropped(self):
         self.s.size = (113, 113)
         self.s.crop = True
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), self.s.size)
-        self.assertEquals(self.pp.get_testPhotoSize_size(), self.s.size)
-        self.assertEquals(self.ps.get_testPhotoSize_size(), self.s.size)
+        self.assertEqual(self.pl.get_testPhotoSize_size(), self.s.size)
+        self.assertEqual(self.pp.get_testPhotoSize_size(), self.s.size)
+        self.assertEqual(self.ps.get_testPhotoSize_size(), self.s.size)
 
     def test_resize_one_dimension_width(self):
         self.s.size = (100, 150)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (100, 75))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (100, 75))
 
     def test_resize_one_dimension_height(self):
         self.s.size = (200, 75)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (100, 75))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (100, 75))
 
     def test_resize_no_upscale(self):
         self.s.size = (1000, 1000)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (200, 150))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (200, 150))
 
     def test_resize_no_upscale_mixed_height(self):
         self.s.size = (400, 75)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (100, 75))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (100, 75))
 
     def test_resize_no_upscale_mixed_width(self):
         self.s.size = (100, 300)
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (100, 75))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (100, 75))
 
     def test_resize_no_upscale_crop(self):
         self.s.size = (1000, 1000)
         self.s.crop = True
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (1000, 1000))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (1000, 1000))
 
     def test_resize_upscale(self):
         self.s.size = (1000, 1000)
         self.s.upscale = True
         self.s.save()
-        self.assertEquals(self.pl.get_testPhotoSize_size(), (1000, 750))
-        self.assertEquals(self.pp.get_testPhotoSize_size(), (750, 1000))
-        self.assertEquals(self.ps.get_testPhotoSize_size(), (1000, 1000))
+        self.assertEqual(self.pl.get_testPhotoSize_size(), (1000, 750))
+        self.assertEqual(self.pp.get_testPhotoSize_size(), (750, 1000))
+        self.assertEqual(self.ps.get_testPhotoSize_size(), (1000, 1000))
 
 
 class PhotoSizeCacheTest(PhotologueBaseTest):

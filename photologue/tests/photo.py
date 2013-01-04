@@ -1,8 +1,7 @@
-import Image
 import os
 from django.conf import settings
 from django.core.files.base import ContentFile
-from photologue.models import Photo, PHOTOLOGUE_DIR
+from photologue.models import Image, Photo, PHOTOLOGUE_DIR
 from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PhotologueBaseTest, \
 QUOTING_IMAGE_PATH
 
@@ -36,12 +35,12 @@ class PhotoTest(PhotologueBaseTest):
     def test_count(self):
         for i in range(5):
             self.pl.get_testPhotoSize_url()
-        self.assertEquals(self.pl.view_count, 0)
+        self.assertEqual(self.pl.view_count, 0)
         self.s.increment_count = True
         self.s.save()
         for i in range(5):
             self.pl.get_testPhotoSize_url()
-        self.assertEquals(self.pl.view_count, 5)
+        self.assertEqual(self.pl.view_count, 5)
 
     def test_precache(self):
         # set the thumbnail photo size to pre-cache
@@ -56,31 +55,31 @@ class PhotoTest(PhotologueBaseTest):
         self.assertFalse(os.path.isfile(self.pl.get_testPhotoSize_filename()))
 
     def test_accessor_methods(self):
-        self.assertEquals(self.pl.get_testPhotoSize_photosize(), self.s)
-        self.assertEquals(self.pl.get_testPhotoSize_size(),
-                          Image.open(self.pl.get_testPhotoSize_filename()).size)
-        self.assertEquals(self.pl.get_testPhotoSize_url(),
-                          self.pl.cache_url() + '/' + \
-                          self.pl._get_filename_for_size(self.s))
-        self.assertEquals(self.pl.get_testPhotoSize_filename(),
-                          os.path.join(self.pl.cache_path(),
-                          self.pl._get_filename_for_size(self.s)))
+        self.assertEqual(self.pl.get_testPhotoSize_photosize(), self.s)
+        self.assertEqual(self.pl.get_testPhotoSize_size(),
+                         Image.open(self.pl.get_testPhotoSize_filename()).size)
+        self.assertEqual(self.pl.get_testPhotoSize_url(),
+                         self.pl.cache_url() + '/' + \
+                         self.pl._get_filename_for_size(self.s))
+        self.assertEqual(self.pl.get_testPhotoSize_filename(),
+                         os.path.join(self.pl.cache_path(),
+                         self.pl._get_filename_for_size(self.s)))
 
     def test_quoted_url(self):
         """Test for issue #29 - filenames of photos are incorrectly quoted when
         building a URL."""
 
         # Check that a 'normal' path works ok.
-        self.assertEquals(self.pl.get_testPhotoSize_url(),
-                          self.pl.cache_url() + '/test_landscape_testPhotoSize.jpg')
+        self.assertEqual(self.pl.get_testPhotoSize_url(),
+                         self.pl.cache_url() + '/test_landscape_testPhotoSize.jpg')
 
         # Now create a Photo with a name that needs quoting.
         self.pl2 = Photo(title='test', title_slug='test')
         self.pl2.image.save(os.path.basename(QUOTING_IMAGE_PATH),
                            ContentFile(open(QUOTING_IMAGE_PATH, 'rb').read()))
         self.pl2.save()
-        self.assertEquals(self.pl2.get_testPhotoSize_url(),
-                          self.pl2.cache_url() + '/test_%26quoting_testPhotoSize.jpg')
+        self.assertEqual(self.pl2.get_testPhotoSize_url(),
+                         self.pl2.cache_url() + '/test_%26quoting_testPhotoSize.jpg')
 
 
 

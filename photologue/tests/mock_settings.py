@@ -28,3 +28,5 @@ TEMPLATE_DIRS = (
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+SECRET_KEY = 'secret'
