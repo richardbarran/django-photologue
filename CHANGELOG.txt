@@ -4,7 +4,13 @@ Changelog for django-photologue
 2.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+Please note:
+
+1. Photologue now relies on Pillow instead of PIL. The easiest way to upgrade is
+to remove PIL completely, then install the new version of Photologue.
+
+- Switched from PIL to Pillow - hopefully this should make installing to new
+  environments easier.
 
 
 2.5 (2012-12-13)
