@@ -4,6 +4,10 @@ Photologue
 Improved image management and photo gallery application for the Django web framework. Use it 
 to quickly put together photo galleries.
 
+Examples
+--------
+We have a few `examples of sites using Photologue <https://github.com/jdriscoll/django-photologue/wiki/Examples-and-forks>`_ on our wiki.
+
 Documentation
 -------------
 Please head over to our `online documentation <http://django-photologue.readthedocs.org/en/latest/index.html>`_ for instructions on installing and configuring this application.
