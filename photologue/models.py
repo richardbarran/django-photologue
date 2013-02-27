@@ -4,10 +4,7 @@ import shutil
 import zipfile
 
 from datetime import datetime
-try:
-    from django.utils.timezone import now
-except ImportError:
-    now = datetime.now
+from django.utils.timezone import now
 from inspect import isclass
 
 from django.db import models
