@@ -16,7 +16,12 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
-from django.utils.encoding import smart_str, force_unicode, filepath_to_uri
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    # Django < 1.4.2
+    from django.utils.encoding import force_unicode as force_text
+from django.utils.encoding import smart_str, filepath_to_uri
 from django.utils.functional import curry
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
@@ -183,7 +188,7 @@ class Gallery(models.Model):
             photo_set = self.public()
         else:
             photo_set = self.photos.all()
-        return random.sample(photo_set, count)
+        return random.sample(set(photo_set), count)
 
     def photo_count(self, public=True):
         """Return a count of all the photos in this gallery."""
@@ -315,7 +320,7 @@ class ImageModel(models.Model):
         return '/'.join([os.path.dirname(self.image.url), "cache"])
 
     def image_filename(self):
-        return os.path.basename(force_unicode(self.image.path))
+        return os.path.basename(force_text(self.image.path))
 
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
