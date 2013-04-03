@@ -34,6 +34,6 @@ setup(
                    'Topic :: Utilities'],
     install_requires=['Django>=1.3', # Change to class-based views means 1.3 minimum. 
                       'South>=0.7.5', # Might work with earlier versions, but not tested.
-                      'Pillow>=1.7.8', # Might work with earlier versions, but not tested.
+                      'Pillow>=2.0', # Might work with earlier versions, but not tested.
                       ],
 )
