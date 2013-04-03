@@ -511,7 +511,7 @@ class Photo(ImageModel):
     title_slug = models.SlugField(_('slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
-    date_added = models.DateTimeField(_('date added'), default=now, editable=False)
+    date_added = models.DateTimeField(_('date added'), default=now)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
