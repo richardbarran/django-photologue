@@ -12,4 +12,5 @@ install:
   - python setup.py develop
   - pip install -r requirements_test.txt --use-mirrors
 
-script: make test
+script: cd example_project; python manage.py test photologue
+
