@@ -9,7 +9,7 @@ env:
 
 install:
   - pip install django==$DJANGO_VERSION
-  - "python setup.py develop"
-  - "pip install -r requirements_test.txt --use-mirrors"
+  - python setup.py develop
+  - pip install -r requirements_test.txt --use-mirrors
 
 script: make test
