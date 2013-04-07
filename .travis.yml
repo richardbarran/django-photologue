@@ -10,7 +10,6 @@ env:
 install:
   - pip install django==$DJANGO_VERSION
   - python setup.py develop
-  - pip install -r requirements_test.txt --use-mirrors
 
 script: cd example_project; python manage.py test photologue
 
