@@ -72,7 +72,7 @@ Open browser to http://127.0.0.1:8000
 
 Thank you
 =========
-This example project is based on the earlier `photologue_demo project<https://github.com/richardbarran/photologue_demo>`.
+This example project is based on the earlier `photologue_demo project <https://github.com/richardbarran/photologue_demo>`_.
 This project included contributions from: crainbf, tomkingston, bmcorser.
 
 
