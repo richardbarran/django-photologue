@@ -11,7 +11,8 @@ to remove PIL completely, then install the new version of Photologue.
 
 - Switched from PIL to Pillow - hopefully this should make installing to new
   environments easier.
-
+- Allow editing of Photo added date (temp way of sorting photos).
+- Added an example project to help people wanting to contribute to the project.
 
 2.5 (2012-12-13)
 ----------------
