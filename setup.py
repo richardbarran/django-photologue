@@ -34,6 +34,6 @@ setup(
                    'Topic :: Utilities'],
     install_requires=['Django>=1.4', # Timezone support means 1.4 minimum.
                       'South>=0.7.5', # Might work with earlier versions, but not tested.
-                      'Pillow>=1.7.8', # Might work with earlier versions, but not tested.
+                      'Pillow>=2.0.0', # Might work with earlier versions, but not tested. YMMV. Note that 2.0.0 needed for Mac users.
                       ],
 )
