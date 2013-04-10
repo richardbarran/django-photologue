@@ -1,7 +1,4 @@
-try:
-    from django.conf.urls import *
-except ImportError:  # Django < 1.4
-    from django.conf.urls.defaults import *
+from django.conf.urls import *
 from photologue.views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
     PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
