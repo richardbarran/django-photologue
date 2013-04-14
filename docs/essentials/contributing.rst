@@ -7,6 +7,11 @@ open-source project before - please do not hesitate to offer help. Fixes for typ
 documentation, extra unit tests, etc... are welcome. And look in the issues
 list for anything tagged "easy_win".
 
+Example project
+---------------
+Django-photologue includes an example project to get you quickly ready for 
+contributing to the project - do not hesitate to use it!
+
 Workflow
 --------
 Django-photologue is hosted on Github, so if you have not already done so, read the excellent
