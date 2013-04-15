@@ -13,6 +13,13 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+
+# from imagekit import ImageSpec
+# from imagekit.processors import ResizeToFill
+# from imagekit.cachefiles import ImageCacheFile
+# from imagekit.generatorlibrary import Thumbnail
+from photologue.processors import PhotologueThumbnail
+
 try:
     from django.utils.encoding import force_text
 except ImportError:
@@ -61,6 +68,10 @@ except ImportError:
 from utils import EXIF
 from utils.reflection import add_reflection
 from utils.watermark import apply_watermark
+
+
+from imagekit.cachefiles import ImageCacheFile
+
 
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
@@ -335,13 +346,12 @@ class ImageModel(models.Model):
 
     def _get_SIZE_url(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
+        image = None
         if not self.size_exists(photosize):
-            self.create_size(photosize)
+            image = self.create_size(photosize)
         if photosize.increment_count:
             self.increment_count()
-        return '/'.join([
-            self.cache_url(),
-            filepath_to_uri(self._get_filename_for_size(photosize.name))])
+        return image
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
@@ -411,46 +421,23 @@ class ImageModel(models.Model):
         return im
 
     def create_size(self, photosize):
-        if self.size_exists(photosize):
-            return
-        if not os.path.isdir(self.cache_path()):
-            os.makedirs(self.cache_path())
-        try:
-            im = Image.open(self.image.path)
-        except IOError:
-            return
-        # Save the original format
-        im_format = im.format
-        # Apply effect if found
+        effect = None
         if self.effect is not None:
-            im = self.effect.pre_process(im)
+            effect = self.effect
         elif photosize.effect is not None:
-            im = photosize.effect.pre_process(im)
-        # Resize/crop image
-        if im.size != photosize.size and photosize.size != (0, 0):
-            im = self.resize_image(im, photosize)
-        # Apply watermark if found
-        if photosize.watermark is not None:
-            im = photosize.watermark.post_process(im)
-        # Apply effect if found
-        if self.effect is not None:
-            im = self.effect.post_process(im)
-        elif photosize.effect is not None:
-            im = photosize.effect.post_process(im)
-        # Save file
-        im_filename = getattr(self, "get_%s_filename" % photosize.name)()
-        try:
-            if im_format != 'JPEG':
-                try:
-                    im.save(im_filename)
-                    return
-                except KeyError:
-                    pass
-            im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
-        except IOError, e:
-            if os.path.isfile(im_filename):
-                os.unlink(im_filename)
-            raise e
+            effect = photosize.effect
+        photosize.crop_from = self.crop_from
+        generator = PhotologueThumbnail(
+            source=self.image,
+            photosize=photosize,
+            effect=effect
+        )
+        cache = ImageCacheFile(generator)
+        cache.generate()
+        return cache.url
+
+
+
 
     def remove_size(self, photosize, remove_dirs=True):
         if not self.size_exists(photosize):
