@@ -42,10 +42,8 @@ class PhotologueSpec(ImageSpec):
         elif photosize.effect is not None:
             effect = photosize.effect
 
-        photosize.crop_from = photo.crop_from
-
         self.processors = []
-        self.set_photosize(photosize)
+        self.set_photosize(photosize=photosize, crop_from=photo.crop_from)
         self.set_effect(effect)
         self.set_watermark(photosize.watermark)
 
@@ -78,12 +76,12 @@ class PhotologueSpec(ImageSpec):
                 )
             )
 
-    def set_photosize(self, photosize):
-        if not photosize:
+    def set_photosize(self, photosize, crop_from):
+        if not photosize and crop_from:
             return None
 
         try:
-            imagekit_anchor = CROP_ANCHOR_OPTIONS[photosize.crop_from]
+            imagekit_anchor = CROP_ANCHOR_OPTIONS[crop_from]
         except KeyError:
             imagekit_anchor = None
 
