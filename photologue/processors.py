@@ -43,7 +43,7 @@ class PhotologueSpec(ImageSpec):
             effect = photosize.effect
 
         self.processors = []
-        self.set_photosize(photosize=photosize, crop_from=photo.crop_from)
+        self.set_size(photosize=photosize, crop_from=photo.crop_from)
         self.set_effect(effect)
         self.set_watermark(photosize.watermark)
 
@@ -76,7 +76,7 @@ class PhotologueSpec(ImageSpec):
                 )
             )
 
-    def set_photosize(self, photosize, crop_from):
+    def set_size(self, photosize, crop_from):
         if not photosize and crop_from:
             return None
 
