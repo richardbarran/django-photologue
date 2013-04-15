@@ -18,7 +18,7 @@ from django.template.defaultfilters import slugify
 # from imagekit.processors import ResizeToFill
 # from imagekit.cachefiles import ImageCacheFile
 # from imagekit.generatorlibrary import Thumbnail
-from photologue.processors import PhotologueThumbnail
+from photologue.processors import PhotologueSpec
 
 try:
     from django.utils.encoding import force_text
@@ -421,17 +421,7 @@ class ImageModel(models.Model):
         return im
 
     def create_size(self, photosize):
-        effect = None
-        if self.effect is not None:
-            effect = self.effect
-        elif photosize.effect is not None:
-            effect = photosize.effect
-        photosize.crop_from = self.crop_from
-        generator = PhotologueThumbnail(
-            source=self.image,
-            photosize=photosize,
-            effect=effect
-        )
+        generator = PhotologueSpec(photo=self, photosize=photosize)
         cache = ImageCacheFile(generator)
         cache.generate()
         return cache.url

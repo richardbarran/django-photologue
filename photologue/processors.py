@@ -27,21 +27,29 @@ class Watermark(object):
         self.watermark = watermark
 
     def process(self, img):
-        import ipdb; ipdb.set_trace()
+        self.watermark.image.seek(0)
         mark = Image.open(self.watermark.image.file)
         img = apply_watermark(im=img, mark=mark, position=self.watermark.style, opacity=self.watermark.opacity)
         return img
 
 
-class PhotologueThumbnail(ImageSpec):
-    def __init__(self, photosize=None, effect=None, reflection=None, **kwargs):
+class PhotologueSpec(ImageSpec):
+    def __init__(self, photo, photosize, **kwargs):
+
+        effect = None
+        if photo.effect is not None:
+            effect = photo.effect
+        elif photosize.effect is not None:
+            effect = photosize.effect
+
+        photosize.crop_from = photo.crop_from
+
         self.processors = []
         self.set_photosize(photosize)
         self.set_effect(effect)
         self.set_watermark(photosize.watermark)
 
-
-        super(PhotologueThumbnail, self).__init__(**kwargs)
+        super(PhotologueSpec, self).__init__(source=photo.image, **kwargs)
 
 
     def set_effect(self, effect):
@@ -96,5 +104,4 @@ class PhotologueThumbnail(ImageSpec):
         )
 
 
-
-register.generator('photologue:thumbnail', PhotologueThumbnail)
+register.generator('photologue:thumbnail', PhotologueSpec)
