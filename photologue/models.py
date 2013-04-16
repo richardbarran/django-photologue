@@ -83,7 +83,7 @@ IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 
 # Path to sample image
 SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg')) # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
 
-NOT_FOUND_IMAGE_URL = getattr(settings, 'PHOTOLOGUE_NOT_FOUND_IMAGE_PATH', os.path.join(settings.STATIC_URL, 'photologue', 'notfound.png')
+NOT_FOUND_IMAGE_URL = getattr(settings, 'PHOTOLOGUE_NOT_FOUND_IMAGE_PATH', os.path.join(settings.STATIC_URL, 'photologue', 'notfound.png'))
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
 
