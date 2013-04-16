@@ -1,7 +1,7 @@
 import os
 import random
-import shutil
 import zipfile
+import logging
 
 from datetime import datetime
 from django.utils.timezone import now
@@ -14,10 +14,6 @@ from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
-# from imagekit import ImageSpec
-# from imagekit.processors import ResizeToFill
-# from imagekit.cachefiles import ImageCacheFile
-# from imagekit.generatorlibrary import Thumbnail
 from photologue.processors import PhotologueSpec
 
 try:
@@ -73,6 +69,8 @@ from utils.watermark import apply_watermark
 from imagekit.cachefiles import ImageCacheFile
 
 
+logger = logging.getLogger(__name__)
+
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
@@ -85,6 +83,7 @@ IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 
 # Path to sample image
 SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg')) # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
 
+NOT_FOUND_IMAGE_URL = getattr(settings, 'PHOTOLOGUE_NOT_FOUND_IMAGE_PATH', os.path.join(settings.STATIC_URL, 'photologue', 'notfound.png')
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
 
@@ -344,7 +343,10 @@ class ImageModel(models.Model):
         if photosize.increment_count:
             self.increment_count()
         cache = self.get_cached_file(photosize)
-        return cache.url
+        try:
+            return cache.url
+        except IOError:
+            return NOT_FOUND_IMAGE_URL
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
@@ -382,7 +384,10 @@ class ImageModel(models.Model):
 
     def create_size(self, photosize):
         cache = self.get_cached_file(photosize)
-        cache.generate()
+        try:
+            cache.generate()
+        except IOError, e:
+            logger.error(e)
 
 
     def remove_size(self, photosize, remove_dirs=True):
