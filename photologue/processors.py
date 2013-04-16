@@ -79,11 +79,14 @@ class PhotologueSpec(ImageSpec):
     def set_size(self, photosize, crop_from):
         if not photosize and crop_from:
             return None
-
-        try:
+        imagekit_anchor = None
+        if photosize.crop and crop_from:
             imagekit_anchor = CROP_ANCHOR_OPTIONS[crop_from]
-        except KeyError:
-            imagekit_anchor = None
+
+        if photosize.width == 0:
+            photosize.width = None
+        if photosize.height == 0:
+            photosize.height = None
 
         self.processors.append(
             ThumbnailProcessor(

@@ -327,36 +327,29 @@ class ImageModel(models.Model):
     def cache_url(self):
         return '/'.join([os.path.dirname(self.image.url), "cache"])
 
-    def image_filename(self):
-        return os.path.basename(force_text(self.image.path))
-
-    def _get_filename_for_size(self, size):
-        size = getattr(size, 'name', size)
-        base, ext = os.path.splitext(self.image_filename())
-        return ''.join([base, '_', size, ext])
-
     def _get_SIZE_photosize(self, size):
         return PhotoSizeCache().sizes.get(size)
 
     def _get_SIZE_size(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
+
         if not self.size_exists(photosize):
             self.create_size(photosize)
         return Image.open(self._get_SIZE_filename(size)).size
 
     def _get_SIZE_url(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
-        image = None
         if not self.size_exists(photosize):
-            image = self.create_size(photosize)
+            self.create_size(photosize)
         if photosize.increment_count:
             self.increment_count()
-        return image
+        cache = self.get_cached_file(photosize)
+        return cache.url
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
-        return smart_str(os.path.join(self.cache_path(),
-                            self._get_filename_for_size(photosize.name)))
+        cache = self.get_cached_file(photosize)
+        return os.path.join(settings.MEDIA_ROOT, cache.generator.cachefile_name)
 
     def increment_count(self):
         self.view_count += 1
@@ -375,74 +368,34 @@ class ImageModel(models.Model):
 
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_filename" % photosize.name, None)
-        if func is not None:
-            if os.path.isfile(func()):
-                return True
-        return False
+        try:
+            return self.image.storage.exists(func())
+        except IOError:
+            return False
 
-    def resize_image(self, im, photosize):
-        cur_width, cur_height = im.size
-        new_width, new_height = photosize.size
-        if photosize.crop:
-            ratio = max(float(new_width) / cur_width, float(new_height) / cur_height)
-            x = (cur_width * ratio)
-            y = (cur_height * ratio)
-            xd = abs(new_width - x)
-            yd = abs(new_height - y)
-            x_diff = int(xd / 2)
-            y_diff = int(yd / 2)
-            if self.crop_from == 'top':
-                box = (int(x_diff), 0, int(x_diff + new_width), new_height)
-            elif self.crop_from == 'left':
-                box = (0, int(y_diff), new_width, int(y_diff + new_height))
-            elif self.crop_from == 'bottom':
-                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y)) # y - yd = new_height
-            elif self.crop_from == 'right':
-                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height)) # x - xd = new_width
-            else:
-                box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
-            im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
-        else:
-            if not new_width == 0 and not new_height == 0:
-                ratio = min(float(new_width) / cur_width,
-                            float(new_height) / cur_height)
-            else:
-                if new_width == 0:
-                    ratio = float(new_height) / cur_height
-                else:
-                    ratio = float(new_width) / cur_width
-            new_dimensions = (int(round(cur_width * ratio)),
-                              int(round(cur_height * ratio)))
-            if new_dimensions[0] > cur_width or \
-               new_dimensions[1] > cur_height:
-                if not photosize.upscale:
-                    return im
-            im = im.resize(new_dimensions, Image.ANTIALIAS)
-        return im
 
-    def create_size(self, photosize):
+
+    def get_cached_file(self, photosize):
         generator = PhotologueSpec(photo=self, photosize=photosize)
         cache = ImageCacheFile(generator)
+        return cache
+
+    def create_size(self, photosize):
+        cache = self.get_cached_file(photosize)
         cache.generate()
-        return cache.url
-
-
 
 
     def remove_size(self, photosize, remove_dirs=True):
         if not self.size_exists(photosize):
             return
         filename = getattr(self, "get_%s_filename" % photosize.name)()
-        if os.path.isfile(filename):
-            os.remove(filename)
-        if remove_dirs:
-            self.remove_cache_dirs()
+        if self.image.storage.exists(filename):
+            self.image.storage.delete(filename)
 
     def clear_cache(self):
         cache = PhotoSizeCache()
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
-        self.remove_cache_dirs()
 
     def pre_cache(self):
         cache = PhotoSizeCache()
@@ -450,11 +403,6 @@ class ImageModel(models.Model):
             if photosize.pre_cache:
                 self.create_size(photosize)
 
-    def remove_cache_dirs(self):
-        try:
-            os.removedirs(self.cache_path())
-        except:
-            pass
 
     def save(self, *args, **kwargs):
         if self.date_taken is None:
@@ -483,9 +431,8 @@ class ImageModel(models.Model):
         # http://haineault.com/blog/147/
         # The data loss scenarios mentioned in the docs hopefully do not apply
         # to Photologue!
-        path = self.image.path
+        self.image.storage.delete(self.image)
         super(ImageModel, self).delete()
-        os.remove(path)
 
 
 class Photo(ImageModel):
