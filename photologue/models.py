@@ -1,7 +1,7 @@
 import os
 import random
-import shutil
 import zipfile
+import logging
 
 from datetime import datetime
 from django.utils.timezone import now
@@ -13,6 +13,9 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+
+from photologue.processors import PhotologueSpec
+
 try:
     from django.utils.encoding import force_text
 except ImportError:
@@ -62,6 +65,12 @@ from utils import EXIF
 from utils.reflection import add_reflection
 from utils.watermark import apply_watermark
 
+
+from imagekit.cachefiles import ImageCacheFile
+
+
+logger = logging.getLogger(__name__)
+
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
@@ -74,6 +83,7 @@ IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 
 # Path to sample image
 SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg')) # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
 
+NOT_FOUND_IMAGE_URL = getattr(settings, 'PHOTOLOGUE_NOT_FOUND_IMAGE_PATH', os.path.join(settings.STATIC_URL, 'photologue', 'notfound.png'))
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
 
@@ -316,19 +326,12 @@ class ImageModel(models.Model):
     def cache_url(self):
         return '/'.join([os.path.dirname(self.image.url), "cache"])
 
-    def image_filename(self):
-        return os.path.basename(force_text(self.image.path))
-
-    def _get_filename_for_size(self, size):
-        size = getattr(size, 'name', size)
-        base, ext = os.path.splitext(self.image_filename())
-        return ''.join([base, '_', size, ext])
-
     def _get_SIZE_photosize(self, size):
         return PhotoSizeCache().sizes.get(size)
 
     def _get_SIZE_size(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
+
         if not self.size_exists(photosize):
             self.create_size(photosize)
         return Image.open(self._get_SIZE_filename(size)).size
@@ -339,14 +342,16 @@ class ImageModel(models.Model):
             self.create_size(photosize)
         if photosize.increment_count:
             self.increment_count()
-        return '/'.join([
-            self.cache_url(),
-            filepath_to_uri(self._get_filename_for_size(photosize.name))])
+        cache = self.get_cached_file(photosize)
+        try:
+            return cache.url
+        except IOError:
+            return NOT_FOUND_IMAGE_URL
 
     def _get_SIZE_filename(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
-        return smart_str(os.path.join(self.cache_path(),
-                            self._get_filename_for_size(photosize.name)))
+        cache = self.get_cached_file(photosize)
+        return os.path.join(settings.MEDIA_ROOT, cache.generator.cachefile_name)
 
     def increment_count(self):
         self.view_count += 1
@@ -365,107 +370,37 @@ class ImageModel(models.Model):
 
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_filename" % photosize.name, None)
-        if func is not None:
-            if os.path.isfile(func()):
-                return True
-        return False
+        try:
+            return self.image.storage.exists(func())
+        except IOError:
+            return False
 
-    def resize_image(self, im, photosize):
-        cur_width, cur_height = im.size
-        new_width, new_height = photosize.size
-        if photosize.crop:
-            ratio = max(float(new_width) / cur_width, float(new_height) / cur_height)
-            x = (cur_width * ratio)
-            y = (cur_height * ratio)
-            xd = abs(new_width - x)
-            yd = abs(new_height - y)
-            x_diff = int(xd / 2)
-            y_diff = int(yd / 2)
-            if self.crop_from == 'top':
-                box = (int(x_diff), 0, int(x_diff + new_width), new_height)
-            elif self.crop_from == 'left':
-                box = (0, int(y_diff), new_width, int(y_diff + new_height))
-            elif self.crop_from == 'bottom':
-                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y)) # y - yd = new_height
-            elif self.crop_from == 'right':
-                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height)) # x - xd = new_width
-            else:
-                box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
-            im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
-        else:
-            if not new_width == 0 and not new_height == 0:
-                ratio = min(float(new_width) / cur_width,
-                            float(new_height) / cur_height)
-            else:
-                if new_width == 0:
-                    ratio = float(new_height) / cur_height
-                else:
-                    ratio = float(new_width) / cur_width
-            new_dimensions = (int(round(cur_width * ratio)),
-                              int(round(cur_height * ratio)))
-            if new_dimensions[0] > cur_width or \
-               new_dimensions[1] > cur_height:
-                if not photosize.upscale:
-                    return im
-            im = im.resize(new_dimensions, Image.ANTIALIAS)
-        return im
+
+
+    def get_cached_file(self, photosize):
+        generator = PhotologueSpec(photo=self, photosize=photosize)
+        cache = ImageCacheFile(generator)
+        return cache
 
     def create_size(self, photosize):
-        if self.size_exists(photosize):
-            return
-        if not os.path.isdir(self.cache_path()):
-            os.makedirs(self.cache_path())
+        cache = self.get_cached_file(photosize)
         try:
-            im = Image.open(self.image.path)
-        except IOError:
-            return
-        # Save the original format
-        im_format = im.format
-        # Apply effect if found
-        if self.effect is not None:
-            im = self.effect.pre_process(im)
-        elif photosize.effect is not None:
-            im = photosize.effect.pre_process(im)
-        # Resize/crop image
-        if im.size != photosize.size and photosize.size != (0, 0):
-            im = self.resize_image(im, photosize)
-        # Apply watermark if found
-        if photosize.watermark is not None:
-            im = photosize.watermark.post_process(im)
-        # Apply effect if found
-        if self.effect is not None:
-            im = self.effect.post_process(im)
-        elif photosize.effect is not None:
-            im = photosize.effect.post_process(im)
-        # Save file
-        im_filename = getattr(self, "get_%s_filename" % photosize.name)()
-        try:
-            if im_format != 'JPEG':
-                try:
-                    im.save(im_filename)
-                    return
-                except KeyError:
-                    pass
-            im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
+            cache.generate()
         except IOError, e:
-            if os.path.isfile(im_filename):
-                os.unlink(im_filename)
-            raise e
+            logger.error(e)
+
 
     def remove_size(self, photosize, remove_dirs=True):
         if not self.size_exists(photosize):
             return
         filename = getattr(self, "get_%s_filename" % photosize.name)()
-        if os.path.isfile(filename):
-            os.remove(filename)
-        if remove_dirs:
-            self.remove_cache_dirs()
+        if self.image.storage.exists(filename):
+            self.image.storage.delete(filename)
 
     def clear_cache(self):
         cache = PhotoSizeCache()
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
-        self.remove_cache_dirs()
 
     def pre_cache(self):
         cache = PhotoSizeCache()
@@ -473,11 +408,6 @@ class ImageModel(models.Model):
             if photosize.pre_cache:
                 self.create_size(photosize)
 
-    def remove_cache_dirs(self):
-        try:
-            os.removedirs(self.cache_path())
-        except:
-            pass
 
     def save(self, *args, **kwargs):
         if self.date_taken is None:
@@ -506,9 +436,8 @@ class ImageModel(models.Model):
         # http://haineault.com/blog/147/
         # The data loss scenarios mentioned in the docs hopefully do not apply
         # to Photologue!
-        path = self.image.path
+        self.image.storage.delete(self.image)
         super(ImageModel, self).delete()
-        os.remove(path)
 
 
 class Photo(ImageModel):
