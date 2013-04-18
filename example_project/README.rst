@@ -47,6 +47,12 @@ Install requirements::
 	cd example_project
 	pip install -r requirements.txt
 
+**Note**: this will install Pillow, which is notoriously tricky to install; sometimes it
+will install smoothly out of the box, sometimes you can spend hours figuring it out - installation
+issues vary from platform to platform, and from one OS release to the next. Google
+is your friend here, and it's worth noting that Pillow is a fork of PIL,
+so googling 'PIL installation <your platform>' can also help.
+
 The project is set up to run SQLite in dev so that it can be quickly started
 with no configuration required (you can of course specify another database in
 the settings file). To setup the database::
