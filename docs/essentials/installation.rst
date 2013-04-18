@@ -24,8 +24,19 @@ Dependencies
 
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
 * `South <http://south.aeracode.org/>`_.
+* `Django <https://www.djangoproject.com/>`_.
 
-These 2 apps will be installed automatically if they are not already there.
+These 3 apps will be installed automatically if they are not already there.
+
+.. note::
+
+    * Pillow is notoriously tricky to install; sometimes it will install smoothly
+      out of the box, sometimes you can spend hours figuring it out - installation
+      issues vary from platform to platform, and from one OS release to the next. Google
+      is your friend here, and it's worth noting that Pillow is a fork of PIL,
+      so googling 'PIL installation <your platform>' can also help.
+    * Photologue, like Django itself, only supports the last 2 releases of Django - 
+      so it will automatically try to install at least version (current release - 1).
 
 Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 
