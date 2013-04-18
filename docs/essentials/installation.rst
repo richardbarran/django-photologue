@@ -7,15 +7,17 @@ Introduction
 ------------
 The easiest way to install Photologue is with pip::
 
-   pip install django-photologue
+    pip install django-photologue
 
-You can verify Photologue is available to your project by running the following
-commands from within your project directory::
+If you like taking risks, you can also install the development
+version which is on `Github <https://github.com/>`_::
 
-    manage.py shell
-    >>> import photologue
-    >>> photologue.VERSION
-    (2, 0, 'rc1')
+    git clone git://github.com/jdriscoll/django-photologue.git
+    cd django-photologue
+    python setup.py install
+
+(that said, the risk should be minimal - like `Django <https://www.djangoproject.com/>`_
+itself, we try to keep the code in the master branch bug-free).
 
 Dependencies
 ------------
