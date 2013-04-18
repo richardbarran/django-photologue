@@ -22,7 +22,7 @@ itself, we try to keep the code in the master branch bug-free).
 Dependencies
 ------------
 
-* `PIL <http://www.pythonware.com/products/pil/>`_.
+* `Pillow <http://python-imaging.github.io/Pillow/>`_.
 * `South <http://south.aeracode.org/>`_.
 
 These 2 apps will be installed automatically if they are not already there.
