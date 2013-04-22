@@ -5,6 +5,19 @@ from setuptools import setup, find_packages
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
+
+def get_required_packages(path):
+    required = []
+    with open(path) as f:
+        for line in f.read().splitlines():
+            if not line.startswith('-r'):
+                try:
+                    i = line.index('#')
+                    required.append(line[:i].strip())
+                except:
+                    required.append(line)
+    return required
+
 version = '2.6.dev0'
 
 setup(
@@ -25,15 +38,12 @@ setup(
     },
     zip_safe=False,
     classifiers=['Development Status :: 5 - Production/Stable',
-                   'Environment :: Web Environment',
-                   'Framework :: Django',
-                   'Intended Audience :: Developers',
-                   'License :: OSI Approved :: BSD License',
-                   'Operating System :: OS Independent',
-                   'Programming Language :: Python',
-                   'Topic :: Utilities'],
-    install_requires=['Django>=1.4', # Timezone support means 1.4 minimum.
-                      'South>=0.7.5', # Might work with earlier versions, but not tested.
-                      'Pillow>=2.0.0', # Might work with earlier versions, but not tested. YMMV. Note that 2.0.0 needed for Mac users.
-                      ],
+                 'Environment :: Web Environment',
+                 'Framework :: Django',
+                 'Intended Audience :: Developers',
+                 'License :: OSI Approved :: BSD License',
+                 'Operating System :: OS Independent',
+                 'Programming Language :: Python',
+                 'Topic :: Utilities'],
+    install_requires=get_required_packages('example_project/requirements.txt'),
 )
