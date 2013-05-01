@@ -49,6 +49,7 @@ Configure Your Django Settings
          # ...other installed applications,
          'photologue',
          'south',
+         'tagging',
     )
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and
