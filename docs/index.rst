@@ -19,8 +19,8 @@ Contents:
 .. toctree::
     :maxdepth: 2
 
-    essentials/installation
-    essentials/contributing
+    pages/installation
+    pages/contributing
 
 Indices and tables
 ==================
