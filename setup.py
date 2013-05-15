@@ -12,7 +12,7 @@ setup(
     version=version,
     description="Powerful image management for the Django web framework.",
     author="Justin Driscoll, Marcos Daniel Petry, Richard Barran",
-    author_email="justin@driscolldev.com, marcospetry@gmail.com",
+    author_email="justin@driscolldev.com, marcospetry@gmail.com, richard@arbee-design.co.uk",
     url="https://github.com/jdriscoll/django-photologue",
     packages=find_packages(),
     package_data={
