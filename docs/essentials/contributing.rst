@@ -9,28 +9,22 @@ list for anything tagged "easy_win".
 
 Example project
 ---------------
-Django-photologue includes an example project to get you quickly ready for 
+Photologue includes an example project to get you quickly ready for 
 contributing to the project - do not hesitate to use it!
 
 Workflow
 --------
-Django-photologue is hosted on Github, so if you have not already done so, read the excellent
+Photologue is hosted on Github, so if you have not already done so, read the excellent
 `Github help pages <https://help.github.com/articles/fork-a-repo>`_. We try to keep the workflow
-as simple as possible, so we more-or-less follow the recommendations in the 
-`"GitHub Flow" blog post <http://scottchacon.com/2011/08/31/github-flow.html>`_.
+as simple as possible; most pull requests are merged straight into the master branch.
 
-* The "more or less" is because we don't do immediate releases.
+Features that will take a while to develop might warrant a separate branch in the project;
+at present only the ImageKit integration project is run on a separate branch.
 
 Coding style
 ------------
-Nothing surprising here - just try to `follow the conventions used by Django itself 
-<https://docs.djangoproject.com/en/1.4/internals/contributing/writing-code/>`_.
-
-New features
-------------
-If you’re interested in developing a new feature for Photologue, it is recommended that you first 
-discuss it on the `mailing list <http://groups.google.com/group/django-photologue>`_ so as not to 
-do any work that might not get merged in anyway.
+No surprises here - just try to `follow the conventions used by Django itself 
+<https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/>`_.
 
 Unit tests
 ----------
@@ -40,26 +34,55 @@ plenty of tests.
 Documentation
 -------------
 Keeping the documentation up-to-date is very important - so if your code changes
-how Photologue works, please check that the documentation is still accurate, and
+how Photologue works, or adds a new feature, please check that the documentation is still accurate, and
 update it if required.
 
 We use `Sphinx <http://sphinx.pocoo.org/>`_ to prepare the documentation; please refer to the excellent docs
 on that site for help.
 
-P.S. The CHANGELOG is part of the documentation :-) so if your patch needs the
-end user to do something - e.g. run a South migration - don't forget to update
-it!
+.. note::
+    
+    The CHANGELOG is part of the documentation, so if your patch needs the
+    end user to do something - e.g. run a South migration - don't forget to update
+    it!
 
 Translations
 ------------
-`Photologue manages the application translations with Transifex 
+`Photologue manages string translations with Transifex 
 <https://www.transifex.com/projects/p/django-photologue/>`_. Contributions
 are very welcome, either by editing the translations directly on the Transifex
 site, or by submitting pull requests with updated .po files.
 
-Finally
--------
-Remember that the maintainer looks after django-photologue in his spare time -
+New features
+------------
+In the wiki there is a `wishlist of new features already planned
+for Photologue <https://github.com/jdriscoll/django-photologue/wiki/Photologue-3.X-wishlist>`_ - you are welcome to suggest other useful improvements.
+
+If you’re interested in developing a new feature, it is recommended that you first 
+discuss it on the `mailing list <http://groups.google.com/group/django-photologue>`_ 
+or open a new ticket in Github, in order to avoid working on a feature that will
+not get accepted as it is judged to not fit in with the goals of Photologue.
+
+A bit of history
+~~~~~~~~~~~~~~~~
+Photologue was started by Justin Driscoll in 2007. He quickly built it into a powerful
+photo gallery and image processing application, and it became successful.
+
+Justin then moved onto other projects, and no longer had the time required to maintain
+Photologue - there was only one commit between August 2009 and August 2012, and 
+approximately 70 open tickets on the Google Code project page.
+
+At this point Richard Barran took over as maintainer of the project. First priority
+was to improve the infrastructure of the project: moving to Github, adding South,
+Sphinx for documentation, Transifex for translations, Travis for continuous integration,
+zest.releaser.
+
+The codebase has not changed much so far - and it needs quite a bit of TLC
+(Tender Loving Care), and new features are waiting to be added. This is where you step in...
+
+And finally...
+--------------
+Please remember that the maintainer looks after Photologue in his spare time -
 so it might be a few weeks before your pull request gets looked at... and the pull
 requests that are nicely formatted, with code, tests and docs included, will 
-always get reviewed first :-)
+always get reviewed first ;-)

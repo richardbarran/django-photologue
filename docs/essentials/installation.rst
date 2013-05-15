@@ -9,15 +9,15 @@ The easiest way to install Photologue is with pip::
 
     pip install django-photologue
 
-If you like taking risks, you can also install the development
+You can also install the development
 version which is on `Github <https://github.com/>`_::
 
     git clone git://github.com/jdriscoll/django-photologue.git
     cd django-photologue
     python setup.py install
 
-(that said, the risk should be minimal - like `Django <https://www.djangoproject.com/>`_
-itself, we try to keep the code in the master branch bug-free).
+This code should work ok - like `Django <https://www.djangoproject.com/>`_
+itself, we try to keep the master branch bug-free.
 
 Dependencies
 ------------
@@ -30,13 +30,13 @@ These 3 apps will be installed automatically if they are not already there.
 
 .. note::
 
-    * Pillow is notoriously tricky to install; sometimes it will install smoothly
+    * Pillow can be tricky to install; sometimes it will install smoothly
       out of the box, sometimes you can spend hours figuring it out - installation
-      issues vary from platform to platform, and from one OS release to the next. Google
-      is your friend here, and it's worth noting that Pillow is a fork of PIL,
+      issues vary from platform to platform, and from one OS release to the next, so listing
+      them here would not be practical. Google
+      is your friend, and it's worth noting that Pillow is a fork of PIL,
       so googling 'PIL installation <your platform>' can also help.
-    * Photologue, like Django itself, only supports the last 2 releases of Django - 
-      so it will automatically try to install at least version (current release - 1).
+    * Photologue, like Django itself, only supports the last 2 releases of Django.
 
 Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 
@@ -51,8 +51,8 @@ Configure Your Django Settings
          'south',
     )
 
-#. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/1.4/ref/settings/#media-root>`_ and
-   `MEDIA_URL <https://docs.djangoproject.com/en/1.4/ref/settings/#std:setting-MEDIA_URL>`_ settings 
+#. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#media-root>`_ and
+   `MEDIA_URL <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-MEDIA_URL>`_ settings 
    are correct (Photologue will store uploaded files in a folder called 'photologue' under your ``MEDIA_ROOT``).
 
 Add the urls
