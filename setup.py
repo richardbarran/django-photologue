@@ -5,20 +5,13 @@ from setuptools import setup, find_packages
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
-
-def get_required_packages(path):
-    required = []
-    with open(path) as f:
-        for line in f.read().splitlines():
-            if not line.startswith('-r'):
-                try:
-                    i = line.index('#')
-                    required.append(line[:i].strip())
-                except:
-                    required.append(line)
-    return required
-
 version = '2.6.dev0'
+
+
+def get_required_packages(requirements):
+    with open(requirements) as f:
+        required = [line.split('#')[0] for line in f.read().splitlines()]
+    return required
 
 setup(
     name="django-photologue",
@@ -45,5 +38,5 @@ setup(
                  'Operating System :: OS Independent',
                  'Programming Language :: Python',
                  'Topic :: Utilities'],
-    install_requires=get_required_packages('example_project/requirements.txt'),
+    install_requires=get_required_packages(os.path.join(ROOT_DIR, 'requirements.txt')),
 )
