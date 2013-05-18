@@ -69,8 +69,10 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'example_project.urls'
 
+from photologue import PHOTOLOGUE_TEMPLATE_DIR
 TEMPLATE_DIRS = (
     os.path.join(TOP_FOLDER, 'example_project/templates'),
+    PHOTOLOGUE_TEMPLATE_DIR
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
