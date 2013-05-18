@@ -62,3 +62,11 @@ class RequestGalleryTest(RequestTest):
                 kwargs={'year': YEAR, 'month':MONTH, 'day': DAY, 'slug': 'fake-gallery'}
             )
         )
+
+    def test_redirect_to_list(self):
+        """Trivial test - if someone requests the root url of the app
+        (i.e. /photologue/'), redirect them to the gallery list page."""
+        response = self.client.get(reverse('pl-photologue-root'))
+        self.assertRedirects(response, reverse('pl-gallery-archive'), 301, 200)
+
+
