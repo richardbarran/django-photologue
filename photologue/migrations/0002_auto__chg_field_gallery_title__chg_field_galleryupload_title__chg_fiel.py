@@ -2,7 +2,7 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
+from django.db import models, IntegrityError
 
 
 class Migration(SchemaMigration):
@@ -13,7 +13,19 @@ class Migration(SchemaMigration):
             for gallery in orm.Gallery.objects.all():
                 if len(gallery.title) > 50:
                     gallery.title = gallery.title[:50]
+                    while orm.Gallery.objects.filter(title=gallery.title).exists():
+                        try:
+                            number = int(gallery.title[-1])
+                        except ValueError:
+                            number = 0
+
+                        number += 1
+                        gallery.title = gallery.title[:49] + unicode(number)
+                        if number > 9:
+                            break
                     gallery.save()
+            db.commit_transaction()     # Commit the shorter gallery titles
+            db.start_transaction()
 
         # Changing field 'Gallery.title'
         db.alter_column('photologue_gallery', 'title', self.gf('django.db.models.fields.CharField')(unique=True, max_length=50))
@@ -23,9 +35,20 @@ class Migration(SchemaMigration):
 
         if not db.dry_run:
             for photo in orm.Photo.objects.all():
-                if len(photo.title) > 50:
-                    photo.title = photo.title[:50]
-                    photo.save()
+                photo.title = photo.title[:50]
+                while orm.Photo.objects.filter(title=photo.title).exists():
+                    try:
+                        number = int(photo.title[-1])
+                    except ValueError:
+                        number = 0
+
+                    number += 1
+                    photo.title = photo.title[:49] + unicode(number)
+                    if number > 9:
+                        break
+                photo.save()
+            db.commit_transaction()     # Commit the shorter photo titles
+            db.start_transaction()
 
         # Changing field 'Photo.title'
         db.alter_column('photologue_photo', 'title', self.gf('django.db.models.fields.CharField')(unique=True, max_length=50))
