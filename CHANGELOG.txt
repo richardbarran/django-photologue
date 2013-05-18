@@ -18,6 +18,7 @@ List of changes:
 - Fixed buggy Travis CI script.
 - fixed issue #52, transactions in migration
 - fixed issue #51, uniqueness collisions in migration
+- Initial setup of data: removed plinit and replaced it with a South data migration.
 
 2.5 (2012-12-13)
 ----------------

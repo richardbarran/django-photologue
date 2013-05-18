@@ -72,10 +72,8 @@ Use South to setup the new tables::
 
     python manage.py migrate photologue
 
-After the database in initialized, run the following command to setup some 
-default values for Photologue::
-
-    python manage.py plinit
+If you are installing Photologue for the first time, this will set up some
+default PhotoSizes to get you started - you are free to change them of course!
 
 
 Instant Photo Gallery
