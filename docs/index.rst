@@ -20,6 +20,7 @@ Contents:
     :maxdepth: 2
 
     pages/installation
+    pages/customising
     pages/contributing
 
 Indices and tables

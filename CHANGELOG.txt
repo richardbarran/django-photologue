@@ -13,13 +13,15 @@ to remove PIL completely, then install the new version of Photologue.
 List of changes:
 
 - Switched from PIL to Pillow - hopefully this should make installation easier.
+- Initial setup of data: removed plinit and replaced it with a South data migration.
+- Added feature to allow extending the built-in templates (and documented it!).
 - Allow editing of Photo added date (temp way of sorting photos).
 - Added an example project to help people wanting to contribute to the project.
 - Fixed buggy Travis CI script.
 - fixed issue #52, transactions in migration
 - fixed issue #51, uniqueness collisions in migration
-- Initial setup of data: removed plinit and replaced it with a South data migration.
 - Accessing the root url (usually /photologue/ will now redirect you to the gallery list view.
+- Photologue required min. Django 1.4.
 
 2.5 (2012-12-13)
 ----------------
