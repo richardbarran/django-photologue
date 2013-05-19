@@ -1,6 +1,12 @@
 Changelog for django-photologue
 ===============================
 
+2.7 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
 2.6 (2013-05-19)
 ----------------
 
