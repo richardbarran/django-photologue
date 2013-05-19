@@ -1,8 +1,17 @@
 # -*- coding: utf-8 -*-
+import os, unittest
 from django.core.files.base import ContentFile
-import os
-from photologue.models import Photo, PhotoSizeCache
+from django.core.exceptions import ValidationError
+from photologue.models import Photo, PhotoSizeCache, PhotoSize
 from photologue.tests.helpers import PhotologueBaseTest, SQUARE_IMAGE_PATH, PORTRAIT_IMAGE_PATH
+
+class PhotoSizeTest(unittest.TestCase):
+    def test_clean_wont_allow_zero_dimension_and_crop(self):
+        """Tests if ValidationError is raised by clean method if with or height
+        is set to 0 and crop is set to true"""
+        s = PhotoSize(name='test', width=400, crop=True)
+        self.assertRaises(ValidationError, s.clean)
+        
 
 class ImageResizeTest(PhotologueBaseTest):
     def setUp(self):
