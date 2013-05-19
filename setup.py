@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
-version = '2.6'
+version = '2.6.1'
 
 
 def get_required_packages(requirements):
