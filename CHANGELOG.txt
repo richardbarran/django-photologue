@@ -21,7 +21,8 @@ List of changes:
 - fixed issue #52, transactions in migration
 - fixed issue #51, uniqueness collisions in migration
 - Accessing the root url (usually /photologue/ will now redirect you to the gallery list view.
-- Photologue required min. Django 1.4.
+- Photologue requires min. Django 1.4.
+- Tidied a data validator on PhotoSizes.
 
 2.5 (2012-12-13)
 ----------------
