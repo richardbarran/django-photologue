@@ -12,6 +12,7 @@ from django.db.models.signals import post_init
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 try:
     from django.utils.encoding import force_text
@@ -716,10 +717,12 @@ class PhotoSize(models.Model):
                     obj.create_size(self)
         PhotoSizeCache().reset()
 
-    def save(self, *args, **kwargs):
+    def clean(self):
         if self.crop is True:
             if self.width == 0 or self.height == 0:
-                raise ValueError("PhotoSize width and/or height can not be zero if crop=True.")
+                raise ValidationError("Cannot crop photos if one of dimensions is not set.")
+
+    def save(self, *args, **kwargs):
         super(PhotoSize, self).save(*args, **kwargs)
         PhotoSizeCache().reset()
         self.clear_cache()
