@@ -37,7 +37,9 @@ except ImportError:
         from PIL import ImageFilter
         from PIL import ImageEnhance
     except ImportError:
-        raise ImportError('Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available on your current Python path.')
+        raise ImportError('Photologue was unable to import the Python Imaging '\
+            'Library. Please confirm it`s installed and available on your '\
+            'current Python path.')
 
 # attempt to load the django-tagging TagField from default location,
 # otherwise we substitude a dummy TagField.
@@ -72,7 +74,9 @@ SAMPLE_SIZE = getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 100)
 
 # Path to sample image
-SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg')) # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
+# os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
+SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH',
+    os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg'))
 
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
@@ -134,19 +138,22 @@ for n in dir(ImageFilter):
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
         hasattr(klass, 'name'):
             filter_names.append(klass.__name__)
-IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
+IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following '\
+    'pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be '\
+    'applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
 
 class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'), default=now)
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('title slug'), unique=True,
-                                  help_text=_('A "slug" is a unique URL-friendly title for an object.'))
+        help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     description = models.TextField(_('description'), blank=True)
     is_public = models.BooleanField(_('is public'), default=True,
-                                    help_text=_('Public galleries will be displayed in the default views.'))
-    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
-                                    null=True, blank=True)
+        help_text=_('Public galleries will be displayed in the default views.'))
+    photos = models.ManyToManyField('Photo',
+        related_name='galleries', verbose_name=_('photos'),
+        null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
@@ -174,7 +181,7 @@ class Gallery(models.Model):
 
     def sample(self, count=None, public=True):
         """Return a sample of photos, ordered at random.
-        If the 'count' is not specified, it will return a number of photos 
+        If the 'count' is not specified, it will return a number of photos
         limited by the GALLERY_SAMPLE_SIZE setting.
         """
         if not count:
@@ -201,14 +208,24 @@ class Gallery(models.Model):
 
 
 class GalleryUpload(models.Model):
-    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR + "/temp",
-                                help_text=_('Select a .zip file of images to upload into a new Gallery.'))
-    gallery = models.ForeignKey(Gallery, null=True, blank=True, help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
-    title = models.CharField(_('title'), max_length=50, help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
-    caption = models.TextField(_('caption'), blank=True, help_text=_('Caption will be added to all photos.'))
-    description = models.TextField(_('description'), blank=True, help_text=_('A description of this Gallery.'))
-    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Uncheck this to make the uploaded gallery and included photographs private.'))
-    tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text, verbose_name=_('tags'))
+    zip_file = models.FileField(_('images file (.zip)'),
+        upload_to=PHOTOLOGUE_DIR + "/temp",
+        help_text=_('Select a .zip file of images to upload into a new Gallery.'))
+    gallery = models.ForeignKey(Gallery,
+        null=True, blank=True,
+        help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
+    title = models.CharField(_('title'),
+        max_length=50,
+        help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
+    caption = models.TextField(_('caption'),
+        blank=True, help_text=_('Caption will be added to all photos.'))
+    description = models.TextField(_('description'),
+        blank=True, help_text=_('A description of this Gallery.'))
+    is_public = models.BooleanField(_('is public'),
+        default=True,
+        help_text=_('Uncheck this to make the uploaded gallery and included photographs private.'))
+    tags = models.CharField(max_length=255, blank=True,
+        help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
         verbose_name = _('gallery upload')
@@ -238,7 +255,7 @@ class GalleryUpload(models.Model):
                                                  tags=self.tags)
             from cStringIO import StringIO
             for filename in sorted(zip.namelist()):
-                if filename.startswith('__'): # do not process meta files
+                if filename.startswith('__'):  # do not process meta files
                     continue
                 data = zip.read(filename)
                 if len(data):
@@ -259,7 +276,7 @@ class GalleryUpload(models.Model):
                         title = ' '.join([self.title, str(count)])
                         slug = slugify(title)
                         try:
-                            p = Photo.objects.get(title_slug=slug)
+                            Photo.objects.get(title_slug=slug)
                         except Photo.DoesNotExist:
                             photo = Photo(title=title,
                                           title_slug=slug,
@@ -278,10 +295,13 @@ class GalleryUpload(models.Model):
 class ImageModel(models.Model):
     image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH,
                               upload_to=get_storage_path)
-    date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
+    date_taken = models.DateTimeField(_('date taken'),
+        null=True, blank=True, editable=False)
     view_count = models.PositiveIntegerField(default=0, editable=False)
-    crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
-    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name="%(class)s_related", verbose_name=_('effect'))
+    crop_from = models.CharField(_('crop from'),
+        blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
+    effect = models.ForeignKey('PhotoEffect',
+        null=True, blank=True, related_name="%(class)s_related", verbose_name=_('effect'))
 
     class Meta:
         abstract = True
@@ -386,9 +406,9 @@ class ImageModel(models.Model):
             elif self.crop_from == 'left':
                 box = (0, int(y_diff), new_width, int(y_diff + new_height))
             elif self.crop_from == 'bottom':
-                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y)) # y - yd = new_height
+                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y))  # y - yd = new_height
             elif self.crop_from == 'right':
-                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height)) # x - xd = new_width
+                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height))  # x - xd = new_width
             else:
                 box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
             im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
@@ -511,52 +531,61 @@ class ImageModel(models.Model):
         os.remove(path)
 
 
-class Photo(ImageModel):
+class AbstractBasePhoto(ImageModel):
+    class Meta:
+        abstract = True
+        verbose_name = _("photo")
+        verbose_name_plural = _("photos")
+
+    def get_absolute_url(self):
+        return reverse('pl-photo', args=[self.title_slug])
+
+
+class AbstractPhoto(AbstractBasePhoto):
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=now)
-    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
-    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
+        abstract = True
         ordering = ['-date_added']
         get_latest_by = 'date_added'
-        verbose_name = _("photo")
-        verbose_name_plural = _("photos")
-
-    def __unicode__(self):
-        return self.title
-
-    def __str__(self):
-        return self.__unicode__()
 
     def save(self, *args, **kwargs):
         if self.title_slug is None:
             self.title_slug = slugify(self.title)
-        super(Photo, self).save(*args, **kwargs)
+        super(AbstractPhoto, self).save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        return reverse('pl-photo', args=[self.title_slug])
-
-    def public_galleries(self):
-        """Return the public galleries to which this photo belongs."""
-        return self.galleries.filter(is_public=True)
+    def __unicode__(self):
+        return self.title
 
     def get_previous_in_gallery(self, gallery):
         try:
             return self.get_previous_by_date_added(galleries__exact=gallery,
                                                    is_public=True)
-        except Photo.DoesNotExist:
+        except AbstractPhoto.DoesNotExist:
             return None
 
     def get_next_in_gallery(self, gallery):
         try:
             return self.get_next_by_date_added(galleries__exact=gallery,
                                                is_public=True)
-        except Photo.DoesNotExist:
+        except AbstractPhoto.DoesNotExist:
             return None
+
+
+class Photo(AbstractPhoto):
+    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
+    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
+
+    class Meta:
+        swappable = 'PHOTOLOGUE_PHOTO_MODEL'
+
+    def public_galleries(self):
+        """Return the public galleries to which this photo belongs."""
+        return self.galleries.filter(is_public=True)
 
 
 class BaseEffect(models.Model):
@@ -686,16 +715,30 @@ class Watermark(BaseEffect):
 
 
 class PhotoSize(models.Model):
-    name = models.CharField(_('name'), max_length=40, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
-    width = models.PositiveIntegerField(_('width'), default=0, help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
-    height = models.PositiveIntegerField(_('height'), default=0, help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
-    quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
-    upscale = models.BooleanField(_('upscale images?'), default=False, help_text=_('If selected the image will be scaled up if necessary to fit the supplied dimensions. Cropped sizes will be upscaled regardless of this setting.'))
-    crop = models.BooleanField(_('crop to fit?'), default=False, help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
-    pre_cache = models.BooleanField(_('pre-cache?'), default=False, help_text=_('If selected this photo size will be pre-cached as photos are added.'))
-    increment_count = models.BooleanField(_('increment view count?'), default=False, help_text=_('If selected the image\'s "view_count" will be incremented when this photo size is displayed.'))
-    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes', verbose_name=_('photo effect'))
-    watermark = models.ForeignKey('Watermark', null=True, blank=True, related_name='photo_sizes', verbose_name=_('watermark image'))
+    name = models.CharField(_('name'),
+        max_length=40, unique=True,
+        help_text=_('Photo size name should contain only letters, numbers and '\
+            'underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
+    width = models.PositiveIntegerField(_('width'), default=0,
+        help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
+    height = models.PositiveIntegerField(_('height'), default=0,
+        help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
+    quality = models.PositiveIntegerField(_('quality'),
+        choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
+    upscale = models.BooleanField(_('upscale images?'), default=False,
+        help_text=_('If selected the image will be scaled up if necessary to '\
+            'fit the supplied dimensions. Cropped sizes will be upscaled '\
+            'regardless of this setting.'))
+    crop = models.BooleanField(_('crop to fit?'), default=False,
+        help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
+    pre_cache = models.BooleanField(_('pre-cache?'), default=False,
+        help_text=_('If selected this photo size will be pre-cached as photos are added.'))
+    increment_count = models.BooleanField(_('increment view count?'), default=False,
+        help_text=_('If selected the image\'s "view_count" will be incremented when this photo size is displayed.'))
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True,
+        related_name='photo_sizes', verbose_name=_('photo effect'))
+    watermark = models.ForeignKey('Watermark', null=True, blank=True,
+        related_name='photo_sizes', verbose_name=_('watermark image'))
 
     class Meta:
         ordering = ['width', 'height']
@@ -710,7 +753,12 @@ class PhotoSize(models.Model):
 
     def clear_cache(self):
         for cls in ImageModel.__subclasses__():
-            for obj in cls.objects.all():
+            try:
+                objects = cls.objects.all()
+            except AttributeError:
+                continue
+
+            for obj in objects:
                 obj.remove_size(self)
                 if self.pre_cache:
                     obj.create_size(self)
@@ -731,6 +779,7 @@ class PhotoSize(models.Model):
 
     def _get_size(self):
         return (self.width, self.height)
+
     def _set_size(self, value):
         self.width, self.height = value
     size = property(_get_size, _set_size)
