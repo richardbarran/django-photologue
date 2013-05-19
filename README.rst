@@ -10,7 +10,7 @@ We have a few `examples of sites using Photologue <https://github.com/jdriscoll/
 
 Documentation
 -------------
-Please head over to our `online documentation <http://django-photologue.readthedocs.org/en/latest/index.html>`_ for instructions on installing and configuring this application.
+Please head over to our `online documentation <https://django-photologue.readthedocs.org/>`_ for instructions on installing and configuring this application.
 
 Support
 -------
