@@ -10,8 +10,7 @@ class PhotoSizeTest(unittest.TestCase):
         """Tests if ValidationError is raised by clean method if with or height
         is set to 0 and crop is set to true"""
         s = PhotoSize(name='test', width=400, crop=True)
-        with self.assertRaises(ValidationError):
-            s.clean()
+        self.assertRaises(ValidationError, s.clean)
         
 
 class ImageResizeTest(PhotologueBaseTest):

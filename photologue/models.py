@@ -720,7 +720,7 @@ class PhotoSize(models.Model):
     def clean(self):
         if self.crop is True:
             if self.width == 0 or self.height == 0:
-                raise ValidationError("Cannot crop photos if one of dimensions is not set.")
+                raise ValidationError(_("Cannot crop photos if one of dimensions is not set."))
 
     def save(self, *args, **kwargs):
         super(PhotoSize, self).save(*args, **kwargs)
