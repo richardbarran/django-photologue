@@ -28,7 +28,7 @@ class Migration(DataMigration):
                                      increment_count=True)
         orm.Photosize.objects.create(name='display',
                                      width=400,
-                                     crop=True,
+                                     crop=False,
                                      pre_cache=True,
                                      increment_count=True)
 
