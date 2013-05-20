@@ -204,7 +204,7 @@ class Gallery(models.Model):
 class GalleryUpload(models.Model):
     zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR + "/temp",
                                 help_text=_('Select a .zip file of images to upload into a new Gallery.'))
-    gallery = models.ForeignKey(Gallery, null=True, blank=True, help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
+    gallery = models.ForeignKey(Gallery, verbose_name=_('gallery'), null=True, blank=True, help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
     title = models.CharField(_('title'), max_length=50, help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
     caption = models.TextField(_('caption'), blank=True, help_text=_('Caption will be added to all photos.'))
     description = models.TextField(_('description'), blank=True, help_text=_('A description of this Gallery.'))
@@ -280,7 +280,7 @@ class ImageModel(models.Model):
     image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH,
                               upload_to=get_storage_path)
     date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
-    view_count = models.PositiveIntegerField(default=0, editable=False)
+    view_count = models.PositiveIntegerField(_('view count'), default=0, editable=False)
     crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
     effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name="%(class)s_related", verbose_name=_('effect'))
 
@@ -515,7 +515,7 @@ class ImageModel(models.Model):
 class Photo(ImageModel):
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
-                                  help_text=('A "slug" is a unique URL-friendly title for an object.'))
+                                  help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=now)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
