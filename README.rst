@@ -14,12 +14,12 @@ Please head over to our `online documentation <https://django-photologue.readthe
 
 Support
 -------
-If you have any questions or need help with any aspect of Photologue then please `join the mailing list
+If you have any questions or need help with any aspect of Photologue then please `join our mailing list
 <http://groups.google.com/group/django-photologue>`_.
 
 Travis CI status
 ----------------
-.. image:: https://secure.travis-ci.org/richardbarran/django-photologue.png?branch=master
+.. image:: https://secure.travis-ci.org/jdriscoll/django-photologue.png?branch=master
 
 We use Travis to check that the unit test suite is working against various combinations
 of Python, Django, etc... `Click here for the full report <http://travis-ci.org/#!/jdriscoll/django-photologue>`_.
