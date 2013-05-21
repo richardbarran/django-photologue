@@ -752,7 +752,8 @@ class PhotoSize(models.Model):
         return self.__unicode__()
 
     def clear_cache(self):
-        for cls in ImageModel.__subclasses__():
+        # TODO: don't hardcode the Photo
+        for cls in (Photo,):
             try:
                 objects = cls.objects.all()
             except AttributeError:
