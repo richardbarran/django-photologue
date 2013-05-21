@@ -1,12 +1,10 @@
 #/usr/bin/env python
 import os
 from setuptools import setup, find_packages
+import photologue
 
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
-
-version = '2.7.dev0'
-
 
 def get_required_packages(requirements):
     with open(requirements) as f:
@@ -15,7 +13,7 @@ def get_required_packages(requirements):
 
 setup(
     name="django-photologue",
-    version=version,
+    version=photologue.__version__,
     description="Powerful image management for the Django web framework.",
     author="Justin Driscoll, Marcos Daniel Petry, Richard Barran",
     author_email="justin@driscolldev.com, marcospetry@gmail.com, richard@arbee-design.co.uk",
