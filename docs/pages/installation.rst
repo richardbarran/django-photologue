@@ -22,9 +22,9 @@ itself, we try to keep the master branch bug-free.
 Dependencies
 ------------
 
+* `Django <https://www.djangoproject.com/>`_.
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
 * `South <http://south.aeracode.org/>`_.
-* `Django <https://www.djangoproject.com/>`_.
 
 These 3 apps will be installed automatically if they are not already there.
 
@@ -36,7 +36,8 @@ These 3 apps will be installed automatically if they are not already there.
       them here would not be practical. Google
       is your friend, and it's worth noting that Pillow is a fork of PIL,
       so googling 'PIL installation <your platform>' can also help.
-    * Photologue, like Django itself, only supports the last 2 releases of Django.
+    * You should not have installed both PIL and Pillow; this can cause strange bugs. 
+    * Photologue has the same support policy as Django (last 2 versions released).
 
 Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 
