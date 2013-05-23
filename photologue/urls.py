@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from photologue.views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
-    PhotoYearArchiveView, PhotoMonthArchiveView, GalleryYearArchiveView, \
+    PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
     GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView
 
 
