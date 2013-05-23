@@ -39,7 +39,7 @@ class GalleryView(object):
     queryset = Gallery.objects.filter(is_public=True)
 
 class GalleryListView(GalleryView, ListView):
-    paginate_by = 20
+    paginate_by = 1
 
 class GalleryDetailView(GalleryView, DetailView):
     slug_field = 'title_slug'
@@ -50,7 +50,7 @@ class GalleryDateView(GalleryView):
 class GalleryDateDetailView(GalleryDateView, DateDetailView):
     slug_field = 'title_slug'
 
-class GalleryArchiveIndexView(GalleryDateView, ArchiveIndexView, ListView):
+class GalleryArchiveIndexView(GalleryDateView, ArchiveIndexView):
     pass
 
 class GalleryDayArchiveView(GalleryDateView, DayArchiveView):
