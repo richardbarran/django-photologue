@@ -21,7 +21,7 @@ class PhotoTest(PhotologueBaseTest):
                          os.path.getsize(LANDSCAPE_IMAGE_PATH))
 
     #def test_exif(self):
-    #    self.assert_(len(self.pl.EXIF.keys()) > 0)
+    #    self.assertTrue(len(self.pl.EXIF.keys()) > 0)
 
     def test_paths(self):
         self.assertEqual(os.path.normpath(str(self.pl.cache_path())).lower(),
