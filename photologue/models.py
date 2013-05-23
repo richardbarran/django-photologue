@@ -1,7 +1,6 @@
 import sys
 import os
 import random
-import shutil
 import zipfile
 
 from datetime import datetime
@@ -61,9 +60,9 @@ except ImportError:
         from south.modelsinspector import add_introspection_rules
         add_introspection_rules([], ["^photologue\.models\.TagField"])
 
-from utils import EXIF
-from utils.reflection import add_reflection
-from utils.watermark import apply_watermark
+from .utils import EXIF
+from .utils.reflection import add_reflection
+from .utils.watermark import apply_watermark
 
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
@@ -262,7 +261,7 @@ class GalleryUpload(models.Model):
                         title = ' '.join([self.title, str(count)])
                         slug = slugify(title)
                         try:
-                            p = Photo.objects.get(title_slug=slug)
+                            Photo.objects.get(title_slug=slug)
                         except Photo.DoesNotExist:
                             photo = Photo(title=title,
                                           title_slug=slug,
@@ -450,7 +449,7 @@ class ImageModel(models.Model):
                 except KeyError:
                     pass
             im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
-        except IOError, e:
+        except IOError as e:
             if os.path.isfile(im_filename):
                 os.unlink(im_filename)
             raise e

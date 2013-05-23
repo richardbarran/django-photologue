@@ -36,6 +36,5 @@ setup(
                  'Operating System :: OS Independent',
                  'Programming Language :: Python',
                  'Topic :: Utilities'],
-    install_requires=get_required_packages(os.path.join(ROOT_DIR, 'requirements.txt')),
-    use_2to3=True,
+    install_requires=get_required_packages(os.path.join(ROOT_DIR, 'requirements.txt'))
 )
