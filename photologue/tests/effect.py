@@ -6,7 +6,7 @@ class PhotoEffectTest(PhotologueBaseTest):
     def test(self):
         effect = PhotoEffect(name='test')
         im = Image.open(self.pl.image.path)
-        self.assert_(isinstance(effect.pre_process(im), Image.Image))
-        self.assert_(isinstance(effect.post_process(im), Image.Image))
-        self.assert_(isinstance(effect.process(im), Image.Image))
+        self.assertIsInstance(effect.pre_process(im), Image.Image)
+        self.assertIsInstance(effect.post_process(im), Image.Image)
+        self.assertIsInstance(effect.process(im), Image.Image)
 
