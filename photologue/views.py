@@ -50,7 +50,7 @@ class GalleryDateView(GalleryView):
 class GalleryDateDetailView(GalleryDateView, DateDetailView):
     slug_field = 'title_slug'
 
-class GalleryArchiveIndexView(GalleryDateView, ArchiveIndexView):
+class GalleryArchiveIndexView(GalleryDateView, ArchiveIndexView, ListView):
     pass
 
 class GalleryDayArchiveView(GalleryDateView, DayArchiveView):
