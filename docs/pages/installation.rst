@@ -19,6 +19,11 @@ version which is on `Github <https://github.com/>`_::
 This code should work ok - like `Django <https://www.djangoproject.com/>`_
 itself, we try to keep the master branch bug-free.
 
+Python 3
+~~~~~~~~
+Photologue is being prepared for Python 3 - please note that to make the transition
+easier, we only support Python 3 >= 3.3.
+
 Dependencies
 ------------
 
