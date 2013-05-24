@@ -6,8 +6,8 @@ import photologue
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
-def get_required_packages(requirements):
-    with open(requirements) as f:
+def get_requirements(requirements_file):
+    with open(requirements_file) as f:
         required = [line.split('#')[0] for line in f.read().splitlines()]
     return required
 
@@ -36,5 +36,5 @@ setup(
                  'Operating System :: OS Independent',
                  'Programming Language :: Python',
                  'Topic :: Utilities'],
-    install_requires=get_required_packages(os.path.join(ROOT_DIR, 'requirements.txt'))
+    install_requires=get_requirements(os.path.join(ROOT_DIR, 'requirements.txt'))
 )
