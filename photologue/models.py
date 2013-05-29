@@ -160,9 +160,6 @@ class Gallery(models.Model):
     def __unicode__(self):
         return self.title
 
-    def __str__(self):
-        return self.__unicode__()
-
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.title_slug])
 
@@ -531,9 +528,6 @@ class Photo(ImageModel):
     def __unicode__(self):
         return self.title
 
-    def __str__(self):
-        return self.__unicode__()
-
     def save(self, *args, **kwargs):
         if self.title_slug is None:
             self.title_slug = slugify(self.title)
@@ -605,9 +599,6 @@ class BaseEffect(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    def __str__(self):
-        return self.__unicode__()
 
     def save(self, *args, **kwargs):
         try:
@@ -706,9 +697,6 @@ class PhotoSize(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    def __str__(self):
-        return self.__unicode__()
 
     def clear_cache(self):
         for cls in ImageModel.__subclasses__():
