@@ -71,7 +71,7 @@ class PhotoTest(PhotologueBaseTest):
 
         # Check that a 'normal' path works ok.
         self.assertEqual(self.pl.get_testPhotoSize_url(),
-                         self.pl.cache_url() + '/test_landscape_testPhotoSize.jpg')
+                         self.pl.cache_url() + '/test_photologue_landscape_testPhotoSize.jpg')
 
         # Now create a Photo with a name that needs quoting.
         self.pl2 = Photo(title='test', title_slug='test')
@@ -79,8 +79,7 @@ class PhotoTest(PhotologueBaseTest):
                            ContentFile(open(QUOTING_IMAGE_PATH, 'rb').read()))
         self.pl2.save()
         self.assertEqual(self.pl2.get_testPhotoSize_url(),
-                         self.pl2.cache_url() + '/test_%26quoting_testPhotoSize.jpg')
-
+                         self.pl2.cache_url() + '/test_photologue_%26quoting_testPhotoSize.jpg')
 
 
 
