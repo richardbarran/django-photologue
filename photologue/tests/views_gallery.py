@@ -3,13 +3,13 @@
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from photologue.tests import helpers
-from photologue.tests.helpers import RequestTest
+from django.test import TestCase
 
 YEAR = datetime.now().year
 MONTH = datetime.now().ctime().split(' ')[1].lower()
 DAY = datetime.now().day
 
-class RequestGalleryTest(RequestTest):
+class RequestGalleryTest(TestCase):
 
     def setUp(self):
         super(RequestGalleryTest, self).setUp()
@@ -21,47 +21,45 @@ class RequestGalleryTest(RequestTest):
         self.gallery.delete()
 
     def test_archive_gallery_url_works(self):
-        self.assertUrl(
-            reverse('pl-gallery-archive')
-        )
+        response = self.client.get(reverse('pl-gallery-archive'))
+        self.assertEqual(response.status_code, 200)
+
 
     def test_paginated_gallery_url_works(self):
-        self.assertUrl(
-            reverse('pl-gallery-list', kwargs={'page': 1})
-        )
+        response = self.client.get(reverse('pl-gallery-list',
+                                            kwargs={'page': 1}))
+        self.assertEqual(response.status_code, 200)
 
     def test_gallery_works(self):
-        self.assertUrl(
-            reverse('pl-gallery', kwargs={'slug': 'fake-gallery'})
-        )
+        response = self.client.get(reverse('pl-gallery',
+                                           kwargs={'slug': 'fake-gallery'}))
+        self.assertEqual(response.status_code, 200)
 
     def test_archive_year_gallery_works(self):
-        self.assertUrl(
-            reverse('pl-gallery-archive-year',
-                kwargs={'year': YEAR}
-            )
-        )
+        response = self.client.get(reverse('pl-gallery-archive-year',
+                                           kwargs={'year': YEAR}))
+        self.assertEqual(response.status_code, 200)
 
     def test_archive_month_gallery_works(self):
-        self.assertUrl(
-            reverse('pl-gallery-archive-month',
-                kwargs={'year': YEAR, 'month':MONTH}
-            )
-        )
+        response = self.client.get(reverse('pl-gallery-archive-month',
+                                           kwargs={'year': YEAR, 'month':MONTH}
+                                           ))
+        self.assertEqual(response.status_code, 200)
 
     def test_archive_day_gallery_works(self):
-        self.assertUrl(
-            reverse('pl-gallery-archive-day',
-                kwargs={'year': YEAR, 'month':MONTH, 'day': DAY}
-            )
-        )
+        response = self.client.get(reverse('pl-gallery-archive-day',
+                                           kwargs={'year': YEAR,
+                                                   'month':MONTH,
+                                                   'day': DAY}))
+        self.assertEqual(response.status_code, 200)
 
     def test_detail_gallery_works(self):
-        self.assertUrl(
-            reverse('pl-gallery-detail',
-                kwargs={'year': YEAR, 'month':MONTH, 'day': DAY, 'slug': 'fake-gallery'}
-            )
-        )
+        response = self.client.get(reverse('pl-gallery-detail',
+                                           kwargs={'year': YEAR,
+                                                   'month':MONTH,
+                                                   'day': DAY,
+                                                   'slug': 'fake-gallery'}))
+        self.assertEqual(response.status_code, 200)
 
     def test_redirect_to_list(self):
         """Trivial test - if someone requests the root url of the app

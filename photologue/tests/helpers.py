@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.core.files.base import ContentFile
-from django.test.client import Client
 import os
 from photologue.models import PhotoSize, Photo, Gallery
 from django.test import TestCase
@@ -17,17 +16,6 @@ def _create_new_photo(name, slug):
                        ContentFile(open(LANDSCAPE_IMAGE_PATH, 'rb').read()))
     pl.save()
     return pl
-
-class RequestTest(TestCase):
-
-    def setUp(self):
-        self.client = Client()
-
-    def assertUrl(self, url):
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-
-
 
 class PhotologueBaseTest(TestCase):
 
