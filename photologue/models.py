@@ -55,10 +55,9 @@ except ImportError:
             return 'CharField'
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
 
-    if sys.version_info <= (3, 0):  # South does not support Python 3
-        # Tell South how to handle this custom field.
-        from south.modelsinspector import add_introspection_rules
-        add_introspection_rules([], ["^photologue\.models\.TagField"])
+    # Tell South how to handle this custom field.
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^photologue\.models\.TagField"])
 
 from .utils import EXIF
 from .utils.reflection import add_reflection

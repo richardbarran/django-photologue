@@ -1,6 +1,5 @@
 # Global settings for photologue example project.
 
-import sys
 import os
 
 DEBUG = TEMPLATE_DEBUG = True
@@ -99,13 +98,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'photologue',
+    'south',
     'example_project',
 ]
-
-if sys.version_info <= (3, 0):
-    # South does not support Python 3
-    INSTALLED_APPS += ['south']
-
 
 SOUTH_TESTS_MIGRATE = False
 
