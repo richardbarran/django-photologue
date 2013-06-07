@@ -21,8 +21,9 @@ itself, we try to keep the master branch bug-free.
 
 Python 3
 ~~~~~~~~
-Photologue is being prepared for Python 3 - please note that to make the transition
-easier, we only support Python 3 >= 3.3.
+Photologue works with Python 3 >= 3.3 and Django >= 1.5. Like Django itself,
+support for Python 3 can be described as "should work, but needs more time on
+production sites to prove itself". Use it, but make sure that all features work!  
 
 Dependencies
 ------------
