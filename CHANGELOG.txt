@@ -5,6 +5,7 @@ Changelog for django-photologue
 ----------------
 
 - fixed issue #56, Gallery pagination is broken.
+- Photologue now works with Python 3.
 
 2.6.1 (2013-05-19)
 ------------------
