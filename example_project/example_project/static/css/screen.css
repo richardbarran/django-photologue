@@ -1,4 +1,10 @@
-div.photo-gallery div.gallery-photo {
-	display: inline-block;
-	margin-right: 10px;
+/* Some customisation for the Photologue demo site. */
+
+ul.pager li.number-of-pages {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+p.photologue-photo-found-in-galleries {
+	margin-top: 20px;
 }

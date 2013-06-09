@@ -11,6 +11,8 @@ This project serves 3 purposes:
   and a project that uses it.
 - It's used for Travis CI testing of django-photologue.
 
+It uses the Bootstrap-friendly templates that are supplied in contrib/bootstrap/templates.
+
 The rest of the README will assume that you want to set up the test project in 
 order to work on django-photologue itself.
 

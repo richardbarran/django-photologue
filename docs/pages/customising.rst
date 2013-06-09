@@ -37,4 +37,27 @@ For example, to customise ``photologue/gallery_list.html``, you can have an impl
 
     ... we are now extending the built-in gallery_list.html and we can override
     the content blocks that we want to customise ...
+
+
+Third-party contributions
+-------------------------
+Photologue has a 'contrib' folder that includes some
+useful tweaks to the base project. At the moment, we have just one contribution:
+
+Bootstrap templates
+~~~~~~~~~~~~~~~~~~~
+Replaces the normal templates with a new set that work well with `Bootstrap <http://twitter.github.io/bootstrap/index.html>`_.
+
+To use these, edit your ``TEMPLATE_DIRS`` setting::
+
+
+    from photologue import PHOTOLOGUE_TEMPLATE_DIR
+    TEMPLATE_DIRS = (
+        ...
+        os.path.join(PHOTOLOGUE_TEMPLATE_DIR, 'contrib/bootstrap/templates'),
+        ... other folders containing Photologue templates should come after...
+    )
+
+The templates are incomplete - for example, we are missing templates for date-filtered galleries and photos.
+Pull requests are welcome!
     

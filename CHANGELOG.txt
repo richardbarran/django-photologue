@@ -4,8 +4,10 @@ Changelog for django-photologue
 2.7 (unreleased)
 ----------------
 
-- fixed issue #56, Gallery pagination is broken.
+- Fixed issue #56, Gallery pagination is broken.
 - Photologue now works with Python 3.
+- Created a set of templates that work well with Twitter-Bootstrap, and used them
+  for the 'example_project'.
 
 2.6.1 (2013-05-19)
 ------------------
