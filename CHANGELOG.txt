@@ -9,6 +9,7 @@ Changelog for django-photologue
 - Created a set of templates that work well with Twitter-Bootstrap, and used them
   for the 'example_project'.
 - updated Polish translation.
+- new translation for Slovak.
 
 2.6.1 (2013-05-19)
 ------------------
