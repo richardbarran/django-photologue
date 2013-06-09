@@ -98,6 +98,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    # Note: added sitemaps to the INSTALLED_APPS just so that unit tests run,
+    # but not actually added a sitemap in urls.py.
+    'django.contrib.sitemaps',
     'photologue',
     'south',
     'example_project',
