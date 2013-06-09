@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juraj Bubniak <translations@jbub.eu>, 2012-2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
@@ -10,96 +11,96 @@ msgstr ""
 "POT-Creation-Date: 2013-06-09 19:19+0000\n"
 "PO-Revision-Date: 2013-06-09 19:48+0000\n"
 "Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
-"Language-Team: Norwegian (http://www.transifex.com/projects/p/django-photologue/language/no/)\n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/django-photologue/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: no\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: models.py:47
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr "Separer tagger med mellomrom, bruk hermetegn rundt tagger som består av flere ord."
+msgstr "Oddeľte tagy medzerami, vložte úvodzovky okolo viac-slovných tagov."
 
 #: models.py:56
 msgid "Django-tagging was not found, tags will be treated as plain text."
-msgstr "Django-tagging ble ikke funnet. Tagger vil bli behandlet som vanlig tekst."
+msgstr "Aplikácia Django-tagging sa nenašla, s tagmi sa bude zaobchádzať ako s obyčajným textom."
 
 #: models.py:100
 msgid "Very Low"
-msgstr "Veldig lav"
+msgstr "Veľmi Nízka"
 
 #: models.py:101
 msgid "Low"
-msgstr "Lav"
+msgstr "Nízka"
 
 #: models.py:102
 msgid "Medium-Low"
-msgstr "Middels-lav"
+msgstr "Stredne-Nízka"
 
 #: models.py:103
 msgid "Medium"
-msgstr "Middels"
+msgstr "Stredná"
 
 #: models.py:104
 msgid "Medium-High"
-msgstr "Middels-høy"
+msgstr "Stredne-Vysoká"
 
 #: models.py:105
 msgid "High"
-msgstr "Høy"
+msgstr "Vysoká"
 
 #: models.py:106
 msgid "Very High"
-msgstr "Veldig høy"
+msgstr "Veľmi Vysoká"
 
 #: models.py:111
 msgid "Top"
-msgstr "Topp"
+msgstr "Hore"
 
 #: models.py:112
 msgid "Right"
-msgstr "Høyre"
+msgstr "Vpravo"
 
 #: models.py:113
 msgid "Bottom"
-msgstr "Bunn"
+msgstr "Dole"
 
 #: models.py:114
 msgid "Left"
-msgstr "Venstre"
+msgstr "Vľavo"
 
 #: models.py:115
 msgid "Center (Default)"
-msgstr "Senter (forhåndsvalgt)"
+msgstr "Stred (Štandardne)"
 
 #: models.py:119
 msgid "Flip left to right"
-msgstr "Snu venstre mot høyre"
+msgstr "Prevrátiť zľava doprava"
 
 #: models.py:120
 msgid "Flip top to bottom"
-msgstr "Snu topp mot bunn"
+msgstr "Prevrátiť zhora nadol"
 
 #: models.py:121
 msgid "Rotate 90 degrees counter-clockwise"
-msgstr "Rotér 90 grader mot klokka"
+msgstr "Otočiť o 90 stupňov proti smeru hodinových ručičiek"
 
 #: models.py:122
 msgid "Rotate 90 degrees clockwise"
-msgstr "Rotér 90 grader med klokka"
+msgstr "Otočiť o 90 stupňov v smere hodinových ručičiek"
 
 #: models.py:123
 msgid "Rotate 180 degrees"
-msgstr "Rotér 180 grader"
+msgstr "Otočiť o 180 stupňov"
 
 #: models.py:127
 msgid "Tile"
-msgstr "Flislegg"
+msgstr "Dláždiť"
 
 #: models.py:128
 msgid "Scale"
-msgstr "Skalér"
+msgstr "Dodržať mierku"
 
 #: models.py:138
 #, python-format
@@ -107,108 +108,108 @@ msgid ""
 "Chain multiple filters using the following pattern "
 "\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
 "order. The following filters are available: %s."
-msgstr ""
+msgstr "Zreťazte viac filtrov pomocou nasledovného vzoru \"FILTER_JEDNA->FILTER_DVA->FILTER_TRI\". Obrázkové filtre budú použité v poradí. Nasledujúce filtre sú k dispozícii: %s."
 
 #: models.py:142
 msgid "date published"
-msgstr "publiseringsdato"
+msgstr "dátum zverejnenia"
 
 #: models.py:143 models.py:205 models.py:513
 msgid "title"
-msgstr "tittel"
+msgstr "názov"
 
 #: models.py:144
 msgid "title slug"
-msgstr "tittel (slug)"
+msgstr "identifikátor názvu"
 
 #: models.py:145 models.py:515
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr "En \"slug\" er en unik URL-vennlig tittel for et objekt."
+msgstr "\"Identifikátor\" je unikátny názov objektu vhodný pre použitie v URL."
 
 #: models.py:146 models.py:207 models.py:559
 msgid "description"
-msgstr "beskrivelse"
+msgstr "popis"
 
 #: models.py:147 models.py:208 models.py:518
 msgid "is public"
-msgstr "publisert"
+msgstr "je verejný"
 
 #: models.py:148
 msgid "Public galleries will be displayed in the default views."
-msgstr "Publiserte gallerier vil bli vist på vanlig vis."
+msgstr "Verejné galérie budú zobrazené v štandardných zobrazeniach."
 
 #: models.py:149 models.py:525
 msgid "photos"
-msgstr "bilder"
+msgstr "fotografie"
 
 #: models.py:151 models.py:209 models.py:519
 msgid "tags"
-msgstr "tagger"
+msgstr "tagy"
 
 #: models.py:156 models.py:204
 msgid "gallery"
-msgstr "galleri"
+msgstr "galéria"
 
 #: models.py:157
 msgid "galleries"
-msgstr "gallerier"
+msgstr "galérie"
 
 #: models.py:194
 msgid "count"
-msgstr "visninger"
+msgstr "počet"
 
 #: models.py:202
 msgid "images file (.zip)"
-msgstr "pakkede bildefiler (.zip)"
+msgstr "súbor s obrázkami (.zip)"
 
 #: models.py:203
 msgid "Select a .zip file of images to upload into a new Gallery."
-msgstr "Velg en .zip-fil med bilder for å laste opp som et nytt galleri."
+msgstr "Vyberte .zip súbor s obrázkami, ktorý chcete nahrať do novej Galérie."
 
 #: models.py:204
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
+msgstr "Vyberte galériu do ktorej chcete pridať tieto obrázky. ponechajte toto pole prázdne ak chcete vytvoriť novú galériu so zadaným názvom."
 
 #: models.py:205
 msgid ""
 "All photos in the gallery will be given a title made up of the gallery title"
 " + a sequential number."
-msgstr "Alle bilder i dette galleriet vil bli gitt navn etter galleriets navn + bildets nummer."
+msgstr "Všetky fotky v galérii budú mať názov zložený z názvu galérie + poradové číslo."
 
 #: models.py:206 models.py:516
 msgid "caption"
-msgstr "undertittel"
+msgstr "titulok"
 
 #: models.py:206
 msgid "Caption will be added to all photos."
-msgstr "Undertitler blir lagt til på alle bilder."
+msgstr "Titulok bude pridaný do všetkých fotografií."
 
 #: models.py:207
 msgid "A description of this Gallery."
-msgstr "Beskrivelse av galleriet."
+msgstr "Popis tejto galérie."
 
 #: models.py:208
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr "Avmarker dette for å gjøre galleriet og dets bilder private."
+msgstr "Odškrtnite, aby odovzdané galérie a zahrnuté fotografie boli súkromné."
 
 #: models.py:212
 msgid "gallery upload"
-msgstr "galleriopplasting"
+msgstr "odovzdanie galérie"
 
 #: models.py:213
 msgid "gallery uploads"
-msgstr "galleriopplastinger"
+msgstr "odovzdania galérie"
 
 #: models.py:277 models.py:667
 msgid "image"
-msgstr "bilde"
+msgstr "obrázok"
 
 #: models.py:279
 msgid "date taken"
-msgstr "dato tatt"
+msgstr "dátum odfotenia"
 
 #: models.py:280
 msgid "view count"
@@ -216,63 +217,63 @@ msgstr ""
 
 #: models.py:281
 msgid "crop from"
-msgstr "kutt fra"
+msgstr "orezať od"
 
 #: models.py:282
 msgid "effect"
-msgstr "effekt"
+msgstr "efekt"
 
 #: models.py:300
 msgid "An \"admin_thumbnail\" photo size has not been defined."
-msgstr "En \"admin_thumbnail\"-bildestørrelse har ikke blitt opprettet."
+msgstr "Veľkosť fotografie \"admin_thumbnail\" nebola definovaná."
 
 #: models.py:308
 msgid "Thumbnail"
-msgstr "Miniatyrbilde"
+msgstr "Náhľad"
 
 #: models.py:514
 msgid "slug"
-msgstr "slug"
+msgstr "identifikátor"
 
 #: models.py:517
 msgid "date added"
-msgstr "opplastingsdato"
+msgstr "dátum pridania"
 
 #: models.py:518
 msgid "Public photographs will be displayed in the default views."
-msgstr "Publiserte bilder vil bli vist på vanlig måte."
+msgstr "Verejné fotografie budú zobrazené v štandardných zobrazeniach."
 
 #: models.py:524
 msgid "photo"
-msgstr "bilde"
+msgstr "fotografia"
 
 #: models.py:558 models.py:681
 msgid "name"
-msgstr "navn"
+msgstr "meno"
 
 #: models.py:627
 msgid "rotate or flip"
-msgstr "rotér og snu"
+msgstr "otočiť alebo prevrátiť"
 
 #: models.py:628 models.py:635
 msgid "color"
-msgstr "farge"
+msgstr "farba"
 
 #: models.py:628
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr "En verdi på 0.0 gir et sort/hvitt-bilde, en verdi på 1.0 gir originalbildet."
+msgstr "Faktor 0.0 dáva čiernobiely obrázok, faktor 1.0 dáva pôvodný obrázok."
 
 #: models.py:629
 msgid "brightness"
-msgstr "lyshet"
+msgstr "jas"
 
 #: models.py:629
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr "En verdi på 0.0 gir et sort bilde, en verdi på 1.0 gir originalbildet."
+msgstr "Faktor 0.0 dáva čierny obrázok, faktor 1.0 dáva pôvodný obrázok."
 
 #: models.py:630
 msgid "contrast"
@@ -282,154 +283,154 @@ msgstr "kontrast"
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
 " image."
-msgstr "En verdi på 0.0 gir et grått bilde, en verdi på 1.0 gir originalbildet."
+msgstr "Faktor 0.0 dáva šedý obrázok, faktor 1.0 dáva pôvodný obrázok."
 
 #: models.py:631
 msgid "sharpness"
-msgstr "skarphet"
+msgstr "ostrosť"
 
 #: models.py:631
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr "En verdi på 0.0 gir et utydlig bilde, en verdi på 1.0 gir originalbildet."
+msgstr "Faktor 0.0 dáva rozmazaný obrázok, faktor 1.0 dáva pôvodný obrázok."
 
 #: models.py:632
 msgid "filters"
-msgstr "filter"
+msgstr "filtre"
 
 #: models.py:633
 msgid "size"
-msgstr "størrelse"
+msgstr "veľkosť"
 
 #: models.py:633
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr "Høyden av refleksjonen som prosent av originalbildet. En verdi på 0.0 gir ingen refleksjon, en verdi på 1.0 gir en refleksjon tilsvarende høyden på originalbildet."
+msgstr "Výška odrazu v percentách pôvodného obrázku. Faktor 0.0 nepridáva žiadny odraz, faktor 1.0 pridáva odraz rovný výśke pôvodného obrázku."
 
 #: models.py:634
 msgid "strength"
-msgstr "styrke"
+msgstr "intenzita"
 
 #: models.py:634
 msgid "The initial opacity of the reflection gradient."
-msgstr ""
+msgstr "Počiatočná presvitnosť odrazového gradientu."
 
 #: models.py:635
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr ""
+msgstr "Farba pozadia odrazového gradientu. Túto položku nastavte tak, aby sa zhodovala s farbou pozadia vašej stránky."
 
 #: models.py:638 models.py:689
 msgid "photo effect"
-msgstr "bildeeffekt"
+msgstr "efekt fotografie"
 
 #: models.py:639
 msgid "photo effects"
-msgstr "bildeeffekter"
+msgstr "efekty fotografie"
 
 #: models.py:668
 msgid "style"
-msgstr "stil"
+msgstr "štýl"
 
 #: models.py:669
 msgid "opacity"
-msgstr "gjennomsiktighet"
+msgstr "priesvitnosť"
 
 #: models.py:669
 msgid "The opacity of the overlay."
-msgstr "Gjennomsiktigheten av overlegget."
+msgstr "Priesvitnosť prekrytia."
 
 #: models.py:672
 msgid "watermark"
-msgstr "vannmerke"
+msgstr "vodoznak"
 
 #: models.py:673
 msgid "watermarks"
-msgstr "vannmerker"
+msgstr "vodoznaky"
 
 #: models.py:681
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr "Navn på bildestørrelse kan kun inneholde bokstaver, tall og understreker. Eksempler: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr "Názov veľkosti fotografie by mal obsahovať len písmená, čísla a podčiarky. Príklady:  \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
 #: models.py:682
 msgid "width"
-msgstr "bredde"
+msgstr "šírka"
 
 #: models.py:682
 msgid "If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr "Hvis bredden er satt til \"0\" blir bildet skalert til den oppgitte høyden."
+msgstr "Ak je šírka nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú výšku."
 
 #: models.py:683
 msgid "height"
-msgstr "høyde"
+msgstr "výška"
 
 #: models.py:683
 msgid "If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr "Hvis høyden er satt til \"0\" blir bildet skalert til den oppgitte bredden."
+msgstr "Ak je výška nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú šírku"
 
 #: models.py:684
 msgid "quality"
-msgstr "kvalitet"
+msgstr "kvalita"
 
 #: models.py:684
 msgid "JPEG image quality."
-msgstr "JPEG bildekvalitet"
+msgstr "JPEG kvalita obrázku"
 
 #: models.py:685
 msgid "upscale images?"
-msgstr "oppskalér bilder?"
+msgstr "prispôsobiť obzázky?"
 
 #: models.py:685
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr "Hvis valgt, blir bildet vil bli skalert opp om det er nødvendig. Kuttede størrelser vil bli oppskalert uansett innstilling."
+msgstr "Ak je táto položka vybratá a je to potrebné, obrázok bude prispôsobený tak, aby sa zmestil do zadaných rozmerov."
 
 #: models.py:686
 msgid "crop to fit?"
-msgstr "kutt for tilpasning?"
+msgstr "orezať ak je to potrebné ?"
 
 #: models.py:686
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr "Hvis valgt blir bildet skalert og kuttet for å passe med den oppgitte størrelsen."
+msgstr "Ak je táto položka vybratá, obrázok bude upravený a orezaný, aby sa zmestil do zadaných rozmerov."
 
 #: models.py:687
 msgid "pre-cache?"
-msgstr "mellomlagre på forhånd?"
+msgstr "pred-generovať ?"
 
 #: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr "Hvis valgt blir denne bildestørrelsen mellomlagret på forhånd når nye bilder blir lagt til."
+msgstr "Ak je táto položka vybratá, veľkosť fotografie bude pred-generovaná počas pridávania fotografií."
 
 #: models.py:688
 msgid "increment view count?"
-msgstr "øke visningstelleren?"
+msgstr "zvýšiť počet zobrazení?"
 
 #: models.py:688
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr "Hvis valgt vil \"visningstelleren\" øke hver gang denne bildestørrelsen vises."
+msgstr "Ak je táto položka vybratá, \"view_count\" obrázku bude zvýšený, keď sa zobrazí veľkosť tohto obrázku."
 
 #: models.py:690
 msgid "watermark image"
-msgstr "vannmerke på bilde"
+msgstr "použiť vodoznak na obrázok"
 
 #: models.py:694
 msgid "photo size"
-msgstr "bildestørrelse"
+msgstr "veľkosť fotografie"
 
 #: models.py:695
 msgid "photo sizes"
-msgstr "bildestørrelser"
+msgstr "veľkosti fotografie"
 
 #: models.py:711
 msgid "Can only crop photos if both width and height dimensions are set."

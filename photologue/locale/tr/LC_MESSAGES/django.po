@@ -1,27 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
-# Ali Rıza Keleş <ali.r.keles@gmail.com>, 2009.
+# Ali Rıza Keleş <ali.r.keles@gmail.com>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-20 18:58+0100\n"
-"PO-Revision-Date: 2012-09-03 21:55+0000\n"
+"POT-Creation-Date: 2013-06-09 19:19+0000\n"
+"PO-Revision-Date: 2013-06-09 19:48+0000\n"
 "Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: tr\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/django-photologue/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: models.py:47
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr ""
-"Etikletleri boşuklar ile ayırın, çok kelimeli olanları tınak içine alın."
+msgstr "Etikletleri boşuklar ile ayırın, çok kelimeli olanları tınak içine alın."
 
 #: models.py:56
 msgid "Django-tagging was not found, tags will be treated as plain text."
@@ -106,16 +105,16 @@ msgstr "Ölçekle"
 #: models.py:138
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
 msgstr ""
 
 #: models.py:142
 msgid "date published"
 msgstr "yayınlama tarihi"
 
-#: models.py:143 models.py:208 models.py:516
+#: models.py:143 models.py:205 models.py:513
 msgid "title"
 msgstr "başlık"
 
@@ -123,15 +122,15 @@ msgstr "başlık"
 msgid "title slug"
 msgstr "başlık slug"
 
-#: models.py:145 models.py:518
+#: models.py:145 models.py:515
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "\"Slug\" bir nesne için url dostu eşsiz bir başlıktır."
 
-#: models.py:146 models.py:210 models.py:565
+#: models.py:146 models.py:207 models.py:559
 msgid "description"
 msgstr "tanım"
 
-#: models.py:147 models.py:211 models.py:521
+#: models.py:147 models.py:208 models.py:518
 msgid "is public"
 msgstr "Görünür mü?"
 
@@ -139,15 +138,15 @@ msgstr "Görünür mü?"
 msgid "Public galleries will be displayed in the default views."
 msgstr "Görülebilir galeriler varsayılan görünümlerde sergilenirler."
 
-#: models.py:149 models.py:528
+#: models.py:149 models.py:525
 msgid "photos"
 msgstr "fotolar"
 
-#: models.py:151 models.py:212 models.py:522
+#: models.py:151 models.py:209 models.py:519
 msgid "tags"
 msgstr "etiketler"
 
-#: models.py:156 models.py:207
+#: models.py:156 models.py:204
 msgid "gallery"
 msgstr "galeri"
 
@@ -155,300 +154,333 @@ msgstr "galeri"
 msgid "galleries"
 msgstr "galeriler"
 
-#: models.py:197
+#: models.py:194
 msgid "count"
 msgstr "sayaç"
 
-#: models.py:205
+#: models.py:202
 msgid "images file (.zip)"
 msgstr "resimlerin dosyası (.zip)"
 
-#: models.py:206
+#: models.py:203
 msgid "Select a .zip file of images to upload into a new Gallery."
-msgstr ""
-"Yeni bir galeri yüklemek için içerisinde resimlerin yer aldığı bir .zip "
-"dosyası seçiniz. "
+msgstr "Yeni bir galeri yüklemek için içerisinde resimlerin yer aldığı bir .zip dosyası seçiniz. "
 
-#: models.py:207
+#: models.py:204
 msgid ""
 "Select a gallery to add these images to. leave this empty to create a new "
 "gallery from the supplied title."
 msgstr ""
 
-#: models.py:208
+#: models.py:205
 msgid ""
-"All photos in the gallery will be given a title made up of the gallery title "
-"+ a sequential number."
-msgstr ""
-"Galerideki tüm fotolara, galeri başlığı + sıralı numaradan oluşacak bir "
-"başlık verilecektir "
+"All photos in the gallery will be given a title made up of the gallery title"
+" + a sequential number."
+msgstr "Galerideki tüm fotolara, galeri başlığı + sıralı numaradan oluşacak bir başlık verilecektir "
 
-#: models.py:209 models.py:519
+#: models.py:206 models.py:516
 msgid "caption"
 msgstr "alt yazı"
 
-#: models.py:209
+#: models.py:206
 msgid "Caption will be added to all photos."
 msgstr "Altyazı tüm fotolara eklenecektir."
 
-#: models.py:210
+#: models.py:207
 msgid "A description of this Gallery."
 msgstr "Bu galeri için bir tanımlama yazınız."
 
-#: models.py:211
+#: models.py:208
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Yüklenen bu galeriyi ve içerisindeki tüm fotoları özel yapmak için "
-"işaretlemeyin."
+msgstr "Yüklenen bu galeriyi ve içerisindeki tüm fotoları özel yapmak için işaretlemeyin."
 
-#: models.py:215
+#: models.py:212
 msgid "gallery upload"
 msgstr "galeri yükleme"
 
-#: models.py:216
+#: models.py:213
 msgid "gallery uploads"
 msgstr "galeri yüklemeleri"
 
-#: models.py:280 models.py:676
+#: models.py:277 models.py:667
 msgid "image"
 msgstr "imaj"
 
-#: models.py:282
+#: models.py:279
 msgid "date taken"
 msgstr "çekilme tarihi"
 
-#: models.py:283
-#, fuzzy
+#: models.py:280
 msgid "view count"
-msgstr "sayaç"
+msgstr ""
 
-#: models.py:284
+#: models.py:281
 msgid "crop from"
 msgstr "şuradan kes"
 
-#: models.py:285
+#: models.py:282
 msgid "effect"
 msgstr "efekt"
 
-#: models.py:303
+#: models.py:300
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "Bir \"admin_thumbnail\" foto ölçüleri tanımlanmamış."
 
-#: models.py:311
+#: models.py:308
 msgid "Thumbnail"
 msgstr "Minyatür"
 
-#: models.py:517
+#: models.py:514
 msgid "slug"
 msgstr "slug"
 
-#: models.py:520
+#: models.py:517
 msgid "date added"
 msgstr "eklenme tarihi"
 
-#: models.py:521
+#: models.py:518
 msgid "Public photographs will be displayed in the default views."
 msgstr "Görülebilir fotolar varsayılan görünümlerde sergilenirler."
 
-#: models.py:527
+#: models.py:524
 msgid "photo"
 msgstr "foto"
 
-#: models.py:564 models.py:690
+#: models.py:558 models.py:681
 msgid "name"
 msgstr "isim"
 
-#: models.py:636
+#: models.py:627
 msgid "rotate or flip"
 msgstr "döndür ya da ayna aksi"
 
-#: models.py:637 models.py:644
+#: models.py:628 models.py:635
 msgid "color"
 msgstr "renk"
 
-#: models.py:637
+#: models.py:628
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr "0.0 siyah beyaz bir imaj, 1.0 orjinal imajı verir."
 
-#: models.py:638
+#: models.py:629
 msgid "brightness"
 msgstr "parlaklık"
 
-#: models.py:638
+#: models.py:629
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr "0.0 siyah bir imaj, 1.0 orjinal imajı verir."
 
-#: models.py:639
+#: models.py:630
 msgid "contrast"
 msgstr "kontrast"
 
-#: models.py:639
+#: models.py:630
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
 msgstr "0.0 katı gri bir imaj, 1.0 orjinal imajı verir."
 
-#: models.py:640
+#: models.py:631
 msgid "sharpness"
 msgstr "keskinlik"
 
-#: models.py:640
+#: models.py:631
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr "0.0 blanık bir imaj, 1.0 orjinal imajı verir."
 
-#: models.py:641
+#: models.py:632
 msgid "filters"
 msgstr "filtreler"
 
-#: models.py:642
+#: models.py:633
 msgid "size"
 msgstr "boyutlar"
 
-#: models.py:642
+#: models.py:633
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr ""
-"Yansımanın yüksekliği, orjinal imajın yüzdelik oranıdır. 0.0 hiç yansıma "
-"vermezken, 1.0 orjinal imaj yüksekliği kadar bir yansıma sağlar."
+msgstr "Yansımanın yüksekliği, orjinal imajın yüzdelik oranıdır. 0.0 hiç yansıma vermezken, 1.0 orjinal imaj yüksekliği kadar bir yansıma sağlar."
 
-#: models.py:643
+#: models.py:634
 msgid "strength"
 msgstr "gerilim"
 
-#: models.py:643
+#: models.py:634
 msgid "The initial opacity of the reflection gradient."
 msgstr ""
 
-#: models.py:644
+#: models.py:635
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr ""
 
-#: models.py:647 models.py:698
+#: models.py:638 models.py:689
 msgid "photo effect"
 msgstr "foto efekti"
 
-#: models.py:648
+#: models.py:639
 msgid "photo effects"
 msgstr "foto efektleri"
 
-#: models.py:677
+#: models.py:668
 msgid "style"
 msgstr "tarz"
 
-#: models.py:678
+#: models.py:669
 msgid "opacity"
 msgstr "opaklık"
 
-#: models.py:678
+#: models.py:669
 msgid "The opacity of the overlay."
 msgstr "Katmanın opaklığı."
 
-#: models.py:681
+#: models.py:672
 msgid "watermark"
 msgstr "su damga"
 
-#: models.py:682
+#: models.py:673
 msgid "watermarks"
 msgstr "su damgaları"
 
-#: models.py:690
+#: models.py:681
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"Foto ebat isimleri sadece hafler, rakamlar ve alt tireler içerebilir. "
-"Örnekler: \"minyaturler\", \"sergi\", \"kucuk\", \"ana_sayfa_vinyeti\"."
+msgstr "Foto ebat isimleri sadece hafler, rakamlar ve alt tireler içerebilir. Örnekler: \"minyaturler\", \"sergi\", \"kucuk\", \"ana_sayfa_vinyeti\"."
 
-#: models.py:691
+#: models.py:682
 msgid "width"
 msgstr "genişlik"
 
-#: models.py:691
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
+#: models.py:682
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr "Eğer genişlik 0 verilirse, verilen yüksekliğe göre ölçeklenecek."
 
-#: models.py:692
+#: models.py:683
 msgid "height"
 msgstr "yükseklik"
 
-#: models.py:692
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
+#: models.py:683
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr "Eğer yükseklik 0 verilirse, verilen genişliğe göre ölçeklenecek. "
 
-#: models.py:693
+#: models.py:684
 msgid "quality"
 msgstr "kalite"
 
-#: models.py:693
+#: models.py:684
 msgid "JPEG image quality."
 msgstr "JPEG kalitesi"
 
-#: models.py:694
+#: models.py:685
 msgid "upscale images?"
 msgstr "imajı büyüt?"
 
-#: models.py:694
+#: models.py:685
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 msgstr "Eğer seçilirse, imaj verilen ölçülere göre gerekli ise büyütülecek."
 
-#: models.py:695
+#: models.py:686
 msgid "crop to fit?"
 msgstr "sığdırmak için kes?"
 
-#: models.py:695
+#: models.py:686
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr ""
-"Eğer seçilirse imaj ölçeklenecek ve verilen ebatlara sığdırmak için "
-"ölçeklenecek."
+msgstr "Eğer seçilirse imaj ölçeklenecek ve verilen ebatlara sığdırmak için ölçeklenecek."
 
-#: models.py:696
+#: models.py:687
 msgid "pre-cache?"
 msgstr "wstępnie cachować?"
 
-#: models.py:696
+#: models.py:687
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr "Eğer seçilirse, fotolar eklenirken, ön belleklenecek."
 
-#: models.py:697
+#: models.py:688
 msgid "increment view count?"
 msgstr "görüntüleme sayısını arttır?"
 
-#: models.py:697
+#: models.py:688
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr ""
-"Eğer seçilirse, imajın \"görüntülenme sayısı\", foto görüntülendikçe artacak."
+msgstr "Eğer seçilirse, imajın \"görüntülenme sayısı\", foto görüntülendikçe artacak."
 
-#: models.py:699
+#: models.py:690
 msgid "watermark image"
 msgstr "su damgası imajı"
 
-#: models.py:703
+#: models.py:694
 msgid "photo size"
 msgstr "photo ebadı"
 
-#: models.py:704
+#: models.py:695
 msgid "photo sizes"
 msgstr "photo ebadları"
 
-#: models.py:723
+#: models.py:711
 msgid "Can only crop photos if both width and height dimensions are set."
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:5
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:9
+msgid "Latest Photo Galleries"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:16
+#: contrib/bootstrap/templates/photologue/gallery_detail.html:11
+#: contrib/bootstrap/templates/photologue/gallery_list.html:16
+#: contrib/bootstrap/templates/photologue/photo_detail.html:10
+msgid "Published"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:29
+#: contrib/bootstrap/templates/photologue/gallery_list.html:29
+msgid "No galleries were found"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:32
+#: contrib/bootstrap/templates/photologue/gallery_detail.html:22
+msgid "View all galleries"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:5
+#: contrib/bootstrap/templates/photologue/gallery_list.html:9
+msgid "All Galleries"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:35
+#: contrib/bootstrap/templates/photologue/gallery_list.html:37
+msgid "Previous"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:40
+#, python-format
+msgid ""
+"\n"
+"\t\t\t    page %(page_number)s of %(total_pages)s\n"
+"\t\t\t"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:45
+#: contrib/bootstrap/templates/photologue/gallery_list.html:47
+msgid "Next"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/photo_detail.html:17
+msgid "This photo is found in the following galleries"
 msgstr ""

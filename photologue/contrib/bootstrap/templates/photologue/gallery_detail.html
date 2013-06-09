@@ -1,5 +1,6 @@
 {% extends "photologue/root.html" %}
 {% load url from future %}
+{% load i18n %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
@@ -7,7 +8,7 @@
 
 	<h1>{{ object.title }}</h1>
 	{% if object.description %}<p>{{ object.description }}</p>{% endif %}
-	<p class="muted"><small>Published {{ object.date_added }}</small></p>
+	<p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
 	<ul class="thumbnails">
 		{% for photo in object.public %}
 			<li class="{% block photologue-gallery-li-class %}span3{% endblock %}">
@@ -18,6 +19,6 @@
 		{% endfor %}
 	</ul>
 
-	<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries</a></p>
+	<p><a href="{% url 'pl-gallery-list' 1 %}">{% trans "View all galleries" %}</a></p>
 
 {% endblock %}

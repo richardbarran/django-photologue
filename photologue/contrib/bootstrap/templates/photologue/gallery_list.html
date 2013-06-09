@@ -1,18 +1,19 @@
 {% extends "photologue/root.html" %}
 {% load url from future %}
+{% load i18n %}
 
-{% block title %}All Galleries{% endblock %}
+{% block title %}{% trans "All Galleries" %}{% endblock %}
 
 {% block content %}
 
-<h1>All galleries</h1>
+<h1>{% trans "All Galleries" %}</h1>
 
 {% if object_list %}
     {% for gallery in object_list %}
 	    <div class="{% block photologue-gallery-class %}{% endblock %}">
 	        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
 	        {% if gallery.description %}<p>{{ gallery.description }}</p>{% endif %}
-	        <p class="muted"><small>Published {{ gallery.date_added }}</small></p>
+	        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
 		    <ul class="thumbnails">
 	    	    {% for photo in gallery.sample %}
 				    <li class="{% block photologue-gallery-li-class %}span3{% endblock %}">
@@ -25,21 +26,25 @@
 	    </div>
     {% endfor %}
 {% else %}
-    <p>No galleries were found.</p>
+    <p>{% trans "No galleries were found" %}.</p>
 {% endif %}
 
 {% if is_paginated %}
     <ul class="pager">
 	    {% if page_obj.has_previous %}
-	    	<li><a href="{% url 'pl-gallery-list' page_obj.previous_page_number %}">Previous</a></li>
+	    	<li><a href="{% url 'pl-gallery-list' page_obj.previous_page_number %}">{% trans "Previous" %}</a></li>
 	    {% else %}
-	    	<li class="disabled"><a href="#">Previous</a></li>
+	    	<li class="disabled"><a href="#">{% trans "Previous" %}</a></li>
 	    {% endif %}
-	    <li class="number-of-pages">page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+	    <li class="number-of-pages">
+		    {% blocktrans with page_number=page_obj.number total_pages=page_obj.paginator.num_pages %}
+			    page {{ page_number }} of {{ total_pages }}
+			{% endblocktrans %}
+	    </li>
 	    {% if page_obj.has_next %}
-	    	<li><a href="{% url 'pl-gallery-list' page_obj.next_page_number %}">Next</a></li>
+	    	<li><a href="{% url 'pl-gallery-list' page_obj.next_page_number %}">{% trans "Next" %}</a></li>
 	    {% else %}
-	    	<li class="disabled"><a href="#">Next</a></li>
+	    	<li class="disabled"><a href="#">{% trans "Next" %}</a></li>
 	    {% endif %}
     </ul>
 {% endif %}
