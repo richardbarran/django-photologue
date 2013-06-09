@@ -1,15 +1,18 @@
 """
+Photologue can used with your site's sitemap.xml to generate a list of all the 
+Gallery and Photo pages.
+
 To use, add the following to the sitemap definition section of your project's
-urls.py:
+urls.py::
 
-...
-from photologue.sitemaps import PhotologueSitemap
-
-sitemaps = {...
-            'photologue': PhotologueSitemap
-            ...
-            }
-etc...
+    ...
+    from photologue.sitemaps import PhotologueSitemap
+    
+    sitemaps = {...
+                'photologue': PhotologueSitemap
+                ...
+                }
+    etc...
 
 """
 

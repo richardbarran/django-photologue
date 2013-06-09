@@ -89,3 +89,9 @@ Instant Photo Gallery
 Photologue comes with basic templates for galleries and photos. You can of course override them, or completely
 replace them. Note that all Photologue templates inherit from ``photologue/root.html``, which itself just inherits from
 a site-wide ``base.html`` - you can change this to use a different base template.
+
+Sitemap
+-------
+
+.. automodule:: photologue.sitemaps
+
