@@ -18,6 +18,8 @@ List of changes:
 - The Twitter-Bootstrap templates - previously in 'contrib' become the default; the
   previous templates are moved to 'contrib'.
 - PHOTOLOGUE_USE_CKEDITOR has been removed.
+- Removed deprecated PhotologueSitemap.
+
 
 2.8 (2014-05-04)
 ----------------
