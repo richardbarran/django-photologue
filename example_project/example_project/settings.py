@@ -1,7 +1,7 @@
 # Global settings for photologue example project.
 
 import os
-from photologue import PHOTOLOGUE_TEMPLATE_DIR
+from photologue import PHOTOLOGUE_APP_DIR
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -70,8 +70,8 @@ ROOT_URLCONF = 'example_project.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(TOP_FOLDER, 'example_project/templates'),
-    os.path.join(PHOTOLOGUE_TEMPLATE_DIR, 'contrib/bootstrap/templates'),
-    PHOTOLOGUE_TEMPLATE_DIR
+    os.path.join(PHOTOLOGUE_APP_DIR, 'contrib/bootstrap/templates'),
+    PHOTOLOGUE_APP_DIR
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
