@@ -86,10 +86,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
-FIXTURE_DIRS = (
-    os.path.join(TOP_FOLDER, 'example_project/fixtures'),
-)
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
