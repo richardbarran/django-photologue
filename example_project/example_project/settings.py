@@ -30,9 +30,7 @@ SITE_ID = 1
 
 USE_I18N = True
 USE_L10N = True
-# TODO: setting this to True in Django 1.4 causes runtime warnings, when 1.4
-# is end-of-lined in 2014 we can change this setting to True.
-USE_TZ = False
+USE_TZ = True
 
 MEDIA_ROOT = os.path.join(TOP_FOLDER, 'public', 'media')
 MEDIA_URL = '/media/'
