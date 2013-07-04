@@ -3,6 +3,7 @@
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from photologue.tests import helpers
+from photologue.models import Photo
 from django.test import TestCase
 
 YEAR = datetime.now().year
@@ -24,6 +25,19 @@ class RequestPhotoTest(TestCase):
     def test_archive_photo_url_works(self):
         response = self.client.get(reverse('pl-photo-archive'))
         self.assertEqual(response.status_code, 200)
+
+    def test_archive_photo_empty(self):
+        """If there are no photo to show, tell the visitor - don't show a
+        404."""
+
+        Photo.objects.all().update(is_public=False)
+
+        response = self.client.get(reverse('pl-photo-archive'))
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(response.context['latest'].count(),
+                         0)
+
 
     def test_paginated_photo_url_works(self):
         response = self.client.get(reverse('pl-photo-list', kwargs={'page': 1}))

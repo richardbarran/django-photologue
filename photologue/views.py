@@ -18,6 +18,7 @@ class GalleryDetailView(GalleryView, DetailView):
 
 class GalleryDateView(GalleryView):
     date_field = 'date_added'
+    allow_empty = True
 
 class GalleryDateDetailView(GalleryDateView, DateDetailView):
     slug_field = 'title_slug'
@@ -47,6 +48,7 @@ class PhotoDetailView(PhotoView, DetailView):
 
 class PhotoDateView(PhotoView):
     date_field = 'date_added'
+    allow_empty = True
 
 class PhotoDateDetailView(PhotoDateView, DateDetailView):
     slug_field = 'title_slug'

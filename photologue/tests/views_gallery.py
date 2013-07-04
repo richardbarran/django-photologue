@@ -3,6 +3,7 @@
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from photologue.tests import helpers
+from photologue.models import Gallery
 from django.test import TestCase
 
 YEAR = datetime.now().year
@@ -24,6 +25,17 @@ class RequestGalleryTest(TestCase):
         response = self.client.get(reverse('pl-gallery-archive'))
         self.assertEqual(response.status_code, 200)
 
+    def test_archive_gallery_empty(self):
+        """If there are no galleries to show, tell the visitor - don't show a
+        404."""
+
+        Gallery.objects.all().update(is_public=False)
+
+        response = self.client.get(reverse('pl-gallery-archive'))
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(response.context['latest'].count(),
+                         0)
 
     def test_paginated_gallery_url_works(self):
         response = self.client.get(reverse('pl-gallery-list',
