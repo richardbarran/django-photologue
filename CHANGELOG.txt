@@ -6,10 +6,12 @@ Changelog for django-photologue
 
 - Fixed issue #56, Gallery pagination is broken.
 - Photologue now works with Python 3.
-- Created a set of templates that work well with Twitter-Bootstrap, and used them
-  for the 'example_project'.
-- updated Polish translation.
-- new translation for Slovak.
+- Added a set of templates that work well with Twitter-Bootstrap, and used
+  them for the 'example_project'.
+- Fixed issue #64 (allow installation without installing Pillow).
+- Optional use of CKEditor.
+- Updated Polish translation.
+- New translation for Slovak.
 
 2.6.1 (2013-05-19)
 ------------------

@@ -39,6 +39,17 @@ For example, to customise ``photologue/gallery_list.html``, you can have an impl
     the content blocks that we want to customise ...
 
 
+Settings
+--------
+Photologue has several settings to customise behaviour; at present this part of the
+documentation is unfortunately incomplete.
+
+PHOTOLOGUE_USE_CKEDITOR
+~~~~~~~~~~~~~~~~~~~~~~~
+If you have already installed `django-ckeditor <https://pypi.python.org/pypi/django-ckeditor>`_
+then you can use to edit the TextArea fields of Gallery
+and Photo in the admin. Simply set the setting to ``True``. 
+
 Third-party contributions
 -------------------------
 Photologue has a 'contrib' folder that includes some
