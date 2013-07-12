@@ -21,7 +21,7 @@ itself, we try to keep the master branch bug-free.
 
 Python 3
 ~~~~~~~~
-Photologue works with Python 3 >= 3.3 and Django >= 1.5. Like Django itself,
+Photologue works with Python 3 (3.3 or later) and Django >= 1.5. Like Django itself,
 support for Python 3 can be described as "should work, but needs more time on
 production sites to prove itself". Use it, but make sure that all features work!  
 
@@ -42,7 +42,17 @@ These 3 apps will be installed automatically if they are not already there.
       them here would not be practical. Google
       is your friend, and it's worth noting that Pillow is a fork of PIL,
       so googling 'PIL installation <your platform>' can also help.
-    * You should not have installed both PIL and Pillow; this can cause strange bugs. 
+    * You should not have installed both PIL and Pillow; this can cause strange bugs.
+      Please uninstall PIL before you install Pillow.
+    * In some situations, you might not be able to use Pillow at all (e.g. if another
+      package has a dependency on PIL). Photologue has a clumsy answer for this:
+      write a temporary file ``/tmp/PHOTOLOGUE_NO_PILLOW``, then install Photologue.
+      This will tell Photologue to install without Pillow. It *should* work, but it
+      hasn't been tested!
+       
+
+.. note::
+
     * Photologue has the same support policy as Django (last 2 versions released).
 
 Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.

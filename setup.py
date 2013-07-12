@@ -9,6 +9,10 @@ SOURCE_DIR = os.path.join(ROOT_DIR)
 def get_requirements(requirements_file):
     with open(requirements_file) as f:
         required = [line.split('#')[0] for line in f.read().splitlines()]
+    # Temp situation: transition from PIL to Pillow, add a hook so people can
+    # skip installing Pillow.
+    if os.path.exists('/tmp/PHOTOLOGUE_NO_PILLOW'):
+        required = [item for item in required if not item.startswith('Pillow')]
     return required
 
 setup(
