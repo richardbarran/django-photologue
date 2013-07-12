@@ -12,6 +12,8 @@ Changelog for django-photologue
 - Optional use of CKEditor.
 - Updated Polish translation.
 - New translation for Slovak.
+- Bugfix: allow viewing latest galleries/latest photos pages even if they 
+  are empty.
 
 2.6.1 (2013-05-19)
 ------------------
