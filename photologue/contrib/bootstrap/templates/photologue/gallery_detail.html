@@ -7,7 +7,7 @@
 {% block content %}
 
 	<h1>{{ object.title }}</h1>
-	{% if object.description %}<p>{{ object.description }}</p>{% endif %}
+	{% if object.description %}<p>{{ object.description|safe }}</p>{% endif %}
 	<p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
 	<ul class="thumbnails">
 		{% for photo in object.public %}

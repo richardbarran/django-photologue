@@ -6,7 +6,7 @@
 {% block content %}
 
 	<h1>{{ object.title }}</h1>
-	{% if object.caption %}<p>{{ object.caption }}</p>{% endif %}
+	{% if object.caption %}<p>{{ object.caption|safe }}</p>{% endif %}
 	<p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
 
 	<a href="{{ object.image.url }}">

@@ -12,7 +12,7 @@
     {% for gallery in latest %}
 	    <div class="{% block photologue-gallery-class %}{% endblock %}">
 	        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
-	        {% if gallery.description %}<p>{{ gallery.description }}</p>{% endif %}
+	        {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
 	        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
 		    <ul class="thumbnails">
 	    	    {% for photo in gallery.sample %}
