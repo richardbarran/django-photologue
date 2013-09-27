@@ -7,6 +7,7 @@ from datetime import datetime
 from django.utils.timezone import now
 from inspect import isclass
 
+import django
 from django.db import models
 from django.db.models.signals import post_init
 from django.conf import settings
@@ -566,9 +567,10 @@ class Photo(AbstractPhoto):
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
-        swappable = 'PHOTOLOGUE_PHOTO_MODEL'
         verbose_name = _("photo")
         verbose_name_plural = _("photos")
+        if django.VERSION[0:2] >= (1, 5):
+            swappable = 'PHOTOLOGUE_PHOTO_MODEL'
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
