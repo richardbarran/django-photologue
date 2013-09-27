@@ -74,7 +74,7 @@ SAMPLE_SIZE = getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 100)
 
 # Path to sample image
-SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH' os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg'))
+SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH', os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg'))
 
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
