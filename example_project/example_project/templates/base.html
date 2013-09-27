@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/screen.css" rel="stylesheet" media="screen">
     </head>
     <body>
-        {% block content %}{% endblock %}
+		<div class="navbar navbar-inverse">
+    		<div class="navbar-inner">
+    			<a class="brand" href="/">Photologue example project</a>
+    			<ul class="nav">
+    				<li class="{% block navbar-active-home %}{% endblock %}"><a href="/">Home</a></li>
+    				<li class="{% block navbar-active-gallery %}{% endblock %}"><a href="/photologue/">Photo gallery</a></li>
+    			</ul>
+    		</div>
+    	</div>
+    	<div class="container">
+        	{% block content %}{% endblock %}
+        </div>
     </body>
 </html>

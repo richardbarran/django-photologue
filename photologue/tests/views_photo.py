@@ -3,14 +3,15 @@
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from photologue.tests import helpers
-from photologue.tests.helpers import RequestTest
+from photologue.models import Photo
+from django.test import TestCase
 
 YEAR = datetime.now().year
 MONTH = datetime.now().ctime().split(' ')[1].lower()
 DAY = datetime.now().day
 
 
-class RequestPhotoTest(RequestTest):
+class RequestPhotoTest(TestCase):
 
 
     def setUp(self):
@@ -22,38 +23,54 @@ class RequestPhotoTest(RequestTest):
         self.photo.delete()
 
     def test_archive_photo_url_works(self):
-        self.assertUrl(
-            reverse('pl-photo-archive')
-        )
+        response = self.client.get(reverse('pl-photo-archive'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_archive_photo_empty(self):
+        """If there are no photo to show, tell the visitor - don't show a
+        404."""
+
+        Photo.objects.all().update(is_public=False)
+
+        response = self.client.get(reverse('pl-photo-archive'))
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(response.context['latest'].count(),
+                         0)
+
 
     def test_paginated_photo_url_works(self):
-        self.assertUrl(
-            reverse('pl-photo-list', kwargs={'page': 1})
-        )
+        response = self.client.get(reverse('pl-photo-list', kwargs={'page': 1}))
+        self.assertEqual(response.status_code, 200)
 
     def test_photo_works(self):
-        self.assertUrl(
-            reverse('pl-photo', kwargs={'slug': 'fake-photo'})
-        )
+        response = self.client.get(reverse('pl-photo',
+                                           kwargs={'slug': 'fake-photo'}))
+        self.assertEqual(response.status_code, 200)
 
 
     def test_archive_year_photo_works(self):
-        self.assertUrl(
-            reverse('pl-photo-archive-year', kwargs={'year': YEAR})
-        )
+        response = self.client.get(reverse('pl-photo-archive-year',
+                                           kwargs={'year': YEAR}))
+        self.assertEqual(response.status_code, 200)
 
     def test_archive_month_photo_works(self):
-        self.assertUrl(
-            reverse('pl-photo-archive-month', kwargs={'year': YEAR, 'month':MONTH})
-        )
+        response = self.client.get(reverse('pl-photo-archive-month',
+                                          kwargs={'year': YEAR, 'month':MONTH}))
+        self.assertEqual(response.status_code, 200)
 
     def test_archive_day_photo_works(self):
-        self.assertUrl(
-            reverse('pl-photo-archive-day', kwargs={'year': YEAR, 'month':MONTH, 'day': DAY})
-        )
+        response = self.client.get(reverse('pl-photo-archive-day',
+                                           kwargs={'year': YEAR,
+                                                   'month':MONTH,
+                                                   'day': DAY}))
+        self.assertEqual(response.status_code, 200)
 
 
     def test_detail_photo_works(self):
-        self.assertUrl(
-            reverse('pl-photo-detail', kwargs={'year': YEAR, 'month':MONTH, 'day': DAY, 'slug': 'fake-photo'})
-        )
+        response = self.client.get(reverse('pl-photo-detail',
+                                           kwargs={'year': YEAR,
+                                                   'month':MONTH,
+                                                   'day': DAY,
+                                                   'slug': 'fake-photo'}))
+        self.assertEqual(response.status_code, 200)

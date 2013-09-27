@@ -1,0 +1,486 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juraj Bubniak <translations@jbub.eu>, 2012-2013
+msgid ""
+msgstr ""
+"Project-Id-Version: Photologue\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-09 19:19+0000\n"
+"PO-Revision-Date: 2013-06-09 19:48+0000\n"
+"Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/django-photologue/language/sk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: models.py:47
+msgid "Separate tags with spaces, put quotes around multiple-word tags."
+msgstr "Oddeľte tagy medzerami, vložte úvodzovky okolo viac-slovných tagov."
+
+#: models.py:56
+msgid "Django-tagging was not found, tags will be treated as plain text."
+msgstr "Aplikácia Django-tagging sa nenašla, s tagmi sa bude zaobchádzať ako s obyčajným textom."
+
+#: models.py:100
+msgid "Very Low"
+msgstr "Veľmi Nízka"
+
+#: models.py:101
+msgid "Low"
+msgstr "Nízka"
+
+#: models.py:102
+msgid "Medium-Low"
+msgstr "Stredne-Nízka"
+
+#: models.py:103
+msgid "Medium"
+msgstr "Stredná"
+
+#: models.py:104
+msgid "Medium-High"
+msgstr "Stredne-Vysoká"
+
+#: models.py:105
+msgid "High"
+msgstr "Vysoká"
+
+#: models.py:106
+msgid "Very High"
+msgstr "Veľmi Vysoká"
+
+#: models.py:111
+msgid "Top"
+msgstr "Hore"
+
+#: models.py:112
+msgid "Right"
+msgstr "Vpravo"
+
+#: models.py:113
+msgid "Bottom"
+msgstr "Dole"
+
+#: models.py:114
+msgid "Left"
+msgstr "Vľavo"
+
+#: models.py:115
+msgid "Center (Default)"
+msgstr "Stred (Štandardne)"
+
+#: models.py:119
+msgid "Flip left to right"
+msgstr "Prevrátiť zľava doprava"
+
+#: models.py:120
+msgid "Flip top to bottom"
+msgstr "Prevrátiť zhora nadol"
+
+#: models.py:121
+msgid "Rotate 90 degrees counter-clockwise"
+msgstr "Otočiť o 90 stupňov proti smeru hodinových ručičiek"
+
+#: models.py:122
+msgid "Rotate 90 degrees clockwise"
+msgstr "Otočiť o 90 stupňov v smere hodinových ručičiek"
+
+#: models.py:123
+msgid "Rotate 180 degrees"
+msgstr "Otočiť o 180 stupňov"
+
+#: models.py:127
+msgid "Tile"
+msgstr "Dláždiť"
+
+#: models.py:128
+msgid "Scale"
+msgstr "Dodržať mierku"
+
+#: models.py:138
+#, python-format
+msgid ""
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
+msgstr "Zreťazte viac filtrov pomocou nasledovného vzoru \"FILTER_JEDNA->FILTER_DVA->FILTER_TRI\". Obrázkové filtre budú použité v poradí. Nasledujúce filtre sú k dispozícii: %s."
+
+#: models.py:142
+msgid "date published"
+msgstr "dátum zverejnenia"
+
+#: models.py:143 models.py:205 models.py:513
+msgid "title"
+msgstr "názov"
+
+#: models.py:144
+msgid "title slug"
+msgstr "identifikátor názvu"
+
+#: models.py:145 models.py:515
+msgid "A \"slug\" is a unique URL-friendly title for an object."
+msgstr "\"Identifikátor\" je unikátny názov objektu vhodný pre použitie v URL."
+
+#: models.py:146 models.py:207 models.py:559
+msgid "description"
+msgstr "popis"
+
+#: models.py:147 models.py:208 models.py:518
+msgid "is public"
+msgstr "je verejný"
+
+#: models.py:148
+msgid "Public galleries will be displayed in the default views."
+msgstr "Verejné galérie budú zobrazené v štandardných zobrazeniach."
+
+#: models.py:149 models.py:525
+msgid "photos"
+msgstr "fotografie"
+
+#: models.py:151 models.py:209 models.py:519
+msgid "tags"
+msgstr "tagy"
+
+#: models.py:156 models.py:204
+msgid "gallery"
+msgstr "galéria"
+
+#: models.py:157
+msgid "galleries"
+msgstr "galérie"
+
+#: models.py:194
+msgid "count"
+msgstr "počet"
+
+#: models.py:202
+msgid "images file (.zip)"
+msgstr "súbor s obrázkami (.zip)"
+
+#: models.py:203
+msgid "Select a .zip file of images to upload into a new Gallery."
+msgstr "Vyberte .zip súbor s obrázkami, ktorý chcete nahrať do novej Galérie."
+
+#: models.py:204
+msgid ""
+"Select a gallery to add these images to. leave this empty to create a new "
+"gallery from the supplied title."
+msgstr "Vyberte galériu do ktorej chcete pridať tieto obrázky. ponechajte toto pole prázdne ak chcete vytvoriť novú galériu so zadaným názvom."
+
+#: models.py:205
+msgid ""
+"All photos in the gallery will be given a title made up of the gallery title"
+" + a sequential number."
+msgstr "Všetky fotky v galérii budú mať názov zložený z názvu galérie + poradové číslo."
+
+#: models.py:206 models.py:516
+msgid "caption"
+msgstr "titulok"
+
+#: models.py:206
+msgid "Caption will be added to all photos."
+msgstr "Titulok bude pridaný do všetkých fotografií."
+
+#: models.py:207
+msgid "A description of this Gallery."
+msgstr "Popis tejto galérie."
+
+#: models.py:208
+msgid ""
+"Uncheck this to make the uploaded gallery and included photographs private."
+msgstr "Odškrtnite, aby odovzdané galérie a zahrnuté fotografie boli súkromné."
+
+#: models.py:212
+msgid "gallery upload"
+msgstr "odovzdanie galérie"
+
+#: models.py:213
+msgid "gallery uploads"
+msgstr "odovzdania galérie"
+
+#: models.py:277 models.py:667
+msgid "image"
+msgstr "obrázok"
+
+#: models.py:279
+msgid "date taken"
+msgstr "dátum odfotenia"
+
+#: models.py:280
+msgid "view count"
+msgstr ""
+
+#: models.py:281
+msgid "crop from"
+msgstr "orezať od"
+
+#: models.py:282
+msgid "effect"
+msgstr "efekt"
+
+#: models.py:300
+msgid "An \"admin_thumbnail\" photo size has not been defined."
+msgstr "Veľkosť fotografie \"admin_thumbnail\" nebola definovaná."
+
+#: models.py:308
+msgid "Thumbnail"
+msgstr "Náhľad"
+
+#: models.py:514
+msgid "slug"
+msgstr "identifikátor"
+
+#: models.py:517
+msgid "date added"
+msgstr "dátum pridania"
+
+#: models.py:518
+msgid "Public photographs will be displayed in the default views."
+msgstr "Verejné fotografie budú zobrazené v štandardných zobrazeniach."
+
+#: models.py:524
+msgid "photo"
+msgstr "fotografia"
+
+#: models.py:558 models.py:681
+msgid "name"
+msgstr "meno"
+
+#: models.py:627
+msgid "rotate or flip"
+msgstr "otočiť alebo prevrátiť"
+
+#: models.py:628 models.py:635
+msgid "color"
+msgstr "farba"
+
+#: models.py:628
+msgid ""
+"A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
+"original image."
+msgstr "Faktor 0.0 dáva čiernobiely obrázok, faktor 1.0 dáva pôvodný obrázok."
+
+#: models.py:629
+msgid "brightness"
+msgstr "jas"
+
+#: models.py:629
+msgid ""
+"A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
+"image."
+msgstr "Faktor 0.0 dáva čierny obrázok, faktor 1.0 dáva pôvodný obrázok."
+
+#: models.py:630
+msgid "contrast"
+msgstr "kontrast"
+
+#: models.py:630
+msgid ""
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
+msgstr "Faktor 0.0 dáva šedý obrázok, faktor 1.0 dáva pôvodný obrázok."
+
+#: models.py:631
+msgid "sharpness"
+msgstr "ostrosť"
+
+#: models.py:631
+msgid ""
+"A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
+"image."
+msgstr "Faktor 0.0 dáva rozmazaný obrázok, faktor 1.0 dáva pôvodný obrázok."
+
+#: models.py:632
+msgid "filters"
+msgstr "filtre"
+
+#: models.py:633
+msgid "size"
+msgstr "veľkosť"
+
+#: models.py:633
+msgid ""
+"The height of the reflection as a percentage of the orignal image. A factor "
+"of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
+"height of the orignal image."
+msgstr "Výška odrazu v percentách pôvodného obrázku. Faktor 0.0 nepridáva žiadny odraz, faktor 1.0 pridáva odraz rovný výśke pôvodného obrázku."
+
+#: models.py:634
+msgid "strength"
+msgstr "intenzita"
+
+#: models.py:634
+msgid "The initial opacity of the reflection gradient."
+msgstr "Počiatočná presvitnosť odrazového gradientu."
+
+#: models.py:635
+msgid ""
+"The background color of the reflection gradient. Set this to match the "
+"background color of your page."
+msgstr "Farba pozadia odrazového gradientu. Túto položku nastavte tak, aby sa zhodovala s farbou pozadia vašej stránky."
+
+#: models.py:638 models.py:689
+msgid "photo effect"
+msgstr "efekt fotografie"
+
+#: models.py:639
+msgid "photo effects"
+msgstr "efekty fotografie"
+
+#: models.py:668
+msgid "style"
+msgstr "štýl"
+
+#: models.py:669
+msgid "opacity"
+msgstr "priesvitnosť"
+
+#: models.py:669
+msgid "The opacity of the overlay."
+msgstr "Priesvitnosť prekrytia."
+
+#: models.py:672
+msgid "watermark"
+msgstr "vodoznak"
+
+#: models.py:673
+msgid "watermarks"
+msgstr "vodoznaky"
+
+#: models.py:681
+msgid ""
+"Photo size name should contain only letters, numbers and underscores. "
+"Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr "Názov veľkosti fotografie by mal obsahovať len písmená, čísla a podčiarky. Príklady:  \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+
+#: models.py:682
+msgid "width"
+msgstr "šírka"
+
+#: models.py:682
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Ak je šírka nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú výšku."
+
+#: models.py:683
+msgid "height"
+msgstr "výška"
+
+#: models.py:683
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Ak je výška nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú šírku"
+
+#: models.py:684
+msgid "quality"
+msgstr "kvalita"
+
+#: models.py:684
+msgid "JPEG image quality."
+msgstr "JPEG kvalita obrázku"
+
+#: models.py:685
+msgid "upscale images?"
+msgstr "prispôsobiť obzázky?"
+
+#: models.py:685
+msgid ""
+"If selected the image will be scaled up if necessary to fit the supplied "
+"dimensions. Cropped sizes will be upscaled regardless of this setting."
+msgstr "Ak je táto položka vybratá a je to potrebné, obrázok bude prispôsobený tak, aby sa zmestil do zadaných rozmerov."
+
+#: models.py:686
+msgid "crop to fit?"
+msgstr "orezať ak je to potrebné ?"
+
+#: models.py:686
+msgid ""
+"If selected the image will be scaled and cropped to fit the supplied "
+"dimensions."
+msgstr "Ak je táto položka vybratá, obrázok bude upravený a orezaný, aby sa zmestil do zadaných rozmerov."
+
+#: models.py:687
+msgid "pre-cache?"
+msgstr "pred-generovať ?"
+
+#: models.py:687
+msgid "If selected this photo size will be pre-cached as photos are added."
+msgstr "Ak je táto položka vybratá, veľkosť fotografie bude pred-generovaná počas pridávania fotografií."
+
+#: models.py:688
+msgid "increment view count?"
+msgstr "zvýšiť počet zobrazení?"
+
+#: models.py:688
+msgid ""
+"If selected the image's \"view_count\" will be incremented when this photo "
+"size is displayed."
+msgstr "Ak je táto položka vybratá, \"view_count\" obrázku bude zvýšený, keď sa zobrazí veľkosť tohto obrázku."
+
+#: models.py:690
+msgid "watermark image"
+msgstr "použiť vodoznak na obrázok"
+
+#: models.py:694
+msgid "photo size"
+msgstr "veľkosť fotografie"
+
+#: models.py:695
+msgid "photo sizes"
+msgstr "veľkosti fotografie"
+
+#: models.py:711
+msgid "Can only crop photos if both width and height dimensions are set."
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:5
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:9
+msgid "Latest Photo Galleries"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:16
+#: contrib/bootstrap/templates/photologue/gallery_detail.html:11
+#: contrib/bootstrap/templates/photologue/gallery_list.html:16
+#: contrib/bootstrap/templates/photologue/photo_detail.html:10
+msgid "Published"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:29
+#: contrib/bootstrap/templates/photologue/gallery_list.html:29
+msgid "No galleries were found"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_archive.html:32
+#: contrib/bootstrap/templates/photologue/gallery_detail.html:22
+msgid "View all galleries"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:5
+#: contrib/bootstrap/templates/photologue/gallery_list.html:9
+msgid "All Galleries"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:35
+#: contrib/bootstrap/templates/photologue/gallery_list.html:37
+msgid "Previous"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:40
+#, python-format
+msgid ""
+"\n"
+"\t\t\t    page %(page_number)s of %(total_pages)s\n"
+"\t\t\t"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/gallery_list.html:45
+#: contrib/bootstrap/templates/photologue/gallery_list.html:47
+msgid "Next"
+msgstr ""
+
+#: contrib/bootstrap/templates/photologue/photo_detail.html:17
+msgid "This photo is found in the following galleries"
+msgstr ""

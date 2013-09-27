@@ -1,0 +1,34 @@
+{% extends "photologue/root.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{% trans "Latest Photo Galleries" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Latest Photo Galleries" %}</h1>
+
+{% if latest %}
+    {% for gallery in latest %}
+	    <div class="{% block photologue-gallery-class %}{% endblock %}">
+	        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
+	        {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
+	        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
+		    <ul class="thumbnails">
+	    	    {% for photo in gallery.sample %}
+				    <li class="{% block photologue-gallery-li-class %}span3{% endblock %}">
+					    <a href="{{ photo.get_absolute_url }}" class="thumbnail">
+						    <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}">
+					    </a>
+			    	</li>
+		        {% endfor %}
+		    </ul>
+	    </div>
+    {% endfor %}
+{% else %}
+    <p>{% trans "No galleries were found" %}.</p>
+{% endif %}
+
+<p><a href="{% url 'pl-gallery-list' 1 %}">{% trans "View all galleries" %}.</a></p>
+
+{% endblock %}

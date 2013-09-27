@@ -1,6 +1,6 @@
+import sys
 import os
 import random
-import shutil
 import zipfile
 
 from datetime import datetime
@@ -12,6 +12,7 @@ from django.db.models.signals import post_init
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 try:
     from django.utils.encoding import force_text
@@ -60,9 +61,9 @@ except ImportError:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ["^photologue\.models\.TagField"])
 
-from utils import EXIF
-from utils.reflection import add_reflection
-from utils.watermark import apply_watermark
+from .utils import EXIF
+from .utils.reflection import add_reflection
+from .utils.watermark import apply_watermark
 
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
@@ -165,9 +166,6 @@ class Gallery(models.Model):
     def __unicode__(self):
         return self.title
 
-    def __str__(self):
-        return self.__unicode__()
-
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.title_slug])
 
@@ -208,24 +206,14 @@ class Gallery(models.Model):
 
 
 class GalleryUpload(models.Model):
-    zip_file = models.FileField(_('images file (.zip)'),
-        upload_to=PHOTOLOGUE_DIR + "/temp",
-        help_text=_('Select a .zip file of images to upload into a new Gallery.'))
-    gallery = models.ForeignKey(Gallery,
-        null=True, blank=True,
-        help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
-    title = models.CharField(_('title'),
-        max_length=50,
-        help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
-    caption = models.TextField(_('caption'),
-        blank=True, help_text=_('Caption will be added to all photos.'))
-    description = models.TextField(_('description'),
-        blank=True, help_text=_('A description of this Gallery.'))
-    is_public = models.BooleanField(_('is public'),
-        default=True,
-        help_text=_('Uncheck this to make the uploaded gallery and included photographs private.'))
-    tags = models.CharField(max_length=255, blank=True,
-        help_text=tagfield_help_text, verbose_name=_('tags'))
+    zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR + "/temp",
+                                help_text=_('Select a .zip file of images to upload into a new Gallery.'))
+    gallery = models.ForeignKey(Gallery, verbose_name=_('gallery'), null=True, blank=True, help_text=_('Select a gallery to add these images to. leave this empty to create a new gallery from the supplied title.'))
+    title = models.CharField(_('title'), max_length=50, help_text=_('All photos in the gallery will be given a title made up of the gallery title + a sequential number.'))
+    caption = models.TextField(_('caption'), blank=True, help_text=_('Caption will be added to all photos.'))
+    description = models.TextField(_('description'), blank=True, help_text=_('A description of this Gallery.'))
+    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Uncheck this to make the uploaded gallery and included photographs private.'))
+    tags = models.CharField(max_length=255, blank=True, help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
         verbose_name = _('gallery upload')
@@ -295,13 +283,10 @@ class GalleryUpload(models.Model):
 class ImageModel(models.Model):
     image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH,
                               upload_to=get_storage_path)
-    date_taken = models.DateTimeField(_('date taken'),
-        null=True, blank=True, editable=False)
-    view_count = models.PositiveIntegerField(default=0, editable=False)
-    crop_from = models.CharField(_('crop from'),
-        blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
-    effect = models.ForeignKey('PhotoEffect',
-        null=True, blank=True, related_name="%(class)s_related", verbose_name=_('effect'))
+    date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
+    view_count = models.PositiveIntegerField(_('view count'), default=0, editable=False)
+    crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name="%(class)s_related", verbose_name=_('effect'))
 
     class Meta:
         abstract = True
@@ -467,7 +452,7 @@ class ImageModel(models.Model):
                 except KeyError:
                     pass
             im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
-        except IOError, e:
+        except IOError as e:
             if os.path.isfile(im_filename):
                 os.unlink(im_filename)
             raise e
@@ -544,7 +529,7 @@ class AbstractBasePhoto(ImageModel):
 class AbstractPhoto(AbstractBasePhoto):
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
-                                  help_text=('A "slug" is a unique URL-friendly title for an object.'))
+                                  help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=now)
 
@@ -582,6 +567,8 @@ class Photo(AbstractPhoto):
 
     class Meta:
         swappable = 'PHOTOLOGUE_PHOTO_MODEL'
+        verbose_name = _("photo")
+        verbose_name_plural = _("photos")
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
@@ -632,9 +619,6 @@ class BaseEffect(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    def __str__(self):
-        return self.__unicode__()
 
     def save(self, *args, **kwargs):
         try:
@@ -748,9 +732,6 @@ class PhotoSize(models.Model):
     def __unicode__(self):
         return self.name
 
-    def __str__(self):
-        return self.__unicode__()
-
     def clear_cache(self):
         # TODO: don't hardcode the Photo
         for cls in (Photo,):
@@ -765,10 +746,12 @@ class PhotoSize(models.Model):
                     obj.create_size(self)
         PhotoSizeCache().reset()
 
-    def save(self, *args, **kwargs):
+    def clean(self):
         if self.crop is True:
             if self.width == 0 or self.height == 0:
-                raise ValueError("PhotoSize width and/or height can not be zero if crop=True.")
+                raise ValidationError(_("Can only crop photos if both width and height dimensions are set."))
+
+    def save(self, *args, **kwargs):
         super(PhotoSize, self).save(*args, **kwargs)
         PhotoSizeCache().reset()
         self.clear_cache()

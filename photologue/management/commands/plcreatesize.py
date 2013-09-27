@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from photologue.management.commands import create_photosize
 
 class Command(BaseCommand):

@@ -1,6 +1,7 @@
 # Global settings for photologue example project.
 
 import os
+from photologue import PHOTOLOGUE_APP_DIR
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -29,9 +30,7 @@ SITE_ID = 1
 
 USE_I18N = True
 USE_L10N = True
-# TODO: setting this to True in Django 1.4 causes runtime warnings, when 1.4
-# is end-of-lined in 2014 we can change this setting to True.
-USE_TZ = False
+USE_TZ = True
 
 MEDIA_ROOT = os.path.join(TOP_FOLDER, 'public', 'media')
 MEDIA_URL = '/media/'
@@ -71,6 +70,8 @@ ROOT_URLCONF = 'example_project.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(TOP_FOLDER, 'example_project/templates'),
+    os.path.join(PHOTOLOGUE_APP_DIR, 'contrib/bootstrap/templates'),
+    PHOTOLOGUE_APP_DIR
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -83,10 +84,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
-FIXTURE_DIRS = (
-    os.path.join(TOP_FOLDER, 'example_project/fixtures'),
-)
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -95,11 +92,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    # Note: added sitemaps to the INSTALLED_APPS just so that unit tests run,
+    # but not actually added a sitemap in urls.py.
+    'django.contrib.sitemaps',
     'photologue',
-    'example_project',
     'south',
+    'example_project',
 ]
-
 
 SOUTH_TESTS_MIGRATE = False
 

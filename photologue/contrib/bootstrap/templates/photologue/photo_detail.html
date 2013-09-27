@@ -1,0 +1,29 @@
+{% extends "photologue/root.html" %}
+{% load photologue_tags i18n %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+
+	<h1>{{ object.title }}</h1>
+	{% if object.caption %}<p>{{ object.caption|safe }}</p>{% endif %}
+	<p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
+
+	<a href="{{ object.image.url }}">
+		<img src="{{ object.get_display_url }}" class="img-polaroid" alt="{{ object.title }}">
+	</a>
+
+{% if object.public_galleries %}
+	<p class="photologue-photo-found-in-galleries">{% trans "This photo is found in the following galleries" %}:</p>
+	<ul class="unstyled">
+		{% for gallery in object.public_galleries %}
+			<li>
+				{%previous_in_gallery object gallery %}
+				<a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a>
+				{% next_in_gallery object gallery %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+
+{% endblock %}

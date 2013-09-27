@@ -1,3 +1,4 @@
+from __future__ import print_function
 from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
 from photologue.models import PhotoSize, ImageModel
@@ -32,11 +33,11 @@ def create_cache(sizes, options):
     if not len(sizes):
         raise CommandError('No photo sizes were found.')
 
-    print 'Caching photos, this may take a while...'
+    print('Caching photos, this may take a while...')
 
     for cls in ImageModel.__subclasses__():
         for photosize in sizes:
-            print 'Cacheing %s size images' % photosize.name
+            print('Cacheing %s size images' % photosize.name)
             for obj in cls.objects.all():
                 if reset:
                     obj.remove_size(photosize)

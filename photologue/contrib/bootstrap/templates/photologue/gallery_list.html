@@ -1,0 +1,52 @@
+{% extends "photologue/root.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{% trans "All Galleries" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "All Galleries" %}</h1>
+
+{% if object_list %}
+    {% for gallery in object_list %}
+	    <div class="{% block photologue-gallery-class %}{% endblock %}">
+	        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
+	        {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
+	        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
+		    <ul class="thumbnails">
+	    	    {% for photo in gallery.sample %}
+				    <li class="{% block photologue-gallery-li-class %}span3{% endblock %}">
+					    <a href="{{ photo.get_absolute_url }}" class="thumbnail">
+						    <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}">
+					    </a>
+				    </li>
+		        {% endfor %}
+		    </ul>
+	    </div>
+    {% endfor %}
+{% else %}
+    <p>{% trans "No galleries were found" %}.</p>
+{% endif %}
+
+{% if is_paginated %}
+    <ul class="pager">
+	    {% if page_obj.has_previous %}
+	    	<li><a href="{% url 'pl-gallery-list' page_obj.previous_page_number %}">{% trans "Previous" %}</a></li>
+	    {% else %}
+	    	<li class="disabled"><a href="#">{% trans "Previous" %}</a></li>
+	    {% endif %}
+	    <li class="number-of-pages">
+		    {% blocktrans with page_number=page_obj.number total_pages=page_obj.paginator.num_pages %}
+			    page {{ page_number }} of {{ total_pages }}
+			{% endblocktrans %}
+	    </li>
+	    {% if page_obj.has_next %}
+	    	<li><a href="{% url 'pl-gallery-list' page_obj.next_page_number %}">{% trans "Next" %}</a></li>
+	    {% else %}
+	    	<li class="disabled"><a href="#">{% trans "Next" %}</a></li>
+	    {% endif %}
+    </ul>
+{% endif %}
+
+{% endblock %}

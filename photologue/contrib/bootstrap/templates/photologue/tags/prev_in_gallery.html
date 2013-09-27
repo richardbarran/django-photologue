@@ -1,0 +1,5 @@
+{% if photo %}
+	<a title="{{ photo.title }}" href="{{ photo.get_absolute_url }}">
+		<img src="{{ photo.get_thumbnail_url }}" class="img-polaroid" />
+	</a>
+{% endif %}
