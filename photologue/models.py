@@ -39,9 +39,7 @@ except ImportError:
         from PIL import ImageFilter
         from PIL import ImageEnhance
     except ImportError:
-        raise ImportError('Photologue was unable to import the Python Imaging '\
-            'Library. Please confirm it`s installed and available on your '\
-            'current Python path.')
+        raise ImportError('Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available on your current Python path.')
 
 # attempt to load the django-tagging TagField from default location,
 # otherwise we substitude a dummy TagField.
@@ -76,9 +74,7 @@ SAMPLE_SIZE = getattr(settings, 'GALLERY_SAMPLE_SIZE', 5)
 IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 100)
 
 # Path to sample image
-# os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
-SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH',
-    os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg'))
+SAMPLE_IMAGE_PATH = getattr(settings, 'SAMPLE_IMAGE_PATH' os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg'))
 
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
@@ -140,22 +136,19 @@ for n in dir(ImageFilter):
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
         hasattr(klass, 'name'):
             filter_names.append(klass.__name__)
-IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following '\
-    'pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be '\
-    'applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
+IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
 
 class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'), default=now)
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('title slug'), unique=True,
-        help_text=_('A "slug" is a unique URL-friendly title for an object.'))
+                                  help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     description = models.TextField(_('description'), blank=True)
     is_public = models.BooleanField(_('is public'), default=True,
-        help_text=_('Public galleries will be displayed in the default views.'))
-    photos = models.ManyToManyField('Photo',
-        related_name='galleries', verbose_name=_('photos'),
-        null=True, blank=True)
+                                    help_text=_('Public galleries will be displayed in the default views.'))
+    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
+                                    null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
@@ -180,7 +173,7 @@ class Gallery(models.Model):
 
     def sample(self, count=None, public=True):
         """Return a sample of photos, ordered at random.
-        If the 'count' is not specified, it will return a number of photos
+        If the 'count' is not specified, it will return a number of photos 
         limited by the GALLERY_SAMPLE_SIZE setting.
         """
         if not count:
@@ -244,7 +237,7 @@ class GalleryUpload(models.Model):
                                                  tags=self.tags)
             from cStringIO import StringIO
             for filename in sorted(zip.namelist()):
-                if filename.startswith('__'):  # do not process meta files
+                if filename.startswith('__'): # do not process meta files
                     continue
                 data = zip.read(filename)
                 if len(data):
@@ -392,9 +385,9 @@ class ImageModel(models.Model):
             elif self.crop_from == 'left':
                 box = (0, int(y_diff), new_width, int(y_diff + new_height))
             elif self.crop_from == 'bottom':
-                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y))  # y - yd = new_height
+                box = (int(x_diff), int(yd), int(x_diff + new_width), int(y)) # y - yd = new_height
             elif self.crop_from == 'right':
-                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height))  # x - xd = new_width
+                box = (int(xd), int(y_diff), int(x), int(y_diff + new_height)) # x - xd = new_width
             else:
                 box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
             im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
@@ -701,30 +694,16 @@ class Watermark(BaseEffect):
 
 
 class PhotoSize(models.Model):
-    name = models.CharField(_('name'),
-        max_length=40, unique=True,
-        help_text=_('Photo size name should contain only letters, numbers and '\
-            'underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
-    width = models.PositiveIntegerField(_('width'), default=0,
-        help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
-    height = models.PositiveIntegerField(_('height'), default=0,
-        help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
-    quality = models.PositiveIntegerField(_('quality'),
-        choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
-    upscale = models.BooleanField(_('upscale images?'), default=False,
-        help_text=_('If selected the image will be scaled up if necessary to '\
-            'fit the supplied dimensions. Cropped sizes will be upscaled '\
-            'regardless of this setting.'))
-    crop = models.BooleanField(_('crop to fit?'), default=False,
-        help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
-    pre_cache = models.BooleanField(_('pre-cache?'), default=False,
-        help_text=_('If selected this photo size will be pre-cached as photos are added.'))
-    increment_count = models.BooleanField(_('increment view count?'), default=False,
-        help_text=_('If selected the image\'s "view_count" will be incremented when this photo size is displayed.'))
-    effect = models.ForeignKey('PhotoEffect', null=True, blank=True,
-        related_name='photo_sizes', verbose_name=_('photo effect'))
-    watermark = models.ForeignKey('Watermark', null=True, blank=True,
-        related_name='photo_sizes', verbose_name=_('watermark image'))
+    name = models.CharField(_('name'), max_length=40, unique=True, help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
+    width = models.PositiveIntegerField(_('width'), default=0, help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
+    height = models.PositiveIntegerField(_('height'), default=0, help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
+    quality = models.PositiveIntegerField(_('quality'), choices=JPEG_QUALITY_CHOICES, default=70, help_text=_('JPEG image quality.'))
+    upscale = models.BooleanField(_('upscale images?'), default=False, help_text=_('If selected the image will be scaled up if necessary to fit the supplied dimensions. Cropped sizes will be upscaled regardless of this setting.'))
+    crop = models.BooleanField(_('crop to fit?'), default=False, help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
+    pre_cache = models.BooleanField(_('pre-cache?'), default=False, help_text=_('If selected this photo size will be pre-cached as photos are added.'))
+    increment_count = models.BooleanField(_('increment view count?'), default=False, help_text=_('If selected the image\'s "view_count" will be incremented when this photo size is displayed.'))
+    effect = models.ForeignKey('PhotoEffect', null=True, blank=True, related_name='photo_sizes', verbose_name=_('photo effect'))
+    watermark = models.ForeignKey('Watermark', null=True, blank=True, related_name='photo_sizes', verbose_name=_('watermark image'))
 
     class Meta:
         ordering = ['width', 'height']
@@ -765,7 +744,6 @@ class PhotoSize(models.Model):
 
     def _get_size(self):
         return (self.width, self.height)
-
     def _set_size(self, value):
         self.width, self.height = value
     size = property(_get_size, _set_size)
