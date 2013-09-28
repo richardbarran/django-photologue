@@ -3,7 +3,8 @@
 from django.views.generic.dates import ArchiveIndexView, DateDetailView, DayArchiveView, MonthArchiveView, YearArchiveView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from photologue.models import Photo, Gallery
+from photologue.models import Gallery
+from . import get_photo_model
 
 # Gallery views.
 
@@ -38,13 +39,14 @@ class GalleryYearArchiveView(GalleryDateView, YearArchiveView):
 # Photo views.
 
 class PhotoView(object):
-    queryset = Photo.objects.filter(is_public=True)
+    queryset = get_photo_model().objects.filter(is_public=True)
 
 class PhotoListView(PhotoView, ListView):
     paginate_by = 20
 
 class PhotoDetailView(PhotoView, DetailView):
     slug_field = 'title_slug'
+    template_name = 'photologue/photo_detail.html'
 
 class PhotoDateView(PhotoView):
     date_field = 'date_added'

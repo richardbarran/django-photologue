@@ -64,6 +64,8 @@ from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
 
+from . import get_photo_model
+
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
@@ -147,7 +149,7 @@ class Gallery(models.Model):
     description = models.TextField(_('description'), blank=True)
     is_public = models.BooleanField(_('is public'), default=True,
                                     help_text=_('Public galleries will be displayed in the default views.'))
-    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
+    photos = models.ManyToManyField(settings.CUSTOM_PHOTO_MODEL, related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
@@ -544,14 +546,14 @@ class AbstractPhoto(AbstractBasePhoto):
         try:
             return self.get_previous_by_date_added(galleries__exact=gallery,
                                                    is_public=True)
-        except AbstractPhoto.DoesNotExist:
+        except get_photo_model().DoesNotExist:
             return None
 
     def get_next_in_gallery(self, gallery):
         try:
             return self.get_next_by_date_added(galleries__exact=gallery,
                                                is_public=True)
-        except AbstractPhoto.DoesNotExist:
+        except get_photo_model().DoesNotExist:
             return None
 
 
