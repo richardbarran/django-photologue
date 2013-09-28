@@ -149,7 +149,7 @@ class Gallery(models.Model):
     description = models.TextField(_('description'), blank=True)
     is_public = models.BooleanField(_('is public'), default=True,
                                     help_text=_('Public galleries will be displayed in the default views.'))
-    photos = models.ManyToManyField(settings.CUSTOM_PHOTO_MODEL, related_name='galleries', verbose_name=_('photos'),
+    photos = models.ManyToManyField(getattr(settings, 'CUSTOM_PHOTO_MODEL', 'photologue.Photo'), related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
