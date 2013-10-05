@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.views.generic.dates import ArchiveIndexView, DateDetailView, DayArchiveView, MonthArchiveView, YearArchiveView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from photologue.models import Photo, Gallery
+
+# Number of galleries to display per page.
+GALLERY_PAGINATE_BY = getattr(settings, 'GALLERY_PAGINATE_BY', 20)
+
+# Number of photos to display per page.
+PHOTO_PAGINATE_BY = getattr(settings, 'PHOTO_PAGINATE_BY', 20)
 
 # Gallery views.
 
@@ -11,7 +18,7 @@ class GalleryView(object):
     queryset = Gallery.objects.filter(is_public=True)
 
 class GalleryListView(GalleryView, ListView):
-    paginate_by = 20
+    paginate_by = GALLERY_PAGINATE_BY
 
 class GalleryDetailView(GalleryView, DetailView):
     slug_field = 'title_slug'
@@ -41,7 +48,7 @@ class PhotoView(object):
     queryset = Photo.objects.filter(is_public=True)
 
 class PhotoListView(PhotoView, ListView):
-    paginate_by = 20
+    paginate_by = PHOTO_PAGINATE_BY
 
 class PhotoDetailView(PhotoView, DetailView):
     slug_field = 'title_slug'
