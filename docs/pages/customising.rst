@@ -78,8 +78,8 @@ PHOTOLOGUE_GALLERY_LATEST_LIMIT
 Default limit for gallery.latest
 
 
-GALLERY_SAMPLE_SIZE
-~~~~~~~~~~~~~~~~~~~
+PHOTOLOGUE_GALLERY_SAMPLE_SIZE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Default: ``5``
 
@@ -94,8 +94,8 @@ PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH
 max_length setting for the ImageModel ImageField
 
 
-SAMPLE_IMAGE_PATH
-~~~~~~~~~~~~~~~~~
+PHOTOLOGUE_SAMPLE_IMAGE_PATH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Default: ``os.path.join(os.path.dirname(__file__), 'res', 'sample.jpg'))``
 
