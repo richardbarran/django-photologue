@@ -7,10 +7,10 @@ from django.views.generic.list import ListView
 from photologue.models import Photo, Gallery
 
 # Number of galleries to display per page.
-GALLERY_PAGINATE_BY = getattr(settings, 'GALLERY_PAGINATE_BY', 20)
+GALLERY_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_GALLERY_PAGINATE_BY', 20)
 
 # Number of photos to display per page.
-PHOTO_PAGINATE_BY = getattr(settings, 'PHOTO_PAGINATE_BY', 20)
+PHOTO_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_PHOTO_PAGINATE_BY', 20)
 
 # Gallery views.
 
