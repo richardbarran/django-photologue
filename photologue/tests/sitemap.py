@@ -10,13 +10,13 @@ import datetime
                      'Sitemaps not installed in this project, nothing to test.')
 class SitemapTest(helpers.PhotologueBaseTest):
 
-    urls = 'photologue.tests.sitemap_urls'
+    urls = 'photologue.tests.test_urls'
 
     def test_get_photo(self):
         """Default test setup contains one photo, this should appear in the sitemap."""
         response = self.client.get('/sitemap.xml')
         today = datetime.date.today().strftime('%Y-%m-%d')
-        photo_string = '<url><loc>http://example.com/photologue/photo/landscape/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
+        photo_string = '<url><loc>http://example.com/ptests/photo/landscape/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
                        .format(today=today)
         self.assertContains(response, photo_string)
 
@@ -27,11 +27,11 @@ class SitemapTest(helpers.PhotologueBaseTest):
 
         response = self.client.get('/sitemap.xml')
         today = datetime.date.today().strftime('%Y-%m-%d')
-        photo_string = '<url><loc>http://example.com/photologue/photo/landscape/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
+        photo_string = '<url><loc>http://example.com/ptests/photo/landscape/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
                        .format(today=today)
         self.assertContains(response, photo_string)
 
-        gallery_string = '<url><loc>http://example.com/photologue/gallery/test-gallery/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
+        gallery_string = '<url><loc>http://example.com/ptests/gallery/test-gallery/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
                        .format(today=today)
         self.assertContains(response, gallery_string)
 

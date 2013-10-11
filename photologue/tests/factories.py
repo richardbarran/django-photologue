@@ -1,5 +1,4 @@
 from django.utils.text import slugify
-from django.core.files import File
 
 import os
 
