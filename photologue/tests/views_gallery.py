@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from django.core.urlresolvers import reverse
-from photologue.tests import helpers
-from photologue.models import Gallery
+from photologue.tests.factories import GalleryFactory
 from django.test import TestCase
 
 YEAR = datetime.now().year
@@ -14,12 +13,8 @@ class RequestGalleryTest(TestCase):
 
     def setUp(self):
         super(RequestGalleryTest, self).setUp()
-        self.gallery = helpers._create_new_gallery(
-            name='Fake Gallery', slug='fake-gallery')
-
-    def tearDown(self):
-        super(RequestGalleryTest, self).tearDown()
-        self.gallery.delete()
+        self.gallery = GalleryFactory(title='Fake Gallery',
+                                      title_slug='fake-gallery')
 
     def test_archive_gallery_url_works(self):
         response = self.client.get(reverse('pl-gallery-archive'))
@@ -29,7 +24,8 @@ class RequestGalleryTest(TestCase):
         """If there are no galleries to show, tell the visitor - don't show a
         404."""
 
-        Gallery.objects.all().update(is_public=False)
+        self.gallery.is_public = False
+        self.gallery.save()
 
         response = self.client.get(reverse('pl-gallery-archive'))
         self.assertEqual(response.status_code, 200)
@@ -41,6 +37,7 @@ class RequestGalleryTest(TestCase):
         response = self.client.get(reverse('pl-gallery-list',
                                             kwargs={'page': 1}))
         self.assertEqual(response.status_code, 200)
+
 
     def test_gallery_works(self):
         response = self.client.get(reverse('pl-gallery',

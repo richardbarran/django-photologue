@@ -1,13 +1,14 @@
 from photologue import models
 from photologue.tests import helpers
+from photologue.tests.factories import GalleryFactory, PhotoFactory
 
 class GalleryTest(helpers.PhotologueBaseTest):
 
     def setUp(self):
         """Create a test gallery with 2 photos."""
         super(GalleryTest, self).setUp()
-        self.test_gallery = models.Gallery.objects.create(title='Fake Gallery', title_slug='fake-gallery')
-        self.pl2 = helpers._create_new_photo(name='Landscape2', slug='landscape2')
+        self.test_gallery = GalleryFactory()
+        self.pl2 = PhotoFactory()
         self.test_gallery.photos.add(self.pl)
         self.test_gallery.photos.add(self.pl2)
 

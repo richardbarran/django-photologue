@@ -14,6 +14,7 @@ Changelog for django-photologue
 - New translation for Slovak.
 - Bugfix: allow viewing latest galleries/latest photos pages even if they 
   are empty.
+- Started using factory-boy - makes unit tests a bit easier to read.
 
 2.6.1 (2013-05-19)
 ------------------

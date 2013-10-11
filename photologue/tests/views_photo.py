@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from django.core.urlresolvers import reverse
-from photologue.tests import helpers
+from photologue.tests.factories import PhotoFactory
 from photologue.models import Photo
 from django.test import TestCase
 
@@ -16,7 +16,7 @@ class RequestPhotoTest(TestCase):
 
     def setUp(self):
         super(RequestPhotoTest, self).setUp()
-        self.photo = helpers._create_new_photo(name='Fake Photo', slug='fake-photo')
+        self.photo = PhotoFactory(title_slug='fake-photo')
 
     def tearDown(self):
         super(RequestPhotoTest, self).tearDown()

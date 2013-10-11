@@ -1,2 +1,5 @@
 -r ../requirements.txt
 Sphinx
+# Factory-boy is ptional with basic install (users might not want to run unit
+# tests), but definitely required for running tests with Travis.
+factory-boy>=2.2.1

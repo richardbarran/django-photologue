@@ -1,9 +1,9 @@
 import os
 from django.conf import settings
-from django.core.files.base import ContentFile
 from photologue.models import Image, Photo, PHOTOLOGUE_DIR
-from photologue.tests.helpers import LANDSCAPE_IMAGE_PATH, PhotologueBaseTest, \
-QUOTING_IMAGE_PATH
+from photologue.tests.factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
+    PhotoFactory
+from photologue.tests.helpers import PhotologueBaseTest
 
 class PhotoTest(PhotologueBaseTest):
     def tearDown(self):
@@ -74,10 +74,7 @@ class PhotoTest(PhotologueBaseTest):
                          self.pl.cache_url() + '/test_photologue_landscape_testPhotoSize.jpg')
 
         # Now create a Photo with a name that needs quoting.
-        self.pl2 = Photo(title='test', title_slug='test')
-        self.pl2.image.save(os.path.basename(QUOTING_IMAGE_PATH),
-                           ContentFile(open(QUOTING_IMAGE_PATH, 'rb').read()))
-        self.pl2.save()
+        self.pl2 = PhotoFactory(image__from_path=QUOTING_IMAGE_PATH)
         self.assertEqual(self.pl2.get_testPhotoSize_url(),
                          self.pl2.cache_url() + '/test_photologue_%26quoting_testPhotoSize.jpg')
 

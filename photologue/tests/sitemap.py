@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils import unittest
 
 from photologue.tests import helpers
+from .factories import GalleryFactory
 
 import datetime
 
@@ -22,8 +23,7 @@ class SitemapTest(helpers.PhotologueBaseTest):
     def test_get_gallery(self):
         """if we add a gallery to the site, we should see both the gallery and
         the photo in the sitemap."""
-        self.gallery = helpers._create_new_gallery(
-            name='Fake Gallery', slug='fake-gallery')
+        self.gallery = GalleryFactory(title_slug='test-gallery')
 
         response = self.client.get('/sitemap.xml')
         today = datetime.date.today().strftime('%Y-%m-%d')
@@ -31,8 +31,7 @@ class SitemapTest(helpers.PhotologueBaseTest):
                        .format(today=today)
         self.assertContains(response, photo_string)
 
-        gallery_string = '<url><loc>http://example.com/photologue/gallery/fake-gallery/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
+        gallery_string = '<url><loc>http://example.com/photologue/gallery/test-gallery/</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>'\
                        .format(today=today)
         self.assertContains(response, gallery_string)
 
-        self.gallery.delete()
