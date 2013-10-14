@@ -17,6 +17,7 @@ matrix:
 
 install:
   - pip install django==$DJANGO_VERSION
+  - pip install factory-boy
   - python setup.py develop
 
 script: cd example_project; python manage.py test photologue
