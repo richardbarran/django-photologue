@@ -1,6 +1,9 @@
 from django.utils.text import slugify
+from django.utils.timezone import utc
+from django.conf import settings
 
 import os
+import datetime
 
 try:
     import factory
@@ -23,7 +26,11 @@ class GalleryFactory(factory.django.DjangoModelFactory):
 
     title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
     title_slug = factory.LazyAttribute(lambda a: slugify(unicode(a.title)))
-
+    # Have to cater projects being non-timezone aware.
+    if settings.USE_TZ:
+        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
+    else:
+        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
 
 class PhotoFactory(factory.django.DjangoModelFactory):
 
@@ -31,9 +38,11 @@ class PhotoFactory(factory.django.DjangoModelFactory):
 
     title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
     title_slug = factory.LazyAttribute(lambda a: slugify(unicode(a.title)))
-
     image = factory.django.ImageField(from_path=LANDSCAPE_IMAGE_PATH)
-#    image = factory.LazyAttribute(lambda a: File(open(LANDSCAPE_IMAGE_PATH)))
+    if settings.USE_TZ:
+        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
+    else:
+        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
 
 class PhotoSizeFactory(factory.django.DjangoModelFactory):
 

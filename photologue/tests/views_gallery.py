@@ -1,12 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from photologue.tests.factories import GalleryFactory
 from django.test import TestCase
-
-YEAR = datetime.now().year
-MONTH = datetime.now().ctime().split(' ')[1].lower()
-DAY = datetime.now().day
 
 class RequestGalleryTest(TestCase):
 
@@ -42,19 +37,19 @@ class RequestGalleryTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_archive_year_gallery_works(self):
-        response = self.client.get('/ptests/gallery/{0}/'.format(YEAR))
+        response = self.client.get('/ptests/gallery/2011/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_month_gallery_works(self):
-        response = self.client.get('/ptests/gallery/{0}/{1}/'.format(YEAR, MONTH))
+        response = self.client.get('/ptests/gallery/2011/dec/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_day_gallery_works(self):
-        response = self.client.get('/ptests/gallery/{0}/{1}/{2}/'.format(YEAR, MONTH, DAY))
+        response = self.client.get('/ptests/gallery/2011/dec/23/')
         self.assertEqual(response.status_code, 200)
 
     def test_detail_gallery_works(self):
-        response = self.client.get('/ptests/gallery/{0}/{1}/{2}/test-gallery/'.format(YEAR, MONTH, DAY))
+        response = self.client.get('/ptests/gallery/2011/dec/23/test-gallery/')
         self.assertEqual(response.status_code, 200)
 
     def test_redirect_to_list(self):

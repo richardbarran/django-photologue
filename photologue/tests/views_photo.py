@@ -1,13 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from photologue.tests.factories import PhotoFactory
 from photologue.models import Photo
 from django.test import TestCase
-
-YEAR = datetime.now().year
-MONTH = datetime.now().ctime().split(' ')[1].lower()
-DAY = datetime.now().day
 
 
 class RequestPhotoTest(TestCase):
@@ -48,18 +43,18 @@ class RequestPhotoTest(TestCase):
 
 
     def test_archive_year_photo_works(self):
-        response = self.client.get('/ptests/photo/{0}/'.format(YEAR))
+        response = self.client.get('/ptests/photo/2011/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_month_photo_works(self):
-        response = self.client.get('/ptests/photo/{0}/{1}/'.format(YEAR, MONTH))
+        response = self.client.get('/ptests/photo/2011/dec/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_day_photo_works(self):
-        response = self.client.get('/ptests/photo/{0}/{1}/{2}/'.format(YEAR, MONTH, DAY))
+        response = self.client.get('/ptests/photo/2011/dec/23/')
         self.assertEqual(response.status_code, 200)
 
 
     def test_detail_photo_works(self):
-        response = self.client.get('/ptests/photo/{0}/{1}/{2}/fake-photo/'.format(YEAR, MONTH, DAY))
+        response = self.client.get('/ptests/photo/2011/dec/23/fake-photo/')
         self.assertEqual(response.status_code, 200)
