@@ -58,4 +58,33 @@ class RequestGalleryTest(TestCase):
         response = self.client.get('/ptests/')
         self.assertRedirects(response, '/ptests/gallery/', 301, 200)
 
+class GalleryPaginationTest(TestCase):
 
+    urls = 'photologue.tests.test_urls'
+
+    def test_pagination(self):
+        for i in range(1, 23):
+            GalleryFactory(title='gallery{0:0>3}'.format(i))
+
+        response = self.client.get('/ptests/gallery/page/1/')
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(len(response.context['object_list']),
+                         20)
+        # Check first and last items.
+        self.assertEqual(response.context['object_list'][0].title,
+                                 'gallery022')
+        self.assertEqual(response.context['object_list'][19].title,
+                                 'gallery003')
+
+        # Now get the second page of results.
+        response = self.client.get('/ptests/gallery/page/2/')
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(len(response.context['object_list']),
+                         2)
+        # Check first and last items.
+        self.assertEqual(response.context['object_list'][0].title,
+                                 'gallery002')
+        self.assertEqual(response.context['object_list'][1].title,
+                                 'gallery001')

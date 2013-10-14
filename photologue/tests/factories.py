@@ -26,23 +26,35 @@ class GalleryFactory(factory.django.DjangoModelFactory):
 
     title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
     title_slug = factory.LazyAttribute(lambda a: slugify(unicode(a.title)))
-    # Have to cater projects being non-timezone aware.
-    if settings.USE_TZ:
-        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
-    else:
-        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
+
+    @factory.sequence
+    def date_added(n):
+        # Have to cater projects being non-timezone aware.
+        if settings.USE_TZ:
+            sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
+        else:
+            sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
+        return sample_date + datetime.timedelta(minutes=n)
 
 class PhotoFactory(factory.django.DjangoModelFactory):
+    """Note: after creating Photo instances for tests, remember to manually 
+    delete them.
+    """
 
     FACTORY_FOR = Photo
 
     title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
     title_slug = factory.LazyAttribute(lambda a: slugify(unicode(a.title)))
     image = factory.django.ImageField(from_path=LANDSCAPE_IMAGE_PATH)
-    if settings.USE_TZ:
-        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
-    else:
-        date_added = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
+
+    @factory.sequence
+    def date_added(n):
+        # Have to cater projects being non-timezone aware.
+        if settings.USE_TZ:
+            sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
+        else:
+            sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
+        return sample_date + datetime.timedelta(minutes=n)
 
 class PhotoSizeFactory(factory.django.DjangoModelFactory):
 
