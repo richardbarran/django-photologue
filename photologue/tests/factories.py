@@ -1,5 +1,10 @@
-from django.utils.text import slugify
+try:
+    from django.utils.text import slugify
+except ImportError:
+    # Django 1.4
+    from django.template.defaultfilters import slugify
 from django.utils.timezone import utc
+from django.utils import six
 from django.conf import settings
 
 import os
@@ -25,7 +30,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
     FACTORY_FOR = Gallery
 
     title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
-    title_slug = factory.LazyAttribute(lambda a: slugify(unicode(a.title)))
+    title_slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
 
     @factory.sequence
     def date_added(n):
@@ -44,7 +49,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
     FACTORY_FOR = Photo
 
     title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
-    title_slug = factory.LazyAttribute(lambda a: slugify(unicode(a.title)))
+    title_slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
     image = factory.django.ImageField(from_path=LANDSCAPE_IMAGE_PATH)
 
     @factory.sequence
