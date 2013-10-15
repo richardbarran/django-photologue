@@ -1,6 +1,14 @@
 Photologue
 ==========
 
+.. image:: https://pypip.in/v/django-photologue/badge.png
+    :target: https://crate.io/packages/django-photologue/
+    :alt: Latest PyPI version
+
+.. image:: https://pypip.in/d/django-photologue/badge.png
+    :target: https://crate.io/packages/django-photologue/
+    :alt: Number of PyPI downloads
+
 Improved image management and photo gallery application for the Django web framework. Use it 
 to quickly put together photo galleries. Use Photologue's power to modify your photos, for example by adding effects
 or watermarks.
