@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from photologue.tests.factories import GalleryFactory
 from django.test import TestCase
