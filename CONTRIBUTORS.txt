@@ -1,17 +1,16 @@
 Photologue is made possible by all the people who have contributed to it. A non-exhaustive list follows:
 
-justin.driscoll
+Justin Driscoll
 Richard Barran
 Marcos Daniel Petry
-richardbarran
 Jonas Haag
 Karol Majta
+Andrew Gerard
 kdeebee
-Jannis
 Benjamin Liles
 ferhat elmas
 Antti Kaihola
 Reavis Sutphin-Gray
+Jannis
 Federico Maggi
-Justin Driscoll
 Herman Schaaf
