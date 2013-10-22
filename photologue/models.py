@@ -264,7 +264,7 @@ class GalleryUpload(models.Model):
                                           caption=self.caption,
                                           is_public=self.is_public,
                                           tags=self.tags)
-                            photo.image.save(filename, ContentFile(data))
+                            photo.image.save(unicode(filename, "cp437"), ContentFile(data))
                             gallery.photos.add(photo)
                             count = count + 1
                             break
@@ -436,7 +436,7 @@ class ImageModel(models.Model):
         elif photosize.effect is not None:
             im = photosize.effect.post_process(im)
         # Save file
-        im_filename = getattr(self, "get_%s_filename" % photosize.name)()
+        im_filename = unicode(getattr(self, "get_%s_filename" % photosize.name)(), 'utf-8')
         try:
             if im_format != 'JPEG':
                 try:
