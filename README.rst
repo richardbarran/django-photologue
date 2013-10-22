@@ -1,5 +1,5 @@
-Photologue
-==========
+Django-photologue
+=================
 
 .. image:: https://pypip.in/v/django-photologue/badge.png
     :target: https://crate.io/packages/django-photologue/
@@ -9,9 +9,10 @@ Photologue
     :target: https://crate.io/packages/django-photologue/
     :alt: Number of PyPI downloads
 
-Improved image management and photo gallery application for the Django web framework. Use it 
-to quickly put together photo galleries. Use Photologue's power to modify your photos, for example by adding effects
-or watermarks.
+.. image:: https://secure.travis-ci.org/jdriscoll/django-photologue.png?branch=master
+
+A powerful image management and gallery application for the Django web framework. Upload photos, group them into
+galleries, apply effects such as watermarks.
 
 Examples
 --------
@@ -21,6 +22,10 @@ Documentation
 -------------
 Please head over to our `online documentation <https://django-photologue.readthedocs.org/>`_ for instructions on installing and configuring this application.
 
+Python 3?
+---------
+Of course! Photologue is CI tested against both Python 2 and Python 3.
+
 Support
 -------
 If you have any questions or need help with any aspect of Photologue then please `join our mailing list
@@ -28,7 +33,5 @@ If you have any questions or need help with any aspect of Photologue then please
 
 Travis CI status
 ----------------
-.. image:: https://secure.travis-ci.org/jdriscoll/django-photologue.png?branch=master
-
 We use Travis to check that the unit test suite is working against various combinations
 of Python, Django, etc... `Click here for the full report <http://travis-ci.org/#!/jdriscoll/django-photologue>`_.
