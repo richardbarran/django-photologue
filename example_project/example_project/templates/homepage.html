@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
+{% block title %}Photologue example project{% endblock %}
+
 {% block navbar-active-home %}active{% endblock %}
 
 {% block content %}
-
-<h1>Photologue demo site</h1>
-
-<p>This is a quick demo of the Photologue application - just click on
-'Photo gallery' in the menu above.</p>
-
-<p>It uses the built-in templates - the only customisation is to extend the templates
-(as described in 'Customising' in the docs) in order to add the CSS classes required
-by <a href="http://twitter.github.io/bootstrap/index.html">Twitter-Bootstrap</a>.</p>
-
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="page-header">
+			  <h1>Welcome to the Photologue example project</h1>
+			</div>
+			<p>This is a quick demo of the Photologue application - just click on
+			'Photo gallery' in the menu above.</p>
+			<p>It uses the built-in <a href="http://getbootstrap.com/">Bootstrap</a>-compatible
+			templates that you can use to get you quickly up and running, or completely
+			replace with your own templates.</p>
+		</div>
+	</div>
 {% endblock %}

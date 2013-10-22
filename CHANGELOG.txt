@@ -11,7 +11,7 @@ affected by this.
 
 - Fixed issue #56, Gallery pagination is broken.
 - Photologue now works with Python 3.
-- Added a set of templates that work well with Twitter-Bootstrap, and used
+- Added a set of templates that work well with Twitter-Bootstrap 3, and used
   them for the 'example_project'.
 - Fixed issue #64 (allow installation without installing Pillow).
 - Optional use of CKEditor.

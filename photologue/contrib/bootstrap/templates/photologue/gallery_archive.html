@@ -6,29 +6,35 @@
 
 {% block content %}
 
-<h1>{% trans "Latest Photo Galleries" %}</h1>
-
-{% if latest %}
-    {% for gallery in latest %}
-	    <div class="{% block photologue-gallery-class %}{% endblock %}">
-	        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
-	        {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
-	        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
-		    <ul class="thumbnails">
-	    	    {% for photo in gallery.sample %}
-				    <li class="{% block photologue-gallery-li-class %}span3{% endblock %}">
-					    <a href="{{ photo.get_absolute_url }}" class="thumbnail">
-						    <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}">
-					    </a>
-			    	</li>
-		        {% endfor %}
-		    </ul>
+	<div class="row page-header">
+	    <div class="col-lg-12">
+	        <h1>{% trans "Latest Photo Galleries" %}</h1>
 	    </div>
-    {% endfor %}
-{% else %}
-    <p>{% trans "No galleries were found" %}.</p>
-{% endif %}
-
-<p><a href="{% url 'pl-gallery-list' 1 %}">{% trans "View all galleries" %}.</a></p>
+	</div>
+	
+	{% if latest %}
+	    {% for gallery in latest %}
+	        <div class="row">
+	            <div class="col-lg-12">
+			        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
+			        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
+		            {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
+				    {% for photo in gallery.sample %}
+				        <a href="{{ photo.get_absolute_url }}">
+				             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+				        </a>
+					{% endfor %}
+				</div>
+		    </div>
+	    {% endfor %}
+	{% else %}
+	    <div class="row">{% trans "No galleries were found" %}.</div>
+	{% endif %}
+	
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{% url 'pl-gallery-list' 1 %}" class="btn btn-default view_all_button">{% trans "View all galleries" %}.</a>
+        </div>
+    </div>
 
 {% endblock %}

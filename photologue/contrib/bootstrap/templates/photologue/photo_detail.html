@@ -5,25 +5,31 @@
 
 {% block content %}
 
-	<h1>{{ object.title }}</h1>
-	{% if object.caption %}<p>{{ object.caption|safe }}</p>{% endif %}
-	<p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ object.title }}</h1>
 
-	<a href="{{ object.image.url }}">
-		<img src="{{ object.get_display_url }}" class="img-polaroid" alt="{{ object.title }}">
-	</a>
+		    {% if object.caption %}<p>{{ object.caption|safe }}</p>{% endif %}
+		    <p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
 
-{% if object.public_galleries %}
-	<p class="photologue-photo-found-in-galleries">{% trans "This photo is found in the following galleries" %}:</p>
-	<ul class="unstyled">
-		{% for gallery in object.public_galleries %}
-			<li>
-				{%previous_in_gallery object gallery %}
-				<a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a>
-				{% next_in_gallery object gallery %}
-			</li>
-		{% endfor %}
-	</ul>
-{% endif %}
+		    <a href="{{ object.image.url }}">
+		        <img src="{{ object.get_display_url }}" class="thumbnail" alt="{{ object.title }}">
+		    </a>
+
+            {% if object.public_galleries %}
+                <hr>            
+                <p>{% trans "This photo is found in the following galleries" %}:</p>
+                <table>
+                    {% for gallery in object.public_galleries %}
+                        <tr>
+                            <td>{% previous_in_gallery object gallery %}</td>
+	                        <td class="text-center"><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></td>
+	                        <td>{% next_in_gallery object gallery %}</td>
+                        </tr>
+					{% endfor %}
+				</table>
+			{% endif %}
+        </div>
+    </div>
 
 {% endblock %}
