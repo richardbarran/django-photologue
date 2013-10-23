@@ -54,6 +54,18 @@ then you can use to edit the TextArea fields of Gallery
 and Photo in the admin. Simply set the setting to ``True``.
 
 
+PHOTOLOGUE_USE_SORTEDM2M
+~~~~~~~~~~~~~~~~~~~~~~~
+
+    Default: ``False``
+
+If you have already installed `django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_
+then you can let photologe use it's SortedManyToManyField
+which allows user to adjust the order of photos in gallery.
+Note that this setting must be set before creating the database schema
+and may not be changed later without manual changes to the database.
+
+
 PHOTOLOGUE_GALLERY_PAGINATE_BY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

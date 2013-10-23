@@ -63,6 +63,15 @@ from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
 
+# Third party SortedManyToManyField may be used
+# to allow user to adjust the order of photos in gallery
+# (see https://pypi.python.org/pypi/django-sortedm2m)
+USE_SORTEDM2M = getattr(settings, 'PHOTOLOGUE_USE_SORTEDM2M', False)
+if USE_SORTEDM2M:
+    from sortedm2m.fields import SortedManyToManyField as ManyToManyField
+else:
+    from django.db.models import ManyToManyField
+
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
@@ -146,8 +155,8 @@ class Gallery(models.Model):
     description = models.TextField(_('description'), blank=True)
     is_public = models.BooleanField(_('is public'), default=True,
                                     help_text=_('Public galleries will be displayed in the default views.'))
-    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
-                                    null=True, blank=True)
+    photos = ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
+                             null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:

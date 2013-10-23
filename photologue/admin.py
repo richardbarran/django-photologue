@@ -21,7 +21,8 @@ class GalleryAdmin(admin.ModelAdmin):
     list_filter = ['date_added', 'is_public']
     date_hierarchy = 'date_added'
     prepopulated_fields = {'title_slug': ('title',)}
-    filter_horizontal = ('photos',)
+    if not USE_SORTEDM2M:
+        filter_horizontal = ('photos',)
     form = GalleryAdminForm
 
 class PhotoAdminForm(forms.ModelForm):
