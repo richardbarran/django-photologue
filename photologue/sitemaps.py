@@ -21,7 +21,6 @@ urls.py::
     but it will be removed in Photologue 3.0.
 """
 import warnings
-
 from django.contrib.sitemaps import Sitemap
 from .models import Gallery, Photo
 

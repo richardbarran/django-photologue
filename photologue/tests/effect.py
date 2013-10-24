@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-from photologue.models import Image, PhotoEffect
-from photologue.tests.helpers import PhotologueBaseTest
+from ..models import Image, PhotoEffect
+from .helpers import PhotologueBaseTest
 
 class PhotoEffectTest(PhotologueBaseTest):
     def test(self):

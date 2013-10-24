@@ -1,6 +1,5 @@
 from django.conf.urls import *
-
-from photologue.sitemaps import GallerySitemap, PhotoSitemap
+from ..sitemaps import GallerySitemap, PhotoSitemap
 
 urlpatterns = patterns('',
     (r'^ptests/', include('photologue.urls')),

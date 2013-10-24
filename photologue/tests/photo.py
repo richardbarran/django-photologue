@@ -1,9 +1,9 @@
 import os
 from django.conf import settings
-from photologue.models import Image, Photo, PHOTOLOGUE_DIR
-from photologue.tests.factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
+from ..models import Image, Photo, PHOTOLOGUE_DIR
+from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
     PhotoFactory
-from photologue.tests.helpers import PhotologueBaseTest
+from .helpers import PhotologueBaseTest
 
 class PhotoTest(PhotologueBaseTest):
     def tearDown(self):

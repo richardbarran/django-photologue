@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-from photologue.tests.factories import PhotoFactory
-from photologue.models import Photo
 from django.test import TestCase
+from .factories import PhotoFactory
+from ..models import Photo
 
 
 class RequestPhotoTest(TestCase):

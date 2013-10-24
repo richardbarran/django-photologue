@@ -2,7 +2,8 @@ from django.contrib import admin
 from django import forms
 from django.conf import settings
 
-from .models import *
+from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
+Watermark
 
 USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 

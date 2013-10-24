@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 from django.conf import settings
 from django.views.generic.dates import ArchiveIndexView, DateDetailView, DayArchiveView, MonthArchiveView, YearArchiveView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from photologue.models import Photo, Gallery
+from .models import Photo, Gallery
 
 # Number of galleries to display per page.
 GALLERY_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_GALLERY_PAGINATE_BY', 20)

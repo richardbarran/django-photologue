@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 import unittest
 from django.core.exceptions import ValidationError
-from photologue.models import PhotoSizeCache, PhotoSize
-from photologue.tests.helpers import PhotologueBaseTest
-from photologue.tests.factories import SQUARE_IMAGE_PATH, PORTRAIT_IMAGE_PATH, \
-PhotoFactory
+from ..models import PhotoSizeCache, PhotoSize
+from .helpers import PhotologueBaseTest
+from .factories import SQUARE_IMAGE_PATH, PORTRAIT_IMAGE_PATH, PhotoFactory
 
 class PhotoSizeTest(unittest.TestCase):
     def test_clean_wont_allow_zero_dimension_and_crop(self):

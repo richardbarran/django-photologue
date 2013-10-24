@@ -1,8 +1,8 @@
-from photologue import models
-from photologue.tests import helpers
-from photologue.tests.factories import GalleryFactory, PhotoFactory
+from .. import models
+from .helpers import PhotologueBaseTest
+from .factories import GalleryFactory, PhotoFactory
 
-class GalleryTest(helpers.PhotologueBaseTest):
+class GalleryTest(PhotologueBaseTest):
 
     def setUp(self):
         """Create a test gallery with 2 photos."""

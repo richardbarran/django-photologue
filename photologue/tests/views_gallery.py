@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-from photologue.tests.factories import GalleryFactory
 from django.test import TestCase
+from .factories import GalleryFactory
 
 class RequestGalleryTest(TestCase):
 

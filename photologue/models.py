@@ -1,12 +1,10 @@
-import sys
 import os
 import random
 import zipfile
-
 from datetime import datetime
-from django.utils.timezone import now
 from inspect import isclass
 
+from django.utils.timezone import now
 from django.db import models
 from django.db.models.signals import post_init
 from django.conf import settings

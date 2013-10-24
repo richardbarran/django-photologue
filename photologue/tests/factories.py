@@ -1,3 +1,5 @@
+import os
+import datetime
 try:
     from django.utils.text import slugify
 except ImportError:
@@ -6,10 +8,6 @@ except ImportError:
 from django.utils.timezone import utc
 from django.utils import six
 from django.conf import settings
-
-import os
-import datetime
-
 try:
     import factory
 except ImportError:

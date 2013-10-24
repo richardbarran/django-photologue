@@ -2,7 +2,7 @@ from django.conf.urls import *
 from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse_lazy
 
-from photologue.views import PhotoListView, PhotoDetailView, GalleryListView, \
+from .views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
     PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
     GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView
