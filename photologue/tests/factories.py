@@ -22,7 +22,6 @@ SQUARE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_square.jpg')
 QUOTING_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_&quoting.jpg')
 
 
-
 class GalleryFactory(factory.django.DjangoModelFactory):
 
     FACTORY_FOR = Gallery
@@ -39,7 +38,9 @@ class GalleryFactory(factory.django.DjangoModelFactory):
             sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
         return sample_date + datetime.timedelta(minutes=n)
 
+
 class PhotoFactory(factory.django.DjangoModelFactory):
+
     """Note: after creating Photo instances for tests, remember to manually 
     delete them.
     """
@@ -58,6 +59,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
         else:
             sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
         return sample_date + datetime.timedelta(minutes=n)
+
 
 class PhotoSizeFactory(factory.django.DjangoModelFactory):
 

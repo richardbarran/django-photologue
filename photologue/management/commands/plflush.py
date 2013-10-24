@@ -2,6 +2,7 @@ from __future__ import print_function
 from django.core.management.base import BaseCommand, CommandError
 from photologue.models import PhotoSize, ImageModel
 
+
 class Command(BaseCommand):
     help = ('Clears the Photologue cache for the given sizes.')
     args = '[sizes]'
@@ -11,6 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         return create_cache(args, options)
+
 
 def create_cache(sizes, options):
     """

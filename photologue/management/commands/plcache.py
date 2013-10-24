@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
 from photologue.models import PhotoSize, ImageModel
 
+
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--reset', '-r', action='store_true', dest='reset', help='Reset photo cache before generating'),
@@ -16,6 +17,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         return create_cache(args, options)
+
 
 def create_cache(sizes, options):
     """

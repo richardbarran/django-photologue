@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .factories import GalleryFactory
 
+
 class RequestGalleryTest(TestCase):
 
     urls = 'photologue.tests.test_urls'
@@ -56,6 +57,7 @@ class RequestGalleryTest(TestCase):
         response = self.client.get('/ptests/')
         self.assertRedirects(response, '/ptests/gallery/', 301, 200)
 
+
 class GalleryPaginationTest(TestCase):
 
     urls = 'photologue.tests.test_urls'
@@ -71,9 +73,9 @@ class GalleryPaginationTest(TestCase):
                          20)
         # Check first and last items.
         self.assertEqual(response.context['object_list'][0].title,
-                                 'gallery022')
+                         'gallery022')
         self.assertEqual(response.context['object_list'][19].title,
-                                 'gallery003')
+                         'gallery003')
 
         # Now get the second page of results.
         response = self.client.get('/ptests/gallery/page/2/')
@@ -83,6 +85,6 @@ class GalleryPaginationTest(TestCase):
                          2)
         # Check first and last items.
         self.assertEqual(response.context['object_list'][0].title,
-                                 'gallery002')
+                         'gallery002')
         self.assertEqual(response.context['object_list'][1].title,
-                                 'gallery001')
+                         'gallery001')

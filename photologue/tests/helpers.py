@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .factories import PhotoFactory, PhotoSizeFactory
 
+
 class PhotologueBaseTest(TestCase):
 
     def setUp(self):
@@ -13,4 +14,3 @@ class PhotologueBaseTest(TestCase):
     def tearDown(self):
         # Need to manually remove the files created during testing.
         self.pl.delete()
-
