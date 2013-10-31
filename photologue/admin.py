@@ -5,6 +5,11 @@ from django.conf import settings
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
 
+# Third party SortedManyToManyField may be used
+# to allow user to adjust the order of photos in gallery
+# (see https://pypi.python.org/pypi/django-sortedm2m)
+USE_SORTEDM2M = getattr(settings, 'PHOTOLOGUE_USE_SORTEDM2M', False)
+
 USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 
 if USE_CKEDITOR:
