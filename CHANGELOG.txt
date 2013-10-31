@@ -1,7 +1,13 @@
 Changelog for django-photologue
 ===============================
 
-2.7 (unreleased)
+2.8 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
+2.7 (2013-10-27)
 ----------------
 
 Please note:
@@ -15,8 +21,7 @@ affected by this.
   them for the 'example_project'.
 - Fixed issue #64 (allow installation without installing Pillow).
 - Optional use of CKEditor.
-- Updated Polish translation.
-- New translation for Slovak.
+- Updated/news translations for Polish, Slovak and German.
 - Bugfix: allow viewing latest galleries/latest photos pages even if they 
   are empty.
 - Started using factory-boy - makes unit tests a bit easier to read.

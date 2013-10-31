@@ -1,8 +1,9 @@
-from photologue import models
-from photologue.tests import helpers
-from photologue.tests.factories import GalleryFactory, PhotoFactory
+from .. import models
+from .helpers import PhotologueBaseTest
+from .factories import GalleryFactory, PhotoFactory
 
-class GalleryTest(helpers.PhotologueBaseTest):
+
+class GalleryTest(PhotologueBaseTest):
 
     def setUp(self):
         """Create a test gallery with 2 photos."""
@@ -60,4 +61,3 @@ class GalleryTest(helpers.PhotologueBaseTest):
         self.assertEqual(len(self.test_gallery.sample()), 1)
 
         models.SAMPLE_SIZE = _current_sample_size
-

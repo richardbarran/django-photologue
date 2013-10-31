@@ -1,6 +1,7 @@
 from __future__ import print_function
 from photologue.models import PhotoSize
 
+
 def get_response(msg, func=int, default=None):
     while True:
         resp = raw_input(msg)
@@ -10,6 +11,7 @@ def get_response(msg, func=int, default=None):
             return func(resp)
         except:
             print('Invalid input.')
+
 
 def create_photosize(name, width=0, height=0, crop=False, pre_cache=False, increment_count=False):
     try:

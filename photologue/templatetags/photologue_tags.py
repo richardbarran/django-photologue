@@ -1,20 +1,22 @@
+import random
 from django import template
 from django.db.models import get_model
-
-import random
 
 register = template.Library()
 
 Gallery = get_model('photologue', 'Gallery')
 Photo = get_model('photologue', 'Photo')
 
+
 @register.inclusion_tag('photologue/tags/next_in_gallery.html')
 def next_in_gallery(photo, gallery):
     return {'photo': photo.get_next_in_gallery(gallery)}
 
+
 @register.inclusion_tag('photologue/tags/prev_in_gallery.html')
 def previous_in_gallery(photo, gallery):
     return {'photo': photo.get_previous_in_gallery(gallery)}
+
 
 @register.simple_tag
 def cycle_lite_gallery(gallery_title, height, width):
@@ -27,6 +29,7 @@ def cycle_lite_gallery(gallery_title, height, width):
         first = None
     return html
 
+
 @register.tag
 def get_photo(parser, token):
     """Get a single photo from the photologue library and return the img tag to display it.
@@ -37,11 +40,12 @@ def get_photo(parser, token):
     - a CSS class to apply to the img tag.
     """
     try:
-        tag_name, photo, photosize, css_class = token.split_contents() # Split the contents of the tag, i.e. tag name + argument.
+        tag_name, photo, photosize, css_class = token.split_contents()  # Split the contents of the tag, i.e. tag name + argument.
     except ValueError:
         msg = '%r tag requires 3 arguments' % token.contents[0]
         raise template.TemplateSyntaxError(msg)
     return PhotoNode(photo, photosize[1:-1], css_class[1:-1])
+
 
 class PhotoNode(template.Node):
 
@@ -71,6 +75,7 @@ class PhotoNode(template.Node):
         else:
             return u'<img class="%s" src="%s" alt="%s" />' % (self.css_class, func(), p.title)
 
+
 @register.tag
 def get_rotating_photo(parser, token):
     """Pick at random a photo from a given photologue gallery and return the img tag to display it.
@@ -81,11 +86,12 @@ def get_rotating_photo(parser, token):
     - a CSS class to apply to the img tag.
     """
     try:
-        tag_name, gallery, photosize, css_class = token.split_contents() # Split the contents of the tag, i.e. tag name + argument.
+        tag_name, gallery, photosize, css_class = token.split_contents()  # Split the contents of the tag, i.e. tag name + argument.
     except ValueError:
         msg = '%r tag requires 3 arguments' % token.contents[0]
         raise template.TemplateSyntaxError(msg)
     return PhotoGalleryNode(gallery, photosize[1:-1], css_class[1:-1])
+
 
 class PhotoGalleryNode(template.Node):
 

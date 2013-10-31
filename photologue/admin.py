@@ -2,12 +2,14 @@ from django.contrib import admin
 from django import forms
 from django.conf import settings
 
-from .models import *
+from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
+    Watermark
 
 USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 
 if USE_CKEDITOR:
     from ckeditor.widgets import CKEditorWidget
+
 
 class GalleryAdminForm(forms.ModelForm):
     if USE_CKEDITOR:
@@ -15,6 +17,7 @@ class GalleryAdminForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
+
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
@@ -25,12 +28,14 @@ class GalleryAdmin(admin.ModelAdmin):
         filter_horizontal = ('photos',)
     form = GalleryAdminForm
 
+
 class PhotoAdminForm(forms.ModelForm):
     if USE_CKEDITOR:
         caption = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Photo
+
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'tags', 'view_count', 'admin_thumbnail')
@@ -39,6 +44,7 @@ class PhotoAdmin(admin.ModelAdmin):
     list_per_page = 10
     prepopulated_fields = {'title_slug': ('title',)}
     form = PhotoAdminForm
+
 
 class PhotoEffectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample')
@@ -60,6 +66,7 @@ class PhotoEffectAdmin(admin.ModelAdmin):
         }),
     )
 
+
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'effect', 'increment_count')
     fieldsets = (
@@ -80,8 +87,9 @@ class WatermarkAdmin(admin.ModelAdmin):
 
 
 class GalleryUploadAdmin(admin.ModelAdmin):
+
     def has_change_permission(self, request, obj=None):
-        return False # To remove the 'Save and continue editing' button
+        return False  # To remove the 'Save and continue editing' button
 
 
 admin.site.register(Gallery, GalleryAdmin)

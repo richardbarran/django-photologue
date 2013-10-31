@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.utils import unittest
-
-from photologue.tests import helpers
+from .helpers import PhotologueBaseTest
 from .factories import GalleryFactory
+
 
 @unittest.skipUnless('django.contrib.sitemaps' in settings.INSTALLED_APPS,
                      'Sitemaps not installed in this project, nothing to test.')
-class SitemapTest(helpers.PhotologueBaseTest):
+class SitemapTest(PhotologueBaseTest):
 
     urls = 'photologue.tests.test_urls'
 
@@ -14,7 +14,7 @@ class SitemapTest(helpers.PhotologueBaseTest):
         """Default test setup contains one photo, this should appear in the sitemap."""
         response = self.client.get('/sitemap.xml')
         self.assertContains(response,
-            '<url><loc>http://example.com/ptests/photo/landscape/</loc><lastmod>2011-12-23</lastmod><priority>0.5</priority></url>')
+                            '<url><loc>http://example.com/ptests/photo/landscape/</loc><lastmod>2011-12-23</lastmod><priority>0.5</priority></url>')
 
     def test_get_gallery(self):
         """if we add a gallery to the site, we should see both the gallery and
@@ -23,7 +23,6 @@ class SitemapTest(helpers.PhotologueBaseTest):
 
         response = self.client.get('/sitemap.xml')
         self.assertContains(response,
-            '<url><loc>http://example.com/ptests/photo/landscape/</loc><lastmod>2011-12-23</lastmod><priority>0.5</priority></url>')
+                            '<url><loc>http://example.com/ptests/photo/landscape/</loc><lastmod>2011-12-23</lastmod><priority>0.5</priority></url>')
         self.assertContains(response,
-            '<url><loc>http://example.com/ptests/gallery/test-gallery/</loc><lastmod>2011-12-23</lastmod><priority>0.5</priority></url>')
-
+                            '<url><loc>http://example.com/ptests/gallery/test-gallery/</loc><lastmod>2011-12-23</lastmod><priority>0.5</priority></url>')

@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-from photologue.tests.factories import PhotoFactory, PhotoSizeFactory
 from django.test import TestCase
+from .factories import PhotoFactory, PhotoSizeFactory
+
 
 class PhotologueBaseTest(TestCase):
 
@@ -14,4 +14,3 @@ class PhotologueBaseTest(TestCase):
     def tearDown(self):
         # Need to manually remove the files created during testing.
         self.pl.delete()
-

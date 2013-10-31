@@ -6,6 +6,7 @@ import photologue
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
+
 def get_requirements(requirements_file):
     with open(requirements_file) as f:
         required = [line.split('#')[0] for line in f.read().splitlines()]
