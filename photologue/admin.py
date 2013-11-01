@@ -5,6 +5,11 @@ from django.conf import settings
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
 
+# Third party SortedManyToManyField may be used
+# to allow user to adjust the order of photos in gallery
+# (see https://pypi.python.org/pypi/django-sortedm2m)
+USE_SORTEDM2M = getattr(settings, 'PHOTOLOGUE_USE_SORTEDM2M', False)
+
 USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 
 if USE_CKEDITOR:
@@ -24,7 +29,8 @@ class GalleryAdmin(admin.ModelAdmin):
     list_filter = ['date_added', 'is_public']
     date_hierarchy = 'date_added'
     prepopulated_fields = {'title_slug': ('title',)}
-    filter_horizontal = ('photos',)
+    if not USE_SORTEDM2M:
+        filter_horizontal = ('photos',)
     form = GalleryAdminForm
 
 
