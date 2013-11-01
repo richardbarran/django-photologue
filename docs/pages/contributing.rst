@@ -49,9 +49,16 @@ on that site for help.
 Translations
 ------------
 `Photologue manages string translations with Transifex 
-<https://www.transifex.com/projects/p/django-photologue/>`_. Contributions
-are very welcome, either by editing the translations directly on the Transifex
-site, or by submitting pull requests with updated .po files.
+<https://www.transifex.com/projects/p/django-photologue/>`_. The easiest way to help is
+to add new/updated translations there. 
+
+Once you've added translations, you can download a ``.po`` file from Transifex, and add it
+to your fork of Photologue, so that you can install Photologue from your fork 
+(``pip install -e <url or local file path of your fork>``) and use the translations straight away.
+
+Then you can either send the maintainer a pull request with the ``.po`` file, or simply
+do nothing - just before a release any new/updated translations get pulled from
+Transifex and added to the Photologue project.
 
 New features
 ------------
