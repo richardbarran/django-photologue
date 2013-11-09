@@ -18,9 +18,9 @@
 {% endif %}
 
 {% if is_paginated %}
-<p>{{ hits }} photos total.</p>
+<p>{{ paginator.count }} photos total.</p>
 <div id="page_controls">
-    <p>{% if has_previous %}<a href="{% url 'pl-photo-list' previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url 'pl-photo-list' next %}">Next</a>{% endif %}</p>
+    <p>{% if page_obj.has_previous %}<a href="{% url 'pl-photo-list' page_obj.previous_page_number %}">Previous</a> | {% endif %} page {{ page_obj.number }} of {{ paginator.num_pages }} {% if page_obj.has_next %}| <a href="{% url 'pl-photo-list' page_obj.next_page_number %}">Next</a>{% endif %}</p>
 </div>
 {% endif %}
 
