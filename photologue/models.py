@@ -22,6 +22,8 @@ from django.utils.functional import curry
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 
+from django.utils import six
+
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
 try:
@@ -298,7 +300,7 @@ class GalleryUpload(models.Model):
                                           caption=self.caption,
                                           is_public=self.is_public,
                                           tags=self.tags)
-                            photo.image.save(filename, ContentFile(data))
+                            photo.image.save(six.text_type(filename, "cp437"), ContentFile(data))
                             gallery.photos.add(photo)
                             count = count + 1
                             break
@@ -484,7 +486,7 @@ class ImageModel(models.Model):
         elif photosize.effect is not None:
             im = photosize.effect.post_process(im)
         # Save file
-        im_filename = getattr(self, "get_%s_filename" % photosize.name)()
+        im_filename = six.text_type(getattr(self, "get_%s_filename" % photosize.name)(), 'utf-8')
         try:
             if im_format != 'JPEG':
                 try:
