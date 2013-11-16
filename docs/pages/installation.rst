@@ -34,6 +34,9 @@ Dependencies
 
 These 3 apps will be installed automatically if they are not already there.
 
+If you're using Django 1.6, you might also have to install `Pytz <https://pypi.python.org/pypi/pytz>`_.
+See the release notes `for more information <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
+
 .. note::
 
     * Pillow can be tricky to install; sometimes it will install smoothly
@@ -53,7 +56,7 @@ These 3 apps will be installed automatically if they are not already there.
 
 .. note::
 
-    * Photologue has the same support policy as Django (last 2 versions released).
+    * Photologue has the same support policy as Django.
 
 Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 
