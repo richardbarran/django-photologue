@@ -21,8 +21,8 @@ from django.utils.encoding import smart_str, filepath_to_uri
 from django.utils.functional import curry
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
-
 from django.utils import six
+from django.core.validators import RegexValidator
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -486,7 +486,7 @@ class ImageModel(models.Model):
         elif photosize.effect is not None:
             im = photosize.effect.post_process(im)
         # Save file
-        im_filename = six.text_type(getattr(self, "get_%s_filename" % photosize.name)(), 'utf-8')
+        im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
             if im_format != 'JPEG':
                 try:
@@ -766,10 +766,18 @@ class Watermark(BaseEffect):
 
 
 class PhotoSize(models.Model):
+    """About the Photosize name: it's used to create get_PHOTOSIZE_url() methods,
+    so the name has to follow the same restrictions as any Python method name, 
+    e.g. no spaces or non-ascii characters."""
+
     name = models.CharField(_('name'),
                             max_length=40,
                             unique=True,
-                            help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'))
+                            help_text=_('Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'),
+                            validators=[RegexValidator(regex='^[a-z0-9_]+$',
+                               message='Use only plain lowercase letters (ASCII), numbers and underscores.'
+                               )]
+                            )
     width = models.PositiveIntegerField(_('width'),
                                         default=0,
                                         help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
