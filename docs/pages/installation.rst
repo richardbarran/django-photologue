@@ -1,20 +1,20 @@
-############
+############################
+Installation & configuration
+############################
+
+
+.. _installing-photologue-label:
+
 Installation
-############
-
-
-Introduction
 ------------
 The easiest way to install Photologue is with pip::
 
     pip install django-photologue
 
-You can also install the development
-version which is on `Github <https://github.com/>`_::
+You can also live life on the edge and install the latest code directly from the
+Github repository::
 
-    git clone git://github.com/jdriscoll/django-photologue.git
-    cd django-photologue
-    python setup.py install
+    pip install -e git+https://github.com/jdriscoll/django-photologue.git#egg=django-photologue
 
 This code should work ok - like `Django <https://www.djangoproject.com/>`_
 itself, we try to keep the master branch bug-free.

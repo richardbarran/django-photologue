@@ -52,13 +52,10 @@ Translations
 <https://www.transifex.com/projects/p/django-photologue/>`_. The easiest way to help is
 to add new/updated translations there. 
 
-Once you've added translations, you can download a ``.po`` file from Transifex, and add it
-to your fork of Photologue, so that you can install Photologue from your fork 
-(``pip install -e <url or local file path of your fork>``) and use the translations straight away.
-
-Then you can either send the maintainer a pull request with the ``.po`` file, or simply
-do nothing - just before a release any new/updated translations get pulled from
-Transifex and added to the Photologue project.
+Once you've added translations, give the maintainer a wave and he will pull the updated
+translations into the master branch, so that you can install Photologue directly from the 
+Github repository (see :ref:`installing-photologue-label`) and use your translations straight away. Or you can do nothing - just before a release
+any new/updated translations get pulled from Transifex and added to the Photologue project.
 
 New features
 ------------
