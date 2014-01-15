@@ -40,6 +40,7 @@ setup(
                  'License :: OSI Approved :: BSD License',
                  'Operating System :: OS Independent',
                  'Programming Language :: Python',
+                 'Programming Language :: Python :: 3',
                  'Topic :: Utilities'],
     install_requires=get_requirements(os.path.join(ROOT_DIR, 'requirements.txt'))
 )
