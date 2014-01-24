@@ -8,6 +8,7 @@ python:
 env:
   - DJANGO_VERSION=1.4.5
   - DJANGO_VERSION=1.5.1
+  - DJANGO_VERSION=1.6
 
 matrix:
   exclude:
@@ -18,6 +19,7 @@ matrix:
 install:
   - pip install django==$DJANGO_VERSION
   - pip install factory-boy
+  - pip install pytz
   - python setup.py develop
 
 script: cd example_project; python manage.py test photologue

@@ -1,20 +1,20 @@
-############
+############################
+Installation & configuration
+############################
+
+
+.. _installing-photologue-label:
+
 Installation
-############
-
-
-Introduction
 ------------
 The easiest way to install Photologue is with pip::
 
     pip install django-photologue
 
-You can also install the development
-version which is on `Github <https://github.com/>`_::
+You can also live life on the edge and install the latest code directly from the
+Github repository::
 
-    git clone git://github.com/jdriscoll/django-photologue.git
-    cd django-photologue
-    python setup.py install
+    pip install -e git+https://github.com/jdriscoll/django-photologue.git#egg=django-photologue
 
 This code should work ok - like `Django <https://www.djangoproject.com/>`_
 itself, we try to keep the master branch bug-free.
@@ -33,6 +33,9 @@ Dependencies
 * `South <http://south.aeracode.org/>`_.
 
 These 3 apps will be installed automatically if they are not already there.
+
+If you're using Django 1.6, you might also have to install `Pytz <https://pypi.python.org/pypi/pytz>`_.
+See the release notes `for more information <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
 
 .. note::
 
@@ -53,7 +56,7 @@ These 3 apps will be installed automatically if they are not already there.
 
 .. note::
 
-    * Photologue has the same support policy as Django (last 2 versions released).
+    * Photologue has the same support policy as Django.
 
 Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 

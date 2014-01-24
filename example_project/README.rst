@@ -61,7 +61,7 @@ the settings file). To setup the database::
 	./manage.py syncdb
 	./manage.py migrate
 
-Follow the instructions to configure photologue here: `Photologue Docs <http://django-photologue.readthedocs.org/en/latest/essentials/installation.html>`_
+Follow the instructions to configure photologue here: `Photologue Docs <http://django-photologue.readthedocs.org/en/latest/pages/installation.html>`_
 
 And finally run the project (it defaults to a safe set of settings for a dev
 environment)::

@@ -1,9 +1,14 @@
 """
-Photologue can be used in your site's sitemap.xml to generate a list of all the 
-Gallery and Photo pages.
+The `Sitemaps protocol <http://en.wikipedia.org/wiki/Sitemaps>`_ allows a webmaster
+to inform search engines about URLs on a website that are available for crawling.
+Django comes with a high-level framework that makes generating sitemap XML files easy.
 
-To use, add the following to the sitemap definition section of your project's
-urls.py::
+Install the sitemap application as per the `instructions in the django documentation 
+<https://docs.djangoproject.com/en/dev/ref/contrib/sitemaps/>`_, then edit your 
+project's ``urls.py`` and add a reference to Photologue's Sitemap classes in order to 
+included all the publicly-viewable Photologue pages:
+
+.. code-block:: python
 
     ...
     from photologue.sitemaps import GallerySitemap, PhotoSitemap
@@ -14,6 +19,10 @@ urls.py::
                 ...
                 }
     etc...
+
+There are 2 sitemap classes, as in some case you may want to have gallery pages,
+but no photo detail page (e.g. if all photos are displayed via a javascript
+lightbox).
 
 .. note::
     
