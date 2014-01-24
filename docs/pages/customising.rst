@@ -3,6 +3,31 @@ Customising and extending
 #########################
 
 
+Sorted-m2m
+----------
+You can use `django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_ 
+to allow users to adjust the order of photos in a gallery.
+
+To activate this feature:
+
+#. Install `django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
+
+#. Add 'sortedm2m' to your ``INSTALLED_APPS`` setting:
+
+    .. code-block:: python
+
+        INSTALLED_APPS = (
+             # ...other installed applications,
+             'photologue',
+             'sortedm2m',
+        )
+
+#. Add to your settings:
+
+    .. code-block:: python
+
+        PHOTOLOGUE_USE_SORTEDM2M = True
+
 Extending templates
 -------------------
 Photologue comes with a set of basic templates to get you started quickly - you
@@ -59,16 +84,11 @@ and Photo in the admin. Simply set the setting to ``True``.
 
 
 PHOTOLOGUE_USE_SORTEDM2M
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
     Default: ``False``
 
-If you have already installed `django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_
-then you can let photologe use it's SortedManyToManyField
-which allows user to adjust the order of photos in gallery.
-Note that this setting must be set before creating the database schema
-and may not be changed later without manual changes to the database.
-
+Use `django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 
 PHOTOLOGUE_GALLERY_PAGINATE_BY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
