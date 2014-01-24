@@ -96,8 +96,11 @@ INSTALLED_APPS = [
     # but not actually added a sitemap in urls.py.
     'django.contrib.sitemaps',
     'photologue',
+    'sortedm2m',
     'south',
     'example_project',
 ]
 
 SOUTH_TESTS_MIGRATE = False
+
+PHOTOLOGUE_USE_SORTEDM2M = True
