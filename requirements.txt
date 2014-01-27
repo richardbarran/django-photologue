@@ -1,3 +1,4 @@
 Django>=1.4 # Timezone support means 1.4 minimum.
 South>=0.8.1 # South 0.8 is compatible with Python 3 - earlier versions might work if you're running python 2.
 Pillow>=2.0.0 # 2.0.0 needed for Mac users. Might work with earlier versions, but not tested.
+django-sortedm2m>=0.6.1
