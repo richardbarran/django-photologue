@@ -31,8 +31,9 @@ Dependencies
 * `Django <https://www.djangoproject.com/>`_.
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
 * `South <http://south.aeracode.org/>`_.
+* `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 
-These 3 apps will be installed automatically if they are not already there.
+These 4 apps will be installed automatically if required.
 
 If you're using Django 1.6, you might also have to install `Pytz <https://pypi.python.org/pypi/pytz>`_.
 See the release notes `for more information <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
@@ -63,12 +64,13 @@ Photologue also uses the Django admin app, `so enable it if you have not already
 Configure Your Django Settings
 ------------------------------
 
-#. Add 'photologue' to your ``INSTALLED_APPS`` setting::
+#. Add to your ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
          # ...other installed applications,
          'photologue',
-         'south',
+         'south',		# if it's not already in your INSTALLED_APPS.
+         'sortedm2m',
     )
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#media-root>`_ and

@@ -5,11 +5,6 @@ from django.conf import settings
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
 
-# Third party SortedManyToManyField may be used
-# to allow user to adjust the order of photos in gallery
-# (see https://pypi.python.org/pypi/django-sortedm2m)
-USE_SORTEDM2M = getattr(settings, 'PHOTOLOGUE_USE_SORTEDM2M', False)
-
 USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 
 if USE_CKEDITOR:
@@ -29,8 +24,6 @@ class GalleryAdmin(admin.ModelAdmin):
     list_filter = ['date_added', 'is_public']
     date_hierarchy = 'date_added'
     prepopulated_fields = {'title_slug': ('title',)}
-    if not USE_SORTEDM2M:
-        filter_horizontal = ('photos',)
     form = GalleryAdminForm
 
 
@@ -43,7 +36,8 @@ class PhotoAdminForm(forms.ModelForm):
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_taken', 'date_added', 'is_public', 'tags', 'view_count', 'admin_thumbnail')
+    list_display = ('title', 'date_taken', 'date_added',
+                    'is_public', 'tags', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     search_fields = ['title', 'title_slug', 'caption']
     list_per_page = 10
@@ -52,7 +46,8 @@ class PhotoAdmin(admin.ModelAdmin):
 
 
 class PhotoEffectAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample')
+    list_display = ('name', 'description', 'color', 'brightness',
+                    'contrast', 'sharpness', 'filters', 'admin_sample')
     fieldsets = (
         (None, {
             'fields': ('name', 'description')

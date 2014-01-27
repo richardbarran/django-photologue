@@ -4,7 +4,11 @@ Changelog for django-photologue
 2.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+Please note:
+
+1.  You will have to install django-sortedm2m - please refer to installation instructions. 
+
+- Photologue now uses django-sortedm2m to sort photos in a gallery.
 
 
 2.7 (2013-10-27)
