@@ -4,20 +4,23 @@ Changelog for django-photologue
 2.8 (unreleased)
 ----------------
 
-Please note:
+Upgrade notes:
 
 1.  You will have to install django-sortedm2m - please refer to installation instructions. 
 
-- Photologue now uses django-sortedm2m to sort photos in a gallery.
+List of changes:
 
+- Photologue now uses django-sortedm2m to sort photos in a gallery.
 
 2.7 (2013-10-27)
 ----------------
 
-Please note:
+Upgrade notes:
 
 1. All settings are now prefixed with 'PHOTOLOGUE_'. Please check that you are not
 affected by this.
+
+List of changes:
 
 - Fixed issue #56, Gallery pagination is broken.
 - Photologue now works with Python 3.
@@ -36,12 +39,14 @@ affected by this.
 2.6.1 (2013-05-19)
 ------------------
 
+List of changes:
+
 - Fixed broken packaging in release 2.6.
 
 2.6 (2013-05-19)
 ----------------
 
-Please note:
+Upgrade notes:
 
 1. Photologue now relies on Pillow instead of PIL. The easiest way to upgrade is
 to remove PIL completely, then install the new version of Photologue.
@@ -77,7 +82,7 @@ List of changes:
 2.4 (2012-08-13)
 ----------------
 
-Please note:
+Upgrade notes:
 
 1. Starting with this version, Photologue uses South to manage the database schema.
 If you are upgrading an existing Photologue installation, please follow the
