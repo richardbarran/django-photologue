@@ -28,15 +28,16 @@ production sites to prove itself". Use it, but make sure that all features work!
 Dependencies
 ------------
 
+4 apps that will be installed automatically if required.
+
 * `Django <https://www.djangoproject.com/>`_.
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
 * `South <http://south.aeracode.org/>`_.
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 
-These 4 apps will be installed automatically if required.
+And one dependency that is not automatically installed:
 
-If you're using Django 1.6, you might also have to install `Pytz <https://pypi.python.org/pypi/pytz>`_.
-See the release notes `for more information <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
+* `Pytz <https://pypi.python.org/pypi/pytz>`_. Only applies if you're using Django 1.6, see the Django release notes `for more information <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
 
 .. note::
 
@@ -59,7 +60,6 @@ See the release notes `for more information <https://docs.djangoproject.com/en/1
 
     * Photologue has the same support policy as Django.
 
-Photologue also uses the Django admin app, `so enable it if you have not already done so <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/>`_.
 
 Configure Your Django Settings
 ------------------------------
@@ -76,6 +76,8 @@ Configure Your Django Settings
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#media-root>`_ and
    `MEDIA_URL <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-MEDIA_URL>`_ settings 
    are correct (Photologue will store uploaded files in a folder called 'photologue' under your ``MEDIA_ROOT``).
+
+#. `Enable the admin app if you have not already done so <https://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_.
 
 Add the urls
 ------------
