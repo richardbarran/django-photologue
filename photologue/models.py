@@ -416,10 +416,10 @@ class ImageModel(models.Model):
     @property
     def EXIF(self):
         try:
-            return EXIF.process_file(open(self.image.path, 'rb'))
+            return EXIF.process_file(self.image.file.file)
         except:
             try:
-                return EXIF.process_file(open(self.image.path, 'rb'), details=False)
+                return EXIF.process_file(self.image.file.file, details=False)
             except:
                 return {}
 
