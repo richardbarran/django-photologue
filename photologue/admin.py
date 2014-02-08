@@ -17,6 +17,7 @@ class GalleryAdminForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
+        exclude = []
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -33,6 +34,7 @@ class PhotoAdminForm(forms.ModelForm):
 
     class Meta:
         model = Photo
+        exclude = []
 
 
 class PhotoAdmin(admin.ModelAdmin):
