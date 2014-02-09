@@ -13,19 +13,18 @@ PHOTO_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_PHOTO_PAGINATE_BY', 20)
 # Gallery views.
 
 
-class GalleryView(object):
+class GalleryListView(ListView):
     queryset = Gallery.objects.filter(is_public=True)
-
-
-class GalleryListView(GalleryView, ListView):
     paginate_by = GALLERY_PAGINATE_BY
 
 
-class GalleryDetailView(GalleryView, DetailView):
+class GalleryDetailView(DetailView):
+    queryset = Gallery.objects.filter(is_public=True)
     slug_field = 'title_slug'
 
 
-class GalleryDateView(GalleryView):
+class GalleryDateView(object):
+    queryset = Gallery.objects.filter(is_public=True)
     date_field = 'date_added'
     allow_empty = True
 
@@ -52,19 +51,18 @@ class GalleryYearArchiveView(GalleryDateView, YearArchiveView):
 # Photo views.
 
 
-class PhotoView(object):
+class PhotoListView(ListView):
     queryset = Photo.objects.filter(is_public=True)
-
-
-class PhotoListView(PhotoView, ListView):
     paginate_by = PHOTO_PAGINATE_BY
 
 
-class PhotoDetailView(PhotoView, DetailView):
+class PhotoDetailView(DetailView):
+    queryset = Photo.objects.filter(is_public=True)
     slug_field = 'title_slug'
 
 
-class PhotoDateView(PhotoView):
+class PhotoDateView(object):
+    queryset = Photo.objects.filter(is_public=True)
     date_field = 'date_added'
     allow_empty = True
 

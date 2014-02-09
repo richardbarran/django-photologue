@@ -13,6 +13,7 @@ List of changes:
 - Photologue now uses django-sortedm2m to sort photos in a gallery.
 - Added to the documentation a page describing how to customise the admin.
 - PHOTOLOGUE_USE_CKEDITOR is deprecated.
+- Refactored slightly views.py.
 
 2.7 (2013-10-27)
 ----------------
