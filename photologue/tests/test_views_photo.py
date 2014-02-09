@@ -9,7 +9,7 @@ class RequestPhotoTest(TestCase):
 
     def setUp(self):
         super(RequestPhotoTest, self).setUp()
-        self.photo = PhotoFactory(title_slug='fake-photo')
+        self.photo = PhotoFactory(slug='fake-photo')
 
     def tearDown(self):
         super(RequestPhotoTest, self).tearDown()

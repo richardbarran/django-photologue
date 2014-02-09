@@ -25,7 +25,8 @@ def cycle_lite_gallery(gallery_title, height, width):
     html = ""
     first = 'class="first"'
     for p in Gallery.objects.get(title=gallery_title).public():
-        html += u'<img src="%s" alt="%s" height="%s" width="%s" %s />' % (p.get_display_url(), p.title, height, width, first)
+        html += u'<img src="%s" alt="%s" height="%s" width="%s" %s />' % (
+            p.get_display_url(), p.title, height, width, first)
         first = None
     return html
 
@@ -40,7 +41,8 @@ def get_photo(parser, token):
     - a CSS class to apply to the img tag.
     """
     try:
-        tag_name, photo, photosize, css_class = token.split_contents()  # Split the contents of the tag, i.e. tag name + argument.
+        # Split the contents of the tag, i.e. tag name + argument.
+        tag_name, photo, photosize, css_class = token.split_contents()
     except ValueError:
         msg = '%r tag requires 3 arguments' % token.contents[0]
         raise template.TemplateSyntaxError(msg)
@@ -63,7 +65,7 @@ class PhotoNode(template.Node):
             p = a
         else:
             try:
-                p = Photo.objects.get(title_slug=a)
+                p = Photo.objects.get(slug=a)
             except Photo.DoesNotExist:
                 # Ooops. Fail silently
                 return None
@@ -86,7 +88,8 @@ def get_rotating_photo(parser, token):
     - a CSS class to apply to the img tag.
     """
     try:
-        tag_name, gallery, photosize, css_class = token.split_contents()  # Split the contents of the tag, i.e. tag name + argument.
+        # Split the contents of the tag, i.e. tag name + argument.
+        tag_name, gallery, photosize, css_class = token.split_contents()
     except ValueError:
         msg = '%r tag requires 3 arguments' % token.contents[0]
         raise template.TemplateSyntaxError(msg)
@@ -109,7 +112,7 @@ class PhotoGalleryNode(template.Node):
             g = a
         else:
             try:
-                g = Gallery.objects.get(title_slug=a)
+                g = Gallery.objects.get(slug=a)
             except Gallery.DoesNotExist:
                 return None
         photos = g.public()

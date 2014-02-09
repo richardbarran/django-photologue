@@ -8,7 +8,7 @@ class RequestGalleryTest(TestCase):
 
     def setUp(self):
         super(RequestGalleryTest, self).setUp()
-        self.gallery = GalleryFactory(title_slug='test-gallery')
+        self.gallery = GalleryFactory(slug='test-gallery')
 
     def test_archive_gallery_url_works(self):
         response = self.client.get('/ptests/gallery/')

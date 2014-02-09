@@ -9,7 +9,7 @@ class PhotologueBaseTest(TestCase):
                                   width=100,
                                   height=100)
         self.pl = PhotoFactory(title='Landscape',
-                               title_slug='landscape')
+                               slug='landscape')
 
     def tearDown(self):
         # Need to manually remove the files created during testing.

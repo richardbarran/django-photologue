@@ -19,7 +19,7 @@ class SitemapTest(PhotologueBaseTest):
     def test_get_gallery(self):
         """if we add a gallery to the site, we should see both the gallery and
         the photo in the sitemap."""
-        self.gallery = GalleryFactory(title_slug='test-gallery')
+        self.gallery = GalleryFactory(slug='test-gallery')
 
         response = self.client.get('/sitemap.xml')
         self.assertContains(response,

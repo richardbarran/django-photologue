@@ -20,7 +20,6 @@ class GalleryListView(ListView):
 
 class GalleryDetailView(DetailView):
     queryset = Gallery.objects.filter(is_public=True)
-    slug_field = 'title_slug'
 
 
 class GalleryDateView(object):
@@ -30,7 +29,7 @@ class GalleryDateView(object):
 
 
 class GalleryDateDetailView(GalleryDateView, DateDetailView):
-    slug_field = 'title_slug'
+    pass
 
 
 class GalleryArchiveIndexView(GalleryDateView, ArchiveIndexView):
@@ -58,7 +57,6 @@ class PhotoListView(ListView):
 
 class PhotoDetailView(DetailView):
     queryset = Photo.objects.filter(is_public=True)
-    slug_field = 'title_slug'
 
 
 class PhotoDateView(object):
@@ -68,7 +66,7 @@ class PhotoDateView(object):
 
 
 class PhotoDateDetailView(PhotoDateView, DateDetailView):
-    slug_field = 'title_slug'
+    pass
 
 
 class PhotoArchiveIndexView(PhotoDateView, ArchiveIndexView):

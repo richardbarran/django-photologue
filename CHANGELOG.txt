@@ -14,6 +14,7 @@ List of changes:
 - Added to the documentation a page describing how to customise the admin.
 - PHOTOLOGUE_USE_CKEDITOR is deprecated.
 - Refactored slightly views.py.
+- Renamed field title_slug to slug - this allows us to simplify views.py a bit.
 
 2.7 (2013-10-27)
 ----------------

@@ -151,9 +151,9 @@ class Gallery(models.Model):
     title = models.CharField(_('title'),
                              max_length=50,
                              unique=True)
-    title_slug = models.SlugField(_('title slug'),
-                                  unique=True,
-                                  help_text=_('A "slug" is a unique URL-friendly title for an object.'))
+    slug = models.SlugField(_('title slug'),
+                            unique=True,
+                            help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     description = models.TextField(_('description'),
                                    blank=True)
     is_public = models.BooleanField(_('is public'),
@@ -177,7 +177,7 @@ class Gallery(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('pl-gallery', args=[self.title_slug])
+        return reverse('pl-gallery', args=[self.slug])
 
     def latest(self, limit=LATEST_LIMIT, public=True):
         if not limit:
@@ -268,7 +268,7 @@ class GalleryUpload(models.Model):
                 gallery = self.gallery
             else:
                 gallery = Gallery.objects.create(title=self.title,
-                                                 title_slug=slugify(self.title),
+                                                 slug=slugify(self.title),
                                                  description=self.description,
                                                  is_public=self.is_public,
                                                  tags=self.tags)
@@ -295,10 +295,10 @@ class GalleryUpload(models.Model):
                         title = ' '.join([self.title, str(count)])
                         slug = slugify(title)
                         try:
-                            Photo.objects.get(title_slug=slug)
+                            Photo.objects.get(slug=slug)
                         except Photo.DoesNotExist:
                             photo = Photo(title=title,
-                                          title_slug=slug,
+                                          slug=slug,
                                           caption=self.caption,
                                           is_public=self.is_public,
                                           tags=self.tags)
@@ -568,9 +568,9 @@ class Photo(ImageModel):
     title = models.CharField(_('title'),
                              max_length=50,
                              unique=True)
-    title_slug = models.SlugField(_('slug'),
-                                  unique=True,
-                                  help_text=_('A "slug" is a unique URL-friendly title for an object.'))
+    slug = models.SlugField(_('slug'),
+                            unique=True,
+                            help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'),
                                blank=True)
     date_added = models.DateTimeField(_('date added'),
@@ -590,12 +590,12 @@ class Photo(ImageModel):
         return self.title
 
     def save(self, *args, **kwargs):
-        if self.title_slug is None:
-            self.title_slug = slugify(self.title)
+        if self.slug is None:
+            self.slug = slugify(self.title)
         super(Photo, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('pl-photo', args=[self.title_slug])
+        return reverse('pl-photo', args=[self.slug])
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
