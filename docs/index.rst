@@ -22,6 +22,7 @@ Contents:
     pages/installation
     pages/customising/templates
     pages/customising/settings
+    pages/customising/admin
     pages/customising/contrib    
     pages/contributing
 

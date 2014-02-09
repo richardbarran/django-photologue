@@ -15,6 +15,10 @@ then you can use to edit the TextArea fields of Gallery
 and Photo in the admin. Simply set the setting to ``True``.
 
 
+.. deprecated:: 2.8
+
+    Instead, override the admin; :ref:`see here <customisation-admin-label>`.
+
 PHOTOLOGUE_GALLERY_PAGINATE_BY
 ------------------------------
 
@@ -108,6 +112,4 @@ Or instead, pass a string path::
     # settings.py:
 
     PHOTOLOGUE_PATH = 'myapp.utils.get_image_path'
-
-
 

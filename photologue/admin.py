@@ -9,6 +9,9 @@ USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 
 if USE_CKEDITOR:
     from ckeditor.widgets import CKEditorWidget
+    import warnings
+    warnings.warn(
+        DeprecationWarning('PHOTOLOGUE_USE_CKEDITOR setting will be removed in Photologue 2.9'))
 
 
 class GalleryAdminForm(forms.ModelForm):
