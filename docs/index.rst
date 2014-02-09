@@ -20,7 +20,9 @@ Contents:
     :maxdepth: 2
 
     pages/installation
-    pages/customising
+    pages/customising/templates
+    pages/customising/settings
+    pages/customising/contrib    
     pages/contributing
 
 Indices and tables
