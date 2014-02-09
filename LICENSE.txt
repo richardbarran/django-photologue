@@ -1,4 +1,4 @@
-Copyright (c) 2007-2008, Justin C. Driscoll
+Copyright (c) 2007-2014, Justin C. Driscoll and all the people named in CONTRIBUTORS.txt.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
