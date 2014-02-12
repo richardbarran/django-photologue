@@ -4,6 +4,7 @@ import zipfile
 from datetime import datetime
 from inspect import isclass
 import warnings
+import logging
 
 from django.utils.timezone import now
 from django.db import models
@@ -24,6 +25,7 @@ from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.utils import six
 from django.core.validators import RegexValidator
+from django.contrib import messages
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -68,6 +70,8 @@ except ImportError:
 from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
+
+logger = logging.getLogger('photologue.models')
 
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
@@ -272,8 +276,10 @@ class GalleryUpload(models.Model):
                 raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
             count = 1
             if self.gallery:
+                logger.debug('Using pre-existing gallery.')
                 gallery = self.gallery
             else:
+                logger.debug('Creating new gallery "{0}".'.format(self.title))
                 gallery = Gallery.objects.create(title=self.title,
                                                  slug=slugify(self.title),
                                                  description=self.description,
@@ -281,7 +287,9 @@ class GalleryUpload(models.Model):
                                                  tags=self.tags)
             from cStringIO import StringIO
             for filename in sorted(zip.namelist()):
-                if filename.startswith('__'):  # do not process meta files
+                logger.debug('Reading file "{0}".'.format(filename))
+                if filename.startswith('__') or filename.startswith('.'):
+                    logger.debug('Ignoring file "{0}".'.format(filename))
                     continue
                 data = zip.read(filename)
                 if len(data):
@@ -297,6 +305,12 @@ class GalleryUpload(models.Model):
                         trial_image.verify()
                     except Exception:
                         # if a "bad" file is found we just skip it.
+                        # But we do flag this both in the logs and to the user.
+                        warning_msg = 'Could not process file "{0}" in the .zip archive.'.format(
+                            filename)
+                        logger.exception(warning_msg)
+                        if getattr(self, 'request', None):
+                            messages.warning(self.request, warning_msg, fail_silently=True)
                         continue
                     while 1:
                         title = ' '.join([self.title, str(count)])
@@ -314,6 +328,8 @@ class GalleryUpload(models.Model):
                             count = count + 1
                             break
                         count = count + 1
+                else:
+                    logger.debug('File "{0}" is empty.'.format(filename))
             zip.close()
             return gallery
 

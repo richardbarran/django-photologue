@@ -11,13 +11,14 @@ Upgrade notes:
 List of changes:
 
 - Photologue now uses django-sortedm2m to sort photos in a gallery.
-- Added to the documentation pages describing how to customise the admin and the views.
 - PHOTOLOGUE_USE_CKEDITOR, PHOTOLOGUE_GALLERY_PAGINATE_BY and PHOTOLOGUE_PHOTO_PAGINATE_BY are deprecated.
-- Refactored slightly views.py.
+- When uploading zips of photos, warn users of files that could not be processed.
 - Renamed field title_slug to slug - this allows us to simplify views.py a bit.
 - Fixed pagination controls for photo list template.
 - Tightened naming rules for Photosize names.
 - Fixed a couple of unicode-related bugs.
+- Added to the documentation pages describing how to customise the admin and the views.
+- Refactored slightly views.py.
 
 2.7 (2013-10-27)
 ----------------

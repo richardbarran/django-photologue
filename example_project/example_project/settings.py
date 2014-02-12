@@ -101,4 +101,49 @@ INSTALLED_APPS = [
     'example_project',
 ]
 
+# LOGGING CONFIGURATION
+# A logging configuration that writes log messages to the console.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    # Formatting of messages.
+    'formatters': {
+        # Don't need to show the time when logging to console.
+        'console': {
+            'format': '%(levelname)s %(name)s.%(funcName)s (%(lineno)d) %(message)s'
+        }
+    },
+    # The handlers decide what we should do with a logging message - do we email
+    # it, ditch it, or write it to a file?
+    'handlers': {
+        # Writing to console. Use only in dev.
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        # Send logs to /dev/null.
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+    },
+    # Loggers decide what is logged.
+    'loggers': {
+        '': {
+            # Default (suitable for dev) is to log to console.
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        # logging of SQL statements. Default is to ditch them (send them to
+        # null). Note that this logger only works if DEBUG = True.
+        'django.db.backends': {
+            'handlers': ['null'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}
+
 SOUTH_TESTS_MIGRATE = False

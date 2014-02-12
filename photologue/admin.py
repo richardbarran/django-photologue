@@ -31,6 +31,17 @@ class GalleryAdmin(admin.ModelAdmin):
     form = GalleryAdminForm
 
 
+class GalleryUploadAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        return False  # To remove the 'Save and continue editing' button
+
+    def save_model(self, request, obj, form, change):
+        # Warning the user when things go wrong in a zip upload.
+        obj.request = request
+        obj.save()
+
+
 class PhotoAdminForm(forms.ModelForm):
     if USE_CKEDITOR:
         caption = forms.CharField(widget=CKEditorWidget())
@@ -89,12 +100,6 @@ class PhotoSizeAdmin(admin.ModelAdmin):
 
 class WatermarkAdmin(admin.ModelAdmin):
     list_display = ('name', 'opacity', 'style')
-
-
-class GalleryUploadAdmin(admin.ModelAdmin):
-
-    def has_change_permission(self, request, obj=None):
-        return False  # To remove the 'Save and continue editing' button
 
 
 admin.site.register(Gallery, GalleryAdmin)
