@@ -3,6 +3,7 @@ import random
 import zipfile
 from datetime import datetime
 from inspect import isclass
+import warnings
 
 from django.utils.timezone import now
 from django.db import models
@@ -213,6 +214,12 @@ class Gallery(models.Model):
     def public(self):
         """Return a queryset of all the public photos in this gallery."""
         return self.photos.filter(is_public=True)
+
+    @property
+    def title_slug(self):
+        warnings.warn(
+            DeprecationWarning("`title_slug` field in Gallery is being renamed to `slug`. Update your code."))
+        return self.slug
 
 
 class GalleryUpload(models.Model):
@@ -614,6 +621,12 @@ class Photo(ImageModel):
                                                is_public=True)
         except Photo.DoesNotExist:
             return None
+
+    @property
+    def title_slug(self):
+        warnings.warn(
+            DeprecationWarning("`title_slug` field in Photo is being renamed to `slug`. Update your code."))
+        return self.slug
 
 
 class BaseEffect(models.Model):
