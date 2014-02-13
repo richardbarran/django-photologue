@@ -6,3 +6,4 @@ from photologue.tests.test_resize import *
 from photologue.tests.test_views_photo import *
 from photologue.tests.test_views_gallery import *
 from photologue.tests.test_sitemap import *
+from photologue.tests.test_zipupload import *

@@ -1,6 +1,7 @@
 # Global settings for photologue example project.
 
 import os
+import sys
 from photologue import PHOTOLOGUE_APP_DIR
 
 DEBUG = TEMPLATE_DEBUG = True
@@ -145,5 +146,9 @@ LOGGING = {
         },
     }
 }
+
+# Don't display logging messages to console during unit test runs.
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    LOGGING['loggers']['']['handlers'] = ['null']
 
 SOUTH_TESTS_MIGRATE = False
