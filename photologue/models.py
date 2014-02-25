@@ -25,7 +25,6 @@ from django.utils.functional import curry
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.image import Image as D_Image
 from django.core.validators import RegexValidator
 from django.contrib import messages
 
@@ -345,7 +344,7 @@ class GalleryUpload(models.Model):
                 # Basic check that we have a valid image.
                 try:
                     file = BytesIO(data)
-                    opened = D_Image.open(file)
+                    opened = Image.open(file)
                     opened.verify()
                 except Exception:
                     # Pillow (or PIL) doesn't recognize it as an image.
