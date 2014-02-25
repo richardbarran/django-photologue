@@ -5,6 +5,7 @@ from datetime import datetime
 from inspect import isclass
 import warnings
 import logging
+from io import BytesIO
 
 from django.utils.timezone import now
 from django.db import models
@@ -23,7 +24,8 @@ from django.utils.encoding import smart_str, filepath_to_uri
 from django.utils.functional import curry
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
-from django.utils import six
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils.image import Image as D_Image
 from django.core.validators import RegexValidator
 from django.contrib import messages
 
@@ -150,6 +152,7 @@ IMAGE_FILTERS_HELP_TEXT = _(
     'Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
 
+@python_2_unicode_compatible
 class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'),
                                       default=now)
@@ -178,7 +181,7 @@ class Gallery(models.Model):
         verbose_name = _('gallery')
         verbose_name_plural = _('galleries')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
@@ -228,20 +231,18 @@ class Gallery(models.Model):
 
 class GalleryUpload(models.Model):
     zip_file = models.FileField(_('images file (.zip)'),
-                                upload_to=PHOTOLOGUE_DIR + "/temp",
+                                upload_to=os.path.join(PHOTOLOGUE_DIR, 'temp'),
                                 help_text=_('Select a .zip file of images to upload into a new Gallery.'))
+    title = models.CharField(_('title'),
+                             max_length=50,
+                             help_text=_('All uploaded photos will be given a title made up of this title + a '
+                                         'sequential number.'))
     gallery = models.ForeignKey(Gallery,
                                 verbose_name=_('gallery'),
                                 null=True,
                                 blank=True,
-                                help_text=_('Select a gallery to add these images to. '
-                                            'Leave this empty to create a new gallery from the '
-                                            'supplied title.'))
-    title = models.CharField(_('title'),
-                             max_length=50,
-                             help_text=_('All photos in the gallery will be given a '
-                                         'title made up of the gallery title + a '
-                                         'sequential number.'))
+                                help_text=_('Select a gallery to add these images to. Leave this empty to '
+                                            'create a new gallery from the supplied title.'))
     caption = models.TextField(_('caption'),
                                blank=True,
                                help_text=_('Caption will be added to all photos.'))
@@ -267,12 +268,23 @@ class GalleryUpload(models.Model):
         super(GalleryUpload, self).delete()
         return gallery
 
+    def clean(self):
+        if self.title:
+            try:
+                Gallery.objects.get(title=self.title)
+                raise ValidationError(_('A gallery with that title already exists.'))
+            except Gallery.DoesNotExist:
+                pass
+        if not self.gallery and not self.title:
+            raise ValidationError(_('Select an existing gallery or enter a new gallery name.'))
+
     def process_zipfile(self):
         if os.path.isfile(self.zip_file.path):
             # TODO: implement try-except here
             zip = zipfile.ZipFile(self.zip_file.path)
             bad_file = zip.testzip()
             if bad_file:
+                zip.close()
                 raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
             count = 1
             if self.gallery:
@@ -285,51 +297,75 @@ class GalleryUpload(models.Model):
                                                  description=self.description,
                                                  is_public=self.is_public,
                                                  tags=self.tags)
-            from cStringIO import StringIO
             for filename in sorted(zip.namelist()):
+
                 logger.debug('Reading file "{0}".'.format(filename))
+                if os.path.dirname(filename):
+                    logger.warning('Ignoring file "{0}" as it is in a subfolder; all images should be in the top '
+                                   'folder of the zip.'.format(filename))
+                    if getattr(self, 'request', None):
+                        messages.warning(self.request,
+                                         _('Ignoring file "{filename}" as it is in a subfolder; all images should '
+                                           'be in the top folder of the zip.').format(filename=filename),
+                                         fail_silently=True)
+                    continue
+
                 if filename.startswith('__') or filename.startswith('.'):
                     logger.debug('Ignoring file "{0}".'.format(filename))
                     continue
+
                 data = zip.read(filename)
-                if len(data):
-                    try:
-                        # the following is taken from django.newforms.fields.ImageField:
-                        #  load() is the only method that can spot a truncated JPEG,
-                        #  but it cannot be called sanely after verify()
-                        trial_image = Image.open(StringIO(data))
-                        trial_image.load()
-                        # verify() is the only method that can spot a corrupt PNG,
-                        #  but it must be called immediately after the constructor
-                        trial_image = Image.open(StringIO(data))
-                        trial_image.verify()
-                    except Exception:
-                        # if a "bad" file is found we just skip it.
-                        # But we do flag this both in the logs and to the user.
-                        warning_msg = 'Could not process file "{0}" in the .zip archive.'.format(
-                            filename)
-                        logger.exception(warning_msg)
-                        if getattr(self, 'request', None):
-                            messages.warning(self.request, warning_msg, fail_silently=True)
-                        continue
-                    while 1:
-                        title = ' '.join([self.title, str(count)])
-                        slug = slugify(title)
-                        try:
-                            Photo.objects.get(slug=slug)
-                        except Photo.DoesNotExist:
-                            photo = Photo(title=title,
-                                          slug=slug,
-                                          caption=self.caption,
-                                          is_public=self.is_public,
-                                          tags=self.tags)
-                            photo.image.save(six.text_type(filename, "cp437"), ContentFile(data))
-                            gallery.photos.add(photo)
-                            count = count + 1
-                            break
-                        count = count + 1
-                else:
+
+                if not len(data):
                     logger.debug('File "{0}" is empty.'.format(filename))
+                    continue
+
+                title = ' '.join([self.title, str(count)])
+                slug = slugify(title)
+
+                try:
+                    Photo.objects.get(slug=slug)
+                    logger.warning('Did not create photo "{0}" with slug "{1}" as a photo with that '
+                                   'slug already exists.'.format(filename, slug))
+                    if getattr(self, 'request', None):
+                        messages.warning(self.request,
+                                         _('Did not create photo "%(filename)s" with slug "{1}" as a photo with that '
+                                           'slug already exists.').format(filename, slug),
+                                         fail_silently=True)
+                    continue
+                except Photo.DoesNotExist:
+                    pass
+
+                photo = Photo(title=title,
+                              slug=slug,
+                              caption=self.caption,
+                              is_public=self.is_public,
+                              tags=self.tags)
+
+                # Basic check that we have a valid image.
+                try:
+                    file = BytesIO(data)
+                    opened = D_Image.open(file)
+                    opened.verify()
+                except Exception:
+                    # Pillow (or PIL) doesn't recognize it as an image.
+                    # If a "bad" file is found we just skip it.
+                    # But we do flag this both in the logs and to the user.
+                    logger.error('Could not process file "{0}" in the .zip archive.'.format(
+                        filename))
+                    if getattr(self, 'request', None):
+                        messages.warning(self.request,
+                                         _('Could not process file "{0}" in the .zip archive.').format(
+                                         filename,
+                                         fail_silently=True))
+                    continue
+
+                contentfile = ContentFile(data)
+                photo.image.save(filename, contentfile)
+                photo.save()
+                gallery.photos.add(photo)
+                count = count + 1
+
             zip.close()
             return gallery
 
@@ -587,6 +623,7 @@ class ImageModel(models.Model):
         os.remove(path)
 
 
+@python_2_unicode_compatible
 class Photo(ImageModel):
     title = models.CharField(_('title'),
                              max_length=50,
@@ -609,7 +646,7 @@ class Photo(ImageModel):
         verbose_name = _("photo")
         verbose_name_plural = _("photos")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
@@ -645,6 +682,7 @@ class Photo(ImageModel):
         return self.slug
 
 
+@python_2_unicode_compatible
 class BaseEffect(models.Model):
     name = models.CharField(_('name'),
                             max_length=30,
@@ -691,7 +729,7 @@ class BaseEffect(models.Model):
         im = self.post_process(im)
         return im
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
@@ -801,6 +839,7 @@ class Watermark(BaseEffect):
         return apply_watermark(im, mark, self.style, self.opacity)
 
 
+@python_2_unicode_compatible
 class PhotoSize(models.Model):
 
     """About the Photosize name: it's used to create get_PHOTOSIZE_url() methods,
@@ -854,7 +893,7 @@ class PhotoSize(models.Model):
         verbose_name = _('photo size')
         verbose_name_plural = _('photo sizes')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def clear_cache(self):

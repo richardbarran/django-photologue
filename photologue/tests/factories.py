@@ -23,6 +23,7 @@ SQUARE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_square.jpg')
 QUOTING_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_&quoting.jpg')
 SAMPLE_ZIP_PATH = os.path.join(RES_DIR, 'zips/sample.zip')
 SAMPLE_NOT_IMAGE_ZIP_PATH = os.path.join(RES_DIR, 'zips/not_image.zip')
+IGNORED_FILES_ZIP_PATH = os.path.join(RES_DIR, 'zips/ignored_files.zip')
 
 
 class GalleryFactory(factory.django.DjangoModelFactory):

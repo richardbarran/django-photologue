@@ -137,6 +137,12 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'photologue': {
+            # Default (suitable for dev) is to log to console.
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
         # logging of SQL statements. Default is to ditch them (send them to
         # null). Note that this logger only works if DEBUG = True.
         'django.db.backends': {
@@ -150,5 +156,6 @@ LOGGING = {
 # Don't display logging messages to console during unit test runs.
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['']['handlers'] = ['null']
+    LOGGING['loggers']['photologue']['handlers'] = ['null']
 
 SOUTH_TESTS_MIGRATE = False
