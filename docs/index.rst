@@ -24,8 +24,9 @@ Contents:
     pages/customising/settings
     pages/customising/admin
     pages/customising/views
-    pages/customising/contrib    
+    pages/customising/contrib
     pages/contributing
+    pages/changelog
 
 Indices and tables
 ==================
