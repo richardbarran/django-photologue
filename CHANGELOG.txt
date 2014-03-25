@@ -14,6 +14,7 @@ Upgrade notes:
 
 List of changes:
 
+- Both models Photo and Gallery now support Django's sites framework.
 - Photologue now uses django-sortedm2m to sort photos in a gallery.
 - PHOTOLOGUE_USE_CKEDITOR, PHOTOLOGUE_GALLERY_PAGINATE_BY and
   PHOTOLOGUE_PHOTO_PAGINATE_BY are deprecated.
@@ -46,7 +47,7 @@ List of changes:
 - Fixed issue #64 (allow installation without installing Pillow).
 - Optional use of CKEditor.
 - Updated/news translations for Polish, Slovak and German.
-- Bugfix: allow viewing latest galleries/latest photos pages even if they 
+- Bugfix: allow viewing latest galleries/latest photos pages even if they
   are empty.
 - Started using factory-boy - makes unit tests a bit easier to read.
 - Added settings to customise pagination count on list pages.

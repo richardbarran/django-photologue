@@ -43,10 +43,21 @@ class GalleryFactory(factory.django.DjangoModelFactory):
             sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
         return sample_date + datetime.timedelta(minutes=n)
 
+    @factory.post_generation
+    def sites(self, create, extracted, **kwargs):
+        """
+        If a list of sites was passed, associate each site with the object.
+        """
+        if not create:
+            return
+        if extracted:
+            for site in extracted:
+                self.sites.add(site)
+
 
 class PhotoFactory(factory.django.DjangoModelFactory):
 
-    """Note: after creating Photo instances for tests, remember to manually 
+    """Note: after creating Photo instances for tests, remember to manually
     delete them.
     """
 

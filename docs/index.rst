@@ -6,12 +6,12 @@
 Welcome to django-photologue's documentation!
 =============================================
 
-The Photologue documentation is being transferred from a Google Code wiki to a 
+The Photologue documentation is being transferred from a Google Code wiki to a
 Sphinx-generated setup (if you're reading this at readthedocs.org, then you're
 looking at these docs).
 
-This documentation is accurate and up-to-date (hopefully!);  
-`the old docs on the Google Code wiki <http://code.google.com/p/django-photologue/w/list>`_ 
+This documentation is accurate and up-to-date (hopefully!);
+`the old docs on the Google Code wiki <http://code.google.com/p/django-photologue/w/list>`_
 are extensive but have not been updated in a long time.
 
 Contents:

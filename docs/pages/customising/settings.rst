@@ -75,7 +75,7 @@ Path to sample image
 
 PHOTOLOGUE_MAXBLOCK
 -------------------
-    
+
     Default: ``256 * 2 ** 10``
 
 Modify image file buffer size.
@@ -83,7 +83,7 @@ Modify image file buffer size.
 
 PHOTOLOGUE_DIR
 --------------
-    
+
     Default: ``'photologue'``
 
 The relative path from your ``MEDIA_ROOT`` setting where Photologue will save image files. If your ``MEDIA_ROOT`` is set to "/home/user/media", photologue will upload your images to "/home/user/media/photologue"
@@ -100,17 +100,17 @@ For example you could use the following code in a util module::
 
     # myapp/utils.py:
 
-    import os 
+    import os
 
-    def get_image_path(instance, filename): 
-        return os.path.join('path', 'to', 'my', 'files', filename) 
+    def get_image_path(instance, filename):
+        return os.path.join('path', 'to', 'my', 'files', filename)
 
 Then set in settings::
 
     # settings.py:
 
     from utils import get_image_path
-    
+
     PHOTOLOGUE_PATH = get_image_path
 
 Or instead, pass a string path::
@@ -118,4 +118,13 @@ Or instead, pass a string path::
     # settings.py:
 
     PHOTOLOGUE_PATH = 'myapp.utils.get_image_path'
+
+
+PHOTOLOGUE_ADD_DEFAULT_SITE
+---------------------------
+
+    Default: ``True``
+
+Photos and Galleries are automatically added to the current site
+(``settings.SITE_ID``) upon saving.
 
