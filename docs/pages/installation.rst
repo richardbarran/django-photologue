@@ -37,9 +37,13 @@ Dependencies
 * `South <http://south.aeracode.org/>`_.
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 
-And one dependency that is not automatically installed:
+And 2 dependencies that you will have to manage yourself:
 
-* `Pytz <https://pypi.python.org/pypi/pytz>`_. Only applies if you're using Django >= 1.6, see the Django release notes `for more information <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
+* `Pytz <https://pypi.python.org/pypi/pytz>`_. Only applies if you're using Django >= 1.6, see the 
+  Django release notes `for more information 
+  <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
+* `Django’s site framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_
+  - only applies if you're using Django >= 1.6.
 
 .. note::
 
