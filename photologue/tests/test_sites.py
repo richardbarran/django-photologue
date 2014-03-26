@@ -20,16 +20,15 @@ class SitesTest(TestCase):
         self.site2, created2 = Site.objects.get_or_create(
             domain="example.org", name="example.org")
 
-        self.gallery1 = GalleryFactory(slug='test-gallery')
-        self.gallery2 = GalleryFactory(slug='not-on-site-gallery')
-        self.photo1 = PhotoFactory(slug='test-photo')
-        self.photo2 = PhotoFactory(slug='not-on-site-photo')
+        self.gallery1 = GalleryFactory(slug='test-gallery', sites=[self.site1])
+        self.gallery2 = GalleryFactory(slug='not-on-site-gallery', sites=[])
+        self.photo1 = PhotoFactory(slug='test-photo', sites=[self.site1])
+        self.photo2 = PhotoFactory(slug='not-on-site-photo', sites=[])
         self.gallery1.photos.add(self.photo1, self.photo2)
 
         # I'd like to use factory_boy's mute_signal decorator but that
         # will only available once factory_boy 2.4 is released. So long
         # we'll have to remove the site association manually
-        self.gallery2.sites.clear()
         self.photo2.sites.clear()
 
     def tearDown(self):
@@ -50,8 +49,8 @@ class SitesTest(TestCase):
         ``PHOTOLOGUE_ADD_DEFAULT_SITE`` is ``False``.
         """
         with self.settings(PHOTOLOGUE_ADD_DEFAULT_SITE=False):
-            self.gallery2 = GalleryFactory()
-            self.photo2 = PhotoFactory(slug='test-photo2')
+            self.gallery2 = GalleryFactory(sites=[])
+            self.photo2 = PhotoFactory(slug='test-photo2', sites=[])
             self.assertEqual(list(self.gallery2.sites.all()), [])
             self.assertEqual(list(self.photo2.sites.all()), [])
 

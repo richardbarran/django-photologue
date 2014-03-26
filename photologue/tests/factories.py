@@ -8,6 +8,7 @@ except ImportError:
 from django.utils.timezone import utc
 from django.utils import six
 from django.conf import settings
+from django.contrib.sites.models import Site
 try:
     import factory
 except ImportError:
@@ -46,13 +47,18 @@ class GalleryFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def sites(self, create, extracted, **kwargs):
         """
-        If a list of sites was passed, associate each site with the object.
+        Associates the object with the current site unless ``sites`` was passed,
+        in which case the each item in ``sites`` is associated with the object.
+        To prevent the automatic creation of relationships with a site, pass
+        ``site=[]``.
         """
         if not create:
             return
         if extracted:
             for site in extracted:
                 self.sites.add(site)
+        elif extracted is None:
+            self.sites.add(Site.objects.get_current())
 
 
 class PhotoFactory(factory.django.DjangoModelFactory):
@@ -76,6 +82,22 @@ class PhotoFactory(factory.django.DjangoModelFactory):
         else:
             sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
         return sample_date + datetime.timedelta(minutes=n)
+
+    @factory.post_generation
+    def sites(self, create, extracted, **kwargs):
+        """
+        Associates the object with the current site unless ``sites`` was passed,
+        in which case the each item in ``sites`` is associated with the object.
+        To prevent the automatic creation of relationships with a site, pass
+        ``site=[]``.
+        """
+        if not create:
+            return
+        if extracted:
+            for site in extracted:
+                self.sites.add(site)
+        elif extracted is None:
+            self.sites.add(Site.objects.get_current())
 
 
 class PhotoSizeFactory(factory.django.DjangoModelFactory):
