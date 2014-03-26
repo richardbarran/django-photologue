@@ -87,3 +87,16 @@ class SitesTest(TestCase):
         """
         response = self.client.get('/ptests/gallery/test-gallery/')
         self.assertEqual(list(response.context['object'].public()), [self.photo1])
+
+    def test_orphaned_photos(self):
+        self.assertEqual(list(self.gallery1.orphaned_photos()), [self.photo2])
+
+        self.gallery2.photos.add(self.photo2)
+        self.assertEqual(list(self.gallery1.orphaned_photos()), [self.photo2])
+
+        self.gallery1.sites.clear()
+        self.assertEqual(list(self.gallery1.orphaned_photos()), [self.photo1, self.photo2])
+
+        self.photo1.sites.clear()
+        self.photo2.sites.clear()
+        self.assertEqual(list(self.gallery1.orphaned_photos()), [self.photo1, self.photo2])
