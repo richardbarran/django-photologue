@@ -2,6 +2,8 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.sites.models import Site
+from django.contrib import messages
+from django.utils.translation import ungettext
 
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
@@ -37,6 +39,26 @@ class GalleryAdmin(admin.ModelAdmin):
         if db_field.name == "sites":
             kwargs["initial"] = [Site.objects.get_current()]
         return super(GalleryAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        """If the user has saved a gallery with a photo that belongs only to different Sites - 
+        it might cause much confusion. So let them know."""
+        obj.save()
+        gallery_sites = set(obj.sites.all().values_list('id', flat=True))
+        orphan_photos = []
+        for photo in obj.photos.filter(is_public=True):
+            photo_sites = set(photo.sites.all().values_list('id', flat=True))
+            if photo_sites.isdisjoint(gallery_sites):
+                orphan_photos.append(photo)
+        if orphan_photos:
+            msg = ungettext(
+                'The following photo does not belong to the same site(s)'
+                ' as the gallery, so will never be displayed: %(photo_list)s.',
+                'The following photos do not belong to the same site(s)'
+                ' as the gallery, so will never be displayed: %(photo_list)s.',
+                len(orphan_photos)
+            ) % {'photo_list': ", ".join([photo.title for photo in orphan_photos])}
+            messages.warning(request, msg)
 
 
 class GalleryUploadAdmin(admin.ModelAdmin):
