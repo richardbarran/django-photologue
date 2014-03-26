@@ -125,6 +125,11 @@ PHOTOLOGUE_ADD_DEFAULT_SITE
 
     Default: ``True``
 
-Photos and Galleries are automatically added to the current site
-(``settings.SITE_ID``) upon saving.
+If this settings is ``True`` photos will be added to the current site
+automatically. If ``False``, photos uploaded in a batch won't be associated with
+any site at all and need to be associated manually.
 
+This setting is relevant when Photos are added through other ways than manually
+one-by-one via the admin (for example when uploading a Gallery). If a single
+Gallery or Photo is added manually via the admin, the current site will be
+selected by default (opt-out is possible by deselecting the entry).

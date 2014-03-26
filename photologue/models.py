@@ -23,7 +23,7 @@ except ImportError:
 from django.utils.encoding import smart_str, filepath_to_uri
 from django.utils.functional import curry
 from django.utils.importlib import import_module
-from django.utils.translation import ugettext_lazy as _, string_concat
+from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.contrib import messages
@@ -142,17 +142,6 @@ WATERMARK_STYLE_CHOICES = (
     ('scale', _('Scale')),
 )
 
-# Set the default value if none specified and determine what to display as the
-# models' help text in dependence on the setting's value. Needs to be set like
-# this to make overriding in tests possible.
-ADD_DEFAULT_SITE = getattr(settings, 'PHOTOLOGUE_ADD_DEFAULT_SITE', True)
-
-SITES_FIELD_HELP_TEXT = _('Specify which sites this object should be displayed on.')
-if ADD_DEFAULT_SITE:
-    SITES_FIELD_HELP_TEXT = string_concat(SITES_FIELD_HELP_TEXT,
-        _('Leaving the selection empty will add the current site automatically.'))
-
-
 # Prepare a list of image filters
 filter_names = []
 for n in dir(ImageFilter):
@@ -187,12 +176,10 @@ class Gallery(models.Model):
                                    blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
-                                   blank=True, null=True,
-                                   help_text=SITES_FIELD_HELP_TEXT)
+                                   blank=True, null=True)
 
     objects = models.Manager()
     on_site = CurrentSiteManager('sites')
-
 
     class Meta:
         ordering = ['-date_added']
@@ -660,8 +647,7 @@ class Photo(ImageModel):
                                     help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
-                                   blank=True, null=True,
-                                   help_text=SITES_FIELD_HELP_TEXT)
+                                   blank=True, null=True)
 
     objects = models.Manager()
     on_site = CurrentSiteManager('sites')
@@ -980,18 +966,21 @@ def add_methods(sender, instance, signal, *args, **kwargs):
         instance.add_accessor_methods()
 
 
-def add_default_site(instance, **kwargs):
+def add_default_site(instance, created, **kwargs):
     """
-    Called via Django's signals if the template in the database was added or
-    changed and only if PHOTOLOGUE_ADD_DEFAULT_SITE setting is set.
+    Called via Django's signals when an instance is created.
+    In case PHOTOLOGUE_ADD_DEFAULT_SITE is True, the current site (i.e.
+    ``settings.SITE_ID``) will be added to the site relations if none are
+    present.
     """
-    if not getattr(settings, 'PHOTOLOGUE_ADD_DEFAULT_SITE', ADD_DEFAULT_SITE):
+    if not created:
         return
-    current_site = Site.objects.get_current()
-    if current_site not in instance.sites.all():
-        instance.sites.add(current_site)
+    if not getattr(settings, 'PHOTOLOGUE_ADD_DEFAULT_SITE', True):
+        return
+    if instance.sites.exists():
+        return
+    instance.sites.add(Site.objects.get_current())
 
 # connect the add_accessor_methods function to the post_init signal
 post_init.connect(add_methods)
-post_save.connect(add_default_site, sender=Gallery)
 post_save.connect(add_default_site, sender=Photo)

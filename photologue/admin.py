@@ -1,6 +1,7 @@
-from django.contrib import admin
 from django import forms
 from django.conf import settings
+from django.contrib import admin
+from django.contrib.sites.models import Site
 
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
@@ -29,6 +30,13 @@ class GalleryAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
     form = GalleryAdminForm
+    filter_horizontal = ["sites"]
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "sites":
+            kwargs["initial"] = [Site.objects.get_current()]
+        return super(GalleryAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 
 class GalleryUploadAdmin(admin.ModelAdmin):
@@ -59,6 +67,13 @@ class PhotoAdmin(admin.ModelAdmin):
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
     form = PhotoAdminForm
+    filter_horizontal = ["sites"]
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "sites":
+            kwargs["initial"] = [Site.objects.get_current()]
+        return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 
 class PhotoEffectAdmin(admin.ModelAdmin):
