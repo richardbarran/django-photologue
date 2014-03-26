@@ -133,7 +133,7 @@ Sites
 Photologue supports `Django's site framework`_ since version 2.8. That means
 that each Gallery and each Photo can be displayed on one or more sites.
 
-Please bare in mind that photos don't necessarily have to be assigned to the
+Please bear in mind that photos don't necessarily have to be assigned to the
 same sites as the gallery they're belonging to: each gallery will only display
 the photos that are on its site. When a gallery does not belong the current site
 but a single photo is, that photo is only accessible directly as the gallery
