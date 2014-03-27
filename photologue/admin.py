@@ -28,7 +28,7 @@ class GalleryAdminForm(forms.ModelForm):
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
-    list_filter = ['date_added', 'is_public']
+    list_filter = ['date_added', 'is_public', 'sites']
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
     form = GalleryAdminForm
@@ -81,7 +81,7 @@ class PhotoAdminForm(forms.ModelForm):
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added',
                     'is_public', 'tags', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public']
+    list_filter = ['date_added', 'is_public', 'sites']
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
