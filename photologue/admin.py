@@ -1,6 +1,9 @@
-from django.contrib import admin
 from django import forms
 from django.conf import settings
+from django.contrib import admin
+from django.contrib.sites.models import Site
+from django.contrib import messages
+from django.utils.translation import ungettext, ugettext_lazy as _
 
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
@@ -25,10 +28,106 @@ class GalleryAdminForm(forms.ModelForm):
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
-    list_filter = ['date_added', 'is_public']
+    list_filter = ['date_added', 'is_public', 'sites']
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
     form = GalleryAdminForm
+    filter_horizontal = ["sites"]
+    actions = [
+        'add_to_current_site',
+        'add_photos_to_current_site',
+        'remove_from_current_site',
+        'remove_photos_from_current_site'
+    ]
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "sites":
+            kwargs["initial"] = [Site.objects.get_current()]
+        return super(GalleryAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def save_related(self, request, form, *args, **kwargs):
+        """
+        If the user has saved a gallery with a photo that belongs only to
+        different Sites - it might cause much confusion. So let them know.
+        """
+        super(GalleryAdmin, self).save_related(request, form, *args, **kwargs)
+        orphaned_photos = form.instance.orphaned_photos()
+        if orphaned_photos:
+            msg = ungettext(
+                'The following photo does not belong to the same site(s)'
+                ' as the gallery, so will never be displayed: %(photo_list)s.',
+                'The following photos do not belong to the same site(s)'
+                ' as the gallery, so will never be displayed: %(photo_list)s.',
+                len(orphaned_photos)
+            ) % {'photo_list': ", ".join([photo.title for photo in orphaned_photos])}
+            messages.warning(request, msg)
+
+    def add_to_current_site(modeladmin, request, queryset):
+        current_site = Site.objects.get_current()
+        current_site.gallery_set.add(*queryset)
+        msg = ungettext(
+            "The gallery '%(gallery)s' has been successfully added to %(site)s",
+            "The selected galleries have been successfully added to %(site)s",
+            len(queryset)
+        ) % {'site': current_site.name, 'gallery': queryset.first()}
+        messages.success(request, msg)
+
+    add_to_current_site.short_description = _("Add selected "
+        "galleries from the current site")
+
+    def remove_from_current_site(modeladmin, request, queryset):
+        current_site = Site.objects.get_current()
+        current_site.gallery_set.remove(*queryset)
+        msg = ungettext(
+            "The gallery '%(gallery)s' has been successfully removed from %(site)s",
+            "The selected galleries have been successfully removed from %(site)s",
+            len(queryset)
+        ) % {'site': current_site.name, 'gallery': queryset.first()}
+        messages.success(request, msg)
+
+    remove_from_current_site.short_description = _("Remove selected "
+        "galleries from the current site")
+
+    def add_photos_to_current_site(modeladmin, request, queryset):
+        photos = Photo.objects.filter(galleries__in=queryset)
+        current_site = Site.objects.get_current()
+        current_site.photo_set.add(*photos)
+        msg = ungettext(
+            'All photos of gallery %(galleries)s have been successfully '
+            'added to %(site)s',
+            'All photos of in the galleries %(galleries)s have been successfully '
+            'added to %(site)s',
+            len(queryset)
+        ) % {
+            'site': current_site.name,
+            'galleries': ", ".join(["'{0}'".format(gallery.title)
+                for gallery in queryset])
+        }
+        messages.success(request, msg)
+
+    add_photos_to_current_site.short_description = _("Add all photos of "
+        "selected galleries to the current site")
+
+    def remove_photos_from_current_site(modeladmin, request, queryset):
+        photos = Photo.objects.filter(galleries__in=queryset)
+        current_site = Site.objects.get_current()
+        current_site.photo_set.remove(*photos)
+        msg = ungettext(
+            'All photos of gallery %(galleries)s have been successfully '
+            'removed from %(site)s',
+            'All photos of in the galleries %(galleries)s have been successfully '
+            'removed from %(site)s',
+            len(queryset)
+        ) % {
+            'site': current_site.name,
+            'galleries': ", ".join(["'{0}'".format(gallery.title)
+                for gallery in queryset])
+        }
+        messages.success(request, msg)
+
+    remove_photos_from_current_site.short_description = _("Remove all photos "
+        "of selected galleries from the current site")
 
 
 class GalleryUploadAdmin(admin.ModelAdmin):
@@ -54,11 +153,45 @@ class PhotoAdminForm(forms.ModelForm):
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added',
                     'is_public', 'tags', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public']
+    list_filter = ['date_added', 'is_public', 'sites']
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
     form = PhotoAdminForm
+    filter_horizontal = ["sites"]
+    actions = ['add_photos_to_current_site', 'remove_photos_from_current_site']
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "sites":
+            kwargs["initial"] = [Site.objects.get_current()]
+        return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def add_photos_to_current_site(modeladmin, request, queryset):
+        current_site = Site.objects.get_current()
+        current_site.photo_set.add(*queryset)
+        msg = ungettext(
+            'The photo %(photo)s has been successfully added to %(site)s',
+            'The selected photos have been successfully added to %(site)s',
+            len(queryset)
+        ) % {'site': current_site.name, 'photo': queryset.first()}
+        messages.success(request, msg)
+
+    add_photos_to_current_site.short_description = _("Add selected photos to "
+        "the current site")
+
+    def remove_photos_from_current_site(modeladmin, request, queryset):
+        current_site = Site.objects.get_current()
+        current_site.photo_set.remove(*queryset)
+        msg = ungettext(
+            'The photo %(photo)s has been successfully removed from %(site)s',
+            'The selected photos have been successfully removed from %(site)s',
+            len(queryset)
+        ) % {'site': current_site.name, 'photo': queryset.first()}
+        messages.success(request, msg)
+
+    remove_photos_from_current_site.short_description = _("Remove selected "
+        "photos from the current site")
 
 
 class PhotoEffectAdmin(admin.ModelAdmin):

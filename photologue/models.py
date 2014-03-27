@@ -9,7 +9,7 @@ from io import BytesIO
 
 from django.utils.timezone import now
 from django.db import models
-from django.db.models.signals import post_init
+from django.db.models.signals import post_init, post_save
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
@@ -27,6 +27,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.contrib import messages
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -173,6 +175,11 @@ class Gallery(models.Model):
                                    null=True,
                                    blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
+    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
+                                   blank=True, null=True)
+
+    objects = models.Manager()
+    on_site = CurrentSiteManager('sites')
 
     class Meta:
         ordering = ['-date_added']
@@ -192,11 +199,11 @@ class Gallery(models.Model):
         if public:
             return self.public()[:limit]
         else:
-            return self.photos.all()[:limit]
+            return self.photos.filter(sites__id=settings.SITE_ID)[:limit]
 
     def sample(self, count=None, public=True):
         """Return a sample of photos, ordered at random.
-        If the 'count' is not specified, it will return a number of photos 
+        If the 'count' is not specified, it will return a number of photos
         limited by the GALLERY_SAMPLE_SIZE setting.
         """
         if not count:
@@ -206,7 +213,7 @@ class Gallery(models.Model):
         if public:
             photo_set = self.public()
         else:
-            photo_set = self.photos.all()
+            photo_set = self.photos.filter(sites__id=settings.SITE_ID)
         return random.sample(set(photo_set), count)
 
     def photo_count(self, public=True):
@@ -214,12 +221,20 @@ class Gallery(models.Model):
         if public:
             return self.public().count()
         else:
-            return self.photos.all().count()
+            return self.photos.filter(sites__id=settings.SITE_ID).count()
     photo_count.short_description = _('count')
 
     def public(self):
         """Return a queryset of all the public photos in this gallery."""
-        return self.photos.filter(is_public=True)
+        return self.photos.filter(is_public=True, sites__id=settings.SITE_ID)
+
+    def orphaned_photos(self):
+        """
+        Return all photos that belong to this gallery but don't share the
+        gallery's site.
+        """
+        return self.photos.filter(is_public=True)\
+                          .exclude(sites__id__in=self.sites.all())
 
     @property
     def title_slug(self):
@@ -639,6 +654,11 @@ class Photo(ImageModel):
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
+    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
+                                   blank=True, null=True)
+
+    objects = models.Manager()
+    on_site = CurrentSiteManager('sites')
 
     class Meta:
         ordering = ['-date_added']
@@ -843,7 +863,7 @@ class Watermark(BaseEffect):
 class PhotoSize(models.Model):
 
     """About the Photosize name: it's used to create get_PHOTOSIZE_url() methods,
-    so the name has to follow the same restrictions as any Python method name, 
+    so the name has to follow the same restrictions as any Python method name,
     e.g. no spaces or non-ascii characters."""
 
     name = models.CharField(_('name'),
@@ -953,5 +973,22 @@ def add_methods(sender, instance, signal, *args, **kwargs):
     if hasattr(instance, 'add_accessor_methods'):
         instance.add_accessor_methods()
 
+
+def add_default_site(instance, created, **kwargs):
+    """
+    Called via Django's signals when an instance is created.
+    In case PHOTOLOGUE_ADD_DEFAULT_SITE is True, the current site (i.e.
+    ``settings.SITE_ID``) will be added to the site relations if none are
+    present.
+    """
+    if not created:
+        return
+    if not getattr(settings, 'PHOTOLOGUE_ADD_DEFAULT_SITE', True):
+        return
+    if instance.sites.exists():
+        return
+    instance.sites.add(Site.objects.get_current())
+
 # connect the add_accessor_methods function to the post_init signal
 post_init.connect(add_methods)
+post_save.connect(add_default_site, sender=Photo)
