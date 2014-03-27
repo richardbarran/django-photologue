@@ -79,3 +79,24 @@ class PhotoTest(PhotologueBaseTest):
         self.pl2 = PhotoFactory(image__from_path=QUOTING_IMAGE_PATH)
         self.assertEqual(self.pl2.get_testPhotoSize_url(),
                          self.pl2.cache_url() + '/test_photologue_%26quoting_testPhotoSize.jpg')
+
+
+class PhotoManagerTest(PhotologueBaseTest):
+
+    """Some tests for the methods on the Photo manager class."""
+
+    def setUp(self):
+        """Create 2 photos."""
+        super(PhotoManagerTest, self).setUp()
+        self.pl2 = PhotoFactory()
+
+    def tearDown(self):
+        super(PhotoManagerTest, self).tearDown()
+        self.pl2.delete()
+
+    def test_public(self):
+        """Method 'is_public' should only return photos flagged as public."""
+        self.assertEqual(Photo.objects.is_public().count(), 2)
+        self.pl.is_public = False
+        self.pl.save()
+        self.assertEqual(Photo.objects.is_public().count(), 1)

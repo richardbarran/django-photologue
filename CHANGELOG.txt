@@ -6,8 +6,8 @@ Changelog
 
 Upgrade notes:
 
-1. You will have to install django-sortedm2m - please refer to installation
-   instructions.
+1. You will have to install django-sortedm2m and django-model-utils - please
+   refer to installation instructions.
 
 2. You will need to run the migrations in order to create the new tables for
    the site relations.
@@ -29,6 +29,7 @@ List of changes:
 - Added to the documentation pages describing how to customise the admin and
   the views.
 - Refactored slightly views.py.
+- Started work on chainable querysets.
 
 2.7 (2013-10-27)
 ----------------

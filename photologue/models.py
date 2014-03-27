@@ -48,6 +48,7 @@ except ImportError:
             'Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available on your current Python path.')
 
 from sortedm2m.fields import SortedManyToManyField
+from model_utils.managers import PassThroughManager
 
 # attempt to load the django-tagging TagField from default location,
 # otherwise we substitude a dummy TagField.
@@ -73,6 +74,7 @@ except ImportError:
 from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
+from .managers import PhotoQuerySet
 
 logger = logging.getLogger('photologue.models')
 
@@ -226,7 +228,7 @@ class Gallery(models.Model):
 
     def public(self):
         """Return a queryset of all the public photos in this gallery."""
-        return self.photos.filter(is_public=True, sites__id=settings.SITE_ID)
+        return self.photos.is_public().filter(sites__id=settings.SITE_ID)
 
     @property
     def title_slug(self):
@@ -649,7 +651,7 @@ class Photo(ImageModel):
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True, null=True)
 
-    objects = models.Manager()
+    objects = PassThroughManager.for_queryset_class(PhotoQuerySet)()
     on_site = CurrentSiteManager('sites')
 
     class Meta:

@@ -30,12 +30,13 @@ production sites to prove itself". Use it, but apply caution!
 Dependencies
 ------------
 
-4 apps that will be installed automatically if required.
+5 apps that will be installed automatically if required.
 
 * `Django <https://www.djangoproject.com/>`_.
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
 * `South <http://south.aeracode.org/>`_.
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
+* `Django-model-utils <https://pypi.python.org/pypi/django-model-utils>`_.
 
 And 2 dependencies that you will have to manage yourself:
 
