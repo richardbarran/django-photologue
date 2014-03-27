@@ -230,6 +230,14 @@ class Gallery(models.Model):
         """Return a queryset of all the public photos in this gallery."""
         return self.photos.is_public().filter(sites__id=settings.SITE_ID)
 
+    def orphaned_photos(self):
+        """
+        Return all photos that belong to this gallery but don't share the
+        gallery's site.
+        """
+        return self.photos.filter(is_public=True)\
+                          .exclude(sites__id__in=self.sites.all())
+
     @property
     def title_slug(self):
         warnings.warn(
