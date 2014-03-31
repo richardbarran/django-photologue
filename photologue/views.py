@@ -24,16 +24,16 @@ if PHOTO_PAGINATE_BY != 20:
 
 
 class GalleryListView(ListView):
-    queryset = Gallery.on_site.filter(is_public=True)
+    queryset = Gallery.objects.on_site().is_public()
     paginate_by = GALLERY_PAGINATE_BY
 
 
 class GalleryDetailView(DetailView):
-    queryset = Gallery.on_site.filter(is_public=True)
+    queryset = Gallery.objects.on_site().is_public()
 
 
 class GalleryDateView(object):
-    queryset = Gallery.on_site.filter(is_public=True)
+    queryset = Gallery.objects.on_site().is_public()
     date_field = 'date_added'
     allow_empty = True
 
@@ -61,16 +61,16 @@ class GalleryYearArchiveView(GalleryDateView, YearArchiveView):
 
 
 class PhotoListView(ListView):
-    queryset = Photo.on_site.filter(is_public=True)
+    queryset = Photo.objects.on_site().is_public()
     paginate_by = PHOTO_PAGINATE_BY
 
 
 class PhotoDetailView(DetailView):
-    queryset = Photo.on_site.filter(is_public=True)
+    queryset = Photo.objects.on_site().is_public()
 
 
 class PhotoDateView(object):
-    queryset = Photo.on_site.filter(is_public=True)
+    queryset = Photo.objects.on_site().is_public()
     date_field = 'date_added'
     allow_empty = True
 

@@ -28,7 +28,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.contrib import messages
 from django.contrib.sites.models import Site
-from django.contrib.sites.managers import CurrentSiteManager
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -74,7 +73,7 @@ except ImportError:
 from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
-from .managers import PhotoQuerySet
+from .managers import GalleryQuerySet, PhotoQuerySet
 
 logger = logging.getLogger('photologue.models')
 
@@ -180,8 +179,7 @@ class Gallery(models.Model):
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True, null=True)
 
-    objects = models.Manager()
-    on_site = CurrentSiteManager('sites')
+    objects = PassThroughManager.for_queryset_class(GalleryQuerySet)()
 
     class Meta:
         ordering = ['-date_added']
@@ -660,7 +658,6 @@ class Photo(ImageModel):
                                    blank=True, null=True)
 
     objects = PassThroughManager.for_queryset_class(PhotoQuerySet)()
-    on_site = CurrentSiteManager('sites')
 
     class Meta:
         ordering = ['-date_added']
