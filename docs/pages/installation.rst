@@ -148,6 +148,9 @@ won't be shown in the index.
    worry about the assignment of already existing objects to a site because a
    datamigration will assign all your objects to the current site automatically.
 
+.. note:: This feature is switched off by default. :ref:`See here to enable it 
+   <settings-photologue-multisite-label>` and for more information.
+
 .. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html
 
 

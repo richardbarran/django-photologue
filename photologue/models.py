@@ -301,6 +301,7 @@ class GalleryUpload(models.Model):
                 zip.close()
                 raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
             count = 1
+            current_site = Site.objects.get(id=settings.SITE_ID)
             if self.gallery:
                 logger.debug('Using pre-existing gallery.')
                 gallery = self.gallery
@@ -311,6 +312,7 @@ class GalleryUpload(models.Model):
                                                  description=self.description,
                                                  is_public=self.is_public,
                                                  tags=self.tags)
+                gallery.sites.add(current_site)
             for filename in sorted(zip.namelist()):
 
                 logger.debug('Reading file "{0}".'.format(filename))
@@ -378,6 +380,7 @@ class GalleryUpload(models.Model):
                 contentfile = ContentFile(data)
                 photo.image.save(filename, contentfile)
                 photo.save()
+                photo.sites.add(current_site)
                 gallery.photos.add(photo)
                 count = count + 1
 
@@ -971,23 +974,22 @@ def add_methods(sender, instance, signal, *args, **kwargs):
     """
     if hasattr(instance, 'add_accessor_methods'):
         instance.add_accessor_methods()
+post_init.connect(add_methods)
 
 
 def add_default_site(instance, created, **kwargs):
     """
     Called via Django's signals when an instance is created.
-    In case PHOTOLOGUE_ADD_DEFAULT_SITE is True, the current site (i.e.
-    ``settings.SITE_ID``) will be added to the site relations if none are
+    In case PHOTOLOGUE_MULTISITE is False, the current site (i.e.
+    ``settings.SITE_ID``) will always be added to the site relations if none are
     present.
     """
     if not created:
         return
-    if not getattr(settings, 'PHOTOLOGUE_ADD_DEFAULT_SITE', True):
+    if getattr(settings, 'PHOTOLOGUE_MULTISITE', False):
         return
     if instance.sites.exists():
         return
     instance.sites.add(Site.objects.get_current())
-
-# connect the add_accessor_methods function to the post_init signal
-post_init.connect(add_methods)
+post_save.connect(add_default_site, sender=Gallery)
 post_save.connect(add_default_site, sender=Photo)

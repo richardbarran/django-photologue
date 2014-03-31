@@ -20,11 +20,13 @@ class SitesTest(TestCase):
         self.site2, created2 = Site.objects.get_or_create(
             domain="example.org", name="example.org")
 
-        self.gallery1 = GalleryFactory(slug='test-gallery', sites=[self.site1])
-        self.gallery2 = GalleryFactory(slug='not-on-site-gallery', sites=[])
-        self.photo1 = PhotoFactory(slug='test-photo', sites=[self.site1])
-        self.photo2 = PhotoFactory(slug='not-on-site-photo', sites=[])
-        self.gallery1.photos.add(self.photo1, self.photo2)
+        with self.settings(PHOTOLOGUE_MULTISITE=True):
+            # Be explicit about linking Galleries/Photos to Sites."""
+            self.gallery1 = GalleryFactory(slug='test-gallery', sites=[self.site1])
+            self.gallery2 = GalleryFactory(slug='not-on-site-gallery')
+            self.photo1 = PhotoFactory(slug='test-photo', sites=[self.site1])
+            self.photo2 = PhotoFactory(slug='not-on-site-photo')
+            self.gallery1.photos.add(self.photo1, self.photo2)
 
         # I'd like to use factory_boy's mute_signal decorator but that
         # will only available once factory_boy 2.4 is released. So long
@@ -39,20 +41,31 @@ class SitesTest(TestCase):
         self.photo2.delete()
 
     def test_basics(self):
-        """ See if objects were added automatically to the current site. """
+        """ See if objects were added automatically (by the factory) to the current site. """
         self.assertEqual(list(self.gallery1.sites.all()), [self.site1])
         self.assertEqual(list(self.photo1.sites.all()), [self.site1])
 
-    def test_empty_sites(self):
+    def test_auto_add_sites(self):
         """
-        Objects should not be associated with a particular site when
-        ``PHOTOLOGUE_ADD_DEFAULT_SITE`` is ``False``.
+        Objects should not be automatically associated with a particular site when
+        ``PHOTOLOGUE_MULTISITE`` is ``True``.
         """
-        with self.settings(PHOTOLOGUE_ADD_DEFAULT_SITE=False):
-            self.gallery2 = GalleryFactory(sites=[])
-            self.photo2 = PhotoFactory(slug='test-photo2', sites=[])
-            self.assertEqual(list(self.gallery2.sites.all()), [])
-            self.assertEqual(list(self.photo2.sites.all()), [])
+
+        with self.settings(PHOTOLOGUE_MULTISITE=False):
+            gallery = GalleryFactory()
+            photo = PhotoFactory()
+        self.assertEqual(list(gallery.sites.all()), [self.site1])
+        self.assertEqual(list(photo.sites.all()), [self.site1])
+
+        photo.delete()
+
+        with self.settings(PHOTOLOGUE_MULTISITE=True):
+            gallery = GalleryFactory()
+            photo = PhotoFactory()
+        self.assertEqual(list(gallery.sites.all()), [])
+        self.assertEqual(list(photo.sites.all()), [])
+
+        photo.delete()
 
     def test_gallery_list(self):
         response = self.client.get('/ptests/gallery/page/1/')

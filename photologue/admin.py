@@ -16,6 +16,8 @@ if USE_CKEDITOR:
     warnings.warn(
         DeprecationWarning('PHOTOLOGUE_USE_CKEDITOR setting will be removed in Photologue 2.9'))
 
+MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
+
 
 class GalleryAdminForm(forms.ModelForm):
     if USE_CKEDITOR:
@@ -23,22 +25,29 @@ class GalleryAdminForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
-        exclude = []
+        if MULTISITE:
+            exclude = []
+        else:
+            exclude = ['sites']
 
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
-    list_filter = ['date_added', 'is_public', 'sites']
+    list_filter = ['date_added', 'is_public']
+    if MULTISITE:
+        list_filter.append('sites')
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
     form = GalleryAdminForm
-    filter_horizontal = ["sites"]
-    actions = [
-        'add_to_current_site',
-        'add_photos_to_current_site',
-        'remove_from_current_site',
-        'remove_photos_from_current_site'
-    ]
+    if MULTISITE:
+        filter_horizontal = ['sites']
+    if MULTISITE:
+        actions = [
+            'add_to_current_site',
+            'add_photos_to_current_site',
+            'remove_from_current_site',
+            'remove_photos_from_current_site'
+        ]
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         """ Set the current site as initial value. """
@@ -147,19 +156,26 @@ class PhotoAdminForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        exclude = []
+        if MULTISITE:
+            exclude = []
+        else:
+            exclude = ['sites']
 
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added',
                     'is_public', 'tags', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public', 'sites']
+    list_filter = ['date_added', 'is_public']
+    if MULTISITE:
+        list_filter.append('sites')
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
     form = PhotoAdminForm
-    filter_horizontal = ["sites"]
-    actions = ['add_photos_to_current_site', 'remove_photos_from_current_site']
+    if MULTISITE:
+        filter_horizontal = ['sites']
+    if MULTISITE:
+        actions = ['add_photos_to_current_site', 'remove_photos_from_current_site']
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         """ Set the current site as initial value. """

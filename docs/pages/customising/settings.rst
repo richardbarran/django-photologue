@@ -119,17 +119,27 @@ Or instead, pass a string path::
 
     PHOTOLOGUE_PATH = 'myapp.utils.get_image_path'
 
+.. _settings-photologue-multisite-label:
 
-PHOTOLOGUE_ADD_DEFAULT_SITE
----------------------------
+PHOTOLOGUE_MULTISITE
+--------------------
 
-    Default: ``True``
+    Default: ``False``
 
-If this settings is ``True`` photos will be added to the current site
-automatically. If ``False``, photos uploaded in a batch won't be associated with
-any site at all and need to be associated manually.
+Photologue can integrate galleries and photos with `Django's site framework`_.
+Default is for this feature to be switched off, as only a minority of Django projects
+will need it.
 
-This setting is relevant when Photos are added through other ways than manually
-one-by-one via the admin (for example when uploading a Gallery). If a single
-Gallery or Photo is added manually via the admin, the current site will be
-selected by default (opt-out is possible by deselecting the entry).
+In this case, new galleries and photos are automatically linked to the current site 
+(``SITE_ID = 1``). The Sites many-to-many field is hidden is the admin, as there is no
+need for a user to see it.
+
+If the setting is ``True``, the admin interface is slightly changed:
+
+* The Sites many-to-many field is displayed on Gallery and Photos models.
+* The Gallery Upload allows you to associate one more sites to the uploaded photos (and gallery).
+
+.. note:: Gallery Uploads (zip archives) are always associated with the current site. This will be
+   fixed in a future version of Photologue.
+
+.. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html
