@@ -73,8 +73,8 @@ class GalleryAdmin(admin.ModelAdmin):
         ) % {'site': current_site.name, 'gallery': queryset.first()}
         messages.success(request, msg)
 
-    add_to_current_site.short_description = _("Add selected "
-        "galleries from the current site")
+    add_to_current_site.short_description = \
+        _("Add selected galleries from the current site")
 
     def remove_from_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
@@ -86,8 +86,8 @@ class GalleryAdmin(admin.ModelAdmin):
         ) % {'site': current_site.name, 'gallery': queryset.first()}
         messages.success(request, msg)
 
-    remove_from_current_site.short_description = _("Remove selected "
-        "galleries from the current site")
+    remove_from_current_site.short_description = \
+        _("Remove selected galleries from the current site")
 
     def add_photos_to_current_site(modeladmin, request, queryset):
         photos = Photo.objects.filter(galleries__in=queryset)
@@ -102,12 +102,12 @@ class GalleryAdmin(admin.ModelAdmin):
         ) % {
             'site': current_site.name,
             'galleries': ", ".join(["'{0}'".format(gallery.title)
-                for gallery in queryset])
+                                    for gallery in queryset])
         }
         messages.success(request, msg)
 
-    add_photos_to_current_site.short_description = _("Add all photos of "
-        "selected galleries to the current site")
+    add_photos_to_current_site.short_description = \
+        _("Add all photos of selected galleries to the current site")
 
     def remove_photos_from_current_site(modeladmin, request, queryset):
         photos = Photo.objects.filter(galleries__in=queryset)
@@ -122,12 +122,12 @@ class GalleryAdmin(admin.ModelAdmin):
         ) % {
             'site': current_site.name,
             'galleries': ", ".join(["'{0}'".format(gallery.title)
-                for gallery in queryset])
+                                    for gallery in queryset])
         }
         messages.success(request, msg)
 
-    remove_photos_from_current_site.short_description = _("Remove all photos "
-        "of selected galleries from the current site")
+    remove_photos_from_current_site.short_description = \
+        _("Remove all photos of selected galleries from the current site")
 
 
 class GalleryUploadAdmin(admin.ModelAdmin):
@@ -177,8 +177,8 @@ class PhotoAdmin(admin.ModelAdmin):
         ) % {'site': current_site.name, 'photo': queryset.first()}
         messages.success(request, msg)
 
-    add_photos_to_current_site.short_description = _("Add selected photos to "
-        "the current site")
+    add_photos_to_current_site.short_description = \
+        _("Add selected photos to the current site")
 
     def remove_photos_from_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
@@ -190,8 +190,8 @@ class PhotoAdmin(admin.ModelAdmin):
         ) % {'site': current_site.name, 'photo': queryset.first()}
         messages.success(request, msg)
 
-    remove_photos_from_current_site.short_description = _("Remove selected "
-        "photos from the current site")
+    remove_photos_from_current_site.short_description = \
+        _("Remove selected photos from the current site")
 
 
 class PhotoEffectAdmin(admin.ModelAdmin):
