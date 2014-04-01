@@ -6,23 +6,23 @@ Changelog
 
 Upgrade notes:
 
-1. You will have to install django-sortedm2m and django-model-utils - please
-   refer to installation instructions.
+1. Photologue now depends on django-sortedm2m and django-model-utils - please
+   refer to installation instructions. These dependencies should be added 
+   automatically.
 
-2. You will need to run the migrations in order to create the new tables for
-   the site relations.
+2. Run South migrations.
 
 List of changes:
 
-- Both models Photo and Gallery now support Django's sites framework.
+- Photo and Gallery models now support Django's sites framework.
 - Photologue now uses django-sortedm2m to sort photos in a gallery.
-- PHOTOLOGUE_USE_CKEDITOR, PHOTOLOGUE_GALLERY_PAGINATE_BY and
-  PHOTOLOGUE_PHOTO_PAGINATE_BY are deprecated.
 - Major rewrite of zip archive uploader: warn users of files that could not be
   processed, get code to work with Python 3 (issue #71), add extra error
   handling.
 - Renamed field title_slug to slug - this allows us to simplify views.py a
   bit.
+- PHOTOLOGUE_USE_CKEDITOR, PHOTOLOGUE_GALLERY_PAGINATE_BY and
+  PHOTOLOGUE_PHOTO_PAGINATE_BY are deprecated.
 - Fixed pagination controls for photo list template.
 - Tightened naming rules for Photosize names.
 - Fixed a couple of unicode-related bugs.
