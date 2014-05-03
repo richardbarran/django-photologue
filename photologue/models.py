@@ -684,18 +684,36 @@ class Photo(ImageModel):
         return self.galleries.filter(is_public=True)
 
     def get_previous_in_gallery(self, gallery):
-        try:
-            return self.get_previous_by_date_added(galleries__exact=gallery,
-                                                   is_public=True)
-        except Photo.DoesNotExist:
-            return None
+        """Find the neighbour of this photo in the supplied gallery.
+        We assume that the gallery and all its photos are on the same site.
+        """
+        if not self.is_public:
+            raise ValueError('Cannot determine neighbours of a non-public photo.')
+        photos = gallery.photos.is_public()
+        if not self in photos:
+            raise ValueError('Photo does not belong to gallery.')
+        previous = None
+        for photo in photos:
+            if photo == self:
+                return previous
+            previous = photo
 
     def get_next_in_gallery(self, gallery):
-        try:
-            return self.get_next_by_date_added(galleries__exact=gallery,
-                                               is_public=True)
-        except Photo.DoesNotExist:
-            return None
+        """Find the neighbour of this photo in the supplied gallery.
+        We assume that the gallery and all its photos are on the same site.
+        """
+        if not self.is_public:
+            raise ValueError('Cannot determine neighbours of a non-public photo.')
+        photos = gallery.photos.is_public()
+        if not self in photos:
+            raise ValueError('Photo does not belong to gallery.')
+        matched = False
+        for photo in photos:
+            if matched:
+                return photo
+            if photo == self:
+                matched = True
+        return None
 
     @property
     def title_slug(self):

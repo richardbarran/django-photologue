@@ -2,7 +2,7 @@ import os
 from django.conf import settings
 from ..models import Image, Photo, PHOTOLOGUE_DIR
 from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
-    PhotoFactory
+    GalleryFactory, PhotoFactory
 from .helpers import PhotologueBaseTest
 
 
@@ -100,3 +100,89 @@ class PhotoManagerTest(PhotologueBaseTest):
         self.pl.is_public = False
         self.pl.save()
         self.assertEqual(Photo.objects.is_public().count(), 1)
+
+
+class PreviousNextTest(PhotologueBaseTest):
+
+    """Tests for the methods that provide the previous/next photos in a gallery."""
+
+    def setUp(self):
+        """Create a test gallery with 2 photos."""
+        super(PreviousNextTest, self).setUp()
+        self.test_gallery = GalleryFactory()
+        self.pl1 = PhotoFactory()
+        self.pl2 = PhotoFactory()
+        self.pl3 = PhotoFactory()
+        self.test_gallery.photos.add(self.pl1)
+        self.test_gallery.photos.add(self.pl2)
+        self.test_gallery.photos.add(self.pl3)
+
+    def tearDown(self):
+        super(PreviousNextTest, self).tearDown()
+        self.pl1.delete()
+        self.pl2.delete()
+        self.pl3.delete()
+
+    def test_previous_simple(self):
+        # Previous in gallery.
+        self.assertEqual(self.pl1.get_previous_in_gallery(self.test_gallery),
+                         None)
+        self.assertEqual(self.pl2.get_previous_in_gallery(self.test_gallery),
+                         self.pl1)
+        self.assertEqual(self.pl3.get_previous_in_gallery(self.test_gallery),
+                         self.pl2)
+
+    def test_previous_public(self):
+        """What happens if one of the photos is not public."""
+        self.pl2.is_public = False
+        self.pl2.save()
+
+        self.assertEqual(self.pl1.get_previous_in_gallery(self.test_gallery),
+                         None)
+        self.assertRaisesMessage(ValueError,
+                                 'Cannot determine neighbours of a non-public photo.',
+                                 self.pl2.get_previous_in_gallery,
+                                 self.test_gallery)
+        self.assertEqual(self.pl3.get_previous_in_gallery(self.test_gallery),
+                         self.pl1)
+
+    def test_previous_gallery_mismatch(self):
+        """Photo does not belong to the gallery."""
+        self.pl4 = PhotoFactory()
+
+        self.assertRaisesMessage(ValueError,
+                                 'Photo does not belong to gallery.',
+                                 self.pl4.get_previous_in_gallery,
+                                 self.test_gallery)
+
+    def test_next_simple(self):
+        # Next in gallery.
+        self.assertEqual(self.pl1.get_next_in_gallery(self.test_gallery),
+                         self.pl2)
+        self.assertEqual(self.pl2.get_next_in_gallery(self.test_gallery),
+                         self.pl3)
+        self.assertEqual(self.pl3.get_next_in_gallery(self.test_gallery),
+                         None)
+
+    def test_next_public(self):
+        """What happens if one of the photos is not public."""
+        self.pl2.is_public = False
+        self.pl2.save()
+
+        self.assertEqual(self.pl1.get_next_in_gallery(self.test_gallery),
+                         self.pl3)
+        self.assertRaisesMessage(ValueError,
+                                 'Cannot determine neighbours of a non-public photo.',
+                                 self.pl2.get_next_in_gallery,
+                                 self.test_gallery)
+        self.assertEqual(self.pl3.get_next_in_gallery(self.test_gallery),
+                         None)
+
+    def test_next_gallery_mismatch(self):
+        """Photo does not belong to the gallery."""
+        self.pl4 = PhotoFactory()
+
+        self.assertRaisesMessage(ValueError,
+                                 'Photo does not belong to gallery.',
+                                 self.pl4.get_next_in_gallery,
+                                 self.test_gallery)
