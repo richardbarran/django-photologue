@@ -1,19 +1,48 @@
 # -*- coding: utf-8 -*-
 from south.utils import datetime_utils as datetime
 from south.db import db
-from south.v2 import SchemaMigration
+from south.v2 import DataMigration
 from django.db import models
+from django.conf import settings
+
+from photologue.models import Gallery, Photo
 
 
-class Migration(SchemaMigration):
+class GalleryPhotoJoin(models.Model):
+
+    """Temp model for representing the join table between Gallery and Photo."""
+    id = models.IntegerField()
+    gallery = models.ForeignKey(Gallery)
+    photo = models.ForeignKey(Photo)
+    sort_value = models.IntegerField(default=1)
+
+    class Meta:
+        db_table = 'photologue_gallery_photos'
+        managed = False
+
+
+class Migration(DataMigration):
 
     def forwards(self, orm):
-        db.add_column(u'photologue_gallery_photos', 'sort_value',
-                      self.gf('django.db.models.fields.IntegerField')(default=1),
-                      keep_default=False)
+        for gallery in orm.Gallery.objects.all():
+            counter = 0
+            for photo in gallery.photos.all().order_by('-date_added'):
+                join = GalleryPhotoJoin.objects.get(gallery=gallery,
+                                                    photo=photo)
+                join.sort_value = counter
+                join.save()
+                counter += 1
+
+        current_site = orm['sites.Site'].objects.get(pk=settings.SITE_ID)
+
+        for gallery in orm.Gallery.objects.all():
+            gallery.sites.add(current_site)
+
+        for photo in orm.Photo.objects.all():
+            photo.sites.add(current_site)
 
     def backwards(self, orm):
-        db.delete_column(u'photologue_gallery_photos', 'sort_value')
+        raise RuntimeError("Cannot reverse this migration.")
 
     models = {
         u'photologue.gallery': {
@@ -23,9 +52,10 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'photos': ('sortedm2m.fields.SortedManyToManyField', [], {'blank': 'True', 'related_name': "'galleries'", 'null': 'True', 'symmetrical': 'False', 'to': u"orm['photologue.Photo']"}),
+            'sites': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['sites.Site']", 'null': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'tags': ('photologue.models.TagField', [], {'max_length': '255', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'}),
-            'title_slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'})
+            'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'})
         },
         u'photologue.galleryupload': {
             'Meta': {'object_name': 'GalleryUpload'},
@@ -48,9 +78,10 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'sites': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['sites.Site']", 'null': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'tags': ('photologue.models.TagField', [], {'max_length': '255', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'}),
-            'title_slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         },
         u'photologue.photoeffect': {
@@ -90,7 +121,14 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'}),
             'opacity': ('django.db.models.fields.FloatField', [], {'default': '1'}),
             'style': ('django.db.models.fields.CharField', [], {'default': "'scale'", 'max_length': '5'})
+        },
+        u'sites.site': {
+            'Meta': {'ordering': "(u'domain',)", 'object_name': 'Site', 'db_table': "u'django_site'"},
+            'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         }
     }
 
     complete_apps = ['photologue']
+    symmetrical = True
