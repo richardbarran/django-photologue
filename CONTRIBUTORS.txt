@@ -3,15 +3,21 @@ Photologue is made possible by all the people who have contributed to it. A non-
 Justin Driscoll
 Richard Barran
 Marcos Daniel Petry
+Jannis
 Jonas Haag
 Karol Majta
+Jakub Dorňák
 Andrew Gerard
 kdeebee
 Benjamin Liles
+FilippoIOVINE
 ferhat elmas
-Antti Kaihola
-Reavis Sutphin-Gray
-Jannis
+Juraj Bubniak
 Federico Maggi
 Herman Schaaf
+Vivek Agarwal
+Antti Kaihola
 jscott1971
+Ben Spaulding
+QB
+Reavis Sutphin-Gray
