@@ -2,5 +2,6 @@ recursive-include photologue/locale *
 recursive-include photologue/res *.jpg
 recursive-include photologue/res/zips *.zip
 recursive-include photologue/templates/photologue *.html
+recursive-include photologue/contrib *
 include requirements.txt
 global-exclude *.pyc
