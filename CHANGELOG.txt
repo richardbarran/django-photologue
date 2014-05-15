@@ -1,11 +1,16 @@
 Changelog
 =========
 
-2.9 (unreleased)
+3.0 (unreleased)
 ----------------
 
--  date_taken field not correctly handled during single photo upload (#80).
+Upgrade notes:
 
+THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
+
+List of changes:
+
+- date_taken field not correctly handled during single photo upload (#80).
 
 2.8 (2014-05-04)
 ----------------
