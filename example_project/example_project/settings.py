@@ -2,7 +2,6 @@
 
 import os
 import sys
-from photologue import PHOTOLOGUE_APP_DIR
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -71,8 +70,6 @@ ROOT_URLCONF = 'example_project.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(TOP_FOLDER, 'example_project/templates'),
-    os.path.join(PHOTOLOGUE_APP_DIR, 'contrib/bootstrap/templates'),
-    PHOTOLOGUE_APP_DIR
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

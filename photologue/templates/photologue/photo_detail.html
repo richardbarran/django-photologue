@@ -1,23 +1,35 @@
 {% extends "photologue/root.html" %}
-
-{% load photologue_tags %}
+{% load photologue_tags i18n %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
 
-<h1>{{ object.title }}</h1>
-<div class="gallery-photo">
-    <a href="{{ object.image.url }}"><img src="{{ object.get_display_url }}" class="{% block gallery-photo-class %}{% endblock %}" alt="{{ object.title }}"/></a>
-    {% if object.caption %}<p>{{ object.caption }}</p>{% endif %}
-</div>
-{% if object.public_galleries %}
-<h2>This photo is found in the following galleries:</h2>
-<ol>
-{% for gallery in object.public_galleries %}
-    <li>{%previous_in_gallery object gallery%} <a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a> {%next_in_gallery object gallery%}</li>
-{% endfor %}
-</ol>
-{% endif %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ object.title }}</h1>
+
+		    {% if object.caption %}<p>{{ object.caption|safe }}</p>{% endif %}
+		    <p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
+
+		    <a href="{{ object.image.url }}">
+		        <img src="{{ object.get_display_url }}" class="thumbnail" alt="{{ object.title }}">
+		    </a>
+
+            {% if object.public_galleries %}
+                <hr>            
+                <p>{% trans "This photo is found in the following galleries" %}:</p>
+                <table>
+                    {% for gallery in object.public_galleries %}
+                        <tr>
+                            <td>{% previous_in_gallery object gallery %}</td>
+	                        <td class="text-center"><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></td>
+	                        <td>{% next_in_gallery object gallery %}</td>
+                        </tr>
+					{% endfor %}
+				</table>
+			{% endif %}
+        </div>
+    </div>
 
 {% endblock %}

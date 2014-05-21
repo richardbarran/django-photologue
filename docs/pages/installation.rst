@@ -123,9 +123,11 @@ default PhotoSizes to get you started - you are free to change them of course!
 Instant Photo Gallery
 ---------------------
 
-Photologue comes with basic templates for galleries and photos. You can of course override them, or completely
-replace them. Note that all Photologue templates inherit from ``photologue/root.html``, which itself just inherits from
-a site-wide ``base.html`` - you can change this to use a different base template.
+Photologue comes with basic templates for galleries and photos, which are designed
+to work well with `Twitter-Bootstrap <http://twitter.github.io/bootstrap/index.html>`_.
+You can of course override them, or completely replace them. Note that all 
+Photologue templates inherit from ``photologue/root.html``, which itself just inherits
+from a site-wide ``base.html`` - you can change this to use a different base template.
 
 Sitemap
 -------
