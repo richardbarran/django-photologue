@@ -10,7 +10,7 @@ GALLERY_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_GALLERY_PAGINATE_BY', 20)
 if GALLERY_PAGINATE_BY != 20:
     import warnings
     warnings.warn(
-        DeprecationWarning('PHOTOLOGUE_GALLERY_PAGINATE_BY setting will be removed in Photologue 3.0'))
+        DeprecationWarning('PHOTOLOGUE_GALLERY_PAGINATE_BY setting will be removed in Photologue 3.1'))
 
 # Number of photos to display per page.
 PHOTO_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_PHOTO_PAGINATE_BY', 20)
@@ -18,7 +18,7 @@ PHOTO_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_PHOTO_PAGINATE_BY', 20)
 if PHOTO_PAGINATE_BY != 20:
     import warnings
     warnings.warn(
-        DeprecationWarning('PHOTOLOGUE_PHOTO_PAGINATE_BY setting will be removed in Photologue 3.0'))
+        DeprecationWarning('PHOTOLOGUE_PHOTO_PAGINATE_BY setting will be removed in Photologue 3.1'))
 
 # Gallery views.
 
