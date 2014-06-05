@@ -2,7 +2,7 @@ from django.conf.urls import *
 from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse_lazy
 
-from .views import PhotoListView, PhotoDetailView, GalleryListView, \
+from .views import PhotoListView, PhotoDetailView, PhotoUpdateView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
     PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
     GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView
@@ -48,7 +48,8 @@ urlpatterns = patterns('',
         name='pl-photo-archive'),
 
     url(r'^photo/(?P<slug>[\-\d\w]+)/$',
-        PhotoDetailView.as_view(),
+        #PhotoDetailView.as_view(),
+        PhotoUpdateView.as_view(),
         name='pl-photo'),
     url(r'^photo/page/(?P<page>[0-9]+)/$',
         PhotoListView.as_view(),

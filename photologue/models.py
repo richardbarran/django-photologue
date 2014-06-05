@@ -28,7 +28,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.contrib import messages
 from django.contrib.sites.models import Site
-
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
 try:
@@ -188,12 +187,16 @@ class Gallery(models.Model):
         verbose_name_plural = _('galleries')
 
     def __str__(self):
+        #logger.debug('Starting logger in Gallery.__str__')
         return self.title
 
     def get_absolute_url(self):
+        #logger.debug('Starting logger in Gallery.get_absolute_url')
         return reverse('pl-gallery', args=[self.slug])
 
     def latest(self, limit=LATEST_LIMIT, public=True):
+        #logger.debug('Starting logger in Gallery.latest')
+
         if not limit:
             limit = self.photo_count()
         if public:
@@ -206,6 +209,7 @@ class Gallery(models.Model):
         If the 'count' is not specified, it will return a number of photos
         limited by the GALLERY_SAMPLE_SIZE setting.
         """
+        #logger.debug('Starting logger in Gallery.sample')
         if not count:
             count = SAMPLE_SIZE
         if count > self.photo_count():
@@ -218,6 +222,7 @@ class Gallery(models.Model):
 
     def photo_count(self, public=True):
         """Return a count of all the photos in this gallery."""
+        #logger.debug('Starting logger in Gallery.photo_count')
         if public:
             return self.public().count()
         else:
@@ -226,6 +231,7 @@ class Gallery(models.Model):
 
     def public(self):
         """Return a queryset of all the public photos in this gallery."""
+        #logger.debug('Starting logger in Gallery.public')
         return self.photos.is_public().filter(sites__id=settings.SITE_ID)
 
     def orphaned_photos(self):
@@ -233,11 +239,13 @@ class Gallery(models.Model):
         Return all photos that belong to this gallery but don't share the
         gallery's site.
         """
+        #logger.debug('Starting logger in Gallery.orphaned_photos')
         return self.photos.filter(is_public=True)\
                           .exclude(sites__id__in=self.sites.all())
 
     @property
     def title_slug(self):
+        #logger.debug('Starting logger in Gallery.title_slug')
         warnings.warn(
             DeprecationWarning("`title_slug` field in Gallery is being renamed to `slug`. Update your code."))
         return self.slug
@@ -277,22 +285,27 @@ class GalleryUpload(models.Model):
         verbose_name_plural = _('gallery uploads')
 
     def save(self, *args, **kwargs):
+        #logger.debug('Starting logger in GalleryUpload.save')
         super(GalleryUpload, self).save(*args, **kwargs)
         gallery = self.process_zipfile()
         super(GalleryUpload, self).delete()
         return gallery
+   
 
-    def clean(self):
-        if self.title:
-            try:
-                Gallery.objects.get(title=self.title)
-                raise ValidationError(_('A gallery with that title already exists.'))
-            except Gallery.DoesNotExist:
-                pass
-        if not self.gallery and not self.title:
-            raise ValidationError(_('Select an existing gallery or enter a new gallery name.'))
-
+#CraigFisk20140516 commented out to avoid error message about title
+#already existing for any choice of title.
+#    def clean(self):
+#        if self.title:
+#            try:
+#                Gallery.objects.get(title=self.title)
+#                raise ValidationError(_('A gallery with that title already exists.'))
+#            except Gallery.DoesNotExist:
+#                pass
+#        if not self.gallery and not self.title:
+#            raise ValidationError(_('Select an existing gallery or enter a new gallery name.'))
+#
     def process_zipfile(self):
+        #logger.debug('Starting logger in GalleryUpload.process_zipfile')
         if os.path.isfile(self.zip_file.path):
             # TODO: implement try-except here
             zip = zipfile.ZipFile(self.zip_file.path)
@@ -313,7 +326,11 @@ class GalleryUpload(models.Model):
                                                  is_public=self.is_public,
                                                  tags=self.tags)
                 gallery.sites.add(current_site)
+
             for filename in sorted(zip.namelist()):
+        
+                #import pdb
+                #pdb.set_trace()
 
                 logger.debug('Reading file "{0}".'.format(filename))
 

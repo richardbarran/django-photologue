@@ -1,5 +1,8 @@
 .DS_Store
-*.pyc
+*~
+*.swp
+*.zip
+*.py[cod]
 django_photologue.egg-info
 build
 .idea

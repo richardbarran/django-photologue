@@ -8,6 +8,11 @@ from django.utils.translation import ungettext, ugettext_lazy as _
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
 
+from django.db import transaction
+
+#import logging
+#logger = logging.getLogger(__name__)
+
 USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
 
 if USE_CKEDITOR:
@@ -146,6 +151,8 @@ class GalleryUploadAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         # Warning the user when things go wrong in a zip upload.
+        #logger.debug('Starting logger in GalleryUploadAdmin.save_model')
+
         obj.request = request
         obj.save()
 
@@ -184,6 +191,8 @@ class PhotoAdmin(admin.ModelAdmin):
         return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
     def add_photos_to_current_site(modeladmin, request, queryset):
+        #logger.debug('Starting logger in PhotoAdmin.add_photos_to_current_site')
+
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*queryset)
         msg = ungettext(
