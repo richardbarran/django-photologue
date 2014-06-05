@@ -159,3 +159,12 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['photologue']['handlers'] = ['null']
 
 SOUTH_TESTS_MIGRATE = False
+
+# Settings for remote storage of media and static files
+PHOTOLOGUE_REMOTE_STORAGE = os.environ.get('PHOTOLOGUE_REMOTE_STORAGE', None)
+if PHOTOLOGUE_REMOTE_STORAGE == 's3boto':
+    from settings_s3boto import *
+elif PHOTOLOGUE_REMOTE_STORAGE is not None:
+    raise ImportError('Settings file not found for remote storage: %s' % \
+        PHOTOLOGUE_REMOTE_STORAGE)
+

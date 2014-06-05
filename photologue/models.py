@@ -7,11 +7,12 @@ import warnings
 import logging
 from io import BytesIO
 
-from django.utils.timezone import now
+from django.utils.timezone import get_default_timezone, make_aware, now
 from django.db import models
 from django.db.models.signals import post_init, post_save
 from django.conf import settings
 from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
@@ -293,9 +294,9 @@ class GalleryUpload(models.Model):
             raise ValidationError(_('Select an existing gallery or enter a new gallery name.'))
 
     def process_zipfile(self):
-        if os.path.isfile(self.zip_file.path):
+        if default_storage.exists(self.zip_file.name):
             # TODO: implement try-except here
-            zip = zipfile.ZipFile(self.zip_file.path)
+            zip = zipfile.ZipFile(default_storage.open(self.zip_file.name))
             bad_file = zip.testzip()
             if bad_file:
                 zip.close()
@@ -416,10 +417,16 @@ class ImageModel(models.Model):
     @property
     def EXIF(self):
         try:
-            return EXIF.process_file(self.image.file.file)
+            f = self.image.storage.open(self.image.name, 'rb')
+            tags = EXIF.process_file(f)
+            f.close()
+            return tags
         except:
             try:
-                return EXIF.process_file(self.image.file.file, details=False)
+                f = self.image.storage.open(self.image.name, 'rb')
+                tags = EXIF.process_file(f, details=False)
+                f.close()
+                return tags
             except:
                 return {}
 
@@ -438,13 +445,13 @@ class ImageModel(models.Model):
     admin_thumbnail.allow_tags = True
 
     def cache_path(self):
-        return os.path.join(os.path.dirname(self.image.path), "cache")
+        return os.path.join(os.path.dirname(self.image.name), "cache")
 
     def cache_url(self):
         return '/'.join([os.path.dirname(self.image.url), "cache"])
 
     def image_filename(self):
-        return os.path.basename(force_text(self.image.path))
+        return os.path.basename(force_text(self.image.name))
 
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
@@ -458,7 +465,8 @@ class ImageModel(models.Model):
         photosize = PhotoSizeCache().sizes.get(size)
         if not self.size_exists(photosize):
             self.create_size(photosize)
-        return Image.open(self._get_SIZE_filename(size)).size
+        return Image.open(self.image.storage.open(
+            self._get_SIZE_filename(size))).size
 
     def _get_SIZE_url(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
@@ -493,7 +501,7 @@ class ImageModel(models.Model):
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_filename" % photosize.name, None)
         if func is not None:
-            if os.path.isfile(func()):
+            if self.image.storage.exists(func()):
                 return True
         return False
 
@@ -542,10 +550,8 @@ class ImageModel(models.Model):
     def create_size(self, photosize):
         if self.size_exists(photosize):
             return
-        if not os.path.isdir(self.cache_path()):
-            os.makedirs(self.cache_path())
         try:
-            im = Image.open(self.image.path)
+            im = Image.open(self.image.storage.open(self.image.name))
         except IOError:
             return
         # Save the original format
@@ -571,30 +577,34 @@ class ImageModel(models.Model):
         try:
             if im_format != 'JPEG':
                 try:
-                    im.save(im_filename)
+                    im_filename = self.image.storage.save(im_filename, 
+                        ContentFile(''))
+                    f = self.image.storage.open(im_filename, 'w')
+                    im.save(f, im_format)
+                    f.close()
                     return
                 except KeyError:
                     pass
-            im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
+            im_filename = self.image.storage.save(im_filename, ContentFile(''))
+            f = self.image.storage.open(im_filename, 'w')
+            im.save(f, 'JPEG', quality=int(photosize.quality), optimize=True)
+            f.close()
         except IOError as e:
-            if os.path.isfile(im_filename):
-                os.unlink(im_filename)
+            if self.image.storage.exists(im_filename):
+                self.image.storage.delete(im_filename)
             raise e
 
     def remove_size(self, photosize, remove_dirs=True):
         if not self.size_exists(photosize):
             return
         filename = getattr(self, "get_%s_filename" % photosize.name)()
-        if os.path.isfile(filename):
-            os.remove(filename)
-        if remove_dirs:
-            self.remove_cache_dirs()
+        if self.image.storage.exists(filename):
+            self.image.storage.delete(filename)
 
     def clear_cache(self):
         cache = PhotoSizeCache()
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
-        self.remove_cache_dirs()
 
     def pre_cache(self):
         cache = PhotoSizeCache()
@@ -602,13 +612,10 @@ class ImageModel(models.Model):
             if photosize.pre_cache:
                 self.create_size(photosize)
 
-    def remove_cache_dirs(self):
-        try:
-            os.removedirs(self.cache_path())
-        except:
-            pass
-
     def save(self, *args, **kwargs):
+        if self._get_pk_val():
+            self.clear_cache()
+        super(ImageModel, self).save(*args, **kwargs)
         if self.date_taken is None:
             try:
                 exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
@@ -622,9 +629,6 @@ class ImageModel(models.Model):
                 pass
         if self.date_taken is None:
             self.date_taken = now()
-        if self._get_pk_val():
-            self.clear_cache()
-        super(ImageModel, self).save(*args, **kwargs)
         self.pre_cache()
 
     def delete(self):
@@ -636,9 +640,8 @@ class ImageModel(models.Model):
         # http://haineault.com/blog/147/
         # The data loss scenarios mentioned in the docs hopefully do not apply
         # to Photologue!
-        path = self.image.path
         super(ImageModel, self).delete()
-        os.remove(path)
+        self.image.storage.delete(self.image.name)
 
 
 @python_2_unicode_compatible
@@ -734,7 +737,7 @@ class BaseEffect(models.Model):
         abstract = True
 
     def sample_dir(self):
-        return os.path.join(settings.MEDIA_ROOT, PHOTOLOGUE_DIR, 'samples')
+        return os.path.join(PHOTOLOGUE_DIR, 'samples')
 
     def sample_url(self):
         return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples', '%s %s.jpg' % (self.name.lower(), 'sample')])
@@ -743,15 +746,16 @@ class BaseEffect(models.Model):
         return os.path.join(self.sample_dir(), '%s %s.jpg' % (self.name.lower(), 'sample'))
 
     def create_sample(self):
-        if not os.path.isdir(self.sample_dir()):
-            os.makedirs(self.sample_dir())
         try:
             im = Image.open(SAMPLE_IMAGE_PATH)
         except IOError:
             raise IOError(
                 'Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
-        im.save(self.sample_filename(), 'JPEG', quality=90, optimize=True)
+        filename = default_storage.save(self.sample_filename(), ContentFile(''))
+        f = default_storage.open(filename, 'w')
+        im.save(f, 'JPEG', quality=90, optimize=True) 
+        f.close()
 
     def admin_sample(self):
         return u'<img src="%s">' % self.sample_url()
@@ -774,7 +778,7 @@ class BaseEffect(models.Model):
 
     def save(self, *args, **kwargs):
         try:
-            os.remove(self.sample_filename())
+            default_storage.delete(self.sample_filename())
         except:
             pass
         models.Model.save(self, *args, **kwargs)
@@ -789,7 +793,7 @@ class BaseEffect(models.Model):
 
     def delete(self):
         try:
-            os.remove(self.sample_filename())
+            default_storage.delete(self.sample_filename())
         except:
             pass
         models.Model.delete(self)
@@ -874,8 +878,14 @@ class Watermark(BaseEffect):
         verbose_name = _('watermark')
         verbose_name_plural = _('watermarks')
 
+    def delete(self):
+        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (
+            self._meta.object_name, self._meta.pk.attname)
+        super(Watermark, self).delete()
+        self.image.storage.delete(self.image.name)
+
     def post_process(self, im):
-        mark = Image.open(self.image.path)
+        mark = Image.open(self.image.storage.open(self.image.name))
         return apply_watermark(im, mark, self.style, self.opacity)
 
 

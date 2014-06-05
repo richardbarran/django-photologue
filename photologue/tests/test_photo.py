@@ -18,8 +18,8 @@ class PhotoTest(PhotologueBaseTest):
 
     def test_new_photo(self):
         self.assertEqual(Photo.objects.count(), 1)
-        self.assertTrue(os.path.isfile(self.pl.image.path))
-        self.assertEqual(os.path.getsize(self.pl.image.path),
+        self.assertTrue(self.pl.image.storage.exists(self.pl.image.name))
+        self.assertEqual(self.pl.image.storage.size(self.pl.image.name),
                          os.path.getsize(LANDSCAPE_IMAGE_PATH))
 
     # def test_exif(self):
@@ -27,8 +27,7 @@ class PhotoTest(PhotologueBaseTest):
 
     def test_paths(self):
         self.assertEqual(os.path.normpath(str(self.pl.cache_path())).lower(),
-                         os.path.normpath(os.path.join(settings.MEDIA_ROOT,
-                                                       PHOTOLOGUE_DIR,
+                         os.path.normpath(os.path.join(PHOTOLOGUE_DIR,
                                                        'photos',
                                                        'cache')).lower())
         self.assertEqual(self.pl.cache_url(),
@@ -49,17 +48,20 @@ class PhotoTest(PhotologueBaseTest):
         self.s.pre_cache = True
         self.s.save()
         # make sure it created the file
-        self.assertTrue(os.path.isfile(self.pl.get_testPhotoSize_filename()))
+        self.assertTrue(self.pl.image.storage.exists(
+            self.pl.get_testPhotoSize_filename()))
         self.s.pre_cache = False
         self.s.save()
         # clear the cache and make sure the file's deleted
         self.pl.clear_cache()
-        self.assertFalse(os.path.isfile(self.pl.get_testPhotoSize_filename()))
+        self.assertFalse(self.pl.image.storage.exists(
+            self.pl.get_testPhotoSize_filename()))
 
     def test_accessor_methods(self):
         self.assertEqual(self.pl.get_testPhotoSize_photosize(), self.s)
         self.assertEqual(self.pl.get_testPhotoSize_size(),
-                         Image.open(self.pl.get_testPhotoSize_filename()).size)
+                         Image.open(self.pl.image.storage.open(
+                            self.pl.get_testPhotoSize_filename())).size)
         self.assertEqual(self.pl.get_testPhotoSize_url(),
                          self.pl.cache_url() + '/' +
                          self.pl._get_filename_for_size(self.s))
@@ -155,6 +157,8 @@ class PreviousNextTest(PhotologueBaseTest):
                                  self.pl4.get_previous_in_gallery,
                                  self.test_gallery)
 
+        self.pl4.delete()
+
     def test_next_simple(self):
         # Next in gallery.
         self.assertEqual(self.pl1.get_next_in_gallery(self.test_gallery),
@@ -186,3 +190,5 @@ class PreviousNextTest(PhotologueBaseTest):
                                  'Photo does not belong to gallery.',
                                  self.pl4.get_next_in_gallery,
                                  self.test_gallery)
+
+        self.pl4.delete()
