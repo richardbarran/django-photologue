@@ -14,7 +14,7 @@ except ImportError:
     raise ImportError(
         "No module named factory. To run photologue's tests you need to install factory-boy.")
 
-from ..models import Gallery, Photo, PhotoSize
+from ..models import Gallery, ImageModel, Photo, PhotoSize
 
 RES_DIR = os.path.join(os.path.dirname(__file__), '../res')
 LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
@@ -59,7 +59,12 @@ class GalleryFactory(factory.django.DjangoModelFactory):
                 self.sites.add(site)
 
 
-class PhotoFactory(factory.django.DjangoModelFactory):
+class ImageModelFactory(factory.django.DjangoModelFactory):
+    FACTORY_FOR = ImageModel
+    ABSTRACT_FACTORY = True
+
+
+class PhotoFactory(ImageModelFactory):
 
     """Note: after creating Photo instances for tests, remember to manually
     delete them.

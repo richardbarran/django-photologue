@@ -613,9 +613,6 @@ class ImageModel(models.Model):
                 self.create_size(photosize)
 
     def save(self, *args, **kwargs):
-        if self._get_pk_val():
-            self.clear_cache()
-        super(ImageModel, self).save(*args, **kwargs)
         if self.date_taken is None:
             try:
                 exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
@@ -629,6 +626,9 @@ class ImageModel(models.Model):
                 pass
         if self.date_taken is None:
             self.date_taken = now()
+        if self._get_pk_val():
+            self.clear_cache()
+        super(ImageModel, self).save(*args, **kwargs)
         self.pre_cache()
 
     def delete(self):
