@@ -7,7 +7,7 @@ import warnings
 import logging
 from io import BytesIO
 
-from django.utils.timezone import get_default_timezone, make_aware, now
+from django.utils.timezone import now
 from django.db import models
 from django.db.models.signals import post_init, post_save
 from django.conf import settings
