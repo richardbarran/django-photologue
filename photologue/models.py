@@ -6,6 +6,7 @@ from inspect import isclass
 import warnings
 import logging
 from io import BytesIO
+import StringIO
 
 from django.utils.timezone import now
 from django.db import models
@@ -575,20 +576,14 @@ class ImageModel(models.Model):
         # Save file
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
+            buffer = StringIO.StringIO()
             if im_format != 'JPEG':
-                try:
-                    im_filename = self.image.storage.save(im_filename, 
-                        ContentFile(''))
-                    f = self.image.storage.open(im_filename, 'w')
-                    im.save(f, im_format)
-                    f.close()
-                    return
-                except KeyError:
-                    pass
-            im_filename = self.image.storage.save(im_filename, ContentFile(''))
-            f = self.image.storage.open(im_filename, 'w')
-            im.save(f, 'JPEG', quality=int(photosize.quality), optimize=True)
-            f.close()
+                im.save(buffer, im_format)
+            else:
+                im.save(buffer, 'JPEG', quality=int(photosize.quality), 
+                    optimize=True)
+            buffer_contents = ContentFile(buffer.getvalue())
+            self.image.storage.save(im_filename, buffer_contents)
         except IOError as e:
             if self.image.storage.exists(im_filename):
                 self.image.storage.delete(im_filename)
@@ -752,10 +747,10 @@ class BaseEffect(models.Model):
             raise IOError(
                 'Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
-        filename = default_storage.save(self.sample_filename(), ContentFile(''))
-        f = default_storage.open(filename, 'w')
-        im.save(f, 'JPEG', quality=90, optimize=True) 
-        f.close()
+        buffer = StringIO.StringIO()
+        im.save(buffer, 'JPEG', quality=90, optimize=True)
+        buffer_contents = ContentFile(buffer.getvalue())
+        default_storage.save(self.sample_filename(), buffer_contents)
 
     def admin_sample(self):
         return u'<img src="%s">' % self.sample_url()
