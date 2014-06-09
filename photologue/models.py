@@ -6,7 +6,6 @@ from inspect import isclass
 import warnings
 import logging
 from io import BytesIO
-import StringIO
 
 from django.utils.timezone import now
 from django.db import models
@@ -576,7 +575,7 @@ class ImageModel(models.Model):
         # Save file
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
-            buffer = StringIO.StringIO()
+            buffer = BytesIO()
             if im_format != 'JPEG':
                 im.save(buffer, im_format)
             else:
@@ -747,7 +746,7 @@ class BaseEffect(models.Model):
             raise IOError(
                 'Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
-        buffer = StringIO.StringIO()
+        buffer = BytesIO()
         im.save(buffer, 'JPEG', quality=90, optimize=True)
         buffer_contents = ContentFile(buffer.getvalue())
         default_storage.save(self.sample_filename(), buffer_contents)
