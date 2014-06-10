@@ -9,14 +9,20 @@ list for anything tagged "easy_win".
 
 Example project
 ---------------
-Photologue includes an example project to get you quickly ready for 
-contributing to the project - do not hesitate to use it!
+Photologue includes an example project under ``/example_project/`` to get you quickly ready for 
+contributing to the project - do not hesitate to use it! Please refer to ``/example_project/README.rst``
+for installation instructions.
+
+You'll probably also want to manually install
+`Sphinx <http://sphinx.pocoo.org/>`_ if you're going to update the documentation.
 
 Workflow
 --------
 Photologue is hosted on Github, so if you have not already done so, read the excellent
 `Github help pages <https://help.github.com/articles/fork-a-repo>`_. We try to keep the workflow
-as simple as possible; most pull requests are merged straight into the master branch.
+as simple as possible; most pull requests are merged straight into the master branch. Please
+ensure your pull requests are on separate branches, and please try to only include one new 
+feature per pull request!
 
 Features that will take a while to develop might warrant a separate branch in the project;
 at present only the ImageKit integration project is run on a separate branch.
@@ -29,7 +35,8 @@ No surprises here - just try to `follow the conventions used by Django itself
 Unit tests
 ----------
 Including unit tests with your contributions will earn you bonus points, maybe even a beer. So write
-plenty of tests.
+plenty of tests, and run them from the ``/example_project/`` with a 
+``python manage.py test photologue``.
 
 Documentation
 -------------
