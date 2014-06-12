@@ -31,7 +31,8 @@
 		  <div class="collapse navbar-collapse navbar-ex1-collapse">
 		    <ul class="nav navbar-nav">
 			    <li class="{% block navbar-active-home %}{% endblock %}"><a href="/">Home</a></li>
-			    <li class="{% block navbar-active-gallery %}{% endblock %}"><a href="/photologue/">Photo gallery</a></li>
+			    <li class="{% block navbar-active-gallery-archive %}{% endblock %}"><a href="{% url 'pl-gallery-archive' %}">Photo gallery (date views)</a></li>
+			    <li class="{% block navbar-active-gallery-list %}{% endblock %}"><a href="{% url 'pl-gallery-list' 1 %}">Photo gallery (list view)</a></li>
 		    </ul>
 		  </div><!-- /.navbar-collapse -->
 		</nav>

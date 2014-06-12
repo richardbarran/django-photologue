@@ -55,7 +55,7 @@ class GalleryMonthArchiveView(GalleryDateView, MonthArchiveView):
 
 
 class GalleryYearArchiveView(GalleryDateView, YearArchiveView):
-    pass
+    make_object_list = True
 
 # Photo views.
 
@@ -92,4 +92,4 @@ class PhotoMonthArchiveView(PhotoDateView, MonthArchiveView):
 
 
 class PhotoYearArchiveView(PhotoDateView, YearArchiveView):
-    pass
+    make_object_list = True

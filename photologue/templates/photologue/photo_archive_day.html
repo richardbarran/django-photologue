@@ -1,0 +1,28 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}{% blocktrans with show_day=day|date:"d F Y" %}Photos for {{ show_day }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+
+    <h1>{% blocktrans with show_day=day|date:"d F Y" %}Photos for {{ show_day }}{% endblocktrans %}</h1>
+
+	{% if object_list %}
+		<div class="row col-lg-12">
+		    {% for photo in object_list %}
+		        <a href="{{ photo.get_absolute_url }}">
+		             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+		        </a>
+		    {% endfor %}
+		</div>
+	{% else %}
+		<div class="row">{% trans "No photos were found" %}.</div>
+	{% endif %}
+
+    <div class="row col-lg-12">
+        {% with month_tla=day|date:"b"|lower %}
+            <a href="{% url 'pl-photo-archive-month' day.year month_tla %}" class="btn btn-default">{% trans "View all photos for month" %}</a>
+        {% endwith %}
+    </div>
+
+{% endblock %}

@@ -15,7 +15,7 @@ td {
 	width: 100px;
 }
 
-.view_all_button {
+a.btn.btn-default {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }

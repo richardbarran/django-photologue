@@ -1,17 +1,43 @@
 {% extends "photologue/root.html" %}
-{% load url from future %}
+{% load i18n %}
 
-{% block title %}Galleries for {{ year }}{% endblock %}
+{% block navbar-active-gallery-archive %}active{% endblock %}
+
+{% block title %}{% blocktrans with show_year=year|date:"Y" %}Galleries for {{ show_year }}{% endblocktrans %}{% endblock %}
 
 {% block content %}
 
-<h1>Galleries for {{ year }}</h1>
-<ul>
-{% for date in date_list %}
-<li><a href="{{ date|date:"M"|lower }}/">{{ date|date:"F" }}</a></li>
-{% endfor %}
-</ul>
+	<div class="row page-header col-lg-12">
+        <h1>{% blocktrans with show_year=year|date:"Y" %}Galleries for {{ show_year }}{% endblocktrans %}</h1>
+	</div>
 
-<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries.</a></p>
+	<div class="col-md-2">
+
+		<div>{% trans "Filter by month" %}</div>
+		<ul>
+		{% for date in date_list %}
+			{% with month_tla=date|date:"b"|lower %}
+				<li><a href="{% url 'pl-gallery-archive-month' date.year month_tla %}">{{ date|date:"F" }}</a></li>
+			{% endwith %}
+		{% endfor %}
+		</ul>
+
+	</div>
+
+	<div class="col-md-10">
+
+		{% if object_list %}
+			{% for gallery in object_list %}
+		        {% include "photologue/includes/gallery_sample.html" %}
+		    {% endfor %}
+		{% else %}
+		    <div class="row">{% trans "No galleries were found." %}</div>
+		{% endif %}
+
+	    <div class="row col-lg-12">
+            <a href="{% url 'pl-gallery-archive' %}" class="btn btn-default">{% trans "View all galleries" %}</a>
+	    </div>
+
+	</div>
 
 {% endblock %}
