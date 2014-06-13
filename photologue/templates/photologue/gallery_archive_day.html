@@ -1,8 +1,6 @@
 {% extends "photologue/root.html" %}
 {% load i18n %}
 
-{% block navbar-active-gallery-archive %}active{% endblock %}
-
 {% block title %}{% blocktrans with show_day=day|date:"d F Y" %}Galleries for {{ show_day }}{% endblocktrans %}{% endblock %}
 
 {% block content %}
