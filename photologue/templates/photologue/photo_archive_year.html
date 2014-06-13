@@ -1,6 +1,6 @@
 {% extends "photologue/root.html" %}
 {% load i18n %}
-
+{% load url from future %}
 
 {% block title %}{% blocktrans with show_year=year|date:"Y" %}Photos for {{ show_year }}{% endblocktrans %}{% endblock %}
 
