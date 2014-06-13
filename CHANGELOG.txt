@@ -10,12 +10,14 @@ THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
 
 - The built-in templates have been replaced by a new set of templates that work
   well with Twitter-bootstrap.
+- PHOTOLOGUE_USE_CKEDITOR has been removed; override/extend the admin instead.
 
 List of changes:
 
 - date_taken field not correctly handled during single photo upload (#80).
 - The Twitter-Bootstrap templates - previously in 'contrib' become the default; the
   previous templates are moved to 'contrib'.
+- PHOTOLOGUE_USE_CKEDITOR has been removed.
 
 2.8 (2014-05-04)
 ----------------
