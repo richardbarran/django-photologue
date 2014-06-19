@@ -5,4 +5,11 @@ factory-boy>=2.2.1
 # The following is only required if utilizing Amazon AWS S3
 boto>=2.29.1
 django-storages>=1.1.8
+# The following is only required if utilizing celery
+amqp>=1.4.5
+billiard>=3.3.0.17
+celery>=3.1.12
+django-celery>=3.1.10
+kombu>=3.0.19
+
 

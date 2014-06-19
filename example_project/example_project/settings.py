@@ -102,6 +102,18 @@ INSTALLED_APPS = [
     'example_project',
 ]
 
+# Celery
+# Setting for whether to use celery for backround processing 
+PHOTOLOGUE_USE_CELERY = os.environ.get('PHOTOLOGUE_USE_CELERY', None)
+
+if PHOTOLOGUE_USE_CELERY:
+    BROKER_URL = 'django://'
+    CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend' 
+    INSTALLED_APPS += [    
+        'djcelery',
+        'kombu.transport.django',
+    ]
+
 # LOGGING CONFIGURATION
 # A logging configuration that writes log messages to the console.
 LOGGING = {
@@ -136,6 +148,11 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'INFO',
             'propagate': False,
+        },
+        'celery': {
+            # Default (suitable for dev) is to log to console.
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
         'photologue': {
             # Default (suitable for dev) is to log to console.
