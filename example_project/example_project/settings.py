@@ -102,6 +102,18 @@ INSTALLED_APPS = [
     'example_project',
 ]
 
+# Celery
+# Setting for whether to use celery for backround processing 
+PHOTOLOGUE_USE_CELERY = os.environ.get('PHOTOLOGUE_USE_CELERY', None)
+
+if PHOTOLOGUE_USE_CELERY:
+    BROKER_URL = 'django://'
+    CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend' 
+    INSTALLED_APPS += [    
+        'djcelery',
+        'kombu.transport.django',
+    ]
+
 # LOGGING CONFIGURATION
 # A logging configuration that writes log messages to the console.
 LOGGING = {
@@ -137,6 +149,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'celery': {
+            # Default (suitable for dev) is to log to console.
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
         'photologue': {
             # Default (suitable for dev) is to log to console.
             'handlers': ['console'],
@@ -159,3 +176,12 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['photologue']['handlers'] = ['null']
 
 SOUTH_TESTS_MIGRATE = False
+
+# Settings for remote storage of media and static files
+PHOTOLOGUE_REMOTE_STORAGE = os.environ.get('PHOTOLOGUE_REMOTE_STORAGE', None)
+if PHOTOLOGUE_REMOTE_STORAGE == 's3boto':
+    from settings_s3boto import *
+elif PHOTOLOGUE_REMOTE_STORAGE is not None:
+    raise ImportError('Settings file not found for remote storage: %s' % \
+        PHOTOLOGUE_REMOTE_STORAGE)
+
