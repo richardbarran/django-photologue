@@ -32,7 +32,7 @@ class RequestPhotoTest(TestCase):
                          0)
 
     def test_paginated_photo_url_works(self):
-        response = self.client.get('/ptests/photo/page/1/')
+        response = self.client.get('/ptests/photolist/')
         self.assertEqual(response.status_code, 200)
 
     def test_photo_works(self):
@@ -67,7 +67,7 @@ class PhotoPaginationTest(TestCase):
                 PhotoFactory(title='photo{0:0>3}'.format(i))
             )
 
-        response = self.client.get('/ptests/photo/page/1/')
+        response = self.client.get('/ptests/photolist/')
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(len(response.context['object_list']),
@@ -79,7 +79,7 @@ class PhotoPaginationTest(TestCase):
                          'photo003')
 
         # Now get the second page of results.
-        response = self.client.get('/ptests/photo/page/2/')
+        response = self.client.get('/ptests/photolist/?page=2')
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(len(response.context['object_list']),

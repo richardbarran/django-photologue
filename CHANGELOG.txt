@@ -19,7 +19,8 @@ List of changes:
   previous templates are moved to 'contrib'.
 - PHOTOLOGUE_USE_CKEDITOR has been removed.
 - Removed deprecated PhotologueSitemap.
-
+- List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
+  This is a more common style, and allows us to simplify template code e.g. paginators!
 
 2.8 (2014-05-04)
 ----------------

@@ -26,7 +26,7 @@
 <p>{{ page_obj.paginator.count }} galleries total.</p>
 <div id="page_controls">
     <p>{% if page_obj.has_previous %}
-    	<a href="{% url 'pl-gallery-list' page_obj.previous_page_number %}">Previous</a> | {% endif %} page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} {% if page_obj.has_next %}| <a href="{% url 'pl-gallery-list' page_obj.next_page_number %}">Next</a>{% endif %}
+    	<a href="{% url 'photologue-gallery-list' %}?page={{ page_obj.previous_page_number }}">Previous</a> | {% endif %} page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} {% if page_obj.has_next %}| <a href="{% url 'photologue-gallery-list' %}?page={{ page_obj.next_page_number }}">Next</a>{% endif %}
     </p>
 </div>
 {% endif %}
