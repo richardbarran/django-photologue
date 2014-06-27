@@ -2,6 +2,7 @@
 
 import os
 import sys
+import django
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -95,10 +96,11 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'photologue',
     'sortedm2m',
-    # Uncomment this if you're using South.
-    # 'south',
     'example_project',
 ]
+
+if django.VERSION[:2] < (1, 7):
+    INSTALLED_APPS.append('south')
 
 # LOGGING CONFIGURATION
 # A logging configuration that writes log messages to the console.
@@ -156,12 +158,12 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['']['handlers'] = ['null']
     LOGGING['loggers']['photologue']['handlers'] = ['null']
 
-# Uncomment this if you're using South.
+# The following settings are only used by South.
 
-# SOUTH_TESTS_MIGRATE = False
+SOUTH_TESTS_MIGRATE = False
 
-# SOUTH_MIGRATION_MODULES = {
-#     'photologue': 'photologue.south_migrations',
-# }
+SOUTH_MIGRATION_MODULES = {
+    'photologue': 'photologue.south_migrations',
+}
 
 TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
