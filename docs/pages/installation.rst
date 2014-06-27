@@ -172,5 +172,40 @@ won't be shown in the index.
 
 .. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html
 
+Amazon S3
+---------
+
+Photologue can use a custom file storage system, for example
+`Amazon's S3 <http://aws.amazon.com/s3/>`_.
+
+You will need to configure your Django project to use Amazon S3 for storing files; a full discussion of 
+how to do this is outside the scope of this page.
+
+However, there is a quick demo of using Photologue with S3 in the ``example_project`` directory; if you look 
+at these files:
+
+* ``example_project/example_project/settings.py``
+* ``example_project/requirements.txt``
+
+At the end of each file you will commented-out lines for configuring S3 functionality. These point to extra files
+stored under ``example_project/example_storages/``. Uncomment these lines, run the example
+project, then study these files for inspiration! After that, setting up S3 will consist of
+(at minimum) the following steps:
+
+#. Signup for Amazon AWS S3 at http://aws.amazon.com/s3/.
+#. Create a Bucket on S3 to store your media and static files.
+#. Set the environment variables:
+   
+   * ``AWS_ACCESS_KEY_ID`` - issued to your account by S3.
+   * ``AWS_SECRET_ACCESS_KEY`` - issued to your account by S3.
+   * ``AWS_STORAGE_BUCKET_NAME`` - name of your bucket on S3.
+   * ``AWS_REGION`` - (optional) set if using a S3 region other than US Standard.
+
+#. To copy your static files into your S3 Bucket, type ``python manage.py collectstatic`` in the ``example_project`` directory.
+
+
+
+
+
 
 

@@ -167,3 +167,6 @@ SOUTH_MIGRATION_MODULES = {
 }
 
 TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
+
+# Uncomment this for Amazon S3 file storage
+# from example_storages.settings_s3boto import *
