@@ -7,18 +7,12 @@ python:
   - 3.4
 
 env:
-  - DJANGO="Django==1.4.13"
   - DJANGO="Django==1.6.5"
   - DJANGO="https://github.com/django/django/archive/1.7c1.tar.gz#egg=Django"
 
 matrix:
   exclude:
-    # Support for python 3 was added only in Django 1.5
-    - env: DJANGO="Django==1.4.13"
-      python: 3.3
     # Python 3.4 is not supported in Django before 1.7.
-    - env: DJANGO="Django==1.4.13"
-      python: 3.4
     - env: DJANGO="Django==1.6.5"
       python: 3.4
     # Python 2.6 support has been dropped in Django 1.7

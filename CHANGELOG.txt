@@ -19,13 +19,15 @@ THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
 List of changes:
 
 - Support for Django 1.7's migrations framework.
-- date_taken field not correctly handled during single photo upload (#80).
+- Support for Django 1.4 has been dropped (Photologue depends on django-sortedm2m,
+  which has dropped support for 1.4).
+- List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
+  This is a more common style, and allows us to simplify template code e.g. paginators!
 - The Twitter-Bootstrap templates - previously in 'contrib' become the default; the
   previous templates are moved to 'contrib'.
 - PHOTOLOGUE_USE_CKEDITOR has been removed.
+- date_taken field not correctly handled during single photo upload (#80).
 - Removed deprecated PhotologueSitemap.
-- List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
-  This is a more common style, and allows us to simplify template code e.g. paginators!
 
 2.8 (2014-05-04)
 ----------------
