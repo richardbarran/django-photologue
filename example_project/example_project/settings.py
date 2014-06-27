@@ -95,7 +95,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'photologue',
     'sortedm2m',
-    'south',
+    # Uncomment this if you're using South.
+    # 'south',
     'example_project',
 ]
 
@@ -155,4 +156,12 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['']['handlers'] = ['null']
     LOGGING['loggers']['photologue']['handlers'] = ['null']
 
-SOUTH_TESTS_MIGRATE = False
+# Uncomment this if you're using South.
+
+# SOUTH_TESTS_MIGRATE = False
+
+# SOUTH_MIGRATION_MODULES = {
+#     'photologue': 'photologue.south_migrations',
+# }
+
+TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'

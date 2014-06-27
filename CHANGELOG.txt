@@ -8,12 +8,17 @@ Upgrade notes:
 
 THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
 
+- Django 1.7 comes with a new migrations framework which replaces South - 
+  if you continue to use Django 1.6, you'll need to add new settings. Please
+  refer in the docs to the installation instructions.
+  If you're upgrading to Django 1.7 - upgrade Photologue first, THEN upgrade
+  Django.
 - The built-in templates have been replaced by a new set of templates that work
   well with Twitter-bootstrap.
-- PHOTOLOGUE_USE_CKEDITOR has been removed; override/extend the admin instead.
 
 List of changes:
 
+- Support for Django 1.7's migrations framework.
 - date_taken field not correctly handled during single photo upload (#80).
 - The Twitter-Bootstrap templates - previously in 'contrib' become the default; the
   previous templates are moved to 'contrib'.

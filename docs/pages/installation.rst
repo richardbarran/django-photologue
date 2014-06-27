@@ -30,21 +30,21 @@ production sites to prove itself". Use it, but apply caution!
 Dependencies
 ------------
 
-5 apps that will be installed automatically if required.
+4 apps that will be installed automatically if required.
 
 * `Django <https://www.djangoproject.com/>`_.
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
-* `South <http://south.aeracode.org/>`_.
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 * `Django-model-utils <https://pypi.python.org/pypi/django-model-utils>`_.
 
-And 2 dependencies that you will have to manage yourself:
+And 3 dependencies that you will have to manage yourself:
 
 * `Pytz <https://pypi.python.org/pypi/pytz>`_. Only applies if you're using Django >= 1.6, see the 
   Django release notes `for more information 
   <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
 * `Django’s site framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_
   - only applies if you're using Django >= 1.6.
+* `South <http://south.aeracode.org/>`_. Only applies for Django < 1.7.
 
 .. note::
 
@@ -89,8 +89,8 @@ Configure Your Django Settings
     INSTALLED_APPS = (
          # ...other installed applications,
          'photologue',
-         'south',		# if it's not already in your INSTALLED_APPS.
          'sortedm2m',
+         'south',   # Only if you're relying on South for migrations.
     )
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#media-root>`_ and
@@ -112,13 +112,30 @@ Add photologue to your projects urls.py file::
 Sync Your Database
 ------------------
 
-Use South to setup the new tables::
+Database migrations can be managed either with South, or with Django's migrations module.
+
+South
+~~~~~
+If you're on Django < 1.7, then you should be using `South <http://south.aeracode.org/>`_.
+You'll need to add it to your ``INSTALLED_APPS`` and also add this to your settings::
+
+    SOUTH_MIGRATION_MODULES = {
+        'photologue': 'photologue.south_migrations',
+    }
+
+Django migrations
+~~~~~~~~~~~~~~~~~
+Starting with version 1.7, Django has a new migrations module - Photologue uses it out
+of the box.
+
+Then...
+~~~~~~~
+In all cases, you can now sync your database::
 
     python manage.py migrate photologue
 
 If you are installing Photologue for the first time, this will set up some
 default PhotoSizes to get you started - you are free to change them of course!
-
 
 Instant Photo Gallery
 ---------------------
