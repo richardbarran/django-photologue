@@ -199,10 +199,10 @@ project, then study these files for inspiration! After that, setting up S3 will 
    * ``AWS_ACCESS_KEY_ID`` - issued to your account by S3.
    * ``AWS_SECRET_ACCESS_KEY`` - issued to your account by S3.
    * ``AWS_STORAGE_BUCKET_NAME`` - name of your bucket on S3.
-   * ``AWS_REGION`` - (optional) set if using a S3 region other than US Standard.
 
 #. To copy your static files into your S3 Bucket, type ``python manage.py collectstatic`` in the ``example_project`` directory.
 
+.. note:: This simple setup does not handle S3 regions.
 
 
 
