@@ -15,9 +15,7 @@
         <div>{% trans "Filter by day" %}</div>
         <ul>
         {% for date in date_list %}
-            {% with month_tla=date|date:"b"|lower %}
-                <li><a href="{% url 'pl-gallery-archive-day' date.year month_tla date.day %}">{{ date|date:"d" }}</a></li>
-            {% endwith %}
+            <li><a href="{% url 'pl-gallery-archive-day' date.year date|date:"b"|lower date.day %}">{{ date|date:"d" }}</a></li>
         {% endfor %}
         </ul>
 
