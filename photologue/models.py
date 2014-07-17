@@ -307,7 +307,7 @@ class GalleryUpload(models.Model):
                 logger.debug('Using pre-existing gallery.')
                 gallery = self.gallery
             else:
-                logger.debug('Creating new gallery "{0}".'.format(self.title))
+                logger.debug(force_text('Creating new gallery "{0}".').format(self.title))
                 gallery = Gallery.objects.create(title=self.title,
                                                  slug=slugify(self.title),
                                                  description=self.description,
