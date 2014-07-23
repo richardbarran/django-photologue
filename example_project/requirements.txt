@@ -2,3 +2,6 @@
 pytz>=2013.9
 # The following is only required if developing for Photologue.
 factory-boy>=2.2.1
+# The following is only required if you plan on using Amazon AWS S3
+# -r example_storages/s3_requirements.txt
+

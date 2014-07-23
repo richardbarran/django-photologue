@@ -8,20 +8,10 @@ from django.utils.translation import ungettext, ugettext_lazy as _
 from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
     Watermark
 
-USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
-
-if USE_CKEDITOR:
-    from ckeditor.widgets import CKEditorWidget
-    import warnings
-    warnings.warn(
-        DeprecationWarning('PHOTOLOGUE_USE_CKEDITOR setting will be removed in Photologue 2.9'))
-
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
 
 class GalleryAdminForm(forms.ModelForm):
-    if USE_CKEDITOR:
-        description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Gallery
@@ -151,8 +141,6 @@ class GalleryUploadAdmin(admin.ModelAdmin):
 
 
 class PhotoAdminForm(forms.ModelForm):
-    if USE_CKEDITOR:
-        caption = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Photo

@@ -1,27 +1,29 @@
 {% extends "photologue/root.html" %}
+{% load i18n %}
 {% load url from future %}
 
-{% block title %}All Photos{% endblock %}
+{% block title %}{% trans "All Photos" %}{% endblock %}
 
 {% block content %}
 
-<h1>All Photos</h1>
-
-{% if object_list %}
-    {% for photo in object_list %}
-    <div class="gallery-photo">
-        <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
+    <div class="row page-header">
+        <div class="col-lg-12">
+            <h1>{% trans "All Photos" %}</h1>
+        </div>
     </div>
-    {% endfor %}
-{% else %}
-<p>No photos were found.</p>
-{% endif %}
 
-{% if is_paginated %}
-<p>{{ paginator.count }} photos total.</p>
-<div id="page_controls">
-    <p>{% if page_obj.has_previous %}<a href="{% url 'pl-photo-list' page_obj.previous_page_number %}">Previous</a> | {% endif %} page {{ page_obj.number }} of {{ paginator.num_pages }} {% if page_obj.has_next %}| <a href="{% url 'pl-photo-list' page_obj.next_page_number %}">Next</a>{% endif %}</p>
-</div>
-{% endif %}
+	{% if object_list %}
+		<div class="row">
+		    {% for photo in object_list %}
+		        <a href="{{ photo.get_absolute_url }}">
+		             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+		        </a>
+		    {% endfor %}
+		</div>
+	{% else %}
+		<div class="row">{% trans "No photos were found" %}.</div>
+	{% endif %}
+
+	{% include "photologue/includes/paginator.html" %}
 
 {% endblock %}

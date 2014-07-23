@@ -1,11 +1,34 @@
 Changelog
 =========
 
-2.9 (unreleased)
+3.0 (unreleased)
 ----------------
 
--  date_taken field not correctly handled during single photo upload (#80).
+Upgrade notes:
 
+THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
+
+- Django 1.7 comes with a new migrations framework which replaces South - 
+  if you continue to use Django 1.6, you'll need to add new settings. Please
+  refer in the docs to the installation instructions.
+  If you're upgrading to Django 1.7 - upgrade Photologue first, THEN upgrade
+  Django.
+- The built-in templates have been replaced by a new set of templates that work
+  well with Twitter-bootstrap.
+- Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
+  which has dropped support for 1.4; and Django 1.5 is no longer supported).
+
+List of changes:
+
+- Support for Django 1.7's migrations framework.
+- Support for Amazon S3 to store images (thank you Celia Oakley!).
+- The Twitter-Bootstrap templates - previously in 'contrib' become the default; the
+  previous templates are moved to 'contrib'.
+- List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
+  This is a more common style, and allows us to simplify template code e.g. paginators!
+- date_taken field not correctly handled during single photo upload (#80).
+- PHOTOLOGUE_USE_CKEDITOR has been removed.
+- Removed deprecated PhotologueSitemap.
 
 2.8 (2014-05-04)
 ----------------

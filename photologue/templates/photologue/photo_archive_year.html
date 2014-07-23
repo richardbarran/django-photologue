@@ -1,14 +1,49 @@
 {% extends "photologue/root.html" %}
+{% load i18n %}
+{% load url from future %}
 
-{% block title %}Galleries for {{ year }}{% endblock %}
+{% block title %}{% blocktrans with show_year=year|date:"Y" %}Photos for {{ show_year }}{% endblocktrans %}{% endblock %}
+
 
 {% block content %}
 
-<h1>Photos for {{ year }}</h1>
-<ul>
-{% for date in date_list %}
-<li><a href="{{ date|date:"M"|lower }}/">{{ date|date:"F" }}</a></li>
-{% endfor %}
-</ul>
+	<div class="row page-header col-lg-12">
+        <h1>{% blocktrans with show_year=year|date:"Y" %}Photos for {{ show_year }}{% endblocktrans %}</h1>
+	</div>
+
+	<div class="col-md-2">
+
+		<div>{% trans "Filter by month" %}</div>
+		<ul>
+		{% for date in date_list %}
+			<li><a href="{% url 'pl-photo-archive-month' date.year date|date:"b"|lower %}">{{ date|date:"F" }}</a></li>
+		{% endfor %}
+		</ul>
+
+	</div>
+
+	<div class="col-md-10">
+
+		{% if object_list %}
+			<div class="row col-lg-12">
+			    {% for photo in object_list %}
+			        <a href="{{ photo.get_absolute_url }}">
+			             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+			        </a>
+			    {% endfor %}
+			</div>
+		{% else %}
+			<div class="row">{% trans "No photos were found" %}.</div>
+		{% endif %}
+
+	    <div class="row col-lg-12">
+            <a href="{% url 'pl-photo-archive' %}" class="btn btn-default">{% trans "View all photos" %}</a>
+	    </div>
+
+	</div>
 
 {% endblock %}
+
+
+
+

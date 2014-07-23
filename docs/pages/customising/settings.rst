@@ -5,20 +5,6 @@ Customisation: Settings
 
 Photologue has several settings to customise behaviour.
 
-PHOTOLOGUE_USE_CKEDITOR
------------------------
-
-    Default: ``False``
-
-If you have already installed `django-ckeditor <https://pypi.python.org/pypi/django-ckeditor>`_
-then you can use to edit the TextArea fields of Gallery
-and Photo in the admin. Simply set the setting to ``True``.
-
-
-.. deprecated:: 2.8
-
-    Instead, override the admin; :ref:`see here <customisation-admin-label>`.
-
 PHOTOLOGUE_GALLERY_PAGINATE_BY
 ------------------------------
 

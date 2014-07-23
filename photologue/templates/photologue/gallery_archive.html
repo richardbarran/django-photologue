@@ -1,27 +1,36 @@
 {% extends "photologue/root.html" %}
+{% load i18n %}
 {% load url from future %}
 
-{% block title %}Latest Photo Galleries{% endblock %}
+{% block title %}{% trans "Latest Photo Galleries" %}{% endblock %}
 
 {% block content %}
 
-<h1>Latest Photo Galleries</h1>
+	<div class="row page-header col-lg-12">
+        <h1>{% trans "Latest Photo Galleries" %}</h1>
+	</div>
 
-{% if latest %}
-    {% for gallery in latest %}
-    <div class="photo-gallery">
-        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
-        {% for photo in gallery.sample %}
-        <div class="gallery-photo">
-            <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" class="{% block gallery-photo-class %}{% endblock %}" alt="{{ photo.title }}"/></a>
-        </div>
-        {% endfor %}
-    </div>
-    {% endfor %}
-{% else %}
-    <p>No galleries were found.</p>
-{% endif %}
+	<div class="col-md-2">
 
-<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries.</a></p>
+		<div>{% trans "Filter by year" %}</div>
+		<ul>
+		{% for date in date_list %}
+			<li><a href="{% url 'pl-gallery-archive-year' date.year %}">{{ date|date:"Y" }}</a></li>
+		{% endfor %}
+		</ul>
 
+	</div>
+
+	<div class="col-md-10">
+		
+		{% if latest %}
+		    {% for gallery in latest %}
+		    	{% include "photologue/includes/gallery_sample.html" %}
+		    {% endfor %}
+		{% else %}
+		    <div class="row">{% trans "No galleries were found" %}.</div>
+		{% endif %}
+		
+	</div>
+	
 {% endblock %}

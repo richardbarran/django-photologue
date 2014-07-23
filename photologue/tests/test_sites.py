@@ -68,7 +68,7 @@ class SitesTest(TestCase):
         photo.delete()
 
     def test_gallery_list(self):
-        response = self.client.get('/ptests/gallery/page/1/')
+        response = self.client.get('/ptests/gallerylist/')
         self.assertEqual(list(response.context['object_list']), [self.gallery1])
 
     def test_gallery_detail(self):
@@ -79,7 +79,7 @@ class SitesTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_photo_list(self):
-        response = self.client.get('/ptests/photo/page/1/')
+        response = self.client.get('/ptests/photolist/')
         self.assertEqual(list(response.context['object_list']), [self.photo1])
 
     def test_photo_detail(self):

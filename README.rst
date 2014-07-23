@@ -26,6 +26,10 @@ Python 3?
 ---------
 Of course! Photologue is CI tested against both Python 2 and Python 3.
 
+Amazon S3?
+----------
+Yes. Note that you'll have to install Boto, which for now is not compatible with Python 3.
+
 Support
 -------
 If you have any questions or need help with any aspect of Photologue then please `join our mailing list

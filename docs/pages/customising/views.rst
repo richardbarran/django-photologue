@@ -56,8 +56,8 @@ Edit our new urls.py file, and add:
     
     urlpatterns = patterns('',
                            
-                           url(r'^gallery/page/(?P<page>[0-9]+)/$',
-                               GalleryListView.as_view(paginate_by=5), name='pl-gallery-list'),
+                           url(r'^gallerylist/$',
+                               GalleryListView.as_view(paginate_by=5), name='photologuecustom-gallery-list'),
 
                            )
 
@@ -115,9 +115,9 @@ And call this new view from urls.py; here we are replacing the standard Photo li
 
                        # Other urls...
 
-                       url(r'^photo/page/(?P<page>[0-9]+)/$',
+                       url(r'^photolist/$',
                            PhotoJSONListView.as_view(),
-                           name='pl-photo-list-json'),
+                           name='photologuecustom-photo-json-list'),
 
                        # Other urls as required...
                        )

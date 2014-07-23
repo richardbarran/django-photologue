@@ -4,20 +4,23 @@ python:
   - 2.6
   - 2.7
   - 3.3
+  - 3.4
 
 env:
-  - DJANGO_VERSION=1.4.5
-  - DJANGO_VERSION=1.5.1
-  - DJANGO_VERSION=1.6
+  - DJANGO="Django==1.6.5"
+  - DJANGO="https://github.com/django/django/archive/1.7c1.tar.gz#egg=Django"
 
 matrix:
   exclude:
-    - env: DJANGO_VERSION=1.4.5
-      python: 3.3
-
+    # Python 3.4 is not supported in Django before 1.7.
+    - env: DJANGO="Django==1.6.5"
+      python: 3.4
+    # Python 2.6 support has been dropped in Django 1.7
+    - python: 2.6
+      env: DJANGO="https://github.com/django/django/archive/1.7c1.tar.gz#egg=Django"
 
 install:
-  - pip install django==$DJANGO_VERSION
+  - pip install $DJANGO
   - pip install factory-boy
   - pip install pytz
   - python setup.py develop
