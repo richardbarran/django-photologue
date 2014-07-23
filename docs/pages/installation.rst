@@ -7,17 +7,20 @@ Installation & configuration
 
 Installation
 ------------
-The easiest way to install Photologue is with pip::
+The easiest way to install Photologue is with `pip <https://pip.pypa.io/en/latest/>`_; this will give you the latest
+version available on `PyPi <https://pypi.python.org/pypi>`_::
 
     pip install django-photologue
 
-You can also live life on the edge and install the latest code directly from the
+You can also take risks and install the latest code directly from the
 Github repository::
 
     pip install -e git+https://github.com/jdriscoll/django-photologue.git#egg=django-photologue
 
 This code should work ok - like `Django <https://www.djangoproject.com/>`_
-itself, we try to keep the master branch bug-free.
+itself, we try to keep the master branch bug-free. However, we strongly recommend that you 
+stick with a release from the PyPi repository, unless if you're confident in your abilities 
+to fix any potential bugs on your own!
 
 Python 3
 ~~~~~~~~
