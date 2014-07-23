@@ -1,5 +1,5 @@
 Django>=1.6 # Django-sortedm2m does not work with Django 1.4, and Django 1.5 is not supported.
-South>=0.8.1 # South 0.8 is compatible with Python 3 - earlier versions might work if you're running python 2.
+South==0.8.1 # South 0.8 is compatible with Python 3 - earlier versions might work if you're running python 2. South 1.0 is not compatible with Python 3.
 Pillow>=2.0.0 # 2.0.0 needed for Mac users. Might work with earlier versions, but not tested.
 django-sortedm2m>=0.8.0
 django-model-utils>=2.0.3
