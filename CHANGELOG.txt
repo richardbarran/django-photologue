@@ -29,6 +29,7 @@ List of changes:
 - date_taken field not correctly handled during single photo upload (#80).
 - PHOTOLOGUE_USE_CKEDITOR has been removed.
 - Removed deprecated PhotologueSitemap.
+- Gallery zip uploads would fail if the title contained unicode characters.
 
 2.8 (2014-05-04)
 ----------------
