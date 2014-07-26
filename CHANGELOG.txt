@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.9 (unreleased)
-----------------
+2.8.1 (2014-07-26)
+------------------
 
 - Fixed issue #94 (problem with i18n plural forms).
 - Updated Slovak translation.

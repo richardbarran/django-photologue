@@ -2,6 +2,7 @@ Photologue is made possible by all the people who have contributed to it. A non-
 
 Justin Driscoll
 Richard Barran
+richardbarran
 Marcos Daniel Petry
 Jannis
 Jonas Haag
@@ -12,9 +13,9 @@ kdeebee
 Benjamin Liles
 FilippoIOVINE
 ferhat elmas
-Juraj Bubniak
 Federico Maggi
 Herman Schaaf
+saboter
 Vivek Agarwal
 Antti Kaihola
 jscott1971
