@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - Fixed issue #94 (problem with i18n plural forms).
+- Updated Slovak translation.
 
 
 2.8 (2014-05-04)
@@ -53,7 +54,7 @@ List of changes:
   them for the 'example_project'.
 - Fixed issue #64 (allow installation without installing Pillow).
 - Optional use of CKEditor.
-- Updated/news translations for Polish, Slovak and German.
+- Updated/new translations for Polish, Slovak and German.
 - Bugfix: allow viewing latest galleries/latest photos pages even if they
   are empty.
 - Started using factory-boy - makes unit tests a bit easier to read.
