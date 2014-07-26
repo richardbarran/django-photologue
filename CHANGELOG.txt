@@ -4,7 +4,7 @@ Changelog
 2.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed issue #94 (problem with i18n plural forms).
 
 
 2.8 (2014-05-04)
