@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-03 18:59+0100\n"
+"POT-Creation-Date: 2014-07-26 09:56+0100\n"
 "PO-Revision-Date: 2013-11-20 11:06+0000\n"
 "Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/django-"
@@ -26,8 +26,8 @@ msgstr[1] ""
 
 #: admin.py:79
 #, python-format
-msgid "The gallery '%(gallery)s' has been successfully added to %(site)s"
-msgid_plural "The selected galleries have been successfully added to %(site)s"
+msgid "The gallery has been successfully added to %(site)s"
+msgid_plural "The galleries have been successfully added to %(site)s"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -37,7 +37,7 @@ msgstr ""
 
 #: admin.py:92
 #, python-format
-msgid "The gallery '%(gallery)s' has been successfully removed from %(site)s"
+msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
 "The selected galleries have been successfully removed from %(site)s"
 msgstr[0] ""
@@ -65,7 +65,7 @@ msgstr ""
 
 #: admin.py:190
 #, python-format
-msgid "The photo %(photo)s has been successfully added to %(site)s"
+msgid "The photo has been successfully added to %(site)s"
 msgid_plural "The selected photos have been successfully added to %(site)s"
 msgstr[0] ""
 msgstr[1] ""
@@ -76,7 +76,7 @@ msgstr ""
 
 #: admin.py:203
 #, python-format
-msgid "The photo %(photo)s has been successfully removed from %(site)s"
+msgid "The photo has been successfully removed from %(site)s"
 msgid_plural "The selected photos have been successfully removed from %(site)s"
 msgstr[0] ""
 msgstr[1] ""

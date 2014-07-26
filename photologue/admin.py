@@ -66,10 +66,10 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.gallery_set.add(*queryset)
         msg = ungettext(
-            "The gallery '%(gallery)s' has been successfully added to %(site)s",
-            "The selected galleries have been successfully added to %(site)s",
+            "The gallery has been successfully added to %(site)s",
+            "The galleries have been successfully added to %(site)s",
             len(queryset)
-        ) % {'site': current_site.name, 'gallery': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     add_to_current_site.short_description = \
@@ -79,10 +79,10 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.gallery_set.remove(*queryset)
         msg = ungettext(
-            "The gallery '%(gallery)s' has been successfully removed from %(site)s",
+            "The gallery has been successfully removed from %(site)s",
             "The selected galleries have been successfully removed from %(site)s",
             len(queryset)
-        ) % {'site': current_site.name, 'gallery': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     remove_from_current_site.short_description = \
@@ -175,10 +175,10 @@ class PhotoAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*queryset)
         msg = ungettext(
-            'The photo %(photo)s has been successfully added to %(site)s',
+            'The photo has been successfully added to %(site)s',
             'The selected photos have been successfully added to %(site)s',
             len(queryset)
-        ) % {'site': current_site.name, 'photo': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     add_photos_to_current_site.short_description = \
@@ -188,10 +188,10 @@ class PhotoAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.remove(*queryset)
         msg = ungettext(
-            'The photo %(photo)s has been successfully removed from %(site)s',
+            'The photo has been successfully removed from %(site)s',
             'The selected photos have been successfully removed from %(site)s',
             len(queryset)
-        ) % {'site': current_site.name, 'photo': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     remove_photos_from_current_site.short_description = \
