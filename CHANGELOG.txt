@@ -4,7 +4,8 @@ Changelog
 2.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- The latest release of django-sortedm2m is not compatible with older 
+  versions of Django, so don't use it (issue #92).
 
 
 2.8.1 (2014-07-26)
