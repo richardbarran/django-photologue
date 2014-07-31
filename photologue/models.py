@@ -6,7 +6,11 @@ from inspect import isclass
 import warnings
 import logging
 from io import BytesIO
-from importlib import import_module
+try:
+    from importlib import import_module
+except ImportError:
+    # Compatibility with Python 2.6.
+    from django.utils.importlib import import_module
 
 import django
 from django.utils.timezone import now
