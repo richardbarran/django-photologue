@@ -1,6 +1,5 @@
-import unittest
-
 from django.conf import settings
+from django.utils import unittest
 
 from .helpers import PhotologueBaseTest
 from .factories import GalleryFactory
