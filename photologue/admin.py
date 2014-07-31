@@ -128,6 +128,8 @@ class GalleryAdmin(admin.ModelAdmin):
     remove_photos_from_current_site.short_description = \
         _("Remove all photos of selected galleries from the current site")
 
+admin.site.register(Gallery, GalleryAdmin)
+
 
 class GalleryUploadAdmin(admin.ModelAdmin):
 
@@ -138,6 +140,8 @@ class GalleryUploadAdmin(admin.ModelAdmin):
         # Warning the user when things go wrong in a zip upload.
         obj.request = request
         obj.save()
+
+admin.site.register(GalleryUpload, GalleryUploadAdmin)
 
 
 class PhotoAdminForm(forms.ModelForm):
@@ -197,6 +201,8 @@ class PhotoAdmin(admin.ModelAdmin):
     remove_photos_from_current_site.short_description = \
         _("Remove selected photos from the current site")
 
+admin.site.register(Photo, PhotoAdmin)
+
 
 class PhotoEffectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'color', 'brightness',
@@ -219,6 +225,8 @@ class PhotoEffectAdmin(admin.ModelAdmin):
         }),
     )
 
+admin.site.register(PhotoEffect, PhotoEffectAdmin)
+
 
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'effect', 'increment_count')
@@ -234,14 +242,11 @@ class PhotoSizeAdmin(admin.ModelAdmin):
         }),
     )
 
+admin.site.register(PhotoSize, PhotoSizeAdmin)
+
 
 class WatermarkAdmin(admin.ModelAdmin):
     list_display = ('name', 'opacity', 'style')
 
 
-admin.site.register(Gallery, GalleryAdmin)
-admin.site.register(GalleryUpload, GalleryUploadAdmin)
-admin.site.register(Photo, PhotoAdmin)
-admin.site.register(PhotoEffect, PhotoEffectAdmin)
-admin.site.register(PhotoSize, PhotoSizeAdmin)
 admin.site.register(Watermark, WatermarkAdmin)
