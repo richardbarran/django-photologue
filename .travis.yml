@@ -17,7 +17,7 @@ matrix:
       python: 3.4
     # Python 2.6 support has been dropped in Django 1.7
     - python: 2.6
-      env: DJANGO="https://github.com/django/django/archive/1.721.tar.gz#egg=Django"
+      env: DJANGO="https://github.com/django/django/archive/1.7c2.tar.gz#egg=Django"
 
 install:
   - pip install $DJANGO
