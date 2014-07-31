@@ -166,7 +166,9 @@ SOUTH_MIGRATION_MODULES = {
     'photologue': 'photologue.south_migrations',
 }
 
-TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
+SILENCED_SYSTEM_CHECKS = [
+    '1_6.W001'  # Dividing the tests into separate files triggers this alert.
+]
 
 # Uncomment this for Amazon S3 file storage
 # from example_storages.settings_s3boto import *

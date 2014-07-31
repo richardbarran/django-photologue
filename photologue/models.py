@@ -6,7 +6,9 @@ from inspect import isclass
 import warnings
 import logging
 from io import BytesIO
+from importlib import import_module
 
+import django
 from django.utils.timezone import now
 from django.db import models
 from django.db.models.signals import post_init, post_save
@@ -16,14 +18,8 @@ from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
-try:
-    from django.utils.encoding import force_text
-except ImportError:
-    # Django < 1.4.2
-    from django.utils.encoding import force_unicode as force_text
-from django.utils.encoding import smart_str, filepath_to_uri
+from django.utils.encoding import force_text, smart_str, filepath_to_uri
 from django.utils.functional import curry
-from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
@@ -68,8 +64,9 @@ except ImportError:
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
 
     # Tell South how to handle this custom field.
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ["^photologue\.models\.TagField"])
+    if django.VERSION[:2] < (1, 7):
+        from south.modelsinspector import add_introspection_rules
+        add_introspection_rules([], ["^photologue\.models\.TagField"])
 
 from .utils import EXIF
 from .utils.reflection import add_reflection
@@ -579,8 +576,8 @@ class ImageModel(models.Model):
             if im_format != 'JPEG':
                 im.save(buffer, im_format)
             else:
-                im.save(buffer, 'JPEG', quality=int(photosize.quality), 
-                    optimize=True)
+                im.save(buffer, 'JPEG', quality=int(photosize.quality),
+                        optimize=True)
             buffer_contents = ContentFile(buffer.getvalue())
             self.image.storage.save(im_filename, buffer_contents)
         except IOError as e:

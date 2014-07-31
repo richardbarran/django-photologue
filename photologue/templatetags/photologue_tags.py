@@ -1,11 +1,10 @@
 import random
 from django import template
-from django.db.models import get_model
 
 register = template.Library()
 
-Gallery = get_model('photologue', 'Gallery')
-Photo = get_model('photologue', 'Photo')
+from ..models import Gallery
+from ..models import Photo
 
 
 @register.inclusion_tag('photologue/tags/next_in_gallery.html')
