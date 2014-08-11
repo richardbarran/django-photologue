@@ -34,7 +34,7 @@ def initial_photosizes(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('photologue', '0003_galleryupload_photosize'),
+        ('photologue', '0001_initial'),
     ]
 
     operations = [
