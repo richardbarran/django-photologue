@@ -250,6 +250,8 @@ class GalleryUpload(models.Model):
                                 upload_to=os.path.join(PHOTOLOGUE_DIR, 'temp'),
                                 help_text=_('Select a .zip file of images to upload into a new Gallery.'))
     title = models.CharField(_('title'),
+                             null=True,
+                             blank=True,
                              max_length=50,
                              help_text=_('All uploaded photos will be given a title made up of this title + a '
                                          'sequential number.'))
@@ -339,7 +341,7 @@ class GalleryUpload(models.Model):
                     logger.debug('File "{0}" is empty.'.format(filename))
                     continue
 
-                title = ' '.join([self.title, str(count)])
+                title = ' '.join([gallery.title, str(count)])
                 slug = slugify(title)
 
                 try:
