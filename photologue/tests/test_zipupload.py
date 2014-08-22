@@ -70,18 +70,18 @@ class GalleryUploadTest(TestCase):
 
         with open(SAMPLE_ZIP_PATH, mode='rb') as f:
             test_file = File(f)
-            GalleryUpload.objects.create(title='Test',
-                                         zip_file=test_file,
+            # Note how the title is not required.
+            GalleryUpload.objects.create(zip_file=test_file,
                                          gallery=existing)
 
         self.assertQuerysetEqual(Gallery.objects.all(),
                                  ['<Gallery: Existing>'])
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: Test 1>'])
+                                 ['<Photo: Existing 1>'])
 
         # The photo is attached to the existing gallery.
         self.assertQuerysetEqual(existing.photos.all(),
-                                 ['<Photo: Test 1>'])
+                                 ['<Photo: Existing 1>'])
 
     def test_duplicate_gallery(self):
         """If we try to create Gallery with a title

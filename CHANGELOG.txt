@@ -22,7 +22,7 @@ List of changes:
 
 - Support for Django 1.7's migrations framework.
 - Support for Amazon S3 to store images (thank you Celia Oakley!).
-- The Twitter-Bootstrap templates - previously in 'contrib' become the default; the
+- The Twitter-Bootstrap templates - previously in 'contrib' - become the default; the
   previous templates are moved to 'contrib'.
 - List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
   This is a more common style, and allows us to simplify template code e.g. paginators!
@@ -30,6 +30,7 @@ List of changes:
 - PHOTOLOGUE_USE_CKEDITOR has been removed.
 - Removed deprecated PhotologueSitemap.
 - Gallery zip uploads would fail if the title contained unicode characters.
+- Gallery-uploads: Do not require title for uploading to existing gallery (#98). 
 
 
 2.8.2 (2014-07-26)
