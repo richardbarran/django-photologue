@@ -103,10 +103,8 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*photos)
         msg = ungettext(
-            'All photos of gallery %(galleries)s have been successfully '
-            'added to %(site)s',
-            'All photos of in the galleries %(galleries)s have been successfully '
-            'added to %(site)s',
+            'All photos in gallery %(galleries)s have been successfully added to %(site)s',
+            'All photos in galleries %(galleries)s have been successfully added to %(site)s',
             len(queryset)
         ) % {
             'site': current_site.name,
@@ -123,10 +121,8 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.remove(*photos)
         msg = ungettext(
-            'All photos of gallery %(galleries)s have been successfully '
-            'removed from %(site)s',
-            'All photos of in the galleries %(galleries)s have been successfully '
-            'removed from %(site)s',
+            'All photos in gallery %(galleries)s have been successfully removed from %(site)s',
+            'All photos in galleries %(galleries)s have been successfully removed from %(site)s',
             len(queryset)
         ) % {
             'site': current_site.name,
@@ -136,7 +132,7 @@ class GalleryAdmin(admin.ModelAdmin):
         messages.success(request, msg)
 
     remove_photos_from_current_site.short_description = \
-        _("Remove all photos of selected galleries from the current site")
+        _("Remove all photos in selected galleries from the current site")
 
 
 class GalleryUploadAdmin(admin.ModelAdmin):
