@@ -16,7 +16,8 @@ THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
 - The built-in templates have been replaced by a new set of templates that work
   well with Twitter-bootstrap.
 - The django-tagging library is no longer maintained by its author. As a consequence,
-  it has been disabled - see the docs for more information.
+  it has been disabled - see the docs for more information (page
+  https://django-photologue.readthedocs.org/en/latest/pages/customising/settings.html#photologue-enable-tags)
 - Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
   which has dropped support for 1.4; and Django 1.5 is no longer supported).
 
