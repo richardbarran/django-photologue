@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.8.3 (unreleased)
+------------------
+
+- Updated Spanish translation.
+
 2.8.2 (2014-07-26)
 ------------------
 
