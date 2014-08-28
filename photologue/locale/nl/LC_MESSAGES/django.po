@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-26 09:56+0100\n"
+"POT-Creation-Date: 2014-08-25 09:56+0000\n"
 "PO-Revision-Date: 2013-11-20 11:06+0000\n"
 "Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/django-photologue/"
@@ -48,41 +48,54 @@ msgstr[1] ""
 msgid "Remove selected galleries from the current site"
 msgstr ""
 
-#: admin.py:106 admin.py:126
+#: admin.py:106
 #, python-format
-msgid "All photos of gallery %(galleries)s have been successfully "
+msgid ""
+"All photos in gallery %(galleries)s have been successfully added to %(site)s"
 msgid_plural ""
-"All photos of in the galleries %(galleries)s have been successfully "
+"All photos in galleries %(galleries)s have been successfully added to "
+"%(site)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:119
+#: admin.py:117
 msgid "Add all photos of selected galleries to the current site"
 msgstr ""
 
-#: admin.py:139
-msgid "Remove all photos of selected galleries from the current site"
+#: admin.py:124
+#, python-format
+msgid ""
+"All photos in gallery %(galleries)s have been successfully removed from "
+"%(site)s"
+msgid_plural ""
+"All photos in galleries %(galleries)s have been successfully removed from "
+"%(site)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin.py:135
+msgid "Remove all photos in selected galleries from the current site"
 msgstr ""
 
-#: admin.py:190
+#: admin.py:186
 #, python-format
 msgid "The photo has been successfully added to %(site)s"
 msgid_plural "The selected photos have been successfully added to %(site)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:197
+#: admin.py:193
 msgid "Add selected photos to the current site"
 msgstr ""
 
-#: admin.py:203
+#: admin.py:199
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
 msgid_plural "The selected photos have been successfully removed from %(site)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:210
+#: admin.py:206
 msgid "Remove selected photos from the current site"
 msgstr ""
 

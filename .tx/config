@@ -4,6 +4,6 @@ lang_map = sr@latin:sr_Latn
 
 [django-photologue.core]
 file_filter = photologue/locale/<lang>/LC_MESSAGES/django.po
-source_file = photologue/locale/en/LC_MESSAGES/django.po
-source_lang = en
+source_file = photologue/locale/en_US/LC_MESSAGES/django.po
+source_lang = en_US
 type = PO
