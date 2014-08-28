@@ -20,7 +20,7 @@ included all the publicly-viewable Photologue pages:
                 }
     etc...
 
-There are 2 sitemap classes, as in some case you may want to have gallery pages,
+There are 2 sitemap classes, as in some cases you may want to have gallery pages,
 but no photo detail page (e.g. if all photos are displayed via a javascript
 lightbox).
 

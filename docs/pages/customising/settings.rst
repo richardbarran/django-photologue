@@ -125,7 +125,7 @@ If the setting is ``True``, the admin interface is slightly changed:
 * The Sites many-to-many field is displayed on Gallery and Photos models.
 * The Gallery Upload allows you to associate one more sites to the uploaded photos (and gallery).
 
-.. note:: Gallery Uploads (zip archives) are always associated with the current site. This will be
-   fixed in a future version of Photologue.
+.. note:: Gallery Uploads (zip archives) are always associated with the current site. Pull requests to
+   fix this would be welcome!
 
 .. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html

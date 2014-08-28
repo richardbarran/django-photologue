@@ -69,6 +69,7 @@ if you have `django-ckeditor <https://github.com/shaunsephton/django-ckeditor>`_
 
 
 	class GalleryAdminForm(forms.ModelForm):
+	    """Replace the default description field, with one that uses a custom widget."""
 
 	    description = forms.CharField(widget=CKEditorWidget())
 
