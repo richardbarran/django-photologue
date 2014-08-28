@@ -10,6 +10,8 @@ from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
 
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
+ENABLE_TAGS = getattr(settings, 'PHOTOLOGUE_ENABLE_TAGS', False)
+
 
 class GalleryAdminForm(forms.ModelForm):
 
@@ -19,6 +21,8 @@ class GalleryAdminForm(forms.ModelForm):
             exclude = []
         else:
             exclude = ['sites']
+        if not ENABLE_TAGS:
+            exclude.append('tags')
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -152,6 +156,8 @@ class PhotoAdminForm(forms.ModelForm):
             exclude = []
         else:
             exclude = ['sites']
+        if not ENABLE_TAGS:
+            exclude.append('tags')
 
 
 class PhotoAdmin(admin.ModelAdmin):

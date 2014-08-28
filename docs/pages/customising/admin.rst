@@ -29,10 +29,11 @@ For example:
 
 
 	class GalleryAdminForm(forms.ModelForm):
+	    """Users never need to enter a description on a gallery."""
 
 	    class Meta:
 	        model = Gallery
-	        exclude = ['tags']
+	        exclude = ['description']
 
 
 	class GalleryAdmin(GalleryAdminDefault):
@@ -43,7 +44,7 @@ For example:
 
 
 This snippet will define a new Gallery admin class based on Photologue's own. The only change we make
-is to exclude the ``tags`` field from the change form.
+is to exclude the ``description`` field from the change form.
 
 We then unregister the default admin for the Gallery model and replace it with our new class.
 

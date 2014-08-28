@@ -15,6 +15,8 @@ THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
   Django.
 - The built-in templates have been replaced by a new set of templates that work
   well with Twitter-bootstrap.
+- The django-tagging library is no longer maintained by its author. As a consequence,
+  it has been disabled - see the docs for more information.
 - Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
   which has dropped support for 1.4; and Django 1.5 is no longer supported).
 
@@ -24,6 +26,7 @@ List of changes:
 - Support for Amazon S3 to store images (thank you Celia Oakley!).
 - The Twitter-Bootstrap templates - previously in 'contrib' - become the default; the
   previous templates are moved to 'contrib'.
+- Tagging is in the process of being removed.
 - List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
   This is a more common style, and allows us to simplify template code e.g. paginators!
 - date_taken field not correctly handled during single photo upload (#80).
