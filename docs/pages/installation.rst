@@ -48,7 +48,8 @@ And 3 dependencies that you will have to manage yourself:
 
 .. note::
 
-    * Photologue has the same support policy as Django.
+    Photologue has - more or less - the same support policy as Django. Photologue 3.0
+    is tested against Django 1.6 and 1.7.
 
 That troublesome Pillow...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
