@@ -37,14 +37,11 @@ Dependencies
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 * `Django-model-utils <https://pypi.python.org/pypi/django-model-utils>`_.
 
-And 3 dependencies that you will have to manage yourself:
+And 2 dependencies that you will have to manage yourself:
 
-* `Pytz <https://pypi.python.org/pypi/pytz>`_. Only applies if you're using Django >= 1.6, see the 
-  Django release notes `for more information 
+* `Pytz <https://pypi.python.org/pypi/pytz>`_. See the Django release notes `for more information 
   <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
-* `Django’s site framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_
-  - only applies if you're using Django >= 1.6.
-* `South <http://south.aeracode.org/>`_. Only applies for Django < 1.7.
+* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6.
 
 .. note::
 
@@ -99,6 +96,10 @@ Configure Your Django Settings
    are correct (Photologue will store uploaded files in a folder called 'photologue' under your ``MEDIA_ROOT``).
 
 #. `Enable the admin app if you have not already done so <https://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_.
+
+#. Also enable `Django’s site framework
+   <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_.
+
 
 Add the urls
 ------------
