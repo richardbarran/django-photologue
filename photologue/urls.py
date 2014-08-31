@@ -22,7 +22,7 @@ coexist with the existing 'pl-' for some time.
 urlpatterns = patterns('',
 
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
-                           GalleryDateDetailView.as_view(),
+                           GalleryDateDetailView.as_view(month_format='%m'),
                            name='pl-gallery-detail'),
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/$',
                            GalleryDayArchiveView.as_view(month_format='%m'),
