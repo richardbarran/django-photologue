@@ -44,15 +44,15 @@ class RequestPhotoTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_archive_month_photo_works(self):
-        response = self.client.get('/ptests/photo/2011/dec/')
+        response = self.client.get('/ptests/photo/2011/12/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_day_photo_works(self):
-        response = self.client.get('/ptests/photo/2011/dec/23/')
+        response = self.client.get('/ptests/photo/2011/12/23/')
         self.assertEqual(response.status_code, 200)
 
     def test_detail_photo_works(self):
-        response = self.client.get('/ptests/photo/2011/dec/23/fake-photo/')
+        response = self.client.get('/ptests/photo/2011/12/23/fake-photo/')
         self.assertEqual(response.status_code, 200)
 
 

@@ -40,15 +40,15 @@ class RequestGalleryTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_archive_month_gallery_works(self):
-        response = self.client.get('/ptests/gallery/2011/dec/')
+        response = self.client.get('/ptests/gallery/2011/12/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_day_gallery_works(self):
-        response = self.client.get('/ptests/gallery/2011/dec/23/')
+        response = self.client.get('/ptests/gallery/2011/12/23/')
         self.assertEqual(response.status_code, 200)
 
     def test_detail_gallery_works(self):
-        response = self.client.get('/ptests/gallery/2011/dec/23/test-gallery/')
+        response = self.client.get('/ptests/gallery/2011/12/23/test-gallery/')
         self.assertEqual(response.status_code, 200)
 
     def test_redirect_to_list(self):
