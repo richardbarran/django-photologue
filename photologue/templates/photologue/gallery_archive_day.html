@@ -16,7 +16,7 @@
     {% endif %}
 
     <div class="row col-lg-12">
-        <a href="{% url 'pl-gallery-archive-month' day.year day|date:"b"|lower %}" class="btn btn-default">{% trans "View all galleries for month" %}</a>
+        <a href="{% url 'pl-gallery-archive-month' day.year day|date:"m"|lower %}" class="btn btn-default">{% trans "View all galleries for month" %}</a>
     </div>
 
 {% endblock %}
