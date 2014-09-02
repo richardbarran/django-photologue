@@ -20,6 +20,8 @@ THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
   https://django-photologue.readthedocs.org/en/latest/pages/customising/settings.html#photologue-enable-tags)
 - Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
   which has dropped support for 1.4; and Django 1.5 is no longer supported).
+- The Photologue urls used to use names for months; this has been changed to using
+  numbers, which is better for non-English websites (#101).
 
 List of changes:
 
@@ -34,7 +36,7 @@ List of changes:
 - PHOTOLOGUE_USE_CKEDITOR has been removed.
 - Removed deprecated PhotologueSitemap.
 - Gallery zip uploads would fail if the title contained unicode characters.
-- Gallery-uploads: Do not require title for uploading to existing gallery (#98). 
+- Gallery-uploads: Do not require title for uploading to existing gallery (#98).
 
 
 2.8.3 (2014-08-28)

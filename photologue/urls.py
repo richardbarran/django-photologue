@@ -5,7 +5,9 @@ from django.core.urlresolvers import reverse_lazy
 from .views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
     PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
-    GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView
+    GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView, GalleryDateDetailOldView, \
+    GalleryDayArchiveOldView, GalleryMonthArchiveOldView, PhotoDateDetailOldView, \
+    PhotoDayArchiveOldView, PhotoMonthArchiveOldView
 
 """NOTE: the url names are changing. In the long term, I want the prefix on all url names to be 'photologue-'
 rather than 'pl-'.
@@ -23,13 +25,13 @@ urlpatterns = patterns('',
 
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
                            GalleryDateDetailView.as_view(month_format='%m'),
-                           name='pl-gallery-detail'),
+                           name='photologue-gallery-detail'),
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/$',
                            GalleryDayArchiveView.as_view(month_format='%m'),
-                           name='pl-gallery-archive-day'),
+                           name='photologue-gallery-archive-day'),
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/$',
                            GalleryMonthArchiveView.as_view(month_format='%m'),
-                           name='pl-gallery-archive-month'),
+                           name='photologue-gallery-archive-month'),
                        url(r'^gallery/(?P<year>\d{4})/$',
                            GalleryYearArchiveView.as_view(),
                            name='pl-gallery-archive-year'),
@@ -47,13 +49,13 @@ urlpatterns = patterns('',
 
                        url(r'^photo/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
                            PhotoDateDetailView.as_view(month_format='%m'),
-                           name='pl-photo-detail'),
+                           name='photologue-photo-detail'),
                        url(r'^photo/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/$',
                            PhotoDayArchiveView.as_view(month_format='%m'),
-                           name='pl-photo-archive-day'),
+                           name='photologue-photo-archive-day'),
                        url(r'^photo/(?P<year>\d{4})/(?P<month>[0-9]{2})/$',
                            PhotoMonthArchiveView.as_view(month_format='%m'),
-                           name='pl-photo-archive-month'),
+                           name='photologue-photo-archive-month'),
                        url(r'^photo/(?P<year>\d{4})/$',
                            PhotoYearArchiveView.as_view(),
                            name='pl-photo-archive-year'),
@@ -78,5 +80,22 @@ urlpatterns = patterns('',
                            {'deprecated_pagination': True},
                            name='pl-photo-list'),
 
-
+                       url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
+                           GalleryDateDetailOldView.as_view(),
+                           name='pl-gallery-detail'),
+                       url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$',
+                           GalleryDayArchiveOldView.as_view(),
+                           name='pl-gallery-archive-day'),
+                       url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/$',
+                           GalleryMonthArchiveOldView.as_view(),
+                           name='pl-gallery-archive-month'),
+                       url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
+                           PhotoDateDetailOldView.as_view(),
+                           name='pl-photo-detail'),
+                       url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$',
+                           PhotoDayArchiveOldView.as_view(),
+                           name='pl-photo-archive-day'),
+                       url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/$',
+                           PhotoMonthArchiveOldView.as_view(),
+                           name='pl-photo-archive-month')
                        )
