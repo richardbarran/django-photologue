@@ -140,8 +140,8 @@ In all cases, you can now sync your database::
 If you are installing Photologue for the first time, this will set up some
 default PhotoSizes to get you started - you are free to change them of course!
 
-Instant Photo Gallery
----------------------
+Instant templates
+-----------------
 
 Photologue comes with basic templates for galleries and photos, which are designed
 to work well with `Twitter-Bootstrap <http://twitter.github.io/bootstrap/index.html>`_.
