@@ -41,7 +41,8 @@ And 2 dependencies that you will have to manage yourself:
 
 * `Pytz <https://pypi.python.org/pypi/pytz>`_. See the Django release notes `for more information 
   <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
-* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6.
+* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6. Note that South 1.0 is not 
+  compatible with Python 3 - you should install version 0.8.4 instead.
 
 .. note::
 
