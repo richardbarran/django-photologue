@@ -68,7 +68,7 @@ so googling 'PIL installation <your platform>' can also help.
    hasn't been tested!
 
 #. Sometimes Pillow will install... but is not actually installed. This 'undocumented feature' has been
-   reported by a user on Windows. If you can't get Photologue to disaply any images, check
+   reported by a user on Windows. If you can't get Photologue to display any images, check
    that you can actually import Pillow::
 
      $ python manage.py shell
