@@ -9,7 +9,8 @@ Django-photologue
     :target: https://crate.io/packages/django-photologue/
     :alt: Number of PyPI downloads
 
-.. image:: https://secure.travis-ci.org/jdriscoll/django-photologue.png?branch=master
+.. image:: https://travis-ci.org/jdriscoll/django-photologue.svg?branch=master
+    :target: https://travis-ci.org/jdriscoll/django-photologue
 
 A powerful image management and gallery application for the Django web framework. Upload photos, group them into
 galleries, apply effects such as watermarks.
