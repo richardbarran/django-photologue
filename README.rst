@@ -19,6 +19,8 @@ Examples
 --------
 We have some `examples of sites using Photologue <https://github.com/jdriscoll/django-photologue/wiki/Examples-and-forks>`_ on our wiki.
 
+We also have a `demo website <http://www.django-photologue.net/>`_.
+
 Documentation
 -------------
 Please head over to our `online documentation <https://django-photologue.readthedocs.org/>`_ for instructions on installing and configuring this application.
