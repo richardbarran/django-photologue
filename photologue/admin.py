@@ -157,8 +157,12 @@ class PhotoAdminForm(forms.ModelForm):
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_taken', 'date_added',
-                    'is_public', 'tags', 'view_count', 'admin_thumbnail')
+    if ENABLE_TAGS:
+        list_display = ('title', 'date_taken', 'date_added',
+                        'is_public', 'tags', 'view_count', 'admin_thumbnail')
+    else:
+        list_display = ('title', 'date_taken', 'date_added',
+                        'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
         list_filter.append('sites')
