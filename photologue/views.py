@@ -148,7 +148,7 @@ class GalleryDateDetailOldView(DeprecatedMonthMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         super(GalleryDateDetailOldView, self).get_redirect_url(*args, **kwargs)
-        return reverse('photologue-gallery-detail', kwargs={'year': kwargs['year'],
+        return reverse('photologue:gallery-detail', kwargs={'year': kwargs['year'],
                                                             'month': self.month_names[kwargs['month']],
                                                             'day': kwargs['day'],
                                                             'slug': kwargs['slug']})
@@ -158,7 +158,7 @@ class GalleryDayArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         super(GalleryDayArchiveOldView, self).get_redirect_url(*args, **kwargs)
-        return reverse('photologue-gallery-archive-day', kwargs={'year': kwargs['year'],
+        return reverse('photologue:gallery-archive-day', kwargs={'year': kwargs['year'],
                                                                  'month': self.month_names[kwargs['month']],
                                                                  'day': kwargs['day']})
 
@@ -167,7 +167,7 @@ class GalleryMonthArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         super(GalleryMonthArchiveOldView, self).get_redirect_url(*args, **kwargs)
-        return reverse('photologue-gallery-archive-month', kwargs={'year': kwargs['year'],
+        return reverse('photologue:gallery-archive-month', kwargs={'year': kwargs['year'],
                                                                    'month': self.month_names[kwargs['month']]})
 
 
@@ -175,7 +175,7 @@ class PhotoDateDetailOldView(DeprecatedMonthMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         super(PhotoDateDetailOldView, self).get_redirect_url(*args, **kwargs)
-        return reverse('photologue-photo-detail', kwargs={'year': kwargs['year'],
+        return reverse('photologue:photo-detail', kwargs={'year': kwargs['year'],
                                                           'month': self.month_names[kwargs['month']],
                                                           'day': kwargs['day'],
                                                           'slug': kwargs['slug']})
@@ -185,7 +185,7 @@ class PhotoDayArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         super(PhotoDayArchiveOldView, self).get_redirect_url(*args, **kwargs)
-        return reverse('photologue-photo-archive-day', kwargs={'year': kwargs['year'],
+        return reverse('photologue:photo-archive-day', kwargs={'year': kwargs['year'],
                                                                'month': self.month_names[kwargs['month']],
                                                                'day': kwargs['day']})
 
@@ -194,5 +194,5 @@ class PhotoMonthArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         super(PhotoMonthArchiveOldView, self).get_redirect_url(*args, **kwargs)
-        return reverse('photologue-photo-archive-month', kwargs={'year': kwargs['year'],
+        return reverse('photologue:photo-archive-month', kwargs={'year': kwargs['year'],
                                                                  'month': self.month_names[kwargs['month']]})

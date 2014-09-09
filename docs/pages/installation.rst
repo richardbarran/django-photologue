@@ -109,7 +109,7 @@ Add photologue to your projects urls.py file::
 
     urlpatterns += patterns('',
         ...
-        (r'^photologue/', include('photologue.urls')),
+        url(r'^photologue/', include('photologue.urls', namespace='photologue')),
     )
 
 Sync Your Database

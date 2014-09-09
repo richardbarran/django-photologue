@@ -9,14 +9,13 @@ from .views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDayArchiveOldView, GalleryMonthArchiveOldView, PhotoDateDetailOldView, \
     PhotoDayArchiveOldView, PhotoMonthArchiveOldView
 
-"""NOTE: the url names are changing. In the long term, I want the prefix on all url names to be 'photologue-'
-rather than 'pl-'.
-This is simply to follow the Zen of Python - "Explicit is better than implicit".
+"""NOTE: the url names are changing. In the long term, I want to remove the 'pl-'
+prefix on all urls, and instead rely on an application namespace 'photologue'.
 
-At the same time, I want to change some URL patterns, e.g. for pagination.
+At the same time, I want to change some URL patterns, e.g. for pagination. Changing the urls
+twice within a few releases, could be confusing, so instead I am updating URLs bit by bit.
 
-So I've started changing the pagination to a new style prefix 'photologue-', and this will
-coexist with the existing 'pl-' for some time.
+The new style will coexist with the existing 'pl-' prefix for a couple of releases.
 
 """
 
@@ -25,13 +24,13 @@ urlpatterns = patterns('',
 
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
                            GalleryDateDetailView.as_view(month_format='%m'),
-                           name='photologue-gallery-detail'),
+                           name='gallery-detail'),
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/$',
                            GalleryDayArchiveView.as_view(month_format='%m'),
-                           name='photologue-gallery-archive-day'),
+                           name='gallery-archive-day'),
                        url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/$',
                            GalleryMonthArchiveView.as_view(month_format='%m'),
-                           name='photologue-gallery-archive-month'),
+                           name='gallery-archive-month'),
                        url(r'^gallery/(?P<year>\d{4})/$',
                            GalleryYearArchiveView.as_view(),
                            name='pl-gallery-archive-year'),
@@ -39,23 +38,23 @@ urlpatterns = patterns('',
                            GalleryArchiveIndexView.as_view(),
                            name='pl-gallery-archive'),
                        url(r'^$',
-                           RedirectView.as_view(url=reverse_lazy('pl-gallery-archive')),
+                           RedirectView.as_view(url=reverse_lazy('photologue:pl-gallery-archive')),
                            name='pl-photologue-root'),
                        url(r'^gallery/(?P<slug>[\-\d\w]+)/$',
                            GalleryDetailView.as_view(), name='pl-gallery'),
                        url(r'^gallerylist/$',
                            GalleryListView.as_view(),
-                           name='photologue-gallery-list'),
+                           name='gallery-list'),
 
                        url(r'^photo/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
                            PhotoDateDetailView.as_view(month_format='%m'),
-                           name='photologue-photo-detail'),
+                           name='photo-detail'),
                        url(r'^photo/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/$',
                            PhotoDayArchiveView.as_view(month_format='%m'),
-                           name='photologue-photo-archive-day'),
+                           name='photo-archive-day'),
                        url(r'^photo/(?P<year>\d{4})/(?P<month>[0-9]{2})/$',
                            PhotoMonthArchiveView.as_view(month_format='%m'),
-                           name='photologue-photo-archive-month'),
+                           name='photo-archive-month'),
                        url(r'^photo/(?P<year>\d{4})/$',
                            PhotoYearArchiveView.as_view(),
                            name='pl-photo-archive-year'),
@@ -68,7 +67,7 @@ urlpatterns = patterns('',
                            name='pl-photo'),
                        url(r'^photolist/$',
                            PhotoListView.as_view(),
-                           name='photologue-photo-list'),
+                           name='photo-list'),
 
                        # Deprecated URLs.
                        url(r'^gallery/page/(?P<page>[0-9]+)/$',

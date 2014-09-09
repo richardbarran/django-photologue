@@ -15,7 +15,7 @@
 		<div>{% trans "Filter by month" %}</div>
 		<ul>
 		{% for date in date_list %}
-			<li><a href="{% url 'photologue-photo-archive-month' date.year date|date:"m"|lower %}">{{ date|date:"F" }}</a></li>
+			<li><a href="{% url 'photologue:photo-archive-month' date.year date|date:"m"|lower %}">{{ date|date:"F" }}</a></li>
 		{% endfor %}
 		</ul>
 
@@ -36,7 +36,7 @@
 		{% endif %}
 
 	    <div class="row col-lg-12">
-            <a href="{% url 'pl-photo-archive' %}" class="btn btn-default">{% trans "View all photos" %}</a>
+            <a href="{% url 'photologue:pl-photo-archive' %}" class="btn btn-default">{% trans "View all photos" %}</a>
 	    </div>
 
 	</div>

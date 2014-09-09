@@ -20,6 +20,8 @@ THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
   https://django-photologue.readthedocs.org/en/latest/pages/customising/settings.html#photologue-enable-tags)
 - Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
   which has dropped support for 1.4; and Django 1.5 is no longer supported).
+- Many urls have been renamed; photologue urls now go into their own namespace. See the urls.py
+  file for all the changes.
 
 List of changes:
 

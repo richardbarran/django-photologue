@@ -193,7 +193,7 @@ class Gallery(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('pl-gallery', args=[self.slug])
+        return reverse('photologue:pl-gallery', args=[self.slug])
 
     def latest(self, limit=LATEST_LIMIT, public=True):
         if not limit:
@@ -677,7 +677,7 @@ class Photo(ImageModel):
         super(Photo, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('pl-photo', args=[self.slug])
+        return reverse('photologue:pl-photo', args=[self.slug])
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""

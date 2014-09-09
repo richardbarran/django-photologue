@@ -2,7 +2,7 @@ from django.conf.urls import *
 from ..sitemaps import GallerySitemap, PhotoSitemap
 
 urlpatterns = patterns('',
-                       (r'^ptests/', include('photologue.urls')),
+                       (r'^ptests/', include('photologue.urls', namespace='photologue')),
                        )
 
 sitemaps = {'photologue_galleries': GallerySitemap,
