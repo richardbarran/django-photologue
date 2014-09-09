@@ -6,34 +6,30 @@ Changelog
 
 Upgrade notes:
 
-THIS RELEASE BREAKS BACKWARDS COMPATIBILITY!
+THE FOLLOWING CHANGES BREAK BACKWARDS COMPATIBILITY!
 
 - Django 1.7 comes with a new migrations framework which replaces South - 
   if you continue to use Django 1.6, you'll need to add new settings. Please
   refer in the docs to the installation instructions.
   If you're upgrading to Django 1.7 - upgrade Photologue first, THEN upgrade
   Django.
-- The built-in templates have been replaced by a new set of templates that work
-  well with Twitter-bootstrap.
+- The Twitter-Bootstrap templates - previously in 'contrib' - become the default; the
+  previous templates are moved to 'contrib'.
 - The django-tagging library is no longer maintained by its author. As a consequence,
   it has been disabled - see the docs for more information (page
   https://django-photologue.readthedocs.org/en/latest/pages/customising/settings.html#photologue-enable-tags)
 - Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
   which has dropped support for 1.4; and Django 1.5 is no longer supported).
+- PHOTOLOGUE_USE_CKEDITOR has been removed.
 - Many urls have been renamed; photologue urls now go into their own namespace. See the urls.py
   file for all the changes.
 
-List of changes:
+Other changes:
 
-- Support for Django 1.7's migrations framework.
 - Support for Amazon S3 to store images (thank you Celia Oakley!).
-- The Twitter-Bootstrap templates - previously in 'contrib' - become the default; the
-  previous templates are moved to 'contrib'.
-- Tagging is in the process of being removed.
 - List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
   This is a more common style, and allows us to simplify template code e.g. paginators!
 - date_taken field not correctly handled during single photo upload (#80).
-- PHOTOLOGUE_USE_CKEDITOR has been removed.
 - Removed deprecated PhotologueSitemap.
 - Gallery zip uploads would fail if the title contained unicode characters.
 - Gallery-uploads: Do not require title for uploading to existing gallery (#98).
