@@ -33,7 +33,6 @@ from .models import Gallery, Photo
 
 
 class GallerySitemap(Sitemap):
-    priority = 0.5
 
     def items(self):
         # The following code is very basic and will probably cause problems with
@@ -45,7 +44,6 @@ class GallerySitemap(Sitemap):
 
 
 class PhotoSitemap(Sitemap):
-    priority = 0.5
 
     def items(self):
         # The following code is very basic and will probably cause problems with
