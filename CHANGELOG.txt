@@ -6,6 +6,13 @@ Changelog
 
 Upgrade notes:
 
+WARNING: IF YOU'RE USING POSTGRESQL AS A DATABASE & DJANGO 1.7, THE LATEST RELEASE OF
+DJANGO-SORTEDM2M HAS A BUG. INSTEAD, YOU'LL HAVE TO MANUALLY INSTALL:
+
+pip install -e git://github.com/richardbarran/django-sortedm2m.git@9a609a1c6b790a40a016e4ceadedbb6dd6b92010#egg=sortedm2m
+
+
+
 THE FOLLOWING CHANGES BREAK BACKWARDS COMPATIBILITY!
 
 - Django 1.7 comes with a new migrations framework which replaces South - 
