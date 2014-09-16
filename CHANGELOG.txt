@@ -4,7 +4,7 @@ Changelog
 3.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Missed out some templates from the released package.
 
 
 3.0 (2014-09-15)
