@@ -23,6 +23,11 @@ We also have a `demo website <http://www.django-photologue.net/>`_.
 
 Documentation
 -------------
+
+.. image:: https://readthedocs.org/projects/django-photologue/badge/?version=3.0
+    :target: https://readthedocs.org/projects/django-photologue/?badge=3.0
+    :alt: Documentation Status
+
 Please head over to our `online documentation <https://django-photologue.readthedocs.org/>`_ for instructions on installing and configuring this application.
 
 Python 3?
