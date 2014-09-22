@@ -4,7 +4,7 @@ Changelog
 3.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Updated Bootstrap version used in example project.
 
 
 3.0.1 (2014-09-16)
