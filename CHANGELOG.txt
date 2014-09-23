@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - Updated django-sortedm2m to an official release.
+- Updated Spanish translation.
 - Updated Bootstrap version used in example project.
 
 

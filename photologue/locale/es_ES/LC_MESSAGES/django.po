@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 # dmalisani <dmalisani@gmail.com>, 2014
@@ -12,14 +12,13 @@ msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-15 15:28+0100\n"
-"PO-Revision-Date: 2014-08-25 13:27+0000\n"
+"PO-Revision-Date: 2014-09-23 14:44+0000\n"
 "Last-Translator: dmalisani <dmalisani@gmail.com>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/django-"
-"photologue/language/es_ES/)\n"
-"Language: es_ES\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/django-photologue/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:61
@@ -45,8 +44,7 @@ msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
 "The selected galleries have been successfully removed from %(site)s"
 msgstr[0] "La galería ha sido eliminada correctamente de %(site)s"
-msgstr[1] ""
-"Las galerías seleccionadas han sido eliminadas correctamente de %(site)s"
+msgstr[1] "Las galerías seleccionadas han sido eliminadas correctamente de %(site)s"
 
 #: admin.py:93
 msgid "Remove selected galleries from the current site"
@@ -59,12 +57,8 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
-msgstr[0] ""
-"Todas las fotos en la galería %(galleries)s han sido correctamente agregadas "
-"a %(site)s"
-msgstr[1] ""
-"Todas las fotos en las galerías %(galleries)s han sido correctamente "
-"agregadas a %(site)s"
+msgstr[0] "Todas las fotos en la galería %(galleries)s han sido correctamente agregadas a %(site)s"
+msgstr[1] "Todas las fotos en las galerías %(galleries)s han sido correctamente agregadas a %(site)s"
 
 #: admin.py:111
 msgid "Add all photos of selected galleries to the current site"
@@ -78,12 +72,8 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
-msgstr[0] ""
-"Todas las fotos en la galería %(galleries)s han sido correctamente "
-"eliminadas de %(site)s"
-msgstr[1] ""
-"Todas las fotos en las galerías %(galleries)s han sido correctamente "
-"eliminadas de %(site)s"
+msgstr[0] "Todas las fotos en la galería %(galleries)s han sido correctamente eliminadas de %(site)s"
+msgstr[1] "Todas las fotos en las galerías %(galleries)s han sido correctamente eliminadas de %(site)s"
 
 #: admin.py:129
 msgid "Remove all photos in selected galleries from the current site"
@@ -103,7 +93,8 @@ msgstr "Agregar las fotos seleccionadas al sitio actual"
 #: admin.py:201
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgid_plural ""
+"The selected photos have been successfully removed from %(site)s"
 msgstr[0] "La foto ha sido eliminada correctamente de %(site)s"
 msgstr[1] "Las fotos han sido correctamente eliminadas de %(site)s"
 
@@ -113,15 +104,11 @@ msgstr "Eliminar la foto seleccionada del sitio actual"
 
 #: models.py:57
 msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr ""
-"Separe los tags con espacios y ponga comillas para los tags con múltiples "
-"palabras."
+msgstr "Separe los tags con espacios y ponga comillas para los tags con múltiples palabras."
 
 #: models.py:68
 msgid "Django-tagging was not found, tags will be treated as plain text."
-msgstr ""
-"No se encontró Django-tagging, por lo que los tags se tratarán como texto "
-"plano."
+msgstr "No se encontró Django-tagging, por lo que los tags se tratarán como texto plano."
 
 #: models.py:117
 msgid "Very Low"
@@ -202,13 +189,10 @@ msgstr "Escalar"
 #: models.py:156
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
-msgstr ""
-"Encadene múltiples filtros usando el siguiente patrón \"FILTRO_UNO-"
-">FILTRO_DOS->FILTRO_TRES\". Los filtros de imagen se aplicarán en orden. Los "
-"siguientes filtros están disponibles: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
+msgstr "Encadene múltiples filtros usando el siguiente patrón \"FILTRO_UNO->FILTRO_DOS->FILTRO_TRES\". Los filtros de imagen se aplicarán en orden. Los siguientes filtros están disponibles: %s."
 
 #: models.py:161
 msgid "date published"
@@ -274,17 +258,13 @@ msgstr "Seleccione un archivo .zip de imágenes para subir a la nueva galería."
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
 "sequential number."
-msgstr ""
-"A todas las fotos subidas se les cambiará el título por este título + un "
-"número secuencial"
+msgstr "A todas las fotos subidas se les cambiará el título por este título + un número secuencial"
 
 #: models.py:262
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
-"Seleccione una galería para agregarle estas imágenes. Déjelo vacío para "
-"crear una nueva galería a partir de este título."
+msgstr "Seleccione una galería para agregarle estas imágenes. Déjelo vacío para crear una nueva galería a partir de este título."
 
 #: models.py:264 models.py:652
 msgid "caption"
@@ -301,9 +281,7 @@ msgstr "Una descripción para esta galería."
 #: models.py:272
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Desactive esto para hacer que la galería subida y fotos incluidas sean "
-"privadas."
+msgstr "Desactive esto para hacer que la galería subida y fotos incluidas sean privadas."
 
 #: models.py:280
 msgid "gallery upload"
@@ -319,25 +297,20 @@ msgstr "Ya existe una galería con ese título."
 
 #: models.py:297
 msgid "Select an existing gallery or enter a new gallery name."
-msgstr ""
-"Seleccione una galería existente o ingrese un nuevo nombre para la galería."
+msgstr "Seleccione una galería existente o ingrese un nuevo nombre para la galería."
 
 #: models.py:333
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
-msgstr ""
-"Ignorando archivos \"{filename}\" por estar en subcarpetas, todas las "
-"imágenes deben estar en la carpeta de primer nivel del zip."
+msgstr "Ignorando archivos \"{filename}\" por estar en subcarpetas, todas las imágenes deben estar en la carpeta de primer nivel del zip."
 
 #: models.py:353
 #, python-format
 msgid ""
-"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that "
-"slug already exists."
-msgstr ""
-"No se creó \"%(filename)s\" con slug \"{1}\" porque una foto con ese slug ya "
-"existe."
+"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that"
+" slug already exists."
+msgstr "No se creó \"%(filename)s\" con slug \"{1}\" porque una foto con ese slug ya existe."
 
 #: models.py:379
 msgid "Could not process file \"{0}\" in the .zip archive."
@@ -403,9 +376,7 @@ msgstr "color"
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr ""
-"Un factor de 0.0 proporciona una imagen blanca y negra. Un factor de 1.0 "
-"proporciona la imagen original."
+msgstr "Un factor de 0.0 proporciona una imagen blanca y negra. Un factor de 1.0 proporciona la imagen original."
 
 #: models.py:809
 msgid "brightness"
@@ -415,9 +386,7 @@ msgstr "iluminación"
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Un factor de 0.0 proporciona una imagen negra. Un factor de 1.0 proporciona "
-"la imagen original."
+msgstr "Un factor de 0.0 proporciona una imagen negra. Un factor de 1.0 proporciona la imagen original."
 
 #: models.py:812
 msgid "contrast"
@@ -425,11 +394,9 @@ msgstr "contraste"
 
 #: models.py:814
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
-msgstr ""
-"Un factor de 0.0 proporciona una imagen sólida gris. Un factor de 1.0 "
-"proporciona la imagen original."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
+msgstr "Un factor de 0.0 proporciona una imagen sólida gris. Un factor de 1.0 proporciona la imagen original."
 
 #: models.py:815
 msgid "sharpness"
@@ -439,9 +406,7 @@ msgstr "Resaltado"
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Un factor de 0.0 proporciona una imagen desenfocada, un factor de 1.0 "
-"proporciona la imagen original."
+msgstr "Un factor de 0.0 proporciona una imagen desenfocada, un factor de 1.0 proporciona la imagen original."
 
 #: models.py:818
 msgid "filters"
@@ -456,10 +421,7 @@ msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr ""
-"La altura de la reflexión como porcentaje de la imagen original. Un factor "
-"de 0.0 no da ninguna reflexión, un factor de 1.0 añade una reflexión igual a "
-"la altura de la imagen original."
+msgstr "La altura de la reflexión como porcentaje de la imagen original. Un factor de 0.0 no da ninguna reflexión, un factor de 1.0 añade una reflexión igual a la altura de la imagen original."
 
 #: models.py:825
 msgid "strength"
@@ -473,9 +435,7 @@ msgstr "La opacidad inicial del gradiente de reflexión."
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr ""
-"El color de fondo del gradiente de reflexión. Establezca esto para hacer "
-"coincidir el color de fondo con el color de tu página."
+msgstr "El color de fondo del gradiente de reflexión. Establezca esto para hacer coincidir el color de fondo con el color de tu página."
 
 #: models.py:834 models.py:931
 msgid "photo effect"
@@ -509,31 +469,23 @@ msgstr "marcas de agua"
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"El nombre del tamaño solo puede contener letras, números y subrayados. Por "
-"ejemplo:\"miniaturas\", \"muestra\", \"muestra_principal\"."
+msgstr "El nombre del tamaño solo puede contener letras, números y subrayados. Por ejemplo:\"miniaturas\", \"muestra\", \"muestra_principal\"."
 
 #: models.py:905
 msgid "width"
 msgstr "anchura"
 
 #: models.py:907
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr ""
-"Si la anchura se establece a \"0\" la imagen será escalada hasta la altura "
-"proporcionada"
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Si la anchura se establece a \"0\" la imagen será escalada hasta la altura proporcionada"
 
 #: models.py:908
 msgid "height"
 msgstr "altura"
 
 #: models.py:910
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr ""
-"Si la altura se establece a \"0\" la imagen será escalada hasta la anchura "
-"proporcionada"
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Si la altura se establece a \"0\" la imagen será escalada hasta la anchura proporcionada"
 
 #: models.py:911
 msgid "quality"
@@ -551,10 +503,7 @@ msgstr "¿Aumentar imágenes?"
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr ""
-"Si se selecciona la imagen será aumentada si es necesario para ajustarse a "
-"las dimensiones proporcionadas. Los tamaños recortados serán aumentados de "
-"acuerdo a esta opción."
+msgstr "Si se selecciona la imagen será aumentada si es necesario para ajustarse a las dimensiones proporcionadas. Los tamaños recortados serán aumentados de acuerdo a esta opción."
 
 #: models.py:918
 msgid "crop to fit?"
@@ -564,9 +513,7 @@ msgstr "¿Recortar hasta ajustar?"
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr ""
-"Si se selecciona la imagen será escalada y recortada para ajustarse a las "
-"dimensiones proporcionadas."
+msgstr "Si se selecciona la imagen será escalada y recortada para ajustarse a las dimensiones proporcionadas."
 
 #: models.py:921
 msgid "pre-cache?"
@@ -574,9 +521,7 @@ msgstr "¿pre-cachear?"
 
 #: models.py:923
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr ""
-"Si se selecciona, este tamaño de foto será pre-cacheado cuando se añadan "
-"nuevas fotos."
+msgstr "Si se selecciona, este tamaño de foto será pre-cacheado cuando se añadan nuevas fotos."
 
 #: models.py:924
 msgid "increment view count?"
@@ -586,9 +531,7 @@ msgstr "¿incrementar contador de visualizaciones?"
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr ""
-"Si se selecciona el \"contador de visualizaciones\" se incrementará cuando "
-"esta foto sea visualizada."
+msgstr "Si se selecciona el \"contador de visualizaciones\" se incrementará cuando esta foto sea visualizada."
 
 #: models.py:936
 msgid "watermark image"
@@ -614,7 +557,7 @@ msgstr "Últimas galerías de fotos."
 #: templates/photologue/gallery_archive.html:14
 #: templates/photologue/photo_archive.html:16
 msgid "Filter by year"
-msgstr ""
+msgstr "Filtrar por año"
 
 #: templates/photologue/gallery_archive.html:30
 #: templates/photologue/gallery_list.html:30
@@ -625,46 +568,43 @@ msgstr "No se encontraron galerías"
 #: templates/photologue/gallery_archive_day.html:8
 #, python-format
 msgid "Galleries for %(show_day)s"
-msgstr ""
+msgstr "Galerías por  %(show_day)s"
 
 #: templates/photologue/gallery_archive_day.html:15
 #: templates/photologue/gallery_archive_month.html:30
 #: templates/photologue/gallery_archive_year.html:30
-#, fuzzy
 msgid "No galleries were found."
 msgstr "No se encontraron galerías"
 
 #: templates/photologue/gallery_archive_day.html:19
-#, fuzzy
 msgid "View all galleries for month"
-msgstr "Ver todas las galerías"
+msgstr "Ver todas las galerías por mes"
 
 #: templates/photologue/gallery_archive_month.html:4
 #: templates/photologue/gallery_archive_month.html:9
 #, python-format
 msgid "Galleries for %(show_month)s"
-msgstr ""
+msgstr "Galerías para %(show_month)s"
 
 #: templates/photologue/gallery_archive_month.html:14
 #: templates/photologue/photo_archive_month.html:14
 msgid "Filter by day"
-msgstr ""
+msgstr "Filtrar por día"
 
 #: templates/photologue/gallery_archive_month.html:34
-#, fuzzy
 msgid "View all galleries for year"
-msgstr "Ver todas las galerías"
+msgstr "Ver todas las galerías por año"
 
 #: templates/photologue/gallery_archive_year.html:4
 #: templates/photologue/gallery_archive_year.html:9
 #, python-format
 msgid "Galleries for %(show_year)s"
-msgstr ""
+msgstr "Galerías por %(show_year)s"
 
 #: templates/photologue/gallery_archive_year.html:14
 #: templates/photologue/photo_archive_year.html:15
 msgid "Filter by month"
-msgstr ""
+msgstr "Filtrar por mes"
 
 #: templates/photologue/gallery_archive_year.html:34
 #: templates/photologue/gallery_detail.html:20
@@ -685,49 +625,46 @@ msgstr "Todas las Galerías"
 
 #: templates/photologue/photo_archive.html:4
 #: templates/photologue/photo_archive.html:10
-#, fuzzy
 msgid "Latest Photos"
-msgstr "Últimas galerías de fotos."
+msgstr "Últimas fotos"
 
 #: templates/photologue/photo_archive.html:36
 #: templates/photologue/photo_archive_day.html:19
 #: templates/photologue/photo_archive_month.html:34
 #: templates/photologue/photo_archive_year.html:35
 #: templates/photologue/photo_list.html:23
-#, fuzzy
 msgid "No photos were found"
-msgstr "No se encontraron galerías"
+msgstr "No se encontraron fotos"
 
 #: templates/photologue/photo_archive_day.html:4
 #: templates/photologue/photo_archive_day.html:8
 #, python-format
 msgid "Photos for %(show_day)s"
-msgstr ""
+msgstr "Fotos por %(show_day)s"
 
 #: templates/photologue/photo_archive_day.html:23
 msgid "View all photos for month"
-msgstr ""
+msgstr "Ver todas las fotos por mes"
 
 #: templates/photologue/photo_archive_month.html:4
 #: templates/photologue/photo_archive_month.html:9
 #, python-format
 msgid "Photos for %(show_month)s"
-msgstr ""
+msgstr "Fotos por %(show_month)s"
 
 #: templates/photologue/photo_archive_month.html:38
 msgid "View all photos for year"
-msgstr ""
+msgstr "Ver todas las fotos por año"
 
 #: templates/photologue/photo_archive_year.html:4
 #: templates/photologue/photo_archive_year.html:10
 #, python-format
 msgid "Photos for %(show_year)s"
-msgstr ""
+msgstr "Fotos por  %(show_year)s"
 
 #: templates/photologue/photo_archive_year.html:39
-#, fuzzy
 msgid "View all photos"
-msgstr "Ver todas las galerías"
+msgstr "Ver todas las fotos"
 
 #: templates/photologue/photo_detail.html:21
 msgid "This photo is found in the following galleries"
@@ -735,9 +672,8 @@ msgstr "Esta foto se encontró en las siguientes galerías"
 
 #: templates/photologue/photo_list.html:4
 #: templates/photologue/photo_list.html:10
-#, fuzzy
 msgid "All Photos"
-msgstr "fotos"
+msgstr "Todas las fotos"
 
 #: templates/photologue/includes/paginator.html:5
 #: templates/photologue/includes/paginator.html:7
@@ -745,15 +681,12 @@ msgid "Previous"
 msgstr "Anterior"
 
 #: templates/photologue/includes/paginator.html:10
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t"
-msgstr ""
-"\n"
-"⇥⇥⇥⇥ página %(page_number)s de %(total_pages)s\n"
-"⇥⇥⇥⇥"
+msgstr "\nPágina %(page_number)s de %(total_pages)s"
 
 #: templates/photologue/includes/paginator.html:15
 #: templates/photologue/includes/paginator.html:17
