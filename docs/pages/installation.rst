@@ -29,14 +29,6 @@ Photologue works with Python 3 (3.3 or later). You'll need Django version
 
 Dependencies
 ------------
-
-.. warning::
-
-    IF YOU'RE USING POSTGRESQL AS A DATABASE & DJANGO 1.7, THE LATEST RELEASE OF DJANGO-SORTEDM2M HAS A BUG. INSTEAD, YOU'LL HAVE TO MANUALLY INSTALL::
-
-        pip install -e git://github.com/richardbarran/django-sortedm2m.git@9a609a1c6b790a40a016e4ceadedbb6dd6b92010#egg=sortedm2m
-
-
 4 apps that will be installed automatically if required.
 
 * `Django <https://www.djangoproject.com/>`_.

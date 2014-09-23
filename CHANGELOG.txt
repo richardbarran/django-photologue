@@ -4,6 +4,7 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Updated django-sortedm2m to an official release.
 - Updated Bootstrap version used in example project.
 
 
