@@ -15,8 +15,8 @@ Django-photologue
 A powerful image management and gallery application for the Django web framework. Upload photos, group them into
 galleries, apply effects such as watermarks.
 
-Examples
---------
+Examples & demo website
+-----------------------
 We have some `examples of sites using Photologue <https://github.com/jdriscoll/django-photologue/wiki/Examples-and-forks>`_ on our wiki.
 
 We also have a `demo website <http://www.django-photologue.net/>`_.
