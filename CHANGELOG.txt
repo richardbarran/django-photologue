@@ -5,7 +5,7 @@ Changelog
 ----------------
 
 - Nothing changed yet.
-
+- Normalize filenames to ASCII so they work across all filesystems.
 
 3.0.2 (2014-09-23)
 ------------------
