@@ -155,6 +155,8 @@ for n in dir(ImageFilter):
 IMAGE_FILTERS_HELP_TEXT = _(
     'Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
+size_method_map = {}
+
 
 @python_2_unicode_compatible
 class Gallery(models.Model):
@@ -490,16 +492,17 @@ class ImageModel(models.Model):
         self.view_count += 1
         models.Model.save(self)
 
-    def add_accessor_methods(self, *args, **kwargs):
-        for size in PhotoSizeCache().sizes.keys():
-            setattr(self, 'get_%s_size' % size,
-                    curry(self._get_SIZE_size, size=size))
-            setattr(self, 'get_%s_photosize' % size,
-                    curry(self._get_SIZE_photosize, size=size))
-            setattr(self, 'get_%s_url' % size,
-                    curry(self._get_SIZE_url, size=size))
-            setattr(self, 'get_%s_filename' % size,
-                    curry(self._get_SIZE_filename, size=size))
+    def __getattr__(self, name):
+        global size_method_map
+        if not size_method_map:
+            init_size_method_map()
+        di = size_method_map.get(name, None)
+        if di is not None:
+            result = curry(getattr(self, di['base_name']), di['size'])
+            setattr(self, name, result)
+            return result
+        else:
+            raise AttributeError
 
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_filename" % photosize.name, None)
@@ -987,19 +990,22 @@ class PhotoSizeCache(object):
                 self.sizes[size.name] = size
 
     def reset(self):
+        global size_method_map
+        size_method_map = {}
         self.sizes = {}
 
 
-# Set up the accessor methods
-def add_methods(sender, instance, signal, *args, **kwargs):
-    """ Adds methods to access sized images (urls, paths)
-
-    after the Photo model's __init__ function completes,
-    this method calls "add_accessor_methods" on each instance.
-    """
-    if hasattr(instance, 'add_accessor_methods'):
-        instance.add_accessor_methods()
-post_init.connect(add_methods)
+def init_size_method_map():
+    global size_method_map
+    for size in PhotoSizeCache().sizes.keys():
+        size_method_map['get_%s_size' % size] = \
+            {'base_name': '_get_SIZE_size', 'size': size}
+        size_method_map['get_%s_photosize' % size] = \
+            {'base_name': '_get_SIZE_photosize', 'size': size}
+        size_method_map['get_%s_url' % size] = \
+            {'base_name': '_get_SIZE_url', 'size': size}
+        size_method_map['get_%s_filename' % size] = \
+            {'base_name': '_get_SIZE_filename', 'size': size}
 
 
 def add_default_site(instance, created, **kwargs):
