@@ -1,8 +1,9 @@
 import os
 from django.conf import settings
+from django.core.files.base import ContentFile
 from ..models import Image, Photo, PHOTOLOGUE_DIR
 from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
-    GalleryFactory, PhotoFactory
+    UNICODE_IMAGE_PATH, NONSENSE_IMAGE_PATH, GalleryFactory, PhotoFactory
 from .helpers import PhotologueBaseTest
 
 
@@ -192,3 +193,30 @@ class PreviousNextTest(PhotologueBaseTest):
                                  self.test_gallery)
 
         self.pl4.delete()
+
+
+class ImageModelTest(PhotologueBaseTest):
+
+    def setUp(self):
+        super(ImageModelTest, self).setUp()
+
+        # Unicode image has unicode in the path
+        #self.pu = TestPhoto(name='portrait')
+        self.pu = PhotoFactory()
+        self.pu.image.save(os.path.basename(UNICODE_IMAGE_PATH),
+                           ContentFile(open(UNICODE_IMAGE_PATH, 'rb').read()))
+
+        # Nonsense image contains nonsense
+        #self.pn = TestPhoto(name='portrait')
+        self.pn = PhotoFactory()
+        self.pn.image.save(os.path.basename(NONSENSE_IMAGE_PATH),
+                           ContentFile(open(NONSENSE_IMAGE_PATH, 'rb').read()))
+
+    def tearDown(self):
+        super(ImageModelTest, self).tearDown()
+        self.pu.delete()
+        self.pn.delete()
+
+    def test_create_size(self):
+        """Nonsense image must not break scaling"""
+        self.pn.create_size(self.s)

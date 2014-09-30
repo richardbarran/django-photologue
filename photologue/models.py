@@ -6,6 +6,7 @@ from inspect import isclass
 import warnings
 import logging
 from io import BytesIO
+import unicodedata
 try:
     from importlib import import_module
 except ImportError:
@@ -22,7 +23,8 @@ from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
-from django.utils.encoding import force_text, smart_str, filepath_to_uri
+from django.utils.encoding import force_text, smart_str, filepath_to_uri, \
+    force_unicode
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
@@ -110,7 +112,8 @@ if PHOTOLOGUE_PATH is not None:
         get_storage_path = getattr(module, parts[-1])
 else:
     def get_storage_path(instance, filename):
-        return os.path.join(PHOTOLOGUE_DIR, 'photos', filename)
+        fn = unicodedata.normalize('NFKD', force_unicode(filename)).encode('ascii', 'ignore')
+        return os.path.join(PHOTOLOGUE_DIR, 'photos', fn)
 
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
