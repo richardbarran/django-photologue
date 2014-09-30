@@ -112,7 +112,8 @@ if PHOTOLOGUE_PATH is not None:
         get_storage_path = getattr(module, parts[-1])
 else:
     def get_storage_path(instance, filename):
-        fn = unicodedata.normalize('NFKD', force_unicode(filename)).encode('ascii', 'ignore')
+        fn = unicodedata.normalize('NFKD', force_unicode(filename)).encode(
+            'ascii', 'ignore')
         return os.path.join(PHOTOLOGUE_DIR, 'photos', fn)
 
 # Quality options for JPEG images
