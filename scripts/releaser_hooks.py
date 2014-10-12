@@ -15,6 +15,10 @@ def prereleaser_middle(data):
     print('Running unit tests.')
     subprocess.check_output(["python", "example_project/manage.py", "test", "photologue"])
 
+    print('Running PEP8 check.')
+    # See setup.cfg for configuration options.
+    subprocess.check_output(["pep8"])
+
     print('Updating CONTRIBUTORS.txt')
 
     # This command will get the author of every commit.
