@@ -48,7 +48,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
         """
         Associates the object with the current site unless ``sites`` was passed,
         in which case the each item in ``sites`` is associated with the object.
-        
+
         Note that if PHOTOLOGUE_MULTISITE is False, all Gallery/Photos are automatically
         associated with the current site - bear this in mind when writing tests.
         """
@@ -91,7 +91,7 @@ class PhotoFactory(ImageModelFactory):
         """
         Associates the object with the current site unless ``sites`` was passed,
         in which case the each item in ``sites`` is associated with the object.
-        
+
         Note that if PHOTOLOGUE_MULTISITE is False, all Gallery/Photos are automatically
         associated with the current site - bear this in mind when writing tests.
         """

@@ -55,7 +55,7 @@ def prereleaser_middle(data):
         if author_copy == 'richardbarran':
             author_copy = 'Richard Barran'
 
-        if contributors_dict.has_key(author_copy):
+        if author_copy in contributors_dict:
             contributors_dict[author_copy] += 1
         else:
             contributors_dict[author_copy] = 1

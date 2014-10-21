@@ -61,7 +61,7 @@ class PhotoTest(PhotologueBaseTest):
         self.assertEqual(self.pl.get_testPhotoSize_photosize(), self.s)
         self.assertEqual(self.pl.get_testPhotoSize_size(),
                          Image.open(self.pl.image.storage.open(
-                            self.pl.get_testPhotoSize_filename())).size)
+                             self.pl.get_testPhotoSize_filename())).size)
         self.assertEqual(self.pl.get_testPhotoSize_url(),
                          self.pl.cache_url() + '/' +
                          self.pl._get_filename_for_size(self.s))

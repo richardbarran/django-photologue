@@ -15,7 +15,7 @@ except ImportError:
 import django
 from django.utils.timezone import now
 from django.db import models
-from django.db.models.signals import post_init, post_save
+from django.db.models.signals import post_save
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -45,7 +45,8 @@ except ImportError:
         from PIL import ImageEnhance
     except ImportError:
         raise ImportError(
-            'Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available on your current Python path.')
+            'Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available '
+            'on your current Python path.')
 
 from sortedm2m.fields import SortedManyToManyField
 from model_utils.managers import PassThroughManager
@@ -90,7 +91,7 @@ IMAGE_FIELD_MAX_LENGTH = getattr(settings, 'PHOTOLOGUE_IMAGE_FIELD_MAX_LENGTH', 
 
 # Path to sample image
 SAMPLE_IMAGE_PATH = getattr(settings, 'PHOTOLOGUE_SAMPLE_IMAGE_PATH', os.path.join(
-    os.path.dirname(__file__), 'res', 'sample.jpg'))  # os.path.join(settings.PROJECT_PATH, 'photologue', 'res', 'sample.jpg'
+    os.path.dirname(__file__), 'res', 'sample.jpg'))
 
 # Modify image file buffer size.
 ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
@@ -150,10 +151,11 @@ filter_names = []
 for n in dir(ImageFilter):
     klass = getattr(ImageFilter, n)
     if isclass(klass) and issubclass(klass, ImageFilter.BuiltinFilter) and \
-        hasattr(klass, 'name'):
+            hasattr(klass, 'name'):
         filter_names.append(klass.__name__)
-IMAGE_FILTERS_HELP_TEXT = _(
-    'Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
+IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE"'
+                            '. Image filters will be applied in order. The following filters are available: %s.'
+                            % (', '.join(filter_names)))
 
 size_method_map = {}
 
@@ -173,7 +175,7 @@ class Gallery(models.Model):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public galleries will be displayed '
-                                    'in the default views.'))
+                                                'in the default views.'))
     photos = SortedManyToManyField('Photo',
                                    related_name='galleries',
                                    verbose_name=_('photos'),
@@ -379,8 +381,8 @@ class GalleryUpload(models.Model):
                     if getattr(self, 'request', None):
                         messages.warning(self.request,
                                          _('Could not process file "{0}" in the .zip archive.').format(
-                                         filename,
-                                         fail_silently=True))
+                                             filename,
+                                             fail_silently=True))
                     continue
 
                 contentfile = ContentFile(data)
@@ -632,8 +634,8 @@ class ImageModel(models.Model):
         self.pre_cache()
 
     def delete(self):
-        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (
-            self._meta.object_name, self._meta.pk.attname)
+        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % \
+            (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
         # Files associated to a FileField have to be manually deleted:
         # https://docs.djangoproject.com/en/dev/releases/1.3/#deleting-a-model-doesn-t-delete-associated-files
@@ -693,7 +695,7 @@ class Photo(ImageModel):
         if not self.is_public:
             raise ValueError('Cannot determine neighbours of a non-public photo.')
         photos = gallery.photos.is_public()
-        if not self in photos:
+        if self not in photos:
             raise ValueError('Photo does not belong to gallery.')
         previous = None
         for photo in photos:
@@ -708,7 +710,7 @@ class Photo(ImageModel):
         if not self.is_public:
             raise ValueError('Cannot determine neighbours of a non-public photo.')
         photos = gallery.photos.is_public()
-        if not self in photos:
+        if self not in photos:
             raise ValueError('Photo does not belong to gallery.')
         matched = False
         for photo in photos:
@@ -808,30 +810,37 @@ class PhotoEffect(BaseEffect):
                                         choices=IMAGE_TRANSPOSE_CHOICES)
     color = models.FloatField(_('color'),
                               default=1.0,
-                              help_text=_("A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image."))
+                              help_text=_('A factor of 0.0 gives a black and white image, a factor of 1.0 gives the '
+                                          'original image.'))
     brightness = models.FloatField(_('brightness'),
                                    default=1.0,
-                                   help_text=_("A factor of 0.0 gives a black image, a factor of 1.0 gives the original image."))
+                                   help_text=_('A factor of 0.0 gives a black image, a factor of 1.0 gives the '
+                                               'original image.'))
     contrast = models.FloatField(_('contrast'),
                                  default=1.0,
-                                 help_text=_("A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image."))
+                                 help_text=_('A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the '
+                                             'original image.'))
     sharpness = models.FloatField(_('sharpness'),
                                   default=1.0,
-                                  help_text=_("A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image."))
+                                  help_text=_('A factor of 0.0 gives a blurred image, a factor of 1.0 gives the '
+                                              'original image.'))
     filters = models.CharField(_('filters'),
                                max_length=200,
                                blank=True,
                                help_text=_(IMAGE_FILTERS_HELP_TEXT))
     reflection_size = models.FloatField(_('size'),
                                         default=0,
-                                        help_text=_("The height of the reflection as a percentage of the orignal image. A factor of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the height of the orignal image."))
+                                        help_text=_('The height of the reflection as a percentage of the orignal '
+                                                    'image. A factor of 0.0 adds no reflection, a factor of 1.0 adds a'
+                                                    ' reflection equal to the height of the orignal image.'))
     reflection_strength = models.FloatField(_('strength'),
                                             default=0.6,
-                                            help_text=_("The initial opacity of the reflection gradient."))
+                                            help_text=_('The initial opacity of the reflection gradient.'))
     background_color = models.CharField(_('color'),
                                         max_length=7,
                                         default="#FFFFFF",
-                                        help_text=_("The background color of the reflection gradient. Set this to match the background color of your page."))
+                                        help_text=_('The background color of the reflection gradient. Set this to '
+                                                    'match the background color of your page.'))
 
     class Meta:
         verbose_name = _("photo effect")
@@ -879,8 +888,8 @@ class Watermark(BaseEffect):
         verbose_name_plural = _('watermarks')
 
     def delete(self):
-        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (
-            self._meta.object_name, self._meta.pk.attname)
+        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." \
+            % (self._meta.object_name, self._meta.pk.attname)
         super(Watermark, self).delete()
         self.image.storage.delete(self.image.name)
 
@@ -900,33 +909,42 @@ class PhotoSize(models.Model):
                             max_length=40,
                             unique=True,
                             help_text=_(
-                                'Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".'),
+                                'Photo size name should contain only letters, numbers and underscores. Examples: '
+                                '"thumbnail", "display", "small", "main_page_widget".'),
                             validators=[RegexValidator(regex='^[a-z0-9_]+$',
-                                                       message='Use only plain lowercase letters (ASCII), numbers and underscores.'
+                                                       message='Use only plain lowercase letters (ASCII), numbers and '
+                                                       'underscores.'
                                                        )]
                             )
     width = models.PositiveIntegerField(_('width'),
                                         default=0,
-                                        help_text=_('If width is set to "0" the image will be scaled to the supplied height.'))
+                                        help_text=_(
+                                            'If width is set to "0" the image will be scaled to the supplied height.'))
     height = models.PositiveIntegerField(_('height'),
                                          default=0,
-                                         help_text=_('If height is set to "0" the image will be scaled to the supplied width'))
+                                         help_text=_(
+        'If height is set to "0" the image will be scaled to the supplied width'))
     quality = models.PositiveIntegerField(_('quality'),
                                           choices=JPEG_QUALITY_CHOICES,
                                           default=70,
                                           help_text=_('JPEG image quality.'))
     upscale = models.BooleanField(_('upscale images?'),
                                   default=False,
-                                  help_text=_('If selected the image will be scaled up if necessary to fit the supplied dimensions. Cropped sizes will be upscaled regardless of this setting.'))
+                                  help_text=_('If selected the image will be scaled up if necessary to fit the '
+                                              'supplied dimensions. Cropped sizes will be upscaled regardless of this '
+                                              'setting.')
+                                  )
     crop = models.BooleanField(_('crop to fit?'),
                                default=False,
-                               help_text=_('If selected the image will be scaled and cropped to fit the supplied dimensions.'))
+                               help_text=_('If selected the image will be scaled and cropped to fit the supplied '
+                                           'dimensions.'))
     pre_cache = models.BooleanField(_('pre-cache?'),
                                     default=False,
                                     help_text=_('If selected this photo size will be pre-cached as photos are added.'))
     increment_count = models.BooleanField(_('increment view count?'),
                                           default=False,
-                                          help_text=_('If selected the image\'s "view_count" will be incremented when this photo size is displayed.'))
+                                          help_text=_('If selected the image\'s "view_count" will be incremented when '
+                                                      'this photo size is displayed.'))
     effect = models.ForeignKey('PhotoEffect',
                                null=True,
                                blank=True,
@@ -966,8 +984,8 @@ class PhotoSize(models.Model):
         self.clear_cache()
 
     def delete(self):
-        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % (
-            self._meta.object_name, self._meta.pk.attname)
+        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." \
+            % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
         super(PhotoSize, self).delete()
 
