@@ -6,6 +6,7 @@ Changelog
 
 - Refactor `add_accessor_methods` to be lazily applied (see #110).
 - Updated German translation.
+- Several improvements to the sample Bootstrap templates.
 
 3.0.2 (2014-09-23)
 ------------------

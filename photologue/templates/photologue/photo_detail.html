@@ -5,19 +5,20 @@
 
 {% block content %}
 
+    <div class="row col-lg-12">
+        <h1 class="page-header">{{ object.title }}</h1>
+        <p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
+    </div>
+
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{ object.title }}</h1>
-
+        <div class="col-md-6">
 		    {% if object.caption %}<p>{{ object.caption|safe }}</p>{% endif %}
-		    <p class="muted"><small>{% trans "Published" %} {{ object.date_added }}</small></p>
-
 		    <a href="{{ object.image.url }}">
 		        <img src="{{ object.get_display_url }}" class="thumbnail" alt="{{ object.title }}">
 		    </a>
-
+        </div>
+        <div class="col-md-6">
             {% if object.public_galleries %}
-                <hr>            
                 <p>{% trans "This photo is found in the following galleries" %}:</p>
                 <table>
                     {% for gallery in object.public_galleries %}
