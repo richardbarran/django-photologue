@@ -9,6 +9,7 @@ Changelog
 - Several improvements to the sample Bootstrap templates.
 - Support CACHEDIR.TAG spec issue #89
 - Fix issue #99 by adding 10 extra char to photo title(max gallery size up to 999999999 images)
+- Sitemap.xml was not aware of Sites (#104).
 
 3.0.2 (2014-09-23)
 ------------------

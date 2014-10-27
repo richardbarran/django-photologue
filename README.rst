@@ -12,6 +12,9 @@ Django-photologue
 .. image:: https://travis-ci.org/jdriscoll/django-photologue.svg?branch=master
     :target: https://travis-ci.org/jdriscoll/django-photologue
 
+.. image:: https://coveralls.io/repos/jdriscoll/django-photologue/badge.png
+  :target: https://coveralls.io/r/jdriscoll/django-photologue
+
 A powerful image management and gallery application for the Django web framework. Upload photos, group them into
 galleries, apply effects such as watermarks.
 
