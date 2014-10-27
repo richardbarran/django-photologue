@@ -1,10 +1,10 @@
 import os
 from django.conf import settings
-from ..models import Image, Photo, PHOTOLOGUE_DIR
+from django.core.files.storage import default_storage
+from ..models import Image, Photo, PHOTOLOGUE_DIR, PHOTOLOGUE_CACHEDIRTAG
 from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
     GalleryFactory, PhotoFactory
 from .helpers import PhotologueBaseTest
-
 
 class PhotoTest(PhotologueBaseTest):
 
@@ -32,6 +32,12 @@ class PhotoTest(PhotologueBaseTest):
                                                        'cache')).lower())
         self.assertEqual(self.pl.cache_url(),
                          settings.MEDIA_URL + PHOTOLOGUE_DIR + '/photos/cache')
+
+    def test_cachedir_tag(self):
+        self.assertTrue(default_storage.exists(PHOTOLOGUE_CACHEDIRTAG))
+
+        content = default_storage.open(PHOTOLOGUE_CACHEDIRTAG).read()
+        self.assertEquals(content,b"Signature: 8a477f597d28d172789f06886806bc55")
 
     def test_count(self):
         for i in range(5):

@@ -113,6 +113,12 @@ else:
     def get_storage_path(instance, filename):
         return os.path.join(PHOTOLOGUE_DIR, 'photos', filename)
 
+# Support CACHEDIR.TAG spec for backups for ignoring cache dir.
+# See http://www.brynosaurus.com/cachedir/spec.html
+PHOTOLOGUE_CACHEDIRTAG = os.path.join(PHOTOLOGUE_DIR,"photos","cache","CACHEDIR.TAG")
+if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
+    default_storage.save(PHOTOLOGUE_CACHEDIRTAG, ContentFile("Signature: 8a477f597d28d172789f06886806bc55"))
+
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
     (30, _('Very Low')),
