@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 20:26+0000\n"
+"POT-Creation-Date: 2014-10-27 08:41+0000\n"
 "PO-Revision-Date: 2014-09-15 14:42+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/django-"
@@ -565,32 +565,32 @@ msgstr ""
 
 #: templates/photologue/gallery_archive.html:4
 #: templates/photologue/gallery_archive.html:9
-msgid "Latest Photo Galleries"
+msgid "Latest photo galleries"
 msgstr ""
 
-#: templates/photologue/gallery_archive.html:14
+#: templates/photologue/gallery_archive.html:16
 #: templates/photologue/photo_archive.html:16
 msgid "Filter by year"
 msgstr ""
 
-#: templates/photologue/gallery_archive.html:30
-#: templates/photologue/gallery_list.html:30
+#: templates/photologue/gallery_archive.html:32
+#: templates/photologue/gallery_list.html:26
 msgid "No galleries were found"
 msgstr ""
 
 #: templates/photologue/gallery_archive_day.html:4
-#: templates/photologue/gallery_archive_day.html:8
+#: templates/photologue/gallery_archive_day.html:9
 #, python-format
 msgid "Galleries for %(show_day)s"
 msgstr ""
 
-#: templates/photologue/gallery_archive_day.html:15
-#: templates/photologue/gallery_archive_month.html:30
-#: templates/photologue/gallery_archive_year.html:30
+#: templates/photologue/gallery_archive_day.html:18
+#: templates/photologue/gallery_archive_month.html:32
+#: templates/photologue/gallery_archive_year.html:32
 msgid "No galleries were found."
 msgstr ""
 
-#: templates/photologue/gallery_archive_day.html:19
+#: templates/photologue/gallery_archive_day.html:22
 msgid "View all galleries for month"
 msgstr ""
 
@@ -600,12 +600,12 @@ msgstr ""
 msgid "Galleries for %(show_month)s"
 msgstr ""
 
-#: templates/photologue/gallery_archive_month.html:14
-#: templates/photologue/photo_archive_month.html:14
+#: templates/photologue/gallery_archive_month.html:16
+#: templates/photologue/photo_archive_month.html:16
 msgid "Filter by day"
 msgstr ""
 
-#: templates/photologue/gallery_archive_month.html:34
+#: templates/photologue/gallery_archive_month.html:35
 msgid "View all galleries for year"
 msgstr ""
 
@@ -615,48 +615,50 @@ msgstr ""
 msgid "Galleries for %(show_year)s"
 msgstr ""
 
-#: templates/photologue/gallery_archive_year.html:14
-#: templates/photologue/photo_archive_year.html:15
+#: templates/photologue/gallery_archive_year.html:16
+#: templates/photologue/photo_archive_year.html:17
 msgid "Filter by month"
 msgstr ""
 
-#: templates/photologue/gallery_archive_year.html:34
-#: templates/photologue/gallery_detail.html:20
+#: templates/photologue/gallery_archive_year.html:35
+#: templates/photologue/gallery_detail.html:17
 msgid "View all galleries"
 msgstr ""
 
-#: templates/photologue/gallery_detail.html:11
-#: templates/photologue/gallery_list.html:19
-#: templates/photologue/photo_detail.html:13
+#: templates/photologue/gallery_detail.html:10
+#: templates/photologue/gallery_list.html:16
+#: templates/photologue/photo_detail.html:10
 #: templates/photologue/includes/gallery_sample.html:8
 msgid "Published"
 msgstr ""
 
 #: templates/photologue/gallery_list.html:4
-#: templates/photologue/gallery_list.html:10
-msgid "All Galleries"
-msgstr ""
+#: templates/photologue/gallery_list.html:9
+#, fuzzy
+msgid "All galleries"
+msgstr "galeriler"
 
 #: templates/photologue/photo_archive.html:4
-#: templates/photologue/photo_archive.html:10
-msgid "Latest Photos"
-msgstr ""
+#: templates/photologue/photo_archive.html:9
+#, fuzzy
+msgid "Latest photos"
+msgstr "fotolar"
 
-#: templates/photologue/photo_archive.html:36
-#: templates/photologue/photo_archive_day.html:19
-#: templates/photologue/photo_archive_month.html:34
-#: templates/photologue/photo_archive_year.html:35
-#: templates/photologue/photo_list.html:23
+#: templates/photologue/photo_archive.html:34
+#: templates/photologue/photo_archive_day.html:21
+#: templates/photologue/photo_archive_month.html:36
+#: templates/photologue/photo_archive_year.html:37
+#: templates/photologue/photo_list.html:21
 msgid "No photos were found"
 msgstr ""
 
 #: templates/photologue/photo_archive_day.html:4
-#: templates/photologue/photo_archive_day.html:8
+#: templates/photologue/photo_archive_day.html:9
 #, python-format
 msgid "Photos for %(show_day)s"
 msgstr ""
 
-#: templates/photologue/photo_archive_day.html:23
+#: templates/photologue/photo_archive_day.html:24
 msgid "View all photos for month"
 msgstr ""
 
@@ -666,7 +668,7 @@ msgstr ""
 msgid "Photos for %(show_month)s"
 msgstr ""
 
-#: templates/photologue/photo_archive_month.html:38
+#: templates/photologue/photo_archive_month.html:39
 msgid "View all photos for year"
 msgstr ""
 
@@ -676,33 +678,34 @@ msgstr ""
 msgid "Photos for %(show_year)s"
 msgstr ""
 
-#: templates/photologue/photo_archive_year.html:39
+#: templates/photologue/photo_archive_year.html:40
 msgid "View all photos"
 msgstr ""
 
-#: templates/photologue/photo_detail.html:21
+#: templates/photologue/photo_detail.html:22
 msgid "This photo is found in the following galleries"
 msgstr ""
 
 #: templates/photologue/photo_list.html:4
-#: templates/photologue/photo_list.html:10
-msgid "All Photos"
-msgstr ""
+#: templates/photologue/photo_list.html:9
+#, fuzzy
+msgid "All photos"
+msgstr "fotolar"
 
-#: templates/photologue/includes/paginator.html:5
-#: templates/photologue/includes/paginator.html:7
+#: templates/photologue/includes/paginator.html:6
+#: templates/photologue/includes/paginator.html:8
 msgid "Previous"
 msgstr ""
 
-#: templates/photologue/includes/paginator.html:10
+#: templates/photologue/includes/paginator.html:11
 #, python-format
 msgid ""
 "\n"
-"\t\t\t    page %(page_number)s of %(total_pages)s\n"
-"\t\t\t"
+"\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
+"\t\t\t\t"
 msgstr ""
 
-#: templates/photologue/includes/paginator.html:15
-#: templates/photologue/includes/paginator.html:17
+#: templates/photologue/includes/paginator.html:16
+#: templates/photologue/includes/paginator.html:18
 msgid "Next"
 msgstr ""
