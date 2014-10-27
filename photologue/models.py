@@ -655,7 +655,7 @@ class ImageModel(models.Model):
 @python_2_unicode_compatible
 class Photo(ImageModel):
     title = models.CharField(_('title'),
-                             max_length=50,
+                             max_length=60,
                              unique=True)
     slug = models.SlugField(_('slug'),
                             unique=True,
