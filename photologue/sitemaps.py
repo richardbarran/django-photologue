@@ -37,7 +37,7 @@ class GallerySitemap(Sitemap):
     def items(self):
         # The following code is very basic and will probably cause problems with
         # large querysets.
-        return Gallery.objects.filter(is_public=True)
+        return Gallery.objects.on_site().is_public()
 
     def lastmod(self, obj):
         return obj.date_added
@@ -48,7 +48,7 @@ class PhotoSitemap(Sitemap):
     def items(self):
         # The following code is very basic and will probably cause problems with
         # large querysets.
-        return Photo.objects.filter(is_public=True)
+        return Photo.objects.on_site().is_public()
 
     def lastmod(self, obj):
         return obj.date_added
