@@ -24,7 +24,12 @@ install:
   - pip install factory-boy
   - pip install pytz
   - pip install south==0.8.4 # Only required for Django 1.6, but does no harm if installed for 1.7.
+  - pip install coveralls
   - python setup.py develop
 
-script: cd example_project; python manage.py test photologue
+script:
+  - cd example_project; coverage run manage.py test photologue
+
+after_success:
+  - coveralls
 
