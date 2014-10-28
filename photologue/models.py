@@ -1,6 +1,5 @@
 import os
 import random
-import zipfile
 from datetime import datetime
 from inspect import isclass
 import warnings
@@ -27,7 +26,6 @@ from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
-from django.contrib import messages
 from django.contrib.sites.models import Site
 
 # Required PIL classes may or may not be available from the root namespace
@@ -115,9 +113,10 @@ else:
 
 # Support CACHEDIR.TAG spec for backups for ignoring cache dir.
 # See http://www.brynosaurus.com/cachedir/spec.html
-PHOTOLOGUE_CACHEDIRTAG = os.path.join(PHOTOLOGUE_DIR,"photos","cache","CACHEDIR.TAG")
+PHOTOLOGUE_CACHEDIRTAG = os.path.join(PHOTOLOGUE_DIR, "photos", "cache", "CACHEDIR.TAG")
 if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
-    default_storage.save(PHOTOLOGUE_CACHEDIRTAG, ContentFile("Signature: 8a477f597d28d172789f06886806bc55"))
+    default_storage.save(PHOTOLOGUE_CACHEDIRTAG, ContentFile(
+        "Signature: 8a477f597d28d172789f06886806bc55"))
 
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
@@ -253,153 +252,6 @@ class Gallery(models.Model):
         warnings.warn(
             DeprecationWarning("`title_slug` field in Gallery is being renamed to `slug`. Update your code."))
         return self.slug
-
-
-class GalleryUpload(models.Model):
-    zip_file = models.FileField(_('images file (.zip)'),
-                                upload_to=os.path.join(PHOTOLOGUE_DIR, 'temp'),
-                                help_text=_('Select a .zip file of images to upload into a new Gallery.'))
-    title = models.CharField(_('title'),
-                             null=True,
-                             blank=True,
-                             max_length=50,
-                             help_text=_('All uploaded photos will be given a title made up of this title + a '
-                                         'sequential number.'))
-    gallery = models.ForeignKey(Gallery,
-                                verbose_name=_('gallery'),
-                                null=True,
-                                blank=True,
-                                help_text=_('Select a gallery to add these images to. Leave this empty to '
-                                            'create a new gallery from the supplied title.'))
-    caption = models.TextField(_('caption'),
-                               blank=True,
-                               help_text=_('Caption will be added to all photos.'))
-    description = models.TextField(_('description'),
-                                   blank=True,
-                                   help_text=_('A description of this Gallery.'))
-    is_public = models.BooleanField(_('is public'),
-                                    default=True,
-                                    help_text=_('Uncheck this to make the uploaded '
-                                                'gallery and included photographs private.'))
-    tags = models.CharField(max_length=255,
-                            blank=True,
-                            help_text=tagfield_help_text,
-                            verbose_name=_('tags'))
-
-    class Meta:
-        verbose_name = _('gallery upload')
-        verbose_name_plural = _('gallery uploads')
-
-    def save(self, *args, **kwargs):
-        super(GalleryUpload, self).save(*args, **kwargs)
-        gallery = self.process_zipfile()
-        super(GalleryUpload, self).delete()
-        return gallery
-
-    def clean(self):
-        if self.title:
-            try:
-                Gallery.objects.get(title=self.title)
-                raise ValidationError(_('A gallery with that title already exists.'))
-            except Gallery.DoesNotExist:
-                pass
-        if not self.gallery and not self.title:
-            raise ValidationError(_('Select an existing gallery or enter a new gallery name.'))
-
-    def process_zipfile(self):
-        if default_storage.exists(self.zip_file.name):
-            # TODO: implement try-except here
-            zip = zipfile.ZipFile(default_storage.open(self.zip_file.name))
-            bad_file = zip.testzip()
-            if bad_file:
-                zip.close()
-                raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
-            count = 1
-            current_site = Site.objects.get(id=settings.SITE_ID)
-            if self.gallery:
-                logger.debug('Using pre-existing gallery.')
-                gallery = self.gallery
-            else:
-                logger.debug(force_text('Creating new gallery "{0}".').format(self.title))
-                gallery = Gallery.objects.create(title=self.title,
-                                                 slug=slugify(self.title),
-                                                 description=self.description,
-                                                 is_public=self.is_public,
-                                                 tags=self.tags)
-                gallery.sites.add(current_site)
-            for filename in sorted(zip.namelist()):
-
-                logger.debug('Reading file "{0}".'.format(filename))
-
-                if filename.startswith('__') or filename.startswith('.'):
-                    logger.debug('Ignoring file "{0}".'.format(filename))
-                    continue
-
-                if os.path.dirname(filename):
-                    logger.warning('Ignoring file "{0}" as it is in a subfolder; all images should be in the top '
-                                   'folder of the zip.'.format(filename))
-                    if getattr(self, 'request', None):
-                        messages.warning(self.request,
-                                         _('Ignoring file "{filename}" as it is in a subfolder; all images should '
-                                           'be in the top folder of the zip.').format(filename=filename),
-                                         fail_silently=True)
-                    continue
-
-                data = zip.read(filename)
-
-                if not len(data):
-                    logger.debug('File "{0}" is empty.'.format(filename))
-                    continue
-
-                title = ' '.join([gallery.title, str(count)])
-                slug = slugify(title)
-
-                try:
-                    Photo.objects.get(slug=slug)
-                    logger.warning('Did not create photo "{0}" with slug "{1}" as a photo with that '
-                                   'slug already exists.'.format(filename, slug))
-                    if getattr(self, 'request', None):
-                        messages.warning(self.request,
-                                         _('Did not create photo "%(filename)s" with slug "{1}" as a photo with that '
-                                           'slug already exists.').format(filename, slug),
-                                         fail_silently=True)
-                    continue
-                except Photo.DoesNotExist:
-                    pass
-
-                photo = Photo(title=title,
-                              slug=slug,
-                              caption=self.caption,
-                              is_public=self.is_public,
-                              tags=self.tags)
-
-                # Basic check that we have a valid image.
-                try:
-                    file = BytesIO(data)
-                    opened = Image.open(file)
-                    opened.verify()
-                except Exception:
-                    # Pillow (or PIL) doesn't recognize it as an image.
-                    # If a "bad" file is found we just skip it.
-                    # But we do flag this both in the logs and to the user.
-                    logger.error('Could not process file "{0}" in the .zip archive.'.format(
-                        filename))
-                    if getattr(self, 'request', None):
-                        messages.warning(self.request,
-                                         _('Could not process file "{0}" in the .zip archive.').format(
-                                             filename,
-                                             fail_silently=True))
-                    continue
-
-                contentfile = ContentFile(data)
-                photo.image.save(filename, contentfile)
-                photo.save()
-                photo.sites.add(current_site)
-                gallery.photos.add(photo)
-                count = count + 1
-
-            zip.close()
-            return gallery
 
 
 class ImageModel(models.Model):

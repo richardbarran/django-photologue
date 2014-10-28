@@ -4,6 +4,7 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- The 'zip upload' functionality has been moved to a custom admin page.
 - Refactor `add_accessor_methods` to be lazily applied (see #110).
 - Updated German translation.
 - Several improvements to the sample Bootstrap templates.
