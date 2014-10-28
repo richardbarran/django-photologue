@@ -1,10 +1,7 @@
 import os
 import datetime
-try:
-    from django.utils.text import slugify
-except ImportError:
-    # Django 1.4
-    from django.template.defaultfilters import slugify
+
+from django.utils.text import slugify
 from django.utils.timezone import utc
 from django.utils import six
 from django.conf import settings
