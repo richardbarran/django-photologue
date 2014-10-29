@@ -11,6 +11,7 @@ Changelog
 - Support CACHEDIR.TAG spec issue #89
 - Fix issue #99 by adding 10 extra char to photo title(max gallery size up to 999999999 images)
 - Sitemap.xml was not aware of Sites (#104).
+- In python 3, gallery upload would crash if uploaded file was not a zip file (#106).
 
 3.0.2 (2014-09-23)
 ------------------

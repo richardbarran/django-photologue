@@ -1,4 +1,9 @@
 import zipfile
+try:
+    from zipfile import BadZipFile
+except ImportError:
+    # Python 2.
+    from zipfile import BadZipfile as BadZipFile
 import logging
 import os
 from io import BytesIO
@@ -48,6 +53,23 @@ class UploadZipForm(forms.Form):
                                    help_text=_('Uncheck this to make the uploaded '
                                                'gallery and included photographs private.'))
 
+    def clean_zip_file(self):
+        """Open the zip file a first time, to check that it is a valid zip archive.
+        We'll open it again in a moment, so we have some duplication, but let's focus
+        on keeping the code easier to read!
+        """
+        zip_file = self.cleaned_data['zip_file']
+        try:
+            zip = zipfile.ZipFile(zip_file)
+        except BadZipFile as e:
+            raise forms.ValidationError(str(e))
+        bad_file = zip.testzip()
+        if bad_file:
+            zip.close()
+            raise forms.ValidationError('"%s" in the .zip archive is corrupt.' % bad_file)
+        zip.close()  # Close file in all cases.
+        return zip_file
+
     def clean_title(self):
         title = self.cleaned_data['title']
         if title and Gallery.objects.filter(title=title).exists():
@@ -65,13 +87,8 @@ class UploadZipForm(forms.Form):
         return cleaned_data
 
     def save(self, request=None):
-        # TODO: implement try-except here
         zip_file = self.cleaned_data['zip_file']
         zip = zipfile.ZipFile(zip_file)
-        bad_file = zip.testzip()
-        if bad_file:
-            zip.close()
-            raise Exception('"%s" in the .zip archive is corrupt.' % bad_file)
         count = 1
         current_site = Site.objects.get(id=settings.SITE_ID)
         if self.cleaned_data['gallery']:

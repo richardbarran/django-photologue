@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 from ..models import Gallery, Photo
 from .factories import GalleryFactory, PhotoFactory, SAMPLE_ZIP_PATH, SAMPLE_NOT_IMAGE_ZIP_PATH, \
-    IGNORED_FILES_ZIP_PATH
+    IGNORED_FILES_ZIP_PATH, LANDSCAPE_IMAGE_PATH
 
 
 class GalleryUploadTest(TestCase):
@@ -177,3 +177,13 @@ class GalleryUploadTest(TestCase):
 
         # Housekeeping.
         photo.delete()
+
+    def test_bad_zip(self):
+        """Supplied file is not a zip file - tell user."""
+
+        test_data = copy.copy(self.sample_form_data)
+        with open(LANDSCAPE_IMAGE_PATH, mode='rb') as f:
+            test_data['zip_file'] = f
+            response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(response.context['form']['zip_file'].errors)
