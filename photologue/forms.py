@@ -86,8 +86,9 @@ class UploadZipForm(forms.Form):
                     _('Select an existing gallery, or enter a title for a new gallery.'))
         return cleaned_data
 
-    def save(self, request=None):
-        zip_file = self.cleaned_data['zip_file']
+    def save(self, request=None, zip_file=None):
+        if not zip_file:
+            zip_file = self.cleaned_data['zip_file']
         zip = zipfile.ZipFile(zip_file)
         count = 1
         current_site = Site.objects.get(id=settings.SITE_ID)
