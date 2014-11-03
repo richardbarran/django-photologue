@@ -46,7 +46,7 @@ class GalleryUploadTest(TestCase):
 
         response = self.client.get('/admin/photologue/photo/upload_zip/')
         self.assertContains(
-            response, """<div class="breadcrumbs"><a href="/admin/">Home</a> &rsaquo; 
+            response, """<div class="breadcrumbs"><a href="/admin/">Home</a> &rsaquo;
             <a href="/admin/photologue/">Photologue</a> &rsaquo; Photos &rsaquo; Upload </div>""", html=True)
 
     def test_missing_fields(self):
@@ -172,7 +172,8 @@ class GalleryUploadTest(TestCase):
         response = self.client.get('/admin/photologue/photo/upload_zip/')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response,
-                            """<li class="warning">Did not create photo &quot;%(filename)s&quot; with slug &quot;test-1&quot; as a photo with that slug already exists.</li>""",
+                            """<li class="warning">Did not create photo &quot;%(filename)s&quot; with slug
+                            &quot;test-1&quot; as a photo with that slug already exists.</li>""",
                             html=True)
 
         # Housekeeping.

@@ -6,6 +6,7 @@ from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
     GalleryFactory, PhotoFactory
 from .helpers import PhotologueBaseTest
 
+
 class PhotoTest(PhotologueBaseTest):
 
     def tearDown(self):
@@ -37,7 +38,7 @@ class PhotoTest(PhotologueBaseTest):
         self.assertTrue(default_storage.exists(PHOTOLOGUE_CACHEDIRTAG))
 
         content = default_storage.open(PHOTOLOGUE_CACHEDIRTAG).read()
-        self.assertEquals(content,b"Signature: 8a477f597d28d172789f06886806bc55")
+        self.assertEquals(content, b"Signature: 8a477f597d28d172789f06886806bc55")
 
     def test_count(self):
         for i in range(5):
