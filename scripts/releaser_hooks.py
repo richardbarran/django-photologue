@@ -2,6 +2,7 @@ import subprocess
 import os
 import polib
 import copy
+import codecs
 
 
 def prereleaser_middle(data):
@@ -25,7 +26,8 @@ def prereleaser_middle(data):
     output = subprocess.check_output(["git", "log", "--format='%aN'"])
 
     # Convert to a list.
-    contributors_list = [contributor.strip("'") for contributor in output.split("\n")]
+    contributors_list = [unicode(contributor.strip("'"), 'utf-8')
+                         for contributor in output.split("\n")]
 
     # Now add info from the translator files. This is incomplete, we can only list
     # the 'last contributor' to each translation.
@@ -60,7 +62,7 @@ def prereleaser_middle(data):
         else:
             contributors_dict[author_copy] = 1
 
-    with open('CONTRIBUTORS.txt', 'w') as f:
+    with codecs.open('CONTRIBUTORS.txt', 'w', encoding='utf8') as f:
         f.write('Photologue is made possible by all the people who have contributed'
                 ' to it. A non-exhaustive list follows:\n\n')
         f.write('Justin Driscoll\n')
