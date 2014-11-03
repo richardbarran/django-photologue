@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.1 (unreleased)
+3.1 (2014-11-03)
 ----------------
 
 - The 'zip upload' functionality has been moved to a custom admin page.
