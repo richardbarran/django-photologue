@@ -4,7 +4,7 @@ include CONTRIBUTORS.txt
 recursive-include photologue/locale *
 recursive-include photologue/res *.jpg
 recursive-include photologue/res/zips *.zip
-recursive-include photologue/templates/photologue *.html
+recursive-include photologue/templates *.html
 recursive-include photologue/contrib *
 recursive-exclude * *.py[co]
 recursive-exclude * __pycache__
