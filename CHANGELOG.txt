@@ -6,6 +6,7 @@ Changelog
 
 - The 'zip upload' functionality did not work (the required html templates
   were not included into the released package).
+- Updated French translation.
 
 
 3.1 (2014-11-03)
