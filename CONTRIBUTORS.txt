@@ -15,6 +15,7 @@ Alexey Vasilyev
 Benjamin Liles
 FilippoIOVINE
 ferhat elmas
+Théophane Hufschmitt
 Federico Maggi
 Herman Schaaf
 Vivek Agarwal

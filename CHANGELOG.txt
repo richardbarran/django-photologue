@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.1.1 (unreleased)
-----------------
+3.1.1 (2014-11-13)
+------------------
 
 - The 'zip upload' functionality did not work (the required html templates
   were not included into the released package).
