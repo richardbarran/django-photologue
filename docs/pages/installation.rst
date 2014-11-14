@@ -24,8 +24,7 @@ to fix any potential bugs on your own!
 
 Python 3
 ~~~~~~~~
-Photologue works with Python 3 (3.3 or later). You'll need Django version
-1.5 or higher.
+Photologue works with Python 3 (3.3 or later).
 
 Dependencies
 ------------
