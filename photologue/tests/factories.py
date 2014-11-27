@@ -25,7 +25,8 @@ IGNORED_FILES_ZIP_PATH = os.path.join(RES_DIR, 'zips/ignored_files.zip')
 
 class GalleryFactory(factory.django.DjangoModelFactory):
 
-    FACTORY_FOR = Gallery
+    class Meta:
+        model = Gallery
 
     title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
     slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
@@ -57,8 +58,10 @@ class GalleryFactory(factory.django.DjangoModelFactory):
 
 
 class ImageModelFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = ImageModel
-    ABSTRACT_FACTORY = True
+
+    class Meta:
+        model = ImageModel
+        abstract = True
 
 
 class PhotoFactory(ImageModelFactory):
@@ -67,7 +70,8 @@ class PhotoFactory(ImageModelFactory):
     delete them.
     """
 
-    FACTORY_FOR = Photo
+    class Meta:
+        model = Photo
 
     title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
     slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
@@ -101,6 +105,7 @@ class PhotoFactory(ImageModelFactory):
 
 class PhotoSizeFactory(factory.django.DjangoModelFactory):
 
-    FACTORY_FOR = PhotoSize
+    class Meta:
+        model = PhotoSize
 
     name = factory.Sequence(lambda n: 'name{0:0>3}'.format(n))

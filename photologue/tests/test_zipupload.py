@@ -64,8 +64,8 @@ class GalleryUploadTest(TestCase):
 
         test_data = copy.copy(self.sample_form_data)
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
-        self.assertEquals(response['Location'],
-                          'http://testserver/admin/photologue/photo/')
+        self.assertEqual(response['Location'],
+                         'http://testserver/admin/photologue/photo/')
 
         self.assertQuerysetEqual(Gallery.objects.all(),
                                  ['<Gallery: This is a test title>'])
