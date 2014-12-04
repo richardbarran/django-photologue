@@ -1,11 +1,10 @@
 import random
 from django import template
-from django.db.models import get_model
 
 register = template.Library()
 
-Gallery = get_model('photologue', 'Gallery')
-Photo = get_model('photologue', 'Photo')
+from ..models import Gallery
+from ..models import Photo
 
 
 @register.inclusion_tag('photologue/tags/next_in_gallery.html')
@@ -36,7 +35,8 @@ def get_photo(parser, token):
     """Get a single photo from the photologue library and return the img tag to display it.
 
     Takes 3 args:
-    - the photo to display. This can be either the slug of a photo, or a variable that holds either a photo instance or a integer (photo id)
+    - the photo to display. This can be either the slug of a photo, or a variable that holds either a photo instance or
+      a integer (photo id)
     - the photosize to use.
     - a CSS class to apply to the img tag.
     """
@@ -83,7 +83,8 @@ def get_rotating_photo(parser, token):
     """Pick at random a photo from a given photologue gallery and return the img tag to display it.
 
     Takes 3 args:
-    - the gallery to pick a photo from. This can be either the slug of a gallery, or a variable that holds either a gallery instance or a gallery slug.
+    - the gallery to pick a photo from. This can be either the slug of a gallery, or a variable that holds either a
+      gallery instance or a gallery slug.
     - the photosize to use.
     - a CSS class to apply to the img tag.
     """

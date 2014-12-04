@@ -6,7 +6,6 @@ from .helpers import PhotologueBaseTest
 
 class PhotoSizeNameTest(PhotologueBaseTest):
 
-
     def test_valid_name(self):
         """We are restricted in what names we can enter."""
 
@@ -21,10 +20,10 @@ class PhotoSizeNameTest(PhotologueBaseTest):
 
         for name in ('a space', 'UPPERCASE', 'bad?chars'):
             photosize = PhotoSizeFactory(name=name)
-            with self.assertRaisesMessage(ValidationError, 'Use only plain lowercase letters (ASCII), numbers and underscores.'):
+            with self.assertRaisesMessage(ValidationError,
+                                          'Use only plain lowercase letters (ASCII), numbers and underscores.'):
                 photosize.full_clean()
 
         for name in ('label', '2_words'):
             photosize = PhotoSizeFactory(name=name)
             photosize.full_clean()
-

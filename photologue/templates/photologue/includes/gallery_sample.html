@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{# Display a randomnly-selected set of photos from a given gallery #}
+
+<div>
+    
+    <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
+    <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>
+    {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
+    
+    {% for photo in gallery.sample %}
+        <a href="{{ photo.get_absolute_url }}">
+             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+        </a>
+	{% endfor %}
+
+</div>

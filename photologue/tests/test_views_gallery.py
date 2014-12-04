@@ -28,7 +28,7 @@ class RequestGalleryTest(TestCase):
                          0)
 
     def test_paginated_gallery_url_works(self):
-        response = self.client.get('/ptests/gallery/page/1/')
+        response = self.client.get('/ptests/gallerylist/')
         self.assertEqual(response.status_code, 200)
 
     def test_gallery_works(self):
@@ -40,15 +40,15 @@ class RequestGalleryTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_archive_month_gallery_works(self):
-        response = self.client.get('/ptests/gallery/2011/dec/')
+        response = self.client.get('/ptests/gallery/2011/12/')
         self.assertEqual(response.status_code, 200)
 
     def test_archive_day_gallery_works(self):
-        response = self.client.get('/ptests/gallery/2011/dec/23/')
+        response = self.client.get('/ptests/gallery/2011/12/23/')
         self.assertEqual(response.status_code, 200)
 
     def test_detail_gallery_works(self):
-        response = self.client.get('/ptests/gallery/2011/dec/23/test-gallery/')
+        response = self.client.get('/ptests/gallery/2011/12/23/test-gallery/')
         self.assertEqual(response.status_code, 200)
 
     def test_redirect_to_list(self):
@@ -66,7 +66,7 @@ class GalleryPaginationTest(TestCase):
         for i in range(1, 23):
             GalleryFactory(title='gallery{0:0>3}'.format(i))
 
-        response = self.client.get('/ptests/gallery/page/1/')
+        response = self.client.get('/ptests/gallerylist/')
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(len(response.context['object_list']),
@@ -78,7 +78,7 @@ class GalleryPaginationTest(TestCase):
                          'gallery003')
 
         # Now get the second page of results.
-        response = self.client.get('/ptests/gallery/page/2/')
+        response = self.client.get('/ptests/gallerylist/?page=2')
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(len(response.context['object_list']),

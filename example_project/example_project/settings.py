@@ -2,7 +2,7 @@
 
 import os
 import sys
-from photologue import PHOTOLOGUE_APP_DIR
+import django
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -71,8 +71,6 @@ ROOT_URLCONF = 'example_project.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(TOP_FOLDER, 'example_project/templates'),
-    os.path.join(PHOTOLOGUE_APP_DIR, 'contrib/bootstrap/templates'),
-    PHOTOLOGUE_APP_DIR
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -98,9 +96,11 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'photologue',
     'sortedm2m',
-    'south',
     'example_project',
 ]
+
+if django.VERSION[:2] < (1, 7):
+    INSTALLED_APPS.append('south')
 
 # LOGGING CONFIGURATION
 # A logging configuration that writes log messages to the console.
@@ -158,4 +158,17 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['']['handlers'] = ['null']
     LOGGING['loggers']['photologue']['handlers'] = ['null']
 
+# The following settings are only used by South.
+
 SOUTH_TESTS_MIGRATE = False
+
+SOUTH_MIGRATION_MODULES = {
+    'photologue': 'photologue.south_migrations',
+}
+
+SILENCED_SYSTEM_CHECKS = [
+    '1_6.W001'  # Dividing the tests into separate files triggers this alert.
+]
+
+# Uncomment this for Amazon S3 file storage
+# from example_storages.settings_s3boto import *

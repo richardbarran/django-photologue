@@ -9,8 +9,8 @@
 		<link href="{{ STATIC_URL }}css/screen.css" rel="stylesheet" media="screen">
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
-	      <script src="../../assets/js/html5shiv.js"></script>
-	      <script src="../../assets/js/respond.min.js"></script>
+	      <script src="{{ STATIC_URL }}js/html5shiv.min.js"></script>
+	      <script src="{{ STATIC_URL }}js/respond.min.js"></script>
 	    <![endif]-->
     </head>
     <body>
@@ -30,8 +30,25 @@
 		  <!-- Collect the nav links, forms, and other content for toggling -->
 		  <div class="collapse navbar-collapse navbar-ex1-collapse">
 		    <ul class="nav navbar-nav">
-			    <li class="{% block navbar-active-home %}{% endblock %}"><a href="/">Home</a></li>
-			    <li class="{% block navbar-active-gallery %}{% endblock %}"><a href="/photologue/">Photo gallery</a></li>
+			    <li class="home"><a href="/">Home</a></li>
+			    <li class="galleries dropdown">
+					<a data-target="#" href="" class="dropdown-toggle" data-toggle="dropdown">
+			            Gallery views<b class="caret"></b>
+			        </a>
+					<ul class="dropdown-menu">
+						<li class="sub-page"><a href="{% url 'photologue:pl-gallery-archive' %}">Date views</a></li>
+						<li class="sub-page"><a href="{% url 'photologue:gallery-list' %}">List views</a></li>
+					</ul>
+				</li>
+			    <li class="photos dropdown">
+					<a data-target="#" href="" class="dropdown-toggle" data-toggle="dropdown">
+			            Photo views<b class="caret"></b>
+			        </a>
+					<ul class="dropdown-menu">
+						<li class="sub-page"><a href="{% url 'photologue:pl-photo-archive' %}">Date views</a></li>
+						<li class="sub-page"><a href="{% url 'photologue:photo-list' %}">List views</a></li>
+					</ul>
+				</li>
 		    </ul>
 		  </div><!-- /.navbar-collapse -->
 		</nav>
@@ -40,5 +57,6 @@
         </div>
         <script src="{{ STATIC_URL }}js/jquery.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+		<script src="{{ STATIC_URL }}js/project.js"></script>
     </body>
 </html>

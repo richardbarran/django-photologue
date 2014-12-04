@@ -7,48 +7,45 @@ Installation & configuration
 
 Installation
 ------------
-The easiest way to install Photologue is with pip::
+The easiest way to install Photologue is with `pip <https://pip.pypa.io/en/latest/>`_; this will give you the latest
+version available on `PyPi <https://pypi.python.org/pypi>`_::
 
     pip install django-photologue
 
-You can also live life on the edge and install the latest code directly from the
+You can also take risks and install the latest code directly from the
 Github repository::
 
     pip install -e git+https://github.com/jdriscoll/django-photologue.git#egg=django-photologue
 
 This code should work ok - like `Django <https://www.djangoproject.com/>`_
-itself, we try to keep the master branch bug-free.
+itself, we try to keep the master branch bug-free. However, we strongly recommend that you 
+stick with a release from the PyPi repository, unless if you're confident in your abilities 
+to fix any potential bugs on your own!
 
 Python 3
 ~~~~~~~~
-Django from version 1.5 onwards works with Python 3.
-
-Photologue also works with Python 3 (3.3 or later). Like Django itself,
-support for Python 3 can be described as "should work, but needs more time on
-production sites to prove itself". Use it, but apply caution!
+Photologue works with Python 3 (3.3 or later).
 
 Dependencies
 ------------
-
-5 apps that will be installed automatically if required.
+4 apps that will be installed automatically if required.
 
 * `Django <https://www.djangoproject.com/>`_.
 * `Pillow <http://python-imaging.github.io/Pillow/>`_.
-* `South <http://south.aeracode.org/>`_.
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 * `Django-model-utils <https://pypi.python.org/pypi/django-model-utils>`_.
 
 And 2 dependencies that you will have to manage yourself:
 
-* `Pytz <https://pypi.python.org/pypi/pytz>`_. Only applies if you're using Django >= 1.6, see the 
-  Django release notes `for more information 
+* `Pytz <https://pypi.python.org/pypi/pytz>`_. See the Django release notes `for more information 
   <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
-* `Django’s site framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_
-  - only applies if you're using Django >= 1.6.
+* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6. Note that South 1.0 is not 
+  compatible with Python 3 - you should install version 0.8.4 instead.
 
 .. note::
 
-    * Photologue has the same support policy as Django.
+    Photologue has - more or less - the same support policy as Django. Photologue 3.0
+    is tested against Django 1.6 and 1.7.
 
 That troublesome Pillow...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,7 +66,7 @@ so googling 'PIL installation <your platform>' can also help.
    hasn't been tested!
 
 #. Sometimes Pillow will install... but is not actually installed. This 'undocumented feature' has been
-   reported by a user on Windows. If you can't get Photologue to disaply any images, check
+   reported by a user on Windows. If you can't get Photologue to display any images, check
    that you can actually import Pillow::
 
      $ python manage.py shell
@@ -89,8 +86,8 @@ Configure Your Django Settings
     INSTALLED_APPS = (
          # ...other installed applications,
          'photologue',
-         'south',		# if it's not already in your INSTALLED_APPS.
          'sortedm2m',
+         'south',   # Only if you're relying on South for migrations.
     )
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#media-root>`_ and
@@ -99,6 +96,10 @@ Configure Your Django Settings
 
 #. `Enable the admin app if you have not already done so <https://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_.
 
+#. Also enable `Django’s site framework
+   <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_.
+
+
 Add the urls
 ------------
 
@@ -106,26 +107,45 @@ Add photologue to your projects urls.py file::
 
     urlpatterns += patterns('',
         ...
-        (r'^photologue/', include('photologue.urls')),
+        url(r'^photologue/', include('photologue.urls', namespace='photologue')),
     )
 
 Sync Your Database
 ------------------
 
-Use South to setup the new tables::
+Database migrations can be managed either with South, or with Django's migrations module.
+
+South
+~~~~~
+If you're on Django < 1.7, then you should be using `South <http://south.aeracode.org/>`_.
+You'll need to add it to your ``INSTALLED_APPS`` and also add this to your settings::
+
+    SOUTH_MIGRATION_MODULES = {
+        'photologue': 'photologue.south_migrations',
+    }
+
+Django migrations
+~~~~~~~~~~~~~~~~~
+Starting with version 1.7, Django has a new migrations module - Photologue uses it out
+of the box.
+
+Then...
+~~~~~~~
+In all cases, you can now sync your database::
 
     python manage.py migrate photologue
 
 If you are installing Photologue for the first time, this will set up some
 default PhotoSizes to get you started - you are free to change them of course!
 
+Instant templates
+-----------------
 
-Instant Photo Gallery
----------------------
-
-Photologue comes with basic templates for galleries and photos. You can of course override them, or completely
-replace them. Note that all Photologue templates inherit from ``photologue/root.html``, which itself just inherits from
-a site-wide ``base.html`` - you can change this to use a different base template.
+Photologue comes with basic templates for galleries and photos, which are designed
+to work well with `Twitter-Bootstrap <http://twitter.github.io/bootstrap/index.html>`_.
+You can of course override them, or completely replace them. Note that all 
+Photologue templates inherit from ``photologue/root.html``, which itself just inherits
+from a site-wide ``base.html`` - you can change this to use a different base template.
 
 Sitemap
 -------
@@ -152,6 +172,41 @@ won't be shown in the index.
    <settings-photologue-multisite-label>` and for more information.
 
 .. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html
+
+Amazon S3
+---------
+
+Photologue can use a custom file storage system, for example
+`Amazon's S3 <http://aws.amazon.com/s3/>`_.
+
+You will need to configure your Django project to use Amazon S3 for storing files; a full discussion of 
+how to do this is outside the scope of this page.
+
+However, there is a quick demo of using Photologue with S3 in the ``example_project`` directory; if you look 
+at these files:
+
+* ``example_project/example_project/settings.py``
+* ``example_project/requirements.txt``
+
+At the end of each file you will commented-out lines for configuring S3 functionality. These point to extra files
+stored under ``example_project/example_storages/``. Uncomment these lines, run the example
+project, then study these files for inspiration! After that, setting up S3 will consist of
+(at minimum) the following steps:
+
+#. Signup for Amazon AWS S3 at http://aws.amazon.com/s3/.
+#. Create a Bucket on S3 to store your media and static files.
+#. Set the environment variables:
+   
+   * ``AWS_ACCESS_KEY_ID`` - issued to your account by S3.
+   * ``AWS_SECRET_ACCESS_KEY`` - issued to your account by S3.
+   * ``AWS_STORAGE_BUCKET_NAME`` - name of your bucket on S3.
+
+#. To copy your static files into your S3 Bucket, type ``python manage.py collectstatic`` in the ``example_project`` directory.
+
+.. note:: This simple setup does not handle S3 regions.
+
+
+
 
 
 

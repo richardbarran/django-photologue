@@ -6,3 +6,6 @@
 django_photologue.egg-info
 build
 .idea
+example_project/database.sql3
+example_project/coverage_html_report
+example_project/.coverage

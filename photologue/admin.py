@@ -1,32 +1,25 @@
 from django import forms
 from django.conf import settings
+from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.sites.models import Site
 from django.contrib import messages
 from django.utils.translation import ungettext, ugettext_lazy as _
+from django.conf.urls import patterns
+from django.shortcuts import render
+from django.contrib.admin import helpers
+from django.http import HttpResponseRedirect
 
-from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
+from .models import Gallery, Photo, PhotoEffect, PhotoSize, \
     Watermark
-
-from django.db import transaction
-
-#import logging
-#logger = logging.getLogger(__name__)
-
-USE_CKEDITOR = getattr(settings, 'PHOTOLOGUE_USE_CKEDITOR', False)
-
-if USE_CKEDITOR:
-    from ckeditor.widgets import CKEditorWidget
-    import warnings
-    warnings.warn(
-        DeprecationWarning('PHOTOLOGUE_USE_CKEDITOR setting will be removed in Photologue 2.9'))
+from .forms import UploadZipForm
 
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
+ENABLE_TAGS = getattr(settings, 'PHOTOLOGUE_ENABLE_TAGS', False)
+
 
 class GalleryAdminForm(forms.ModelForm):
-    if USE_CKEDITOR:
-        description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Gallery
@@ -34,6 +27,8 @@ class GalleryAdminForm(forms.ModelForm):
             exclude = []
         else:
             exclude = ['sites']
+        if not ENABLE_TAGS:
+            exclude.append('tags')
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -81,10 +76,10 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.gallery_set.add(*queryset)
         msg = ungettext(
-            "The gallery '%(gallery)s' has been successfully added to %(site)s",
-            "The selected galleries have been successfully added to %(site)s",
+            "The gallery has been successfully added to %(site)s",
+            "The galleries have been successfully added to %(site)s",
             len(queryset)
-        ) % {'site': current_site.name, 'gallery': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     add_to_current_site.short_description = \
@@ -94,10 +89,10 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.gallery_set.remove(*queryset)
         msg = ungettext(
-            "The gallery '%(gallery)s' has been successfully removed from %(site)s",
+            "The gallery has been successfully removed from %(site)s",
             "The selected galleries have been successfully removed from %(site)s",
             len(queryset)
-        ) % {'site': current_site.name, 'gallery': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     remove_from_current_site.short_description = \
@@ -108,10 +103,8 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*photos)
         msg = ungettext(
-            'All photos of gallery %(galleries)s have been successfully '
-            'added to %(site)s',
-            'All photos of in the galleries %(galleries)s have been successfully '
-            'added to %(site)s',
+            'All photos in gallery %(galleries)s have been successfully added to %(site)s',
+            'All photos in galleries %(galleries)s have been successfully added to %(site)s',
             len(queryset)
         ) % {
             'site': current_site.name,
@@ -128,10 +121,8 @@ class GalleryAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.remove(*photos)
         msg = ungettext(
-            'All photos of gallery %(galleries)s have been successfully '
-            'removed from %(site)s',
-            'All photos of in the galleries %(galleries)s have been successfully '
-            'removed from %(site)s',
+            'All photos in gallery %(galleries)s have been successfully removed from %(site)s',
+            'All photos in galleries %(galleries)s have been successfully removed from %(site)s',
             len(queryset)
         ) % {
             'site': current_site.name,
@@ -141,25 +132,12 @@ class GalleryAdmin(admin.ModelAdmin):
         messages.success(request, msg)
 
     remove_photos_from_current_site.short_description = \
-        _("Remove all photos of selected galleries from the current site")
+        _("Remove all photos in selected galleries from the current site")
 
-
-class GalleryUploadAdmin(admin.ModelAdmin):
-
-    def has_change_permission(self, request, obj=None):
-        return False  # To remove the 'Save and continue editing' button
-
-    def save_model(self, request, obj, form, change):
-        # Warning the user when things go wrong in a zip upload.
-        #logger.debug('Starting logger in GalleryUploadAdmin.save_model')
-
-        obj.request = request
-        obj.save()
+admin.site.register(Gallery, GalleryAdmin)
 
 
 class PhotoAdminForm(forms.ModelForm):
-    if USE_CKEDITOR:
-        caption = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Photo
@@ -167,11 +145,17 @@ class PhotoAdminForm(forms.ModelForm):
             exclude = []
         else:
             exclude = ['sites']
+        if not ENABLE_TAGS:
+            exclude.append('tags')
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_taken', 'date_added',
-                    'is_public', 'tags', 'view_count', 'admin_thumbnail')
+    if ENABLE_TAGS:
+        list_display = ('title', 'date_taken', 'date_added',
+                        'is_public', 'tags', 'view_count', 'admin_thumbnail')
+    else:
+        list_display = ('title', 'date_taken', 'date_added',
+                        'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
         list_filter.append('sites')
@@ -196,10 +180,10 @@ class PhotoAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*queryset)
         msg = ungettext(
-            'The photo %(photo)s has been successfully added to %(site)s',
+            'The photo has been successfully added to %(site)s',
             'The selected photos have been successfully added to %(site)s',
             len(queryset)
-        ) % {'site': current_site.name, 'photo': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     add_photos_to_current_site.short_description = \
@@ -209,14 +193,49 @@ class PhotoAdmin(admin.ModelAdmin):
         current_site = Site.objects.get_current()
         current_site.photo_set.remove(*queryset)
         msg = ungettext(
-            'The photo %(photo)s has been successfully removed from %(site)s',
+            'The photo has been successfully removed from %(site)s',
             'The selected photos have been successfully removed from %(site)s',
             len(queryset)
-        ) % {'site': current_site.name, 'photo': queryset.first()}
+        ) % {'site': current_site.name}
         messages.success(request, msg)
 
     remove_photos_from_current_site.short_description = \
         _("Remove selected photos from the current site")
+
+    def get_urls(self):
+        urls = super(PhotoAdmin, self).get_urls()
+        custom_urls = patterns('',
+                               url(r'^upload_zip/$',
+                                   self.admin_site.admin_view(self.upload_zip),
+                                   name='photologue_upload_zip')
+                               )
+        return custom_urls + urls
+
+    def upload_zip(self, request):
+
+        context = {
+            'title': _('Upload a zip archive of photos'),
+            'app_label': self.model._meta.app_label,
+            'opts': self.model._meta,
+            'has_change_permission': self.has_change_permission(request)
+        }
+
+        # Handle form request
+        if request.method == 'POST':
+            form = UploadZipForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save(request=request)
+                return HttpResponseRedirect('..')
+        else:
+            form = UploadZipForm()
+        context['form'] = form
+        context['adminform'] = helpers.AdminForm(form,
+                                                 list([(None, {'fields': form.base_fields})]),
+                                                 {})
+        return render(request, 'admin/photologue/photo/upload_zip.html', context)
+
+
+admin.site.register(Photo, PhotoAdmin)
 
 
 class PhotoEffectAdmin(admin.ModelAdmin):
@@ -240,6 +259,8 @@ class PhotoEffectAdmin(admin.ModelAdmin):
         }),
     )
 
+admin.site.register(PhotoEffect, PhotoEffectAdmin)
+
 
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'effect', 'increment_count')
@@ -255,14 +276,11 @@ class PhotoSizeAdmin(admin.ModelAdmin):
         }),
     )
 
+admin.site.register(PhotoSize, PhotoSizeAdmin)
+
 
 class WatermarkAdmin(admin.ModelAdmin):
     list_display = ('name', 'opacity', 'style')
 
 
-admin.site.register(Gallery, GalleryAdmin)
-admin.site.register(GalleryUpload, GalleryUploadAdmin)
-admin.site.register(Photo, PhotoAdmin)
-admin.site.register(PhotoEffect, PhotoEffectAdmin)
-admin.site.register(PhotoSize, PhotoSizeAdmin)
 admin.site.register(Watermark, WatermarkAdmin)

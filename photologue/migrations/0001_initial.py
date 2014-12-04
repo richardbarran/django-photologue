@@ -1,207 +1,157 @@
 # -*- coding: utf-8 -*-
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import photologue.models
+import django.utils.timezone
+import django.core.validators
+import sortedm2m.fields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Gallery'
-        db.create_table('photologue_gallery', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('date_added', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('title', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
-            ('title_slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50)),
-            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('is_public', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('tags', self.gf('photologue.models.TagField')(max_length=255, blank=True)),
-        ))
-        db.send_create_signal('photologue', ['Gallery'])
+    dependencies = [
+        ('sites', '0001_initial'),
+    ]
 
-        # Adding M2M table for field photos on 'Gallery'
-        db.create_table('photologue_gallery_photos', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('gallery', models.ForeignKey(orm['photologue.gallery'], null=False)),
-            ('photo', models.ForeignKey(orm['photologue.photo'], null=False))
-        ))
-        db.create_unique('photologue_gallery_photos', ['gallery_id', 'photo_id'])
-
-        # Adding model 'GalleryUpload'
-        db.create_table('photologue_galleryupload', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('zip_file', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
-            ('gallery', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['photologue.Gallery'], null=True, blank=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=75)),
-            ('caption', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('is_public', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('tags', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        ))
-        db.send_create_signal('photologue', ['GalleryUpload'])
-
-        # Adding model 'Photo'
-        db.create_table('photologue_photo', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-            ('date_taken', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-            ('view_count', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-            ('crop_from', self.gf('django.db.models.fields.CharField')(default='center', max_length=10, blank=True)),
-            ('effect', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='photo_related', null=True, to=orm['photologue.PhotoEffect'])),
-            ('title', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
-            ('title_slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50)),
-            ('caption', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('date_added', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('is_public', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('tags', self.gf('photologue.models.TagField')(max_length=255, blank=True)),
-        ))
-        db.send_create_signal('photologue', ['Photo'])
-
-        # Adding model 'PhotoEffect'
-        db.create_table('photologue_photoeffect', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=30)),
-            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('transpose_method', self.gf('django.db.models.fields.CharField')(max_length=15, blank=True)),
-            ('color', self.gf('django.db.models.fields.FloatField')(default=1.0)),
-            ('brightness', self.gf('django.db.models.fields.FloatField')(default=1.0)),
-            ('contrast', self.gf('django.db.models.fields.FloatField')(default=1.0)),
-            ('sharpness', self.gf('django.db.models.fields.FloatField')(default=1.0)),
-            ('filters', self.gf('django.db.models.fields.CharField')(max_length=200, blank=True)),
-            ('reflection_size', self.gf('django.db.models.fields.FloatField')(default=0)),
-            ('reflection_strength', self.gf('django.db.models.fields.FloatField')(default=0.6)),
-            ('background_color', self.gf('django.db.models.fields.CharField')(default='#FFFFFF', max_length=7)),
-        ))
-        db.send_create_signal('photologue', ['PhotoEffect'])
-
-        # Adding model 'Watermark'
-        db.create_table('photologue_watermark', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=30)),
-            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-            ('style', self.gf('django.db.models.fields.CharField')(default='scale', max_length=5)),
-            ('opacity', self.gf('django.db.models.fields.FloatField')(default=1)),
-        ))
-        db.send_create_signal('photologue', ['Watermark'])
-
-        # Adding model 'PhotoSize'
-        db.create_table('photologue_photosize', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=20)),
-            ('width', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-            ('height', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-            ('quality', self.gf('django.db.models.fields.PositiveIntegerField')(default=70)),
-            ('upscale', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('crop', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('pre_cache', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('increment_count', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('effect', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='photo_sizes', null=True, to=orm['photologue.PhotoEffect'])),
-            ('watermark', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='photo_sizes', null=True, to=orm['photologue.Watermark'])),
-        ))
-        db.send_create_signal('photologue', ['PhotoSize'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Gallery'
-        db.delete_table('photologue_gallery')
-
-        # Removing M2M table for field photos on 'Gallery'
-        db.delete_table('photologue_gallery_photos')
-
-        # Deleting model 'GalleryUpload'
-        db.delete_table('photologue_galleryupload')
-
-        # Deleting model 'Photo'
-        db.delete_table('photologue_photo')
-
-        # Deleting model 'PhotoEffect'
-        db.delete_table('photologue_photoeffect')
-
-        # Deleting model 'Watermark'
-        db.delete_table('photologue_watermark')
-
-        # Deleting model 'PhotoSize'
-        db.delete_table('photologue_photosize')
-
-
-    models = {
-        'photologue.gallery': {
-            'Meta': {'ordering': "['-date_added']", 'object_name': 'Gallery'},
-            'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'photos': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'galleries'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['photologue.Photo']"}),
-            'tags': ('photologue.models.TagField', [], {'max_length': '255', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
-            'title_slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'})
-        },
-        'photologue.galleryupload': {
-            'Meta': {'object_name': 'GalleryUpload'},
-            'caption': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'gallery': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['photologue.Gallery']", 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'tags': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '75'}),
-            'zip_file': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
-        },
-        'photologue.photo': {
-            'Meta': {'ordering': "['-date_added']", 'object_name': 'Photo'},
-            'caption': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'crop_from': ('django.db.models.fields.CharField', [], {'default': "'center'", 'max_length': '10', 'blank': 'True'}),
-            'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'date_taken': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'effect': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'photo_related'", 'null': 'True', 'to': "orm['photologue.PhotoEffect']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'tags': ('photologue.models.TagField', [], {'max_length': '255', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
-            'title_slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
-            'view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
-        },
-        'photologue.photoeffect': {
-            'Meta': {'object_name': 'PhotoEffect'},
-            'background_color': ('django.db.models.fields.CharField', [], {'default': "'#FFFFFF'", 'max_length': '7'}),
-            'brightness': ('django.db.models.fields.FloatField', [], {'default': '1.0'}),
-            'color': ('django.db.models.fields.FloatField', [], {'default': '1.0'}),
-            'contrast': ('django.db.models.fields.FloatField', [], {'default': '1.0'}),
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'filters': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'}),
-            'reflection_size': ('django.db.models.fields.FloatField', [], {'default': '0'}),
-            'reflection_strength': ('django.db.models.fields.FloatField', [], {'default': '0.6'}),
-            'sharpness': ('django.db.models.fields.FloatField', [], {'default': '1.0'}),
-            'transpose_method': ('django.db.models.fields.CharField', [], {'max_length': '15', 'blank': 'True'})
-        },
-        'photologue.photosize': {
-            'Meta': {'ordering': "['width', 'height']", 'object_name': 'PhotoSize'},
-            'crop': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'effect': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'photo_sizes'", 'null': 'True', 'to': "orm['photologue.PhotoEffect']"}),
-            'height': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'increment_count': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'}),
-            'pre_cache': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'quality': ('django.db.models.fields.PositiveIntegerField', [], {'default': '70'}),
-            'upscale': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'watermark': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'photo_sizes'", 'null': 'True', 'to': "orm['photologue.Watermark']"}),
-            'width': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
-        },
-        'photologue.watermark': {
-            'Meta': {'object_name': 'Watermark'},
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'}),
-            'opacity': ('django.db.models.fields.FloatField', [], {'default': '1'}),
-            'style': ('django.db.models.fields.CharField', [], {'default': "'scale'", 'max_length': '5'})
-        }
-    }
-
-    complete_apps = ['photologue']
+    operations = [
+        migrations.CreateModel(
+            name='Gallery',
+            fields=[
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('date_added', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date published')),
+                ('title', models.CharField(max_length=50, verbose_name='title', unique=True)),
+                ('slug', models.SlugField(help_text='A "slug" is a unique URL-friendly title for an object.', verbose_name='title slug', unique=True)),
+                ('description', models.TextField(blank=True, verbose_name='description')),
+                ('is_public', models.BooleanField(help_text='Public galleries will be displayed in the default views.', verbose_name='is public', default=True)),
+                ('tags', photologue.models.TagField(max_length=255, help_text='Django-tagging was not found, tags will be treated as plain text.', blank=True, verbose_name='tags')),
+                ('sites', models.ManyToManyField(blank=True, verbose_name='sites', null=True, to='sites.Site')),
+            ],
+            options={
+                'get_latest_by': 'date_added',
+                'verbose_name': 'gallery',
+                'ordering': ['-date_added'],
+                'verbose_name_plural': 'galleries',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='GalleryUpload',
+            fields=[
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('zip_file', models.FileField(help_text='Select a .zip file of images to upload into a new Gallery.', verbose_name='images file (.zip)', upload_to='photologue/temp')),
+                ('title', models.CharField(max_length=50, help_text='All uploaded photos will be given a title made up of this title + a sequential number.', verbose_name='title')),
+                ('caption', models.TextField(help_text='Caption will be added to all photos.', blank=True, verbose_name='caption')),
+                ('description', models.TextField(help_text='A description of this Gallery.', blank=True, verbose_name='description')),
+                ('is_public', models.BooleanField(help_text='Uncheck this to make the uploaded gallery and included photographs private.', verbose_name='is public', default=True)),
+                ('tags', models.CharField(max_length=255, help_text='Django-tagging was not found, tags will be treated as plain text.', blank=True, verbose_name='tags')),
+                ('gallery', models.ForeignKey(blank=True, verbose_name='gallery', null=True, help_text='Select a gallery to add these images to. Leave this empty to create a new gallery from the supplied title.', to='photologue.Gallery')),
+            ],
+            options={
+                'verbose_name': 'gallery upload',
+                'verbose_name_plural': 'gallery uploads',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Photo',
+            fields=[
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('image', models.ImageField(upload_to=photologue.models.get_storage_path, verbose_name='image')),
+                ('date_taken', models.DateTimeField(verbose_name='date taken', blank=True, editable=False, null=True)),
+                ('view_count', models.PositiveIntegerField(verbose_name='view count', default=0, editable=False)),
+                ('crop_from', models.CharField(max_length=10, default='center', blank=True, verbose_name='crop from', choices=[('top', 'Top'), ('right', 'Right'), ('bottom', 'Bottom'), ('left', 'Left'), ('center', 'Center (Default)')])),
+                ('title', models.CharField(max_length=50, verbose_name='title', unique=True)),
+                ('slug', models.SlugField(help_text='A "slug" is a unique URL-friendly title for an object.', verbose_name='slug', unique=True)),
+                ('caption', models.TextField(blank=True, verbose_name='caption')),
+                ('date_added', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date added')),
+                ('is_public', models.BooleanField(help_text='Public photographs will be displayed in the default views.', verbose_name='is public', default=True)),
+                ('tags', photologue.models.TagField(max_length=255, help_text='Django-tagging was not found, tags will be treated as plain text.', blank=True, verbose_name='tags')),
+                ('sites', models.ManyToManyField(blank=True, verbose_name='sites', null=True, to='sites.Site')),
+            ],
+            options={
+                'get_latest_by': 'date_added',
+                'verbose_name': 'photo',
+                'ordering': ['-date_added'],
+                'verbose_name_plural': 'photos',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='gallery',
+            name='photos',
+            field=sortedm2m.fields.SortedManyToManyField(blank=True, verbose_name='photos', null=True, to='photologue.Photo'),
+            preserve_default=True,
+        ),
+        migrations.CreateModel(
+            name='PhotoEffect',
+            fields=[
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('name', models.CharField(max_length=30, verbose_name='name', unique=True)),
+                ('description', models.TextField(blank=True, verbose_name='description')),
+                ('transpose_method', models.CharField(max_length=15, blank=True, verbose_name='rotate or flip', choices=[('FLIP_LEFT_RIGHT', 'Flip left to right'), ('FLIP_TOP_BOTTOM', 'Flip top to bottom'), ('ROTATE_90', 'Rotate 90 degrees counter-clockwise'), ('ROTATE_270', 'Rotate 90 degrees clockwise'), ('ROTATE_180', 'Rotate 180 degrees')])),
+                ('color', models.FloatField(help_text='A factor of 0.0 gives a black and white image, a factor of 1.0 gives the original image.', verbose_name='color', default=1.0)),
+                ('brightness', models.FloatField(help_text='A factor of 0.0 gives a black image, a factor of 1.0 gives the original image.', verbose_name='brightness', default=1.0)),
+                ('contrast', models.FloatField(help_text='A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original image.', verbose_name='contrast', default=1.0)),
+                ('sharpness', models.FloatField(help_text='A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original image.', verbose_name='sharpness', default=1.0)),
+                ('filters', models.CharField(max_length=200, help_text='Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: BLUR, CONTOUR, DETAIL, EDGE_ENHANCE, EDGE_ENHANCE_MORE, EMBOSS, FIND_EDGES, SHARPEN, SMOOTH, SMOOTH_MORE.', blank=True, verbose_name='filters')),
+                ('reflection_size', models.FloatField(help_text='The height of the reflection as a percentage of the orignal image. A factor of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the height of the orignal image.', verbose_name='size', default=0)),
+                ('reflection_strength', models.FloatField(help_text='The initial opacity of the reflection gradient.', verbose_name='strength', default=0.6)),
+                ('background_color', models.CharField(max_length=7, help_text='The background color of the reflection gradient. Set this to match the background color of your page.', verbose_name='color', default='#FFFFFF')),
+            ],
+            options={
+                'verbose_name': 'photo effect',
+                'verbose_name_plural': 'photo effects',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='photo',
+            name='effect',
+            field=models.ForeignKey(blank=True, verbose_name='effect', null=True, to='photologue.PhotoEffect'),
+            preserve_default=True,
+        ),
+        migrations.CreateModel(
+            name='PhotoSize',
+            fields=[
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('name', models.CharField(max_length=40, help_text='Photo size name should contain only letters, numbers and underscores. Examples: "thumbnail", "display", "small", "main_page_widget".', verbose_name='name', unique=True, validators=[django.core.validators.RegexValidator(regex='^[a-z0-9_]+$', message='Use only plain lowercase letters (ASCII), numbers and underscores.')])),
+                ('width', models.PositiveIntegerField(help_text='If width is set to "0" the image will be scaled to the supplied height.', verbose_name='width', default=0)),
+                ('height', models.PositiveIntegerField(help_text='If height is set to "0" the image will be scaled to the supplied width', verbose_name='height', default=0)),
+                ('quality', models.PositiveIntegerField(help_text='JPEG image quality.', verbose_name='quality', choices=[(30, 'Very Low'), (40, 'Low'), (50, 'Medium-Low'), (60, 'Medium'), (70, 'Medium-High'), (80, 'High'), (90, 'Very High')], default=70)),
+                ('upscale', models.BooleanField(help_text='If selected the image will be scaled up if necessary to fit the supplied dimensions. Cropped sizes will be upscaled regardless of this setting.', verbose_name='upscale images?', default=False)),
+                ('crop', models.BooleanField(help_text='If selected the image will be scaled and cropped to fit the supplied dimensions.', verbose_name='crop to fit?', default=False)),
+                ('pre_cache', models.BooleanField(help_text='If selected this photo size will be pre-cached as photos are added.', verbose_name='pre-cache?', default=False)),
+                ('increment_count', models.BooleanField(help_text='If selected the image\'s "view_count" will be incremented when this photo size is displayed.', verbose_name='increment view count?', default=False)),
+                ('effect', models.ForeignKey(blank=True, verbose_name='photo effect', null=True, to='photologue.PhotoEffect')),
+            ],
+            options={
+                'verbose_name': 'photo size',
+                'ordering': ['width', 'height'],
+                'verbose_name_plural': 'photo sizes',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Watermark',
+            fields=[
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('name', models.CharField(max_length=30, verbose_name='name', unique=True)),
+                ('description', models.TextField(blank=True, verbose_name='description')),
+                ('image', models.ImageField(upload_to='photologue/watermarks', verbose_name='image')),
+                ('style', models.CharField(max_length=5, default='scale', verbose_name='style', choices=[('tile', 'Tile'), ('scale', 'Scale')])),
+                ('opacity', models.FloatField(help_text='The opacity of the overlay.', verbose_name='opacity', default=1)),
+            ],
+            options={
+                'verbose_name': 'watermark',
+                'verbose_name_plural': 'watermarks',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='photosize',
+            name='watermark',
+            field=models.ForeignKey(blank=True, verbose_name='watermark image', null=True, to='photologue.Watermark'),
+            preserve_default=True,
+        ),
+    ]

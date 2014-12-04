@@ -1,0 +1,34 @@
+{% extends "photologue/root.html" %}
+{% load url from future %}
+
+{% block title %}All Galleries{% endblock %}
+
+{% block content %}
+
+<h1>All galleries</h1>
+
+{% if object_list %}
+    {% for gallery in object_list %}
+    <div class="photo-gallery">
+        <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
+        {% for photo in gallery.sample %}
+        <div class="gallery-photo">
+            <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" class="{% block gallery-photo-class %}{% endblock %}" alt="{{ photo.title }}"/></a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No galleries were found.</p>
+{% endif %}
+
+{% if is_paginated %}
+<p>{{ page_obj.paginator.count }} galleries total.</p>
+<div id="page_controls">
+    <p>{% if page_obj.has_previous %}
+    	<a href="{% url 'photologue:gallery-list' %}?page={{ page_obj.previous_page_number }}">Previous</a> | {% endif %} page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} {% if page_obj.has_next %}| <a href="{% url 'photologue:gallery-list' %}?page={{ page_obj.next_page_number }}">Next</a>{% endif %}
+    </p>
+</div>
+{% endif %}
+
+{% endblock %}

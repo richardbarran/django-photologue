@@ -1,10 +1,7 @@
 import os
 import datetime
-try:
-    from django.utils.text import slugify
-except ImportError:
-    # Django 1.4
-    from django.template.defaultfilters import slugify
+
+from django.utils.text import slugify
 from django.utils.timezone import utc
 from django.utils import six
 from django.conf import settings
@@ -14,7 +11,7 @@ except ImportError:
     raise ImportError(
         "No module named factory. To run photologue's tests you need to install factory-boy.")
 
-from ..models import Gallery, Photo, PhotoSize
+from ..models import Gallery, ImageModel, Photo, PhotoSize
 
 RES_DIR = os.path.join(os.path.dirname(__file__), '../res')
 LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
@@ -28,7 +25,8 @@ IGNORED_FILES_ZIP_PATH = os.path.join(RES_DIR, 'zips/ignored_files.zip')
 
 class GalleryFactory(factory.django.DjangoModelFactory):
 
-    FACTORY_FOR = Gallery
+    class Meta:
+        model = Gallery
 
     title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
     slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
@@ -48,7 +46,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
         """
         Associates the object with the current site unless ``sites`` was passed,
         in which case the each item in ``sites`` is associated with the object.
-        
+
         Note that if PHOTOLOGUE_MULTISITE is False, all Gallery/Photos are automatically
         associated with the current site - bear this in mind when writing tests.
         """
@@ -59,13 +57,21 @@ class GalleryFactory(factory.django.DjangoModelFactory):
                 self.sites.add(site)
 
 
-class PhotoFactory(factory.django.DjangoModelFactory):
+class ImageModelFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = ImageModel
+        abstract = True
+
+
+class PhotoFactory(ImageModelFactory):
 
     """Note: after creating Photo instances for tests, remember to manually
     delete them.
     """
 
-    FACTORY_FOR = Photo
+    class Meta:
+        model = Photo
 
     title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
     slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
@@ -86,7 +92,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
         """
         Associates the object with the current site unless ``sites`` was passed,
         in which case the each item in ``sites`` is associated with the object.
-        
+
         Note that if PHOTOLOGUE_MULTISITE is False, all Gallery/Photos are automatically
         associated with the current site - bear this in mind when writing tests.
         """
@@ -99,6 +105,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
 
 class PhotoSizeFactory(factory.django.DjangoModelFactory):
 
-    FACTORY_FOR = PhotoSize
+    class Meta:
+        model = PhotoSize
 
     name = factory.Sequence(lambda n: 'name{0:0>3}'.format(n))

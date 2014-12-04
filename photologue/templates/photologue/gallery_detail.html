@@ -1,20 +1,20 @@
 {% extends "photologue/root.html" %}
-{% load url from future %}
+{% load i18n %}
 
-{% block title %}{{ object.title }}{% endblock %}
+{% block title %}{{ gallery.title }}{% endblock %}
 
 {% block content %}
 
-<h1>{{ object.title }}</h1>
-<h2>Originally published {{ object.date_added|date:"l, F jS, Y" }}</h2>
-{% if object.description %}<p>{{ object.description }}</p>{% endif %}
-<div class="photo-gallery">
-    {% for photo in object.public %}
-    <div class="gallery-photo">
-        <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" class="{% block gallery-photo-class %}{% endblock %}" alt="{{ photo.title }}"/></a>
-    </div>
-    {% endfor %}
-</div>
-<p><a href="{% url 'pl-gallery-list' 1 %}">View all galleries</a></p>
+	<div class="row col-lg-12">
+        <h1 class="page-header">{{ gallery.title }}</h1>
+        <p class="muted"><small>{% trans "Published" %} {{ gallery.date_added }}</small></p>        
+        {% if gallery.description %}{{ gallery.description|safe }}{% endif %}
+	    {% for photo in gallery.public %}
+	        <a href="{{ photo.get_absolute_url }}">
+	             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+	        </a>
+	    {% endfor %}
+        <div><a href="{% url 'photologue:gallery-list' %}" class="btn btn-default">{% trans "View all galleries" %}</a></div>
+	</div>
 
 {% endblock %}

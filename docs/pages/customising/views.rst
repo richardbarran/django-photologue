@@ -35,7 +35,7 @@ in the project's main urls.py file:
 
     ... other code
     (r'^photologue/', include('photologue_custom.urls')),
-    (r'^photologue/', include('photologue.urls')),
+    url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
     ... other code
 
@@ -56,8 +56,8 @@ Edit our new urls.py file, and add:
     
     urlpatterns = patterns('',
                            
-                           url(r'^gallery/page/(?P<page>[0-9]+)/$',
-                               GalleryListView.as_view(paginate_by=5), name='pl-gallery-list'),
+                           url(r'^gallerylist/$',
+                               GalleryListView.as_view(paginate_by=5), name='photologue_custom-gallery-list'),
 
                            )
 
@@ -115,9 +115,9 @@ And call this new view from urls.py; here we are replacing the standard Photo li
 
                        # Other urls...
 
-                       url(r'^photo/page/(?P<page>[0-9]+)/$',
+                       url(r'^photolist/$',
                            PhotoJSONListView.as_view(),
-                           name='pl-photo-list-json'),
+                           name='photologue_custom-photo-json-list'),
 
                        # Other urls as required...
                        )

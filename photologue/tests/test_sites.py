@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.contrib.sites.models import Site
+from django.utils import unittest
+from django.conf import settings
 
 from .factories import GalleryFactory, PhotoFactory
 
@@ -68,7 +70,7 @@ class SitesTest(TestCase):
         photo.delete()
 
     def test_gallery_list(self):
-        response = self.client.get('/ptests/gallery/page/1/')
+        response = self.client.get('/ptests/gallerylist/')
         self.assertEqual(list(response.context['object_list']), [self.gallery1])
 
     def test_gallery_detail(self):
@@ -79,7 +81,7 @@ class SitesTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_photo_list(self):
-        response = self.client.get('/ptests/photo/page/1/')
+        response = self.client.get('/ptests/photolist/')
         self.assertEqual(list(response.context['object_list']), [self.photo1])
 
     def test_photo_detail(self):
@@ -100,6 +102,28 @@ class SitesTest(TestCase):
         """
         response = self.client.get('/ptests/gallery/test-gallery/')
         self.assertEqual(list(response.context['object'].public()), [self.photo1])
+
+    @unittest.skipUnless('django.contrib.sitemaps' in settings.INSTALLED_APPS,
+                         'Sitemaps not installed in this project, nothing to test.')
+    def test_sitemap(self):
+        """A sitemap should only show objects associated with the current site."""
+        response = self.client.get('/sitemap.xml')
+
+        # Check photos.
+        self.assertContains(response,
+                            '<url><loc>http://example.com/ptests/photo/test-photo/</loc>'
+                            '<lastmod>2011-12-23</lastmod></url>')
+        self.assertNotContains(response,
+                               '<url><loc>http://example.com/ptests/photo/not-on-site-photo/</loc>'
+                               '<lastmod>2011-12-23</lastmod></url>')
+
+        # Check galleries.
+        self.assertContains(response,
+                            '<url><loc>http://example.com/ptests/gallery/test-gallery/</loc>'
+                            '<lastmod>2011-12-23</lastmod></url>')
+        self.assertNotContains(response,
+                               '<url><loc>http://example.com/ptests/gallery/not-on-site-gallery/</loc>'
+                               '<lastmod>2011-12-23</lastmod></url>')
 
     def test_orphaned_photos(self):
         self.assertEqual(list(self.gallery1.orphaned_photos()), [self.photo2])

@@ -1,0 +1,1 @@
+In this folder we keep configuration files for non-default media stores, e.g. Amazon S3.

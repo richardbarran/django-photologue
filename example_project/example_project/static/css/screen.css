@@ -5,17 +5,16 @@ div.row img.thumbnail {
 	display: inline-block;
 }
 
-div.page-header {
-	padding-top: 10px;
-	padding-bottom: 5px;
-    margin-top: 0;
+.page-header {
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 td {
 	width: 100px;
 }
 
-.view_all_button {
+a.btn.btn-default {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }

@@ -1,21 +1,43 @@
 {% extends "photologue/root.html" %}
-{% load url from future %}
+{% load i18n %}
 
-{% block title %}Latest Photos{% endblock %}
+{% block title %}{% trans "Latest photos" %}{% endblock %}
 
 {% block content %}
 
-<h1>Latest Photos</h1>
-
-{% if latest %}
-    {% for photo in latest %}
-    <div class="gallery-photo">
-        <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
+    <div class="row col-lg-12">
+        <h1 class="page-header">{% trans "Latest photos" %}</h1>
     </div>
-    {% endfor %}
-{% else %}
-<p>No photos were found.</p>
-{% endif %}
-<p><a href="{% url 'pl-photo-list' 1 %}">View all photographs</a></p>
+
+	<div class="row">
+		
+		<aside class="col-md-2">
+
+			<h4>{% trans "Filter by year" %}</h4>
+			<ul>
+			{% for date in date_list %}
+				<li><a href="{% url 'photologue:pl-photo-archive-year' date.year %}">{{ date|date:"Y" }}</a></li>
+			{% endfor %}
+			</ul>
+
+		</aside>
+
+		<main class="col-md-10">
+			
+			{% if latest %}
+			    {% for photo in latest %}
+			        <a href="{{ photo.get_absolute_url }}">
+			             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+			        </a>
+			    {% endfor %}
+			{% else %}
+				<p>{% trans "No photos were found" %}.</p>
+			{% endif %}
+
+		</main>
+
+	</div>
 
 {% endblock %}
+
+

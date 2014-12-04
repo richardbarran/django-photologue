@@ -1,11 +1,107 @@
 Changelog
 =========
 
-2.9 (unreleased)
+3.2 (unreleased)
 ----------------
 
--  date_taken field not correctly handled during single photo upload (#80).
+- Nothing changed yet.
 
+
+3.1.1 (2014-11-13)
+------------------
+
+- The 'zip upload' functionality did not work (the required html templates
+  were not included into the released package).
+- Updated French translation.
+
+
+3.1 (2014-11-03)
+----------------
+
+- The 'zip upload' functionality has been moved to a custom admin page.
+- Refactor `add_accessor_methods` to be lazily applied (see #110).
+- Updated German translation.
+- Several improvements to the sample Bootstrap templates.
+- Support CACHEDIR.TAG spec issue #89
+- Fix issue #99 by adding 10 extra char to photo title(max gallery size up to 999999999 images)
+- Sitemap.xml was not aware of Sites (#104).
+- In python 3, gallery upload would crash if uploaded file was not a zip file (#106).
+
+3.0.2 (2014-09-23)
+------------------
+
+- Updated django-sortedm2m to an official release.
+- Updated Spanish translation.
+- Updated Bootstrap version used in example project.
+
+
+3.0.1 (2014-09-16)
+------------------
+
+- Missed out some templates from the released package.
+
+
+3.0 (2014-09-15)
+----------------
+
+Upgrade notes:
+
+WARNING: IF YOU'RE USING POSTGRESQL AS A DATABASE & DJANGO 1.7, THE LATEST RELEASE OF
+DJANGO-SORTEDM2M HAS A BUG. INSTEAD, YOU'LL HAVE TO MANUALLY INSTALL:
+
+pip install -e git://github.com/richardbarran/django-sortedm2m.git@9a609a1c6b790a40a016e4ceadedbb6dd6b92010#egg=sortedm2m
+
+
+
+THE FOLLOWING CHANGES BREAK BACKWARDS COMPATIBILITY!
+
+- Django 1.7 comes with a new migrations framework which replaces South - 
+  if you continue to use Django 1.6, you'll need to add new settings. Please
+  refer in the docs to the installation instructions.
+  If you're upgrading to Django 1.7 - upgrade Photologue first, THEN upgrade
+  Django.
+- The Twitter-Bootstrap templates - previously in 'contrib' - become the default; the
+  previous templates are moved to 'contrib'.
+- The django-tagging library is no longer maintained by its author. As a consequence,
+  it has been disabled - see the docs for more information (page
+  https://django-photologue.readthedocs.org/en/latest/pages/customising/settings.html#photologue-enable-tags)
+- Support for Django 1.4 and 1.5 has been dropped (Photologue depends on django-sortedm2m,
+  which has dropped support for 1.4; and Django 1.5 is no longer supported).
+- PHOTOLOGUE_USE_CKEDITOR has been removed.
+- Many urls have been renamed; photologue urls now go into their own namespace. See the urls.py
+  file for all the changes.
+
+Other changes:
+
+- Support for Amazon S3 to store images (thank you Celia Oakley!).
+- List views have changed urls: instead of /page/<n>/, we now have a /?page=<n> pattern.
+  This is a more common style, and allows us to simplify template code e.g. paginators!
+- date_taken field not correctly handled during single photo upload (#80).
+- Removed deprecated PhotologueSitemap.
+- Gallery zip uploads would fail if the title contained unicode characters.
+- Gallery-uploads: Do not require title for uploading to existing gallery (#98).
+- The Photologue urls used to use names for months; this has been changed to using
+  numbers, which is better for non-English websites (#101).
+
+
+2.8.3 (2014-08-28)
+------------------
+
+- Updated Spanish translation.
+
+
+2.8.2 (2014-07-26)
+------------------
+
+- The latest release of django-sortedm2m is not compatible with older 
+  versions of Django, so don't use it (issue #92).
+
+
+2.8.1 (2014-07-26)
+------------------
+
+- Fixed issue #94 (problem with i18n plural forms).
+- Updated Slovak translation.
 
 2.8 (2014-05-04)
 ----------------
@@ -53,7 +149,7 @@ List of changes:
   them for the 'example_project'.
 - Fixed issue #64 (allow installation without installing Pillow).
 - Optional use of CKEditor.
-- Updated/news translations for Polish, Slovak and German.
+- Updated/new translations for Polish, Slovak and German.
 - Bugfix: allow viewing latest galleries/latest photos pages even if they
   are empty.
 - Started using factory-boy - makes unit tests a bit easier to read.

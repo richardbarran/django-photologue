@@ -5,20 +5,6 @@ Customisation: Settings
 
 Photologue has several settings to customise behaviour.
 
-PHOTOLOGUE_USE_CKEDITOR
------------------------
-
-    Default: ``False``
-
-If you have already installed `django-ckeditor <https://pypi.python.org/pypi/django-ckeditor>`_
-then you can use to edit the TextArea fields of Gallery
-and Photo in the admin. Simply set the setting to ``True``.
-
-
-.. deprecated:: 2.8
-
-    Instead, override the admin; :ref:`see here <customisation-admin-label>`.
-
 PHOTOLOGUE_GALLERY_PAGINATE_BY
 ------------------------------
 
@@ -139,7 +125,31 @@ If the setting is ``True``, the admin interface is slightly changed:
 * The Sites many-to-many field is displayed on Gallery and Photos models.
 * The Gallery Upload allows you to associate one more sites to the uploaded photos (and gallery).
 
-.. note:: Gallery Uploads (zip archives) are always associated with the current site. This will be
-   fixed in a future version of Photologue.
+.. note:: Gallery Uploads (zip archives) are always associated with the current site. Pull requests to
+   fix this would be welcome!
 
 .. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html
+
+PHOTOLOGUE_ENABLE_TAGS
+----------------------
+
+    Default: ``False``
+
+.. deprecated:: 3.0
+
+Photologue used to include tagging on both the Gallery and Photo models. This relied on the 
+3rd party `django-tagging library, which is no longer maintained`_.
+
+As a consequence, tagging functionality is being removed from Photologue itself. Adding a 3rd party tagging library
+is pretty straightforward - :ref:`See here for an example <customising-models-label>`.
+
+As a first step, the tags are no longer accessible in the admin - this is to make clear that they
+are being deprecated.
+
+The models have not been changed - the tags are still there, and any data is preserved. You can *choose* to
+re-enable tags in the admin with the ``PHOTOLOGUE_ENABLE_TAGS`` setting.
+
+This change was put in place to make it very clear that tags are going to be removed. You should make plans to
+migrate your tags to a new tagging library; tags will be removed entirely from django-photologue in version 3.1.
+
+.. _django-tagging library, which is no longer maintained: https://github.com/brosner/django-tagging
