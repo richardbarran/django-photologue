@@ -23,10 +23,10 @@ the popular 3rd party application `django-taggit <https://github.com/alex/django
 
 .. note::
 
-	The ``Gallery`` and ``Photo`` models currently have tag fields, however these are based on the
-	abandonware `django-tagging <https://github.com/brosner/django-tagging>`_ application. Instead,
-	tagging is being entirely removed from Photologue, as it is a non-core functionality of a
-	gallery application, and is easy to add back in - as this page shows!
+    The ``Gallery`` and ``Photo`` models currently have tag fields, however these are based on the
+    abandonware `django-tagging <https://github.com/brosner/django-tagging>`_ application. Instead,
+    tagging is being entirely removed from Photologue, as it is a non-core functionality of a
+    gallery application, and is easy to add back in - as this page shows!
 
 Create a customisation application
 ----------------------------------
@@ -43,28 +43,28 @@ Models.py
 
 .. code-block:: python
 
-	from django.db import models
+    from django.db import models
 
-	from taggit.managers import TaggableManager
+    from taggit.managers import TaggableManager
 
-	from photologue.models import Gallery
+    from photologue.models import Gallery
 
 
-	class GalleryExtended(models.Model):
+    class GalleryExtended(models.Model):
 
-	    # Link back to Photologue's Gallery model.
-	    gallery = models.OneToOneField(Gallery, related_name='extended')
+        # Link back to Photologue's Gallery model.
+        gallery = models.OneToOneField(Gallery, related_name='extended')
 
-	    # This is the important bit - where we add in the tags.
-	    tags = TaggableManager(blank=True)
+        # This is the important bit - where we add in the tags.
+        tags = TaggableManager(blank=True)
 
-	    # Boilerplate code to make a prettier display in the admin interface.
-	    class Meta:
-	        verbose_name = u'Extra fields'
-	        verbose_name_plural = u'Extra fields'
+        # Boilerplate code to make a prettier display in the admin interface.
+        class Meta:
+            verbose_name = u'Extra fields'
+            verbose_name_plural = u'Extra fields'
 
-	    def __str__(self):
-    	    return self.gallery.title
+        def __str__(self):
+            return self.gallery.title
 
 
 Admin.py
@@ -72,26 +72,26 @@ Admin.py
 
 .. code-block:: python
 
-	from django.contrib import admin
+    from django.contrib import admin
 
-	from photologue.admin import GalleryAdmin as GalleryAdminDefault
-	from photologue.models import Gallery
-	from .models import GalleryExtended
-
-
-	class GalleryExtendedInline(admin.StackedInline):
-	    model = GalleryExtended
-	    can_delete = False
+    from photologue.admin import GalleryAdmin as GalleryAdminDefault
+    from photologue.models import Gallery
+    from .models import GalleryExtended
 
 
-	class GalleryAdmin(GalleryAdminDefault):
+    class GalleryExtendedInline(admin.StackedInline):
+        model = GalleryExtended
+        can_delete = False
 
-	    """Define our new one-to-one model as an inline of Photologue's Gallery model."""
 
-	    inlines = [GalleryExtendedInline, ]
+    class GalleryAdmin(GalleryAdminDefault):
 
-	admin.site.unregister(Gallery)
-	admin.site.register(Gallery, GalleryAdmin)
+        """Define our new one-to-one model as an inline of Photologue's Gallery model."""
+
+        inlines = [GalleryExtendedInline, ]
+
+    admin.site.unregister(Gallery)
+    admin.site.register(Gallery, GalleryAdmin)
 
 The above code is enough to start entering tags in the admin interface. To use/display them in the front
 end, you will also need to override Photologue's own templates - as the templates are likely to be
