@@ -118,6 +118,14 @@ if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
     default_storage.save(PHOTOLOGUE_CACHEDIRTAG, ContentFile(
         "Signature: 8a477f597d28d172789f06886806bc55"))
 
+# Orientation necessary mapped to EXIF data
+IMAGE_EXIF_ORIENTATION_MAP = {
+    1: 0,
+    8: 2,
+    3: 3,
+    6: 4,
+}
+
 # Quality options for JPEG images
 JPEG_QUALITY_CHOICES = (
     (30, _('Very Low')),
@@ -430,6 +438,9 @@ class ImageModel(models.Model):
         # Resize/crop image
         if im.size != photosize.size and photosize.size != (0, 0):
             im = self.resize_image(im, photosize)
+        # Rotate if found & necessary
+        if self.EXIF.get('Image Orientation', None) is not None:
+            im = im.transpose(IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation', 1).values[0]])
         # Apply watermark if found
         if photosize.watermark is not None:
             im = photosize.watermark.post_process(im)
