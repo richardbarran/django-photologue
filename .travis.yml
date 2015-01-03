@@ -7,17 +7,17 @@ python:
   - 3.4
 
 env:
-  - DJANGO="Django==1.6.8"
-  - DJANGO="Django==1.7.1"
+  - DJANGO="Django==1.6.9"
+  - DJANGO="Django==1.7.2"
 
 matrix:
   exclude:
     # Python 3.4 is not supported in Django before 1.7.
-    - env: DJANGO="Django==1.6.8"
+    - env: DJANGO="Django==1.6.9"
       python: 3.4
     # Python 2.6 support has been dropped in Django 1.7
     - python: 2.6
-      env: DJANGO="Django==1.7.1"
+      env: DJANGO="Django==1.7.2"
 
 install:
   - pip install $DJANGO
