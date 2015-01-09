@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 from django.conf import settings
 from django.core.files.storage import default_storage
@@ -89,6 +91,11 @@ class PhotoTest(PhotologueBaseTest):
         self.assertEqual(self.pl2.get_testPhotoSize_url(),
                          self.pl2.cache_url() + '/test_photologue_%26quoting_testPhotoSize.jpg')
 
+    def test_unicode(self):
+        """Trivial check that unicode titles work.
+        (I was trying to track down an elusive unicode issue elsewhere)"""
+        PhotoFactory(title='É', 
+            slug='é')
 
 class PhotoManagerTest(PhotologueBaseTest):
 
