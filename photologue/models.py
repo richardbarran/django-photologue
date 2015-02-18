@@ -485,6 +485,10 @@ class ImageModel(models.Model):
             if photosize.pre_cache:
                 self.create_size(photosize)
 
+    def __init__(self, *args, **kwargs):
+        super(ImageModel, self).__init__(*args, **kwargs)
+        self._old_image = self.image
+
     def save(self, *args, **kwargs):
         if self.date_taken is None:
             try:
@@ -499,7 +503,7 @@ class ImageModel(models.Model):
                 pass
         if self.date_taken is None:
             self.date_taken = now()
-        if self._get_pk_val():
+        if self._get_pk_val() and (self._old_image != self.image):
             self.clear_cache()
         super(ImageModel, self).save(*args, **kwargs)
         self.pre_cache()

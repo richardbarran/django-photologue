@@ -6,6 +6,7 @@ Changelog
 
 - Rotation of photos based upon EXIF data if available, so they get displayed correctly (#122).
 - Misc doc tweaks.
+- Only clear scale cache if image has changed.
 
 3.1.1 (2014-11-13)
 ------------------
