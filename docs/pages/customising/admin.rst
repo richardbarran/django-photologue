@@ -21,26 +21,26 @@ For example:
 
 .. code-block:: python
 
-	from django import forms
-	from django.contrib import admin
+    from django import forms
+    from django.contrib import admin
 
-	from photologue.admin import GalleryAdmin as GalleryAdminDefault
-	from photologue.models import Gallery
-
-
-	class GalleryAdminForm(forms.ModelForm):
-	    """Users never need to enter a description on a gallery."""
-
-	    class Meta:
-	        model = Gallery
-	        exclude = ['description']
+    from photologue.admin import GalleryAdmin as GalleryAdminDefault
+    from photologue.models import Gallery
 
 
-	class GalleryAdmin(GalleryAdminDefault):
-	    form = GalleryAdminForm
+    class GalleryAdminForm(forms.ModelForm):
+        """Users never need to enter a description on a gallery."""
 
-	admin.site.unregister(Gallery)
-	admin.site.register(Gallery, GalleryAdmin)
+        class Meta:
+            model = Gallery
+            exclude = ['description']
+
+
+    class GalleryAdmin(GalleryAdminDefault):
+        form = GalleryAdminForm
+
+    admin.site.unregister(Gallery)
+    admin.site.register(Gallery, GalleryAdmin)
 
 
 This snippet will define a new Gallery admin class based on Photologue's own. The only change we make
@@ -61,27 +61,27 @@ if you have `django-ckeditor <https://github.com/shaunsephton/django-ckeditor>`_
 
 .. code-block:: python
 
-	from django import forms
-	from django.contrib import admin
+    from django import forms
+    from django.contrib import admin
 
-	from ckeditor.widgets import CKEditorWidget
-	from photologue.admin import GalleryAdmin as GalleryAdminDefault
-	from photologue.models import Gallery
-
-
-	class GalleryAdminForm(forms.ModelForm):
-	    """Replace the default description field, with one that uses a custom widget."""
-
-	    description = forms.CharField(widget=CKEditorWidget())
-
-	    class Meta:
-	        model = Gallery
-	        exclude = ['']
+    from ckeditor.widgets import CKEditorWidget
+    from photologue.admin import GalleryAdmin as GalleryAdminDefault
+    from photologue.models import Gallery
 
 
-	class GalleryAdmin(GalleryAdminDefault):
-	    form = GalleryAdminForm
+    class GalleryAdminForm(forms.ModelForm):
+        """Replace the default description field, with one that uses a custom widget."""
 
-	admin.site.unregister(Gallery)
-	admin.site.register(Gallery, GalleryAdmin)
+        description = forms.CharField(widget=CKEditorWidget())
+
+        class Meta:
+            model = Gallery
+            exclude = ['']
+
+
+    class GalleryAdmin(GalleryAdminDefault):
+        form = GalleryAdminForm
+
+    admin.site.unregister(Gallery)
+    admin.site.register(Gallery, GalleryAdmin)
 

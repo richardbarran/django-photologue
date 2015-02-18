@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import os
 from django.conf import settings
-from ..models import Image, Photo, PHOTOLOGUE_DIR
+from django.core.files.storage import default_storage
+from ..models import Image, Photo, PHOTOLOGUE_DIR, PHOTOLOGUE_CACHEDIRTAG
 from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
     GalleryFactory, PhotoFactory
 from .helpers import PhotologueBaseTest
@@ -33,6 +36,12 @@ class PhotoTest(PhotologueBaseTest):
         self.assertEqual(self.pl.cache_url(),
                          settings.MEDIA_URL + PHOTOLOGUE_DIR + '/photos/cache')
 
+    def test_cachedir_tag(self):
+        self.assertTrue(default_storage.exists(PHOTOLOGUE_CACHEDIRTAG))
+
+        content = default_storage.open(PHOTOLOGUE_CACHEDIRTAG).read()
+        self.assertEqual(content, b"Signature: 8a477f597d28d172789f06886806bc55")
+
     def test_count(self):
         for i in range(5):
             self.pl.get_testPhotoSize_url()
@@ -61,7 +70,7 @@ class PhotoTest(PhotologueBaseTest):
         self.assertEqual(self.pl.get_testPhotoSize_photosize(), self.s)
         self.assertEqual(self.pl.get_testPhotoSize_size(),
                          Image.open(self.pl.image.storage.open(
-                            self.pl.get_testPhotoSize_filename())).size)
+                             self.pl.get_testPhotoSize_filename())).size)
         self.assertEqual(self.pl.get_testPhotoSize_url(),
                          self.pl.cache_url() + '/' +
                          self.pl._get_filename_for_size(self.s))
@@ -82,6 +91,11 @@ class PhotoTest(PhotologueBaseTest):
         self.assertEqual(self.pl2.get_testPhotoSize_url(),
                          self.pl2.cache_url() + '/test_photologue_%26quoting_testPhotoSize.jpg')
 
+    def test_unicode(self):
+        """Trivial check that unicode titles work.
+        (I was trying to track down an elusive unicode issue elsewhere)"""
+        PhotoFactory(title='É', 
+            slug='é')
 
 class PhotoManagerTest(PhotologueBaseTest):
 

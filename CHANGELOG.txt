@@ -1,11 +1,30 @@
 Changelog
 =========
 
-3.1 (unreleased)
+3.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
-- Rafactor `add_accessor_methods` to be lazily applied.
+- Rotation of photos based upon EXIF data if available, so they get displayed correctly (#122).
+- Misc doc tweaks.
+
+3.1.1 (2014-11-13)
+------------------
+
+- The 'zip upload' functionality did not work (the required html templates
+  were not included into the released package).
+- Updated French translation.
+
+3.1 (2014-11-03)
+----------------
+
+- The 'zip upload' functionality has been moved to a custom admin page.
+- Refactor `add_accessor_methods` to be lazily applied (see #110).
+- Updated German translation.
+- Several improvements to the sample Bootstrap templates.
+- Support CACHEDIR.TAG spec issue #89
+- Fix issue #99 by adding 10 extra char to photo title(max gallery size up to 999999999 images)
+- Sitemap.xml was not aware of Sites (#104).
+- In python 3, gallery upload would crash if uploaded file was not a zip file (#106).
 
 3.0.2 (2014-09-23)
 ------------------
@@ -14,12 +33,10 @@ Changelog
 - Updated Spanish translation.
 - Updated Bootstrap version used in example project.
 
-
 3.0.1 (2014-09-16)
 ------------------
 
 - Missed out some templates from the released package.
-
 
 3.0 (2014-09-15)
 ----------------
@@ -69,13 +86,11 @@ Other changes:
 
 - Updated Spanish translation.
 
-
 2.8.2 (2014-07-26)
 ------------------
 
 - The latest release of django-sortedm2m is not compatible with older 
   versions of Django, so don't use it (issue #92).
-
 
 2.8.1 (2014-07-26)
 ------------------

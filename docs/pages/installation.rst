@@ -24,8 +24,7 @@ to fix any potential bugs on your own!
 
 Python 3
 ~~~~~~~~
-Photologue works with Python 3 (3.3 or later). You'll need Django version
-1.5 or higher.
+Photologue works with Python 3 (3.3 or later).
 
 Dependencies
 ------------
@@ -40,8 +39,7 @@ And 2 dependencies that you will have to manage yourself:
 
 * `Pytz <https://pypi.python.org/pypi/pytz>`_. See the Django release notes `for more information 
   <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
-* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6. Note that South 1.0 is not 
-  compatible with Python 3 - you should install version 0.8.4 instead.
+* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6.
 
 .. note::
 
@@ -79,16 +77,15 @@ so googling 'PIL installation <your platform>' can also help.
      >>>
 
 
-Configure Your Django Settings
-------------------------------
+Configure Your Django Settings file
+-----------------------------------
 
 #. Add to your ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
-         # ...other installed applications,
+         # ...other installed applications...
          'photologue',
          'sortedm2m',
-         'south',   # Only if you're relying on South for migrations.
     )
 
 #. Confirm that your `MEDIA_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#media-root>`_ and
@@ -97,9 +94,9 @@ Configure Your Django Settings
 
 #. `Enable the admin app if you have not already done so <https://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_.
 
-#. Also enable `Django’s site framework
+#. Django has `an optional site framework
    <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_.
-
+   This is not enabled by default in Django, but is required by Photologue.
 
 Add the urls
 ------------
@@ -118,7 +115,7 @@ Database migrations can be managed either with South, or with Django's migration
 
 South
 ~~~~~
-If you're on Django < 1.7, then you should be using `South <http://south.aeracode.org/>`_.
+If you're on Django 1.6, then you should be using `South <http://south.aeracode.org/>`_.
 You'll need to add it to your ``INSTALLED_APPS`` and also add this to your settings::
 
     SOUTH_MIGRATION_MODULES = {

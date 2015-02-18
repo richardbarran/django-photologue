@@ -5,34 +5,36 @@
 
 {% block content %}
 
-    <div class="row page-header col-lg-12">
-        <h1>{% blocktrans with show_month=month|date:"F Y" %}Galleries for {{ show_month }}{% endblocktrans %}</h1>
+    <div class="row col-lg-12">
+        <h1 class="page-header">{% blocktrans with show_month=month|date:"F Y" %}Galleries for {{ show_month }}{% endblocktrans %}</h1>
     </div>
 
-    <div class="col-md-2">
+    <div class="row">
 
-        <div>{% trans "Filter by day" %}</div>
-        <ul>
-        {% for date in date_list %}
-            <li><a href="{% url 'photologue:gallery-archive-day' date.year date|date:"m"|lower date.day %}">{{ date|date:"d" }}</a></li>
-        {% endfor %}
-        </ul>
+        <aside class="col-md-2">
 
-    </div>
-
-    <div class="col-md-10">
-
-        {% if object_list %}
-            {% for gallery in object_list %}
-                {% include "photologue/includes/gallery_sample.html" %}
+            <h4>{% trans "Filter by day" %}</h4>
+            <ul>
+            {% for date in date_list %}
+                <li><a href="{% url 'photologue:gallery-archive-day' date.year date|date:"m"|lower date.day %}">{{ date|date:"d" }}</a></li>
             {% endfor %}
-        {% else %}
-            <div class="row">{% trans "No galleries were found." %}</div>
-        {% endif %}
+            </ul>
 
-        <div class="row col-lg-12">
-            <a href="{% url 'photologue:pl-gallery-archive-year' month.year %}" class="btn btn-default">{% trans "View all galleries for year" %}</a>
-        </div>
+        </aside>
+
+        <main class="col-md-10">
+
+            {% if object_list %}
+                {% for gallery in object_list %}
+                    {% include "photologue/includes/gallery_sample.html" %}
+                {% endfor %}
+            {% else %}
+                <p>{% trans "No galleries were found." %}</p>
+            {% endif %}
+
+            <div><a href="{% url 'photologue:pl-gallery-archive-year' month.year %}" class="btn btn-default">{% trans "View all galleries for year" %}</a></div>
+
+        </main>
 
     </div>
 

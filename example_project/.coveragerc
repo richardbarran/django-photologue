@@ -1,0 +1,9 @@
+[run]
+source = photologue
+omit = *migrations*, *wsgi*, */tests/*
+
+[report]
+ignore_errors = True
+
+[html]
+directory = coverage_html_report

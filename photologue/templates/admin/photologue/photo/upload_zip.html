@@ -1,0 +1,57 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static %}
+
+{# Admin styling code largely taken from http://www.dmertl.com/blog/?p=116 #}
+
+{% block extrastyle %}
+	{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}"/>
+{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst|escape }}</a>
+        &rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">
+        {{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+        &rsaquo; {% trans 'Upload' %}
+    </div>
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+	
+	<h1>{% trans "Upload a zip archive of photos" %}</h1>
+	{% blocktrans %}
+		<p>On this page you can upload many photos at once, as long as you have
+		put them all in a zip archive. The photos can be either:</p>
+		<ul>
+			<li>Added to an existing gallery.</li>
+			<li>Otherwise, a new gallery is created with the supplied title.</li>
+		</ul>
+	{% endblocktrans %}
+
+	{% if form.errors %}
+	    <p class="errornote">
+	    {% if form.errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+	    </p>
+	    {{ form.non_field_errors }}
+	{% endif %}
+
+	<form action="{% url 'admin:photologue_upload_zip' %}" method="post" id="zip_upload_form"
+          {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+        <div>
+            {% for fieldset in adminform %}
+                {% include "admin/includes/fieldset.html" %}
+            {% endfor %}
+        </div>
+        <div class="submit-row">
+            <input type="submit" value="{% trans 'Upload' %}" class="default"/>
+        </div>
+    </form>
+
+{% endblock %}

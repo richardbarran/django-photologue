@@ -62,8 +62,8 @@ def add_reflection(im, bgcolor="#00000", amount=0.4, opacity=0.6):
     background = Image.new("RGB", im.size, background_color)
 
     # calculate our alpha mask
-    start = int(255 - (255 * opacity)) # The start of our gradient
-    steps = int(255 * amount) # the number of intermedite values
+    start = int(255 - (255 * opacity))  # The start of our gradient
+    steps = int(255 * amount)  # the number of intermedite values
     increment = (255 - start) / float(steps)
     mask = Image.new('L', (1, 255))
     for y in range(255):

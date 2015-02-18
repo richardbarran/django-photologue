@@ -6,38 +6,40 @@
 
 {% block content %}
 
-	<div class="row page-header col-lg-12">
-        <h1>{% blocktrans with show_year=year|date:"Y" %}Photos for {{ show_year }}{% endblocktrans %}</h1>
-	</div>
+    <div class="row col-lg-12">
+        <h1 class="page-header">{% blocktrans with show_year=year|date:"Y" %}Photos for {{ show_year }}{% endblocktrans %}</h1>
+    </div>
 
-	<div class="col-md-2">
+	<div class="row">
 
-		<div>{% trans "Filter by month" %}</div>
-		<ul>
-		{% for date in date_list %}
-			<li><a href="{% url 'photologue:photo-archive-month' date.year date|date:"m"|lower %}">{{ date|date:"F" }}</a></li>
-		{% endfor %}
-		</ul>
+		<aside class="col-md-2">
 
-	</div>
+			<h4>{% trans "Filter by month" %}</h4>
+			<ul>
+			{% for date in date_list %}
+				<li><a href="{% url 'photologue:photo-archive-month' date.year date|date:"m"|lower %}">{{ date|date:"F" }}</a></li>
+			{% endfor %}
+			</ul>
 
-	<div class="col-md-10">
+		</aside>
 
-		{% if object_list %}
-			<div class="row col-lg-12">
-			    {% for photo in object_list %}
-			        <a href="{{ photo.get_absolute_url }}">
-			             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
-			        </a>
-			    {% endfor %}
-			</div>
-		{% else %}
-			<div class="row">{% trans "No photos were found" %}.</div>
-		{% endif %}
+		<main class="col-md-10">
 
-	    <div class="row col-lg-12">
-            <a href="{% url 'photologue:pl-photo-archive' %}" class="btn btn-default">{% trans "View all photos" %}</a>
-	    </div>
+			{% if object_list %}
+				<div class="row col-lg-12">
+				    {% for photo in object_list %}
+				        <a href="{{ photo.get_absolute_url }}">
+				             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+				        </a>
+				    {% endfor %}
+				</div>
+			{% else %}
+				<p>{% trans "No photos were found" %}.</p>
+			{% endif %}
+
+		    <div><a href="{% url 'photologue:pl-photo-archive' %}" class="btn btn-default">{% trans "View all photos" %}</a></div>
+
+		</main>
 
 	</div>
 

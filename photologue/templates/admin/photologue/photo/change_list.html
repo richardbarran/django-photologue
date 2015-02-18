@@ -1,0 +1,13 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+
+{% block object-tools-items %}
+  {{ block.super }}
+  <li>
+    <a href="{% url "admin:photologue_upload_zip" %}" class="addlink">
+      {% trans "Upload a zip archive" %}
+    </a>
+  </li>
+{% endblock %}
+

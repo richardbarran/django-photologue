@@ -15,6 +15,7 @@ except ImportError:
     except ImportError:
         raise ImportError("The Python Imaging Library was not found.")
 
+
 def reduce_opacity(im, opacity):
     """Returns an image with reduced opacity."""
     assert opacity >= 0 and opacity <= 1
@@ -26,6 +27,7 @@ def reduce_opacity(im, opacity):
     alpha = ImageEnhance.Brightness(alpha).enhance(opacity)
     im.putalpha(alpha)
     return im
+
 
 def apply_watermark(im, mark, position, opacity=1):
     """Adds a watermark to an image."""
@@ -52,6 +54,7 @@ def apply_watermark(im, mark, position, opacity=1):
         layer.paste(mark, position)
     # composite the watermark with the layer
     return Image.composite(layer, im, layer)
+
 
 def test():
     im = Image.open('test.png')

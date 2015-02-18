@@ -1,12 +1,18 @@
 from django import forms
 from django.conf import settings
+from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.sites.models import Site
 from django.contrib import messages
 from django.utils.translation import ungettext, ugettext_lazy as _
+from django.conf.urls import patterns
+from django.shortcuts import render
+from django.contrib.admin import helpers
+from django.http import HttpResponseRedirect
 
-from .models import Gallery, Photo, GalleryUpload, PhotoEffect, PhotoSize, \
+from .models import Gallery, Photo, PhotoEffect, PhotoSize, \
     Watermark
+from .forms import UploadZipForm
 
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
@@ -131,19 +137,6 @@ class GalleryAdmin(admin.ModelAdmin):
 admin.site.register(Gallery, GalleryAdmin)
 
 
-class GalleryUploadAdmin(admin.ModelAdmin):
-
-    def has_change_permission(self, request, obj=None):
-        return False  # To remove the 'Save and continue editing' button
-
-    def save_model(self, request, obj, form, change):
-        # Warning the user when things go wrong in a zip upload.
-        obj.request = request
-        obj.save()
-
-admin.site.register(GalleryUpload, GalleryUploadAdmin)
-
-
 class PhotoAdminForm(forms.ModelForm):
 
     class Meta:
@@ -206,6 +199,39 @@ class PhotoAdmin(admin.ModelAdmin):
 
     remove_photos_from_current_site.short_description = \
         _("Remove selected photos from the current site")
+
+    def get_urls(self):
+        urls = super(PhotoAdmin, self).get_urls()
+        custom_urls = patterns('',
+                               url(r'^upload_zip/$',
+                                   self.admin_site.admin_view(self.upload_zip),
+                                   name='photologue_upload_zip')
+                               )
+        return custom_urls + urls
+
+    def upload_zip(self, request):
+
+        context = {
+            'title': _('Upload a zip archive of photos'),
+            'app_label': self.model._meta.app_label,
+            'opts': self.model._meta,
+            'has_change_permission': self.has_change_permission(request)
+        }
+
+        # Handle form request
+        if request.method == 'POST':
+            form = UploadZipForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save(request=request)
+                return HttpResponseRedirect('..')
+        else:
+            form = UploadZipForm()
+        context['form'] = form
+        context['adminform'] = helpers.AdminForm(form,
+                                                 list([(None, {'fields': form.base_fields})]),
+                                                 {})
+        return render(request, 'admin/photologue/photo/upload_zip.html', context)
+
 
 admin.site.register(Photo, PhotoAdmin)
 

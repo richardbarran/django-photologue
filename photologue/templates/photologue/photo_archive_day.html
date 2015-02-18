@@ -5,7 +5,9 @@
 
 {% block content %}
 
-    <h1>{% blocktrans with show_day=day|date:"d F Y" %}Photos for {{ show_day }}{% endblocktrans %}</h1>
+    <div class="row col-lg-12">
+        <h1 class="page-header">{% blocktrans with show_day=day|date:"d F Y" %}Photos for {{ show_day }}{% endblocktrans %}</h1>
+    </div>
 
 	{% if object_list %}
 		<div class="row col-lg-12">
@@ -16,11 +18,9 @@
 		    {% endfor %}
 		</div>
 	{% else %}
-		<div class="row">{% trans "No photos were found" %}.</div>
+		<p>{% trans "No photos were found" %}.</p>
 	{% endif %}
 
-    <div class="row col-lg-12">
-        <a href="{% url 'photologue:photo-archive-month' day.year day|date:"m"|lower %}" class="btn btn-default">{% trans "View all photos for month" %}</a>
-    </div>
+    <div><a href="{% url 'photologue:photo-archive-month' day.year day|date:"m"|lower %}" class="btn btn-default">{% trans "View all photos for month" %}</a></div>
 
 {% endblock %}
