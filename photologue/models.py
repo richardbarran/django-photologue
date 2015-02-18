@@ -172,8 +172,6 @@ IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern 
 
 size_method_map = {}
 
-size_method_map = {}
-
 
 @python_2_unicode_compatible
 class Gallery(models.Model):
