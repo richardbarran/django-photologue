@@ -118,12 +118,23 @@ if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
     default_storage.save(PHOTOLOGUE_CACHEDIRTAG, ContentFile(
         "Signature: 8a477f597d28d172789f06886806bc55"))
 
-# Orientation necessary mapped to EXIF data
+# Exif Orientation values
+# Value 0thRow	0thColumn
+#   1	top     left
+#   2	top     right
+#   3	bottom	right
+#   4	bottom	left
+#   5	left	top
+#   6	right   top
+#   7	right   bottom
+#   8	left    bottom
+
+# Image Orientations (according to EXIF informations) that needs to be transposed and appropriate action
 IMAGE_EXIF_ORIENTATION_MAP = {
-    1: 0,
-    8: 2,
-    3: 3,
-    6: 4,
+    2: Image.FLIP_LEFT_RIGHT,
+    3: Image.ROTATE_180,
+    6: Image.ROTATE_270,
+    8: Image.ROTATE_90,
 }
 
 # Quality options for JPEG images
@@ -439,8 +450,8 @@ class ImageModel(models.Model):
         if im.size != photosize.size and photosize.size != (0, 0):
             im = self.resize_image(im, photosize)
         # Rotate if found & necessary
-        if self.EXIF.get('Image Orientation', None) is not None:
-            im = im.transpose(IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation', 1).values[0]])
+        if 'Image Orientation' in self.EXIF and self.EXIF.get('Image Orientation') in IMAGE_EXIF_ORIENTATION_MAP:
+            im = im.transpose(IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation').values[0]])
         # Apply watermark if found
         if photosize.watermark is not None:
             im = photosize.watermark.post_process(im)
