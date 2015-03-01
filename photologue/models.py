@@ -450,7 +450,7 @@ class ImageModel(models.Model):
         if im.size != photosize.size and photosize.size != (0, 0):
             im = self.resize_image(im, photosize)
         # Rotate if found & necessary
-        if 'Image Orientation' in self.EXIF and self.EXIF.get('Image Orientation') in IMAGE_EXIF_ORIENTATION_MAP:
+        if 'Image Orientation' in self.EXIF and self.EXIF.get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
             im = im.transpose(IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation').values[0]])
         # Apply watermark if found
         if photosize.watermark is not None:
