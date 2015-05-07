@@ -146,6 +146,7 @@ class DeprecatedMonthMixin(object):
 
 
 class GalleryDateDetailOldView(DeprecatedMonthMixin, RedirectView):
+    permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         super(GalleryDateDetailOldView, self).get_redirect_url(*args, **kwargs)
@@ -156,6 +157,7 @@ class GalleryDateDetailOldView(DeprecatedMonthMixin, RedirectView):
 
 
 class GalleryDayArchiveOldView(DeprecatedMonthMixin, RedirectView):
+    permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         super(GalleryDayArchiveOldView, self).get_redirect_url(*args, **kwargs)
@@ -165,6 +167,7 @@ class GalleryDayArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
 
 class GalleryMonthArchiveOldView(DeprecatedMonthMixin, RedirectView):
+    permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         super(GalleryMonthArchiveOldView, self).get_redirect_url(*args, **kwargs)
@@ -173,6 +176,7 @@ class GalleryMonthArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
 
 class PhotoDateDetailOldView(DeprecatedMonthMixin, RedirectView):
+    permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         super(PhotoDateDetailOldView, self).get_redirect_url(*args, **kwargs)
@@ -183,6 +187,7 @@ class PhotoDateDetailOldView(DeprecatedMonthMixin, RedirectView):
 
 
 class PhotoDayArchiveOldView(DeprecatedMonthMixin, RedirectView):
+    permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         super(PhotoDayArchiveOldView, self).get_redirect_url(*args, **kwargs)
@@ -192,6 +197,7 @@ class PhotoDayArchiveOldView(DeprecatedMonthMixin, RedirectView):
 
 
 class PhotoMonthArchiveOldView(DeprecatedMonthMixin, RedirectView):
+    permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
         super(PhotoMonthArchiveOldView, self).get_redirect_url(*args, **kwargs)

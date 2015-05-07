@@ -203,11 +203,10 @@ class Gallery(models.Model):
     photos = SortedManyToManyField('Photo',
                                    related_name='galleries',
                                    verbose_name=_('photos'),
-                                   null=True,
                                    blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
-                                   blank=True, null=True)
+                                   blank=True)
 
     objects = PassThroughManager.for_queryset_class(GalleryQuerySet)()
 
@@ -547,7 +546,7 @@ class Photo(ImageModel):
                                     help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
-                                   blank=True, null=True)
+                                   blank=True)
 
     objects = PassThroughManager.for_queryset_class(PhotoQuerySet)()
 
