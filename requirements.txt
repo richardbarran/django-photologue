@@ -1,4 +1,4 @@
-Django>=1.6 # Django-sortedm2m does not work with Django 1.4, and Django 1.5 is end-of-life'd.
+Django>=1.7
 Pillow>=2.7.0 # Insist on at least 2.7.0 as it fixes a security hole.
 django-sortedm2m>=0.8.1
 django-model-utils>=2.2

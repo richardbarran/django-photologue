@@ -4,6 +4,7 @@ Changelog
 3.2 (unreleased)
 ----------------
 
+- Dropped support for Django 1.6.
 - Rotation of photos based upon EXIF data if available, so they get displayed correctly (#122).
 - Misc doc tweaks.
 - Only clear scale cache if image has changed.

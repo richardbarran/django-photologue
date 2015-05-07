@@ -2,7 +2,6 @@
 
 import os
 import sys
-import django
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -99,9 +98,6 @@ INSTALLED_APPS = [
     'example_project',
 ]
 
-if django.VERSION[:2] < (1, 7):
-    INSTALLED_APPS.append('south')
-
 # LOGGING CONFIGURATION
 # A logging configuration that writes log messages to the console.
 LOGGING = {
@@ -157,14 +153,6 @@ LOGGING = {
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['']['handlers'] = ['null']
     LOGGING['loggers']['photologue']['handlers'] = ['null']
-
-# The following settings are only used by South.
-
-SOUTH_TESTS_MIGRATE = False
-
-SOUTH_MIGRATION_MODULES = {
-    'photologue': 'photologue.south_migrations',
-}
 
 SILENCED_SYSTEM_CHECKS = [
     '1_6.W001'  # Dividing the tests into separate files triggers this alert.

@@ -35,16 +35,15 @@ Dependencies
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 * `Django-model-utils <https://pypi.python.org/pypi/django-model-utils>`_.
 
-And 2 dependencies that you will have to manage yourself:
+And 1 dependency that you will have to manage yourself:
 
 * `Pytz <https://pypi.python.org/pypi/pytz>`_. See the Django release notes `for more information 
   <https://docs.djangoproject.com/en/1.6/releases/1.6/#time-zone-aware-day-month-and-week-day-lookups>`_.
-* `South <http://south.aeracode.org/>`_. Only applies for Django 1.6.
 
 .. note::
 
-    Photologue has - more or less - the same support policy as Django. Photologue 3.0
-    is tested against Django 1.6 and 1.7.
+    Photologue tries to support the same Django version as are supported by the Django 
+    project itself.
 
 That troublesome Pillow...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -111,25 +110,7 @@ Add photologue to your projects urls.py file::
 Sync Your Database
 ------------------
 
-Database migrations can be managed either with South, or with Django's migrations module.
-
-South
-~~~~~
-If you're on Django 1.6, then you should be using `South <http://south.aeracode.org/>`_.
-You'll need to add it to your ``INSTALLED_APPS`` and also add this to your settings::
-
-    SOUTH_MIGRATION_MODULES = {
-        'photologue': 'photologue.south_migrations',
-    }
-
-Django migrations
-~~~~~~~~~~~~~~~~~
-Starting with version 1.7, Django has a new migrations module - Photologue uses it out
-of the box.
-
-Then...
-~~~~~~~
-In all cases, you can now sync your database::
+You can now sync your database::
 
     python manage.py migrate photologue
 

@@ -11,7 +11,6 @@ except ImportError:
     # Compatibility with Python 2.6.
     from django.utils.importlib import import_module
 
-import django
 from django.utils.timezone import now
 from django.db import models
 from django.db.models.signals import post_save
@@ -65,11 +64,6 @@ except ImportError:
         def get_internal_type(self):
             return 'CharField'
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
-
-    # Tell South how to handle this custom field.
-    if django.VERSION[:2] < (1, 7):
-        from south.modelsinspector import add_introspection_rules
-        add_introspection_rules([], ["^photologue\.models\.TagField"])
 
 from .utils import EXIF
 from .utils.reflection import add_reflection
