@@ -1,4 +1,4 @@
 Django>=1.7
 Pillow>=2.7.0 # Insist on at least 2.7.0 as it fixes a security hole.
-django-sortedm2m>=0.8.1
+django-sortedm2m>=0.9.5
 django-model-utils>=2.2
