@@ -1,6 +1,7 @@
+import unittest
+
 from django.test import TestCase
 from django.contrib.sites.models import Site
-from django.utils import unittest
 from django.conf import settings
 
 from .factories import GalleryFactory, PhotoFactory

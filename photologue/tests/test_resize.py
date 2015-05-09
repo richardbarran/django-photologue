@@ -1,4 +1,5 @@
 import unittest
+
 from django.core.exceptions import ValidationError
 from ..models import PhotoSizeCache, PhotoSize
 from .helpers import PhotologueBaseTest
