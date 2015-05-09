@@ -5,11 +5,7 @@ from inspect import isclass
 import warnings
 import logging
 from io import BytesIO
-try:
-    from importlib import import_module
-except ImportError:
-    # Compatibility with Python 2.6.
-    from django.utils.importlib import import_module
+from importlib import import_module
 
 from django.utils.timezone import now
 from django.db import models
@@ -123,7 +119,8 @@ if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
 #   7	right   bottom
 #   8	left    bottom
 
-# Image Orientations (according to EXIF informations) that needs to be transposed and appropriate action
+# Image Orientations (according to EXIF informations) that needs to be
+# transposed and appropriate action
 IMAGE_EXIF_ORIENTATION_MAP = {
     2: Image.FLIP_LEFT_RIGHT,
     3: Image.ROTATE_180,
@@ -444,7 +441,8 @@ class ImageModel(models.Model):
             im = self.resize_image(im, photosize)
         # Rotate if found & necessary
         if 'Image Orientation' in self.EXIF and self.EXIF.get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
-            im = im.transpose(IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation').values[0]])
+            im = im.transpose(
+                IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation').values[0]])
         # Apply watermark if found
         if photosize.watermark is not None:
             im = photosize.watermark.post_process(im)

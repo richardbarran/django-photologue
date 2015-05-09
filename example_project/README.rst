@@ -19,7 +19,7 @@ order to work on django-photologue itself.
 Prerequisites
 =============
 
-- python 2.6, 2.7, or 3.3.
+- python 2.7, 3.3, or 3.4.
 - virtualenvwrapper makes it easy to manage your virtualenvs. Strongly recommended!
 
 Installation
