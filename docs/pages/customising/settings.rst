@@ -5,28 +5,6 @@ Customisation: Settings
 
 Photologue has several settings to customise behaviour.
 
-PHOTOLOGUE_GALLERY_PAGINATE_BY
-------------------------------
-
-    Default: ``20``
-
-Number of galleries to display per page for GalleryListView.
-
-.. deprecated:: 2.8
-
-    Instead, override the view; :ref:`see here <customisation-views-label>`.
-
-PHOTOLOGUE_PHOTO_PAGINATE_BY
-----------------------------
-
-    Default: ``20``
-
-Number of photos to display per page for PhotoListView.
-
-.. deprecated:: 2.8
-
-    Instead, override the view; :ref:`see here <customisation-views-label>`.
-
 PHOTOLOGUE_GALLERY_LATEST_LIMIT
 -------------------------------
 

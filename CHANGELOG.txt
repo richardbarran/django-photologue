@@ -8,6 +8,11 @@ Changelog
 - Rotation of photos based upon EXIF data if available, so they get displayed correctly (#122).
 - Misc doc tweaks.
 - Only clear scale cache if image has changed.
+- Pagination is now hard-coded to 20 items per page - it's a convenience to have it available as
+  soon as the app is run, but having settings to tweak this value is not needed as it's so
+  easy to override in a Django project.
+- PHOTOLOGUE_GALLERY_PAGINATE_BY and PHOTOLOGUE_PHOTO_PAGINATE_BY were previously deprecated
+  and have now been removed.
 
 3.1.1 (2014-11-13)
 ------------------

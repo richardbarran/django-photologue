@@ -1,6 +1,5 @@
 import warnings
 
-from django.conf import settings
 from django.views.generic.dates import ArchiveIndexView, DateDetailView, DayArchiveView, MonthArchiveView, \
     YearArchiveView
 from django.views.generic.detail import DetailView
@@ -10,34 +9,13 @@ from django.core.urlresolvers import reverse
 
 from .models import Photo, Gallery
 
-# Number of galleries to display per page.
-GALLERY_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_GALLERY_PAGINATE_BY', 20)
-
-if GALLERY_PAGINATE_BY != 20:
-    warnings.warn(
-        DeprecationWarning('PHOTOLOGUE_GALLERY_PAGINATE_BY setting will be removed in Photologue 3.2'))
-
-# Number of photos to display per page.
-PHOTO_PAGINATE_BY = getattr(settings, 'PHOTOLOGUE_PHOTO_PAGINATE_BY', 20)
-
-if PHOTO_PAGINATE_BY != 20:
-    warnings.warn(
-        DeprecationWarning('PHOTOLOGUE_PHOTO_PAGINATE_BY setting will be removed in Photologue 3.2'))
 
 # Gallery views.
 
 
 class GalleryListView(ListView):
     queryset = Gallery.objects.on_site().is_public()
-    paginate_by = GALLERY_PAGINATE_BY
-
-    def get_context_data(self, **kwargs):
-        context = super(GalleryListView, self).get_context_data(**kwargs)
-        if self.kwargs.get('deprecated_pagination', False):
-            warnings.warn(
-                DeprecationWarning('Page numbers should now be passed via a page query-string parameter.'
-                                   ' The old style "/page/n/"" will be removed in Photologue 3.2.'))
-        return context
+    paginate_by = 20
 
 
 class GalleryDetailView(DetailView):
@@ -74,15 +52,7 @@ class GalleryYearArchiveView(GalleryDateView, YearArchiveView):
 
 class PhotoListView(ListView):
     queryset = Photo.objects.on_site().is_public()
-    paginate_by = PHOTO_PAGINATE_BY
-
-    def get_context_data(self, **kwargs):
-        context = super(PhotoListView, self).get_context_data(**kwargs)
-        if self.kwargs.get('deprecated_pagination', False):
-            warnings.warn(
-                DeprecationWarning('Page numbers should now be passed via a page query-string parameter.'
-                                   ' The old style "/page/n/"" will be removed in Photologue 3.2'))
-        return context
+    paginate_by = 20
 
 
 class PhotoDetailView(DetailView):
