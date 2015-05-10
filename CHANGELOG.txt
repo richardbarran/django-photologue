@@ -15,6 +15,7 @@ Changelog
   and have now been removed.
 - Tagging has been removed from Photologue.
 - All references to 'title_slug' field have been removed.
+- Updated German translation.
 
 3.1.1 (2014-11-13)
 ------------------
