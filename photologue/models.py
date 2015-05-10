@@ -41,7 +41,6 @@ except ImportError:
             'on your current Python path.')
 
 from sortedm2m.fields import SortedManyToManyField
-from model_utils.managers import PassThroughManager
 
 from .utils import EXIF
 from .utils.reflection import add_reflection
@@ -195,7 +194,7 @@ class Gallery(models.Model):
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
 
-    objects = PassThroughManager.for_queryset_class(GalleryQuerySet)()
+    objects = GalleryQuerySet.as_manager()
 
     class Meta:
         ordering = ['-date_added']
@@ -529,7 +528,7 @@ class Photo(ImageModel):
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
 
-    objects = PassThroughManager.for_queryset_class(PhotoQuerySet)()
+    objects = PhotoQuerySet.as_manager()
 
     class Meta:
         ordering = ['-date_added']
