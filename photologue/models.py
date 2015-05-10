@@ -2,7 +2,6 @@ import os
 import random
 from datetime import datetime
 from inspect import isclass
-import warnings
 import logging
 from io import BytesIO
 from importlib import import_module
@@ -252,12 +251,6 @@ class Gallery(models.Model):
         """
         return self.photos.filter(is_public=True)\
                           .exclude(sites__id__in=self.sites.all())
-
-    @property
-    def title_slug(self):
-        warnings.warn(
-            DeprecationWarning("`title_slug` field in Gallery is being renamed to `slug`. Update your code."))
-        return self.slug
 
 
 class ImageModel(models.Model):
@@ -590,12 +583,6 @@ class Photo(ImageModel):
             if photo == self:
                 matched = True
         return None
-
-    @property
-    def title_slug(self):
-        warnings.warn(
-            DeprecationWarning("`title_slug` field in Photo is being renamed to `slug`. Update your code."))
-        return self.slug
 
 
 @python_2_unicode_compatible

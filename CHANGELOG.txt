@@ -14,6 +14,7 @@ Changelog
 - PHOTOLOGUE_GALLERY_PAGINATE_BY and PHOTOLOGUE_PHOTO_PAGINATE_BY were previously deprecated
   and have now been removed.
 - Tagging has been removed from Photologue.
+- All references to 'title_slug' field have been removed.
 
 3.1.1 (2014-11-13)
 ------------------
