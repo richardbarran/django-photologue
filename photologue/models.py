@@ -44,23 +44,6 @@ except ImportError:
 from sortedm2m.fields import SortedManyToManyField
 from model_utils.managers import PassThroughManager
 
-# attempt to load the django-tagging TagField from default location,
-# otherwise we substitude a dummy TagField.
-try:
-    from tagging.fields import TagField
-    tagfield_help_text = _('Separate tags with spaces, put quotes around multiple-word tags.')
-except ImportError:
-    class TagField(models.CharField):
-
-        def __init__(self, **kwargs):
-            default_kwargs = {'max_length': 255, 'blank': True}
-            default_kwargs.update(kwargs)
-            super(TagField, self).__init__(**default_kwargs)
-
-        def get_internal_type(self):
-            return 'CharField'
-    tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
-
 from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
@@ -175,6 +158,21 @@ IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern 
 size_method_map = {}
 
 
+class TagField(models.CharField):
+
+    """Tags have been removed from Photologue, but the migrations still refer to them so this
+    Tagfield definition is left here.
+    """
+
+    def __init__(self, **kwargs):
+        default_kwargs = {'max_length': 255, 'blank': True}
+        default_kwargs.update(kwargs)
+        super(TagField, self).__init__(**default_kwargs)
+
+    def get_internal_type(self):
+        return 'CharField'
+
+
 @python_2_unicode_compatible
 class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'),
@@ -195,7 +193,6 @@ class Gallery(models.Model):
                                    related_name='galleries',
                                    verbose_name=_('photos'),
                                    blank=True)
-    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
 
@@ -536,7 +533,6 @@ class Photo(ImageModel):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
-    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
 

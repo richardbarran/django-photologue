@@ -16,8 +16,6 @@ from .forms import UploadZipForm
 
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
-ENABLE_TAGS = getattr(settings, 'PHOTOLOGUE_ENABLE_TAGS', False)
-
 
 class GalleryAdminForm(forms.ModelForm):
 
@@ -27,8 +25,6 @@ class GalleryAdminForm(forms.ModelForm):
             exclude = []
         else:
             exclude = ['sites']
-        if not ENABLE_TAGS:
-            exclude.append('tags')
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -145,17 +141,11 @@ class PhotoAdminForm(forms.ModelForm):
             exclude = []
         else:
             exclude = ['sites']
-        if not ENABLE_TAGS:
-            exclude.append('tags')
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    if ENABLE_TAGS:
-        list_display = ('title', 'date_taken', 'date_added',
-                        'is_public', 'tags', 'view_count', 'admin_thumbnail')
-    else:
-        list_display = ('title', 'date_taken', 'date_added',
-                        'is_public', 'view_count', 'admin_thumbnail')
+    list_display = ('title', 'date_taken', 'date_added',
+                    'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
         list_filter.append('sites')
