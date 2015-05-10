@@ -160,9 +160,5 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     LOGGING['loggers']['']['handlers'] = ['null']
     LOGGING['loggers']['photologue']['handlers'] = ['null']
 
-SILENCED_SYSTEM_CHECKS = [
-    '1_6.W001'  # Dividing the tests into separate files triggers this alert.
-]
-
 # Uncomment this for Amazon S3 file storage
 # from example_storages.settings_s3boto import *
