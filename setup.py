@@ -1,15 +1,21 @@
 #/usr/bin/env python
+import uuid
 import os
 from setuptools import setup, find_packages
+from pip.req import parse_requirements
+
 import photologue
 
-ROOT_DIR = os.path.dirname(__file__)
-SOURCE_DIR = os.path.join(ROOT_DIR)
 
+def get_requirements(source):
 
-def get_requirements(requirements_file):
-    with open(requirements_file) as f:
-        required = [line.split('#')[0] for line in f.read().splitlines()]
+    try:
+        install_reqs = parse_requirements(source, session=uuid.uuid1())
+    except TypeError:
+        # Older version of pip.
+        install_reqs = parse_requirements(source)
+    required = set([str(ir.req) for ir in install_reqs])
+
     # Temp situation: transition from PIL to Pillow, add a hook so people can
     # skip installing Pillow.
     if os.path.exists('/tmp/PHOTOLOGUE_NO_PILLOW'):
@@ -38,5 +44,5 @@ setup(
                  'Programming Language :: Python :: 3.3',
                  'Programming Language :: Python :: 3.4',
                  'Topic :: Utilities'],
-    install_requires=get_requirements(os.path.join(ROOT_DIR, 'requirements.txt'))
+    install_requires=get_requirements('requirements.txt'),
 )
