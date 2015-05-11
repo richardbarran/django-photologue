@@ -429,7 +429,8 @@ class ImageModel(models.Model):
         if im.size != photosize.size and photosize.size != (0, 0):
             im = self.resize_image(im, photosize)
         # Rotate if found & necessary
-        if 'Image Orientation' in self.EXIF and self.EXIF.get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
+        if 'Image Orientation' in self.EXIF and \
+                self.EXIF.get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
             im = im.transpose(
                 IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation').values[0]])
         # Apply watermark if found
@@ -498,7 +499,8 @@ class ImageModel(models.Model):
         self.pre_cache()
 
     def delete(self):
-        assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." % \
+        assert self._get_pk_val() is not None, \
+            "%s object can't be deleted because its %s attribute is set to None." % \
             (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
         # Files associated to a FileField have to be manually deleted:
