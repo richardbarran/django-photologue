@@ -17,13 +17,13 @@ def initial_photosizes(apps, schema_editor):
                              height=75,
                              crop=True,
                              pre_cache=True,
-                             increment_count=True)
+                             increment_count=False)
     PhotoSize.objects.create(name='thumbnail',
                              width=100,
                              height=75,
                              crop=True,
                              pre_cache=True,
-                             increment_count=True)
+                             increment_count=False)
     PhotoSize.objects.create(name='display',
                              width=400,
                              crop=False,
