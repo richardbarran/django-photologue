@@ -79,7 +79,7 @@ class GalleryAdmin(admin.ModelAdmin):
         messages.success(request, msg)
 
     add_to_current_site.short_description = \
-        _("Add selected galleries from the current site")
+        _("Add selected galleries to the current site")
 
     def remove_from_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
