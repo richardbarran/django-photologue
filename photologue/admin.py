@@ -24,14 +24,14 @@ class GalleryAdminForm(forms.ModelForm):
         if MULTISITE:
             exclude = []
         else:
-            exclude = ['sites']
+            exclude = ['sites', 'canonical_site']
 
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
-        list_filter.append('sites')
+        list_filter.extend(('sites', 'canonical_site'))
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
     form = GalleryAdminForm
@@ -48,6 +48,8 @@ class GalleryAdmin(admin.ModelAdmin):
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         """ Set the current site as initial value. """
         if db_field.name == "sites":
+            kwargs["initial"] = [Site.objects.get_current()]
+        if db_field.name == "canonical_site":
             kwargs["initial"] = [Site.objects.get_current()]
         return super(GalleryAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
@@ -140,7 +142,7 @@ class PhotoAdminForm(forms.ModelForm):
         if MULTISITE:
             exclude = []
         else:
-            exclude = ['sites']
+            exclude = ['sites', 'canonical_site']
 
 
 class PhotoAdmin(admin.ModelAdmin):
@@ -148,7 +150,7 @@ class PhotoAdmin(admin.ModelAdmin):
                     'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
-        list_filter.append('sites')
+        list_filter.extend(('sites', 'canonical_site'))
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
@@ -161,6 +163,8 @@ class PhotoAdmin(admin.ModelAdmin):
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         """ Set the current site as initial value. """
         if db_field.name == "sites":
+            kwargs["initial"] = [Site.objects.get_current()]
+        if db_field.name == "canonical_site":
             kwargs["initial"] = [Site.objects.get_current()]
         return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 

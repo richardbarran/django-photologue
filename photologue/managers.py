@@ -14,6 +14,10 @@ class SharedQueries(object):
         """Return objects linked to the current site only."""
         return self.filter(sites__id=settings.SITE_ID)
 
+    def canonical_on_site(self):
+        """Return objects canonical to the current site only."""
+        return self.filter(canonical_site__id=settings.SITE_ID)
+
 
 class GalleryQuerySet(SharedQueries, QuerySet):
     pass
