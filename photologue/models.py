@@ -195,7 +195,7 @@ class Gallery(models.Model):
                                    blank=True)
     canonical_site = models.ForeignKey(Site, verbose_name=_(u'canonical site'),
                                        related_name="%(app_label)s_%(class)s_canonical_related",
-                                       blank=True)
+                                       blank=True, null=True)
     objects = GalleryQuerySet.as_manager()
 
     class Meta:
@@ -537,7 +537,7 @@ class Photo(ImageModel):
                                    blank=True)
     canonical_site = models.ForeignKey(Site, verbose_name=_(u'canonical site'),
                                        related_name="%(app_label)s_%(class)s_canonical_related",
-                                       blank=True)
+                                       blank=True, null=True)
 
     objects = PhotoQuerySet.as_manager()
 
