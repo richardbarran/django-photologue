@@ -49,10 +49,14 @@ class GalleryAdmin(admin.ModelAdmin):
         """ Set the current site as initial value. """
         if db_field.name == "sites":
             kwargs["initial"] = [Site.objects.get_current()]
-        if db_field.name == "canonical_site":
-            kwargs["initial"] = [Site.objects.get_current()]
         return super(GalleryAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "canonical_site":
+            kwargs["initial"] = Site.objects.get_current()
+        return super(GalleryAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+        
     def save_related(self, request, form, *args, **kwargs):
         """
         If the user has saved a gallery with a photo that belongs only to
@@ -171,9 +175,14 @@ class PhotoAdmin(admin.ModelAdmin):
         """ Set the current site as initial value. """
         if db_field.name == "sites":
             kwargs["initial"] = [Site.objects.get_current()]
-        if db_field.name == "canonical_site":
-            kwargs["initial"] = [Site.objects.get_current()]
         return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "canonical_site":
+            kwargs["initial"] = Site.objects.get_current()
+        return super(PhotoAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+        
 
     def save_related(self, request, form, *args, **kwargs):
         """
