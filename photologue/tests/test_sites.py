@@ -25,9 +25,11 @@ class SitesTest(TestCase):
 
         with self.settings(PHOTOLOGUE_MULTISITE=True):
             # Be explicit about linking Galleries/Photos to Sites."""
-            self.gallery1 = GalleryFactory(slug='test-gallery', sites=[self.site1])
+            self.gallery1 = GalleryFactory(slug='test-gallery', sites=[self.site1],
+                                           canonical_site=self.site1)
             self.gallery2 = GalleryFactory(slug='not-on-site-gallery')
-            self.photo1 = PhotoFactory(slug='test-photo', sites=[self.site1])
+            self.photo1 = PhotoFactory(slug='test-photo', sites=[self.site1],
+                                       canonical_site=self.site1)
             self.photo2 = PhotoFactory(slug='not-on-site-photo')
             self.gallery1.photos.add(self.photo1, self.photo2)
 

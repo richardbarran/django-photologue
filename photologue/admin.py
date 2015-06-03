@@ -69,6 +69,13 @@ class GalleryAdmin(admin.ModelAdmin):
                 len(orphaned_photos)
             ) % {'photo_list': ", ".join([photo.title for photo in orphaned_photos])}
             messages.warning(request, msg)
+        if form.instance.canonical_site and not form.instance.sites.filter(
+                pk=form.instance.canonical_site.pk).exists():
+            msg = 'The canonical site is not in sites, it will appear '\
+                  'in the %s sitemap but the link will be a 404' %\
+                  form.instance.canonical_site
+            messages.warning(request, msg)
+
 
     def add_to_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
@@ -167,6 +174,20 @@ class PhotoAdmin(admin.ModelAdmin):
         if db_field.name == "canonical_site":
             kwargs["initial"] = [Site.objects.get_current()]
         return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def save_related(self, request, form, *args, **kwargs):
+        """
+        If the user has saved a photo that is in a sitemap but not actually on the site,
+        Let them know
+        """
+        super(PhotoAdmin, self).save_related(request, form, *args, **kwargs)
+        if form.instance.canonical_site and not form.instance.sites.filter(
+                pk=form.instance.canonical_site.pk).exists():
+            msg = 'The canonical site is not in sites, it will appear '\
+                  'in the %s sitemap but the link will be a 404' %\
+                  form.instance.canonical_site
+            messages.warning(request, msg)
+
 
     def add_photos_to_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
