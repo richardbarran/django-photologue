@@ -11,7 +11,7 @@ def set_canonical_non_multisite(apps, schema_editor):
     Gallery = apps.get_model("photologue", "Gallery")
     Story = apps.get_model("photologue", "Gallery")
     if not MULTISITE:
-        current_site = Site.objects.get_current()
+        current_site = Site.objects.first()
         Gallery.objects.update(canonical_site=current_site)
         Story.objects.update(canonical_site=current_site)
 
