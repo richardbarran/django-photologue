@@ -192,9 +192,10 @@ class PhotoAdmin(admin.ModelAdmin):
         super(PhotoAdmin, self).save_related(request, form, *args, **kwargs)
         if form.instance.canonical_site and not form.instance.sites.filter(
                 pk=form.instance.canonical_site.pk).exists():
-            msg = 'The canonical site is not in sites, it will appear '\
-                  'in the %s sitemap but the link will be a 404' %\
-                  form.instance.canonical_site
+
+            msg = _('The canonical site is not in sites, it will appear '
+                    'in the %s sitemap but the link will be a 404'
+                    % form.instance.canonical_site)
             messages.warning(request, msg)
 
 

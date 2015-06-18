@@ -195,7 +195,9 @@ class Gallery(models.Model):
                                    blank=True)
     canonical_site = models.ForeignKey(Site, verbose_name=_(u'canonical site'),
                                        related_name="%(app_label)s_%(class)s_canonical_related",
-                                       blank=True, null=True)
+                                       blank=True, null=True,
+                                       help_text=_('The "Canonical Site" is the site that'
+                                                   ' will appear in your sitemaps'))
     objects = GalleryQuerySet.as_manager()
 
     class Meta:
@@ -537,7 +539,10 @@ class Photo(ImageModel):
                                    blank=True)
     canonical_site = models.ForeignKey(Site, verbose_name=_(u'canonical site'),
                                        related_name="%(app_label)s_%(class)s_canonical_related",
-                                       blank=True, null=True)
+                                       blank=True, null=True,
+                                       help_text=_('The "Canonical Site" is the site that'
+                                                   ' will appear in your sitemaps'))
+
 
     objects = PhotoQuerySet.as_manager()
 
