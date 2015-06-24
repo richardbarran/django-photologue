@@ -9,11 +9,11 @@ MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
 def set_canonical_non_multisite(apps, schema_editor):
     Gallery = apps.get_model("photologue", "Gallery")
-    Story = apps.get_model("photologue", "Gallery")
+    Photo = apps.get_model("photologue", "Photo")
     if not MULTISITE:
         current_site = Site.objects.first()
         Gallery.objects.update(canonical_site=current_site)
-        Story.objects.update(canonical_site=current_site)
+        Photo.objects.update(canonical_site=current_site)
 
     #Do we need to do anything for not multisite? 
     
