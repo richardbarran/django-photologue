@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 # Théophane Hufschmitt <huf31@gmx.fr>, 2014
@@ -10,14 +10,13 @@ msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-23 21:33+0100\n"
-"PO-Revision-Date: 2015-05-10 20:58+0000\n"
+"PO-Revision-Date: 2015-05-23 20:33+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/django-photologue/"
-"language/fr/)\n"
-"Language: fr\n"
+"Language-Team: French (http://www.transifex.com/projects/p/django-photologue/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: admin.py:63
@@ -34,10 +33,8 @@ msgstr[0] "La gallerie a été ajoutée avec succès à %(site)s"
 msgstr[1] "Les galleries ont été ajoutées avec succès à %(site)s"
 
 #: admin.py:82
-#, fuzzy
-#| msgid "Add selected galleries from the current site"
 msgid "Add selected galleries to the current site"
-msgstr "Ajouter la gallerie sélectionnée depuis le site courant"
+msgstr ""
 
 #: admin.py:88
 #, python-format
@@ -58,12 +55,8 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
-msgstr[0] ""
-"Toutes les photos dans la gallerie %(galleries)s ont été ajoutées avec "
-"succès à %(site)s"
-msgstr[1] ""
-"Toutes les photos dans les galleries %(galleries)s ont été ajoutées avec "
-"succès à %(site)s"
+msgstr[0] "Toutes les photos dans la gallerie %(galleries)s ont été ajoutées avec succès à %(site)s"
+msgstr[1] "Toutes les photos dans les galleries %(galleries)s ont été ajoutées avec succès à %(site)s"
 
 #: admin.py:113
 msgid "Add all photos of selected galleries to the current site"
@@ -77,17 +70,12 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
-msgstr[0] ""
-"Toutes les photos dans la gallerie %(galleries)s ont été supprimées avec "
-"succès de %(site)s"
-msgstr[1] ""
-"Toutes les photos dans les galleries %(galleries)s ont été supprimées avec "
-"succès de %(site)s"
+msgstr[0] "Toutes les photos dans la gallerie %(galleries)s ont été supprimées avec succès de %(site)s"
+msgstr[1] "Toutes les photos dans les galleries %(galleries)s ont été supprimées avec succès de %(site)s"
 
 #: admin.py:131
 msgid "Remove all photos in selected galleries from the current site"
-msgstr ""
-"Supprimer toutes les photos dans la gallerie sélectionnée du site courant"
+msgstr "Supprimer toutes les photos dans la gallerie sélectionnée du site courant"
 
 #: admin.py:171
 #, python-format
@@ -103,7 +91,8 @@ msgstr "Ajouter les photos sélectionnées au site courant"
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgid_plural ""
+"The selected photos have been successfully removed from %(site)s"
 msgstr[0] "La photo a été supprimée avec succès de %(site)s"
 msgstr[1] "Les photos ont été supprimées avec succès de %(site)s"
 
@@ -116,6 +105,7 @@ msgid "Upload a zip archive of photos"
 msgstr ""
 
 #: forms.py:34
+#| msgid "title"
 msgid "Title"
 msgstr ""
 
@@ -123,11 +113,10 @@ msgstr ""
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
 "sequential number."
-msgstr ""
-"Toutes les photos de la galerie auront un titre constitué du titre de la "
-"galerie + un numéro de séquence."
+msgstr "Toutes les photos de la galerie auront un titre constitué du titre de la galerie + un numéro de séquence."
 
 #: forms.py:40
+#| msgid "gallery"
 msgid "Gallery"
 msgstr ""
 
@@ -135,11 +124,10 @@ msgstr ""
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
-"Sélectionner une gallerie à laquelle ajouter ces images. Laisser ce champ "
-"vide pour créer une nouvelle galerie à partir du titre indiqué."
+msgstr "Sélectionner une gallerie à laquelle ajouter ces images. Laisser ce champ vide pour créer une nouvelle galerie à partir du titre indiqué."
 
 #: forms.py:44
+#| msgid "caption"
 msgid "Caption"
 msgstr ""
 
@@ -148,6 +136,7 @@ msgid "Caption will be added to all photos."
 msgstr "La légende sera ajoutée a toutes les photos."
 
 #: forms.py:47
+#| msgid "description"
 msgid "Description"
 msgstr ""
 
@@ -156,21 +145,21 @@ msgid "A description of this Gallery."
 msgstr "Une description de cette Galerie."
 
 #: forms.py:50
+#| msgid "is public"
 msgid "Is public"
 msgstr ""
 
 #: forms.py:53
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Décochez cette case pour rendre la galerie des photos envoyées sur le "
-"serveur et son contenu privés."
+msgstr "Décochez cette case pour rendre la galerie des photos envoyées sur le serveur et son contenu privés."
 
 #: forms.py:76
 msgid "A gallery with that title already exists."
 msgstr "Une galerie portant ce nom existe déjà."
 
 #: forms.py:86
+#| msgid "Select a .zip file of images to upload into a new Gallery."
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr ""
 
@@ -178,18 +167,14 @@ msgstr ""
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
-msgstr ""
-"Fichier \"{filename}\" ignoré car il apparaît dans un sous-dossier. Toutes "
-"les images doivent être à la racine du fichier zip."
+msgstr "Fichier \"{filename}\" ignoré car il apparaît dans un sous-dossier. Toutes les images doivent être à la racine du fichier zip."
 
 #: forms.py:139
 #, python-format
 msgid ""
-"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that "
-"slug already exists."
-msgstr ""
-"Impossible de créer la photo \"%(filename)s\" avec le label \"{1}\" car une "
-"photo portant le même label existe déjà."
+"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that"
+" slug already exists."
+msgstr "Impossible de créer la photo \"%(filename)s\" avec le label \"{1}\" car une photo portant le même label existe déjà."
 
 #: forms.py:164
 msgid "Could not process file \"{0}\" in the .zip archive."
@@ -278,13 +263,10 @@ msgstr "Redimensionner"
 #: models.py:152
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
-msgstr ""
-"Faite suivre de multiple filtres en utilisant la forme suivante \"FILTRE_UN-"
-">FILTRE_DEUX->FILTRE_TROIS\". Les filtres d'image seront appliqués dans "
-"l'ordre. Les filtres suivants sont disponibles: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
+msgstr "Faite suivre de multiple filtres en utilisant la forme suivante \"FILTRE_UN->FILTRE_DEUX->FILTRE_TROIS\". Les filtres d'image seront appliqués dans l'ordre. Les filtres suivants sont disponibles: %s."
 
 #: models.py:176
 msgid "date published"
@@ -300,9 +282,7 @@ msgstr "version abrégée du titre"
 
 #: models.py:183 models.py:522
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr ""
-"Un \"slug\" est un titre abrégé et unique, compatible avec les URL, pour un "
-"objet."
+msgstr "Un \"slug\" est un titre abrégé et unique, compatible avec les URL, pour un objet."
 
 #: models.py:184 models.py:594
 msgid "description"
@@ -400,9 +380,7 @@ msgstr "couleur"
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr ""
-"Un facteur de 0.0 donne une image en noir et blanc, un facteur de 1.0 donne "
-"l'image originale."
+msgstr "Un facteur de 0.0 donne une image en noir et blanc, un facteur de 1.0 donne l'image originale."
 
 #: models.py:674
 msgid "brightness"
@@ -412,9 +390,7 @@ msgstr "brillance"
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Un facteur de 0.0 donne une image noire, un facteur de 1.0 donne l'image "
-"originale."
+msgstr "Un facteur de 0.0 donne une image noire, un facteur de 1.0 donne l'image originale."
 
 #: models.py:678
 msgid "contrast"
@@ -422,11 +398,9 @@ msgstr "contraste"
 
 #: models.py:680
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
-msgstr ""
-"Un facteur de 0.0 donne une image grise, un facteur de 1.0 donne l'image "
-"originale."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
+msgstr "Un facteur de 0.0 donne une image grise, un facteur de 1.0 donne l'image originale."
 
 #: models.py:682
 msgid "sharpness"
@@ -436,9 +410,7 @@ msgstr "netteté"
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Une facteur de 0.0 donne une image floue, un facteur de 1.0 donne l'image "
-"d'origine."
+msgstr "Une facteur de 0.0 donne une image floue, un facteur de 1.0 donne l'image d'origine."
 
 #: models.py:686
 msgid "filters"
@@ -453,10 +425,7 @@ msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr ""
-"La hauteur de la réflection sous la forme d'un pourcentage de l'image "
-"d'origine. Un facteur de 0.0 n'ajoute aucune réflection, un facteur de 1.0 "
-"ajoute une réflection égale à la hauteur de l'image d'origine."
+msgstr "La hauteur de la réflection sous la forme d'un pourcentage de l'image d'origine. Un facteur de 0.0 n'ajoute aucune réflection, un facteur de 1.0 ajoute une réflection égale à la hauteur de l'image d'origine."
 
 #: models.py:695
 msgid "strength"
@@ -470,9 +439,7 @@ msgstr "L'opacité initial du gradient de reflet."
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr ""
-"La couleur de fond du gradient de reflet. Faites correspondre ce paramètre "
-"avec la couleur de fond de votre page."
+msgstr "La couleur de fond du gradient de reflet. Faites correspondre ce paramètre avec la couleur de fond de votre page."
 
 #: models.py:705 models.py:811
 msgid "photo effect"
@@ -506,32 +473,23 @@ msgstr "filigranes"
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"Le nom de la taille de la photo ne doit contenir que des lettres, des "
-"chiffres et des caractères de soulignement. Exemples: \"miniature\", "
-"\"affichage\", \"petit\", \"widget_page_principale\"."
+msgstr "Le nom de la taille de la photo ne doit contenir que des lettres, des chiffres et des caractères de soulignement. Exemples: \"miniature\", \"affichage\", \"petit\", \"widget_page_principale\"."
 
 #: models.py:778
 msgid "width"
 msgstr "largeur"
 
 #: models.py:781
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr ""
-"Si la largeur est réglée à \"0\" l l'image sera redimensionnée par rapport à "
-"la hauteur fournie."
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Si la largeur est réglée à \"0\" l l'image sera redimensionnée par rapport à la hauteur fournie."
 
 #: models.py:782
 msgid "height"
 msgstr "hauteur"
 
 #: models.py:785
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr ""
-"Si la hauteur est réglée à \"0\" l l'image sera redimensionnée par rapport à "
-"la largeur fournie."
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Si la hauteur est réglée à \"0\" l l'image sera redimensionnée par rapport à la largeur fournie."
 
 #: models.py:786
 msgid "quality"
@@ -549,10 +507,7 @@ msgstr "agrandir les images ?"
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr ""
-"Si sélectionné l'image sera agrandie si nécessaire pour coïncider avec les "
-"dimensions fournies. Les dimensions ajustées seront agrandies sans prendre "
-"en compte ce paramètre."
+msgstr "Si sélectionné l'image sera agrandie si nécessaire pour coïncider avec les dimensions fournies. Les dimensions ajustées seront agrandies sans prendre en compte ce paramètre."
 
 #: models.py:796
 msgid "crop to fit?"
@@ -562,9 +517,7 @@ msgstr "découper pour adapter à la taille ?"
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr ""
-"Si sélectionné l'image sera redimensionnée et recadrée pour coïncider avec "
-"les dimensions fournies."
+msgstr "Si sélectionné l'image sera redimensionnée et recadrée pour coïncider avec les dimensions fournies."
 
 #: models.py:800
 msgid "pre-cache?"
@@ -572,9 +525,7 @@ msgstr "mise en cache ?"
 
 #: models.py:802
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr ""
-"Si sélectionné cette taille de photo sera mise en cache au moment au les "
-"photos sont ajoutées."
+msgstr "Si sélectionné cette taille de photo sera mise en cache au moment au les photos sont ajoutées."
 
 #: models.py:803
 msgid "increment view count?"
@@ -584,9 +535,7 @@ msgstr "incrémenter le nombre d'affichages ?"
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr ""
-"Si sélectionné le \"view_count\" (nombre d'affichage) de l'image sera "
-"incrémenté quand cette taille de photo sera affichée."
+msgstr "Si sélectionné le \"view_count\" (nombre d'affichage) de l'image sera incrémenté quand cette taille de photo sera affichée."
 
 #: models.py:816
 msgid "watermark image"
@@ -602,9 +551,7 @@ msgstr "tailles des photos"
 
 #: models.py:838
 msgid "Can only crop photos if both width and height dimensions are set."
-msgstr ""
-"La hauteur et la largeur doivent être toutes les deux définies pour "
-"retailler des photos."
+msgstr "La hauteur et la largeur doivent être toutes les deux définies pour retailler des photos."
 
 #: templates/admin/photologue/photo/change_list.html:9
 msgid "Upload a zip archive"
@@ -724,10 +671,7 @@ msgid ""
 "\n"
 "\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t\t"
-msgstr ""
-"\n"
-"⇥⇥⇥⇥ page %(page_number)s sur %(total_pages)s\n"
-"⇥⇥⇥⇥"
+msgstr "\n⇥⇥⇥⇥ page %(page_number)s sur %(total_pages)s\n⇥⇥⇥⇥"
 
 #: templates/photologue/includes/paginator.html:16
 #: templates/photologue/includes/paginator.html:18

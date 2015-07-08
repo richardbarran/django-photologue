@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 msgid ""
@@ -9,14 +9,13 @@ msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-23 21:33+0100\n"
-"PO-Revision-Date: 2015-05-10 20:58+0000\n"
+"PO-Revision-Date: 2015-05-23 20:33+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
-"Language-Team: Basque (http://www.transifex.com/projects/p/django-photologue/"
-"language/eu/)\n"
-"Language: eu\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/django-photologue/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:63
@@ -91,7 +90,8 @@ msgstr ""
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgid_plural ""
+"The selected photos have been successfully removed from %(site)s"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -104,6 +104,7 @@ msgid "Upload a zip archive of photos"
 msgstr ""
 
 #: forms.py:34
+#| msgid "title"
 msgid "Title"
 msgstr ""
 
@@ -114,6 +115,7 @@ msgid ""
 msgstr ""
 
 #: forms.py:40
+#| msgid "gallery"
 msgid "Gallery"
 msgstr ""
 
@@ -124,6 +126,7 @@ msgid ""
 msgstr ""
 
 #: forms.py:44
+#| msgid "caption"
 msgid "Caption"
 msgstr ""
 
@@ -132,6 +135,7 @@ msgid "Caption will be added to all photos."
 msgstr ""
 
 #: forms.py:47
+#| msgid "description"
 msgid "Description"
 msgstr ""
 
@@ -140,6 +144,7 @@ msgid "A description of this Gallery."
 msgstr ""
 
 #: forms.py:50
+#| msgid "is public"
 msgid "Is public"
 msgstr ""
 
@@ -153,6 +158,7 @@ msgid "A gallery with that title already exists."
 msgstr ""
 
 #: forms.py:86
+#| msgid "Select a .zip file of images to upload into a new Gallery."
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr ""
 
@@ -165,8 +171,8 @@ msgstr ""
 #: forms.py:139
 #, python-format
 msgid ""
-"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that "
-"slug already exists."
+"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that"
+" slug already exists."
 msgstr ""
 
 #: forms.py:164
@@ -256,9 +262,9 @@ msgstr ""
 #: models.py:152
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
 msgstr ""
 
 #: models.py:176
@@ -391,8 +397,8 @@ msgstr ""
 
 #: models.py:680
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
 msgstr ""
 
 #: models.py:682
@@ -473,8 +479,7 @@ msgid "width"
 msgstr ""
 
 #: models.py:781
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 
 #: models.py:782
@@ -482,8 +487,7 @@ msgid "height"
 msgstr ""
 
 #: models.py:785
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 
 #: models.py:786

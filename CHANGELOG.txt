@@ -7,8 +7,7 @@ Changelog
 - In the initial data setup, the 'thumbnail' photosizes should not increment the
   view count (issue #133).
 - Fix typo in admin text (issue reported by Transifex user ciastko).
-- Updated Hungarian translation.
-
+- Updated translations: Hungarian, Czech, Dutch.
 
 3.2 (2015-05-11)
 ----------------
