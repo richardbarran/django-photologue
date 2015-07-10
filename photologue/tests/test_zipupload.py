@@ -128,13 +128,13 @@ class GalleryUploadTest(TestCase):
         self.assertQuerysetEqual(Photo.objects.all(),
                                  ['<Photo: This is a test title 1>'])
 
-    def test_existing(self):
+    def test_existing_gallery(self):
         """Add the photos in the zip to an existing gallery."""
 
-        existing = GalleryFactory(title='Existing')
+        existing_gallery = GalleryFactory(title='Existing')
 
         test_data = copy.copy(self.sample_form_data)
-        test_data['gallery'] = existing.id
+        test_data['gallery'] = existing_gallery.id
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         self.assertEqual(response.status_code, 302)
 
@@ -144,40 +144,24 @@ class GalleryUploadTest(TestCase):
                                  ['<Photo: Existing 1>'])
 
         # The photo is attached to the existing gallery.
-        self.assertQuerysetEqual(existing.photos.all(),
+        self.assertQuerysetEqual(existing_gallery.photos.all(),
                                  ['<Photo: Existing 1>'])
 
-    def test_duplicate_title(self):
-        """If we try to create a Photo from the archive with a title
-        that duplicates an existing title, raise a warning."""
+    def test_duplicate_slug(self):
+        """Uploading a zip, but a photo already exists with the target slug."""
 
-        photo = PhotoFactory(title='Test 1')
+        PhotoFactory(title='This is a test title 1')
+        PhotoFactory(title='This is a test title 2')
 
         test_data = copy.copy(self.sample_form_data)
-        test_data['title'] = 'Test'
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         self.assertEqual(response.status_code, 302)
 
-        self.assertQuerysetEqual(Gallery.objects.all(),
-                                 ['<Gallery: Test>'])
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: Test 1>'])
-
-        # The (existing) photo is NOT attached to the gallery.
-        gallery = Gallery.objects.get(title='Test')
-        self.assertQuerysetEqual(gallery.photos.all(),
-                                 [])
-
-        # And a warning message is sent to the user - we reload the page to see it.
-        response = self.client.get('/admin/photologue/photo/upload_zip/')
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response,
-                            """<li class="warning">Did not create photo &quot;%(filename)s&quot; with slug
-                            &quot;test-1&quot; as a photo with that slug already exists.</li>""",
-                            html=True)
-
-        # Housekeeping.
-        photo.delete()
+                                 ['<Photo: This is a test title 1>',
+                                  '<Photo: This is a test title 2>',
+                                  '<Photo: This is a test title 3>'],
+                                  ordered=False)
 
     def test_bad_zip(self):
         """Supplied file is not a zip file - tell user."""

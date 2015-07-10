@@ -127,23 +127,17 @@ class UploadZipForm(forms.Form):
                 logger.debug('File "{0}" is empty.'.format(filename))
                 continue
 
-            title = ' '.join([gallery.title, str(count)])
-            slug = slugify(title)
+            # A photo might already exist with the same slug. So it's somewhat inefficient,
+            # but we loop until we find a slug that's available.
+            while True:
+                photo_title = ' '.join([gallery.title, str(count)])
+                slug = slugify(photo_title)
+                if Photo.objects.filter(slug=slug).exists():
+                    count += 1
+                    continue
+                break
 
-            try:
-                Photo.objects.get(slug=slug)
-                logger.warning('Did not create photo "{0}" with slug "{1}" as a photo with that '
-                               'slug already exists.'.format(filename, slug))
-                if request:
-                    messages.warning(request,
-                                     _('Did not create photo "%(filename)s" with slug "{1}" as a photo with that '
-                                       'slug already exists.').format(filename, slug),
-                                     fail_silently=True)
-                continue
-            except Photo.DoesNotExist:
-                pass
-
-            photo = Photo(title=title,
+            photo = Photo(title=photo_title,
                           slug=slug,
                           caption=self.cleaned_data['caption'],
                           is_public=self.cleaned_data['is_public'])
@@ -171,7 +165,7 @@ class UploadZipForm(forms.Form):
             photo.save()
             photo.sites.add(current_site)
             gallery.photos.add(photo)
-            count = count + 1
+            count += 1
 
         zip.close()
 
