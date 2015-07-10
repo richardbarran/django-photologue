@@ -112,7 +112,7 @@ class DeprecatedMonthMixin(object):
         print('a')
         warnings.warn(
             DeprecationWarning('Months are now represented in urls by numbers rather than by '
-                               'their first 3 letters. The old style will be removed in Photologue 3.2.'))
+                               'their first 3 letters. The old style will be removed in Photologue 3.4.'))
 
 
 class GalleryDateDetailOldView(DeprecatedMonthMixin, RedirectView):
