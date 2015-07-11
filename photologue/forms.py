@@ -35,7 +35,10 @@ class UploadZipForm(forms.Form):
                             max_length=50,
                             required=False,
                             help_text=_('All uploaded photos will be given a title made up of this title + a '
-                                        'sequential number.'))
+                                        'sequential number.<br>This field is required if creating a new '
+                                        'gallery, but is optional when adding to an existing gallery - if '
+                                        'not supplied, the photo titles will be creating from the existing '
+                                        'gallery name.'))
     gallery = forms.ModelChoiceField(Gallery.objects.all(),
                                      label=_('Gallery'),
                                      required=False,
@@ -46,7 +49,7 @@ class UploadZipForm(forms.Form):
                               help_text=_('Caption will be added to all photos.'))
     description = forms.CharField(label=_('Description'),
                                   required=False,
-                                  help_text=_('A description of this Gallery.'))
+                                  help_text=_('A description of this Gallery. Only required for new galleries.'))
     is_public = forms.BooleanField(label=_('Is public'),
                                    initial=True,
                                    required=False,
@@ -127,10 +130,12 @@ class UploadZipForm(forms.Form):
                 logger.debug('File "{0}" is empty.'.format(filename))
                 continue
 
+            photo_title_root = self.cleaned_data['title'] if self.cleaned_data['title'] else gallery.title
+
             # A photo might already exist with the same slug. So it's somewhat inefficient,
             # but we loop until we find a slug that's available.
             while True:
-                photo_title = ' '.join([gallery.title, str(count)])
+                photo_title = ' '.join([photo_title_root, str(count)])
                 slug = slugify(photo_title)
                 if Photo.objects.filter(slug=slug).exists():
                     count += 1

@@ -135,6 +135,7 @@ class GalleryUploadTest(TestCase):
 
         test_data = copy.copy(self.sample_form_data)
         test_data['gallery'] = existing_gallery.id
+        del test_data['title']
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         self.assertEqual(response.status_code, 302)
 
@@ -146,6 +147,21 @@ class GalleryUploadTest(TestCase):
         # The photo is attached to the existing gallery.
         self.assertQuerysetEqual(existing_gallery.photos.all(),
                                  ['<Photo: Existing 1>'])
+
+    def test_existing_gallery_custom_title(self):
+        """Add the photos in the zip to an existing gallery, but specify a
+        custom title for the photos."""
+
+        existing_gallery = GalleryFactory(title='Existing')
+
+        test_data = copy.copy(self.sample_form_data)
+        test_data['gallery'] = existing_gallery.id
+        test_data['title'] = 'Custom title'
+        response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
+        self.assertEqual(response.status_code, 302)
+
+        self.assertQuerysetEqual(Photo.objects.all(),
+                                 ['<Photo: Custom title 1>'])
 
     def test_duplicate_slug(self):
         """Uploading a zip, but a photo already exists with the target slug."""
