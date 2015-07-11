@@ -9,6 +9,7 @@ Changelog
 - Fix typo in admin text (issue reported by Transifex user ciastko).
 - Updated translations: Hungarian, Czech, Dutch.
 - Zip upload used gallery title instead of "Title" field for photos (#139).
+- Zip upload: an uploaded photo is not a duplicate of an existing photo simply because they share the same slug.
 
 3.2 (2015-05-11)
 ----------------
