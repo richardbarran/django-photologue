@@ -24,7 +24,7 @@ def cycle_lite_gallery(gallery_title, height, width):
     html = ""
     first = 'class="first"'
     for p in Gallery.objects.get(title=gallery_title).public():
-        html += u'<img src="%s" alt="%s" height="%s" width="%s" %s />' % (
+        html += '<img src="%s" alt="%s" height="%s" width="%s" %s />' % (
             p.get_display_url(), p.title, height, width, first)
         first = None
     return html
@@ -75,7 +75,7 @@ class PhotoNode(template.Node):
         if func is None:
             return 'A "%s" photo size has not been defined.' % (self.photosize)
         else:
-            return u'<img class="%s" src="%s" alt="%s" />' % (self.css_class, func(), p.title)
+            return '<img class="%s" src="%s" alt="%s" />' % (self.css_class, func(), p.title)
 
 
 @register.tag
@@ -128,4 +128,4 @@ class PhotoGalleryNode(template.Node):
         if func is None:
             return 'A "%s" photo size has not been defined.' % (self.photosize)
         else:
-            return u'<img class="%s" src="%s" alt="%s" />' % (self.css_class, func(), p.title)
+            return '<img class="%s" src="%s" alt="%s" />' % (self.css_class, func(), p.title)
