@@ -1,13 +1,17 @@
 Django-photologue
 =================
-.. image:: https://pypip.in/v/django-photologue/badge.png
-    :target: https://crate.io/packages/django-photologue/
+.. image:: https://img.shields.io/pypi/v/django-photologue.svg
+    :target: https://pypi.python.org/pypi/django-photologue/
     :alt: Latest PyPI version
 
-.. image:: https://pypip.in/d/django-photologue/badge.png
-    :target: https://crate.io/packages/django-photologue/
+.. image:: https://img.shields.io/pypi/dm/django-photologue.svg
+    :target: https://pypi.python.org/pypi/django-photologue/
     :alt: Number of PyPI downloads
 
+.. image:: https://img.shields.io/pypi/wheel/django-photologue.svg
+    :target: https://pypi.python.org/pypi/django-photologue/
+    :alt: Wheel Status
+    
 .. image:: https://travis-ci.org/jdriscoll/django-photologue.svg?branch=master
     :target: https://travis-ci.org/jdriscoll/django-photologue
 
@@ -25,11 +29,7 @@ Take a closer look
 
 Documentation
 -------------
-.. image:: https://readthedocs.org/projects/django-photologue/badge/?version=3.0
-    :target: https://readthedocs.org/projects/django-photologue/
-    :alt: Documentation Status
-
-Please head over to our `online documentation <https://django-photologue.readthedocs.org/>`_ 
+Please head over to our `online documentation at ReadTheDocs<https://django-photologue.readthedocs.org/>`_ 
 for instructions on installing and configuring this application.
 
 Python 3? Amazon S3?
