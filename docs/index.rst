@@ -27,7 +27,7 @@ Contents:
     pages/customising/models
     pages/customising/contrib
     pages/contributing
-    pages/changelog
+    pages/changelog_page
 
 Indices and tables
 ==================
