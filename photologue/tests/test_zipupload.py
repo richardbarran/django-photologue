@@ -174,10 +174,12 @@ class GalleryUploadTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: This is a test title 1>',
-                                  '<Photo: This is a test title 2>',
-                                  '<Photo: This is a test title 3>'],
-                                  ordered=False)
+                                 [
+                                 '<Photo: This is a test title 1>',
+                                 '<Photo: This is a test title 2>',
+                                 '<Photo: This is a test title 3>'
+                                 ],
+                                 ordered=False)
 
     def test_bad_zip(self):
         """Supplied file is not a zip file - tell user."""
