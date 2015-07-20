@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.3 (unreleased)
+3.3 (2015-07-20)
 ----------------
 
 - In the initial data setup, the 'thumbnail' photosizes should not increment the

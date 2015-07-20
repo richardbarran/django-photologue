@@ -19,7 +19,6 @@ Benjamin Liles
 FilippoIOVINE
 ferhat elmas
 Mathieu Hinderyckx
-Théophane Hufschmitt
 Federico Maggi
 Herman Schaaf
 Vivek Agarwal
@@ -27,10 +26,12 @@ Thomas Güttler
 Jasper Maes
 Jannis Vaj
 Tomas Babej
+Reint T. Kamp
 Antti Kaihola
 Reavis Sutphin-Gray
 jscott1971
 Martin Sabo
 Ben Spaulding
-ali rıza keleş
+Viktor Matys
+David Smi
 python-consulting
