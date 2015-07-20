@@ -4,7 +4,7 @@ Changelog
 3.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Release Photologue as a universal wheel.
 
 
 3.3.1 (2015-07-20)
