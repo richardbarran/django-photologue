@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.3.1 (unreleased)
-----------------
+3.3.1 (2015-07-20)
+------------------
 
 - Upload of 3.3 to Pypi had failed.
 
