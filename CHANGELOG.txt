@@ -1,11 +1,10 @@
 Changelog
 =========
 
-3.4 (unreleased)
+3.3.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Upload of 3.3 to Pypi had failed.
 
 3.3 (2015-07-20)
 ----------------
