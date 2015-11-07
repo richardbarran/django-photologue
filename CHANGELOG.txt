@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - Fixed a few minor issues with the unit tests.
+- Adding a watermark was crashing (fix suggested by hambro).
 
 
 3.3.2 (2015-07-20)
