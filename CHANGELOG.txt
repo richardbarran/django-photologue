@@ -4,7 +4,7 @@ Changelog
 3.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed a few minor issues with the unit tests.
 
 
 3.3.2 (2015-07-20)

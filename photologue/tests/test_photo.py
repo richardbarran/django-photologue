@@ -82,14 +82,10 @@ class PhotoTest(PhotologueBaseTest):
         """Test for issue #29 - filenames of photos are incorrectly quoted when
         building a URL."""
 
-        # Check that a 'normal' path works ok.
-        self.assertEqual(self.pl.get_testPhotoSize_url(),
-                         self.pl.cache_url() + '/test_photologue_landscape_testPhotoSize.jpg')
-
-        # Now create a Photo with a name that needs quoting.
+        # Create a Photo with a name that needs quoting.
         self.pl2 = PhotoFactory(image__from_path=QUOTING_IMAGE_PATH)
-        self.assertEqual(self.pl2.get_testPhotoSize_url(),
-                         self.pl2.cache_url() + '/test_photologue_%26quoting_testPhotoSize.jpg')
+        self.assertIn('_%26quoting_',
+                      self.pl2.get_testPhotoSize_url())
 
     def test_unicode(self):
         """Trivial check that unicode titles work.
