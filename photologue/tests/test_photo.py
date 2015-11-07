@@ -94,8 +94,8 @@ class PhotoTest(PhotologueBaseTest):
     def test_unicode(self):
         """Trivial check that unicode titles work.
         (I was trying to track down an elusive unicode issue elsewhere)"""
-        PhotoFactory(title='É',
-                     slug='é')
+        self.pl2 = PhotoFactory(title='É',
+                                slug='é')
 
 
 class PhotoManagerTest(PhotologueBaseTest):
