@@ -4,6 +4,7 @@ Changelog
 3.4 (unreleased)
 ----------------
 
+- Dropped support for Django 1.7.
 - Fixed a few minor issues with the unit tests.
 - Adding a watermark was crashing (fix suggested by hambro).
 - Added/updated translations: Danish, Slovak (contributed by Rasmus Klett, saboter).
