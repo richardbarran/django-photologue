@@ -128,7 +128,7 @@ LOGGING = {
         # Send logs to /dev/null.
         'null': {
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
     },
     # Loggers decide what is logged.
