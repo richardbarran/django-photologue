@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+
+from django import VERSION
 from django.conf import settings
 from django.core.files.storage import default_storage
 from ..models import Image, Photo, PHOTOLOGUE_DIR, PHOTOLOGUE_CACHEDIRTAG
@@ -84,7 +86,14 @@ class PhotoTest(PhotologueBaseTest):
 
         # Create a Photo with a name that needs quoting.
         self.pl2 = PhotoFactory(image__from_path=QUOTING_IMAGE_PATH)
-        self.assertIn('_%26quoting_',
+        # Quoting method filepath_to_uri has changed in Django 1.9 - so the string that we're looking
+        # for depends on the Django version.
+        if VERSION[0:2] == (1, 9):
+            quoted_string = 'test_photologue_quoting_testPhotoSize.jpg'
+        else:
+            quoted_string = 'test_photologue_%26quoting_testPhotoSize.jpg'
+        self.assertIn(quoted_string,
+                      self.pl2.get_testPhotoSize_url(),
                       self.pl2.get_testPhotoSize_url())
 
     def test_unicode(self):
