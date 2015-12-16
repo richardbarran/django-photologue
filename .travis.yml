@@ -1,8 +1,8 @@
 language: python
 
+# Although Django 1.8 supports Python 3.2, coverage doesn't, so we don't include it in the tests.
 python:
   - 2.7
-  - 3.2
   - 3.3
   - 3.4
   - 3.5
@@ -14,7 +14,6 @@ env:
 matrix:
   exclude:
     - env: DJANGO="Django==1.9"
-      python: 3.2
       python: 3.3
 
 install:
