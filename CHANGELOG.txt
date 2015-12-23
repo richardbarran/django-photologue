@@ -4,7 +4,7 @@ Changelog
 3.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Django 1.9 requires latest version of django-sortedm2m.
 
 
 3.4 (2015-12-23)
