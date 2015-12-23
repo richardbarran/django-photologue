@@ -72,3 +72,6 @@ def prereleaser_before(data):
         f.write('Justin Driscoll\n')
         for i in sorted(contributors_dict, key=contributors_dict.get, reverse=True):
             f.write(i + '\n')
+
+    # And commit the new contributors file.
+    subprocess.check_output(["git", "commit", "-m", "Updated the list of contributors.", "CONTRIBUTORS.txt"])
