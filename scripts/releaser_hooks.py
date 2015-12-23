@@ -1,6 +1,10 @@
 import subprocess
 import os
-import polib
+try:
+    import polib
+except ImportError:
+    print('Prerelease hooks will not work as you have not installed polib.')
+    raise
 import copy
 import codecs
 
