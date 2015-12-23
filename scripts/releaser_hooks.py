@@ -31,8 +31,7 @@ def prereleaser_before(data):
     output = subprocess.check_output(["git", "log", "--format='%aN'"])
 
     # Convert to a list.
-    contributors_list = [unicode(contributor.strip("'"), 'utf-8')
-                         for contributor in output.split("\n")]
+    contributors_list = [contributor.strip("'") for contributor in output.decode('utf-8').split('\n')]
 
     # Now add info from the translator files. This is incomplete, we can only list
     # the 'last contributor' to each translation.
