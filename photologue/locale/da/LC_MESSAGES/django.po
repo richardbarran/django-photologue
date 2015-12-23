@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Translators:
 # Michael Lind Mortensen <illio@cs.au.dk>, 2009
@@ -10,34 +10,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-23 21:33+0100\n"
+"POT-Creation-Date: 2015-12-23 14:48+0000\n"
 "PO-Revision-Date: 2015-12-16 14:53+0000\n"
 "Last-Translator: Rasmus Mortensen <Rasmus.klett@gmail.com>\n"
-"Language-Team: Danish (http://www.transifex.com/richardbarran/django-photologue/language/da/)\n"
+"Language-Team: Danish (http://www.transifex.com/richardbarran/django-"
+"photologue/language/da/)\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:63
-msgid "The following photo does not belong to the same site(s)"
-msgid_plural "The following photos do not belong to the same site(s)"
+#: admin.py:62
+#, fuzzy, python-format
+#| msgid "The following photo does not belong to the same site(s)"
+#| msgid_plural "The following photos do not belong to the same site(s)"
+msgid ""
+"The following photo does not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgid_plural ""
+"The following photos do not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
 msgstr[0] "Følgende billede hører ikke til samme webside(r)"
 msgstr[1] "Følgende billeder hører ikke til samme webside(r)"
 
-#: admin.py:75
+#: admin.py:74
 #, python-format
 msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
 msgstr[0] "Galleriet er blevet tilføjet til %(site)s"
 msgstr[1] "Gallerierne er blevet tilføjet til %(site)s"
 
-#: admin.py:82
+#: admin.py:81
 msgid "Add selected galleries to the current site"
 msgstr "Tilføj valgte gallerier til den nuværende webside"
 
-#: admin.py:88
+#: admin.py:87
 #, python-format
 msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
@@ -45,25 +53,27 @@ msgid_plural ""
 msgstr[0] "Det valgte galleri er blevet fjernet fra %(site)s"
 msgstr[1] "De valgte gallerier er blevet fjernet fra %(site)s"
 
-#: admin.py:95
+#: admin.py:94
 msgid "Remove selected galleries from the current site"
 msgstr "Fjern valgte gallerier fra den nuværende webside"
 
-#: admin.py:102
+#: admin.py:101
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully added to %(site)s"
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
-msgstr[0] "Alle billeder i galleriet %(galleries)s er blevet tilføjet til %(site)s"
-msgstr[1] "Alle billeder i gallerierne %(galleries)s er blevet tilføjet til %(site)s"
+msgstr[0] ""
+"Alle billeder i galleriet %(galleries)s er blevet tilføjet til %(site)s"
+msgstr[1] ""
+"Alle billeder i gallerierne %(galleries)s er blevet tilføjet til %(site)s"
 
-#: admin.py:113
+#: admin.py:112
 msgid "Add all photos of selected galleries to the current site"
 msgstr "Tilføj alle billeder fra de valgte gallerier til den nuværende webside"
 
-#: admin.py:120
+#: admin.py:119
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully removed from "
@@ -71,10 +81,12 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
-msgstr[0] "Alle billeder i galleriet %(galleries)s er blevet slettet fra %(site)s"
-msgstr[1] "Alle billeder i gallerierne %(galleries)s er blevet slettet fra %(site)s"
+msgstr[0] ""
+"Alle billeder i galleriet %(galleries)s er blevet slettet fra %(site)s"
+msgstr[1] ""
+"Alle billeder i gallerierne %(galleries)s er blevet slettet fra %(site)s"
 
-#: admin.py:131
+#: admin.py:130
 msgid "Remove all photos in selected galleries from the current site"
 msgstr "Fjern alle billeder i valgte gallerier fra den nuværende webside"
 
@@ -92,8 +104,7 @@ msgstr "Tilføj valgte billeder til den nuværende webside"
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural ""
-"The selected photos have been successfully removed from %(site)s"
+msgid_plural "The selected photos have been successfully removed from %(site)s"
 msgstr[0] "Billedet er blevet fjernet fra %(site)s"
 msgstr[1] "De valgte billeder er blevet fjernet fra %(site)s"
 
@@ -106,82 +117,82 @@ msgid "Upload a zip archive of photos"
 msgstr "Upload et zip-arkiv af billeder"
 
 #: forms.py:34
-#| msgid "title"
 msgid "Title"
 msgstr "Titel"
 
 #: forms.py:37
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
-"sequential number."
-msgstr "Alle uploadede billeder bliver givet en titel sammensat af denne title + et fortløbende nummer"
+"sequential number.<br>This field is required if creating a new gallery, but "
+"is optional when adding to an existing gallery - if not supplied, the photo "
+"titles will be creating from the existing gallery name."
+msgstr ""
 
-#: forms.py:40
-#| msgid "gallery"
+#: forms.py:43
 msgid "Gallery"
 msgstr "Galleri"
 
-#: forms.py:42
+#: forms.py:45
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr "Vælg et galleri at tilføje disse billeder til. Lad feltet være tomt for at oprette et nyt galleri med den valgte title"
+msgstr ""
+"Vælg et galleri at tilføje disse billeder til. Lad feltet være tomt for at "
+"oprette et nyt galleri med den valgte title"
 
-#: forms.py:44
-#| msgid "caption"
+#: forms.py:47
 msgid "Caption"
 msgstr "Billedtekst"
 
-#: forms.py:46
+#: forms.py:49
 msgid "Caption will be added to all photos."
 msgstr "Billedeteksten vil blive tilføjet til alle billeder."
 
-#: forms.py:47
-#| msgid "description"
+#: forms.py:50
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: forms.py:49
-msgid "A description of this Gallery."
+#: forms.py:52
+#, fuzzy
+#| msgid "A description of this Gallery."
+msgid "A description of this Gallery. Only required for new galleries."
 msgstr "En beskrivelse af dette Galleri"
 
-#: forms.py:50
-#| msgid "is public"
+#: forms.py:53
 msgid "Is public"
 msgstr "Er offentlig"
 
-#: forms.py:53
+#: forms.py:56
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr "Fjern afkrydsningen her for at gøre det uploadede galleri og alle inkluderede billeder private."
+msgstr ""
+"Fjern afkrydsningen her for at gøre det uploadede galleri og alle "
+"inkluderede billeder private."
 
-#: forms.py:76
+#: forms.py:79
 msgid "A gallery with that title already exists."
 msgstr "Et galleri med den titel eksisterer allerede"
 
-#: forms.py:86
-#| msgid "Select a .zip file of images to upload into a new Gallery."
+#: forms.py:89
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr "Vælg et eksisterende galleri, eller skriv en titel til et nyt galleri"
 
-#: forms.py:119
+#: forms.py:122
+#, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
-msgstr "Ignorerer fil \"{filename}\", da det er en undermappe; alle billeder bør være i topmappen af zip-filen"
+msgstr ""
+"Ignorerer fil \"{filename}\", da det er en undermappe; alle billeder bør "
+"være i topmappen af zip-filen"
 
-#: forms.py:139
-#, python-format
-msgid ""
-"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that"
-" slug already exists."
-msgstr "Billedet \"%(filename)s\" med slug \"{1}\" blev ikke oprettet, da et billede med den slug allerede eksisterer."
-
-#: forms.py:164
+#: forms.py:163
+#, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
 msgstr "Kunne ikke behandle fil \"{0}\" i zip-arkivet."
 
-#: forms.py:180
+#: forms.py:179
+#, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr "Billederne er blevet tilføjet til galleri \"{0}\""
 
@@ -264,16 +275,19 @@ msgstr "Skala"
 #: models.py:152
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern "
-"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
-"order. The following filters are available: %s."
-msgstr "Sæt adskillige filtre i kæde vha. følgende mønster \"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Billedefiltre vil blive påført i den anførte rækkefølge. De følgende filtre er tilgænglige: %s."
+"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
+">FILTER_THREE\". Image filters will be applied in order. The following "
+"filters are available: %s."
+msgstr ""
+"Sæt adskillige filtre i kæde vha. følgende mønster \"FILTER_ONE->FILTER_TWO-"
+">FILTER_THREE\". Billedefiltre vil blive påført i den anførte rækkefølge. De "
+"følgende filtre er tilgænglige: %s."
 
 #: models.py:176
 msgid "date published"
 msgstr "dato offentliggjort"
 
-#: models.py:178 models.py:517
+#: models.py:178 models.py:513
 msgid "title"
 msgstr "titel"
 
@@ -281,15 +295,15 @@ msgstr "titel"
 msgid "title slug"
 msgstr "titel slug"
 
-#: models.py:183 models.py:522
+#: models.py:183 models.py:518
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "En \"slug\" er en unik URL-venlig titel for et objekt"
 
-#: models.py:184 models.py:594
+#: models.py:184 models.py:590
 msgid "description"
 msgstr "beskrivelse"
 
-#: models.py:186 models.py:527
+#: models.py:186 models.py:523
 msgid "is public"
 msgstr "er offentlig"
 
@@ -297,11 +311,11 @@ msgstr "er offentlig"
 msgid "Public galleries will be displayed in the default views."
 msgstr "Offentlige gallerier vil blive vist i standard views."
 
-#: models.py:192 models.py:539
+#: models.py:192 models.py:535
 msgid "photos"
 msgstr "billeder"
 
-#: models.py:194 models.py:530
+#: models.py:194 models.py:526
 msgid "sites"
 msgstr "websider"
 
@@ -317,13 +331,17 @@ msgstr "gallerier"
 msgid "count"
 msgstr "tæller"
 
-#: models.py:256 models.py:735
+#: models.py:256 models.py:731
 msgid "image"
 msgstr "billede"
 
 #: models.py:259
 msgid "date taken"
 msgstr "dato taget"
+
+#: models.py:262
+msgid "Date image was taken; is obtained from the image EXIF data."
+msgstr ""
 
 #: models.py:263
 msgid "view count"
@@ -337,220 +355,248 @@ msgstr "beskær fra"
 msgid "effect"
 msgstr "effekt"
 
-#: models.py:299
+#: models.py:294
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "En \"admin_thumbnail\" billedestørrelse er ikke blevet defineret."
 
-#: models.py:307
+#: models.py:302
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: models.py:520
+#: models.py:516
 msgid "slug"
 msgstr "slug"
 
-#: models.py:523
+#: models.py:519
 msgid "caption"
 msgstr "billedetekst"
 
-#: models.py:525
+#: models.py:521
 msgid "date added"
 msgstr "dato tilføjet"
 
-#: models.py:529
+#: models.py:525
 msgid "Public photographs will be displayed in the default views."
 msgstr "Offentlige billeder vil blive vist i standard views."
 
-#: models.py:538
+#: models.py:534
 msgid "photo"
 msgstr "billede"
 
-#: models.py:591 models.py:767
+#: models.py:587 models.py:763
 msgid "name"
 msgstr "navn"
 
-#: models.py:666
+#: models.py:662
 msgid "rotate or flip"
 msgstr "roter eller flip"
 
-#: models.py:670 models.py:698
+#: models.py:666 models.py:694
 msgid "color"
 msgstr "farve"
 
-#: models.py:672
+#: models.py:668
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr "En faktor af 0.0 giver et sort og hvidt billede, en faktor af 1.0 giver det originale billede."
+msgstr ""
+"En faktor af 0.0 giver et sort og hvidt billede, en faktor af 1.0 giver det "
+"originale billede."
 
-#: models.py:674
+#: models.py:670
 msgid "brightness"
 msgstr "lysstyrke"
 
-#: models.py:676
+#: models.py:672
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr "En faktor af 0.0 giver et sort billede, en faktor af 1.0 giver det originale billede."
+msgstr ""
+"En faktor af 0.0 giver et sort billede, en faktor af 1.0 giver det originale "
+"billede."
 
-#: models.py:678
+#: models.py:674
 msgid "contrast"
 msgstr "kontrast"
 
-#: models.py:680
+#: models.py:676
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
-" image."
-msgstr "En faktor af 0.0 giver et solidt gråt billede, en faktor af 1.0 giver det originale billede."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
+"image."
+msgstr ""
+"En faktor af 0.0 giver et solidt gråt billede, en faktor af 1.0 giver det "
+"originale billede."
 
-#: models.py:682
+#: models.py:678
 msgid "sharpness"
 msgstr "skarphed"
 
-#: models.py:684
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr "En faktor af 0.0 giver et sløret billede, en faktor af 1.0 giver det originale billede."
+msgstr ""
+"En faktor af 0.0 giver et sløret billede, en faktor af 1.0 giver det "
+"originale billede."
 
-#: models.py:686
+#: models.py:682
 msgid "filters"
 msgstr "filtre"
 
-#: models.py:690
+#: models.py:686
 msgid "size"
 msgstr "størrelse"
 
-#: models.py:692
+#: models.py:688
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr "Højden af reflektionen som en procentdel af det originale billede. En faktor af 0.0 tilføjer ingen reflektion, en faktor af 1.0 tilføjer en reflektion lig med højden af det oprindelige billede."
+msgstr ""
+"Højden af reflektionen som en procentdel af det originale billede. En faktor "
+"af 0.0 tilføjer ingen reflektion, en faktor af 1.0 tilføjer en reflektion "
+"lig med højden af det oprindelige billede."
 
-#: models.py:695
+#: models.py:691
 msgid "strength"
 msgstr "styrke"
 
-#: models.py:697
+#: models.py:693
 msgid "The initial opacity of the reflection gradient."
 msgstr "Den initielle uigennemsigtighed af den reflektive gradient."
 
-#: models.py:701
+#: models.py:697
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr "Baggrundsfarven af den reflektive gradient. Sæt dette til at passe med baggrundsfarven af din side."
+msgstr ""
+"Baggrundsfarven af den reflektive gradient. Sæt dette til at passe med "
+"baggrundsfarven af din side."
 
-#: models.py:705 models.py:811
+#: models.py:701 models.py:807
 msgid "photo effect"
 msgstr "billedeeffekt"
 
-#: models.py:706
+#: models.py:702
 msgid "photo effects"
 msgstr "billedeeffekter"
 
-#: models.py:737
+#: models.py:733
 msgid "style"
 msgstr "stil"
 
-#: models.py:741
+#: models.py:737
 msgid "opacity"
 msgstr "uigennemsigtighed"
 
-#: models.py:743
+#: models.py:739
 msgid "The opacity of the overlay."
 msgstr "Uigennemsigtigheden af overlaget."
 
-#: models.py:746
+#: models.py:742
 msgid "watermark"
 msgstr "vandmærke"
 
-#: models.py:747
+#: models.py:743
 msgid "watermarks"
 msgstr "vandmærker"
 
-#: models.py:771
+#: models.py:767
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr "Billede størrelse navn må kun indeholde bogstaver, numre og underscores. Eksempler: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr ""
+"Billede størrelse navn må kun indeholde bogstaver, numre og underscores. "
+"Eksempler: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
-#: models.py:778
+#: models.py:774
 msgid "width"
 msgstr "bredde"
 
-#: models.py:781
-msgid "If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr "Hvis bredden er sat til \"0\" vil billede blive skaleret til den givne højde."
+#: models.py:777
+msgid ""
+"If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr ""
+"Hvis bredden er sat til \"0\" vil billede blive skaleret til den givne højde."
 
-#: models.py:782
+#: models.py:778
 msgid "height"
 msgstr "højde"
 
-#: models.py:785
-msgid "If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr "Hvis højden er sat til \"0\" vil billede blive skaleret til den givne bredde."
+#: models.py:781
+msgid ""
+"If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr ""
+"Hvis højden er sat til \"0\" vil billede blive skaleret til den givne bredde."
 
-#: models.py:786
+#: models.py:782
 msgid "quality"
 msgstr "kvalitet"
 
-#: models.py:789
+#: models.py:785
 msgid "JPEG image quality."
 msgstr "JPEG billedekvalitet"
 
-#: models.py:790
+#: models.py:786
 msgid "upscale images?"
 msgstr "opskaler billeder?"
 
-#: models.py:792
+#: models.py:788
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr "Hvis valgt, vil billedet blive skaleret op såfremt det er nødvendigt for at passe til de givne dimensioner. Beskårede størrelser vil blive opskaleret uanset denne indstilling."
+msgstr ""
+"Hvis valgt, vil billedet blive skaleret op såfremt det er nødvendigt for at "
+"passe til de givne dimensioner. Beskårede størrelser vil blive opskaleret "
+"uanset denne indstilling."
 
-#: models.py:796
+#: models.py:792
 msgid "crop to fit?"
 msgstr "beskær til at passe?"
 
-#: models.py:798
+#: models.py:794
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr "Hvis valgt, vil billedet blive skaleret og beskåret for at passe til de givne dimensioner."
+msgstr ""
+"Hvis valgt, vil billedet blive skaleret og beskåret for at passe til de "
+"givne dimensioner."
 
-#: models.py:800
+#: models.py:796
 msgid "pre-cache?"
 msgstr "pre-cache?"
 
-#: models.py:802
+#: models.py:798
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr "Hvis valgt, vil dette billedes størrelse blive pre-cached som billeder bliver tilføjet."
+msgstr ""
+"Hvis valgt, vil dette billedes størrelse blive pre-cached som billeder "
+"bliver tilføjet."
 
-#: models.py:803
+#: models.py:799
 msgid "increment view count?"
 msgstr "inkrementer set tæller?"
 
-#: models.py:805
+#: models.py:801
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr "Hvis valgt, vil billedets \"view_count\" blive inkrementeret når billedets størrelse vises."
+msgstr ""
+"Hvis valgt, vil billedets \"view_count\" blive inkrementeret når billedets "
+"størrelse vises."
 
-#: models.py:816
+#: models.py:812
 msgid "watermark image"
 msgstr "vandmærkebillede"
 
-#: models.py:820
+#: models.py:816
 msgid "photo size"
 msgstr "billedestørrelse"
 
-#: models.py:821
+#: models.py:817
 msgid "photo sizes"
 msgstr "billedestørrelser"
 
-#: models.py:838
+#: models.py:834
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "Kan kun beskære billeder hvis både bedde og højde er specificeret."
 
@@ -577,7 +623,16 @@ msgid ""
 "\t\t\t<li>Otherwise, a new gallery is created with the supplied title.</li>\n"
 "\t\t</ul>\n"
 "\t"
-msgstr "\n\t\t<p>På denne side can du uploade flere billeder på én gang, så længe du har\n\t\tsamlet dem i et zip-arkiv. Billederne kan enten blive:</p>\n\t\t<ul>\n\t\t\t<li>Tilføjet til et eksisterende galleri.<li>\n\t\t\t<li>Ellers bliver et nyt galleri oprettet med den valgte titel.</li>\n\t\t</ul>\n\t"
+msgstr ""
+"\n"
+"\t\t<p>På denne side can du uploade flere billeder på én gang, så længe du "
+"har\n"
+"\t\tsamlet dem i et zip-arkiv. Billederne kan enten blive:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Tilføjet til et eksisterende galleri.<li>\n"
+"\t\t\t<li>Ellers bliver et nyt galleri oprettet med den valgte titel.</li>\n"
+"\t\t</ul>\n"
+"\t"
 
 #: templates/admin/photologue/photo/upload_zip.html:39
 msgid "Please correct the error below."
@@ -672,7 +727,10 @@ msgid ""
 "\n"
 "\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t\t"
-msgstr "\n\t\t\t\t side %(page_number)s af %(total_pages)s\n\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t side %(page_number)s af %(total_pages)s\n"
+"\t\t\t\t"
 
 #: templates/photologue/includes/paginator.html:16
 #: templates/photologue/includes/paginator.html:18
@@ -730,6 +788,20 @@ msgstr "Dette billede findes i følgende gallerier"
 #: templates/photologue/photo_list.html:9
 msgid "All photos"
 msgstr "Alle billeder"
+
+#~ msgid ""
+#~ "All uploaded photos will be given a title made up of this title + a "
+#~ "sequential number."
+#~ msgstr ""
+#~ "Alle uploadede billeder bliver givet en titel sammensat af denne title + "
+#~ "et fortløbende nummer"
+
+#~ msgid ""
+#~ "Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with "
+#~ "that slug already exists."
+#~ msgstr ""
+#~ "Billedet \"%(filename)s\" med slug \"{1}\" blev ikke oprettet, da et "
+#~ "billede med den slug allerede eksisterer."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."
