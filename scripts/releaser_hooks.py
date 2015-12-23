@@ -9,7 +9,7 @@ import copy
 import codecs
 
 
-def prereleaser_middle(data):
+def prereleaser_before(data):
     """
     1. Run the unit tests one last time before we make a release.
     2. Update the CONTRIBUTORS.txt file.
