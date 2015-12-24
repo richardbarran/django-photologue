@@ -37,3 +37,4 @@ Herman Schaaf
 Jannis Vaj
 python-consulting
 Mathieu Hinderyckx
+Guilhem Saurel
