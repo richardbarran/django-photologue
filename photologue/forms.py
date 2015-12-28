@@ -32,7 +32,7 @@ class UploadZipForm(forms.Form):
     zip_file = forms.FileField()
 
     title = forms.CharField(label=_('Title'),
-                            max_length=50,
+                            max_length=250,
                             required=False,
                             help_text=_('All uploaded photos will be given a title made up of this title + a '
                                         'sequential number.<br>This field is required if creating a new '

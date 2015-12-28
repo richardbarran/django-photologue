@@ -176,10 +176,11 @@ class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'),
                                       default=now)
     title = models.CharField(_('title'),
-                             max_length=50,
+                             max_length=250,
                              unique=True)
     slug = models.SlugField(_('title slug'),
                             unique=True,
+                            max_length=250,
                             help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     description = models.TextField(_('description'),
                                    blank=True)
@@ -511,10 +512,11 @@ class ImageModel(models.Model):
 @python_2_unicode_compatible
 class Photo(ImageModel):
     title = models.CharField(_('title'),
-                             max_length=60,
+                             max_length=250,
                              unique=True)
     slug = models.SlugField(_('slug'),
                             unique=True,
+                            max_length=250,
                             help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'),
                                blank=True)
