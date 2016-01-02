@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-23 21:33+0100\n"
+"POT-Creation-Date: 2015-12-23 14:48+0000\n"
 "PO-Revision-Date: 2013-11-20 11:06+0000\n"
 "Last-Translator: richardbarran <richard@arbee-design.co.uk>\n"
 "Language-Team: English (United States) (http://www.transifex.com/projects/p/"
@@ -18,24 +18,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:63
-msgid "The following photo does not belong to the same site(s)"
-msgid_plural "The following photos do not belong to the same site(s)"
+#: admin.py:62
+#, python-format
+msgid ""
+"The following photo does not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgid_plural ""
+"The following photos do not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:75
+#: admin.py:74
 #, python-format
 msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:82
+#: admin.py:81
 msgid "Add selected galleries to the current site"
 msgstr ""
 
-#: admin.py:88
+#: admin.py:87
 #, python-format
 msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
@@ -43,11 +48,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:95
+#: admin.py:94
 msgid "Remove selected galleries from the current site"
 msgstr ""
 
-#: admin.py:102
+#: admin.py:101
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully added to %(site)s"
@@ -57,11 +62,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:113
+#: admin.py:112
 msgid "Add all photos of selected galleries to the current site"
 msgstr ""
 
-#: admin.py:120
+#: admin.py:119
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully removed from "
@@ -72,7 +77,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin.py:131
+#: admin.py:130
 msgid "Remove all photos in selected galleries from the current site"
 msgstr ""
 
@@ -109,21 +114,20 @@ msgid "Title"
 msgstr "title"
 
 #: forms.py:37
-#, fuzzy
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
-"sequential number."
+"sequential number.<br>This field is required if creating a new gallery, but "
+"is optional when adding to an existing gallery - if not supplied, the photo "
+"titles will be creating from the existing gallery name."
 msgstr ""
-"All photos in the gallery will be given a title made up of the gallery title "
-"+ a sequential number."
 
-#: forms.py:40
+#: forms.py:43
 #, fuzzy
 #| msgid "gallery"
 msgid "Gallery"
 msgstr "gallery"
 
-#: forms.py:42
+#: forms.py:45
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
@@ -131,66 +135,64 @@ msgstr ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
 
-#: forms.py:44
+#: forms.py:47
 #, fuzzy
 #| msgid "caption"
 msgid "Caption"
 msgstr "caption"
 
-#: forms.py:46
+#: forms.py:49
 msgid "Caption will be added to all photos."
 msgstr "Caption will be added to all photos."
 
-#: forms.py:47
+#: forms.py:50
 #, fuzzy
 #| msgid "description"
 msgid "Description"
 msgstr "description"
 
-#: forms.py:49
-msgid "A description of this Gallery."
+#: forms.py:52
+#, fuzzy
+#| msgid "A description of this Gallery."
+msgid "A description of this Gallery. Only required for new galleries."
 msgstr "A description of this Gallery."
 
-#: forms.py:50
+#: forms.py:53
 #, fuzzy
 #| msgid "is public"
 msgid "Is public"
 msgstr "is public"
 
-#: forms.py:53
+#: forms.py:56
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 
-#: forms.py:76
+#: forms.py:79
 msgid "A gallery with that title already exists."
 msgstr ""
 
-#: forms.py:86
+#: forms.py:89
 #, fuzzy
 #| msgid "Select a .zip file of images to upload into a new Gallery."
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr "Select a .zip file of images to upload into a new Gallery."
 
-#: forms.py:119
+#: forms.py:122
+#, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
 msgstr ""
 
-#: forms.py:139
-#, python-format
-msgid ""
-"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that "
-"slug already exists."
-msgstr ""
-
-#: forms.py:164
+#: forms.py:163
+#, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
 msgstr ""
 
-#: forms.py:180
+#: forms.py:179
+#, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr ""
 
@@ -285,7 +287,7 @@ msgstr ""
 msgid "date published"
 msgstr "date published"
 
-#: models.py:178 models.py:517
+#: models.py:178 models.py:513
 msgid "title"
 msgstr "title"
 
@@ -293,15 +295,15 @@ msgstr "title"
 msgid "title slug"
 msgstr "title slug"
 
-#: models.py:183 models.py:522
+#: models.py:183 models.py:518
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "A \"slug\" is a unique URL-friendly title for an object."
 
-#: models.py:184 models.py:594
+#: models.py:184 models.py:590
 msgid "description"
 msgstr "description"
 
-#: models.py:186 models.py:527
+#: models.py:186 models.py:523
 msgid "is public"
 msgstr "is public"
 
@@ -309,11 +311,11 @@ msgstr "is public"
 msgid "Public galleries will be displayed in the default views."
 msgstr "Public galleries will be displayed in the default views."
 
-#: models.py:192 models.py:539
+#: models.py:192 models.py:535
 msgid "photos"
 msgstr "photos"
 
-#: models.py:194 models.py:530
+#: models.py:194 models.py:526
 msgid "sites"
 msgstr ""
 
@@ -329,13 +331,17 @@ msgstr "galleries"
 msgid "count"
 msgstr "count"
 
-#: models.py:256 models.py:735
+#: models.py:256 models.py:731
 msgid "image"
 msgstr "image"
 
 #: models.py:259
 msgid "date taken"
 msgstr "date taken"
+
+#: models.py:262
+msgid "Date image was taken; is obtained from the image EXIF data."
+msgstr ""
 
 #: models.py:263
 msgid "view count"
@@ -349,47 +355,47 @@ msgstr "crop from"
 msgid "effect"
 msgstr "effect"
 
-#: models.py:299
+#: models.py:294
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "An \"admin_thumbnail\" photo size has not been defined."
 
-#: models.py:307
+#: models.py:302
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: models.py:520
+#: models.py:516
 msgid "slug"
 msgstr "slug"
 
-#: models.py:523
+#: models.py:519
 msgid "caption"
 msgstr "caption"
 
-#: models.py:525
+#: models.py:521
 msgid "date added"
 msgstr "date added"
 
-#: models.py:529
+#: models.py:525
 msgid "Public photographs will be displayed in the default views."
 msgstr "Public photographs will be displayed in the default views."
 
-#: models.py:538
+#: models.py:534
 msgid "photo"
 msgstr "photo"
 
-#: models.py:591 models.py:767
+#: models.py:587 models.py:763
 msgid "name"
 msgstr "name"
 
-#: models.py:666
+#: models.py:662
 msgid "rotate or flip"
 msgstr "rotate or flip"
 
-#: models.py:670 models.py:698
+#: models.py:666 models.py:694
 msgid "color"
 msgstr "color"
 
-#: models.py:672
+#: models.py:668
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
@@ -397,11 +403,11 @@ msgstr ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 
-#: models.py:674
+#: models.py:670
 msgid "brightness"
 msgstr "brightness"
 
-#: models.py:676
+#: models.py:672
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
@@ -409,11 +415,11 @@ msgstr ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 
-#: models.py:678
+#: models.py:674
 msgid "contrast"
 msgstr "contrast"
 
-#: models.py:680
+#: models.py:676
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
@@ -421,11 +427,11 @@ msgstr ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 
-#: models.py:682
+#: models.py:678
 msgid "sharpness"
 msgstr "sharpness"
 
-#: models.py:684
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
@@ -433,15 +439,15 @@ msgstr ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 
-#: models.py:686
+#: models.py:682
 msgid "filters"
 msgstr "filters"
 
-#: models.py:690
+#: models.py:686
 msgid "size"
 msgstr "size"
 
-#: models.py:692
+#: models.py:688
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -451,15 +457,15 @@ msgstr ""
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
 
-#: models.py:695
+#: models.py:691
 msgid "strength"
 msgstr "strength"
 
-#: models.py:697
+#: models.py:693
 msgid "The initial opacity of the reflection gradient."
 msgstr "The initial opacity of the reflection gradient."
 
-#: models.py:701
+#: models.py:697
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
@@ -467,35 +473,35 @@ msgstr ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 
-#: models.py:705 models.py:811
+#: models.py:701 models.py:807
 msgid "photo effect"
 msgstr "photo effect"
 
-#: models.py:706
+#: models.py:702
 msgid "photo effects"
 msgstr "photo effects"
 
-#: models.py:737
+#: models.py:733
 msgid "style"
 msgstr "style"
 
-#: models.py:741
+#: models.py:737
 msgid "opacity"
 msgstr "opacity"
 
-#: models.py:743
+#: models.py:739
 msgid "The opacity of the overlay."
 msgstr "The opacity of the overlay."
 
-#: models.py:746
+#: models.py:742
 msgid "watermark"
 msgstr "watermark"
 
-#: models.py:747
+#: models.py:743
 msgid "watermarks"
 msgstr "watermarks"
 
-#: models.py:771
+#: models.py:767
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -503,39 +509,39 @@ msgstr ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
-#: models.py:778
+#: models.py:774
 msgid "width"
 msgstr "width"
 
-#: models.py:781
+#: models.py:777
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 
-#: models.py:782
+#: models.py:778
 msgid "height"
 msgstr "height"
 
-#: models.py:785
+#: models.py:781
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 
-#: models.py:786
+#: models.py:782
 msgid "quality"
 msgstr "quality"
 
-#: models.py:789
+#: models.py:785
 msgid "JPEG image quality."
 msgstr "JPEG image quality."
 
-#: models.py:790
+#: models.py:786
 msgid "upscale images?"
 msgstr "upscale images?"
 
-#: models.py:792
+#: models.py:788
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -543,11 +549,11 @@ msgstr ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 
-#: models.py:796
+#: models.py:792
 msgid "crop to fit?"
 msgstr "crop to fit?"
 
-#: models.py:798
+#: models.py:794
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
@@ -555,19 +561,19 @@ msgstr ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 
-#: models.py:800
+#: models.py:796
 msgid "pre-cache?"
 msgstr "pre-cache?"
 
-#: models.py:802
+#: models.py:798
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr "If selected this photo size will be pre-cached as photos are added."
 
-#: models.py:803
+#: models.py:799
 msgid "increment view count?"
 msgstr "increment view count?"
 
-#: models.py:805
+#: models.py:801
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
@@ -575,19 +581,19 @@ msgstr ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 
-#: models.py:816
+#: models.py:812
 msgid "watermark image"
 msgstr "watermark image"
 
-#: models.py:820
+#: models.py:816
 msgid "photo size"
 msgstr "photo size"
 
-#: models.py:821
+#: models.py:817
 msgid "photo sizes"
 msgstr "photo sizes"
 
-#: models.py:838
+#: models.py:834
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "Can only crop photos if both width and height dimensions are set."
 
@@ -779,6 +785,14 @@ msgstr "This photo is found in the following galleries"
 #, fuzzy
 msgid "All photos"
 msgstr "photos"
+
+#, fuzzy
+#~ msgid ""
+#~ "All uploaded photos will be given a title made up of this title + a "
+#~ "sequential number."
+#~ msgstr ""
+#~ "All photos in the gallery will be given a title made up of the gallery "
+#~ "title + a sequential number."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."

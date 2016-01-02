@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Translators:
 # Juraj Bubniak <translations@jbub.eu>, 2012-2013
@@ -12,24 +12,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-23 21:33+0100\n"
-"PO-Revision-Date: 2015-05-23 20:33+0000\n"
+"POT-Creation-Date: 2015-12-23 14:48+0000\n"
+"PO-Revision-Date: 2015-12-23 14:20+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/django-photologue/language/sk/)\n"
+"Language-Team: Slovak (http://www.transifex.com/richardbarran/django-"
+"photologue/language/sk/)\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: admin.py:63
-msgid "The following photo does not belong to the same site(s)"
-msgid_plural "The following photos do not belong to the same site(s)"
+#: admin.py:62
+#, fuzzy, python-format
+#| msgid "The following photo does not belong to the same site(s)"
+#| msgid_plural "The following photos do not belong to the same site(s)"
+msgid ""
+"The following photo does not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgid_plural ""
+"The following photos do not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
 msgstr[0] "Nasledujúca fotografia nepatrí tej istej stránke (stránkam)"
 msgstr[1] "Nasledujúce fotografie nepatria tej istej stránke (stránkam)"
 msgstr[2] "Nasledujúce fotografie nepatria tej istej stránke (stránkam)"
 
-#: admin.py:75
+#: admin.py:74
 #, python-format
 msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
@@ -37,11 +45,11 @@ msgstr[0] "Galéria bola úspešne pridaná na %(site)s"
 msgstr[1] "Galérie boli úspešne pridané na %(site)s"
 msgstr[2] "Galérie boli úspešne pridané na %(site)s"
 
-#: admin.py:82
+#: admin.py:81
 msgid "Add selected galleries to the current site"
-msgstr ""
+msgstr "Pridať vybrané galérie na aktuálnu stránku"
 
-#: admin.py:88
+#: admin.py:87
 #, python-format
 msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
@@ -50,11 +58,11 @@ msgstr[0] "Galéria bola úspešne odobratá zo %(site)s"
 msgstr[1] "Označené galérie boli úspešne odobrané zo %(site)s"
 msgstr[2] "Označené galérie boli úspešne odobrané zo %(site)s"
 
-#: admin.py:95
+#: admin.py:94
 msgid "Remove selected galleries from the current site"
 msgstr "Odobrať označené galérie z aktuálnej stránky"
 
-#: admin.py:102
+#: admin.py:101
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully added to %(site)s"
@@ -62,14 +70,20 @@ msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
 msgstr[0] ""
+"Všetky fotografie z galérie %(galleries)s boli úspešne pridané na stránku "
+"%(site)s"
 msgstr[1] ""
+"Všetky fotografie z galérií %(galleries)s boli úspešne pridané na stránku "
+"%(site)s"
 msgstr[2] ""
+"Všetky fotografie z galérií %(galleries)s boli úspešne pridané na stránku "
+"%(site)s"
 
-#: admin.py:113
+#: admin.py:112
 msgid "Add all photos of selected galleries to the current site"
 msgstr "Pridať všetky fotografie z označených galérií do aktuálnej stránky"
 
-#: admin.py:120
+#: admin.py:119
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully removed from "
@@ -78,12 +92,18 @@ msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
 msgstr[0] ""
+"Všetky fotografie z galérie %(galleries)s boli úspešne odobraté zo stránky "
+"%(site)s"
 msgstr[1] ""
+"Všetky fotografie z galérií %(galleries)s boli úspešne odobraté zo stránky "
+"%(site)s"
 msgstr[2] ""
+"Všetky fotografie z galérií %(galleries)s boli úspešne odobraté zo stránky "
+"%(site)s"
 
-#: admin.py:131
+#: admin.py:130
 msgid "Remove all photos in selected galleries from the current site"
-msgstr ""
+msgstr "Odobrať všetky fotografie z vybraných galérií z aktuálnej stránky"
 
 #: admin.py:171
 #, python-format
@@ -100,8 +120,7 @@ msgstr "Pridať označené fotografie na aktuálnu stránku"
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural ""
-"The selected photos have been successfully removed from %(site)s"
+msgid_plural "The selected photos have been successfully removed from %(site)s"
 msgstr[0] "Fotografia bola úspešne odobratá zo %(site)s"
 msgstr[1] "Označené fotografie boli úspešne odobraté zo %(site)s"
 msgstr[2] "Označené fotografie boli úspešne odobraté zo %(site)s"
@@ -112,87 +131,85 @@ msgstr " Odobrať označené fotografie z aktuálnej stránky"
 
 #: admin.py:205 templates/admin/photologue/photo/upload_zip.html:27
 msgid "Upload a zip archive of photos"
-msgstr ""
+msgstr "Nahrať ZIP archív s fotkami"
 
 #: forms.py:34
-#| msgid "title"
 msgid "Title"
-msgstr ""
+msgstr "Titulok"
 
 #: forms.py:37
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
-"sequential number."
-msgstr "Všetky nahrané fotografie budú mať meno vytvorené z tohoto názvu a zo sekvenčného čísla."
-
-#: forms.py:40
-#| msgid "gallery"
-msgid "Gallery"
+"sequential number.<br>This field is required if creating a new gallery, but "
+"is optional when adding to an existing gallery - if not supplied, the photo "
+"titles will be creating from the existing gallery name."
 msgstr ""
 
-#: forms.py:42
+#: forms.py:43
+msgid "Gallery"
+msgstr "Galéria"
+
+#: forms.py:45
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr "Vyberte galériu do ktorej chcete pridať tieto obrázky. Pre vytvorenie novej galérie so zadaným názvom ponechajte toto pole prázdne."
-
-#: forms.py:44
-#| msgid "caption"
-msgid "Caption"
 msgstr ""
+"Vyberte galériu do ktorej chcete pridať tieto obrázky. Pre vytvorenie novej "
+"galérie so zadaným názvom ponechajte toto pole prázdne."
 
-#: forms.py:46
+#: forms.py:47
+msgid "Caption"
+msgstr "Titulok"
+
+#: forms.py:49
 msgid "Caption will be added to all photos."
 msgstr "Titulok bude pridaný do všetkých fotografií."
 
-#: forms.py:47
-#| msgid "description"
+#: forms.py:50
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
-#: forms.py:49
-msgid "A description of this Gallery."
+#: forms.py:52
+#, fuzzy
+#| msgid "A description of this Gallery."
+msgid "A description of this Gallery. Only required for new galleries."
 msgstr "Popis tejto galérie."
 
-#: forms.py:50
-#| msgid "is public"
-msgid "Is public"
-msgstr ""
-
 #: forms.py:53
+msgid "Is public"
+msgstr "Je verejná"
+
+#: forms.py:56
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr "Odškrtnite, aby odovzdané galérie a zahrnuté fotografie boli súkromné."
 
-#: forms.py:76
+#: forms.py:79
 msgid "A gallery with that title already exists."
 msgstr "Galéria s týmto názvom už existuje."
 
-#: forms.py:86
-#| msgid "Select a .zip file of images to upload into a new Gallery."
+#: forms.py:89
 msgid "Select an existing gallery, or enter a title for a new gallery."
-msgstr ""
+msgstr "Vyberte existujúcu galériu, alebo vyplnte názov pre novú."
 
-#: forms.py:119
+#: forms.py:122
+#, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
-msgstr "Ignorujem súbor \"{filename}\" nakoľko je v podadresári, všetky obrázky by mali byť priamo v zip archíve bez vnorenej adresárovej štruktúry."
+msgstr ""
+"Ignorujem súbor \"{filename}\" nakoľko je v podadresári, všetky obrázky by "
+"mali byť priamo v zip archíve bez vnorenej adresárovej štruktúry."
 
-#: forms.py:139
-#, python-format
-msgid ""
-"Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with that"
-" slug already exists."
-msgstr "Fotografia \"%(filename)s\" s identifikátorom \"{1}\" nebola vytvorená. Fotografia s takým istým identifikátorom už existuje."
-
-#: forms.py:164
+#: forms.py:163
+#, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
 msgstr "Nepodarilo sa spracovať súbor \"{0}\" v .zip archíve."
 
-#: forms.py:180
+#: forms.py:179
+#, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
-msgstr ""
+msgstr "Fotografie boli pridané do galérie \"{0}\". "
 
 #: models.py:114
 msgid "Very Low"
@@ -273,16 +290,19 @@ msgstr "Dodržať mierku"
 #: models.py:152
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern "
-"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
-"order. The following filters are available: %s."
-msgstr "Zreťazte viac filtrov pomocou nasledovného vzoru \"FILTER_JEDNA->FILTER_DVA->FILTER_TRI\". Obrázkové filtre budú použité v poradí. Nasledujúce filtre sú k dispozícii: %s."
+"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
+">FILTER_THREE\". Image filters will be applied in order. The following "
+"filters are available: %s."
+msgstr ""
+"Zreťazte viac filtrov pomocou nasledovného vzoru \"FILTER_JEDNA->FILTER_DVA-"
+">FILTER_TRI\". Obrázkové filtre budú použité v poradí. Nasledujúce filtre sú "
+"k dispozícii: %s."
 
 #: models.py:176
 msgid "date published"
 msgstr "dátum zverejnenia"
 
-#: models.py:178 models.py:517
+#: models.py:178 models.py:513
 msgid "title"
 msgstr "názov"
 
@@ -290,15 +310,15 @@ msgstr "názov"
 msgid "title slug"
 msgstr "identifikátor názvu"
 
-#: models.py:183 models.py:522
+#: models.py:183 models.py:518
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "\"Identifikátor\" je unikátny názov objektu vhodný pre použitie v URL."
 
-#: models.py:184 models.py:594
+#: models.py:184 models.py:590
 msgid "description"
 msgstr "popis"
 
-#: models.py:186 models.py:527
+#: models.py:186 models.py:523
 msgid "is public"
 msgstr "je verejný"
 
@@ -306,11 +326,11 @@ msgstr "je verejný"
 msgid "Public galleries will be displayed in the default views."
 msgstr "Verejné galérie budú zobrazené v štandardných zobrazeniach."
 
-#: models.py:192 models.py:539
+#: models.py:192 models.py:535
 msgid "photos"
 msgstr "fotografie"
 
-#: models.py:194 models.py:530
+#: models.py:194 models.py:526
 msgid "sites"
 msgstr "stránky"
 
@@ -326,13 +346,17 @@ msgstr "galérie"
 msgid "count"
 msgstr "počet"
 
-#: models.py:256 models.py:735
+#: models.py:256 models.py:731
 msgid "image"
 msgstr "obrázok"
 
 #: models.py:259
 msgid "date taken"
 msgstr "dátum odfotenia"
+
+#: models.py:262
+msgid "Date image was taken; is obtained from the image EXIF data."
+msgstr ""
 
 #: models.py:263
 msgid "view count"
@@ -346,235 +370,255 @@ msgstr "orezať od"
 msgid "effect"
 msgstr "efekt"
 
-#: models.py:299
+#: models.py:294
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "Veľkosť fotografie \"admin_thumbnail\" nebola definovaná."
 
-#: models.py:307
+#: models.py:302
 msgid "Thumbnail"
 msgstr "Náhľad"
 
-#: models.py:520
+#: models.py:516
 msgid "slug"
 msgstr "identifikátor"
 
-#: models.py:523
+#: models.py:519
 msgid "caption"
 msgstr "titulok"
 
-#: models.py:525
+#: models.py:521
 msgid "date added"
 msgstr "dátum pridania"
 
-#: models.py:529
+#: models.py:525
 msgid "Public photographs will be displayed in the default views."
 msgstr "Verejné fotografie budú zobrazené v štandardných zobrazeniach."
 
-#: models.py:538
+#: models.py:534
 msgid "photo"
 msgstr "fotografia"
 
-#: models.py:591 models.py:767
+#: models.py:587 models.py:763
 msgid "name"
 msgstr "meno"
 
-#: models.py:666
+#: models.py:662
 msgid "rotate or flip"
 msgstr "otočiť alebo prevrátiť"
 
-#: models.py:670 models.py:698
+#: models.py:666 models.py:694
 msgid "color"
 msgstr "farba"
 
-#: models.py:672
+#: models.py:668
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr "Faktor 0.0 dáva čiernobiely obrázok, faktor 1.0 dáva pôvodný obrázok."
 
-#: models.py:674
+#: models.py:670
 msgid "brightness"
 msgstr "jas"
 
-#: models.py:676
+#: models.py:672
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr "Faktor 0.0 dáva čierny obrázok, faktor 1.0 dáva pôvodný obrázok."
 
-#: models.py:678
+#: models.py:674
 msgid "contrast"
 msgstr "kontrast"
 
-#: models.py:680
+#: models.py:676
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
-" image."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
+"image."
 msgstr "Faktor 0.0 dáva šedý obrázok, faktor 1.0 dáva pôvodný obrázok."
 
-#: models.py:682
+#: models.py:678
 msgid "sharpness"
 msgstr "ostrosť"
 
-#: models.py:684
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr "Faktor 0.0 dáva rozmazaný obrázok, faktor 1.0 dáva pôvodný obrázok."
 
-#: models.py:686
+#: models.py:682
 msgid "filters"
 msgstr "filtre"
 
-#: models.py:690
+#: models.py:686
 msgid "size"
 msgstr "veľkosť"
 
-#: models.py:692
+#: models.py:688
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr "Výška odrazu v percentách pôvodného obrázku. Faktor 0.0 nepridáva žiadny odraz, faktor 1.0 pridáva odraz rovný výśke pôvodného obrázku."
+msgstr ""
+"Výška odrazu v percentách pôvodného obrázku. Faktor 0.0 nepridáva žiadny "
+"odraz, faktor 1.0 pridáva odraz rovný výśke pôvodného obrázku."
 
-#: models.py:695
+#: models.py:691
 msgid "strength"
 msgstr "intenzita"
 
-#: models.py:697
+#: models.py:693
 msgid "The initial opacity of the reflection gradient."
 msgstr "Počiatočná presvitnosť odrazového gradientu."
 
-#: models.py:701
+#: models.py:697
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr "Farba pozadia odrazového gradientu. Túto položku nastavte tak, aby sa zhodovala s farbou pozadia vašej stránky."
+msgstr ""
+"Farba pozadia odrazového gradientu. Túto položku nastavte tak, aby sa "
+"zhodovala s farbou pozadia vašej stránky."
 
-#: models.py:705 models.py:811
+#: models.py:701 models.py:807
 msgid "photo effect"
 msgstr "efekt fotografie"
 
-#: models.py:706
+#: models.py:702
 msgid "photo effects"
 msgstr "efekty fotografie"
 
-#: models.py:737
+#: models.py:733
 msgid "style"
 msgstr "štýl"
 
-#: models.py:741
+#: models.py:737
 msgid "opacity"
 msgstr "priesvitnosť"
 
-#: models.py:743
+#: models.py:739
 msgid "The opacity of the overlay."
 msgstr "Priesvitnosť prekrytia."
 
-#: models.py:746
+#: models.py:742
 msgid "watermark"
 msgstr "vodoznak"
 
-#: models.py:747
+#: models.py:743
 msgid "watermarks"
 msgstr "vodoznaky"
 
-#: models.py:771
+#: models.py:767
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr "Názov veľkosti fotografie by mal obsahovať len písmená, čísla a podčiarky. Príklady:  \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr ""
+"Názov veľkosti fotografie by mal obsahovať len písmená, čísla a podčiarky. "
+"Príklady:  \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
-#: models.py:778
+#: models.py:774
 msgid "width"
 msgstr "šírka"
 
-#: models.py:781
-msgid "If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr "Ak je šírka nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú výšku."
+#: models.py:777
+msgid ""
+"If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr ""
+"Ak je šírka nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú "
+"výšku."
 
-#: models.py:782
+#: models.py:778
 msgid "height"
 msgstr "výška"
 
-#: models.py:785
-msgid "If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr "Ak je výška nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú šírku"
+#: models.py:781
+msgid ""
+"If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr ""
+"Ak je výška nastavená na \"0\" obrázok bude podľa mierky upravený na zadanú "
+"šírku"
 
-#: models.py:786
+#: models.py:782
 msgid "quality"
 msgstr "kvalita"
 
-#: models.py:789
+#: models.py:785
 msgid "JPEG image quality."
 msgstr "JPEG kvalita obrázku."
 
-#: models.py:790
+#: models.py:786
 msgid "upscale images?"
 msgstr "prispôsobiť obzázky?"
 
-#: models.py:792
+#: models.py:788
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr "Ak je táto položka vybratá a je to potrebné, obrázok bude prispôsobený tak, aby sa zmestil do zadaných rozmerov."
+msgstr ""
+"Ak je táto položka vybratá a je to potrebné, obrázok bude prispôsobený tak, "
+"aby sa zmestil do zadaných rozmerov."
 
-#: models.py:796
+#: models.py:792
 msgid "crop to fit?"
 msgstr "orezať ak je to potrebné ?"
 
-#: models.py:798
+#: models.py:794
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr "Ak je táto položka vybratá, obrázok bude upravený a orezaný, aby sa zmestil do zadaných rozmerov."
+msgstr ""
+"Ak je táto položka vybratá, obrázok bude upravený a orezaný, aby sa zmestil "
+"do zadaných rozmerov."
 
-#: models.py:800
+#: models.py:796
 msgid "pre-cache?"
 msgstr "pred-generovať ?"
 
-#: models.py:802
+#: models.py:798
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr "Ak je táto položka vybratá, veľkosť fotografie bude pred-generovaná počas pridávania fotografií."
+msgstr ""
+"Ak je táto položka vybratá, veľkosť fotografie bude pred-generovaná počas "
+"pridávania fotografií."
 
-#: models.py:803
+#: models.py:799
 msgid "increment view count?"
 msgstr "zvýšiť počet zobrazení?"
 
-#: models.py:805
+#: models.py:801
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr "Ak je táto položka vybratá, \"view_count\" obrázku bude zvýšený, keď sa zobrazí veľkosť tohto obrázku."
+msgstr ""
+"Ak je táto položka vybratá, \"view_count\" obrázku bude zvýšený, keď sa "
+"zobrazí veľkosť tohto obrázku."
 
-#: models.py:816
+#: models.py:812
 msgid "watermark image"
 msgstr "použiť vodoznak na obrázok"
 
-#: models.py:820
+#: models.py:816
 msgid "photo size"
 msgstr "veľkosť fotografie"
 
-#: models.py:821
+#: models.py:817
 msgid "photo sizes"
 msgstr "veľkosti fotografie"
 
-#: models.py:838
+#: models.py:834
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "Fotky môžete orezať len vtedy, ak je nastavená šírka a výška."
 
 #: templates/admin/photologue/photo/change_list.html:9
 msgid "Upload a zip archive"
-msgstr ""
+msgstr "Nahrať ZIP archív"
 
 #: templates/admin/photologue/photo/upload_zip.html:15
 msgid "Home"
-msgstr ""
+msgstr "Domov"
 
 #: templates/admin/photologue/photo/upload_zip.html:19
 #: templates/admin/photologue/photo/upload_zip.html:53
 msgid "Upload"
-msgstr ""
+msgstr "Nahrať"
 
 #: templates/admin/photologue/photo/upload_zip.html:28
 msgid ""
@@ -587,24 +631,32 @@ msgid ""
 "\t\t</ul>\n"
 "\t"
 msgstr ""
+"\n"
+"\t\t<p>Na tejto stránke môžete nahrať viacero fotiek naraz, pokiaľ ich\n"
+"\t\tumiestnite do jedného ZIP archívu. Fotografie môžu byť:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Pridané do existujúcej galérie.</li>\n"
+"\t\t\t<li>Alebo bude vytvorená nová galérie so zadaným názvom.</li>\n"
+"\t\t</ul>\n"
+"\t"
 
 #: templates/admin/photologue/photo/upload_zip.html:39
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Prosím opravte chybu uvedenú nižšie."
 
 #: templates/admin/photologue/photo/upload_zip.html:39
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Prosím opravte chyby uvedené nižšie."
 
 #: templates/photologue/gallery_archive.html:4
 #: templates/photologue/gallery_archive.html:9
 msgid "Latest photo galleries"
-msgstr ""
+msgstr "Nedávno pridané galérie"
 
 #: templates/photologue/gallery_archive.html:16
 #: templates/photologue/photo_archive.html:16
 msgid "Filter by year"
-msgstr ""
+msgstr "Filtrovať podľa roku"
 
 #: templates/photologue/gallery_archive.html:32
 #: templates/photologue/gallery_list.html:26
@@ -615,43 +667,43 @@ msgstr "Neboli nájdené žiadne galérie"
 #: templates/photologue/gallery_archive_day.html:9
 #, python-format
 msgid "Galleries for %(show_day)s"
-msgstr ""
+msgstr "Galérie pre %(show_day)s"
 
 #: templates/photologue/gallery_archive_day.html:18
 #: templates/photologue/gallery_archive_month.html:32
 #: templates/photologue/gallery_archive_year.html:32
 msgid "No galleries were found."
-msgstr ""
+msgstr "Nenašli sa žiadne galérie."
 
 #: templates/photologue/gallery_archive_day.html:22
 msgid "View all galleries for month"
-msgstr ""
+msgstr "Zobraziť všetky galérie pre daný mesiac"
 
 #: templates/photologue/gallery_archive_month.html:4
 #: templates/photologue/gallery_archive_month.html:9
 #, python-format
 msgid "Galleries for %(show_month)s"
-msgstr ""
+msgstr "Galérie pre %(show_month)s"
 
 #: templates/photologue/gallery_archive_month.html:16
 #: templates/photologue/photo_archive_month.html:16
 msgid "Filter by day"
-msgstr ""
+msgstr "Filtrovať podľa dní"
 
 #: templates/photologue/gallery_archive_month.html:35
 msgid "View all galleries for year"
-msgstr ""
+msgstr "Zobraziť všetky galérie pre rok"
 
 #: templates/photologue/gallery_archive_year.html:4
 #: templates/photologue/gallery_archive_year.html:9
 #, python-format
 msgid "Galleries for %(show_year)s"
-msgstr ""
+msgstr "Galérie pre %(show_year)s"
 
 #: templates/photologue/gallery_archive_year.html:16
 #: templates/photologue/photo_archive_year.html:17
 msgid "Filter by month"
-msgstr ""
+msgstr "Filtrovať po mesiacoch"
 
 #: templates/photologue/gallery_archive_year.html:35
 #: templates/photologue/gallery_detail.html:17
@@ -668,7 +720,7 @@ msgstr "Zverejnené"
 #: templates/photologue/gallery_list.html:4
 #: templates/photologue/gallery_list.html:9
 msgid "All galleries"
-msgstr ""
+msgstr "Všetky galérie"
 
 #: templates/photologue/includes/paginator.html:6
 #: templates/photologue/includes/paginator.html:8
@@ -682,6 +734,9 @@ msgid ""
 "\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t\t"
 msgstr ""
+"\n"
+"\t\t\t\t    stránka %(page_number)s z %(total_pages)s\n"
+"\t\t\t\t"
 
 #: templates/photologue/includes/paginator.html:16
 #: templates/photologue/includes/paginator.html:18
@@ -691,7 +746,7 @@ msgstr "Nasledujúci"
 #: templates/photologue/photo_archive.html:4
 #: templates/photologue/photo_archive.html:9
 msgid "Latest photos"
-msgstr ""
+msgstr "Nedávno pridané fotografie"
 
 #: templates/photologue/photo_archive.html:34
 #: templates/photologue/photo_archive_day.html:21
@@ -699,37 +754,37 @@ msgstr ""
 #: templates/photologue/photo_archive_year.html:37
 #: templates/photologue/photo_list.html:21
 msgid "No photos were found"
-msgstr ""
+msgstr "Nenašli sa žiadne fotografie"
 
 #: templates/photologue/photo_archive_day.html:4
 #: templates/photologue/photo_archive_day.html:9
 #, python-format
 msgid "Photos for %(show_day)s"
-msgstr ""
+msgstr "Fotografie pre %(show_day)s"
 
 #: templates/photologue/photo_archive_day.html:24
 msgid "View all photos for month"
-msgstr ""
+msgstr "Zobraziť všetky fotografie pre mesiac"
 
 #: templates/photologue/photo_archive_month.html:4
 #: templates/photologue/photo_archive_month.html:9
 #, python-format
 msgid "Photos for %(show_month)s"
-msgstr ""
+msgstr "Fotografie pre %(show_month)s"
 
 #: templates/photologue/photo_archive_month.html:39
 msgid "View all photos for year"
-msgstr ""
+msgstr "Zobraziť všetky fotografie pre rok"
 
 #: templates/photologue/photo_archive_year.html:4
 #: templates/photologue/photo_archive_year.html:10
 #, python-format
 msgid "Photos for %(show_year)s"
-msgstr ""
+msgstr "Fotografie pre %(show_year)s"
 
 #: templates/photologue/photo_archive_year.html:40
 msgid "View all photos"
-msgstr ""
+msgstr "Zobraziť všetky fotografie"
 
 #: templates/photologue/photo_detail.html:22
 msgid "This photo is found in the following galleries"
@@ -738,7 +793,21 @@ msgstr "Táto fotka sa nachádza v nasledujúcich galériách"
 #: templates/photologue/photo_list.html:4
 #: templates/photologue/photo_list.html:9
 msgid "All photos"
-msgstr ""
+msgstr "Všetky fotografie"
+
+#~ msgid ""
+#~ "All uploaded photos will be given a title made up of this title + a "
+#~ "sequential number."
+#~ msgstr ""
+#~ "Všetky nahrané fotografie budú mať meno vytvorené z tohoto názvu a zo "
+#~ "sekvenčného čísla."
+
+#~ msgid ""
+#~ "Did not create photo \"%(filename)s\" with slug \"{1}\" as a photo with "
+#~ "that slug already exists."
+#~ msgstr ""
+#~ "Fotografia \"%(filename)s\" s identifikátorom \"{1}\" nebola vytvorená. "
+#~ "Fotografia s takým istým identifikátorom už existuje."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."

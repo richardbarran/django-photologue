@@ -5,6 +5,7 @@ from inspect import isclass
 import logging
 from io import BytesIO
 from importlib import import_module
+import exifread
 
 from django.utils.timezone import now
 from django.db import models
@@ -42,7 +43,6 @@ except ImportError:
 
 from sortedm2m.fields import SortedManyToManyField
 
-from .utils import EXIF
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
 from .managers import GalleryQuerySet, PhotoQuerySet
@@ -259,7 +259,7 @@ class ImageModel(models.Model):
     date_taken = models.DateTimeField(_('date taken'),
                                       null=True,
                                       blank=True,
-                                      editable=False)
+                                      help_text=_('Date image was taken; is obtained from the image EXIF data.'))
     view_count = models.PositiveIntegerField(_('view count'),
                                              default=0,
                                              editable=False)
@@ -277,21 +277,16 @@ class ImageModel(models.Model):
     class Meta:
         abstract = True
 
-    @property
-    def EXIF(self):
+    def EXIF(self, file=None):
         try:
-            f = self.image.storage.open(self.image.name, 'rb')
-            tags = EXIF.process_file(f)
-            f.close()
+            if file:
+                tags = exifread.process_file(file)
+            else:
+                with self.image.storage.open(self.image.name, 'rb') as file:
+                    tags = exifread.process_file(file, details=False)
             return tags
         except:
-            try:
-                f = self.image.storage.open(self.image.name, 'rb')
-                tags = EXIF.process_file(f, details=False)
-                f.close()
-                return tags
-            except:
-                return {}
+            return {}
 
     def admin_thumbnail(self):
         func = getattr(self, 'get_admin_thumbnail_url', None)
@@ -425,14 +420,14 @@ class ImageModel(models.Model):
             im = self.effect.pre_process(im)
         elif photosize.effect is not None:
             im = photosize.effect.pre_process(im)
+        # Rotate if found & necessary
+        if 'Image Orientation' in self.EXIF() and \
+                self.EXIF().get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
+            im = im.transpose(
+                IMAGE_EXIF_ORIENTATION_MAP[self.EXIF().get('Image Orientation').values[0]])
         # Resize/crop image
         if im.size != photosize.size and photosize.size != (0, 0):
             im = self.resize_image(im, photosize)
-        # Rotate if found & necessary
-        if 'Image Orientation' in self.EXIF and \
-                self.EXIF.get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
-            im = im.transpose(
-                IMAGE_EXIF_ORIENTATION_MAP[self.EXIF.get('Image Orientation').values[0]])
         # Apply watermark if found
         if photosize.watermark is not None:
             im = photosize.watermark.post_process(im)
@@ -480,9 +475,14 @@ class ImageModel(models.Model):
         self._old_image = self.image
 
     def save(self, *args, **kwargs):
-        if self.date_taken is None:
+        image_has_changed = False
+        if self._get_pk_val() and (self._old_image != self.image):
+            image_has_changed = True
+            self.clear_cache()
+        if self.date_taken is None or image_has_changed:
+            # Attempt to get the date the photo was taken from the EXIF data.
             try:
-                exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
+                exif_date = self.EXIF(self.image.file).get('EXIF DateTimeOriginal', None)
                 if exif_date is not None:
                     d, t = str.split(exif_date.values)
                     year, month, day = d.split(':')
@@ -490,11 +490,7 @@ class ImageModel(models.Model):
                     self.date_taken = datetime(int(year), int(month), int(day),
                                                int(hour), int(minute), int(second))
             except:
-                pass
-        if self.date_taken is None:
-            self.date_taken = now()
-        if self._get_pk_val() and (self._old_image != self.image):
-            self.clear_cache()
+                logger.error('Failed to read EXIF DateTimeOriginal', exc_info=True)
         super(ImageModel, self).save(*args, **kwargs)
         self.pre_cache()
 

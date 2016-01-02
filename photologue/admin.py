@@ -151,6 +151,7 @@ class PhotoAdmin(admin.ModelAdmin):
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
+    readonly_fields = ('date_taken',)
     form = PhotoAdminForm
     if MULTISITE:
         filter_horizontal = ['sites']
@@ -192,10 +193,10 @@ class PhotoAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(PhotoAdmin, self).get_urls()
         custom_urls = [
-                               url(r'^upload_zip/$',
-                                   self.admin_site.admin_view(self.upload_zip),
-                                   name='photologue_upload_zip')
-                               ]
+            url(r'^upload_zip/$',
+                self.admin_site.admin_view(self.upload_zip),
+                name='photologue_upload_zip')
+        ]
         return custom_urls + urls
 
     def upload_zip(self, request):

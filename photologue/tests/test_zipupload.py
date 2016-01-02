@@ -2,6 +2,7 @@ import copy
 
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django import VERSION
 
 from ..models import Gallery, Photo
 from .factories import GalleryFactory, PhotoFactory, SAMPLE_ZIP_PATH, SAMPLE_NOT_IMAGE_ZIP_PATH, \
@@ -64,8 +65,14 @@ class GalleryUploadTest(TestCase):
 
         test_data = copy.copy(self.sample_form_data)
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
-        self.assertEqual(response['Location'],
-                         'http://testserver/admin/photologue/photo/')
+        # The redirect Location has changed in Django 1.9 - it used to be an absolute URI, now it returns
+        # a relative one.
+        if VERSION[0:2] == (1, 9):
+            location = '..'
+        else:
+            location = 'http://testserver/admin/photologue/photo/'
+
+        self.assertEqual(response['Location'], location)
 
         self.assertQuerysetEqual(Gallery.objects.all(),
                                  ['<Gallery: This is a test title>'])
