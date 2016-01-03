@@ -25,6 +25,12 @@ def prereleaser_before(data):
     # See setup.cfg for configuration options.
     subprocess.check_output(["pep8"])
 
+    print('Checking that we have no outstanding DB migrations.')
+    output = subprocess.check_output(["python", "example_project/manage.py", "makemigrations", "--dry-run",
+                                      "photologue"])
+    if not output == b"No changes detected in app 'photologue'\n":
+        raise Exception('There are outstanding migrations for Photologue.')
+
     print('Updating CONTRIBUTORS.txt')
 
     # This command will get the author of every commit.
