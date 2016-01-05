@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import os
 import datetime
 
@@ -18,6 +20,8 @@ LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
 PORTRAIT_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_portrait.jpg')
 SQUARE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_square.jpg')
 QUOTING_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_&quoting.jpg')
+UNICODE_IMAGE_PATH = os.path.join(RES_DIR, 'test_unicode_®.jpg')
+NONSENSE_IMAGE_PATH = os.path.join(RES_DIR, 'test_nonsense.jpg')
 SAMPLE_ZIP_PATH = os.path.join(RES_DIR, 'zips/sample.zip')
 SAMPLE_NOT_IMAGE_ZIP_PATH = os.path.join(RES_DIR, 'zips/not_image.zip')
 IGNORED_FILES_ZIP_PATH = os.path.join(RES_DIR, 'zips/ignored_files.zip')
