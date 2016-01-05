@@ -4,7 +4,9 @@ Changelog
 3.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Increased length of 'title' fields to 250 chars in order to store longer title.
+- Rotate image before resize, to comply with height/width constraints (see #145).
+- Added forgotten migration (#148). 
 
 
 3.4.1 (2015-12-23)
