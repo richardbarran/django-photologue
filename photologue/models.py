@@ -17,8 +17,7 @@ from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
-from django.utils.encoding import force_text, smart_str, filepath_to_uri, \
-    force_unicode
+from django.utils.encoding import force_text, smart_str, filepath_to_uri
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
@@ -82,8 +81,7 @@ if PHOTOLOGUE_PATH is not None:
         get_storage_path = getattr(module, parts[-1])
 else:
     def get_storage_path(instance, filename):
-        fn = unicodedata.normalize('NFKD', force_unicode(filename)).encode(
-            'ascii', 'ignore')
+        fn = unicodedata.normalize('NFKD', force_text(filename)).encode('ascii', 'ignore').decode('ascii')
         return os.path.join(PHOTOLOGUE_DIR, 'photos', fn)
 
 # Support CACHEDIR.TAG spec for backups for ignoring cache dir.
