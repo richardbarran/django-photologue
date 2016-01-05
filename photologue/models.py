@@ -479,7 +479,15 @@ class ImageModel(models.Model):
         image_has_changed = False
         if self._get_pk_val() and (self._old_image != self.image):
             image_has_changed = True
+            # If we have changed the image, we need to clear from the cache all instances of the old
+            # image; clear_cache() works on the current (new) image, and in turn calls several other methods.
+            # Changing them all to act on the old image was a lot of changes, so instead we temporarily swap old
+            # and new images.
+            new_image = self.image
+            self.image = self._old_image
             self.clear_cache()
+            self.image = new_image  # Back to the new image.
+            self._old_image.storage.delete(self._old_image.name)  # Delete (old) base image.
         if self.date_taken is None or image_has_changed:
             # Attempt to get the date the photo was taken from the EXIF data.
             try:
