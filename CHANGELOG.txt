@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.5 (unreleased)
+3.5 (2016-01-09)
 ----------------
 
 - Increased length of 'title' fields to 250 chars in order to store longer title.
