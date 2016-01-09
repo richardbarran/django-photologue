@@ -9,6 +9,7 @@ Changelog
 - Added forgotten migration (#148).
 - Changing "Photo" image leaves extra files on server (#147).  
 - Normalize filenames to ASCII so they work across all filesystems (#109).
+- Updated Hungarian translation.
 
 3.4.1 (2015-12-23)
 ------------------
