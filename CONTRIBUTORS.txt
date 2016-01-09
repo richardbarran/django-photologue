@@ -4,37 +4,37 @@ Justin Driscoll
 Richard Barran
 Marcos Daniel Petry
 Jannis
-Jonas Haag
-Celia Oakley
 hedleyroos
+Celia Oakley
+Jonas Haag
 Karol Majta
-Jakub Dorňák
 Krilivye
 Andrew Gerard
+Jakub Dorňák
+Jasper Maes
 Alexey Vasilyev
 kdeebee
-FilippoIOVINE
-Jasper Maes
+Baptiste Mispelon
 Steffen Goertz
 Benjamin Liles
-Baptiste Mispelon
 ferhat elmas
-Antti Kaihola
-Rasmus Mortensen
-saboter
-Vivek Agarwal
-Reint T. Kamp
-Reavis Sutphin-Gray
-Viktor Matys
-jscott1971
-Federico Maggi
-Ben Spaulding
-Thomas Güttler
-Tomas Babej
-David Smi
-Martin Sabo
-Herman Schaaf
-Jannis Vaj
-python-consulting
+FilippoIOVINE
 Mathieu Hinderyckx
+Jannis Vaj
+Reavis Sutphin-Gray
+Rasmus Mortensen
+Vivek Agarwal
+saboter
+jscott1971
+Viktor Matys
+Thomas Güttler
+python-consulting
+Martin Sabo
 Guilhem Saurel
+Tomas Babej
+Antti Kaihola
+Ben Spaulding
+Reint T. Kamp
+Federico Maggi
+Herman Schaaf
+David Smi
