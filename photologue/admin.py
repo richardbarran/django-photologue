@@ -27,12 +27,13 @@ class GalleryAdminForm(forms.ModelForm):
 
 
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_added', 'photo_count', 'is_public')
+    list_display = ('title', 'date_added', 'photo_count', 'author','is_public')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
         list_filter.append('sites')
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
+    raw_id_fields = ('author',)
     form = GalleryAdminForm
     if MULTISITE:
         filter_horizontal = ['sites']
@@ -144,7 +145,7 @@ class PhotoAdminForm(forms.ModelForm):
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added',
-                    'is_public', 'view_count', 'admin_thumbnail')
+                    'is_public', 'view_count', 'author','admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
         list_filter.append('sites')
@@ -152,6 +153,7 @@ class PhotoAdmin(admin.ModelAdmin):
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('date_taken',)
+    raw_id_fields = ('author',)
     form = PhotoAdminForm
     if MULTISITE:
         filter_horizontal = ['sites']
