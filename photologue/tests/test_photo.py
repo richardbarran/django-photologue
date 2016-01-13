@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import unittest
 
 from django import VERSION
 from django.conf import settings
@@ -237,6 +238,9 @@ class ImageModelTest(PhotologueBaseTest):
         self.pu.delete()
         self.pn.delete()
 
+    @unittest.skipUnless(os.path.exists(UNICODE_IMAGE_PATH),
+                         'Test relies on a file with a non-ascii filename - this cannot be distributed as it breaks '
+                         'under Python 2.7, so the distribution does not include that test file.')
     def test_create_size(self):
         """Nonsense image must not break scaling"""
         self.pn.create_size(self.s)

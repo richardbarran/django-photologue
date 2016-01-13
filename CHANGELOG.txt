@@ -4,7 +4,8 @@ Changelog
 3.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Photologue 3.5 failed to install under Python 2.7. Looks like distutils does not like files
+  with non-ascii filenames (reported in #149).
 
 
 3.5 (2016-01-09)
