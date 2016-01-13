@@ -190,7 +190,7 @@ class Gallery(models.Model):
                                     default=True,
                                     help_text=_('Public galleries will be displayed '
                                                 'in the default views.'))
-    photos = SortedManyToManyField('Photo',
+    photos = SortedManyToManyField('photologue.Photo',
                                    related_name='galleries',
                                    verbose_name=_('photos'),
                                    blank=True)
@@ -271,7 +271,7 @@ class ImageModel(models.Model):
                                  max_length=10,
                                  default='center',
                                  choices=CROP_ANCHOR_CHOICES)
-    effect = models.ForeignKey('PhotoEffect',
+    effect = models.ForeignKey('photologue.PhotoEffect',
                                null=True,
                                blank=True,
                                related_name="%(class)s_related",
@@ -812,12 +812,12 @@ class PhotoSize(models.Model):
                                           default=False,
                                           help_text=_('If selected the image\'s "view_count" will be incremented when '
                                                       'this photo size is displayed.'))
-    effect = models.ForeignKey('PhotoEffect',
+    effect = models.ForeignKey('photologue.PhotoEffect',
                                null=True,
                                blank=True,
                                related_name='photo_sizes',
                                verbose_name=_('photo effect'))
-    watermark = models.ForeignKey('Watermark',
+    watermark = models.ForeignKey('photologue.Watermark',
                                   null=True,
                                   blank=True,
                                   related_name='photo_sizes',

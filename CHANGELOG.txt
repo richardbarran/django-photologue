@@ -6,6 +6,7 @@ Changelog
 
 - Photologue 3.5 failed to install under Python 2.7. Looks like distutils does not like files
   with non-ascii filenames (reported in #149).
+- Fix for issue #149 - bug with projects that extend ImageModel.
 
 
 3.5 (2016-01-09)
