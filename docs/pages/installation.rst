@@ -90,11 +90,10 @@ Configure Your Django Settings file
    `MEDIA_URL <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-MEDIA_URL>`_ settings
    are correct (Photologue will store uploaded files in a folder called 'photologue' under your ``MEDIA_ROOT``).
 
-#. `Enable the admin app if you have not already done so <https://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_.
+#. `Enable the admin app <https://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_ if you have not already done so.
 
-#. Django has `an optional site framework
-   <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_.
-   This is not enabled by default in Django, but is required by Photologue.
+#. `Enable the Django sites framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework>`_
+   if you have not already done so. This is not enabled by default in Django, but is required by Photologue.
 
 Add the urls
 ------------
