@@ -21,11 +21,9 @@ We will also want to customise urls:
 
     from django.conf.urls import *
 
-    urlpatterns = patterns('',
-                           
-                           # Nothing to see here... for now.
-
-                           )
+    urlpatterns = [
+        # Nothing to see here... for now.
+    ]
 
 
 2. These custom urls will override the main Photologue urls, so place them just before Photologue 
@@ -54,12 +52,11 @@ Edit our new urls.py file, and add:
 
     from photologue.views import GalleryListView
     
-    urlpatterns = patterns('',
-                           
-                           url(r'^gallerylist/$',
-                               GalleryListView.as_view(paginate_by=5), name='photologue_custom-gallery-list'),
-
-                           )
+    urlpatterns = [
+        url(r'^gallerylist/$',
+            GalleryListView.as_view(paginate_by=5),
+            name='photologue_custom-gallery-list'),
+    ]
 
 
 We've copied the urlpattern for
@@ -111,16 +108,13 @@ And call this new view from urls.py; here we are replacing the standard Photo li
 
     from .views import PhotoJSONListView
 
-    urlpatterns = patterns('',
-
-                       # Other urls...
-
-                       url(r'^photolist/$',
-                           PhotoJSONListView.as_view(),
-                           name='photologue_custom-photo-json-list'),
-
-                       # Other urls as required...
-                       )
+    urlpatterns = [
+        # Other urls...
+        url(r'^photolist/$',
+            PhotoJSONListView.as_view(),
+            name='photologue_custom-photo-json-list'),
+        # Other urls as required...
+    ]
 
 
 And that's it! Of course, this is simply a demo and a real RESTful api would be rather more complex.

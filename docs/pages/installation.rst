@@ -100,10 +100,10 @@ Add the urls
 
 Add photologue to your projects urls.py file::
 
-    urlpatterns += patterns('',
+    urlpatterns += [
         ...
         url(r'^photologue/', include('photologue.urls', namespace='photologue')),
-    )
+    ]
 
 Sync Your Database
 ------------------
