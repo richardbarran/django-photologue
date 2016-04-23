@@ -114,7 +114,7 @@ class UploadZipForm(forms.Form):
                 logger.debug('Ignoring file "{0}".'.format(filename))
                 continue
 
-            if os.path.dirname(filename):
+            if os.path.isdir(filename):
                 logger.warning('Ignoring file "{0}" as it is in a subfolder; all images should be in the top '
                                'folder of the zip.'.format(filename))
                 if request:
