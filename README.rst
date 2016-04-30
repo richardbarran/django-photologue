@@ -29,7 +29,7 @@ Take a closer look
 
 Documentation
 -------------
-Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.org/>`_ 
+Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.io/en/stable/>`_ 
 for instructions on installing and configuring this application.
 
 Python 3? Amazon S3?
