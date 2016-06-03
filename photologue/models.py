@@ -495,7 +495,7 @@ class ImageModel(models.Model):
             try:
                 exif_date = self.EXIF(self.image.file).get('EXIF DateTimeOriginal', None)
                 if exif_date is not None:
-                    d, t = str.split(exif_date.values)
+                    d, t = exif_date.values.split()
                     year, month, day = d.split(':')
                     hour, minute, second = t.split(':')
                     self.date_taken = datetime(int(year), int(month), int(day),
