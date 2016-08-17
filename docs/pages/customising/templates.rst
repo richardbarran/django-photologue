@@ -31,15 +31,19 @@ First, set up your template configuration as so:
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'DIRS': [os.path.join(BASE_DIR, 'templates')],
-            'APP_DIRS': ... True or False ...,
+            # note: if you set APP_DIRS to True, you won't need to add 'loaders' under OPTIONS
+            # proceeding as if APP_DIRS is False
+            'APP_DIRS': False,
             'OPTIONS': {
                 'context_processors': [
                     ... context processors ...,
                 ],
+                # start - please add only if APP_DIRS is False
                 'loaders': [
                     'django.template.loaders.filesystem.Loader',
                     'django.template.loaders.app_directories.Loader',
-                ],       
+                ],   
+                # end - please add only if APP_DIRS is False
             },
         },
     ]
