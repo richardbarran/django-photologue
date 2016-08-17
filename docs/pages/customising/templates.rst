@@ -14,6 +14,7 @@ First, set up your template configuration as so:
 
 .. code-block:: python
 
+    # for Django versions < 1.8 
     TEMPLATE_LOADERS = (
         'django.template.loaders.filesystem.Loader',
         'django.template.loaders.app_directories.Loader',
@@ -24,6 +25,24 @@ First, set up your template configuration as so:
         ...other template folders...,
         PHOTOLOGUE_APP_DIR
     )
+    
+    # for Django versions >= 1.8
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': ... True or False ...,
+            'OPTIONS': {
+                'context_processors': [
+                    ... context processors ...,
+                ],
+                'loaders': [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ],       
+            },
+        },
+    ]
 
 The ``PHOTOLOGUE_APP_DIR`` points to the directory above Photologue's normal
 templates directory.  This means that ``path/to/photologue/template.html`` can also
