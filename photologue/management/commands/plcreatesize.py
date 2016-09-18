@@ -7,8 +7,11 @@ class Command(BaseCommand):
     requires_model_validation = True
     can_import_settings = True
 
+    def add_arguments(self, parser):
+        parser.add_argument('name', type=str, help='Name of the new photo size')
+
     def handle(self, *args, **options):
-        create_size(args[0])
+        create_size(options['name'])
 
 
 def create_size(size):
