@@ -7,6 +7,8 @@ Changelog
 - Updated urlpatterns in docs, tests and example project for Django 1.8+
 - Enhance Python 2.7 EXIF info.
 - Updated docs (contributed by lizwalsh).
+- Fixed command plcreatesize (contributed by Mikel Larreategi).
+- Fixed deprecated template settings (contributed by Justin Dugger).
 
 3.5.1 (2016-01-13)
 ------------------
