@@ -1,15 +1,14 @@
 import unittest
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.contrib.sites.models import Site
 from django.conf import settings
 
 from .factories import GalleryFactory, PhotoFactory
 
 
+@override_settings(ROOT_URLCONF='photologue.tests.test_urls')
 class SitesTest(TestCase):
-
-    urls = 'photologue.tests.test_urls'
 
     def setUp(self):
         """

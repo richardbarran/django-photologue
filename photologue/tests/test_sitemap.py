@@ -1,5 +1,6 @@
 import unittest
 
+from django.test import override_settings
 from django.conf import settings
 
 from .helpers import PhotologueBaseTest
@@ -8,9 +9,8 @@ from .factories import GalleryFactory
 
 @unittest.skipUnless('django.contrib.sitemaps' in settings.INSTALLED_APPS,
                      'Sitemaps not installed in this project, nothing to test.')
+@override_settings(ROOT_URLCONF='photologue.tests.test_urls')
 class SitemapTest(PhotologueBaseTest):
-
-    urls = 'photologue.tests.test_urls'
 
     def test_get_photo(self):
         """Default test setup contains one photo, this should appear in the sitemap."""

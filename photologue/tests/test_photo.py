@@ -90,10 +90,10 @@ class PhotoTest(PhotologueBaseTest):
         self.pl2 = PhotoFactory(image__from_path=QUOTING_IMAGE_PATH)
         # Quoting method filepath_to_uri has changed in Django 1.9 - so the string that we're looking
         # for depends on the Django version.
-        if VERSION[0:2] == (1, 9):
-            quoted_string = 'test_photologue_quoting_testPhotoSize.jpg'
-        else:
+        if VERSION[0] == 1 and VERSION[1] <= 8:
             quoted_string = 'test_photologue_%26quoting_testPhotoSize.jpg'
+        else:
+            quoted_string = 'test_photologue_quoting_testPhotoSize.jpg'
         self.assertIn(quoted_string,
                       self.pl2.get_testPhotoSize_url(),
                       self.pl2.get_testPhotoSize_url())

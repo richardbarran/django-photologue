@@ -1,11 +1,10 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from .factories import PhotoFactory
 from ..models import Photo
 
 
+@override_settings(ROOT_URLCONF='photologue.tests.test_urls')
 class RequestPhotoTest(TestCase):
-
-    urls = 'photologue.tests.test_urls'
 
     def setUp(self):
         super(RequestPhotoTest, self).setUp()

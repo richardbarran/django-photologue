@@ -67,10 +67,10 @@ class GalleryUploadTest(TestCase):
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         # The redirect Location has changed in Django 1.9 - it used to be an absolute URI, now it returns
         # a relative one.
-        if VERSION[0:2] == (1, 9):
-            location = '..'
-        else:
+        if VERSION[0] == 1 and VERSION[1] <= 8:
             location = 'http://testserver/admin/photologue/photo/'
+        else:
+            location = '..'
 
         self.assertEqual(response['Location'], location)
 

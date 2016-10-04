@@ -1,10 +1,9 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from .factories import GalleryFactory
 
 
+@override_settings(ROOT_URLCONF='photologue.tests.test_urls')
 class RequestGalleryTest(TestCase):
-
-    urls = 'photologue.tests.test_urls'
 
     def setUp(self):
         super(RequestGalleryTest, self).setUp()

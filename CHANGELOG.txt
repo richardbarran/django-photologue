@@ -4,6 +4,7 @@ Changelog
 3.6 (unreleased)
 ----------------
 
+- Now works with Django 1.10 (to be precise: Photologue worked, but the unit tests did not).
 - Updated urlpatterns in docs, tests and example project for Django 1.8+
 - Enhance Python 2.7 EXIF info.
 - Updated docs (contributed by lizwalsh).
