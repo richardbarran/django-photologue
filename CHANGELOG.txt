@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.6 (unreleased)
+3.6 (2016-10-05)
 ----------------
 
 - Now works with Django 1.10 (to be precise: Photologue worked, but the unit tests did not).
