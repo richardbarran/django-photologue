@@ -7,34 +7,37 @@ Jannis
 hedleyroos
 Celia Oakley
 Jonas Haag
-Jakub Dorňák
 Jasper Maes
-Karol Majta
-Krilivye
 Andrew Gerard
-Alexey Vasilyev
+Krilivye
+Jakub Dorňák
+Karol Majta
 kdeebee
-ferhat elmas
+Alexey Vasilyev
 Steffen Goertz
+ferhat elmas
 FilippoIOVINE
-Benjamin Liles
 Baptiste Mispelon
-Martin Sabo
-Antti Kaihola
-Mathieu Hinderyckx
-Guilhem Saurel
-Thomas Güttler
-Rasmus Mortensen
-python-consulting
-David Smi
-Tomas Babej
-Vivek Agarwal
-Herman Schaaf
+Benjamin Liles
+lizwalsh
 jscott1971
-saboter
+Guilhem Saurel
+AduchiMergen
+wf94
 Federico Maggi
-Viktor Matys
-Reint T. Kamp
+Martin Sabo
+Jann
+Antti Kaihola
+saboter
+David Smi
+Vivek Agarwal
 Ben Spaulding
+Alasdair Nicol
 Reavis Sutphin-Gray
-Jannis Vaj
+Mathieu Hinderyckx
+Tomas Babej
+python-consulting
+Mikel Larreategi
+Justin Dugger
+Thomas Güttler
+Herman Schaaf
