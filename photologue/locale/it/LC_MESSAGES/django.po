@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-23 14:48+0000\n"
-"PO-Revision-Date: 2015-05-23 20:33+0000\n"
+"POT-Creation-Date: 2016-10-05 20:42+0000\n"
+"PO-Revision-Date: 2015-12-23 14:50+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
 "Language-Team: Italian (http://www.transifex.com/richardbarran/django-"
 "photologue/language/it/)\n"
@@ -143,10 +143,8 @@ msgid "Description"
 msgstr ""
 
 #: forms.py:52
-#, fuzzy
-#| msgid "A description of this Gallery."
 msgid "A description of this Gallery. Only required for new galleries."
-msgstr "Una descrizione di questa Galleria."
+msgstr ""
 
 #: forms.py:53
 msgid "Is public"
@@ -184,83 +182,83 @@ msgstr ""
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr ""
 
-#: models.py:114
+#: models.py:116
 msgid "Very Low"
 msgstr "Molto Bassa"
 
-#: models.py:115
+#: models.py:117
 msgid "Low"
 msgstr "Bassa"
 
-#: models.py:116
+#: models.py:118
 msgid "Medium-Low"
 msgstr "Medio-Bassa"
 
-#: models.py:117
+#: models.py:119
 msgid "Medium"
 msgstr "Media"
 
-#: models.py:118
+#: models.py:120
 msgid "Medium-High"
 msgstr "Medio-Alta"
 
-#: models.py:119
+#: models.py:121
 msgid "High"
 msgstr "Alta"
 
-#: models.py:120
+#: models.py:122
 msgid "Very High"
 msgstr "Molto Alta"
 
-#: models.py:125
+#: models.py:127
 msgid "Top"
 msgstr "In alto"
 
-#: models.py:126
+#: models.py:128
 msgid "Right"
 msgstr "A destra"
 
-#: models.py:127
+#: models.py:129
 msgid "Bottom"
 msgstr "In basso"
 
-#: models.py:128
+#: models.py:130
 msgid "Left"
 msgstr "A sinistra"
 
-#: models.py:129
+#: models.py:131
 msgid "Center (Default)"
 msgstr "Al centro (Default)"
 
-#: models.py:133
+#: models.py:135
 msgid "Flip left to right"
 msgstr "Inverti destra con sinistra"
 
-#: models.py:134
+#: models.py:136
 msgid "Flip top to bottom"
 msgstr "Inverti alto con basso"
 
-#: models.py:135
+#: models.py:137
 msgid "Rotate 90 degrees counter-clockwise"
 msgstr "Ruota di 90 gradi in senso anti-orario"
 
-#: models.py:136
+#: models.py:138
 msgid "Rotate 90 degrees clockwise"
 msgstr "Ruota di 90 gradi in senso orario"
 
-#: models.py:137
+#: models.py:139
 msgid "Rotate 180 degrees"
 msgstr "Ruota di 180 gradi"
 
-#: models.py:141
+#: models.py:143
 msgid "Tile"
 msgstr "Affianca"
 
-#: models.py:142
+#: models.py:144
 msgid "Scale"
 msgstr "Ridimensiona"
 
-#: models.py:152
+#: models.py:154
 #, python-format
 msgid ""
 "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
@@ -271,119 +269,119 @@ msgstr ""
 ">FILTRO_DUE->FILTER_TRE\". I filtri saranno applicati in ordine alle "
 "immagini. I seguenti filtri sono disponibili: %s."
 
-#: models.py:176
+#: models.py:178
 msgid "date published"
 msgstr "data di pubblicazione"
 
-#: models.py:178 models.py:513
+#: models.py:180 models.py:524
 msgid "title"
 msgstr "titolo"
 
-#: models.py:181
+#: models.py:183
 msgid "title slug"
 msgstr "slug"
 
-#: models.py:183 models.py:518
+#: models.py:186 models.py:530
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "Uno \"Slug\" è un titolo univoco per un oggetto, usabile come URL."
 
-#: models.py:184 models.py:590
+#: models.py:187 models.py:602
 msgid "description"
 msgstr "descrizione"
 
-#: models.py:186 models.py:523
+#: models.py:189 models.py:535
 msgid "is public"
 msgstr "è pubblica"
 
-#: models.py:188
+#: models.py:191
 msgid "Public galleries will be displayed in the default views."
 msgstr "Le gallerie pubbliche verranno visualizzate nelle viste di default."
 
-#: models.py:192 models.py:535
+#: models.py:195 models.py:547
 msgid "photos"
 msgstr "foto"
 
-#: models.py:194 models.py:526
+#: models.py:197 models.py:538
 msgid "sites"
 msgstr ""
 
-#: models.py:202
+#: models.py:205
 msgid "gallery"
 msgstr "galleria"
 
-#: models.py:203
+#: models.py:206
 msgid "galleries"
 msgstr "gallerie"
 
-#: models.py:240
+#: models.py:243
 msgid "count"
 msgstr "numero"
 
-#: models.py:256 models.py:731
+#: models.py:259 models.py:743
 msgid "image"
 msgstr "immagine"
 
-#: models.py:259
+#: models.py:262
 msgid "date taken"
 msgstr "data dello scatto"
 
-#: models.py:262
+#: models.py:265
 msgid "Date image was taken; is obtained from the image EXIF data."
 msgstr ""
 
-#: models.py:263
+#: models.py:266
 msgid "view count"
 msgstr ""
 
-#: models.py:266
+#: models.py:269
 msgid "crop from"
 msgstr "ritagliata da"
 
-#: models.py:275
+#: models.py:278
 msgid "effect"
 msgstr "effetto"
 
-#: models.py:294
+#: models.py:297
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "La dimensione \"admin_thumbnail\" non è ancora stata creata."
 
-#: models.py:302
+#: models.py:305
 msgid "Thumbnail"
 msgstr "Miniatura"
 
-#: models.py:516
+#: models.py:527
 msgid "slug"
 msgstr "slug"
 
-#: models.py:519
+#: models.py:531
 msgid "caption"
 msgstr "didascalia"
 
-#: models.py:521
+#: models.py:533
 msgid "date added"
 msgstr "data di inserimento"
 
-#: models.py:525
+#: models.py:537
 msgid "Public photographs will be displayed in the default views."
 msgstr "Le fotografie pubbliche verranno visualizzate nelle viste di default."
 
-#: models.py:534
+#: models.py:546
 msgid "photo"
 msgstr "fotografia"
 
-#: models.py:587 models.py:763
+#: models.py:599 models.py:775
 msgid "name"
 msgstr "nome"
 
-#: models.py:662
+#: models.py:674
 msgid "rotate or flip"
 msgstr "ruota o inverti"
 
-#: models.py:666 models.py:694
+#: models.py:678 models.py:706
 msgid "color"
 msgstr "colore"
 
-#: models.py:668
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
@@ -391,11 +389,11 @@ msgstr ""
 "Un fattore di 0.0 restituisce un'immagine in bianco e nero, un fattore di "
 "1.0 restituisce l'immagine originale."
 
-#: models.py:670
+#: models.py:682
 msgid "brightness"
 msgstr "luminosità"
 
-#: models.py:672
+#: models.py:684
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
@@ -403,11 +401,11 @@ msgstr ""
 "Un fattore di 0.0 restituisce un'immagine nera, un fattore di 1.0 "
 "restituisce l'immagine originale."
 
-#: models.py:674
+#: models.py:686
 msgid "contrast"
 msgstr "contrasto"
 
-#: models.py:676
+#: models.py:688
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
@@ -415,11 +413,11 @@ msgstr ""
 "Un fattore di 0.0 restituisce un'immagine grigia, un fattore di 1.0 "
 "restituisce l'immagine originale."
 
-#: models.py:678
+#: models.py:690
 msgid "sharpness"
 msgstr "nitidezza"
 
-#: models.py:680
+#: models.py:692
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
@@ -427,15 +425,15 @@ msgstr ""
 "Un fattore di 0.0 restituisce un'immagine sfuocata, un fattore di 1.0 "
 "restituisce l'immagine originale."
 
-#: models.py:682
+#: models.py:694
 msgid "filters"
 msgstr "filtri"
 
-#: models.py:686
+#: models.py:698
 msgid "size"
 msgstr "dimensione"
 
-#: models.py:688
+#: models.py:700
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -445,15 +443,15 @@ msgstr ""
 "di 0.0 non aggiunge nessun riflesso, un fattore di 1.0 aggiunge un riflesso "
 "della stessa altezza dell'immagine originale."
 
-#: models.py:691
+#: models.py:703
 msgid "strength"
 msgstr "intensità"
 
-#: models.py:693
+#: models.py:705
 msgid "The initial opacity of the reflection gradient."
 msgstr "Opacità iniziale del gradiente del riflesso."
 
-#: models.py:697
+#: models.py:709
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
@@ -461,35 +459,35 @@ msgstr ""
 "Il colore di sfondo del gradiente di riflesso. Sceglilo in modo che "
 "corrisponda al colore dello sfondo della tua immagine."
 
-#: models.py:701 models.py:807
+#: models.py:713 models.py:819
 msgid "photo effect"
 msgstr "effetto fotografico"
 
-#: models.py:702
+#: models.py:714
 msgid "photo effects"
 msgstr "effetti fotografici"
 
-#: models.py:733
+#: models.py:745
 msgid "style"
 msgstr "stile"
 
-#: models.py:737
+#: models.py:749
 msgid "opacity"
 msgstr "opacità"
 
-#: models.py:739
+#: models.py:751
 msgid "The opacity of the overlay."
 msgstr "Opacità della copertura"
 
-#: models.py:742
+#: models.py:754
 msgid "watermark"
 msgstr "watermark"
 
-#: models.py:743
+#: models.py:755
 msgid "watermarks"
 msgstr "watermark"
 
-#: models.py:767
+#: models.py:779
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -498,41 +496,41 @@ msgstr ""
 "di sottolineatura. Per esempio: : \"thumbnail\", \"display\", \"small\", "
 "\"main_page_widget\"."
 
-#: models.py:774
+#: models.py:786
 msgid "width"
 msgstr "larghezza"
 
-#: models.py:777
+#: models.py:789
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "Se la dimensione è \"0\", l'immagine verrà ridimensionata all'altezza "
 "specificata."
 
-#: models.py:778
+#: models.py:790
 msgid "height"
 msgstr "altezza"
 
-#: models.py:781
+#: models.py:793
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "Se l'altezza è \"0\", l'immagine verrà ridimensionata alla larghezza "
 "specificata."
 
-#: models.py:782
+#: models.py:794
 msgid "quality"
 msgstr "qualità"
 
-#: models.py:785
+#: models.py:797
 msgid "JPEG image quality."
 msgstr "qualità dell'immagine JPEG"
 
-#: models.py:786
+#: models.py:798
 msgid "upscale images?"
 msgstr "ingrandisco le immagini?"
 
-#: models.py:788
+#: models.py:800
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -541,11 +539,11 @@ msgstr ""
 "corrispondere alle dimensioni specificate. Dimensioni ritagliate verranno "
 "ridimensionate senza tenere conto di questa configurazione."
 
-#: models.py:792
+#: models.py:804
 msgid "crop to fit?"
 msgstr "Ritaglio per stare nelle dimensioni?"
 
-#: models.py:794
+#: models.py:806
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
@@ -553,21 +551,21 @@ msgstr ""
 "Se selezionato, l'immagine verrà ridimensionata e ritagliata per rientrare "
 "nelle dimensioni specificate."
 
-#: models.py:796
+#: models.py:808
 msgid "pre-cache?"
 msgstr "pre-cache?"
 
-#: models.py:798
+#: models.py:810
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
 "Se selezionato, questa dimensione di foto verrà pre-salvata mentre le foto "
 "sono inserite."
 
-#: models.py:799
+#: models.py:811
 msgid "increment view count?"
 msgstr "incrementa il contatore di visualizzazioni?"
 
-#: models.py:801
+#: models.py:813
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
@@ -575,19 +573,19 @@ msgstr ""
 "Se selezionato, il \"contatore di visualizzazioni\" dell'immagine sarà "
 "incrementato ad ogni visualizzazione dell'immagine."
 
-#: models.py:812
+#: models.py:824
 msgid "watermark image"
 msgstr "immagine di watermark"
 
-#: models.py:816
+#: models.py:828
 msgid "photo size"
 msgstr "dimensione della foto"
 
-#: models.py:817
+#: models.py:829
 msgid "photo sizes"
 msgstr "dimensioni delle foto"
 
-#: models.py:834
+#: models.py:846
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr ""
 
@@ -767,6 +765,13 @@ msgstr ""
 #: templates/photologue/photo_list.html:9
 msgid "All photos"
 msgstr ""
+
+#~ msgid ""
+#~ "All uploaded photos will be given a title made up of this title + a "
+#~ "sequential number."
+#~ msgstr ""
+#~ "All photos in the gallery will be given a title made up of the gallery "
+#~ "title + a sequential number."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."

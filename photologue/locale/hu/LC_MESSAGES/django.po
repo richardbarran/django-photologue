@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Translators:
 # David Smith, 2015
@@ -10,14 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-23 14:48+0000\n"
+"POT-Creation-Date: 2016-10-05 20:42+0000\n"
 "PO-Revision-Date: 2016-01-03 14:43+0000\n"
 "Last-Translator: David Smith\n"
-"Language-Team: Hungarian (http://www.transifex.com/richardbarran/django-photologue/language/hu/)\n"
+"Language-Team: Hungarian (http://www.transifex.com/richardbarran/django-"
+"photologue/language/hu/)\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:62
@@ -28,8 +29,12 @@ msgid ""
 msgid_plural ""
 "The following photos do not belong to the same site(s) as the gallery, so "
 "will never be displayed: %(photo_list)s."
-msgstr[0] "A következő fot nem ugyanahhoz a webhely(ek)hez tartozik, mint az album, ezért soha nem fog megjelenni: %(photo_list)s"
-msgstr[1] "A következő fotók nem ugyanahhoz a webhely(ek)hez tartoznak, mint az album, ezért soha nem fognak megjelenni: %(photo_list)s"
+msgstr[0] ""
+"A következő fot nem ugyanahhoz a webhely(ek)hez tartozik, mint az album, "
+"ezért soha nem fog megjelenni: %(photo_list)s"
+msgstr[1] ""
+"A következő fotók nem ugyanahhoz a webhely(ek)hez tartoznak, mint az album, "
+"ezért soha nem fognak megjelenni: %(photo_list)s"
 
 #: admin.py:74
 #, python-format
@@ -61,8 +66,12 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
-msgstr[0] "%(galleries)s album összes fotója sikeresen hozzáadva a(z) %(site)s webhelyhez"
-msgstr[1] "%(galleries)s albumok összes fotója sikeresen hozzáadva a(z) %(site)s webhelyhez"
+msgstr[0] ""
+"%(galleries)s album összes fotója sikeresen hozzáadva a(z) %(site)s "
+"webhelyhez"
+msgstr[1] ""
+"%(galleries)s albumok összes fotója sikeresen hozzáadva a(z) %(site)s "
+"webhelyhez"
 
 #: admin.py:112
 msgid "Add all photos of selected galleries to the current site"
@@ -76,8 +85,12 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
-msgstr[0] "%(galleries)s album összes fotója sikeresen eltávolítva a(z) %(site)s webhelyről"
-msgstr[1] "%(galleries)s albumok összes fotója sikeresen eltávolítva a(z) %(site)s webhelyről"
+msgstr[0] ""
+"%(galleries)s album összes fotója sikeresen eltávolítva a(z) %(site)s "
+"webhelyről"
+msgstr[1] ""
+"%(galleries)s albumok összes fotója sikeresen eltávolítva a(z) %(site)s "
+"webhelyről"
 
 #: admin.py:130
 msgid "Remove all photos in selected galleries from the current site"
@@ -97,8 +110,7 @@ msgstr "Kiválasztott fotók hozzáadása jelen webhelyhez"
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural ""
-"The selected photos have been successfully removed from %(site)s"
+msgid_plural "The selected photos have been successfully removed from %(site)s"
 msgstr[0] "Fotó sikeresen eltávolítva a(z) %(site)s webhelyről"
 msgstr[1] "Kiválasztott fotók sikeresen eltávolítva a(z) %(site)s webhelyről"
 
@@ -111,7 +123,6 @@ msgid "Upload a zip archive of photos"
 msgstr "Fotókat tartalmazó zip fájl feltöltése"
 
 #: forms.py:34
-#| msgid "title"
 msgid "Title"
 msgstr "Cím"
 
@@ -121,10 +132,13 @@ msgid ""
 "sequential number.<br>This field is required if creating a new gallery, but "
 "is optional when adding to an existing gallery - if not supplied, the photo "
 "titles will be creating from the existing gallery name."
-msgstr "Az összes feltöltött fotó címe ebből a címből + egy sorszámból fog állni.<br>Új album létrehozása esetén ezt a mezőt kötelező kitölteni, meglévő album esetén elhagyható - utóbbi esetben a fotók címe a meglévő album nevéből fog képződni."
+msgstr ""
+"Az összes feltöltött fotó címe ebből a címből + egy sorszámból fog állni."
+"<br>Új album létrehozása esetén ezt a mezőt kötelező kitölteni, meglévő "
+"album esetén elhagyható - utóbbi esetben a fotók címe a meglévő album "
+"nevéből fog képződni."
 
 #: forms.py:43
-#| msgid "gallery"
 msgid "Gallery"
 msgstr "Album"
 
@@ -132,10 +146,11 @@ msgstr "Album"
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr "Válasszon ki egy albumot, amelyhez a fotók hozzáadásra kerüljenek! Hagyja üresen, ha új albumot akar létrehozni a megadott címmel!"
+msgstr ""
+"Válasszon ki egy albumot, amelyhez a fotók hozzáadásra kerüljenek! Hagyja "
+"üresen, ha új albumot akar létrehozni a megadott címmel!"
 
 #: forms.py:47
-#| msgid "caption"
 msgid "Caption"
 msgstr "Képaláírás"
 
@@ -144,40 +159,42 @@ msgid "Caption will be added to all photos."
 msgstr "A képaláírás minden új fotóra érvényes lesz."
 
 #: forms.py:50
-#| msgid "description"
 msgid "Description"
 msgstr "Leírás"
 
 #: forms.py:52
-#| msgid "A description of this Gallery."
 msgid "A description of this Gallery. Only required for new galleries."
 msgstr "Album leírása. Csak új albumok esetén kötelező."
 
 #: forms.py:53
-#| msgid "is public"
 msgid "Is public"
 msgstr "Nyilvános"
 
 #: forms.py:56
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr "Vegye ki a pipát, ha a feltöltött albumot és a benne lévő fotókat priváttá akarja tenni."
+msgstr ""
+"Vegye ki a pipát, ha a feltöltött albumot és a benne lévő fotókat priváttá "
+"akarja tenni."
 
 #: forms.py:79
 msgid "A gallery with that title already exists."
 msgstr "Ezzel a címmel már létezik album."
 
 #: forms.py:89
-#| msgid "Select a .zip file of images to upload into a new Gallery."
 msgid "Select an existing gallery, or enter a title for a new gallery."
-msgstr "Válasszon egy meglévő albumot, vagy írjon be egy címet új album létrehozásához."
+msgstr ""
+"Válasszon egy meglévő albumot, vagy írjon be egy címet új album "
+"létrehozásához."
 
 #: forms.py:122
 #, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
-msgstr "„{filename}” fájl mellőzve lett, mivel valamely mappában van. A fotóknak közvetlenül kell a zip fájlban lenniük."
+msgstr ""
+"„{filename}” fájl mellőzve lett, mivel valamely mappában van. A fotóknak "
+"közvetlenül kell a zip fájlban lenniük."
 
 #: forms.py:163
 #, python-brace-format
@@ -189,376 +206,412 @@ msgstr "zip fájlban lévő „{0}” fájl feldolgozása sikertelen."
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr "Fotók hozzáadva a(z) „{0}” albumhoz."
 
-#: models.py:114
+#: models.py:116
 msgid "Very Low"
 msgstr "Nagyon alacsony"
 
-#: models.py:115
+#: models.py:117
 msgid "Low"
 msgstr "Alacsony"
 
-#: models.py:116
+#: models.py:118
 msgid "Medium-Low"
 msgstr "Közepesen alacsony"
 
-#: models.py:117
+#: models.py:119
 msgid "Medium"
 msgstr "Közepes"
 
-#: models.py:118
+#: models.py:120
 msgid "Medium-High"
 msgstr "Közepesen magas"
 
-#: models.py:119
+#: models.py:121
 msgid "High"
 msgstr "Magas"
 
-#: models.py:120
+#: models.py:122
 msgid "Very High"
 msgstr "Nagyon magas"
 
-#: models.py:125
+#: models.py:127
 msgid "Top"
 msgstr "Teteje"
 
-#: models.py:126
+#: models.py:128
 msgid "Right"
 msgstr "Jobb oldala"
 
-#: models.py:127
+#: models.py:129
 msgid "Bottom"
 msgstr "Alja"
 
-#: models.py:128
+#: models.py:130
 msgid "Left"
 msgstr "Bal oldala"
 
-#: models.py:129
+#: models.py:131
 msgid "Center (Default)"
 msgstr "Közepe (Alapértelmezett)"
 
-#: models.py:133
+#: models.py:135
 msgid "Flip left to right"
 msgstr "Függőleges tengely mentén tükrözés"
 
-#: models.py:134
+#: models.py:136
 msgid "Flip top to bottom"
 msgstr "Vízszintes tengely mentén tükrözés"
 
-#: models.py:135
+#: models.py:137
 msgid "Rotate 90 degrees counter-clockwise"
 msgstr "Óramutató járásával ellenkező irányba 90 fok forgatása"
 
-#: models.py:136
+#: models.py:138
 msgid "Rotate 90 degrees clockwise"
 msgstr "Óramutató járásával megegyező irányba 90 fok forgatás"
 
-#: models.py:137
+#: models.py:139
 msgid "Rotate 180 degrees"
 msgstr "180 fokos forgtás"
 
-#: models.py:141
+#: models.py:143
 msgid "Tile"
 msgstr "Cím"
 
-#: models.py:142
+#: models.py:144
 msgid "Scale"
 msgstr "Méretezés"
 
-#: models.py:152
+#: models.py:154
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern "
-"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
-"order. The following filters are available: %s."
-msgstr "Több szűrőt is alkalmazhat egymás után a következő mintára: „SZŰRŐ_EGY->SZŰRŐ_KETTŐ->SZŰRŐ_HÁROM”. A szűrők a megadott sorrendben, egymás után lesznek a képre alkalmazva. A következő szűrők állnak  rendelkezésére: %s"
+"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
+">FILTER_THREE\". Image filters will be applied in order. The following "
+"filters are available: %s."
+msgstr ""
+"Több szűrőt is alkalmazhat egymás után a következő mintára: „SZŰRŐ_EGY-"
+">SZŰRŐ_KETTŐ->SZŰRŐ_HÁROM”. A szűrők a megadott sorrendben, egymás után "
+"lesznek a képre alkalmazva. A következő szűrők állnak  rendelkezésére: %s"
 
-#: models.py:176
+#: models.py:178
 msgid "date published"
 msgstr "publikálás dátuma"
 
-#: models.py:178 models.py:513
+#: models.py:180 models.py:524
 msgid "title"
 msgstr "cím"
 
-#: models.py:181
+#: models.py:183
 msgid "title slug"
 msgstr "cím slug"
 
-#: models.py:183 models.py:518
+#: models.py:186 models.py:530
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "A \"slug\" egy objektum egyedi, URL-be ágyazható leírása."
 
-#: models.py:184 models.py:590
+#: models.py:187 models.py:602
 msgid "description"
 msgstr "leírás"
 
-#: models.py:186 models.py:523
+#: models.py:189 models.py:535
 msgid "is public"
 msgstr "nyilvános"
 
-#: models.py:188
+#: models.py:191
 msgid "Public galleries will be displayed in the default views."
 msgstr "Nyilvános albumok láthatóak lesznek az alapértelmezett nézetekben."
 
-#: models.py:192 models.py:535
+#: models.py:195 models.py:547
 msgid "photos"
 msgstr "fotók"
 
-#: models.py:194 models.py:526
+#: models.py:197 models.py:538
 msgid "sites"
 msgstr "webhelyek"
 
-#: models.py:202
+#: models.py:205
 msgid "gallery"
 msgstr "album"
 
-#: models.py:203
+#: models.py:206
 msgid "galleries"
 msgstr "albumok"
 
-#: models.py:240
+#: models.py:243
 msgid "count"
 msgstr "számláló"
 
-#: models.py:256 models.py:731
+#: models.py:259 models.py:743
 msgid "image"
 msgstr "kép"
 
-#: models.py:259
+#: models.py:262
 msgid "date taken"
 msgstr "készítés dátuma"
 
-#: models.py:262
+#: models.py:265
 msgid "Date image was taken; is obtained from the image EXIF data."
 msgstr "Fotó készítésének dátuma (kép EXIF adataiból kinyerve)."
 
-#: models.py:263
+#: models.py:266
 msgid "view count"
 msgstr "nézettségi számláló"
 
-#: models.py:266
+#: models.py:269
 msgid "crop from"
 msgstr "kivágás"
 
-#: models.py:275
+#: models.py:278
 msgid "effect"
 msgstr "szűrő"
 
-#: models.py:294
+#: models.py:297
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "Nincs definiálva \"admin_thumbnail\" fotóméret."
 
-#: models.py:302
+#: models.py:305
 msgid "Thumbnail"
 msgstr "Kicsinyített kép"
 
-#: models.py:516
+#: models.py:527
 msgid "slug"
 msgstr "slug"
 
-#: models.py:519
+#: models.py:531
 msgid "caption"
 msgstr "képaláírás"
 
-#: models.py:521
+#: models.py:533
 msgid "date added"
 msgstr "hozzáadva"
 
-#: models.py:525
+#: models.py:537
 msgid "Public photographs will be displayed in the default views."
 msgstr "Nyilvános fotók láthatóak lesznek az alapértelmezett nézetekben."
 
-#: models.py:534
+#: models.py:546
 msgid "photo"
 msgstr "fotó"
 
-#: models.py:587 models.py:763
+#: models.py:599 models.py:775
 msgid "name"
 msgstr "név"
 
-#: models.py:662
+#: models.py:674
 msgid "rotate or flip"
 msgstr "forgatás vagy türközés"
 
-#: models.py:666 models.py:694
+#: models.py:678 models.py:706
 msgid "color"
 msgstr "szín"
 
-#: models.py:668
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr "A 0.0-ás érték fekete-fehér képet, az 1.0-ás pedig az eredeti, színes képet eredményezi"
+msgstr ""
+"A 0.0-ás érték fekete-fehér képet, az 1.0-ás pedig az eredeti, színes képet "
+"eredményezi"
 
-#: models.py:670
+#: models.py:682
 msgid "brightness"
 msgstr "fényerő"
 
-#: models.py:672
+#: models.py:684
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
-msgstr "A 0.0-ás érték egy fekete képet, az 1.0-ás pedig az eredeti képet eredményezi."
+msgstr ""
+"A 0.0-ás érték egy fekete képet, az 1.0-ás pedig az eredeti képet "
+"eredményezi."
 
-#: models.py:674
+#: models.py:686
 msgid "contrast"
 msgstr "kontraszt"
 
-#: models.py:676
+#: models.py:688
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
-" image."
-msgstr "A 0.0-ás érték egy egyszínű, szürke képet, az 1.0-ás érték pedig az eredeti képet eredményezi."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
+"image."
+msgstr ""
+"A 0.0-ás érték egy egyszínű, szürke képet, az 1.0-ás érték pedig az eredeti "
+"képet eredményezi."
 
-#: models.py:678
+#: models.py:690
 msgid "sharpness"
 msgstr "élesség"
 
-#: models.py:680
+#: models.py:692
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr "A 0.0-ás érték egy elmosott képet, az 1.0-ás érték pedig az eredeti képet eredményezi."
+msgstr ""
+"A 0.0-ás érték egy elmosott képet, az 1.0-ás érték pedig az eredeti képet "
+"eredményezi."
 
-#: models.py:682
+#: models.py:694
 msgid "filters"
 msgstr "szűrők"
 
-#: models.py:686
+#: models.py:698
 msgid "size"
 msgstr "méret"
 
-#: models.py:688
+#: models.py:700
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr "A tükröződés magasságát az eredeti kép magasságának százalékában kell megadni. A 0.0-ás érték egy tükröződés nélküli képet, az 1.0-ás érték pedig egy, Az eredeti kép magasságával megegyező magasságú tükröződést tartalmazó képet eremdényez."
+msgstr ""
+"A tükröződés magasságát az eredeti kép magasságának százalékában kell "
+"megadni. A 0.0-ás érték egy tükröződés nélküli képet, az 1.0-ás érték pedig "
+"egy, Az eredeti kép magasságával megegyező magasságú tükröződést tartalmazó "
+"képet eremdényez."
 
-#: models.py:691
+#: models.py:703
 msgid "strength"
 msgstr "erősség"
 
-#: models.py:693
+#: models.py:705
 msgid "The initial opacity of the reflection gradient."
 msgstr "A tükröződés elhalványodásának kezdő átlátszósága."
 
-#: models.py:697
+#: models.py:709
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
-msgstr "A tükröződés színátmenetének háttérszíne. Állítsa be olyan színűre, amilyen színű háttérre kerül a kép!"
+msgstr ""
+"A tükröződés színátmenetének háttérszíne. Állítsa be olyan színűre, amilyen "
+"színű háttérre kerül a kép!"
 
-#: models.py:701 models.py:807
+#: models.py:713 models.py:819
 msgid "photo effect"
 msgstr "fotó effekt"
 
-#: models.py:702
+#: models.py:714
 msgid "photo effects"
 msgstr "fotó effektek"
 
-#: models.py:733
+#: models.py:745
 msgid "style"
 msgstr "stílus"
 
-#: models.py:737
+#: models.py:749
 msgid "opacity"
 msgstr "átlátszóság"
 
-#: models.py:739
+#: models.py:751
 msgid "The opacity of the overlay."
 msgstr "A felső réteg átlátszósága."
 
-#: models.py:742
+#: models.py:754
 msgid "watermark"
 msgstr "vízjel"
 
-#: models.py:743
+#: models.py:755
 msgid "watermarks"
 msgstr "vízjelek"
 
-#: models.py:767
+#: models.py:779
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr "A fotóméretek neve csak kis betűket, számokat és aláhúzásjeleket tartalmazhat. Pl.: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr ""
+"A fotóméretek neve csak kis betűket, számokat és aláhúzásjeleket "
+"tartalmazhat. Pl.: \"thumbnail\", \"display\", \"small\", \"main_page_widget"
+"\"."
 
-#: models.py:774
+#: models.py:786
 msgid "width"
 msgstr "szélesség"
 
-#: models.py:777
-msgid "If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr "Ha a szélességet 0-ra állítja, a kép a megadott magasság alapján arányosan fog méreteződni."
+#: models.py:789
+msgid ""
+"If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr ""
+"Ha a szélességet 0-ra állítja, a kép a megadott magasság alapján arányosan "
+"fog méreteződni."
 
-#: models.py:778
+#: models.py:790
 msgid "height"
 msgstr "magasság"
 
-#: models.py:781
-msgid "If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr "Ha a magasságot 0-ra állítja, a kép a megadott magasság alapján arányosan fog méreteződni."
+#: models.py:793
+msgid ""
+"If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr ""
+"Ha a magasságot 0-ra állítja, a kép a megadott magasság alapján arányosan "
+"fog méreteződni."
 
-#: models.py:782
+#: models.py:794
 msgid "quality"
 msgstr "minőség"
 
-#: models.py:785
+#: models.py:797
 msgid "JPEG image quality."
 msgstr "JPEG minőség"
 
-#: models.py:786
+#: models.py:798
 msgid "upscale images?"
 msgstr "képek felméretezése?"
 
-#: models.py:788
+#: models.py:800
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr "Ha be van állítva, akkor a megadott méretnél kisebb képek fel lesznek nagyítva, hogy kitöltsék a rendelkezésre álló helyet. Képkivágás esetén ettől az opciótól függetlenül mindenképpen fel lesznek nagyítva a képek szükség esetén."
+msgstr ""
+"Ha be van állítva, akkor a megadott méretnél kisebb képek fel lesznek "
+"nagyítva, hogy kitöltsék a rendelkezésre álló helyet. Képkivágás esetén "
+"ettől az opciótól függetlenül mindenképpen fel lesznek nagyítva a képek "
+"szükség esetén."
 
-#: models.py:792
+#: models.py:804
 msgid "crop to fit?"
 msgstr "képkivágás?"
 
-#: models.py:794
+#: models.py:806
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr "Ha be van állítva, akkor a képek úgy lesznek átméretezve a megadott képarárnyra, hogy egy részük le lesz vágva."
+msgstr ""
+"Ha be van állítva, akkor a képek úgy lesznek átméretezve a megadott "
+"képarárnyra, hogy egy részük le lesz vágva."
 
-#: models.py:796
+#: models.py:808
 msgid "pre-cache?"
 msgstr "előre generálás?"
 
-#: models.py:798
+#: models.py:810
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr "Ha be van állítva, akkor a hozzáadáskor előre le lesz generálva a fotó erre a méretre."
+msgstr ""
+"Ha be van állítva, akkor a hozzáadáskor előre le lesz generálva a fotó erre "
+"a méretre."
 
-#: models.py:799
+#: models.py:811
 msgid "increment view count?"
 msgstr "nézettségi számláló növelése?"
 
-#: models.py:801
+#: models.py:813
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr "Ha be van állítva, akkor a kép „nézettségi számláló” mezőjében lévő érték minden megjelenítés után egyel növekedni fog."
+msgstr ""
+"Ha be van állítva, akkor a kép „nézettségi számláló” mezőjében lévő érték "
+"minden megjelenítés után egyel növekedni fog."
 
-#: models.py:812
+#: models.py:824
 msgid "watermark image"
 msgstr "vízjelhez felhasznált kép"
 
-#: models.py:816
+#: models.py:828
 msgid "photo size"
 msgstr "fotóméret"
 
-#: models.py:817
+#: models.py:829
 msgid "photo sizes"
 msgstr "fotóméretek"
 
-#: models.py:834
+#: models.py:846
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "Képkivágás csak szélesség és magasság megadása után lehetséges."
 
@@ -585,7 +638,15 @@ msgid ""
 "\t\t\t<li>Otherwise, a new gallery is created with the supplied title.</li>\n"
 "\t\t</ul>\n"
 "\t"
-msgstr "\n\t\t<p>Ezen az oldalon egyszerre több fotó tölthető fel, amennyiben azok\n\t\tegy zip fájlba lettek csomagolva. A fotókat:</p>\n\t\t<ul>\n\t\t\t<li>Meglévő albumba lehet tenni.</li>\n\t\t\t<li>Vagy a megadott címmel új album is létrehozható.</li>\n\t\t</ul>\n\t"
+msgstr ""
+"\n"
+"\t\t<p>Ezen az oldalon egyszerre több fotó tölthető fel, amennyiben azok\n"
+"\t\tegy zip fájlba lettek csomagolva. A fotókat:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Meglévő albumba lehet tenni.</li>\n"
+"\t\t\t<li>Vagy a megadott címmel új album is létrehozható.</li>\n"
+"\t\t</ul>\n"
+"\t"
 
 #: templates/admin/photologue/photo/upload_zip.html:39
 msgid "Please correct the error below."
@@ -680,7 +741,10 @@ msgid ""
 "\n"
 "\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t\t"
-msgstr "\n\t\t\t\t    %(page_number)s/%(total_pages)s. oldal \n\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t    %(page_number)s/%(total_pages)s. oldal \n"
+"\t\t\t\t"
 
 #: templates/photologue/includes/paginator.html:16
 #: templates/photologue/includes/paginator.html:18
@@ -743,8 +807,8 @@ msgstr "Összes fotó"
 #~ "All uploaded photos will be given a title made up of this title + a "
 #~ "sequential number."
 #~ msgstr ""
-#~ "All photos in the gallery will be given a title made up of the gallery title"
-#~ " + a sequential number."
+#~ "All photos in the gallery will be given a title made up of the gallery "
+#~ "title + a sequential number."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."
