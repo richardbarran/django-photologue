@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 from django.utils.six.moves import input
 
 from photologue.models import PhotoSize
