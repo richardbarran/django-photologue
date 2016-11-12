@@ -4,34 +4,29 @@ from photologue.models import PhotoSize, ImageModel
 
 
 class Command(BaseCommand):
-    help = ('Clears the Photologue cache for the given sizes.')
-    args = '[sizes]'
+    help = 'Clears the Photologue cache for the given sizes.'
 
-    requires_model_validation = True
-    can_import_settings = True
+    def add_arguments(self, parser):
+        parser.add_argument('sizes',
+                            nargs='*',
+                            type=str,
+                            help='Name of the photosize.')
 
     def handle(self, *args, **options):
-        return create_cache(args, options)
+        sizes = options['sizes']
 
+        if not sizes:
+            photosizes = PhotoSize.objects.all()
+        else:
+            photosizes = PhotoSize.objects.filter(name__in=sizes)
 
-def create_cache(sizes, options):
-    """
-    Clears the cache for the given files
-    """
-    size_list = [size.strip(' ,') for size in sizes]
+        if not len(photosizes):
+            raise CommandError('No photo sizes were found.')
 
-    if len(size_list) < 1:
-        sizes = PhotoSize.objects.all()
-    else:
-        sizes = PhotoSize.objects.filter(name__in=size_list)
+        print('Flushing cache...')
 
-    if not len(sizes):
-        raise CommandError('No photo sizes were found.')
-
-    print('Flushing cache...')
-
-    for cls in ImageModel.__subclasses__():
-        for photosize in sizes:
-            print('Flushing %s size images' % photosize.name)
-            for obj in cls.objects.all():
-                obj.remove_size(photosize)
+        for cls in ImageModel.__subclasses__():
+            for photosize in photosizes:
+                print('Flushing %s size images' % photosize.name)
+                for obj in cls.objects.all():
+                    obj.remove_size(photosize)

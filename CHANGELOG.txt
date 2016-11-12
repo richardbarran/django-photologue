@@ -4,7 +4,7 @@ Changelog
 3.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed the management commands to work in the latest versions of Django.
 
 
 3.6 (2016-10-05)

@@ -8,11 +8,9 @@ class Command(BaseCommand):
     can_import_settings = True
 
     def add_arguments(self, parser):
-        parser.add_argument('name', type=str, help='Name of the new photo size')
+        parser.add_argument('name',
+                            type=str,
+                            help='Name of the new photo size')
 
     def handle(self, *args, **options):
-        create_size(options['name'])
-
-
-def create_size(size):
-    create_photosize(size)
+        create_photosize(options['name'])
