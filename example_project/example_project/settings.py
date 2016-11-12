@@ -56,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
             ],
+            'debug': True,
         },
     },
 ]
