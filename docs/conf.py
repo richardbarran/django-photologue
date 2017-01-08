@@ -13,6 +13,8 @@
 
 import sys
 import os
+import django
+import datetime
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -20,6 +22,7 @@ import os
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.append('../example_project/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'example_project.settings'
+django.setup()
 
 # -- General configuration -----------------------------------------------------
 
@@ -44,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'django-photologue'
-copyright = u'2013, Justin Driscoll/Richard Barran'
+copyright = u'{}, Justin Driscoll/Richard Barran'.format(datetime.datetime.now().year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -100,7 +103,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
