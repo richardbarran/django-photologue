@@ -8,7 +8,7 @@ your own project and override various blocks, for example to add css classes.
 Often this will be enough.
 
 The trick to extending the templates is not special to Photologue, it's used
-in other projects such as `Oscar <https://django-oscar.readthedocs.org/en/latest/recipes/how_to_customise_templates.html>`_.
+in other projects such as `Oscar <http://django-oscar.readthedocs.io/en/latest/howto/how_to_customise_templates.html>`_.
 
 First, set up your template configuration as so:
 
