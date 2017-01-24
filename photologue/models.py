@@ -7,6 +7,7 @@ from io import BytesIO
 from importlib import import_module
 import exifread
 import unicodedata
+from PIL import Image, ImageFile, ImageFilter, ImageEnhance
 
 from django.utils.timezone import now
 from django.db import models
@@ -23,24 +24,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.contrib.sites.models import Site
-
-# Required PIL classes may or may not be available from the root namespace
-# depending on the installation method used.
-try:
-    import Image
-    import ImageFile
-    import ImageFilter
-    import ImageEnhance
-except ImportError:
-    try:
-        from PIL import Image
-        from PIL import ImageFile
-        from PIL import ImageFilter
-        from PIL import ImageEnhance
-    except ImportError:
-        raise ImportError(
-            'Photologue was unable to import the Python Imaging Library. Please confirm it`s installed and available '
-            'on your current Python path.')
 
 from sortedm2m.fields import SortedManyToManyField
 
