@@ -5,7 +5,7 @@ Changelog
 ----------------
 
 - Fixed the management commands to work in the latest versions of Django.
-
+- Fixed an issue with some photo sizes not being created (see #170).
 
 3.6 (2016-10-05)
 ----------------
