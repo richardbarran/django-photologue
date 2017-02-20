@@ -177,7 +177,7 @@ class Gallery(models.Model):
                                    related_name='galleries',
                                    verbose_name=_('photos'),
                                    blank=True)
-    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
+    sites = models.ManyToManyField(Site, verbose_name=_('sites'),
                                    blank=True)
 
     objects = GalleryQuerySet.as_manager()
@@ -280,10 +280,10 @@ class ImageModel(models.Model):
             return _('An "admin_thumbnail" photo size has not been defined.')
         else:
             if hasattr(self, 'get_absolute_url'):
-                return u'<a href="%s"><img src="%s"></a>' % \
+                return '<a href="%s"><img src="%s"></a>' % \
                     (self.get_absolute_url(), func())
             else:
-                return u'<a href="%s"><img src="%s"></a>' % \
+                return '<a href="%s"><img src="%s"></a>' % \
                     (self.image.url, func())
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
@@ -518,7 +518,7 @@ class Photo(ImageModel):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
-    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
+    sites = models.ManyToManyField(Site, verbose_name=_('sites'),
                                    blank=True)
 
     objects = PhotoQuerySet.as_manager()
@@ -610,7 +610,7 @@ class BaseEffect(models.Model):
         default_storage.save(self.sample_filename(), buffer_contents)
 
     def admin_sample(self):
-        return u'<img src="%s">' % self.sample_url()
+        return '<img src="%s">' % self.sample_url()
     admin_sample.short_description = 'Sample'
     admin_sample.allow_tags = True
 
