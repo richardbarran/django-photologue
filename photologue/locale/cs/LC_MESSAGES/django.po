@@ -1,11 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
-# Jakub Dorňák <jdornak@redhat.com>, 2013
-# Jakub Dorňák <jdornak@redhat.com>, 2013
+# Jakub Dorňák <jakub.dornak@misli.cz>, 2013
+# Jakub Dorňák <jakub.dornak@misli.cz>, 2013
 # Viktor Matys <v.matys@seznam.cz>, 2015
 msgid ""
 msgstr ""
@@ -14,12 +14,11 @@ msgstr ""
 "POT-Creation-Date: 2016-10-05 20:42+0000\n"
 "PO-Revision-Date: 2015-12-23 14:50+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
-"Language-Team: Czech (http://www.transifex.com/richardbarran/django-"
-"photologue/language/cs/)\n"
-"Language: cs\n"
+"Language-Team: Czech (http://www.transifex.com/richardbarran/django-photologue/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: admin.py:62
@@ -105,7 +104,8 @@ msgstr ""
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgid_plural ""
+"The selected photos have been successfully removed from %(site)s"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -119,6 +119,7 @@ msgid "Upload a zip archive of photos"
 msgstr ""
 
 #: forms.py:34
+#| msgid "title"
 msgid "Title"
 msgstr ""
 
@@ -131,6 +132,7 @@ msgid ""
 msgstr ""
 
 #: forms.py:43
+#| msgid "gallery"
 msgid "Gallery"
 msgstr ""
 
@@ -138,11 +140,10 @@ msgstr ""
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
-"Vyberte fotogalerii, do které se mají tyto obrázky přidat. Ponechte prázdné "
-"pro vytvoření nové fotogalerie s daným názvem."
+msgstr "Vyberte fotogalerii, do které se mají tyto obrázky přidat. Ponechte prázdné pro vytvoření nové fotogalerie s daným názvem."
 
 #: forms.py:47
+#| msgid "caption"
 msgid "Caption"
 msgstr ""
 
@@ -151,28 +152,31 @@ msgid "Caption will be added to all photos."
 msgstr "Titulek bude přidán ke všem fotografiím."
 
 #: forms.py:50
+#| msgid "description"
 msgid "Description"
 msgstr "Popis"
 
 #: forms.py:52
+#| msgid "A description of this Gallery."
 msgid "A description of this Gallery. Only required for new galleries."
 msgstr ""
 
 #: forms.py:53
+#| msgid "is public"
 msgid "Is public"
 msgstr "Je veřejné"
 
 #: forms.py:56
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Zrušte zaškrtnutí, pokud chcete, aby byla nově nahraná fotogalerie neveřejná."
+msgstr "Zrušte zaškrtnutí, pokud chcete, aby byla nově nahraná fotogalerie neveřejná."
 
 #: forms.py:79
 msgid "A gallery with that title already exists."
 msgstr "Již existuje galerie s tímto titulkem."
 
 #: forms.py:89
+#| msgid "Select a .zip file of images to upload into a new Gallery."
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr "Vyberte existující galerii, nebo zadejte titulek pro novou galerii."
 
@@ -272,13 +276,10 @@ msgstr "Přizpůsobit velikost"
 #: models.py:154
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
-msgstr ""
-"Zřetězte více filtrů použitím vzoru „PRVNI_FILTR->DRUHY_FILTR-"
-">TRETI_FILTR“.\n"
-"Filtry budou aplikovány v daném pořadí. K dispozici jsou tyto filtry: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
+msgstr "Zřetězte více filtrů použitím vzoru „PRVNI_FILTR->DRUHY_FILTR->TRETI_FILTR“.\nFiltry budou aplikovány v daném pořadí. K dispozici jsou tyto filtry: %s."
 
 #: models.py:178
 msgid "date published"
@@ -396,8 +397,7 @@ msgstr "barva"
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
-msgstr ""
-"Hodnota 0,0 udělá černobílý obrázek, hodnota 1,0 zachová původní barvy."
+msgstr "Hodnota 0,0 udělá černobílý obrázek, hodnota 1,0 zachová původní barvy."
 
 #: models.py:682
 msgid "brightness"
@@ -415,8 +415,8 @@ msgstr "kontrast"
 
 #: models.py:688
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
 msgstr "Hodnota 0,0 udělá šedý obrázek, hodnota 1,0 zachová původní kontrast."
 
 #: models.py:690
@@ -427,8 +427,7 @@ msgstr "ostrost"
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
-msgstr ""
-"Hodnota 0,0 udělá rozmazaný obrázek, hodnota 1,0 zachová původní ostrost."
+msgstr "Hodnota 0,0 udělá rozmazaný obrázek, hodnota 1,0 zachová původní ostrost."
 
 #: models.py:694
 msgid "filters"
@@ -443,9 +442,7 @@ msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
-msgstr ""
-"Výška odrazu jako podíl výšky původního obrázku. Hodnota 0.0 nepřidá žádný "
-"odraz, hodnota 1.0 přidá odraz stejně vysoký, jako původní obrázek."
+msgstr "Výška odrazu jako podíl výšky původního obrázku. Hodnota 0.0 nepřidá žádný odraz, hodnota 1.0 přidá odraz stejně vysoký, jako původní obrázek."
 
 #: models.py:703
 msgid "strength"
@@ -493,31 +490,23 @@ msgstr "vodotisky"
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"Název velikosti by měl obsahovat pouze písmena, číslice a podtržítka. "
-"Například: „nahled“, „male_zobrazeni“, „velke_zobrazeni“."
+msgstr "Název velikosti by měl obsahovat pouze písmena, číslice a podtržítka. Například: „nahled“, „male_zobrazeni“, „velke_zobrazeni“."
 
 #: models.py:786
 msgid "width"
 msgstr "šířka"
 
 #: models.py:789
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr ""
-"Pokud je šířka nastavena na 0, velikost obrázku bude upravena podle zadané "
-"výšky."
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Pokud je šířka nastavena na 0, velikost obrázku bude upravena podle zadané výšky."
 
 #: models.py:790
 msgid "height"
 msgstr "výška"
 
 #: models.py:793
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr ""
-"Pokud je výška nastavena na 0, velikost obrázku bude upravena podle zadané "
-"šířky."
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Pokud je výška nastavena na 0, velikost obrázku bude upravena podle zadané šířky."
 
 #: models.py:794
 msgid "quality"
@@ -535,10 +524,7 @@ msgstr "zvětšit obrázky?"
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
-msgstr ""
-"Pokud je vybráno, obrázek bude podle potřeby zvětšen, aby odpovídal "
-"požadovaným rozměrům. Pokud má být obrázek oříznutý, bude podle potřeby "
-"zvětšen bez ohledu na toto nastavení."
+msgstr "Pokud je vybráno, obrázek bude podle potřeby zvětšen, aby odpovídal požadovaným rozměrům. Pokud má být obrázek oříznutý, bude podle potřeby zvětšen bez ohledu na toto nastavení."
 
 #: models.py:804
 msgid "crop to fit?"
@@ -548,8 +534,7 @@ msgstr "oříznout?"
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
-msgstr ""
-"Pokud je vybráno, obrázek bude oříznutý, aby odpovídal požadovaným proporcím."
+msgstr "Pokud je vybráno, obrázek bude oříznutý, aby odpovídal požadovaným proporcím."
 
 #: models.py:808
 msgid "pre-cache?"
@@ -557,9 +542,7 @@ msgstr "vytvářet předem?"
 
 #: models.py:810
 msgid "If selected this photo size will be pre-cached as photos are added."
-msgstr ""
-"Pokud je vybráno, bude pro každý obrázek vytvořena varianta v této velikosti "
-"předem, místo až v době zobrazení."
+msgstr "Pokud je vybráno, bude pro každý obrázek vytvořena varianta v této velikosti předem, místo až v době zobrazení."
 
 #: models.py:811
 msgid "increment view count?"
@@ -569,9 +552,7 @@ msgstr "navyšovat počet zobrazení?"
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
-msgstr ""
-"Pokud je vybráno, bude hodnota „view_count“ obrázku navyšována s každým "
-"zobrazením obrázku této velikosti."
+msgstr "Pokud je vybráno, bude hodnota „view_count“ obrázku navyšována s každým zobrazením obrázku této velikosti."
 
 #: models.py:824
 msgid "watermark image"
@@ -770,8 +751,8 @@ msgstr ""
 #~ "All uploaded photos will be given a title made up of this title + a "
 #~ "sequential number."
 #~ msgstr ""
-#~ "All photos in the gallery will be given a title made up of the gallery "
-#~ "title + a sequential number."
+#~ "All photos in the gallery will be given a title made up of the gallery title"
+#~ " + a sequential number."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."
