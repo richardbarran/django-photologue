@@ -29,8 +29,10 @@ from sortedm2m.fields import SortedManyToManyField
 
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
+from .utils.user_model import get_user_model_name
 from .managers import GalleryQuerySet, PhotoQuerySet
 
+user_model_name = get_user_model_name()
 logger = logging.getLogger('photologue.models')
 
 # Default limit for gallery.latest
@@ -176,6 +178,8 @@ class Gallery(models.Model):
     photos = SortedManyToManyField('photologue.Photo',
                                    related_name='galleries',
                                    verbose_name=_('photos'),
+                                   blank=True)
+    author = models.ForeignKey(user_model_name, verbose_name=_("Author"),
                                    blank=True)
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
@@ -518,6 +522,8 @@ class Photo(ImageModel):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
+    author = models.ForeignKey(user_model_name, verbose_name=_("Author"),
+                                   blank=True)
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
 
