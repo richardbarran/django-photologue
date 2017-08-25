@@ -1,4 +1,4 @@
 Django>=1.8
 Pillow>=2.7.0 # Insist on at least 2.7.0 as it fixes a security hole.
-django-sortedm2m>=1.3.3
+django-sortedm2m>=1.5.0 # Need at least 1.4.0 for it to work with Django 1.11.
 ExifRead>=2.1.2
