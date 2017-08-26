@@ -6,6 +6,7 @@
 # Translators:
 # Jakub Dorňák <jakub.dornak@misli.cz>, 2013
 # Jakub Dorňák <jakub.dornak@misli.cz>, 2013
+# Jakub Dorňák <jakub.dornak@misli.cz>, 2013
 # Viktor Matys <v.matys@seznam.cz>, 2015
 msgid ""
 msgstr ""

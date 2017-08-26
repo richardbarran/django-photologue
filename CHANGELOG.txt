@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Did not really work with Django 1.11 - sortedm2m library was broken. Upgraded sortedm2m and it now works with 1.11.
+- New translation for Ukranian; updated translation for Spanish.
 
 3.7 (2017-05-10)
 ----------------
