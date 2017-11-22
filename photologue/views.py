@@ -5,7 +5,7 @@ from django.views.generic.dates import ArchiveIndexView, DateDetailView, DayArch
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.base import RedirectView
-from django.urls import reverse
+from django.core.urlresolvers import reverse
 
 from .models import Photo, Gallery
 

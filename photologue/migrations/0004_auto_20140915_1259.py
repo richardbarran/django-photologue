@@ -20,16 +20,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='photo',
             name='effect',
-            field=models.ForeignKey(to='photologue.PhotoEffect', blank=True, related_name='photo_related', verbose_name='effect', null=True, on_delete=models.CASCADE),
+            field=models.ForeignKey(to='photologue.PhotoEffect', blank=True, related_name='photo_related', verbose_name='effect', null=True),
         ),
         migrations.AlterField(
             model_name='photosize',
             name='effect',
-            field=models.ForeignKey(to='photologue.PhotoEffect', blank=True, related_name='photo_sizes', verbose_name='photo effect', null=True, on_delete=models.CASCADE),
+            field=models.ForeignKey(to='photologue.PhotoEffect', blank=True, related_name='photo_sizes', verbose_name='photo effect', null=True),
         ),
         migrations.AlterField(
             model_name='photosize',
             name='watermark',
-            field=models.ForeignKey(to='photologue.Watermark', blank=True, related_name='photo_sizes', verbose_name='watermark image', null=True, on_delete=models.CASCADE),
+            field=models.ForeignKey(to='photologue.Watermark', blank=True, related_name='photo_sizes', verbose_name='watermark image', null=True),
         ),
     ]
