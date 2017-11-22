@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 from .views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
@@ -20,6 +20,7 @@ The new style will coexist with the existing 'pl-' prefix for a couple of releas
 """
 
 
+app_name = 'photologue'
 urlpatterns = [
     url(r'^gallery/(?P<year>\d{4})/(?P<month>[0-9]{2})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
         GalleryDateDetailView.as_view(month_format='%m'),

@@ -15,7 +15,7 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_text, smart_str, filepath_to_uri
@@ -258,7 +258,8 @@ class ImageModel(models.Model):
                                null=True,
                                blank=True,
                                related_name="%(class)s_related",
-                               verbose_name=_('effect'))
+                               verbose_name=_('effect'),
+                               on_delete=models.CASCADE)
 
     class Meta:
         abstract = True
@@ -799,12 +800,14 @@ class PhotoSize(models.Model):
                                null=True,
                                blank=True,
                                related_name='photo_sizes',
-                               verbose_name=_('photo effect'))
+                               verbose_name=_('photo effect'),
+                               on_delete=models.CASCADE)
     watermark = models.ForeignKey('photologue.Watermark',
                                   null=True,
                                   blank=True,
                                   related_name='photo_sizes',
-                                  verbose_name=_('watermark image'))
+                                  verbose_name=_('watermark image'),
+                                  on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['width', 'height']
