@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.9 (unreleased)
-----------------
+3.8.1 (2017-12-03)
+------------------
 
 - Admin thumbnails were not displaying correctly.
 
