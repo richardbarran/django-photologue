@@ -58,7 +58,7 @@ class PhotoNode(template.Node):
 
     def render(self, context):
         try:
-            a = template.resolve_variable(self.photo, context)
+            a = template.Variable(self.photo).resolve(context)
         except:
             a = self.photo
         if isinstance(a, Photo):
