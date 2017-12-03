@@ -4,7 +4,7 @@ Changelog
 3.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Admin thumbnails were not displaying correctly.
 
 
 3.8 (2017-12-03)

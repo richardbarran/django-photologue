@@ -20,6 +20,7 @@ from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_text, smart_str, filepath_to_uri
 from django.utils.functional import curry
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
@@ -281,11 +282,11 @@ class ImageModel(models.Model):
             return _('An "admin_thumbnail" photo size has not been defined.')
         else:
             if hasattr(self, 'get_absolute_url'):
-                return u'<a href="%s"><img src="%s"></a>' % \
-                    (self.get_absolute_url(), func())
+                return mark_safe(u'<a href="%s"><img src="%s"></a>' % \
+                    (self.get_absolute_url(), func()))
             else:
-                return u'<a href="%s"><img src="%s"></a>' % \
-                    (self.image.url, func())
+                return mark_safe(u'<a href="%s"><img src="%s"></a>' % \
+                    (self.image.url, func()))
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
