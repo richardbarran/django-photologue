@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.7.1 (unreleased)
-------------------
+3.8 (2017-12-03)
+----------------
 
 - Added support for Django 2.0.
 - Dropped support for Django 1.8 and 1.10.
