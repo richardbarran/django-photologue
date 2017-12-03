@@ -282,11 +282,9 @@ class ImageModel(models.Model):
             return _('An "admin_thumbnail" photo size has not been defined.')
         else:
             if hasattr(self, 'get_absolute_url'):
-                return mark_safe(u'<a href="%s"><img src="%s"></a>' % \
-                    (self.get_absolute_url(), func()))
+                return mark_safe(u'<a href="{}"><img src="{}"></a>'.format(self.get_absolute_url(), func()))
             else:
-                return mark_safe(u'<a href="%s"><img src="%s"></a>' % \
-                    (self.image.url, func()))
+                return mark_safe(u'<a href="{}"><img src="{}"></a>'.format(self.image.url, func()))
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
