@@ -7,41 +7,41 @@ Jannis
 hedleyroos
 Celia Oakley
 Jonas Haag
-Jasper Maes
 Jakub Dorňák
-Andrew Gerard
+Jasper Maes
 Karol Majta
 Krilivye
+Andrew Gerard
 Alexey Vasilyev
 kdeebee
-Baptiste Mispelon
 lizwalsh
 Steffen Goertz
+Baptiste Mispelon
 FilippoIOVINE
 Benjamin Liles
 ferhat elmas
-python-consulting
-Thomas Güttler
-Jann
-wf94
-David Smi
+saboter
 Vivek Agarwal
 Herman Schaaf
-salvador ortiz
-Mikel Larreategi
-jscott1971
-saboter
-Reavis Sutphin-Gray
-AduchiMergen
-Ben Spaulding
-Antti Kaihola
+Martin Sabo
 Tomas Babej
-Alasdair Nicol
+wf94
+Antti Kaihola
+Guilhem Saurel
+salvador ortiz
 Mathieu Hinderyckx
 Dmytro Litvinov
-Urtzi Odriozola
-Justin Dugger
-Guilhem Saurel
-Martin Sabo
+David Smi
 Federico Maggi
+python-consulting
+AduchiMergen
+jscott1971
+Urtzi Odriozola
+Mikel Larreategi
+Alasdair Nicol
+Justin Dugger
+Thomas Güttler
 Matthieu Payet
+Reavis Sutphin-Gray
+Jann
+Ben Spaulding
