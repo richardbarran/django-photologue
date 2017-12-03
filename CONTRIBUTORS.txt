@@ -5,43 +5,43 @@ Richard Barran
 Marcos Daniel Petry
 Jannis
 hedleyroos
-Celia Oakley
 Jonas Haag
-Jakub Dorňák
-Jasper Maes
+Celia Oakley
 Karol Majta
-Krilivye
 Andrew Gerard
+Jasper Maes
+Jakub Dorňák
+Krilivye
 Alexey Vasilyev
 kdeebee
 lizwalsh
+Benjamin Liles
 Steffen Goertz
 Baptiste Mispelon
 FilippoIOVINE
-Benjamin Liles
 ferhat elmas
-saboter
-Vivek Agarwal
-Herman Schaaf
-Martin Sabo
-Tomas Babej
-wf94
-Antti Kaihola
-Guilhem Saurel
-salvador ortiz
-Mathieu Hinderyckx
-Dmytro Litvinov
-David Smi
-Federico Maggi
-python-consulting
-AduchiMergen
-jscott1971
-Urtzi Odriozola
-Mikel Larreategi
-Alasdair Nicol
-Justin Dugger
 Thomas Güttler
+Herman Schaaf
+Justin Dugger
+Alasdair Nicol
+jscott1971
+Tomas Babej
+salvador ortiz
+saboter
+python-consulting
 Matthieu Payet
+Mikel Larreategi
+Martin Sabo
+Ben Spaulding
+David Smi
+AduchiMergen
+Urtzi Odriozola
+wf94
+Vivek Agarwal
+Antti Kaihola
 Reavis Sutphin-Gray
 Jann
-Ben Spaulding
+Dmytro Litvinov
+Federico Maggi
+Mathieu Hinderyckx
+Guilhem Saurel
