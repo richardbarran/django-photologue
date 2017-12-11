@@ -1,6 +1,5 @@
 language: python
 
-# Although Django 1.8 supports Python 3.2, it's EOL, so we don't include it in the tests.
 python:
   - 2.7
   - 3.4
