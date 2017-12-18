@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('photologue', '0001_initial'),
-        ('contenttypes', '0001_initial'),
+        ('contenttypes', '0002_remove_content_type_name'),
     ]
 
     operations = [
