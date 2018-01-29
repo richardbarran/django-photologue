@@ -605,6 +605,9 @@ class BaseEffect(models.Model):
                 'Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
         buffer = BytesIO()
+        # Issue #182 - test fix from https://github.com/bashu/django-watermark/issues/31
+        if im.mode.endswith('A'):
+            im = im.convert(im.mode[:-1])
         im.save(buffer, 'JPEG', quality=90, optimize=True)
         buffer_contents = ContentFile(buffer.getvalue())
         default_storage.save(self.sample_filename(), buffer_contents)
