@@ -426,6 +426,9 @@ class ImageModel(models.Model):
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
             buffer = BytesIO()
+            # Issue #182 - test fix from https://github.com/bashu/django-watermark/issues/31
+            if im.mode.endswith('A'):
+                im = im.convert(im.mode[:-1])
             if im_format != 'JPEG':
                 im.save(buffer, im_format)
             else:
