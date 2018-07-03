@@ -4,7 +4,7 @@ Changelog
 3.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixes when file doesn't exist in the file system but still is in S3.
 
 
 3.8.1 (2017-12-03)
