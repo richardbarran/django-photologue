@@ -309,8 +309,11 @@ class ImageModel(models.Model):
         photosize = PhotoSizeCache().sizes.get(size)
         if not self.size_exists(photosize):
             self.create_size(photosize)
-        return Image.open(self.image.storage.open(
+        try:
+            return Image.open(self.image.storage.open(
             self._get_SIZE_filename(size))).size
+        except:
+            return None
 
     def _get_SIZE_url(self, size):
         photosize = PhotoSizeCache().sizes.get(size)
