@@ -5,6 +5,8 @@ Changelog
 ----------------
 
 - Fixes when file doesn't exist in the file system but still is in S3.
+- Doc tweaks.
+- Make setup compatible with latest version of pip.
 
 
 3.8.1 (2017-12-03)
