@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls admin_static %}
+{% load i18n admin_urls static %}
 
 {# Admin styling code largely taken from http://www.dmertl.com/blog/?p=116 #}
 
@@ -23,7 +23,7 @@
 {% block content_title %}{% endblock %}
 
 {% block content %}
-	
+
 	<h1>{% trans "Upload a zip archive of photos" %}</h1>
 	{% blocktrans %}
 		<p>On this page you can upload many photos at once, as long as you have
