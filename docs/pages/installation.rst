@@ -31,7 +31,7 @@ Dependencies
 3 apps that will be installed automatically if required.
 
 * `Django <https://www.djangoproject.com/>`_.
-* `Pillow <http://python-imaging.github.io/Pillow/>`_.
+* `Pillow <https://pillow.readthedocs.io/>`_.
 * `Django-sortedm2m <https://pypi.python.org/pypi/django-sortedm2m>`_.
 
 And 1 dependency that you will have to manage yourself:
