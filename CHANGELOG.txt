@@ -7,7 +7,8 @@ Changelog
 - Fixes when file doesn't exist in the file system but still is in S3.
 - Doc tweaks.
 - Make setup compatible with latest version of pip.
-- Checked compatibility with Django 2.1.
+- Checked compatibility with Django 2.1 and Python 3.7.
+- Missed a Django migration (issue #194).
 
 
 3.8.1 (2017-12-03)
