@@ -24,7 +24,7 @@ to fix any potential bugs on your own!
 
 Python 3
 ~~~~~~~~
-Photologue works with Python 3 (3.3 or later).
+Photologue is compatible with Python 3 (3.3 or later).
 
 Dependencies
 ------------
@@ -77,6 +77,8 @@ so googling 'PIL installation <your platform>' can also help.
 
 Configure Your Django Settings file
 -----------------------------------
+
+Follow these 4 steps:
 
 #. Add to your ``INSTALLED_APPS`` setting::
 

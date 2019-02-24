@@ -91,11 +91,8 @@ PHOTOLOGUE_MULTISITE
     Default: ``False``
 
 Photologue can integrate galleries and photos with `Django's site framework`_.
-Default is for this feature to be switched off, as only a minority of Django projects
-will need it.
-
-In this case, new galleries and photos are automatically linked to the current site 
-(``SITE_ID = 1``). The Sites many-to-many field is hidden is the admin, as there is no
+The default is for this feature to be switched off, and new galleries and photos to be automatically
+linked to the current site (``SITE_ID = 1``). The Sites many-to-many field is hidden is the admin, as there is no
 need for a user to see it.
 
 If the setting is ``True``, the admin interface is slightly changed:
