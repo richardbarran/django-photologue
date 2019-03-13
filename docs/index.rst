@@ -26,7 +26,6 @@ Contents:
     pages/customising/admin
     pages/customising/views
     pages/customising/models
-    pages/customising/contrib
     pages/contributing
     pages/changelog_page
 

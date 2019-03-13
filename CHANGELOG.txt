@@ -9,6 +9,7 @@ Changelog
 - Make setup compatible with latest version of pip.
 - Checked compatibility with Django 2.1 and Python 3.7.
 - Missed a Django migration (issue #194).
+- Removed old code (old-style demo templates that have been deprecated since 2014).
 
 
 3.8.1 (2017-12-03)
