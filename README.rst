@@ -4,15 +4,12 @@ Django-photologue
     :target: https://pypi.python.org/pypi/django-photologue/
     :alt: Latest PyPI version
 
-.. image:: https://img.shields.io/pypi/wheel/django-photologue.svg
-    :target: https://pypi.python.org/pypi/django-photologue/
-    :alt: Wheel Status
-    
-.. image:: https://travis-ci.org/jdriscoll/django-photologue.svg?branch=master
-    :target: https://travis-ci.org/jdriscoll/django-photologue
+.. image:: https://travis-ci.org/richardbarran/django-photologue.svg?branch=master
+    :target: https://travis-ci.org/richardbarran/django-photologue
 
-.. image:: https://coveralls.io/repos/jdriscoll/django-photologue/badge.png
-  :target: https://coveralls.io/r/jdriscoll/django-photologue
+.. image:: https://coveralls.io/repos/github/richardbarran/django-photologue/badge.svg?branch=master
+    :target: https://coveralls.io/github/richardbarran/django-photologue?branch=master
+
 
 A powerful image management and gallery application for the Django web framework. Upload photos, group them into
 galleries, apply effects such as watermarks.
@@ -20,12 +17,12 @@ galleries, apply effects such as watermarks.
 Take a closer look
 ------------------
 - We have a `demo website <http://www.django-photologue.net/>`_.
-- We also have some `examples of sites using Photologue 
-  <https://github.com/jdriscoll/django-photologue/wiki/Examples-and-forks>`_ on the wiki.
+- We also have some `examples of sites using Photologue
+  <https://github.com/richardbarran/django-photologue/wiki/Examples-and-forks>`_ on the wiki.
 
 Documentation
 -------------
-Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.io/en/stable/>`_ 
+Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.io/en/stable/>`_
 for instructions on installing and configuring this application.
 
 Python 3? Amazon S3?

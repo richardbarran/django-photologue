@@ -15,7 +15,7 @@ version available on `PyPi <https://pypi.python.org/pypi>`_::
 You can also take risks and install the latest code directly from the
 Github repository::
 
-    pip install -e git+https://github.com/jdriscoll/django-photologue.git#egg=django-photologue
+    pip install -e git+https://github.com/richardbarran/django-photologue.git#egg=django-photologue
 
 This code should work ok - like `Django <https://www.djangoproject.com/>`_
 itself, we try to keep the master branch bug-free. However, we strongly recommend that you

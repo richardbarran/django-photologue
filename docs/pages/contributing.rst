@@ -67,7 +67,7 @@ any new/updated translations get pulled from Transifex and added to the Photolog
 New features
 ------------
 In the wiki there is a `wishlist of new features already planned
-for Photologue <https://github.com/jdriscoll/django-photologue/wiki/Photologue-3.X-wishlist>`_ - you are welcome to suggest other useful improvements.
+for Photologue <https://github.com/richardbarran/django-photologue/wiki/Photologue-3.X-wishlist>`_ - you are welcome to suggest other useful improvements.
 
 If you’re interested in developing a new feature, it is recommended that you first
 discuss it on the `mailing list <http://groups.google.com/group/django-photologue>`_

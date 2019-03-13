@@ -13,7 +13,7 @@ This project serves 3 purposes:
 
 It uses the Bootstrap-friendly templates that are supplied in contrib/bootstrap/templates.
 
-The rest of the README will assume that you want to set up the test project in 
+The rest of the README will assume that you want to set up the test project in
 order to work on django-photologue itself.
 
 Prerequisites
@@ -38,7 +38,7 @@ is strongly recommended::
 Clone this code into your project folder::
 
 	(cd to the new virtualenv)
-	git clone https://github.com/jdriscoll/django-photologue.git .
+	git clone https://github.com/richardbarran/django-photologue.git .
 
 **Note**: if you plan to contribute code back to django-photologue, then you'll
 probably want instead to fork the project on Github, and clone your fork instead.
@@ -76,6 +76,6 @@ This example project is based on the earlier `photologue_demo project <https://g
 This project included contributions and input from: crainbf, tomkingston, bmcorser.
 
 
-.. 
+..
 	Note: this README is formatted as reStructuredText so that it's in the same
-	format as the Sphinx docs. 
+	format as the Sphinx docs.

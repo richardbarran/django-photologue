@@ -5,7 +5,7 @@ Customisation: Views and Urls
 #############################
 
 The photologue views and urls can be tweaked to better suit your project. The technique described on this page
-is not specific to Photologue - it can be applied to any 3rd party library. 
+is not specific to Photologue - it can be applied to any 3rd party library.
 
 Create a customisation application
 ----------------------------------
@@ -26,7 +26,7 @@ We will also want to customise urls:
     ]
 
 
-2. These custom urls will override the main Photologue urls, so place them just before Photologue 
+2. These custom urls will override the main Photologue urls, so place them just before Photologue
 in the project's main urls.py file:
 
 .. code-block:: python
@@ -51,7 +51,7 @@ Edit our new urls.py file, and add:
     from django.conf.urls import *
 
     from photologue.views import GalleryListView
-    
+
     urlpatterns = [
         url(r'^gallerylist/$',
             GalleryListView.as_view(paginate_by=5),
@@ -60,7 +60,7 @@ Edit our new urls.py file, and add:
 
 
 We've copied the urlpattern for
-`the gallery list view from Photologue itself <https://github.com/jdriscoll/django-photologue/blob/master/photologue/urls.py>`_,
+`the gallery list view from Photologue itself <https://github.com/richardbarran/django-photologue/blob/master/photologue/urls.py>`_,
 and changed it slightly by passing in ``paginate_by=5``.
 
 And that's it - now when that page is requested, our customised urls.py will be called first, with pagination
@@ -82,8 +82,8 @@ PhotoListView
 Changing views.py to create a RESTful api
 -----------------------------------------
 More substantial customisation can be carried out by writing custom views. For example,
-it's easy to change a Photologue view to return JSON objects rather than html webpages. For this 
-quick demo, we'll use the 
+it's easy to change a Photologue view to return JSON objects rather than html webpages. For this
+quick demo, we'll use the
 `django-braces library <http://django-braces.readthedocs.org/en/latest/index.html>`_
 to override the view returning a list of all photos.
 
