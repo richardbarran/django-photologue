@@ -5,9 +5,7 @@ from django.urls import reverse_lazy
 from .views import PhotoListView, PhotoDetailView, GalleryListView, \
     GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
     PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
-    GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView, GalleryDateDetailOldView, \
-    GalleryDayArchiveOldView, GalleryMonthArchiveOldView, PhotoDateDetailOldView, \
-    PhotoDayArchiveOldView, PhotoMonthArchiveOldView
+    GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView
 
 """NOTE: the url names are changing. In the long term, I want to remove the 'pl-'
 prefix on all urls, and instead rely on an application namespace 'photologue'.
@@ -69,24 +67,4 @@ urlpatterns = [
     url(r'^photolist/$',
         PhotoListView.as_view(),
         name='photo-list'),
-
-    # Deprecated URLs.
-    url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
-        GalleryDateDetailOldView.as_view(),
-        name='pl-gallery-detail'),
-    url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$',
-        GalleryDayArchiveOldView.as_view(),
-        name='pl-gallery-archive-day'),
-    url(r'^gallery/(?P<year>\d{4})/(?P<month>[a-z]{3})/$',
-        GalleryMonthArchiveOldView.as_view(),
-        name='pl-gallery-archive-month'),
-    url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[\-\d\w]+)/$',
-        PhotoDateDetailOldView.as_view(),
-        name='pl-photo-detail'),
-    url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$',
-        PhotoDayArchiveOldView.as_view(),
-        name='pl-photo-archive-day'),
-    url(r'^photo/(?P<year>\d{4})/(?P<month>[a-z]{3})/$',
-        PhotoMonthArchiveOldView.as_view(),
-        name='pl-photo-archive-month')
 ]

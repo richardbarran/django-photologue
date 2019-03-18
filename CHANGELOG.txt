@@ -10,7 +10,7 @@ Changelog
 - Checked compatibility with Django 2.1 and Python 3.7.
 - Missed a Django migration (issue #194).
 - Removed old code (old-style demo templates that have been deprecated since 2014).
-
+- Removed old code (old views that have been deprecated since 2014).
 
 3.8.1 (2017-12-03)
 ------------------
@@ -24,7 +24,7 @@ Changelog
 - Added support for Django 2.0.
 - Dropped support for Django 1.8 and 1.10.
 - Did not really work with Django 1.11 - sortedm2m library was broken. Upgraded sortedm2m and it now works with 1.11.
-- New translation for Ukranian; updated translation for Spanish.
+- New translation for Ukrainian; updated translation for Spanish.
 - Fixed template tag that was broken in Django 1.11.
 
 3.7 (2017-05-10)
