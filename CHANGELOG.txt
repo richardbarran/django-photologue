@@ -5,7 +5,7 @@ Changelog
 ----------------
 
 - Fixes when file doesn't exist in the file system but still is in S3.
-- Doc tweaks.
+- Doc tweaks - and added a page on how to actually use Photologue!
 - Make setup compatible with latest version of pip.
 - Checked compatibility with Django 2.1 and Python 3.7.
 - Missed a Django migration (issue #194).

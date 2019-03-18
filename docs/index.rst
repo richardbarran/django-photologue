@@ -21,6 +21,7 @@ Contents:
     :maxdepth: 2
 
     pages/installation
+    pages/usage
     pages/customising/templates
     pages/customising/settings
     pages/customising/admin
