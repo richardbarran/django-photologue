@@ -11,6 +11,8 @@ Changelog
 - Missed a Django migration (issue #194).
 - Removed old code (old-style demo templates that have been deprecated since 2014).
 - Removed old code (old views that have been deprecated since 2014).
+- Removed all references to PIL (which hasn't been updated since 2009). I think that by now
+  there are no servers left anywhere in the world that still use it :-)
 
 3.8.1 (2017-12-03)
 ------------------

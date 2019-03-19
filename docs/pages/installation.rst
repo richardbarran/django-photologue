@@ -50,17 +50,9 @@ Pillow can be tricky to install; sometimes it will install smoothly
 out of the box, sometimes you can spend hours figuring it out - installation
 issues vary from platform to platform, and from one OS release to the next, so listing
 them all here would not be realistic. Google
-is your friend, and it's worth noting that Pillow is a fork of PIL,
-so googling 'PIL installation <your platform>' can also help.
+is your friend!
 
-#. You should not have installed both PIL and Pillow; this can cause strange bugs.
-   Please uninstall PIL before you install Pillow.
-
-#. In some situations, you might not be able to use Pillow at all (e.g. if another
-   package has a dependency on PIL). Photologue has a clumsy answer for this:
-   write a temporary file ``/tmp/PHOTOLOGUE_NO_PILLOW``, then install Photologue.
-   This will tell Photologue to install without Pillow. It *should* work, but it
-   hasn't been tested!
+#. Pillow is a fork of PIL; you should not have installed both - this can cause strange bugs.
 
 #. Sometimes Pillow will install... but is not actually installed. This 'undocumented feature' has been
    reported by a user on Windows. If you can't get Photologue to display any images, check

@@ -8,10 +8,7 @@ import logging
 import os
 from io import BytesIO
 
-try:
-    import Image
-except ImportError:
-    from PIL import Image
+from PIL import Image
 
 
 from django import forms
@@ -153,7 +150,7 @@ class UploadZipForm(forms.Form):
                 opened = Image.open(file)
                 opened.verify()
             except Exception:
-                # Pillow (or PIL) doesn't recognize it as an image.
+                # Pillow doesn't recognize it as an image.
                 # If a "bad" file is found we just skip it.
                 # But we do flag this both in the logs and to the user.
                 logger.error('Could not process file "{0}" in the .zip archive.'.format(

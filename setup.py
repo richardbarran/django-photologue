@@ -18,10 +18,6 @@ def get_requirements(source):
         install_reqs = parse_requirements(source)
     required = sorted(set([str(ir.req) for ir in install_reqs]))
 
-    # Temp situation: transition from PIL to Pillow, add a hook so people can
-    # skip installing Pillow.
-    if os.path.exists('/tmp/PHOTOLOGUE_NO_PILLOW'):
-        required = [item for item in required if not item.startswith('Pillow')]
     return required
 
 setup(
