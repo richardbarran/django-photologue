@@ -23,14 +23,14 @@ class GalleryAdminForm(forms.ModelForm):
         if MULTISITE:
             exclude = []
         else:
-            exclude = ['sites']
+            exclude = ['sites', 'canonical_site']
 
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'photo_count', 'is_public')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
-        list_filter.append('sites')
+        list_filter.extend(('sites', 'canonical_site'))
     date_hierarchy = 'date_added'
     prepopulated_fields = {'slug': ('title',)}
     form = GalleryAdminForm
@@ -50,6 +50,12 @@ class GalleryAdmin(admin.ModelAdmin):
             kwargs["initial"] = [Site.objects.get_current()]
         return super(GalleryAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "canonical_site":
+            kwargs["initial"] = Site.objects.get_current()
+        return super(GalleryAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+        
     def save_related(self, request, form, *args, **kwargs):
         """
         If the user has saved a gallery with a photo that belongs only to
@@ -66,6 +72,13 @@ class GalleryAdmin(admin.ModelAdmin):
                 len(orphaned_photos)
             ) % {'photo_list': ", ".join([photo.title for photo in orphaned_photos])}
             messages.warning(request, msg)
+        if form.instance.canonical_site and not form.instance.sites.filter(
+                pk=form.instance.canonical_site.pk).exists():
+            msg = 'The canonical site is not in sites, it will appear '\
+                  'in the %s sitemap but the link will be a 404' %\
+                  form.instance.canonical_site
+            messages.warning(request, msg)
+
 
     def add_to_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
@@ -139,7 +152,7 @@ class PhotoAdminForm(forms.ModelForm):
         if MULTISITE:
             exclude = []
         else:
-            exclude = ['sites']
+            exclude = ['sites', 'canonical_site']
 
 
 class PhotoAdmin(admin.ModelAdmin):
@@ -147,7 +160,7 @@ class PhotoAdmin(admin.ModelAdmin):
                     'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public']
     if MULTISITE:
-        list_filter.append('sites')
+        list_filter.extend(('sites', 'canonical_site'))
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
     prepopulated_fields = {'slug': ('title',)}
@@ -163,6 +176,28 @@ class PhotoAdmin(admin.ModelAdmin):
         if db_field.name == "sites":
             kwargs["initial"] = [Site.objects.get_current()]
         return super(PhotoAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """ Set the current site as initial value. """
+        if db_field.name == "canonical_site":
+            kwargs["initial"] = Site.objects.get_current()
+        return super(PhotoAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+        
+
+    def save_related(self, request, form, *args, **kwargs):
+        """
+        If the user has saved a photo that is in a sitemap but not actually on the site,
+        Let them know
+        """
+        super(PhotoAdmin, self).save_related(request, form, *args, **kwargs)
+        if form.instance.canonical_site and not form.instance.sites.filter(
+                pk=form.instance.canonical_site.pk).exists():
+
+            msg = _('The canonical site is not in sites, it will appear '
+                    'in the %s sitemap but the link will be a 404'
+                    % form.instance.canonical_site)
+            messages.warning(request, msg)
+
 
     def add_photos_to_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()

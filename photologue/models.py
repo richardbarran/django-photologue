@@ -180,7 +180,11 @@ class Gallery(models.Model):
                                    blank=True)
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
-
+    canonical_site = models.ForeignKey(Site, verbose_name=_(u'canonical site'),
+                                       related_name="%(app_label)s_%(class)s_canonical_related",
+                                       blank=True, null=True,
+                                       help_text=_('The "Canonical Site" is the site that'
+                                                   ' will appear in your sitemaps'))
     objects = GalleryQuerySet.as_manager()
 
     class Meta:
@@ -194,6 +198,10 @@ class Gallery(models.Model):
 
     def get_absolute_url(self):
         return reverse('photologue:pl-gallery', args=[self.slug])
+
+    def get_canonical_url(self):
+        url = reverse('photologue:pl-gallery', args=[self.slug])
+        return "http://%s%s" % (self.canonical_site.domain, url)
 
     def latest(self, limit=LATEST_LIMIT, public=True):
         if not limit:
@@ -526,6 +534,12 @@ class Photo(ImageModel):
                                     help_text=_('Public photographs will be displayed in the default views.'))
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
                                    blank=True)
+    canonical_site = models.ForeignKey(Site, verbose_name=_(u'canonical site'),
+                                       related_name="%(app_label)s_%(class)s_canonical_related",
+                                       blank=True, null=True,
+                                       help_text=_('The "Canonical Site" is the site that'
+                                                   ' will appear in your sitemaps'))
+
 
     objects = PhotoQuerySet.as_manager()
 
@@ -545,6 +559,11 @@ class Photo(ImageModel):
 
     def get_absolute_url(self):
         return reverse('photologue:pl-photo', args=[self.slug])
+
+    def get_canonical_url(self):
+        url = reverse('photologue:pl-photo', args=[self.slug])
+        return "http://%s%s" % (self.canonical_site.domain, url)
+
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
@@ -901,5 +920,6 @@ def add_default_site(instance, created, **kwargs):
     if instance.sites.exists():
         return
     instance.sites.add(Site.objects.get_current())
+    instance.canonical_site = Site.objects.get_current()
 post_save.connect(add_default_site, sender=Gallery)
 post_save.connect(add_default_site, sender=Photo)
