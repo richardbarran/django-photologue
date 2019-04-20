@@ -3,7 +3,7 @@ import os
 try:
     import polib
 except ImportError:
-    print('Prerelease hooks will not work as you have not installed polib.')
+    print('Msg to the package releaser: prerelease hooks will not work as you have not installed polib.')
     raise
 import copy
 import codecs
@@ -23,7 +23,7 @@ def prereleaser_before(data):
 
     print('Running PEP8 check.')
     # See setup.cfg for configuration options.
-    subprocess.check_output(["pep8"])
+    subprocess.check_output(["pycodestyle"])
 
     print('Checking that we have no outstanding DB migrations.')
     output = subprocess.check_output(["python", "example_project/manage.py", "makemigrations", "--dry-run",

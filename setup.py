@@ -1,16 +1,15 @@
-#/usr/bin/env python
+# /usr/bin/env python
 import uuid
-import os
 from setuptools import setup, find_packages
-try: # for pip >= 10
+
+try:  # for pip >= 10
     from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
+except ImportError:  # for pip <= 9.0.3
     from pip.req import parse_requirements
 import photologue
 
 
 def get_requirements(source):
-
     try:
         install_reqs = parse_requirements(source, session=uuid.uuid1())
     except TypeError:
@@ -19,6 +18,7 @@ def get_requirements(source):
     required = sorted(set([str(ir.req) for ir in install_reqs]))
 
     return required
+
 
 setup(
     name="django-photologue",

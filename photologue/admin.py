@@ -2,22 +2,21 @@ from django import forms
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.sites.models import Site
 from django.contrib import messages
-from django.utils.translation import ungettext, ugettext_lazy as _
-from django.shortcuts import render
 from django.contrib.admin import helpers
+from django.contrib.sites.models import Site
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.utils.translation import ungettext, ugettext_lazy as _
 
+from .forms import UploadZipForm
 from .models import Gallery, Photo, PhotoEffect, PhotoSize, \
     Watermark
-from .forms import UploadZipForm
 
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 
 
 class GalleryAdminForm(forms.ModelForm):
-
     class Meta:
         model = Gallery
         if MULTISITE:
@@ -101,11 +100,8 @@ class GalleryAdmin(admin.ModelAdmin):
             'All photos in gallery %(galleries)s have been successfully added to %(site)s',
             'All photos in galleries %(galleries)s have been successfully added to %(site)s',
             len(queryset)
-        ) % {
-            'site': current_site.name,
-            'galleries': ", ".join(["'{0}'".format(gallery.title)
-                                    for gallery in queryset])
-        }
+        ) % {'site': current_site.name,
+             'galleries': ", ".join(["'{0}'".format(gallery.title) for gallery in queryset])}
         messages.success(request, msg)
 
     add_photos_to_current_site.short_description = \
@@ -119,21 +115,18 @@ class GalleryAdmin(admin.ModelAdmin):
             'All photos in gallery %(galleries)s have been successfully removed from %(site)s',
             'All photos in galleries %(galleries)s have been successfully removed from %(site)s',
             len(queryset)
-        ) % {
-            'site': current_site.name,
-            'galleries': ", ".join(["'{0}'".format(gallery.title)
-                                    for gallery in queryset])
-        }
+        ) % {'site': current_site.name,
+             'galleries': ", ".join(["'{0}'".format(gallery.title) for gallery in queryset])}
         messages.success(request, msg)
 
     remove_photos_from_current_site.short_description = \
         _("Remove all photos in selected galleries from the current site")
 
+
 admin.site.register(Gallery, GalleryAdmin)
 
 
 class PhotoAdminForm(forms.ModelForm):
-
     class Meta:
         model = Photo
         if MULTISITE:
@@ -247,6 +240,7 @@ class PhotoEffectAdmin(admin.ModelAdmin):
         }),
     )
 
+
 admin.site.register(PhotoEffect, PhotoEffectAdmin)
 
 
@@ -263,6 +257,7 @@ class PhotoSizeAdmin(admin.ModelAdmin):
             'fields': ('effect', 'watermark',)
         }),
     )
+
 
 admin.site.register(PhotoSize, PhotoSizeAdmin)
 

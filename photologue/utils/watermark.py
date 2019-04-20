@@ -63,5 +63,6 @@ def test():
     watermark(im, mark, 'scale', 1.0).show()
     watermark(im, mark, (100, 100), 0.5).show()
 
+
 if __name__ == '__main__':
     test()

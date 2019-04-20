@@ -14,7 +14,7 @@ try:
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 except KeyError:
-    raise KeyError('Need to define AWS environment variables: ' +
+    raise KeyError('Need to define AWS environment variables: '
                    'AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_STORAGE_BUCKET_NAME')
 
 # Default Django Storage API behavior - don't overwrite files with same name
