@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-03 14:46+0000\n"
-"PO-Revision-Date: 2017-09-19 14:01+0000\n"
+"POT-Creation-Date: 2019-04-20 16:51+0200\n"
+"PO-Revision-Date: 2017-12-03 14:47+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
 "Language-Team: Dutch (http://www.transifex.com/richardbarran/django-"
 "photologue/language/nl/)\n"
@@ -117,11 +117,11 @@ msgstr "Verwijder geselecteerde foto van de huidige pagina"
 msgid "Upload a zip archive of photos"
 msgstr "Upload een zip-archief met foto's"
 
-#: forms.py:34
+#: forms.py:31
 msgid "Title"
 msgstr "Titel"
 
-#: forms.py:37
+#: forms.py:34
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
 "sequential number.<br>This field is required if creating a new gallery, but "
@@ -129,11 +129,11 @@ msgid ""
 "titles will be creating from the existing gallery name."
 msgstr ""
 
-#: forms.py:43
+#: forms.py:40
 msgid "Gallery"
 msgstr "Gallerij"
 
-#: forms.py:45
+#: forms.py:42
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
@@ -141,41 +141,41 @@ msgstr ""
 "Selecteer een gallerij om deze foto's aan toe te voegen. Laat dit leeg om "
 "een nieuwe gallerij aan te maken met de gegeven titel. "
 
-#: forms.py:47
+#: forms.py:44
 msgid "Caption"
 msgstr "Onderschrift"
 
-#: forms.py:49
+#: forms.py:46
 msgid "Caption will be added to all photos."
 msgstr "Onderschrift wordt toegevoegd aan alle foto's."
 
-#: forms.py:50
+#: forms.py:47
 msgid "Description"
 msgstr "Omschrijving"
 
-#: forms.py:52
+#: forms.py:49
 msgid "A description of this Gallery. Only required for new galleries."
 msgstr ""
 
-#: forms.py:53
+#: forms.py:50
 msgid "Is public"
 msgstr "Is publiek toegankelijk"
 
-#: forms.py:56
+#: forms.py:53
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr "Haal dit vinkje weg om de geüploade galerij en foto's privé te maken."
 
-#: forms.py:79
+#: forms.py:76
 msgid "A gallery with that title already exists."
 msgstr "Een gallerij met deze titel bestaat al"
 
-#: forms.py:89
+#: forms.py:86
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr ""
 "Selecteer een bestaande gallerij of vul de titel in van een nieuwe gallerij"
 
-#: forms.py:122
+#: forms.py:119
 #, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
@@ -184,93 +184,93 @@ msgstr ""
 "Bestand \"{filename}\" ligt in een onderliggende map. Alleen afbeeldingen in "
 "de bovenste folder van de zip worden gebruikt. "
 
-#: forms.py:163
+#: forms.py:160
 #, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
 msgstr "Kon bestand \"{0}\" in het zip-archief niet verwerken."
 
-#: forms.py:179
+#: forms.py:176
 #, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr "De foto's zijn toegevoegd aan gallerij \"{0}\"."
 
-#: models.py:99
+#: models.py:100
 msgid "Very Low"
 msgstr "Zeer laag"
 
-#: models.py:100
+#: models.py:101
 msgid "Low"
 msgstr "Laag"
 
-#: models.py:101
+#: models.py:102
 msgid "Medium-Low"
 msgstr "Middel-laag"
 
-#: models.py:102
+#: models.py:103
 msgid "Medium"
 msgstr "Gemiddeld"
 
-#: models.py:103
+#: models.py:104
 msgid "Medium-High"
 msgstr "Middel-hoog"
 
-#: models.py:104
+#: models.py:105
 msgid "High"
 msgstr "Hoog"
 
-#: models.py:105
+#: models.py:106
 msgid "Very High"
 msgstr "Zeer hoog"
 
-#: models.py:110
+#: models.py:111
 msgid "Top"
 msgstr "Boven"
 
-#: models.py:111
+#: models.py:112
 msgid "Right"
 msgstr "Rechts"
 
-#: models.py:112
+#: models.py:113
 msgid "Bottom"
 msgstr "Onder"
 
-#: models.py:113
+#: models.py:114
 msgid "Left"
 msgstr "Links"
 
-#: models.py:114
+#: models.py:115
 msgid "Center (Default)"
 msgstr "Midden (standaard)"
 
-#: models.py:118
+#: models.py:119
 msgid "Flip left to right"
 msgstr "Spiegel horizontaal"
 
-#: models.py:119
+#: models.py:120
 msgid "Flip top to bottom"
 msgstr "Spiegel verticaal"
 
-#: models.py:120
+#: models.py:121
 msgid "Rotate 90 degrees counter-clockwise"
 msgstr "Roteer 90 graden linksom"
 
-#: models.py:121
+#: models.py:122
 msgid "Rotate 90 degrees clockwise"
 msgstr "Roteer 90 graden rechtsom"
 
-#: models.py:122
+#: models.py:123
 msgid "Rotate 180 degrees"
 msgstr "Roteer 180 graden"
 
-#: models.py:126
+#: models.py:127
 msgid "Tile"
 msgstr "Tegelen"
 
-#: models.py:127
+#: models.py:128
 msgid "Scale"
 msgstr "Schalen"
 
-#: models.py:137
+#: models.py:138
 #, python-format
 msgid ""
 "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
@@ -281,119 +281,119 @@ msgstr ""
 ">FILTER_DRIE\". Afbeeldingsfilters worden in volgorde toegepast. De volgende "
 "filters zijn beschikbaar: %s."
 
-#: models.py:161
+#: models.py:162
 msgid "date published"
 msgstr "datum gepubliceerd"
 
-#: models.py:163 models.py:508
+#: models.py:164 models.py:513
 msgid "title"
 msgstr "titel"
 
-#: models.py:166
+#: models.py:167
 msgid "title slug"
 msgstr "titel 'zetsel'"
 
-#: models.py:169 models.py:514
+#: models.py:170 models.py:519
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "Een \"zetsel\" is een unieke URL-vriendelijke titel voor een object."
 
-#: models.py:170 models.py:586
+#: models.py:171 models.py:591
 msgid "description"
 msgstr "beschrijving"
 
-#: models.py:172 models.py:519
+#: models.py:173 models.py:524
 msgid "is public"
 msgstr "is openbaar"
 
-#: models.py:174
+#: models.py:175
 msgid "Public galleries will be displayed in the default views."
 msgstr "Openbare galerijen worden weergegeven in de standaardviews."
 
-#: models.py:178 models.py:531
+#: models.py:179 models.py:536
 msgid "photos"
 msgstr "foto's"
 
-#: models.py:180 models.py:522
+#: models.py:181 models.py:527
 msgid "sites"
 msgstr "pagina's"
 
-#: models.py:188
+#: models.py:189
 msgid "gallery"
 msgstr "galerij"
 
-#: models.py:189
+#: models.py:190
 msgid "galleries"
 msgstr "galerijen"
 
-#: models.py:226
+#: models.py:227
 msgid "count"
 msgstr "aantal"
 
-#: models.py:242 models.py:727
+#: models.py:243 models.py:735
 msgid "image"
 msgstr "afbeelding"
 
-#: models.py:245
+#: models.py:246
 msgid "date taken"
 msgstr "datum genomen"
 
-#: models.py:248
+#: models.py:249
 msgid "Date image was taken; is obtained from the image EXIF data."
 msgstr ""
 
-#: models.py:249
+#: models.py:250
 msgid "view count"
 msgstr "weergave teller"
 
-#: models.py:252
+#: models.py:253
 msgid "crop from"
 msgstr "afknippen vanaf"
 
-#: models.py:261
+#: models.py:262
 msgid "effect"
 msgstr "effect"
 
-#: models.py:281
+#: models.py:282
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr "Er is geen \"admin_thumbnail\" foto-maat vastgelegd."
 
-#: models.py:289
+#: models.py:288
 msgid "Thumbnail"
 msgstr "Miniatuur"
 
-#: models.py:511
+#: models.py:516
 msgid "slug"
 msgstr "zetsel"
 
-#: models.py:515
+#: models.py:520
 msgid "caption"
 msgstr "onderschrift"
 
-#: models.py:517
+#: models.py:522
 msgid "date added"
 msgstr "datum toegevoegd"
 
-#: models.py:521
+#: models.py:526
 msgid "Public photographs will be displayed in the default views."
 msgstr "Openbare foto's worden weergegeven in de standaardviews."
 
-#: models.py:530
+#: models.py:535
 msgid "photo"
 msgstr "foto"
 
-#: models.py:583 models.py:759
+#: models.py:588 models.py:767
 msgid "name"
 msgstr "naam"
 
-#: models.py:658
+#: models.py:666
 msgid "rotate or flip"
 msgstr "roteer of spiegel"
 
-#: models.py:662 models.py:690
+#: models.py:670 models.py:698
 msgid "color"
 msgstr "kleur"
 
-#: models.py:664
+#: models.py:672
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
@@ -401,11 +401,11 @@ msgstr ""
 "Een factor van 0.0 geeft een zwart-wit afbeelding, een factor van 1.0 geeft "
 "de originele afbeelding."
 
-#: models.py:666
+#: models.py:674
 msgid "brightness"
 msgstr "helderheid"
 
-#: models.py:668
+#: models.py:676
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
@@ -413,11 +413,11 @@ msgstr ""
 "Een factor van 0.0 geeft een zwarte afbeelding, een factor van 1.0 geeft de "
 "originele afbeelding."
 
-#: models.py:670
+#: models.py:678
 msgid "contrast"
 msgstr "contrast"
 
-#: models.py:672
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
@@ -425,11 +425,11 @@ msgstr ""
 "Een factor van 0.0 geeft een egaal grijze afbeelding, een factor van 1.0 "
 "geeft de originele afbeelding."
 
-#: models.py:674
+#: models.py:682
 msgid "sharpness"
 msgstr "scherpte"
 
-#: models.py:676
+#: models.py:684
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
@@ -437,15 +437,15 @@ msgstr ""
 "Een factor van 0.0 geeft een vervaagde afbeelding, een factor van 1.0 geeft "
 "de originele afbeelding."
 
-#: models.py:678
+#: models.py:686
 msgid "filters"
 msgstr "filters"
 
-#: models.py:682
+#: models.py:690
 msgid "size"
 msgstr "afmeting"
 
-#: models.py:684
+#: models.py:692
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -455,15 +455,15 @@ msgstr ""
 "factor van 0.0 voegt geen reflectie toe, een factor van 1.0 voegt een "
 "reflectie toe met een gelijke hoogte als de originele afbeelding."
 
-#: models.py:687
+#: models.py:695
 msgid "strength"
 msgstr "sterkte"
 
-#: models.py:689
+#: models.py:697
 msgid "The initial opacity of the reflection gradient."
 msgstr "De initiële doorzichtigheid van de reflectie-gradatie."
 
-#: models.py:693
+#: models.py:701
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
@@ -471,35 +471,35 @@ msgstr ""
 "De achtergrondkleur van de reflectie-gradatie. Stel dit in als hetzelfde als "
 "de achtergrondkleur van je pagina."
 
-#: models.py:697 models.py:803
+#: models.py:705 models.py:811
 msgid "photo effect"
 msgstr "foto-effect"
 
-#: models.py:698
+#: models.py:706
 msgid "photo effects"
 msgstr "foto-effecten"
 
-#: models.py:729
+#: models.py:737
 msgid "style"
 msgstr "stijl"
 
-#: models.py:733
+#: models.py:741
 msgid "opacity"
 msgstr "doorzichtigheid"
 
-#: models.py:735
+#: models.py:743
 msgid "The opacity of the overlay."
 msgstr "De doorzichtigheid van overliggende afbeelding."
 
-#: models.py:738
+#: models.py:746
 msgid "watermark"
 msgstr "watermerk"
 
-#: models.py:739
+#: models.py:747
 msgid "watermarks"
 msgstr "watermerken"
 
-#: models.py:763
+#: models.py:771
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -508,41 +508,41 @@ msgstr ""
 "bevatten. Voorbeelden: \"miniatuur\", \"weergave\", \"klein\", "
 "\"hoofdpagina_zijbalk_miniatuur\"."
 
-#: models.py:770
+#: models.py:778
 msgid "width"
 msgstr "breedte"
 
-#: models.py:773
+#: models.py:781
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "Als de breedte op \"0\" wordt gezet zal de afbeelding geschaald worden naar "
 "de opgegeven hoogte."
 
-#: models.py:774
+#: models.py:782
 msgid "height"
 msgstr "hoogte"
 
-#: models.py:777
+#: models.py:785
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "Als de hoogte op \"0\" wordt gezet zal de afbeelding geschaald worden naar "
 "de opgegeven breedte."
 
-#: models.py:778
+#: models.py:786
 msgid "quality"
 msgstr "kwaliteit"
 
-#: models.py:781
+#: models.py:789
 msgid "JPEG image quality."
 msgstr "JPEG afbeeldingskwaliteit"
 
-#: models.py:782
+#: models.py:790
 msgid "upscale images?"
 msgstr "afbeeldingen opschalen?"
 
-#: models.py:784
+#: models.py:792
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -551,11 +551,11 @@ msgstr ""
 "opgegeven afmetingen. Afgeknipte maten worden altijd opgeschaald, ongeacht "
 "deze instelling."
 
-#: models.py:788
+#: models.py:796
 msgid "crop to fit?"
 msgstr "gepast afknippen?"
 
-#: models.py:790
+#: models.py:798
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
@@ -563,21 +563,21 @@ msgstr ""
 "Als dit is gekozen zal de afbeelding geschaald en afgeknipt worden naar de "
 "opgegeven afmetingen."
 
-#: models.py:792
+#: models.py:800
 msgid "pre-cache?"
 msgstr "vooraf cachen?"
 
-#: models.py:794
+#: models.py:802
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
 "Als dit is gekozen zullen foto's met deze foto-maat van te voren worden "
 "gecached wanneer ze worden toegevoegd."
 
-#: models.py:795
+#: models.py:803
 msgid "increment view count?"
 msgstr "aantal vertoningen ophogen?"
 
-#: models.py:797
+#: models.py:805
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
@@ -585,19 +585,19 @@ msgstr ""
 "Als dit is gekozen zal het aantal vertoningen van de afbeelding worden "
 "opgehoogd wanneer deze foto-maat wordt weergegeven."
 
-#: models.py:809
+#: models.py:817
 msgid "watermark image"
 msgstr "watermerk-afbeelding"
 
-#: models.py:814
+#: models.py:822
 msgid "photo size"
 msgstr "foto-maat"
 
-#: models.py:815
+#: models.py:823
 msgid "photo sizes"
 msgstr "foto-maten"
 
-#: models.py:832
+#: models.py:840
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr ""
 "Kan alleen foto's uitsnijden als zowel de waarde van de breedte en de hoogte "

@@ -4,13 +4,14 @@
 #
 # Translators:
 # Translators:
+# cubells <info@obertix.net>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-03 14:46+0000\n"
-"PO-Revision-Date: 2015-12-23 14:50+0000\n"
-"Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
+"POT-Creation-Date: 2019-04-20 16:51+0200\n"
+"PO-Revision-Date: 2018-04-21 15:47+0000\n"
+"Last-Translator: cubells <info@obertix.net>\n"
 "Language-Team: Catalan (http://www.transifex.com/richardbarran/django-"
 "photologue/language/ca/)\n"
 "Language: ca\n"
@@ -28,30 +29,34 @@ msgid_plural ""
 "The following photos do not belong to the same site(s) as the gallery, so "
 "will never be displayed: %(photo_list)s."
 msgstr[0] ""
+"La següent fotografia no pertany al mateix lloc o llocs que la galeria, així "
+"que no es mostrarà mai: %(photo_list)s."
 msgstr[1] ""
+"Les següents fotografies no pertanyen al mateix lloc o llocs que la galeria, "
+"així que no es mostraran mai: %(photo_list)s."
 
 #: admin.py:74
 #, python-format
 msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "S'ha afegit la galeria correctament a %(site)s"
+msgstr[1] "S'han afegit les galeries correctament a %(site)s"
 
 #: admin.py:81
 msgid "Add selected galleries to the current site"
-msgstr ""
+msgstr "Afegeix les galeries seleccionades al lloc web actual"
 
 #: admin.py:87
 #, python-format
 msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
 "The selected galleries have been successfully removed from %(site)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "S'ha suprimit correctament la galeria de %(site)s"
+msgstr[1] "S'han suprimit correctament les galeries de %(site)s"
 
 #: admin.py:94
 msgid "Remove selected galleries from the current site"
-msgstr ""
+msgstr "Suprimeix les galeries seleccionades del lloc web actual"
 
 #: admin.py:101
 #, python-format
@@ -61,11 +66,15 @@ msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
 msgstr[0] ""
+"Totes les fotos de la galeria %(galleries)s s'han afegit amb èxit a %(site)s"
 msgstr[1] ""
+"Totes les fotos de les galeries %(galleries)s s'han afegit amb èxit a "
+"%(site)s"
 
 #: admin.py:112
 msgid "Add all photos of selected galleries to the current site"
 msgstr ""
+"Afegeix totes les fotos de les galeries seleccionades al lloc web actual"
 
 #: admin.py:119
 #, python-format
@@ -76,497 +85,549 @@ msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
 msgstr[0] ""
+"Totes les fotos de la galeria %(galleries)s s'han suprimit amb èxit de "
+"%(site)s"
 msgstr[1] ""
+"Totes les fotos de les galeries %(galleries)s s'han suprimit amb èxit de "
+"%(site)s"
 
 #: admin.py:130
 msgid "Remove all photos in selected galleries from the current site"
 msgstr ""
+"Suprimeix totes les fotos de les galeries seleccionades del lloc web actual"
 
 #: admin.py:171
 #, python-format
 msgid "The photo has been successfully added to %(site)s"
 msgid_plural "The selected photos have been successfully added to %(site)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La foto s'ha afegit amb èxit a %(site)s"
+msgstr[1] "Les fotos seleccionades s'ha afegit amb èxit a %(site)s"
 
 #: admin.py:178
 msgid "Add selected photos to the current site"
-msgstr ""
+msgstr "Afegeix les fotografies seleccionades al lloc web actual"
 
 #: admin.py:184
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
 msgid_plural "The selected photos have been successfully removed from %(site)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La fotografia s'ha suprimit amb èxit de %(site)s"
+msgstr[1] "Les fotografies seleccionades s'han suprimit amb èxit de %(site)s"
 
 #: admin.py:191
 msgid "Remove selected photos from the current site"
-msgstr ""
+msgstr "Suprimeix les fotos seleccionades del lloc web actual"
 
 #: admin.py:205 templates/admin/photologue/photo/upload_zip.html:27
 msgid "Upload a zip archive of photos"
-msgstr ""
+msgstr "Penja un fitxer zip de fotografies"
+
+#: forms.py:31
+msgid "Title"
+msgstr "Títol"
 
 #: forms.py:34
-msgid "Title"
-msgstr ""
-
-#: forms.py:37
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
 "sequential number.<br>This field is required if creating a new gallery, but "
 "is optional when adding to an existing gallery - if not supplied, the photo "
 "titles will be creating from the existing gallery name."
 msgstr ""
+"A totes les fotografies penjades se li posarà un títol compost pel títol + "
+"un número seqüencial.<br>Aquest camp és necessari si es crea una galeria "
+"nova, però és opcional en afegir a una galeria existent - si no es posa, el "
+"títols de les fotografies es crearan del nom de la galeria existent."
 
-#: forms.py:43
+#: forms.py:40
 msgid "Gallery"
-msgstr ""
+msgstr "Galeria"
 
-#: forms.py:45
+#: forms.py:42
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
 msgstr ""
+"Selecciona una galeria a la qual afegir aquestes imatges. Deixa en blanc per "
+"crear una galeria nova amb el títol subministrat."
+
+#: forms.py:44
+msgid "Caption"
+msgstr "Títol"
+
+#: forms.py:46
+msgid "Caption will be added to all photos."
+msgstr "El títol s'afegirà a totes les fotografies."
 
 #: forms.py:47
-msgid "Caption"
-msgstr ""
+msgid "Description"
+msgstr "Descripció"
 
 #: forms.py:49
-msgid "Caption will be added to all photos."
-msgstr ""
-
-#: forms.py:50
-msgid "Description"
-msgstr ""
-
-#: forms.py:52
 msgid "A description of this Gallery. Only required for new galleries."
 msgstr ""
+"Una descripció d'aquesta galeria. Solament és necessari per a noves galeries."
+
+#: forms.py:50
+msgid "Is public"
+msgstr "És pública"
 
 #: forms.py:53
-msgid "Is public"
-msgstr ""
-
-#: forms.py:56
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr ""
+"Desmarca per fer privades la galeria penjada i les fotografies incloses."
 
-#: forms.py:79
+#: forms.py:76
 msgid "A gallery with that title already exists."
-msgstr ""
+msgstr "Una galeria amb aquest títol ja existeix."
 
-#: forms.py:89
+#: forms.py:86
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr ""
+"Seleccioneu una galeria existent, o introduïu un títol per a la galeria nova."
 
-#: forms.py:122
+#: forms.py:119
 #, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
 msgstr ""
+"S'està ignorant el fitxer \"{filename}\" ja que està en una subcarpeta; "
+"totes les imatges haurien d'estar en la carpeta superior del fitxer zip."
 
-#: forms.py:163
+#: forms.py:160
 #, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
-msgstr ""
+msgstr "No s'ha pogut processar el fitxer \"{0}\" del fitxer zip."
 
-#: forms.py:179
+#: forms.py:176
 #, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
-msgstr ""
-
-#: models.py:99
-msgid "Very Low"
-msgstr ""
+msgstr "Les fotografies s'han afegit a la galeria \"{0}\"."
 
 #: models.py:100
-msgid "Low"
-msgstr ""
+msgid "Very Low"
+msgstr "Molt baixa"
 
 #: models.py:101
-msgid "Medium-Low"
-msgstr ""
+msgid "Low"
+msgstr "Baixa"
 
 #: models.py:102
-msgid "Medium"
-msgstr ""
+msgid "Medium-Low"
+msgstr "Mitja-baix"
 
 #: models.py:103
-msgid "Medium-High"
-msgstr ""
+msgid "Medium"
+msgstr "Mitjana"
 
 #: models.py:104
-msgid "High"
-msgstr ""
+msgid "Medium-High"
+msgstr "Mitja-alta"
 
 #: models.py:105
-msgid "Very High"
-msgstr ""
+msgid "High"
+msgstr "Alta"
 
-#: models.py:110
-msgid "Top"
-msgstr ""
+#: models.py:106
+msgid "Very High"
+msgstr "Molt alta"
 
 #: models.py:111
-msgid "Right"
-msgstr ""
+msgid "Top"
+msgstr "Principi"
 
 #: models.py:112
-msgid "Bottom"
-msgstr ""
+msgid "Right"
+msgstr "Dreta"
 
 #: models.py:113
-msgid "Left"
-msgstr ""
+msgid "Bottom"
+msgstr "A baix"
 
 #: models.py:114
-msgid "Center (Default)"
-msgstr ""
+msgid "Left"
+msgstr "Esquerra"
 
-#: models.py:118
-msgid "Flip left to right"
-msgstr ""
+#: models.py:115
+msgid "Center (Default)"
+msgstr "Centrada (predeterminat)"
 
 #: models.py:119
-msgid "Flip top to bottom"
-msgstr ""
+msgid "Flip left to right"
+msgstr "Gira d'esquerra a dreta"
 
 #: models.py:120
-msgid "Rotate 90 degrees counter-clockwise"
-msgstr ""
+msgid "Flip top to bottom"
+msgstr "Gira de dalt a baix"
 
 #: models.py:121
-msgid "Rotate 90 degrees clockwise"
-msgstr ""
+msgid "Rotate 90 degrees counter-clockwise"
+msgstr "Rota 90 graus en sentit contrari al de les agulles del rellotge"
 
 #: models.py:122
-msgid "Rotate 180 degrees"
-msgstr ""
+msgid "Rotate 90 degrees clockwise"
+msgstr "Rota 90 graus en el sentit de les agulles del rellotge"
 
-#: models.py:126
-msgid "Tile"
-msgstr ""
+#: models.py:123
+msgid "Rotate 180 degrees"
+msgstr "Rota 180 graus"
 
 #: models.py:127
-msgid "Scale"
-msgstr ""
+msgid "Tile"
+msgstr "Mosaic"
 
-#: models.py:137
+#: models.py:128
+msgid "Scale"
+msgstr "Escala"
+
+#: models.py:138
 #, python-format
 msgid ""
 "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
 ">FILTER_THREE\". Image filters will be applied in order. The following "
 "filters are available: %s."
 msgstr ""
+"Encadeneu múltiple filtres fent servir el següent patró \"FILTRE_UN-"
+">FILTRE_DOS->FILTRE_TRES\". Els filtres d'imatge s'aplicaran en ordre. Estan "
+"disponibles els filtres següents: %s."
 
-#: models.py:161
+#: models.py:162
 msgid "date published"
-msgstr ""
+msgstr "data de publicació"
 
-#: models.py:163 models.py:508
+#: models.py:164 models.py:513
 msgid "title"
-msgstr ""
+msgstr "títol"
 
-#: models.py:166
+#: models.py:167
 msgid "title slug"
-msgstr ""
+msgstr "url del títol"
 
-#: models.py:169 models.py:514
+#: models.py:170 models.py:519
 msgid "A \"slug\" is a unique URL-friendly title for an object."
-msgstr ""
+msgstr "L'url del títol és un URL sense espais per a un objecte."
 
-#: models.py:170 models.py:586
+#: models.py:171 models.py:591
 msgid "description"
-msgstr ""
+msgstr "descripció"
 
-#: models.py:172 models.py:519
+#: models.py:173 models.py:524
 msgid "is public"
-msgstr ""
+msgstr "és pública"
 
-#: models.py:174
+#: models.py:175
 msgid "Public galleries will be displayed in the default views."
-msgstr ""
+msgstr "Les galeries públiques es mostraran en les vistes predeterminades."
 
-#: models.py:178 models.py:531
+#: models.py:179 models.py:536
 msgid "photos"
-msgstr ""
+msgstr "fotos"
 
-#: models.py:180 models.py:522
+#: models.py:181 models.py:527
 msgid "sites"
-msgstr ""
-
-#: models.py:188
-msgid "gallery"
-msgstr ""
+msgstr "llocs web"
 
 #: models.py:189
+msgid "gallery"
+msgstr "galeria"
+
+#: models.py:190
 msgid "galleries"
-msgstr ""
+msgstr "galeries"
 
-#: models.py:226
+#: models.py:227
 msgid "count"
-msgstr ""
+msgstr "compta"
 
-#: models.py:242 models.py:727
+#: models.py:243 models.py:735
 msgid "image"
-msgstr ""
+msgstr "imatge"
 
-#: models.py:245
+#: models.py:246
 msgid "date taken"
-msgstr ""
-
-#: models.py:248
-msgid "Date image was taken; is obtained from the image EXIF data."
-msgstr ""
+msgstr "data en la què es va fer"
 
 #: models.py:249
+msgid "Date image was taken; is obtained from the image EXIF data."
+msgstr ""
+"La data en què la imatge es va fer; s'obté de la informació EXIF de la "
+"imatge."
+
+#: models.py:250
 msgid "view count"
-msgstr ""
+msgstr "vistes"
 
-#: models.py:252
+#: models.py:253
 msgid "crop from"
-msgstr ""
+msgstr "escapça des de"
 
-#: models.py:261
+#: models.py:262
 msgid "effect"
-msgstr ""
+msgstr "efecte"
 
-#: models.py:281
+#: models.py:282
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr ""
+"No s'ha definit una mida de fotografia de la miniatura d'administració."
 
-#: models.py:289
+#: models.py:288
 msgid "Thumbnail"
-msgstr ""
+msgstr "Miniatura"
 
-#: models.py:511
+#: models.py:516
 msgid "slug"
-msgstr ""
+msgstr "url"
 
-#: models.py:515
+#: models.py:520
 msgid "caption"
-msgstr ""
+msgstr "títol"
 
-#: models.py:517
+#: models.py:522
 msgid "date added"
-msgstr ""
+msgstr "data en què s'ha afegit"
 
-#: models.py:521
+#: models.py:526
 msgid "Public photographs will be displayed in the default views."
-msgstr ""
+msgstr "Les fotografies públiques es mostraran en les vistes predeterminades."
 
-#: models.py:530
+#: models.py:535
 msgid "photo"
-msgstr ""
+msgstr "foto"
 
-#: models.py:583 models.py:759
+#: models.py:588 models.py:767
 msgid "name"
-msgstr ""
+msgstr "nom"
 
-#: models.py:658
+#: models.py:666
 msgid "rotate or flip"
-msgstr ""
+msgstr "rota o gira"
 
-#: models.py:662 models.py:690
+#: models.py:670 models.py:698
 msgid "color"
-msgstr ""
+msgstr "color"
 
-#: models.py:664
+#: models.py:672
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr ""
+"Un factor de 0.0 proporciona una imatge en blanc i negre, un factor d'1.0 "
+"proporciona la imatge original."
 
-#: models.py:666
+#: models.py:674
 msgid "brightness"
-msgstr ""
+msgstr "brillantor"
 
-#: models.py:668
+#: models.py:676
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
+"Un factor de 0.0 proporciona una imatge en negre, un factor d'1.0 "
+"proporciona la imatge original."
 
-#: models.py:670
+#: models.py:678
 msgid "contrast"
-msgstr ""
+msgstr "contrast"
 
-#: models.py:672
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
+"Un factor de 0.0 proporciona una imatge en gris sòlid, un factor d'1.0 "
+"proporciona la imatge original."
 
-#: models.py:674
+#: models.py:682
 msgid "sharpness"
-msgstr ""
+msgstr "nitidesa"
 
-#: models.py:676
+#: models.py:684
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
+"Un factor de 0.0 proporciona una imatge borrosa, un factor d'1.0 proporciona "
+"la imatge original."
 
-#: models.py:678
+#: models.py:686
 msgid "filters"
-msgstr ""
+msgstr "filtres"
 
-#: models.py:682
+#: models.py:690
 msgid "size"
-msgstr ""
+msgstr "mida"
 
-#: models.py:684
+#: models.py:692
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
 msgstr ""
+"L'alçada del reflex com un percentatge de la imatge original. Un factor de "
+"0.0 no afegeix reflex, un factor d'1.0 afegeix un reflex igual a l'alçada de "
+"la imatge original."
 
-#: models.py:687
+#: models.py:695
 msgid "strength"
-msgstr ""
+msgstr "reforçament"
 
-#: models.py:689
+#: models.py:697
 msgid "The initial opacity of the reflection gradient."
-msgstr ""
+msgstr "L'opacitat inicial del gradient de reflex."
 
-#: models.py:693
+#: models.py:701
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr ""
+"El color de fons del gradient de reflex. Definiu això per coincidir amb el "
+"color de fons de la pàgina web."
 
-#: models.py:697 models.py:803
+#: models.py:705 models.py:811
 msgid "photo effect"
-msgstr ""
+msgstr "efecte"
 
-#: models.py:698
+#: models.py:706
 msgid "photo effects"
-msgstr ""
+msgstr "efectes"
 
-#: models.py:729
+#: models.py:737
 msgid "style"
-msgstr ""
+msgstr "estil"
 
-#: models.py:733
+#: models.py:741
 msgid "opacity"
-msgstr ""
+msgstr "opacitat"
 
-#: models.py:735
+#: models.py:743
 msgid "The opacity of the overlay."
-msgstr ""
+msgstr "L'opacitat de la superposició."
 
-#: models.py:738
+#: models.py:746
 msgid "watermark"
-msgstr ""
+msgstr "marca d'aigua"
 
-#: models.py:739
+#: models.py:747
 msgid "watermarks"
-msgstr ""
+msgstr "marques d'aigua"
 
-#: models.py:763
+#: models.py:771
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 msgstr ""
+"El nom de la mida de la foto solament deu contenir lletres, nombres i guions "
+"baixos. Exemples: \"miniatura\", \"pantalla\", \"petita\", "
+"\"giny_de_la_pagina_principal\"."
 
-#: models.py:770
+#: models.py:778
 msgid "width"
-msgstr ""
+msgstr "amplada"
 
-#: models.py:773
+#: models.py:781
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
+"Si l'amplada està definida a \"0\", la imatge s'escalarà a l'altura "
+"proporcionada."
 
-#: models.py:774
+#: models.py:782
 msgid "height"
-msgstr ""
+msgstr "alçada"
 
-#: models.py:777
+#: models.py:785
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
+"Si l'alçada està definida a \"0\", la imatge s'escalarà a l'amplada "
+"proporcionada"
 
-#: models.py:778
+#: models.py:786
 msgid "quality"
-msgstr ""
+msgstr "qualitat"
 
-#: models.py:781
+#: models.py:789
 msgid "JPEG image quality."
-msgstr ""
+msgstr "Qualitat de la imatge JPEG."
 
-#: models.py:782
+#: models.py:790
 msgid "upscale images?"
-msgstr ""
+msgstr "millorem les imatges?"
 
-#: models.py:784
+#: models.py:792
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 msgstr ""
+"Si la imatge s'escalarà el que calgui per ajustar-se a les dimensions "
+"proporcionades. Les mides escapçades s'escalaran tenint em compte aquest "
+"paràmetre. "
 
-#: models.py:788
+#: models.py:796
 msgid "crop to fit?"
-msgstr ""
+msgstr "escapcem per ajustar?"
 
-#: models.py:790
+#: models.py:798
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr ""
+"Si la imatge seleccionada s'escalarà i escapçarà per ajustar-se a les "
+"dimensions proporcionades."
 
-#: models.py:792
+#: models.py:800
 msgid "pre-cache?"
-msgstr ""
+msgstr "pre-cache?"
 
-#: models.py:794
+#: models.py:802
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
+"Si se selecciona, la mida d'aquesta fotografia es posarà en la memòria cau "
+"conforme s'afegeixen."
 
-#: models.py:795
+#: models.py:803
 msgid "increment view count?"
-msgstr ""
+msgstr "incrementem el comptador de vistes?"
 
-#: models.py:797
+#: models.py:805
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 msgstr ""
+"Si se selecciona, el comptador de vistes de la imatge s'incrementarà quan la "
+"fotografia es mostre."
 
-#: models.py:809
+#: models.py:817
 msgid "watermark image"
-msgstr ""
+msgstr "imatge de la marca d'aigua"
 
-#: models.py:814
+#: models.py:822
 msgid "photo size"
-msgstr ""
+msgstr "mida de la foto"
 
-#: models.py:815
+#: models.py:823
 msgid "photo sizes"
-msgstr ""
+msgstr "mides de les fotos"
 
-#: models.py:832
+#: models.py:840
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr ""
+"Solament es poden escapçar imatges si l'amplada i l'altura estan definides."
 
 #: templates/admin/photologue/photo/change_list.html:9
 msgid "Upload a zip archive"
-msgstr ""
+msgstr "Penja un fitxer zip"
 
 #: templates/admin/photologue/photo/upload_zip.html:15
 msgid "Home"
-msgstr ""
+msgstr "Inici"
 
 #: templates/admin/photologue/photo/upload_zip.html:19
 #: templates/admin/photologue/photo/upload_zip.html:53
 msgid "Upload"
-msgstr ""
+msgstr "Penja"
 
 #: templates/admin/photologue/photo/upload_zip.html:28
 msgid ""
@@ -579,93 +640,102 @@ msgid ""
 "\t\t</ul>\n"
 "\t"
 msgstr ""
+"\n"
+"\t\t<p>En aquesta pàgina podeu penjar tantes fotos com tingueu, d'una sola "
+"vegada\n"
+"\t\tposeu-les totes en un fitxer zip. Les fotos es podran o bé:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Afegir a una galeria existent.</li>\n"
+"\t\t\t<li>O bé, es crearà una galeria nova amb el títol que poseu.</li>\n"
+"\t\t</ul>\n"
+"\t"
 
 #: templates/admin/photologue/photo/upload_zip.html:39
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Corregiu l'error següent."
 
 #: templates/admin/photologue/photo/upload_zip.html:39
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Corregiu els error següents."
 
 #: templates/photologue/gallery_archive.html:4
 #: templates/photologue/gallery_archive.html:9
 msgid "Latest photo galleries"
-msgstr ""
+msgstr "Darreres galeries"
 
 #: templates/photologue/gallery_archive.html:16
 #: templates/photologue/photo_archive.html:16
 msgid "Filter by year"
-msgstr ""
+msgstr "Filtra pe any"
 
 #: templates/photologue/gallery_archive.html:32
 #: templates/photologue/gallery_list.html:26
 msgid "No galleries were found"
-msgstr ""
+msgstr "No s'han trobat galeries"
 
 #: templates/photologue/gallery_archive_day.html:4
 #: templates/photologue/gallery_archive_day.html:9
 #, python-format
 msgid "Galleries for %(show_day)s"
-msgstr ""
+msgstr "Galeries de %(show_day)s"
 
 #: templates/photologue/gallery_archive_day.html:18
 #: templates/photologue/gallery_archive_month.html:32
 #: templates/photologue/gallery_archive_year.html:32
 msgid "No galleries were found."
-msgstr ""
+msgstr "No s'han trobat galeries."
 
 #: templates/photologue/gallery_archive_day.html:22
 msgid "View all galleries for month"
-msgstr ""
+msgstr "Mostra totes les galeries per mesos"
 
 #: templates/photologue/gallery_archive_month.html:4
 #: templates/photologue/gallery_archive_month.html:9
 #, python-format
 msgid "Galleries for %(show_month)s"
-msgstr ""
+msgstr "Galeries del mes de %(show_month)s"
 
 #: templates/photologue/gallery_archive_month.html:16
 #: templates/photologue/photo_archive_month.html:16
 msgid "Filter by day"
-msgstr ""
+msgstr "Filtra per dia"
 
 #: templates/photologue/gallery_archive_month.html:35
 msgid "View all galleries for year"
-msgstr ""
+msgstr "Mostra totes les galeries per any"
 
 #: templates/photologue/gallery_archive_year.html:4
 #: templates/photologue/gallery_archive_year.html:9
 #, python-format
 msgid "Galleries for %(show_year)s"
-msgstr ""
+msgstr "Galeries de %(show_year)s"
 
 #: templates/photologue/gallery_archive_year.html:16
 #: templates/photologue/photo_archive_year.html:17
 msgid "Filter by month"
-msgstr ""
+msgstr "Filtra per mes"
 
 #: templates/photologue/gallery_archive_year.html:35
 #: templates/photologue/gallery_detail.html:17
 msgid "View all galleries"
-msgstr ""
+msgstr "Mostra totes les galeries"
 
 #: templates/photologue/gallery_detail.html:10
 #: templates/photologue/gallery_list.html:16
 #: templates/photologue/includes/gallery_sample.html:8
 #: templates/photologue/photo_detail.html:10
 msgid "Published"
-msgstr ""
+msgstr "Publicada"
 
 #: templates/photologue/gallery_list.html:4
 #: templates/photologue/gallery_list.html:9
 msgid "All galleries"
-msgstr ""
+msgstr "Totes les galeries"
 
 #: templates/photologue/includes/paginator.html:6
 #: templates/photologue/includes/paginator.html:8
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: templates/photologue/includes/paginator.html:11
 #, python-format
@@ -674,16 +744,19 @@ msgid ""
 "\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t\t"
 msgstr ""
+"\n"
+"\t\t\t\t    pàgina %(page_number)s de %(total_pages)s\n"
+"\t\t\t\t"
 
 #: templates/photologue/includes/paginator.html:16
 #: templates/photologue/includes/paginator.html:18
 msgid "Next"
-msgstr ""
+msgstr "Següent"
 
 #: templates/photologue/photo_archive.html:4
 #: templates/photologue/photo_archive.html:9
 msgid "Latest photos"
-msgstr ""
+msgstr "Les darreres fotos"
 
 #: templates/photologue/photo_archive.html:34
 #: templates/photologue/photo_archive_day.html:21
@@ -691,46 +764,46 @@ msgstr ""
 #: templates/photologue/photo_archive_year.html:37
 #: templates/photologue/photo_list.html:21
 msgid "No photos were found"
-msgstr ""
+msgstr "No s'han trobat fotos"
 
 #: templates/photologue/photo_archive_day.html:4
 #: templates/photologue/photo_archive_day.html:9
 #, python-format
 msgid "Photos for %(show_day)s"
-msgstr ""
+msgstr "Fotos de%(show_day)s"
 
 #: templates/photologue/photo_archive_day.html:24
 msgid "View all photos for month"
-msgstr ""
+msgstr "Mostra totes les fotos per mesos"
 
 #: templates/photologue/photo_archive_month.html:4
 #: templates/photologue/photo_archive_month.html:9
 #, python-format
 msgid "Photos for %(show_month)s"
-msgstr ""
+msgstr "Fotos del mes de %(show_month)s"
 
 #: templates/photologue/photo_archive_month.html:39
 msgid "View all photos for year"
-msgstr ""
+msgstr "Mostra totes les fotos per any"
 
 #: templates/photologue/photo_archive_year.html:4
 #: templates/photologue/photo_archive_year.html:10
 #, python-format
 msgid "Photos for %(show_year)s"
-msgstr ""
+msgstr "Fotos de %(show_year)s"
 
 #: templates/photologue/photo_archive_year.html:40
 msgid "View all photos"
-msgstr ""
+msgstr "Mostra totes les fotos"
 
 #: templates/photologue/photo_detail.html:22
 msgid "This photo is found in the following galleries"
-msgstr ""
+msgstr "Aquesta foto es troba en les següents galeries"
 
 #: templates/photologue/photo_list.html:4
 #: templates/photologue/photo_list.html:9
 msgid "All photos"
-msgstr ""
+msgstr "Totes les fotos"
 
 #~ msgid ""
 #~ "All uploaded photos will be given a title made up of this title + a "

@@ -4,13 +4,13 @@
 #
 # Translators:
 # Translators:
-# Urtzi Odriozola <urtzi.odriozola@gmail.com>, 2016
+# Urtzi Odriozola <urtzi.odriozola@gmail.com>, 2016,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-03 14:46+0000\n"
-"PO-Revision-Date: 2017-09-19 18:58+0000\n"
+"POT-Creation-Date: 2019-04-20 16:51+0200\n"
+"PO-Revision-Date: 2018-03-15 09:14+0000\n"
 "Last-Translator: Urtzi Odriozola <urtzi.odriozola@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/richardbarran/django-"
 "photologue/language/eu/)\n"
@@ -116,11 +116,11 @@ msgstr "Ezabatu aukeratutako argazkiak uneko webgunetik."
 msgid "Upload a zip archive of photos"
 msgstr "Igo argazkien zip artxiboa"
 
-#: forms.py:34
+#: forms.py:31
 msgid "Title"
 msgstr "Izenburua"
 
-#: forms.py:37
+#: forms.py:34
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
 "sequential number.<br>This field is required if creating a new gallery, but "
@@ -128,11 +128,11 @@ msgid ""
 "titles will be creating from the existing gallery name."
 msgstr ""
 
-#: forms.py:43
+#: forms.py:40
 msgid "Gallery"
 msgstr "Galeria"
 
-#: forms.py:45
+#: forms.py:42
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
@@ -140,137 +140,137 @@ msgstr ""
 "Aukeratu irudi hau gehitzeko galeria. Utzi hau hutsik emandako izenburutik "
 "galeria berri bat sortzeko."
 
-#: forms.py:47
+#: forms.py:44
 msgid "Caption"
 msgstr "Irudi testua"
 
-#: forms.py:49
+#: forms.py:46
 msgid "Caption will be added to all photos."
 msgstr "Irudi testua argazki guztiei gehituko zaie."
 
-#: forms.py:50
+#: forms.py:47
 msgid "Description"
 msgstr "Deskribapena"
 
-#: forms.py:52
+#: forms.py:49
 msgid "A description of this Gallery. Only required for new galleries."
 msgstr ""
 "Galeria honen deskribapena. Galeria berrientzat bakarrik da beharrezkoa."
 
-#: forms.py:53
+#: forms.py:50
 msgid "Is public"
 msgstr "Publikoa da"
 
-#: forms.py:56
+#: forms.py:53
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr ""
 "Ez markatu hau igotako galeria eta bertako argazkiak pribatu izatea nahi "
 "baduzu."
 
-#: forms.py:79
+#: forms.py:76
 msgid "A gallery with that title already exists."
 msgstr "Izenburu hori duen galeria existitzen da."
 
-#: forms.py:89
+#: forms.py:86
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr ""
 "Aukeratu existitzen den galeria edo sartu galeria berri baten izenburua."
 
-#: forms.py:122
+#: forms.py:119
 #, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
 "in the top folder of the zip."
 msgstr ""
 
-#: forms.py:163
+#: forms.py:160
 #, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
 msgstr "Ezin izan da .zip artxiboko \"{0}\" fitxategia prozesatu."
 
-#: forms.py:179
+#: forms.py:176
 #, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr "Argazkiak \"{0}\" galeriara gehitu dira."
 
-#: models.py:99
+#: models.py:100
 msgid "Very Low"
 msgstr "Oso baxua"
 
-#: models.py:100
+#: models.py:101
 msgid "Low"
 msgstr "Baxua"
 
-#: models.py:101
+#: models.py:102
 msgid "Medium-Low"
 msgstr "Ertaina-Baxua"
 
-#: models.py:102
+#: models.py:103
 msgid "Medium"
 msgstr "Ertaina"
 
-#: models.py:103
+#: models.py:104
 msgid "Medium-High"
 msgstr "Ertaina-Altua"
 
-#: models.py:104
+#: models.py:105
 msgid "High"
 msgstr "Altua"
 
-#: models.py:105
+#: models.py:106
 msgid "Very High"
 msgstr "Oso altua"
 
-#: models.py:110
+#: models.py:111
 msgid "Top"
 msgstr "Goia"
 
-#: models.py:111
+#: models.py:112
 msgid "Right"
 msgstr "Eskuina"
 
-#: models.py:112
+#: models.py:113
 msgid "Bottom"
 msgstr "Behea"
 
-#: models.py:113
+#: models.py:114
 msgid "Left"
 msgstr "Ezkerra"
 
-#: models.py:114
+#: models.py:115
 msgid "Center (Default)"
 msgstr "Erdia (Lehenetsia)"
 
-#: models.py:118
+#: models.py:119
 msgid "Flip left to right"
 msgstr "Itzuli eskerretik eskuinera"
 
-#: models.py:119
+#: models.py:120
 msgid "Flip top to bottom"
 msgstr "Itzuli goitik behera"
 
-#: models.py:120
+#: models.py:121
 msgid "Rotate 90 degrees counter-clockwise"
 msgstr "Biratu 90 gradu erlojuaren kontrako norantzan"
 
-#: models.py:121
+#: models.py:122
 msgid "Rotate 90 degrees clockwise"
 msgstr "Biratu 90 gradu erloju norantzan"
 
-#: models.py:122
+#: models.py:123
 msgid "Rotate 180 degrees"
 msgstr "Biratu 180 gradu"
 
-#: models.py:126
-msgid "Tile"
-msgstr ""
-
 #: models.py:127
-msgid "Scale"
-msgstr ""
+msgid "Tile"
+msgstr "Lauza"
 
-#: models.py:137
+#: models.py:128
+msgid "Scale"
+msgstr "Tamaina"
+
+#: models.py:138
 #, python-format
 msgid ""
 "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
@@ -278,212 +278,212 @@ msgid ""
 "filters are available: %s."
 msgstr ""
 
-#: models.py:161
+#: models.py:162
 msgid "date published"
 msgstr "argitaratze data"
 
-#: models.py:163 models.py:508
+#: models.py:164 models.py:513
 msgid "title"
 msgstr "izenburua"
 
-#: models.py:166
+#: models.py:167
 msgid "title slug"
 msgstr "izenburuaren sluga"
 
-#: models.py:169 models.py:514
+#: models.py:170 models.py:519
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr ""
 
-#: models.py:170 models.py:586
+#: models.py:171 models.py:591
 msgid "description"
 msgstr "deskribapena"
 
-#: models.py:172 models.py:519
+#: models.py:173 models.py:524
 msgid "is public"
 msgstr "publikoa da"
 
-#: models.py:174
+#: models.py:175
 msgid "Public galleries will be displayed in the default views."
 msgstr ""
 
-#: models.py:178 models.py:531
+#: models.py:179 models.py:536
 msgid "photos"
 msgstr "argazkiak"
 
-#: models.py:180 models.py:522
+#: models.py:181 models.py:527
 msgid "sites"
 msgstr "webguneak"
 
-#: models.py:188
+#: models.py:189
 msgid "gallery"
 msgstr "galeria"
 
-#: models.py:189
+#: models.py:190
 msgid "galleries"
 msgstr "galeriak"
 
-#: models.py:226
+#: models.py:227
 msgid "count"
 msgstr "zenbatu"
 
-#: models.py:242 models.py:727
+#: models.py:243 models.py:735
 msgid "image"
 msgstr "irudia"
 
-#: models.py:245
+#: models.py:246
 msgid "date taken"
 msgstr ""
 
-#: models.py:248
+#: models.py:249
 msgid "Date image was taken; is obtained from the image EXIF data."
 msgstr "Irudia atera zeneko data; irudiaren EXIF datutik hartzen da."
 
-#: models.py:249
+#: models.py:250
 msgid "view count"
 msgstr ""
 
-#: models.py:252
+#: models.py:253
 msgid "crop from"
 msgstr "moztu hemendik"
 
-#: models.py:261
+#: models.py:262
 msgid "effect"
 msgstr "efektua"
 
-#: models.py:281
+#: models.py:282
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr ""
 
-#: models.py:289
+#: models.py:288
 msgid "Thumbnail"
 msgstr ""
 
-#: models.py:511
+#: models.py:516
 msgid "slug"
 msgstr "slug"
 
-#: models.py:515
+#: models.py:520
 msgid "caption"
 msgstr "irudi testua"
 
-#: models.py:517
+#: models.py:522
 msgid "date added"
 msgstr ""
 
-#: models.py:521
+#: models.py:526
 msgid "Public photographs will be displayed in the default views."
 msgstr ""
 
-#: models.py:530
+#: models.py:535
 msgid "photo"
 msgstr "argazkia"
 
-#: models.py:583 models.py:759
+#: models.py:588 models.py:767
 msgid "name"
 msgstr "izena"
 
-#: models.py:658
+#: models.py:666
 msgid "rotate or flip"
 msgstr "biratu edo itzuli"
 
-#: models.py:662 models.py:690
+#: models.py:670 models.py:698
 msgid "color"
 msgstr "kolorea"
 
-#: models.py:664
+#: models.py:672
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr ""
 
-#: models.py:666
+#: models.py:674
 msgid "brightness"
 msgstr "dizdira"
 
-#: models.py:668
+#: models.py:676
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
 
-#: models.py:670
+#: models.py:678
 msgid "contrast"
 msgstr "kontrastea"
 
-#: models.py:672
+#: models.py:680
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
 
-#: models.py:674
+#: models.py:682
 msgid "sharpness"
 msgstr "zorroztasuna"
 
-#: models.py:676
+#: models.py:684
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
 
-#: models.py:678
+#: models.py:686
 msgid "filters"
 msgstr "filtroak"
 
-#: models.py:682
+#: models.py:690
 msgid "size"
 msgstr "tamaina"
 
-#: models.py:684
+#: models.py:692
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
 "height of the orignal image."
 msgstr ""
 
-#: models.py:687
+#: models.py:695
 msgid "strength"
 msgstr "indarra"
 
-#: models.py:689
+#: models.py:697
 msgid "The initial opacity of the reflection gradient."
 msgstr ""
 
-#: models.py:693
+#: models.py:701
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr ""
 
-#: models.py:697 models.py:803
+#: models.py:705 models.py:811
 msgid "photo effect"
 msgstr "argazki efektua"
 
-#: models.py:698
+#: models.py:706
 msgid "photo effects"
 msgstr "argazki efektuak"
 
-#: models.py:729
+#: models.py:737
 msgid "style"
 msgstr "estiloa"
 
-#: models.py:733
+#: models.py:741
 msgid "opacity"
 msgstr "opakutasun"
 
-#: models.py:735
+#: models.py:743
 msgid "The opacity of the overlay."
 msgstr "Estalkiaren opakutasuna."
 
-#: models.py:738
+#: models.py:746
 msgid "watermark"
 msgstr "ur marka"
 
-#: models.py:739
+#: models.py:747
 msgid "watermarks"
 msgstr "ur markak"
 
-#: models.py:763
+#: models.py:771
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -492,87 +492,87 @@ msgstr ""
 "ditzake. Adibidez: \"thumbnail\", \"display\", \"small\", \"main_page_widget"
 "\"."
 
-#: models.py:770
+#: models.py:778
 msgid "width"
 msgstr "zabalera"
 
-#: models.py:773
+#: models.py:781
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "Zabaleran \"0\" jarriz gero, irudiaren tamaina altueraren arabera ezarriko "
 "da."
 
-#: models.py:774
+#: models.py:782
 msgid "height"
 msgstr "altuera"
 
-#: models.py:777
+#: models.py:785
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "Altueran \"0\" jarriz gero, irudiaren tamaina zabaleraren arabera ezarriko "
 "da."
 
-#: models.py:778
+#: models.py:786
 msgid "quality"
 msgstr "kalitatea"
 
-#: models.py:781
+#: models.py:789
 msgid "JPEG image quality."
 msgstr "JPEG irudi kalitatea."
 
-#: models.py:782
+#: models.py:790
 msgid "upscale images?"
 msgstr "irudiak handitu?"
 
-#: models.py:784
+#: models.py:792
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
 msgstr ""
 
-#: models.py:788
+#: models.py:796
 msgid "crop to fit?"
 msgstr "neurrira moztu?"
 
-#: models.py:790
+#: models.py:798
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr ""
 
-#: models.py:792
+#: models.py:800
 msgid "pre-cache?"
 msgstr "aurrez katxeatu?"
 
-#: models.py:794
+#: models.py:802
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
 
-#: models.py:795
+#: models.py:803
 msgid "increment view count?"
-msgstr ""
+msgstr "ikustaldi kopurua zenbatu?"
 
-#: models.py:797
+#: models.py:805
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 msgstr ""
 
-#: models.py:809
+#: models.py:817
 msgid "watermark image"
 msgstr "jarri ur marka irudiari"
 
-#: models.py:814
+#: models.py:822
 msgid "photo size"
 msgstr "argazki tamaina"
 
-#: models.py:815
+#: models.py:823
 msgid "photo sizes"
 msgstr "argazki tamainak"
 
-#: models.py:832
+#: models.py:840
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr ""
 "Zabalera eta altuera definituta badaude bakarrik moztu daitezke irudiak."
