@@ -6,3 +6,6 @@ build
 example_project/db.sqlite3
 example_project/coverage_html_report
 example_project/.coverage
+
+# Tox workfiles
+.tox/*

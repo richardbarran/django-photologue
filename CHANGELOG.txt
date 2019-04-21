@@ -10,6 +10,7 @@ Changelog
 - Checked compatibility with Django 2.1 and Python 3.7.
 - Updated translations for Catalan and Basque.
 - Missed a Django migration (issue #194).
+- Test Tox; integrate with Travis and Coveralls.
 - Removed old code (old-style demo templates that have been deprecated since 2014).
 - Removed old code (old views that have been deprecated since 2014).
 - Removed all references to PIL (which hasn't been updated since 2009). I think that by now

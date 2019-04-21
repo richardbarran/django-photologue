@@ -1,40 +1,31 @@
 dist: xenial
-
+sudo: false
 language: python
 
+# Travis config is driven by the tox.ini file.
+
+# Here we just specify:
+# 1. The Python versions to run - it will start a CI server for each, and run all the tox environments
+#    that use that Python. So in Travis we are running both in parallel (one server per Python version)
+#    and in series (each server runs all the Django envs for that version of Python).
+
 python:
-  - 2.7
-  - 3.4
-  - 3.5
-  - 3.6
-  - 3.7
-
-env:
-  - DJANGO="Django==2.1.7"
-  - DJANGO="Django==2.0.13"
-  - DJANGO="Django==1.11.20"
-
-matrix:
-  exclude:
-    - env: DJANGO="Django==2.1.7"
-      python: 2.7
-    - env: DJANGO="Django==2.1.7"
-      python: 3.4
-    - env: DJANGO="Django==2.0.13"
-      python: 2.7
-    - env: DJANGO="Django==1.11.20"
-      python: 3.7
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
 
 install:
-  - pip install $DJANGO
-  - pip install factory-boy
-  - pip install pytz
-  - pip install coveralls
-  - python setup.py develop
+  - pip install -r example_project/requirements.txt
+  - pip install tox-travis
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then pip install coveralls; fi
 
 script:
-  - cd example_project; coverage run manage.py test photologue
+  # Run against all the Python interpreter and Django versions specified in the tox.ini file.
+  - tox
+  # Coveralls only needs to run once - so run it against just one Python interpreter.
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then cd example_project && coverage run manage.py test; fi
 
 after_success:
-  - coveralls
-
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then coveralls; fi

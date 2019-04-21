@@ -38,6 +38,10 @@ Including unit tests with your contributions will earn you bonus points, maybe e
 plenty of tests, and run them from the ``/example_project/`` with a
 ``python manage.py test photologue``.
 
+There's also a `Tox <https://tox.readthedocs.io/en/latest/index.html>`_ configuration file - so if
+you have tox installed, run ``tox`` from the ``/example_project/`` folder, and it will run the entire
+test suite against all versions of Python and Django that are supported.
+
 Documentation
 -------------
 Keeping the documentation up-to-date is very important - so if your code changes
