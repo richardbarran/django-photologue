@@ -1,4 +1,5 @@
 -r ../requirements.txt
+django<2.2
 pytz>=2013.9
 # The following is only required if developing for Photologue.
 factory-boy>=2.9.2
