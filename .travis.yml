@@ -8,6 +8,8 @@ language: python
 # 1. The Python versions to run - it will start a CI server for each, and run all the tox environments
 #    that use that Python. So in Travis we are running both in parallel (one server per Python version)
 #    and in series (each server runs all the Django envs for that version of Python).
+# 2. For *one* python version, we add an extra run of the unit tests - with coverage. The results are then fed to
+#    coveralls.
 
 python:
   - "2.7"
@@ -17,9 +19,8 @@ python:
   - "3.7"
 
 install:
-  - pip install -r example_project/requirements.txt
   - pip install tox-travis
-  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then pip install coveralls; fi
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then pip install coveralls -r example_project/requirements.txt; fi
 
 script:
   # Run against all the Python interpreter and Django versions specified in the tox.ini file.
