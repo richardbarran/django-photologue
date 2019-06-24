@@ -1,23 +1,14 @@
 # /usr/bin/env python
 import uuid
 from setuptools import setup, find_packages
+from pkg_resources import parse_requirements
 
-try:  # for pip >= 10
-    from pip._internal.req import parse_requirements
-except ImportError:  # for pip <= 9.0.3
-    from pip.req import parse_requirements
 import photologue
 
 
 def get_requirements(source):
-    try:
-        install_reqs = parse_requirements(source, session=uuid.uuid1())
-    except TypeError:
-        # Older version of pip.
-        install_reqs = parse_requirements(source)
-    required = sorted(set([str(ir.req) for ir in install_reqs]))
-
-    return required
+    with open(source) as f:
+        return sorted({str(req) for req in parse_requirements(f.read())})
 
 
 setup(
