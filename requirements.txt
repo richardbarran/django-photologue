@@ -2,5 +2,5 @@
 # so can be removed from this file.
 # django>=1.11
 Pillow>=4.3.0
-django-sortedm2m>=1.5.0 # Need at least 1.4.0 for it to work with Django 1.11.
+django-sorted-m2m>=2.0.0 # Need at least 2.0.0 for it to work with Django 2.2.
 ExifRead>=2.1.2
