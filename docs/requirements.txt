@@ -1,3 +1,0 @@
--r ../requirements.txt
-django<2.2
-pytz
