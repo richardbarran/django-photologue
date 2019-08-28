@@ -26,8 +26,7 @@ script:
   # Run against all the Python interpreter and Django versions specified in the tox.ini file.
   - tox
   # Coveralls only needs to run once - so run it against just one Python interpreter.
-  # TODO Specifying the exact Django version here as 2.2 has been released, but Photologue is not compatible yet.
-  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then pip install django==2.1.8 && cd example_project && coverage run manage.py test photologue; fi
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then pip install django && cd example_project && coverage run manage.py test photologue; fi
 
 after_success:
   - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ]; then coveralls; fi
