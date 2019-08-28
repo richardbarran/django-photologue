@@ -1,0 +1,2 @@
+django
+-r ../requirements.txt
