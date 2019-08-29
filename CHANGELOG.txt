@@ -4,7 +4,7 @@ Changelog
 3.10 (unreleased)
 -----------------
 
-- Checked compatibility with Django 2.2.
+- Compatibility with Django 2.2.
 
 
 3.9 (2019-04-21)
