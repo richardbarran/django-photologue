@@ -1,5 +1,6 @@
-import subprocess
 import os
+import subprocess
+
 try:
     import polib
 except ImportError:
@@ -80,4 +81,6 @@ def prereleaser_before(data):
             f.write(i + '\n')
 
     # And commit the new contributors file.
-    subprocess.check_output(["git", "commit", "-m", "Updated the list of contributors.", "CONTRIBUTORS.txt"])
+    output = subprocess.check_output(["pycodestyle"])
+    if output:
+        subprocess.check_output(["git", "commit", "-m", "Updated the list of contributors.", "CONTRIBUTORS.txt"])
