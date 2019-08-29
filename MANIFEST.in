@@ -9,3 +9,4 @@ recursive-include photologue/contrib *
 recursive-exclude * *.py[co]
 recursive-exclude * __pycache__
 exclude photologue/res/test_unicode*.jpg
+recursive-exclude example_project *
