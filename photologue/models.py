@@ -19,7 +19,6 @@ from django.db.models.signals import post_save
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.encoding import force_text, smart_str, filepath_to_uri
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import curry
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
@@ -149,13 +148,12 @@ class TagField(models.CharField):
     def __init__(self, **kwargs):
         default_kwargs = {'max_length': 255, 'blank': True}
         default_kwargs.update(kwargs)
-        super(TagField, self).__init__(**default_kwargs)
+        super().__init__(**default_kwargs)
 
     def get_internal_type(self):
         return 'CharField'
 
 
-@python_2_unicode_compatible
 class Gallery(models.Model):
     date_added = models.DateTimeField(_('date published'),
                                       default=now)
@@ -176,7 +174,7 @@ class Gallery(models.Model):
                                    related_name='galleries',
                                    verbose_name=_('photos'),
                                    blank=True)
-    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
+    sites = models.ManyToManyField(Site, verbose_name=_('sites'),
                                    blank=True)
 
     objects = GalleryQuerySet.as_manager()
@@ -281,9 +279,9 @@ class ImageModel(models.Model):
             return _('An "admin_thumbnail" photo size has not been defined.')
         else:
             if hasattr(self, 'get_absolute_url'):
-                return mark_safe(u'<a href="{}"><img src="{}"></a>'.format(self.get_absolute_url(), func()))
+                return mark_safe('<a href="{}"><img src="{}"></a>'.format(self.get_absolute_url(), func()))
             else:
-                return mark_safe(u'<a href="{}"><img src="{}"></a>'.format(self.image.url, func()))
+                return mark_safe('<a href="{}"><img src="{}"></a>'.format(self.image.url, func()))
 
     admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
@@ -400,7 +398,7 @@ class ImageModel(models.Model):
             return
         try:
             im = Image.open(self.image.storage.open(self.image.name))
-        except IOError:
+        except OSError:
             return
         # Save the original format
         im_format = im.format
@@ -439,7 +437,7 @@ class ImageModel(models.Model):
                         optimize=True)
             buffer_contents = ContentFile(buffer.getvalue())
             self.image.storage.save(im_filename, buffer_contents)
-        except IOError as e:
+        except OSError as e:
             if self.image.storage.exists(im_filename):
                 self.image.storage.delete(im_filename)
             raise e
@@ -463,7 +461,7 @@ class ImageModel(models.Model):
                 self.create_size(photosize)
 
     def __init__(self, *args, **kwargs):
-        super(ImageModel, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._old_image = self.image
 
     def save(self, *args, **kwargs):
@@ -491,7 +489,7 @@ class ImageModel(models.Model):
                                                int(hour), int(minute), int(second))
             except:
                 logger.error('Failed to read EXIF DateTimeOriginal', exc_info=True)
-        super(ImageModel, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
         self.pre_cache()
 
     def delete(self):
@@ -504,11 +502,10 @@ class ImageModel(models.Model):
         # http://haineault.com/blog/147/
         # The data loss scenarios mentioned in the docs hopefully do not apply
         # to Photologue!
-        super(ImageModel, self).delete()
+        super().delete()
         self.image.storage.delete(self.image.name)
 
 
-@python_2_unicode_compatible
 class Photo(ImageModel):
     title = models.CharField(_('title'),
                              max_length=250,
@@ -524,7 +521,7 @@ class Photo(ImageModel):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
-    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'),
+    sites = models.ManyToManyField(Site, verbose_name=_('sites'),
                                    blank=True)
 
     objects = PhotoQuerySet.as_manager()
@@ -541,7 +538,7 @@ class Photo(ImageModel):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slugify(self.title)
-        super(Photo, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('photologue:pl-photo', args=[self.slug])
@@ -583,7 +580,6 @@ class Photo(ImageModel):
         return None
 
 
-@python_2_unicode_compatible
 class BaseEffect(models.Model):
     name = models.CharField(_('name'),
                             max_length=30,
@@ -598,16 +594,16 @@ class BaseEffect(models.Model):
         return os.path.join(PHOTOLOGUE_DIR, 'samples')
 
     def sample_url(self):
-        return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples', '%s %s.jpg' % (self.name.lower(), 'sample')])
+        return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples', '{} {}.jpg'.format(self.name.lower(), 'sample')])
 
     def sample_filename(self):
-        return os.path.join(self.sample_dir(), '%s %s.jpg' % (self.name.lower(), 'sample'))
+        return os.path.join(self.sample_dir(), '{} {}.jpg'.format(self.name.lower(), 'sample'))
 
     def create_sample(self):
         try:
             im = Image.open(SAMPLE_IMAGE_PATH)
-        except IOError:
-            raise IOError(
+        except OSError:
+            raise OSError(
                 'Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
         im = self.process(im)
         buffer = BytesIO()
@@ -619,7 +615,7 @@ class BaseEffect(models.Model):
         default_storage.save(self.sample_filename(), buffer_contents)
 
     def admin_sample(self):
-        return u'<img src="%s">' % self.sample_url()
+        return '<img src="%s">' % self.sample_url()
 
     admin_sample.short_description = 'Sample'
     admin_sample.allow_tags = True
@@ -749,7 +745,7 @@ class Watermark(BaseEffect):
     def delete(self):
         assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." \
                                                % (self._meta.object_name, self._meta.pk.attname)
-        super(Watermark, self).delete()
+        super().delete()
         self.image.storage.delete(self.image.name)
 
     def post_process(self, im):
@@ -757,7 +753,6 @@ class Watermark(BaseEffect):
         return apply_watermark(im, mark, self.style, self.opacity)
 
 
-@python_2_unicode_compatible
 class PhotoSize(models.Model):
     """About the Photosize name: it's used to create get_PHOTOSIZE_url() methods,
     so the name has to follow the same restrictions as any Python method name,
@@ -839,7 +834,7 @@ class PhotoSize(models.Model):
                     _("Can only crop photos if both width and height dimensions are set."))
 
     def save(self, *args, **kwargs):
-        super(PhotoSize, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
         PhotoSizeCache().reset()
         self.clear_cache()
 
@@ -847,7 +842,7 @@ class PhotoSize(models.Model):
         assert self._get_pk_val() is not None, "%s object can't be deleted because its %s attribute is set to None." \
                                                % (self._meta.object_name, self._meta.pk.attname)
         self.clear_cache()
-        super(PhotoSize, self).delete()
+        super().delete()
 
     def _get_size(self):
         return (self.width, self.height)
@@ -858,7 +853,7 @@ class PhotoSize(models.Model):
     size = property(_get_size, _set_size)
 
 
-class PhotoSizeCache(object):
+class PhotoSizeCache:
     __state = {"sizes": {}}
 
     def __init__(self):

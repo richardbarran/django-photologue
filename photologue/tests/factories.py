@@ -5,7 +5,6 @@ import datetime
 
 from django.utils.text import slugify
 from django.utils.timezone import utc
-from django.utils import six
 from django.conf import settings
 try:
     import factory
@@ -33,7 +32,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
         model = Gallery
 
     title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
-    slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
+    slug = factory.LazyAttribute(lambda a: slugify(a.title))
 
     @factory.sequence
     def date_added(n):
@@ -78,7 +77,7 @@ class PhotoFactory(ImageModelFactory):
         model = Photo
 
     title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
-    slug = factory.LazyAttribute(lambda a: slugify(six.text_type(a.title)))
+    slug = factory.LazyAttribute(lambda a: slugify(a.title))
     image = factory.django.ImageField(from_path=LANDSCAPE_IMAGE_PATH)
 
     @factory.sequence

@@ -4,7 +4,7 @@ Changelog
 3.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Dropped support for Python 2.
 
 
 3.10 (2019-08-29)

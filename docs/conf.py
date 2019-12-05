@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # django-photologue documentation build configuration file, created by
 # sphinx-quickstart on Mon Sep  3 16:31:44 2012.
@@ -46,8 +45,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-photologue'
-copyright = u'{}, Justin Driscoll/Richard Barran'.format(datetime.datetime.now().year)
+project = 'django-photologue'
+copyright = '{}, Justin Driscoll/Richard Barran'.format(datetime.datetime.now().year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -195,8 +194,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ('index', 'django-photologue.tex', u'django-photologue Documentation',
-     u'Justin Driscoll/Richard Barran', 'manual'),
+    ('index', 'django-photologue.tex', 'django-photologue Documentation',
+     'Justin Driscoll/Richard Barran', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -225,8 +224,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'django-photologue', u'django-photologue Documentation',
-     [u'Justin Driscoll/Richard Barran'], 1)
+    ('index', 'django-photologue', 'django-photologue Documentation',
+     ['Justin Driscoll/Richard Barran'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -239,8 +238,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'django-photologue', u'django-photologue Documentation',
-     u'Justin Driscoll/Richard Barran', 'django-photologue', 'One line description of project.',
+    ('index', 'django-photologue', 'django-photologue Documentation',
+     'Justin Driscoll/Richard Barran', 'django-photologue', 'One line description of project.',
      'Miscellaneous'),
 ]
 

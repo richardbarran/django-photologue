@@ -77,7 +77,7 @@ class UploadZipForm(forms.Form):
         return title
 
     def clean(self):
-        cleaned_data = super(UploadZipForm, self).clean()
+        cleaned_data = super().clean()
         if not self['title'].errors:
             # If there's already an error in the title, no need to add another
             # error related to the same field.
@@ -105,14 +105,14 @@ class UploadZipForm(forms.Form):
             gallery.sites.add(current_site)
         for filename in sorted(zip.namelist()):
 
-            logger.debug('Reading file "{0}".'.format(filename))
+            logger.debug('Reading file "{}".'.format(filename))
 
             if filename.startswith('__') or filename.startswith('.'):
-                logger.debug('Ignoring file "{0}".'.format(filename))
+                logger.debug('Ignoring file "{}".'.format(filename))
                 continue
 
             if os.path.dirname(filename):
-                logger.warning('Ignoring file "{0}" as it is in a subfolder; all images should be in the top '
+                logger.warning('Ignoring file "{}" as it is in a subfolder; all images should be in the top '
                                'folder of the zip.'.format(filename))
                 if request:
                     messages.warning(request,
@@ -124,7 +124,7 @@ class UploadZipForm(forms.Form):
             data = zip.read(filename)
 
             if not len(data):
-                logger.debug('File "{0}" is empty.'.format(filename))
+                logger.debug('File "{}" is empty.'.format(filename))
                 continue
 
             photo_title_root = self.cleaned_data['title'] if self.cleaned_data['title'] else gallery.title
@@ -153,7 +153,7 @@ class UploadZipForm(forms.Form):
                 # Pillow doesn't recognize it as an image.
                 # If a "bad" file is found we just skip it.
                 # But we do flag this both in the logs and to the user.
-                logger.error('Could not process file "{0}" in the .zip archive.'.format(
+                logger.error('Could not process file "{}" in the .zip archive.'.format(
                     filename))
                 if request:
                     messages.warning(request,

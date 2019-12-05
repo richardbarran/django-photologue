@@ -2,7 +2,7 @@ from django.db.models.query import QuerySet
 from django.conf import settings
 
 
-class SharedQueries(object):
+class SharedQueries:
 
     """Some queries that are identical for Gallery and Photo."""
 

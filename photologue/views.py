@@ -18,7 +18,7 @@ class GalleryDetailView(DetailView):
     queryset = Gallery.objects.on_site().is_public()
 
 
-class GalleryDateView(object):
+class GalleryDateView:
     queryset = Gallery.objects.on_site().is_public()
     date_field = 'date_added'
     allow_empty = True
@@ -55,7 +55,7 @@ class PhotoDetailView(DetailView):
     queryset = Photo.objects.on_site().is_public()
 
 
-class PhotoDateView(object):
+class PhotoDateView:
     queryset = Photo.objects.on_site().is_public()
     date_field = 'date_added'
     allow_empty = True

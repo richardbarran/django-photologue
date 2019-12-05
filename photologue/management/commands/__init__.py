@@ -1,4 +1,3 @@
-from django.utils.six.moves import input
 
 from photologue.models import PhotoSize
 
