@@ -594,7 +594,8 @@ class BaseEffect(models.Model):
         return os.path.join(PHOTOLOGUE_DIR, 'samples')
 
     def sample_url(self):
-        return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples', '{} {}.jpg'.format(self.name.lower(), 'sample')])
+        return settings.MEDIA_URL + '/'.join([PHOTOLOGUE_DIR, 'samples',
+                                              '{} {}.jpg'.format(self.name.lower(), 'sample')])
 
     def sample_filename(self):
         return os.path.join(self.sample_dir(), '{} {}.jpg'.format(self.name.lower(), 'sample'))
