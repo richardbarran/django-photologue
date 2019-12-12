@@ -81,6 +81,5 @@ def prereleaser_before(data):
             f.write(i + '\n')
 
     # And commit the new contributors file.
-    output = subprocess.check_output(["pycodestyle"])
-    if output:
+    if subprocess.check_output(["git", "diff", "CONTRIBUTORS.txt"]):
         subprocess.check_output(["git", "commit", "-m", "Updated the list of contributors.", "CONTRIBUTORS.txt"])
