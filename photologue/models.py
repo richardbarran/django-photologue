@@ -2,6 +2,7 @@ import logging
 import unicodedata
 from importlib import import_module
 from inspect import isclass
+from functools import partial
 
 import exifread
 import os
@@ -19,7 +20,6 @@ from django.db.models.signals import post_save
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.encoding import force_text, smart_str, filepath_to_uri
-from django.utils.functional import curry
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
@@ -338,7 +338,7 @@ class ImageModel(models.Model):
             init_size_method_map()
         di = size_method_map.get(name, None)
         if di is not None:
-            result = curry(getattr(self, di['base_name']), di['size'])
+            result = partial(getattr(self, di['base_name']), di['size'])
             setattr(self, name, result)
             return result
         else:

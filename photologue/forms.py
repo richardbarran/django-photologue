@@ -1,9 +1,5 @@
 import zipfile
-try:
-    from zipfile import BadZipFile
-except ImportError:
-    # Python 2.
-    from zipfile import BadZipfile as BadZipFile
+from zipfile import BadZipFile
 import logging
 import os
 from io import BytesIO
