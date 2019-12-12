@@ -1,6 +1,7 @@
-include requirements.txt
-include LICENSE.txt
+include CHANGELOG.txt
 include CONTRIBUTORS.txt
+include LICENSE.txt
+include requirements.txt
 recursive-include photologue/locale *
 recursive-include photologue/res *.jpg
 recursive-include photologue/res/zips *.zip
@@ -9,4 +10,6 @@ recursive-include photologue/contrib *
 recursive-exclude * *.py[co]
 recursive-exclude * __pycache__
 exclude photologue/res/test_unicode*.jpg
+exclude example_project
 recursive-exclude example_project *
+exclude tox.ini
