@@ -22,9 +22,9 @@ def prereleaser_before(data):
     print('Running unit tests.')
     subprocess.check_output(["python", "example_project/manage.py", "test", "photologue"])
 
-    print('Running PEP8 check.')
+    print('Running flake8 check.')
     # See setup.cfg for configuration options.
-    subprocess.check_output(["pycodestyle"])
+    subprocess.check_output(["flake8"])
 
     print('Checking that we have no outstanding DB migrations.')
     output = subprocess.check_output(["python", "example_project/manage.py", "makemigrations", "--dry-run",
