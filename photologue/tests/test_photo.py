@@ -3,6 +3,7 @@
 import unittest
 
 import os
+from io import BytesIO
 from django import VERSION
 from django.conf import settings
 from django.core.files.base import ContentFile
@@ -242,3 +243,32 @@ class ImageModelTest(PhotologueBaseTest):
     def test_create_size(self):
         """Nonsense image must not break scaling"""
         self.pn.create_size(self.s)
+
+
+def raw_image(mode='RGB', fmt='JPEG'):
+    """Create raw image.
+    """
+    data = BytesIO()
+    Image.new(mode, (100, 100)).save(data, fmt)
+    data.seek(0)
+    return data
+
+
+class ImageTransparencyTest(PhotologueBaseTest):
+
+    def setUp(self):
+        super(ImageTransparencyTest, self).setUp()
+        self.png = PhotoFactory()
+        self.png.image.save(
+            'trans.png', ContentFile(raw_image('RGBA', 'PNG').read()))
+
+    def tearDown(self):
+        super(ImageTransparencyTest, self).tearDown()
+        self.png.clear_cache()
+        os.unlink(os.path.join(settings.MEDIA_ROOT, self.png.image.path))
+
+    def test_create_size_png_keep_alpha_channel(self):
+        thumbnail = self.png.get_thumbnail_filename()
+        im = Image.open(
+            os.path.join(settings.MEDIA_ROOT, thumbnail))
+        self.assertEqual('RGBA', im.mode)
