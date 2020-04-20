@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 15:46+0800\n"
+"POT-Creation-Date: 2020-04-20 20:54+0000\n"
 "PO-Revision-Date: 2020-04-17 14:25+0800\n"
 "Last-Translator: Lessica <i.82@me.com>\n"
 "Language-Team: Simplified Chinese <LL@li.org>\n"
@@ -107,30 +107,6 @@ msgstr "从当前站点中移除选中照片"
 #: admin.py:198 templates/admin/photologue/photo/upload_zip.html:27
 msgid "Upload a zip archive of photos"
 msgstr "上传照片的 zip 存档"
-
-#: admin.py:229
-msgid "Adjustments"
-msgstr "调整"
-
-#: admin.py:232
-msgid "Filters"
-msgstr "滤镜"
-
-#: admin.py:235
-msgid "Reflection"
-msgstr "倒影"
-
-#: admin.py:238
-msgid "Transpose"
-msgstr "变换"
-
-#: admin.py:253
-msgid "Options"
-msgstr "选项"
-
-#: admin.py:256
-msgid "Enhancements"
-msgstr "增强"
 
 #: forms.py:27
 msgid "Title"
@@ -780,3 +756,21 @@ msgstr "此照片在下列图库中被找到"
 #: templates/photologue/photo_list.html:9
 msgid "All photos"
 msgstr "所有照片"
+
+#~ msgid "Adjustments"
+#~ msgstr "调整"
+
+#~ msgid "Filters"
+#~ msgstr "滤镜"
+
+#~ msgid "Reflection"
+#~ msgstr "倒影"
+
+#~ msgid "Transpose"
+#~ msgstr "变换"
+
+#~ msgid "Options"
+#~ msgstr "选项"
+
+#~ msgid "Enhancements"
+#~ msgstr "增强"

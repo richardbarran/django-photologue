@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 16:51+0200\n"
+"POT-Creation-Date: 2020-04-20 20:54+0000\n"
 "PO-Revision-Date: 2018-04-21 15:47+0000\n"
 "Last-Translator: cubells <info@obertix.net>\n"
 "Language-Team: Catalan (http://www.transifex.com/richardbarran/django-"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:62
+#: admin.py:61
 #, python-format
 msgid ""
 "The following photo does not belong to the same site(s) as the gallery, so "
@@ -35,18 +35,18 @@ msgstr[1] ""
 "Les següents fotografies no pertanyen al mateix lloc o llocs que la galeria, "
 "així que no es mostraran mai: %(photo_list)s."
 
-#: admin.py:74
+#: admin.py:73
 #, python-format
 msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
 msgstr[0] "S'ha afegit la galeria correctament a %(site)s"
 msgstr[1] "S'han afegit les galeries correctament a %(site)s"
 
-#: admin.py:81
+#: admin.py:80
 msgid "Add selected galleries to the current site"
 msgstr "Afegeix les galeries seleccionades al lloc web actual"
 
-#: admin.py:87
+#: admin.py:86
 #, python-format
 msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
@@ -54,11 +54,11 @@ msgid_plural ""
 msgstr[0] "S'ha suprimit correctament la galeria de %(site)s"
 msgstr[1] "S'han suprimit correctament les galeries de %(site)s"
 
-#: admin.py:94
+#: admin.py:93
 msgid "Remove selected galleries from the current site"
 msgstr "Suprimeix les galeries seleccionades del lloc web actual"
 
-#: admin.py:101
+#: admin.py:100
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully added to %(site)s"
@@ -71,12 +71,12 @@ msgstr[1] ""
 "Totes les fotos de les galeries %(galleries)s s'han afegit amb èxit a "
 "%(site)s"
 
-#: admin.py:112
+#: admin.py:108
 msgid "Add all photos of selected galleries to the current site"
 msgstr ""
 "Afegeix totes les fotos de les galeries seleccionades al lloc web actual"
 
-#: admin.py:119
+#: admin.py:115
 #, python-format
 msgid ""
 "All photos in gallery %(galleries)s have been successfully removed from "
@@ -91,42 +91,42 @@ msgstr[1] ""
 "Totes les fotos de les galeries %(galleries)s s'han suprimit amb èxit de "
 "%(site)s"
 
-#: admin.py:130
+#: admin.py:123
 msgid "Remove all photos in selected galleries from the current site"
 msgstr ""
 "Suprimeix totes les fotos de les galeries seleccionades del lloc web actual"
 
-#: admin.py:171
+#: admin.py:164
 #, python-format
 msgid "The photo has been successfully added to %(site)s"
 msgid_plural "The selected photos have been successfully added to %(site)s"
 msgstr[0] "La foto s'ha afegit amb èxit a %(site)s"
 msgstr[1] "Les fotos seleccionades s'ha afegit amb èxit a %(site)s"
 
-#: admin.py:178
+#: admin.py:171
 msgid "Add selected photos to the current site"
 msgstr "Afegeix les fotografies seleccionades al lloc web actual"
 
-#: admin.py:184
+#: admin.py:177
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
 msgid_plural "The selected photos have been successfully removed from %(site)s"
 msgstr[0] "La fotografia s'ha suprimit amb èxit de %(site)s"
 msgstr[1] "Les fotografies seleccionades s'han suprimit amb èxit de %(site)s"
 
-#: admin.py:191
+#: admin.py:184
 msgid "Remove selected photos from the current site"
 msgstr "Suprimeix les fotos seleccionades del lloc web actual"
 
-#: admin.py:205 templates/admin/photologue/photo/upload_zip.html:27
+#: admin.py:198 templates/admin/photologue/photo/upload_zip.html:27
 msgid "Upload a zip archive of photos"
 msgstr "Penja un fitxer zip de fotografies"
 
-#: forms.py:31
+#: forms.py:27
 msgid "Title"
 msgstr "Títol"
 
-#: forms.py:34
+#: forms.py:30
 msgid ""
 "All uploaded photos will be given a title made up of this title + a "
 "sequential number.<br>This field is required if creating a new gallery, but "
@@ -138,11 +138,11 @@ msgstr ""
 "nova, però és opcional en afegir a una galeria existent - si no es posa, el "
 "títols de les fotografies es crearan del nom de la galeria existent."
 
-#: forms.py:40
+#: forms.py:36
 msgid "Gallery"
 msgstr "Galeria"
 
-#: forms.py:42
+#: forms.py:38
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
@@ -150,43 +150,43 @@ msgstr ""
 "Selecciona una galeria a la qual afegir aquestes imatges. Deixa en blanc per "
 "crear una galeria nova amb el títol subministrat."
 
-#: forms.py:44
+#: forms.py:40
 msgid "Caption"
 msgstr "Títol"
 
-#: forms.py:46
+#: forms.py:42
 msgid "Caption will be added to all photos."
 msgstr "El títol s'afegirà a totes les fotografies."
 
-#: forms.py:47
+#: forms.py:43
 msgid "Description"
 msgstr "Descripció"
 
-#: forms.py:49
+#: forms.py:45
 msgid "A description of this Gallery. Only required for new galleries."
 msgstr ""
 "Una descripció d'aquesta galeria. Solament és necessari per a noves galeries."
 
-#: forms.py:50
+#: forms.py:46
 msgid "Is public"
 msgstr "És pública"
 
-#: forms.py:53
+#: forms.py:49
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
 msgstr ""
 "Desmarca per fer privades la galeria penjada i les fotografies incloses."
 
-#: forms.py:76
+#: forms.py:72
 msgid "A gallery with that title already exists."
 msgstr "Una galeria amb aquest títol ja existeix."
 
-#: forms.py:86
+#: forms.py:82
 msgid "Select an existing gallery, or enter a title for a new gallery."
 msgstr ""
 "Seleccioneu una galeria existent, o introduïu un títol per a la galeria nova."
 
-#: forms.py:119
+#: forms.py:115
 #, python-brace-format
 msgid ""
 "Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
@@ -195,93 +195,93 @@ msgstr ""
 "S'està ignorant el fitxer \"{filename}\" ja que està en una subcarpeta; "
 "totes les imatges haurien d'estar en la carpeta superior del fitxer zip."
 
-#: forms.py:160
+#: forms.py:156
 #, python-brace-format
 msgid "Could not process file \"{0}\" in the .zip archive."
 msgstr "No s'ha pogut processar el fitxer \"{0}\" del fitxer zip."
 
-#: forms.py:176
+#: forms.py:172
 #, python-brace-format
 msgid "The photos have been added to gallery \"{0}\"."
 msgstr "Les fotografies s'han afegit a la galeria \"{0}\"."
 
-#: models.py:100
+#: models.py:98
 msgid "Very Low"
 msgstr "Molt baixa"
 
-#: models.py:101
+#: models.py:99
 msgid "Low"
 msgstr "Baixa"
 
-#: models.py:102
+#: models.py:100
 msgid "Medium-Low"
 msgstr "Mitja-baix"
 
-#: models.py:103
+#: models.py:101
 msgid "Medium"
 msgstr "Mitjana"
 
-#: models.py:104
+#: models.py:102
 msgid "Medium-High"
 msgstr "Mitja-alta"
 
-#: models.py:105
+#: models.py:103
 msgid "High"
 msgstr "Alta"
 
-#: models.py:106
+#: models.py:104
 msgid "Very High"
 msgstr "Molt alta"
 
-#: models.py:111
+#: models.py:109
 msgid "Top"
 msgstr "Principi"
 
-#: models.py:112
+#: models.py:110
 msgid "Right"
 msgstr "Dreta"
 
-#: models.py:113
+#: models.py:111
 msgid "Bottom"
 msgstr "A baix"
 
-#: models.py:114
+#: models.py:112
 msgid "Left"
 msgstr "Esquerra"
 
-#: models.py:115
+#: models.py:113
 msgid "Center (Default)"
 msgstr "Centrada (predeterminat)"
 
-#: models.py:119
+#: models.py:117
 msgid "Flip left to right"
 msgstr "Gira d'esquerra a dreta"
 
-#: models.py:120
+#: models.py:118
 msgid "Flip top to bottom"
 msgstr "Gira de dalt a baix"
 
-#: models.py:121
+#: models.py:119
 msgid "Rotate 90 degrees counter-clockwise"
 msgstr "Rota 90 graus en sentit contrari al de les agulles del rellotge"
 
-#: models.py:122
+#: models.py:120
 msgid "Rotate 90 degrees clockwise"
 msgstr "Rota 90 graus en el sentit de les agulles del rellotge"
 
-#: models.py:123
+#: models.py:121
 msgid "Rotate 180 degrees"
 msgstr "Rota 180 graus"
 
-#: models.py:127
+#: models.py:125
 msgid "Tile"
 msgstr "Mosaic"
 
-#: models.py:128
+#: models.py:126
 msgid "Scale"
 msgstr "Escala"
 
-#: models.py:138
+#: models.py:136
 #, python-format
 msgid ""
 "Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
@@ -292,122 +292,122 @@ msgstr ""
 ">FILTRE_DOS->FILTRE_TRES\". Els filtres d'imatge s'aplicaran en ordre. Estan "
 "disponibles els filtres següents: %s."
 
-#: models.py:162
+#: models.py:158
 msgid "date published"
 msgstr "data de publicació"
 
-#: models.py:164 models.py:513
+#: models.py:160 models.py:510
 msgid "title"
 msgstr "títol"
 
-#: models.py:167
+#: models.py:163
 msgid "title slug"
 msgstr "url del títol"
 
-#: models.py:170 models.py:519
+#: models.py:166 models.py:516
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "L'url del títol és un URL sense espais per a un objecte."
 
-#: models.py:171 models.py:591
+#: models.py:167 models.py:587
 msgid "description"
 msgstr "descripció"
 
-#: models.py:173 models.py:524
+#: models.py:169 models.py:521
 msgid "is public"
 msgstr "és pública"
 
-#: models.py:175
+#: models.py:171
 msgid "Public galleries will be displayed in the default views."
 msgstr "Les galeries públiques es mostraran en les vistes predeterminades."
 
-#: models.py:179 models.py:536
+#: models.py:175 models.py:533
 msgid "photos"
 msgstr "fotos"
 
-#: models.py:181 models.py:527
+#: models.py:177 models.py:524
 msgid "sites"
 msgstr "llocs web"
 
-#: models.py:189
+#: models.py:185
 msgid "gallery"
 msgstr "galeria"
 
-#: models.py:190
+#: models.py:186
 msgid "galleries"
 msgstr "galeries"
 
-#: models.py:227
+#: models.py:224
 msgid "count"
 msgstr "compta"
 
-#: models.py:243 models.py:735
+#: models.py:240 models.py:732
 msgid "image"
 msgstr "imatge"
 
-#: models.py:246
+#: models.py:243
 msgid "date taken"
 msgstr "data en la què es va fer"
 
-#: models.py:249
+#: models.py:246
 msgid "Date image was taken; is obtained from the image EXIF data."
 msgstr ""
 "La data en què la imatge es va fer; s'obté de la informació EXIF de la "
 "imatge."
 
-#: models.py:250
+#: models.py:247
 msgid "view count"
 msgstr "vistes"
 
-#: models.py:253
+#: models.py:250
 msgid "crop from"
 msgstr "escapça des de"
 
-#: models.py:262
+#: models.py:259
 msgid "effect"
 msgstr "efecte"
 
-#: models.py:282
+#: models.py:279
 msgid "An \"admin_thumbnail\" photo size has not been defined."
 msgstr ""
 "No s'ha definit una mida de fotografia de la miniatura d'administració."
 
-#: models.py:288
+#: models.py:286
 msgid "Thumbnail"
 msgstr "Miniatura"
 
-#: models.py:516
+#: models.py:513
 msgid "slug"
 msgstr "url"
 
-#: models.py:520
+#: models.py:517
 msgid "caption"
 msgstr "títol"
 
-#: models.py:522
+#: models.py:519
 msgid "date added"
 msgstr "data en què s'ha afegit"
 
-#: models.py:526
+#: models.py:523
 msgid "Public photographs will be displayed in the default views."
 msgstr "Les fotografies públiques es mostraran en les vistes predeterminades."
 
-#: models.py:535
+#: models.py:532
 msgid "photo"
 msgstr "foto"
 
-#: models.py:588 models.py:767
+#: models.py:584 models.py:762
 msgid "name"
 msgstr "nom"
 
-#: models.py:666
+#: models.py:663
 msgid "rotate or flip"
 msgstr "rota o gira"
 
-#: models.py:670 models.py:698
+#: models.py:667 models.py:695
 msgid "color"
 msgstr "color"
 
-#: models.py:672
+#: models.py:669
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
@@ -415,11 +415,11 @@ msgstr ""
 "Un factor de 0.0 proporciona una imatge en blanc i negre, un factor d'1.0 "
 "proporciona la imatge original."
 
-#: models.py:674
+#: models.py:671
 msgid "brightness"
 msgstr "brillantor"
 
-#: models.py:676
+#: models.py:673
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
@@ -427,11 +427,11 @@ msgstr ""
 "Un factor de 0.0 proporciona una imatge en negre, un factor d'1.0 "
 "proporciona la imatge original."
 
-#: models.py:678
+#: models.py:675
 msgid "contrast"
 msgstr "contrast"
 
-#: models.py:680
+#: models.py:677
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
@@ -439,11 +439,11 @@ msgstr ""
 "Un factor de 0.0 proporciona una imatge en gris sòlid, un factor d'1.0 "
 "proporciona la imatge original."
 
-#: models.py:682
+#: models.py:679
 msgid "sharpness"
 msgstr "nitidesa"
 
-#: models.py:684
+#: models.py:681
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
@@ -451,15 +451,15 @@ msgstr ""
 "Un factor de 0.0 proporciona una imatge borrosa, un factor d'1.0 proporciona "
 "la imatge original."
 
-#: models.py:686
+#: models.py:683
 msgid "filters"
 msgstr "filtres"
 
-#: models.py:690
+#: models.py:687
 msgid "size"
 msgstr "mida"
 
-#: models.py:692
+#: models.py:689
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -469,15 +469,15 @@ msgstr ""
 "0.0 no afegeix reflex, un factor d'1.0 afegeix un reflex igual a l'alçada de "
 "la imatge original."
 
-#: models.py:695
+#: models.py:692
 msgid "strength"
 msgstr "reforçament"
 
-#: models.py:697
+#: models.py:694
 msgid "The initial opacity of the reflection gradient."
 msgstr "L'opacitat inicial del gradient de reflex."
 
-#: models.py:701
+#: models.py:698
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
@@ -485,35 +485,35 @@ msgstr ""
 "El color de fons del gradient de reflex. Definiu això per coincidir amb el "
 "color de fons de la pàgina web."
 
-#: models.py:705 models.py:811
+#: models.py:702 models.py:806
 msgid "photo effect"
 msgstr "efecte"
 
-#: models.py:706
+#: models.py:703
 msgid "photo effects"
 msgstr "efectes"
 
-#: models.py:737
+#: models.py:734
 msgid "style"
 msgstr "estil"
 
-#: models.py:741
+#: models.py:738
 msgid "opacity"
 msgstr "opacitat"
 
-#: models.py:743
+#: models.py:740
 msgid "The opacity of the overlay."
 msgstr "L'opacitat de la superposició."
 
-#: models.py:746
+#: models.py:743
 msgid "watermark"
 msgstr "marca d'aigua"
 
-#: models.py:747
+#: models.py:744
 msgid "watermarks"
 msgstr "marques d'aigua"
 
-#: models.py:771
+#: models.py:766
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -522,41 +522,41 @@ msgstr ""
 "baixos. Exemples: \"miniatura\", \"pantalla\", \"petita\", "
 "\"giny_de_la_pagina_principal\"."
 
-#: models.py:778
+#: models.py:773
 msgid "width"
 msgstr "amplada"
 
-#: models.py:781
+#: models.py:776
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "Si l'amplada està definida a \"0\", la imatge s'escalarà a l'altura "
 "proporcionada."
 
-#: models.py:782
+#: models.py:777
 msgid "height"
 msgstr "alçada"
 
-#: models.py:785
+#: models.py:780
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "Si l'alçada està definida a \"0\", la imatge s'escalarà a l'amplada "
 "proporcionada"
 
-#: models.py:786
+#: models.py:781
 msgid "quality"
 msgstr "qualitat"
 
-#: models.py:789
+#: models.py:784
 msgid "JPEG image quality."
 msgstr "Qualitat de la imatge JPEG."
 
-#: models.py:790
+#: models.py:785
 msgid "upscale images?"
 msgstr "millorem les imatges?"
 
-#: models.py:792
+#: models.py:787
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -565,11 +565,11 @@ msgstr ""
 "proporcionades. Les mides escapçades s'escalaran tenint em compte aquest "
 "paràmetre. "
 
-#: models.py:796
+#: models.py:791
 msgid "crop to fit?"
 msgstr "escapcem per ajustar?"
 
-#: models.py:798
+#: models.py:793
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
@@ -577,21 +577,21 @@ msgstr ""
 "Si la imatge seleccionada s'escalarà i escapçarà per ajustar-se a les "
 "dimensions proporcionades."
 
-#: models.py:800
+#: models.py:795
 msgid "pre-cache?"
 msgstr "pre-cache?"
 
-#: models.py:802
+#: models.py:797
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
 "Si se selecciona, la mida d'aquesta fotografia es posarà en la memòria cau "
 "conforme s'afegeixen."
 
-#: models.py:803
+#: models.py:798
 msgid "increment view count?"
 msgstr "incrementem el comptador de vistes?"
 
-#: models.py:805
+#: models.py:800
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
@@ -599,19 +599,19 @@ msgstr ""
 "Si se selecciona, el comptador de vistes de la imatge s'incrementarà quan la "
 "fotografia es mostre."
 
-#: models.py:817
+#: models.py:812
 msgid "watermark image"
 msgstr "imatge de la marca d'aigua"
 
-#: models.py:822
+#: models.py:817
 msgid "photo size"
 msgstr "mida de la foto"
 
-#: models.py:823
+#: models.py:818
 msgid "photo sizes"
 msgstr "mides de les fotos"
 
-#: models.py:840
+#: models.py:835
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr ""
 "Solament es poden escapçar imatges si l'amplada i l'altura estan definides."
