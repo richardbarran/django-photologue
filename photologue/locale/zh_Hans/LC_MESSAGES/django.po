@@ -1,0 +1,782 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Photologue\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-17 15:46+0800\n"
+"PO-Revision-Date: 2020-04-17 14:25+0800\n"
+"Last-Translator: Lessica <i.82@me.com>\n"
+"Language-Team: Simplified Chinese <LL@li.org>\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:61
+#, python-format
+msgid ""
+"The following photo does not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgid_plural ""
+"The following photos do not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgstr[0] ""
+"下列照片与其所属图库不属于同一站点, 因此将不会被显示: %(photo_list)s."
+msgstr[1] ""
+"下列照片与其所属图库不属于同一站点, 因此将不会被显示: %(photo_list)s."
+
+#: admin.py:73
+#, python-format
+msgid "The gallery has been successfully added to %(site)s"
+msgid_plural "The galleries have been successfully added to %(site)s"
+msgstr[0] "图库已被成功添加至 %(site)s"
+msgstr[1] "图库已被成功添加至 %(site)s"
+
+#: admin.py:80
+msgid "Add selected galleries to the current site"
+msgstr "添加选中图库到当前站点"
+
+#: admin.py:86
+#, python-format
+msgid "The gallery has been successfully removed from %(site)s"
+msgid_plural ""
+"The selected galleries have been successfully removed from %(site)s"
+msgstr[0] "图库已从 %(site)s 中被成功移除"
+msgstr[1] "图库已从 %(site)s 中被成功移除"
+
+#: admin.py:93
+msgid "Remove selected galleries from the current site"
+msgstr "从当前站点中移除选中图库"
+
+#: admin.py:100
+#, python-format
+msgid ""
+"All photos in gallery %(galleries)s have been successfully added to %(site)s"
+msgid_plural ""
+"All photos in galleries %(galleries)s have been successfully added to "
+"%(site)s"
+msgstr[0] "图库 %(galleries)s 中的所有照片已被成功添加至 %(site)s"
+msgstr[1] "图库 %(galleries)s 中的所有照片已被成功添加至 %(site)s"
+
+#: admin.py:108
+msgid "Add all photos of selected galleries to the current site"
+msgstr "添加选中图库中的所有照片至当前站点"
+
+#: admin.py:115
+#, python-format
+msgid ""
+"All photos in gallery %(galleries)s have been successfully removed from "
+"%(site)s"
+msgid_plural ""
+"All photos in galleries %(galleries)s have been successfully removed from "
+"%(site)s"
+msgstr[0] "图库 %(galleries)s 中的所有照片已从 %(site)s 中被成功移除"
+msgstr[1] "图库 %(galleries)s 中的所有照片已从 %(site)s 中被成功移除"
+
+#: admin.py:123
+msgid "Remove all photos in selected galleries from the current site"
+msgstr "从当前站点中移除选中图库中的所有照片"
+
+#: admin.py:164
+#, python-format
+msgid "The photo has been successfully added to %(site)s"
+msgid_plural "The selected photos have been successfully added to %(site)s"
+msgstr[0] "照片已被成功添加至 %(site)s"
+msgstr[1] "照片已被成功添加至 %(site)s"
+
+#: admin.py:171
+msgid "Add selected photos to the current site"
+msgstr "添加选中照片至当前站点"
+
+#: admin.py:177
+#, python-format
+msgid "The photo has been successfully removed from %(site)s"
+msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgstr[0] "照片已从 %(site)s 中被成功移除"
+msgstr[1] "照片已从 %(site)s 中被成功移除"
+
+#: admin.py:184
+msgid "Remove selected photos from the current site"
+msgstr "从当前站点中移除选中照片"
+
+#: admin.py:198 templates/admin/photologue/photo/upload_zip.html:27
+msgid "Upload a zip archive of photos"
+msgstr "上传照片的 zip 存档"
+
+#: admin.py:229
+msgid "Adjustments"
+msgstr "调整"
+
+#: admin.py:232
+msgid "Filters"
+msgstr "滤镜"
+
+#: admin.py:235
+msgid "Reflection"
+msgstr "倒影"
+
+#: admin.py:238
+msgid "Transpose"
+msgstr "变换"
+
+#: admin.py:253
+msgid "Options"
+msgstr "选项"
+
+#: admin.py:256
+msgid "Enhancements"
+msgstr "增强"
+
+#: forms.py:27
+msgid "Title"
+msgstr "标题"
+
+#: forms.py:30
+msgid ""
+"All uploaded photos will be given a title made up of this title + a "
+"sequential number.<br>This field is required if creating a new gallery, but "
+"is optional when adding to an existing gallery - if not supplied, the photo "
+"titles will be creating from the existing gallery name."
+msgstr ""
+"所有已上传的照片将被冠以一个由 此标题 + 有序数字  组成的新标题.<br>此字段在创"
+"建新图库时是必需的, 但是在被添加到某个已经存在的图库时则是可选的 - 如果未填写"
+"此字段, 照片标题将由这个已经存在的图库标题按上述规则组合而成."
+
+#: forms.py:36
+msgid "Gallery"
+msgstr "图库"
+
+#: forms.py:38
+msgid ""
+"Select a gallery to add these images to. Leave this empty to create a new "
+"gallery from the supplied title."
+msgstr ""
+"选择一个图库以将这些图片添加进去. 如若留空, 则以所提供的标题来创建一个新图库."
+
+#: forms.py:40
+msgid "Caption"
+msgstr "副标题"
+
+#: forms.py:42
+msgid "Caption will be added to all photos."
+msgstr "副标题将会被添加到所有照片中."
+
+#: forms.py:43
+msgid "Description"
+msgstr "描述信息"
+
+#: forms.py:45
+msgid "A description of this Gallery. Only required for new galleries."
+msgstr "此图库的描述信息. 此字段只有对新创建的图库是必需的."
+
+#: forms.py:46
+msgid "Is public"
+msgstr "是否公开"
+
+#: forms.py:49
+msgid ""
+"Uncheck this to make the uploaded gallery and included photographs private."
+msgstr "反选此处将使得上传的图库及包含的照片设为私有."
+
+#: forms.py:72
+msgid "A gallery with that title already exists."
+msgstr "已经存在一个名称相同的图库"
+
+#: forms.py:82
+msgid "Select an existing gallery, or enter a title for a new gallery."
+msgstr "选择一个现有图库, 或者键入标题以创建一个新图库"
+
+#: forms.py:115
+#, python-brace-format
+msgid ""
+"Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
+"in the top folder of the zip."
+msgstr ""
+"忽略文件 \"{filename}\" 因为它存在于子目录当中; 所有图像应当存在于 zip 存档的"
+"顶层目录中."
+
+#: forms.py:156
+#, python-brace-format
+msgid "Could not process file \"{0}\" in the .zip archive."
+msgstr "无法处理 .zip 存档当中的文件 \"{0}\"."
+
+#: forms.py:172
+#, python-brace-format
+msgid "The photos have been added to gallery \"{0}\"."
+msgstr "照片已被添加至图库 \"{0}\"."
+
+#: models.py:98
+msgid "Very Low"
+msgstr "非常低"
+
+#: models.py:99
+msgid "Low"
+msgstr "低"
+
+#: models.py:100
+msgid "Medium-Low"
+msgstr "较低"
+
+#: models.py:101
+msgid "Medium"
+msgstr "中等"
+
+#: models.py:102
+msgid "Medium-High"
+msgstr "较高"
+
+#: models.py:103
+msgid "High"
+msgstr "高"
+
+#: models.py:104
+msgid "Very High"
+msgstr "非常高"
+
+#: models.py:109
+msgid "Top"
+msgstr "顶部"
+
+#: models.py:110
+msgid "Right"
+msgstr "右侧"
+
+#: models.py:111
+msgid "Bottom"
+msgstr "底部"
+
+#: models.py:112
+msgid "Left"
+msgstr "左侧"
+
+#: models.py:113
+msgid "Center (Default)"
+msgstr "居中 (默认)"
+
+#: models.py:117
+msgid "Flip left to right"
+msgstr "左右翻转"
+
+#: models.py:118
+msgid "Flip top to bottom"
+msgstr "上下翻转"
+
+#: models.py:119
+msgid "Rotate 90 degrees counter-clockwise"
+msgstr "逆时针旋转 90 度"
+
+#: models.py:120
+msgid "Rotate 90 degrees clockwise"
+msgstr "顺时针旋转 90 度"
+
+#: models.py:121
+msgid "Rotate 180 degrees"
+msgstr "旋转 180 度"
+
+#: models.py:125
+msgid "Tile"
+msgstr "平铺"
+
+#: models.py:126
+msgid "Scale"
+msgstr "缩放"
+
+#: models.py:136
+#, python-format
+msgid ""
+"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
+">FILTER_THREE\". Image filters will be applied in order. The following "
+"filters are available: %s."
+msgstr ""
+"请按 \"FILTER_ONE->FILTER_TWO->FILTER_THREE\" 的格式来串联多个滤镜. 将按照顺"
+"序应用图像滤镜. 可用的滤镜有: %s."
+
+#: models.py:158
+msgid "date published"
+msgstr "发布日期"
+
+#: models.py:160 models.py:510
+msgid "title"
+msgstr "标题"
+
+#: models.py:163
+msgid "title slug"
+msgstr "标题缩写"
+
+#: models.py:166 models.py:516
+msgid "A \"slug\" is a unique URL-friendly title for an object."
+msgstr "标题缩写是一个唯一的、易于在 URL 当中使用和解析一个对象的标题"
+
+#: models.py:167 models.py:587
+msgid "description"
+msgstr "描述"
+
+#: models.py:169 models.py:521
+msgid "is public"
+msgstr "是否公开"
+
+#: models.py:171
+msgid "Public galleries will be displayed in the default views."
+msgstr "公开图库将被显示在默认视图中."
+
+#: models.py:175 models.py:533
+msgid "photos"
+msgstr "照片"
+
+#: models.py:177 models.py:524
+msgid "sites"
+msgstr "站点"
+
+#: models.py:185
+msgid "gallery"
+msgstr "图库"
+
+#: models.py:186
+msgid "galleries"
+msgstr "图库"
+
+#: models.py:224
+msgid "count"
+msgstr "数量"
+
+#: models.py:240 models.py:732
+msgid "image"
+msgstr "图像"
+
+#: models.py:243
+msgid "date taken"
+msgstr "拍摄日期"
+
+#: models.py:246
+msgid "Date image was taken; is obtained from the image EXIF data."
+msgstr "图像拍摄时的日期; 包含在图像的 EXIF 元数据中"
+
+#: models.py:247
+msgid "view count"
+msgstr "浏览次数"
+
+#: models.py:250
+msgid "crop from"
+msgstr "裁剪自"
+
+#: models.py:259
+msgid "effect"
+msgstr "效果"
+
+#: models.py:279
+msgid "An \"admin_thumbnail\" photo size has not been defined."
+msgstr "\"admin_thumbnail\" 图像尺寸尚未定义."
+
+#: models.py:286
+msgid "Thumbnail"
+msgstr "缩略图"
+
+#: models.py:513
+msgid "slug"
+msgstr "缩写"
+
+#: models.py:517
+msgid "caption"
+msgstr "副标题"
+
+#: models.py:519
+msgid "date added"
+msgstr "添加日期"
+
+#: models.py:523
+msgid "Public photographs will be displayed in the default views."
+msgstr "公开照片将被显示在默认视图中."
+
+#: models.py:532
+msgid "photo"
+msgstr "照片"
+
+#: models.py:584 models.py:762
+msgid "name"
+msgstr "名称"
+
+#: models.py:663
+msgid "rotate or flip"
+msgstr "旋转或翻转"
+
+#: models.py:667 models.py:695
+msgid "color"
+msgstr "色彩"
+
+#: models.py:669
+msgid ""
+"A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
+"original image."
+msgstr "数值为 0.0 时将产生黑白图像, 数值为 1.0 时将产生原图."
+
+#: models.py:671
+msgid "brightness"
+msgstr "亮度"
+
+#: models.py:673
+msgid ""
+"A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
+"image."
+msgstr "数值为 0.0 时将产生纯黑色图像, 数值为 1.0 时将产生原图."
+
+#: models.py:675
+msgid "contrast"
+msgstr "对比度"
+
+#: models.py:677
+msgid ""
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
+"image."
+msgstr "数值为 0.0 时将产生纯灰色图像, 数值为 1.0 时将产生原图."
+
+#: models.py:679
+msgid "sharpness"
+msgstr "锐度"
+
+#: models.py:681
+msgid ""
+"A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
+"image."
+msgstr "数值为 0.0 时将产生模糊图像, 数值为 1.0 时将产生原图."
+
+#: models.py:683
+msgid "filters"
+msgstr "滤镜"
+
+#: models.py:687
+msgid "size"
+msgstr "尺寸"
+
+#: models.py:689
+msgid ""
+"The height of the reflection as a percentage of the orignal image. A factor "
+"of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
+"height of the orignal image."
+msgstr ""
+"倒影的高度占原图高度的百分比. 数值为 0.0 时将不添加倒影, 数值为 1.0 时将添加"
+"一个与原图高度相同的倒影."
+
+#: models.py:692
+msgid "strength"
+msgstr "拉伸"
+
+#: models.py:694
+msgid "The initial opacity of the reflection gradient."
+msgstr "倒影渐变的初始不透明度."
+
+#: models.py:698
+msgid ""
+"The background color of the reflection gradient. Set this to match the "
+"background color of your page."
+msgstr "倒影渐变的背景色. 请将其设置为展示页面的背景色. "
+
+#: models.py:702 models.py:806
+msgid "photo effect"
+msgstr "照片效果"
+
+#: models.py:703
+msgid "photo effects"
+msgstr "照片效果"
+
+#: models.py:734
+msgid "style"
+msgstr "样式"
+
+#: models.py:738
+msgid "opacity"
+msgstr "不透明度"
+
+#: models.py:740
+msgid "The opacity of the overlay."
+msgstr "遮罩的不透明度"
+
+#: models.py:743
+msgid "watermark"
+msgstr "水印"
+
+#: models.py:744
+msgid "watermarks"
+msgstr "水印"
+
+#: models.py:766
+msgid ""
+"Photo size name should contain only letters, numbers and underscores. "
+"Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr ""
+"照片尺寸名称应当仅包含字母, 数字和下划线. 示例: \"thumbnail\", \"display\", "
+"\"small\", \"main_page_widget\"."
+
+#: models.py:773
+msgid "width"
+msgstr "宽度"
+
+#: models.py:776
+msgid ""
+"If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "如果宽度设置为 \"0\" 则图像将以高度为准进行缩放."
+
+#: models.py:777
+msgid "height"
+msgstr "高度"
+
+#: models.py:780
+msgid ""
+"If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "如果高度设置为 \"0\" 则图像将以宽度为准进行缩放."
+
+#: models.py:781
+msgid "quality"
+msgstr "质量"
+
+#: models.py:784
+msgid "JPEG image quality."
+msgstr "JPEG 图像质量"
+
+#: models.py:785
+msgid "upscale images?"
+msgstr "放大图像?"
+
+#: models.py:787
+msgid ""
+"If selected the image will be scaled up if necessary to fit the supplied "
+"dimensions. Cropped sizes will be upscaled regardless of this setting."
+msgstr ""
+"如果勾选此项, 图像将按需放大以适应所提供的尺寸.裁剪后的尺寸将忽略此项设定并被"
+"放大."
+
+#: models.py:791
+msgid "crop to fit?"
+msgstr "裁剪以适应?"
+
+#: models.py:793
+msgid ""
+"If selected the image will be scaled and cropped to fit the supplied "
+"dimensions."
+msgstr "如果勾选此项, 图像将被缩放并裁剪以适应所提供的尺寸."
+
+#: models.py:795
+msgid "pre-cache?"
+msgstr "预缓存?"
+
+#: models.py:797
+msgid "If selected this photo size will be pre-cached as photos are added."
+msgstr "如果勾选此项, 当添加照片被添加时, 将被处理为该尺寸并预先缓存."
+
+#: models.py:798
+msgid "increment view count?"
+msgstr "累计预览次数?"
+
+#: models.py:800
+msgid ""
+"If selected the image's \"view_count\" will be incremented when this photo "
+"size is displayed."
+msgstr "如果勾选此项, 图像的 \"预览次数\" 将在该尺寸的图像被显示时一并累计."
+
+#: models.py:812
+msgid "watermark image"
+msgstr "水印图像"
+
+#: models.py:817
+msgid "photo size"
+msgstr "图像尺寸"
+
+#: models.py:818
+msgid "photo sizes"
+msgstr "图像尺寸"
+
+#: models.py:835
+msgid "Can only crop photos if both width and height dimensions are set."
+msgstr "仅当宽度和高度都被设置时裁剪照片"
+
+#: templates/admin/photologue/photo/change_list.html:9
+msgid "Upload a zip archive"
+msgstr "上传 zip 存档"
+
+#: templates/admin/photologue/photo/upload_zip.html:15
+msgid "Home"
+msgstr "首页"
+
+#: templates/admin/photologue/photo/upload_zip.html:19
+#: templates/admin/photologue/photo/upload_zip.html:53
+msgid "Upload"
+msgstr "上传"
+
+#: templates/admin/photologue/photo/upload_zip.html:28
+msgid ""
+"\n"
+"\t\t<p>On this page you can upload many photos at once, as long as you have\n"
+"\t\tput them all in a zip archive. The photos can be either:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Added to an existing gallery.</li>\n"
+"\t\t\t<li>Otherwise, a new gallery is created with the supplied title.</li>\n"
+"\t\t</ul>\n"
+"\t"
+msgstr ""
+"\n"
+"\t\t<p>在此页面, 你可以一次性上传包含多张图片的 zip 存档,\n"
+"\t\t上传的图片可以被:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>添加至现有图库.</li>\n"
+"\t\t\t<li>或者, 以提供的标题创建一个新图库.</li>\n"
+"\t\t</ul>\n"
+"\t"
+
+#: templates/admin/photologue/photo/upload_zip.html:39
+msgid "Please correct the error below."
+msgstr "请更正以下错误"
+
+#: templates/admin/photologue/photo/upload_zip.html:39
+msgid "Please correct the errors below."
+msgstr "请更正以下错误"
+
+#: templates/photologue/gallery_archive.html:4
+#: templates/photologue/gallery_archive.html:9
+msgid "Latest photo galleries"
+msgstr "最新照片图库"
+
+#: templates/photologue/gallery_archive.html:16
+#: templates/photologue/photo_archive.html:16
+msgid "Filter by year"
+msgstr "按年过滤"
+
+#: templates/photologue/gallery_archive.html:32
+#: templates/photologue/gallery_list.html:26
+msgid "No galleries were found"
+msgstr "未找到图库"
+
+#: templates/photologue/gallery_archive_day.html:4
+#: templates/photologue/gallery_archive_day.html:9
+#, python-format
+msgid "Galleries for %(show_day)s"
+msgstr "%(show_day)s 的图库"
+
+#: templates/photologue/gallery_archive_day.html:18
+#: templates/photologue/gallery_archive_month.html:32
+#: templates/photologue/gallery_archive_year.html:32
+msgid "No galleries were found."
+msgstr "未找到图库"
+
+#: templates/photologue/gallery_archive_day.html:22
+msgid "View all galleries for month"
+msgstr "按月份浏览所有图库"
+
+#: templates/photologue/gallery_archive_month.html:4
+#: templates/photologue/gallery_archive_month.html:9
+#, python-format
+msgid "Galleries for %(show_month)s"
+msgstr "%(show_month)s 的图库"
+
+#: templates/photologue/gallery_archive_month.html:16
+#: templates/photologue/photo_archive_month.html:16
+msgid "Filter by day"
+msgstr "按天过滤"
+
+#: templates/photologue/gallery_archive_month.html:35
+msgid "View all galleries for year"
+msgstr "按年份浏览所有图库"
+
+#: templates/photologue/gallery_archive_year.html:4
+#: templates/photologue/gallery_archive_year.html:9
+#, python-format
+msgid "Galleries for %(show_year)s"
+msgstr "%(show_year)s 的图库"
+
+#: templates/photologue/gallery_archive_year.html:16
+#: templates/photologue/photo_archive_year.html:17
+msgid "Filter by month"
+msgstr "按月过滤"
+
+#: templates/photologue/gallery_archive_year.html:35
+#: templates/photologue/gallery_detail.html:17
+msgid "View all galleries"
+msgstr "浏览所有图库"
+
+#: templates/photologue/gallery_detail.html:10
+#: templates/photologue/gallery_list.html:16
+#: templates/photologue/includes/gallery_sample.html:8
+#: templates/photologue/photo_detail.html:10
+msgid "Published"
+msgstr "已发布的"
+
+#: templates/photologue/gallery_list.html:4
+#: templates/photologue/gallery_list.html:9
+msgid "All galleries"
+msgstr "所有图库"
+
+#: templates/photologue/includes/paginator.html:6
+#: templates/photologue/includes/paginator.html:8
+msgid "Previous"
+msgstr "上一页"
+
+#: templates/photologue/includes/paginator.html:11
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t    第 %(page_number)s / %(total_pages)s 页\n"
+"\t\t\t\t"
+
+#: templates/photologue/includes/paginator.html:16
+#: templates/photologue/includes/paginator.html:18
+msgid "Next"
+msgstr "下一页"
+
+#: templates/photologue/photo_archive.html:4
+#: templates/photologue/photo_archive.html:9
+msgid "Latest photos"
+msgstr "最新照片"
+
+#: templates/photologue/photo_archive.html:34
+#: templates/photologue/photo_archive_day.html:21
+#: templates/photologue/photo_archive_month.html:36
+#: templates/photologue/photo_archive_year.html:37
+#: templates/photologue/photo_list.html:21
+msgid "No photos were found"
+msgstr "未找到照片"
+
+#: templates/photologue/photo_archive_day.html:4
+#: templates/photologue/photo_archive_day.html:9
+#, python-format
+msgid "Photos for %(show_day)s"
+msgstr "%(show_day)s 的照片"
+
+#: templates/photologue/photo_archive_day.html:24
+msgid "View all photos for month"
+msgstr "按月份浏览所有照片"
+
+#: templates/photologue/photo_archive_month.html:4
+#: templates/photologue/photo_archive_month.html:9
+#, python-format
+msgid "Photos for %(show_month)s"
+msgstr "%(show_month)s 的照片"
+
+#: templates/photologue/photo_archive_month.html:39
+msgid "View all photos for year"
+msgstr "按年份浏览所有照片"
+
+#: templates/photologue/photo_archive_year.html:4
+#: templates/photologue/photo_archive_year.html:10
+#, python-format
+msgid "Photos for %(show_year)s"
+msgstr "%(show_year)s 的照片"
+
+#: templates/photologue/photo_archive_year.html:40
+msgid "View all photos"
+msgstr "浏览所有照片"
+
+#: templates/photologue/photo_detail.html:22
+msgid "This photo is found in the following galleries"
+msgstr "此照片在下列图库中被找到"
+
+#: templates/photologue/photo_list.html:4
+#: templates/photologue/photo_list.html:9
+msgid "All photos"
+msgstr "所有照片"
