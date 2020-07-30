@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.12 (unreleased)
+3.12 (2020-07-30)
 -----------------
 
 - Drop alpha channel only on jpeg save (contributed by drazen)
