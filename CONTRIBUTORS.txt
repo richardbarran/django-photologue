@@ -15,6 +15,7 @@ Karol Majta
 Urtzi Odriozola
 Alexey Vasilyev
 kdeebee
+drazen
 Alasdair Nicol
 lizwalsh
 Steffen Goertz
@@ -22,6 +23,8 @@ Baptiste Mispelon
 FilippoIOVINE
 ferhat elmas
 Benjamin Liles
+r0668522
+i_82
 Steve Wills
 Timothy Hobbs
 Chris Frisina
@@ -45,4 +48,6 @@ Herman Schaaf
 Antti Kaihola
 Federico Maggi
 cubells
+Lessica
 AduchiMergen
+abc Def
