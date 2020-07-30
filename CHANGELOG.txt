@@ -4,8 +4,9 @@ Changelog
 3.12 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Drop alpha channel only on jpeg save (contributed by drazen)
+- Added zh_Hans translation	(contributed by Lessica)
+- improved Dutch translations (contributed by andreas.milants)
 
 3.11 (2019-12-13)
 -----------------
