@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import unittest
-
 import os
-from io import BytesIO
+import unittest
 from django import VERSION
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from io import BytesIO
 
 from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
     UNICODE_IMAGE_PATH, NONSENSE_IMAGE_PATH, GalleryFactory, PhotoFactory
