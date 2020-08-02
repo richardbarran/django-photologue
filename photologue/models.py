@@ -13,7 +13,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
+from django.core.files.storage import default_storage, FileSystemStorage
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models.signals import post_save
@@ -50,6 +50,14 @@ ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
 
 # Photologue image path relative to media root
 PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
+
+# Use celery to speed up page loading after uploading photos?
+USE_CELERY = getattr(settings, 'PHOTOLOGUE_USE_CELERY', False)
+
+# When using celery, where do we want to temporarily store our zip-file after upload?
+TEMP_ZIP_STORAGE = getattr(settings, 'PHOTOLOGUE_TEMP_ZIP_STORAGE', FileSystemStorage())
+if USE_CELERY:
+    from photologue import tasks
 
 # Look for user function to define file paths
 PHOTOLOGUE_PATH = getattr(settings, 'PHOTOLOGUE_PATH', None)
@@ -464,7 +472,7 @@ class ImageModel(models.Model):
         super().__init__(*args, **kwargs)
         self._old_image = self.image
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, running_in_task=False, **kwargs):
         image_has_changed = False
         if self._get_pk_val() and (self._old_image != self.image):
             image_has_changed = True
@@ -490,7 +498,12 @@ class ImageModel(models.Model):
             except:
                 logger.error('Failed to read EXIF DateTimeOriginal', exc_info=True)
         super().save(*args, **kwargs)
-        self.pre_cache()
+        if not USE_CELERY or running_in_task:
+            self.pre_cache()
+        else:
+            # If we upload lots of photos at once (in a zip), there will already be a task made for opening the zip
+            # this means we are now probably already 'running in a task' and there is no reason to add additional tasks
+            tasks.pre_cache.delay(self.id)
 
     def delete(self):
         assert self._get_pk_val() is not None, \
@@ -897,6 +910,25 @@ def add_default_site(instance, created, **kwargs):
     if instance.sites.exists():
         return
     instance.sites.add(Site.objects.get_current())
+
+
+class ZipUploadModel(models.Model):
+    zip_file = models.FileField(upload_to='gallery-zip-files/', storage=TEMP_ZIP_STORAGE)
+    title = models.CharField(max_length=255, null=True, blank=True,
+                             help_text=_('All uploaded photos will be given a title made up of this title + a '
+                                         'sequential number.<br>This field is required if creating a new '
+                                         'gallery, but is optional when adding to an existing gallery - if '
+                                         'not supplied, the photo titles will be creating from the existing '
+                                         'gallery name.'))
+    gallery = models.ForeignKey(Gallery, null=True, blank=True, on_delete=models.CASCADE,
+                                help_text=_('Select a gallery to add these images to. Leave this empty to '
+                                            'create a new gallery from the supplied title.'))
+    caption = models.TextField(null=True, blank=True,
+                               help_text=_('Caption will be added to all photos.'))
+    description = models.TextField(null=True, blank=True,
+                                   help_text=_('A description of this Gallery. Only required for new galleries.'))
+    is_public = models.BooleanField(default=True, help_text=_(
+        'Uncheck this to make the uploaded gallery and included photographs private.'))
 
 
 post_save.connect(add_default_site, sender=Gallery)
