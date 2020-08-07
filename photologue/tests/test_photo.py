@@ -106,7 +106,7 @@ class PhotoTest(PhotologueBaseTest):
                                 slug='é')
 
     @patch('photologue.models.ImageModel.resize_image')
-    def test_update_cropping_applied(self, mock_resize_image):
+    def test_update_crop_applied(self, mock_resize_image):
         self.assertEqual(1, Photo.objects.count())
         self.assertTrue(self.pl.crop_from != 'right')
         self.pl.crop_from = 'right'
