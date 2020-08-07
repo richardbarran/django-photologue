@@ -12,7 +12,7 @@ except ImportError:
     raise ImportError(
         "No module named factory. To run photologue's tests you need to install factory-boy.")
 
-from ..models import Gallery, ImageModel, Photo, PhotoSize
+from ..models import Gallery, ImageModel, Photo, PhotoEffect, PhotoSize
 
 RES_DIR = os.path.join(os.path.dirname(__file__), '../res')
 LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
@@ -112,3 +112,11 @@ class PhotoSizeFactory(factory.django.DjangoModelFactory):
         model = PhotoSize
 
     name = factory.Sequence(lambda n: 'name{0:0>3}'.format(n))
+
+
+class PhotoEffectFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = PhotoEffect
+
+    name = factory.Sequence(lambda n: 'effect{0:0>3}'.format(n))

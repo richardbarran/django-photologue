@@ -7,9 +7,10 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from io import BytesIO
+from unittest.mock import patch
 
 from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
-    UNICODE_IMAGE_PATH, NONSENSE_IMAGE_PATH, GalleryFactory, PhotoFactory
+    UNICODE_IMAGE_PATH, NONSENSE_IMAGE_PATH, GalleryFactory, PhotoEffectFactory, PhotoFactory
 from .helpers import PhotologueBaseTest
 from ..models import Image, Photo, PHOTOLOGUE_DIR, PHOTOLOGUE_CACHEDIRTAG
 
@@ -103,6 +104,26 @@ class PhotoTest(PhotologueBaseTest):
         (I was trying to track down an elusive unicode issue elsewhere)"""
         self.pl2 = PhotoFactory(title='É',
                                 slug='é')
+
+    @patch('photologue.models.ImageModel.resize_image')
+    def test_update_cropping_applied(self, mock_resize_image):
+        self.assertEqual(1, Photo.objects.count())
+        self.assertTrue(self.pl.crop_from != 'right')
+        self.pl.crop_from = 'right'
+        self.pl.save()
+        self.assertTrue(mock_resize_image.called)
+
+    @patch('photologue.models.ImageModel.resize_image')
+    @patch('photologue.models.PhotoEffect.pre_process')
+    @patch('photologue.models.PhotoEffect.post_process')
+    def test_update_effect_applied(self, mock_post_process, mock_pre_process, mock_resize_image):
+        self.assertEqual(1, Photo.objects.count())
+        self.assertIsNone(self.pl.effect)
+        self.pl.effect = PhotoEffectFactory()
+        self.pl.save()
+        self.assertTrue(mock_pre_process.called)
+        self.assertTrue(mock_resize_image.called)
+        self.assertTrue(mock_post_process.called)
 
 
 class PhotoManagerTest(PhotologueBaseTest):
