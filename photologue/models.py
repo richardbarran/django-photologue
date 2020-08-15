@@ -393,8 +393,8 @@ class ImageModel(models.Model):
             im = im.resize(new_dimensions, Image.ANTIALIAS)
         return im
 
-    def create_size(self, photosize):
-        if self.size_exists(photosize):
+    def create_size(self, photosize, recreate=False):
+        if self.size_exists(photosize) and not recreate:
             return
         try:
             im = Image.open(self.image.storage.open(self.image.name))
@@ -413,7 +413,7 @@ class ImageModel(models.Model):
             im = im.transpose(
                 IMAGE_EXIF_ORIENTATION_MAP[self.EXIF().get('Image Orientation').values[0]])
         # Resize/crop image
-        if im.size != photosize.size and photosize.size != (0, 0):
+        if (im.size != photosize.size and photosize.size != (0, 0)) or recreate:
             im = self.resize_image(im, photosize)
         # Apply watermark if found
         if photosize.watermark is not None:
@@ -454,17 +454,20 @@ class ImageModel(models.Model):
         for photosize in cache.sizes.values():
             self.remove_size(photosize, False)
 
-    def pre_cache(self):
+    def pre_cache(self, recreate=False):
         cache = PhotoSizeCache()
+        if recreate:
+            self.clear_cache()
         for photosize in cache.sizes.values():
             if photosize.pre_cache:
-                self.create_size(photosize)
+                self.create_size(photosize, recreate)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._old_image = self.image
 
     def save(self, *args, **kwargs):
+        recreate = kwargs.pop('recreate', False)
         image_has_changed = False
         if self._get_pk_val() and (self._old_image != self.image):
             image_has_changed = True
@@ -490,7 +493,7 @@ class ImageModel(models.Model):
             except:
                 logger.error('Failed to read EXIF DateTimeOriginal', exc_info=True)
         super().save(*args, **kwargs)
-        self.pre_cache()
+        self.pre_cache(recreate)
 
     def delete(self):
         assert self._get_pk_val() is not None, \
@@ -536,6 +539,12 @@ class Photo(ImageModel):
         return self.title
 
     def save(self, *args, **kwargs):
+        # If crop_from or effect property has been changed on existing image,
+        # update kwargs to force image recreation in parent class
+        current = Photo.objects.get(pk=self.pk) if self.pk else None
+        if current and (current.crop_from != self.crop_from or current.effect != self.effect):
+            kwargs.update(recreate=True)
+
         if self.slug is None:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
