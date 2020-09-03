@@ -4,7 +4,7 @@ Changelog
 3.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Checked compatibility with Django 3.1.
 
 
 3.12 (2020-07-30)
