@@ -4,14 +4,28 @@ import logging
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from .tasks import parse_zip as parse_zip_task
 from .models import Gallery, ZipUploadModel
-from photologue.utils.zipfile import parse_zip
+from photologue.utils.zipfile import handle_zip
 
 logger = logging.getLogger('photologue.forms')
 
-# Use celery to speed up page loading after uploading photos?
-USE_CELERY = getattr(settings, 'PHOTOLOGUE_USE_CELERY', False)
+RUN_ASYNC = getattr(settings, 'PHOTOLOGUE_PROCESSING_MODE', 'sync') == 'async'
+
+if RUN_ASYNC:
+    ASYNC_IMPLEMENTATION = getattr(settings, 'PHOTOLOGUE_ASYNC_SERVICE', 'celery')
+    if ASYNC_IMPLEMENTATION == 'celery':
+        from .tasks import parse_zip as parse_zip_task
+
+
+        def zip_handler(instance, request):
+            instance.save()
+            parse_zip_task.delay(instance.id)
+    else:
+        raise NotImplementedError('Django-photologue only supports celery at this moment')
+
+else:
+    def zip_handler(instance, request):
+        handle_zip(instance, request=request)
 
 
 class UploadZipForm(forms.ModelForm):
@@ -55,12 +69,7 @@ class UploadZipForm(forms.ModelForm):
     def save(self, request=None, zip_file=None):
         if not zip_file:
             zip_file = self.cleaned_data['zip_file']
-        if USE_CELERY:
-            instance = super().save(commit=False)
-            instance.zip_file = zip_file
-            instance.save()  # We need to save before making task to get an id
-            parse_zip_task.delay(instance.id)
-        else:
-            parse_zip(zip_file, self.cleaned_data['gallery'], self.cleaned_data['title'],
-                      self.cleaned_data['description'], self.cleaned_data['caption'], self.cleaned_data['is_public'],
-                      request=request)
+
+        instance = super().save(commit=False)
+        instance.zip_file = zip_file
+        zip_handler(instance, request)

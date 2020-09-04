@@ -51,13 +51,11 @@ ImageFile.MAXBLOCK = getattr(settings, 'PHOTOLOGUE_MAXBLOCK', 256 * 2 ** 10)
 # Photologue image path relative to media root
 PHOTOLOGUE_DIR = getattr(settings, 'PHOTOLOGUE_DIR', 'photologue')
 
-# Use celery to speed up page loading after uploading photos?
-USE_CELERY = getattr(settings, 'PHOTOLOGUE_USE_CELERY', False)
+# Use tasks to speed up page loading after uploading photos?
+RUN_ASYNC = getattr(settings, 'PHOTOLOGUE_PROCESSING_MODE', 'sync') == 'async'
 
 # When using celery, where do we want to temporarily store our zip-file after upload?
-TEMP_ZIP_STORAGE = getattr(settings, 'PHOTOLOGUE_TEMP_ZIP_STORAGE', FileSystemStorage())
-if USE_CELERY:
-    from photologue import tasks
+TEMP_ZIP_STORAGE = getattr(settings, 'PHOTOLOGUE_TEMP_ZIP_STORAGE', default_storage)
 
 # Look for user function to define file paths
 PHOTOLOGUE_PATH = getattr(settings, 'PHOTOLOGUE_PATH', None)
@@ -498,11 +496,12 @@ class ImageModel(models.Model):
             except:
                 logger.error('Failed to read EXIF DateTimeOriginal', exc_info=True)
         super().save(*args, **kwargs)
-        if not USE_CELERY or running_in_task:
-            self.pre_cache()
-        else:
+        if (not RUN_ASYNC) or running_in_task:
             # If we upload lots of photos at once (in a zip), there will already be a task made for opening the zip
             # this means we are now probably already 'running in a task' and there is no reason to add additional tasks
+            self.pre_cache()
+        else:
+            from photologue import tasks  # Imported here to avoid circular dependency
             tasks.pre_cache.delay(self.id)
 
     def delete(self):
@@ -916,7 +915,7 @@ class ZipUploadModel(models.Model):
     zip_file = models.FileField(upload_to='gallery-zip-files/', storage=TEMP_ZIP_STORAGE)
     title = models.CharField(max_length=255, null=True, blank=True,
                              help_text=_('All uploaded photos will be given a title made up of this title + a '
-                                         'sequential number.<br>This field is required if creating a new '
+                                         'sequential number. This field is required if creating a new '
                                          'gallery, but is optional when adding to an existing gallery - if '
                                          'not supplied, the photo titles will be creating from the existing '
                                          'gallery name.'))

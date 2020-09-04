@@ -14,11 +14,14 @@ from django.utils.encoding import force_text
 
 logger = logging.getLogger('photologue.zip')
 
-# Use celery to speed up page loading after uploading photos?
-USE_CELERY = getattr(settings, 'PHOTOLOGUE_USE_CELERY', False)
+
+def handle_zip(zip_upload_model, request=None):
+    _parse_zip(zip_upload_model.zip_file, zip_upload_model.gallery, zip_upload_model.title, zip_upload_model.description,
+               zip_upload_model.caption,
+               zip_upload_model.is_public, request=request)
 
 
-def parse_zip(zip_file, gallery, title, description, caption, is_public, request=None):
+def _parse_zip(zip_file, gallery, title, description, caption, is_public, request=None):
     zip = zipfile.ZipFile(zip_file)
     count = 1
     current_site = Site.objects.get(id=settings.SITE_ID)
@@ -95,11 +98,9 @@ def parse_zip(zip_file, gallery, title, description, caption, is_public, request
         contentfile = ContentFile(data)
         photo.image.save(filename, contentfile)
 
-        if USE_CELERY:
-            # This if-statement isn't really needed, but makes it more obvious what's happening
-            photo.save(running_in_task=True)
-        else:
-            photo.save()
+        # running_in_task is ignored if not in async mode.
+        # This function shouldn't care about async or not
+        photo.save(running_in_task=True)
 
         photo.sites.add(current_site)
         gallery.photos.add(photo)
