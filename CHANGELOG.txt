@@ -6,7 +6,7 @@ Changelog
 
 - Checked compatibility with Django 3.1.
 - Apply crop/effect changes to existing images (#210).
-- Encoding objects before hashing error	1c56e06	(#205).
+- Encoding objects before hashing error	(#205).
 
 3.12 (2020-07-30)
 -----------------
