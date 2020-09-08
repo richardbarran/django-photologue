@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-20 20:54+0000\n"
+"POT-Creation-Date: 2020-09-03 21:22+0000\n"
 "PO-Revision-Date: 2017-09-23 19:18+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
 "Language-Team: Czech (http://www.transifex.com/richardbarran/django-"
@@ -293,7 +293,7 @@ msgstr ""
 msgid "date published"
 msgstr "datum zveřejnění"
 
-#: models.py:160 models.py:510
+#: models.py:160 models.py:513
 msgid "title"
 msgstr "název"
 
@@ -301,15 +301,15 @@ msgstr "název"
 msgid "title slug"
 msgstr "identifikátor"
 
-#: models.py:166 models.py:516
+#: models.py:166 models.py:519
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "Unikátní název, který bude použit v URL adrese (bez diakritiky)."
 
-#: models.py:167 models.py:587
+#: models.py:167 models.py:596
 msgid "description"
 msgstr "popis"
 
-#: models.py:169 models.py:521
+#: models.py:169 models.py:524
 msgid "is public"
 msgstr "veřejné"
 
@@ -317,11 +317,11 @@ msgstr "veřejné"
 msgid "Public galleries will be displayed in the default views."
 msgstr "Veřejné fotogalerie budou zobrazeny ve výchozích pohledech."
 
-#: models.py:175 models.py:533
+#: models.py:175 models.py:536
 msgid "photos"
 msgstr "fotografie"
 
-#: models.py:177 models.py:524
+#: models.py:177 models.py:527
 msgid "sites"
 msgstr ""
 
@@ -337,7 +337,7 @@ msgstr "fotogalerie"
 msgid "count"
 msgstr "počet"
 
-#: models.py:240 models.py:732
+#: models.py:240 models.py:741
 msgid "image"
 msgstr "obrázek"
 
@@ -369,85 +369,85 @@ msgstr "Velikost „admin_thumbnail“ není definovaná."
 msgid "Thumbnail"
 msgstr "Náhled"
 
-#: models.py:513
+#: models.py:516
 msgid "slug"
 msgstr "identifikátor"
 
-#: models.py:517
+#: models.py:520
 msgid "caption"
 msgstr "titulek"
 
-#: models.py:519
+#: models.py:522
 msgid "date added"
 msgstr "datum přidání"
 
-#: models.py:523
+#: models.py:526
 msgid "Public photographs will be displayed in the default views."
 msgstr "Veřejné fotografie budou zobrazeny ve výchozích pohledech."
 
-#: models.py:532
+#: models.py:535
 msgid "photo"
 msgstr "fotografie"
 
-#: models.py:584 models.py:762
+#: models.py:593 models.py:771
 msgid "name"
 msgstr "název"
 
-#: models.py:663
+#: models.py:672
 msgid "rotate or flip"
 msgstr "obrátit nebo otočit"
 
-#: models.py:667 models.py:695
+#: models.py:676 models.py:704
 msgid "color"
 msgstr "barva"
 
-#: models.py:669
+#: models.py:678
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr ""
 "Hodnota 0,0 udělá černobílý obrázek, hodnota 1,0 zachová původní barvy."
 
-#: models.py:671
+#: models.py:680
 msgid "brightness"
 msgstr "jas"
 
-#: models.py:673
+#: models.py:682
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr "Hodnota 0,0 udělá černý obrázek, hodnota 1,0 zachová původní jas."
 
-#: models.py:675
+#: models.py:684
 msgid "contrast"
 msgstr "kontrast"
 
-#: models.py:677
+#: models.py:686
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr "Hodnota 0,0 udělá šedý obrázek, hodnota 1,0 zachová původní kontrast."
 
-#: models.py:679
+#: models.py:688
 msgid "sharpness"
 msgstr "ostrost"
 
-#: models.py:681
+#: models.py:690
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
 "Hodnota 0,0 udělá rozmazaný obrázek, hodnota 1,0 zachová původní ostrost."
 
-#: models.py:683
+#: models.py:692
 msgid "filters"
 msgstr "filtry"
 
-#: models.py:687
+#: models.py:696
 msgid "size"
 msgstr "velikost"
 
-#: models.py:689
+#: models.py:698
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -456,49 +456,49 @@ msgstr ""
 "Výška odrazu jako podíl výšky původního obrázku. Hodnota 0.0 nepřidá žádný "
 "odraz, hodnota 1.0 přidá odraz stejně vysoký, jako původní obrázek."
 
-#: models.py:692
+#: models.py:701
 msgid "strength"
 msgstr "intenzita"
 
-#: models.py:694
+#: models.py:703
 msgid "The initial opacity of the reflection gradient."
 msgstr "Počáteční intenzita postupně slábnoucího odrazu."
 
-#: models.py:698
+#: models.py:707
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr "Barva pozadí odrazu. Nastavte na barvu pozadí stránky."
 
-#: models.py:702 models.py:806
+#: models.py:711 models.py:815
 msgid "photo effect"
 msgstr "efekt"
 
-#: models.py:703
+#: models.py:712
 msgid "photo effects"
 msgstr "efekty"
 
-#: models.py:734
+#: models.py:743
 msgid "style"
 msgstr "styl"
 
-#: models.py:738
+#: models.py:747
 msgid "opacity"
 msgstr "krytí"
 
-#: models.py:740
+#: models.py:749
 msgid "The opacity of the overlay."
 msgstr "Neprůhlednost překrývajícího obrázku."
 
-#: models.py:743
+#: models.py:752
 msgid "watermark"
 msgstr "vodotisk"
 
-#: models.py:744
+#: models.py:753
 msgid "watermarks"
 msgstr "vodotisky"
 
-#: models.py:766
+#: models.py:775
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -506,41 +506,41 @@ msgstr ""
 "Název velikosti by měl obsahovat pouze písmena, číslice a podtržítka. "
 "Například: „nahled“, „male_zobrazeni“, „velke_zobrazeni“."
 
-#: models.py:773
+#: models.py:782
 msgid "width"
 msgstr "šířka"
 
-#: models.py:776
+#: models.py:785
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "Pokud je šířka nastavena na 0, velikost obrázku bude upravena podle zadané "
 "výšky."
 
-#: models.py:777
+#: models.py:786
 msgid "height"
 msgstr "výška"
 
-#: models.py:780
+#: models.py:789
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "Pokud je výška nastavena na 0, velikost obrázku bude upravena podle zadané "
 "šířky."
 
-#: models.py:781
+#: models.py:790
 msgid "quality"
 msgstr "kvalita"
 
-#: models.py:784
+#: models.py:793
 msgid "JPEG image quality."
 msgstr "Kvalita JPEG."
 
-#: models.py:785
+#: models.py:794
 msgid "upscale images?"
 msgstr "zvětšit obrázky?"
 
-#: models.py:787
+#: models.py:796
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -549,32 +549,32 @@ msgstr ""
 "požadovaným rozměrům. Pokud má být obrázek oříznutý, bude podle potřeby "
 "zvětšen bez ohledu na toto nastavení."
 
-#: models.py:791
+#: models.py:800
 msgid "crop to fit?"
 msgstr "oříznout?"
 
-#: models.py:793
+#: models.py:802
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr ""
 "Pokud je vybráno, obrázek bude oříznutý, aby odpovídal požadovaným proporcím."
 
-#: models.py:795
+#: models.py:804
 msgid "pre-cache?"
 msgstr "vytvářet předem?"
 
-#: models.py:797
+#: models.py:806
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr ""
 "Pokud je vybráno, bude pro každý obrázek vytvořena varianta v této velikosti "
 "předem, místo až v době zobrazení."
 
-#: models.py:798
+#: models.py:807
 msgid "increment view count?"
 msgstr "navyšovat počet zobrazení?"
 
-#: models.py:800
+#: models.py:809
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
@@ -582,19 +582,19 @@ msgstr ""
 "Pokud je vybráno, bude hodnota „view_count“ obrázku navyšována s každým "
 "zobrazením obrázku této velikosti."
 
-#: models.py:812
+#: models.py:821
 msgid "watermark image"
 msgstr "obrázek s vodotiskem"
 
-#: models.py:817
+#: models.py:826
 msgid "photo size"
 msgstr "velikost obrázku"
 
-#: models.py:818
+#: models.py:827
 msgid "photo sizes"
 msgstr "velikosti obrázků"
 
-#: models.py:835
+#: models.py:844
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "Ořezávat fotografie je možné, pouze pokud je zadána výška i šířka."
 

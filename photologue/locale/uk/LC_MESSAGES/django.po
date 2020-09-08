@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-20 20:54+0000\n"
+"POT-Creation-Date: 2020-09-03 21:22+0000\n"
 "PO-Revision-Date: 2017-12-03 14:47+0000\n"
 "Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/richardbarran/django-"
@@ -307,7 +307,7 @@ msgstr ""
 msgid "date published"
 msgstr "дата публікації"
 
-#: models.py:160 models.py:510
+#: models.py:160 models.py:513
 msgid "title"
 msgstr "назва"
 
@@ -315,15 +315,15 @@ msgstr "назва"
 msgid "title slug"
 msgstr "слаг назви"
 
-#: models.py:166 models.py:516
+#: models.py:166 models.py:519
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "\"слаг\" - унікальна читабельна назва для об'єкта в адресній стрічці."
 
-#: models.py:167 models.py:587
+#: models.py:167 models.py:596
 msgid "description"
 msgstr "опис"
 
-#: models.py:169 models.py:521
+#: models.py:169 models.py:524
 msgid "is public"
 msgstr "публічно"
 
@@ -331,11 +331,11 @@ msgstr "публічно"
 msgid "Public galleries will be displayed in the default views."
 msgstr "Публічні галереї будуть відображенні на сторінках по замовчуванням."
 
-#: models.py:175 models.py:533
+#: models.py:175 models.py:536
 msgid "photos"
 msgstr "фотографії"
 
-#: models.py:177 models.py:524
+#: models.py:177 models.py:527
 msgid "sites"
 msgstr "сайти"
 
@@ -351,7 +351,7 @@ msgstr "галереї"
 msgid "count"
 msgstr "кількість"
 
-#: models.py:240 models.py:732
+#: models.py:240 models.py:741
 msgid "image"
 msgstr "зображення"
 
@@ -384,41 +384,41 @@ msgstr "Розмір \"admin_thumbnal\" не визначен."
 msgid "Thumbnail"
 msgstr "Мініатюра"
 
-#: models.py:513
+#: models.py:516
 msgid "slug"
 msgstr "слаг"
 
-#: models.py:517
+#: models.py:520
 msgid "caption"
 msgstr "підпис"
 
-#: models.py:519
+#: models.py:522
 msgid "date added"
 msgstr "дата завантаження"
 
-#: models.py:523
+#: models.py:526
 msgid "Public photographs will be displayed in the default views."
 msgstr ""
 "Публічні фотографії будуть відображатись у використовуваємих уявленнях по "
 "замовчуванню."
 
-#: models.py:532
+#: models.py:535
 msgid "photo"
 msgstr "фото"
 
-#: models.py:584 models.py:762
+#: models.py:593 models.py:771
 msgid "name"
 msgstr "ім'я"
 
-#: models.py:663
+#: models.py:672
 msgid "rotate or flip"
 msgstr "повернути чи зеркально відобразити"
 
-#: models.py:667 models.py:695
+#: models.py:676 models.py:704
 msgid "color"
 msgstr "колір"
 
-#: models.py:669
+#: models.py:678
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
@@ -426,21 +426,21 @@ msgstr ""
 "Значення 0.0 дає чорно-біле відображення, а 1.0 віддає оригінальне "
 "зображення."
 
-#: models.py:671
+#: models.py:680
 msgid "brightness"
 msgstr "яскравість"
 
-#: models.py:673
+#: models.py:682
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr "Значення 0.0 дає чорне зображення, а 1.0 - оригінальне зображення."
 
-#: models.py:675
+#: models.py:684
 msgid "contrast"
 msgstr "контраст"
 
-#: models.py:677
+#: models.py:686
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
@@ -448,26 +448,26 @@ msgstr ""
 "Значення 0.0 дає суцільно сіре відображення, а 1.0 віддає оригінальне "
 "зображення."
 
-#: models.py:679
+#: models.py:688
 msgid "sharpness"
 msgstr "різкість"
 
-#: models.py:681
+#: models.py:690
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr ""
 "Значення 0.0 дає розмите відображення, а 1.0 віддає оригінальне зображення."
 
-#: models.py:683
+#: models.py:692
 msgid "filters"
 msgstr "фільтри"
 
-#: models.py:687
+#: models.py:696
 msgid "size"
 msgstr "розмір"
 
-#: models.py:689
+#: models.py:698
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -477,15 +477,15 @@ msgstr ""
 "додає відбиття, коефіціент 1.0 додає відбиття рівний висоті оригінального "
 "зображення.  "
 
-#: models.py:692
+#: models.py:701
 msgid "strength"
 msgstr "сила"
 
-#: models.py:694
+#: models.py:703
 msgid "The initial opacity of the reflection gradient."
 msgstr "Початкова непрозорість градієнта відблиска."
 
-#: models.py:698
+#: models.py:707
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
@@ -493,35 +493,35 @@ msgstr ""
 "Колір фона градієнта відображення. Відмітьте це для відповідності кольора "
 "фона вашої сторінки."
 
-#: models.py:702 models.py:806
+#: models.py:711 models.py:815
 msgid "photo effect"
 msgstr "фото-ефект"
 
-#: models.py:703
+#: models.py:712
 msgid "photo effects"
 msgstr "фото-ефекти"
 
-#: models.py:734
+#: models.py:743
 msgid "style"
 msgstr "стиль"
 
-#: models.py:738
+#: models.py:747
 msgid "opacity"
 msgstr "непрозорість"
 
-#: models.py:740
+#: models.py:749
 msgid "The opacity of the overlay."
 msgstr "Непрозорість накладення."
 
-#: models.py:743
+#: models.py:752
 msgid "watermark"
 msgstr "водяний знак"
 
-#: models.py:744
+#: models.py:753
 msgid "watermarks"
 msgstr "водяні знаки"
 
-#: models.py:766
+#: models.py:775
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -534,39 +534,39 @@ msgstr ""
 "підкреслення. Наприклад: \"thumbnail\", \"display\", \"small\", "
 "\"main_page_widget\"."
 
-#: models.py:773
+#: models.py:782
 msgid "width"
 msgstr "ширина"
 
-#: models.py:776
+#: models.py:785
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr ""
 "Якщо ширина виставлено в \"0\", то зображення буде масштабоване по висоті."
 
-#: models.py:777
+#: models.py:786
 msgid "height"
 msgstr "висота"
 
-#: models.py:780
+#: models.py:789
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr ""
 "Якщо висота виставлено в \"0\", то зображення буде масштабоване по ширині"
 
-#: models.py:781
+#: models.py:790
 msgid "quality"
 msgstr "якість"
 
-#: models.py:784
+#: models.py:793
 msgid "JPEG image quality."
 msgstr "якість JPEG зображення"
 
-#: models.py:785
+#: models.py:794
 msgid "upscale images?"
 msgstr "збільшити фото?"
 
-#: models.py:787
+#: models.py:796
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -575,29 +575,29 @@ msgstr ""
 "відповідати розмірам.  Обрізані розміри будуть масшабовані незалежно від "
 "цієї настройки."
 
-#: models.py:791
+#: models.py:800
 msgid "crop to fit?"
 msgstr "обрізати?"
 
-#: models.py:793
+#: models.py:802
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr "Якщо вибрано, то зображення буде замаштабоване та обрізано по розміру."
 
-#: models.py:795
+#: models.py:804
 msgid "pre-cache?"
 msgstr "кешувати?"
 
-#: models.py:797
+#: models.py:806
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr "Якщо вибрано, то розмір фото буде закешован при додаванні фото."
 
-#: models.py:798
+#: models.py:807
 msgid "increment view count?"
 msgstr "збільшити лічильник просмотрів?"
 
-#: models.py:800
+#: models.py:809
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
@@ -605,19 +605,19 @@ msgstr ""
 "Якщо вибрано, то \"view_count\" зображення  буде збільшено, коли показується "
 "цей розмір фотографії"
 
-#: models.py:812
+#: models.py:821
 msgid "watermark image"
 msgstr "Водяний знак"
 
-#: models.py:817
+#: models.py:826
 msgid "photo size"
 msgstr "розмір фотографії"
 
-#: models.py:818
+#: models.py:827
 msgid "photo sizes"
 msgstr "Розміри фотографій"
 
-#: models.py:835
+#: models.py:844
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "Можна обрізати фотографії, якщо встановлені ширина на висота."
 

@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-20 20:54+0000\n"
-"PO-Revision-Date: 2020-04-17 14:25+0800\n"
-"Last-Translator: Lessica <i.82@me.com>\n"
-"Language-Team: Simplified Chinese <LL@li.org>\n"
-"Language: zh_Hans\n"
+"POT-Creation-Date: 2020-09-03 21:22+0000\n"
+"PO-Revision-Date: 2020-04-20 21:11+0000\n"
+"Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
+"Language-Team: Chinese Simplified (http://www.transifex.com/richardbarran/"
+"django-photologue/language/zh-Hans/)\n"
+"Language: zh-Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: admin.py:61
 #, python-format
@@ -26,16 +28,12 @@ msgid_plural ""
 "The following photos do not belong to the same site(s) as the gallery, so "
 "will never be displayed: %(photo_list)s."
 msgstr[0] ""
-"下列照片与其所属图库不属于同一站点, 因此将不会被显示: %(photo_list)s."
-msgstr[1] ""
-"下列照片与其所属图库不属于同一站点, 因此将不会被显示: %(photo_list)s."
 
 #: admin.py:73
 #, python-format
 msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
-msgstr[0] "图库已被成功添加至 %(site)s"
-msgstr[1] "图库已被成功添加至 %(site)s"
+msgstr[0] ""
 
 #: admin.py:80
 msgid "Add selected galleries to the current site"
@@ -46,8 +44,7 @@ msgstr "添加选中图库到当前站点"
 msgid "The gallery has been successfully removed from %(site)s"
 msgid_plural ""
 "The selected galleries have been successfully removed from %(site)s"
-msgstr[0] "图库已从 %(site)s 中被成功移除"
-msgstr[1] "图库已从 %(site)s 中被成功移除"
+msgstr[0] ""
 
 #: admin.py:93
 msgid "Remove selected galleries from the current site"
@@ -60,8 +57,7 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
-msgstr[0] "图库 %(galleries)s 中的所有照片已被成功添加至 %(site)s"
-msgstr[1] "图库 %(galleries)s 中的所有照片已被成功添加至 %(site)s"
+msgstr[0] ""
 
 #: admin.py:108
 msgid "Add all photos of selected galleries to the current site"
@@ -75,8 +71,7 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
-msgstr[0] "图库 %(galleries)s 中的所有照片已从 %(site)s 中被成功移除"
-msgstr[1] "图库 %(galleries)s 中的所有照片已从 %(site)s 中被成功移除"
+msgstr[0] ""
 
 #: admin.py:123
 msgid "Remove all photos in selected galleries from the current site"
@@ -86,8 +81,7 @@ msgstr "从当前站点中移除选中图库中的所有照片"
 #, python-format
 msgid "The photo has been successfully added to %(site)s"
 msgid_plural "The selected photos have been successfully added to %(site)s"
-msgstr[0] "照片已被成功添加至 %(site)s"
-msgstr[1] "照片已被成功添加至 %(site)s"
+msgstr[0] ""
 
 #: admin.py:171
 msgid "Add selected photos to the current site"
@@ -97,8 +91,7 @@ msgstr "添加选中照片至当前站点"
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
 msgid_plural "The selected photos have been successfully removed from %(site)s"
-msgstr[0] "照片已从 %(site)s 中被成功移除"
-msgstr[1] "照片已从 %(site)s 中被成功移除"
+msgstr[0] ""
 
 #: admin.py:184
 msgid "Remove selected photos from the current site"
@@ -276,7 +269,7 @@ msgstr ""
 msgid "date published"
 msgstr "发布日期"
 
-#: models.py:160 models.py:510
+#: models.py:160 models.py:513
 msgid "title"
 msgstr "标题"
 
@@ -284,15 +277,15 @@ msgstr "标题"
 msgid "title slug"
 msgstr "标题缩写"
 
-#: models.py:166 models.py:516
+#: models.py:166 models.py:519
 msgid "A \"slug\" is a unique URL-friendly title for an object."
 msgstr "标题缩写是一个唯一的、易于在 URL 当中使用和解析一个对象的标题"
 
-#: models.py:167 models.py:587
+#: models.py:167 models.py:596
 msgid "description"
 msgstr "描述"
 
-#: models.py:169 models.py:521
+#: models.py:169 models.py:524
 msgid "is public"
 msgstr "是否公开"
 
@@ -300,11 +293,11 @@ msgstr "是否公开"
 msgid "Public galleries will be displayed in the default views."
 msgstr "公开图库将被显示在默认视图中."
 
-#: models.py:175 models.py:533
+#: models.py:175 models.py:536
 msgid "photos"
 msgstr "照片"
 
-#: models.py:177 models.py:524
+#: models.py:177 models.py:527
 msgid "sites"
 msgstr "站点"
 
@@ -320,7 +313,7 @@ msgstr "图库"
 msgid "count"
 msgstr "数量"
 
-#: models.py:240 models.py:732
+#: models.py:240 models.py:741
 msgid "image"
 msgstr "图像"
 
@@ -352,83 +345,83 @@ msgstr "\"admin_thumbnail\" 图像尺寸尚未定义."
 msgid "Thumbnail"
 msgstr "缩略图"
 
-#: models.py:513
+#: models.py:516
 msgid "slug"
 msgstr "缩写"
 
-#: models.py:517
+#: models.py:520
 msgid "caption"
 msgstr "副标题"
 
-#: models.py:519
+#: models.py:522
 msgid "date added"
 msgstr "添加日期"
 
-#: models.py:523
+#: models.py:526
 msgid "Public photographs will be displayed in the default views."
 msgstr "公开照片将被显示在默认视图中."
 
-#: models.py:532
+#: models.py:535
 msgid "photo"
 msgstr "照片"
 
-#: models.py:584 models.py:762
+#: models.py:593 models.py:771
 msgid "name"
 msgstr "名称"
 
-#: models.py:663
+#: models.py:672
 msgid "rotate or flip"
 msgstr "旋转或翻转"
 
-#: models.py:667 models.py:695
+#: models.py:676 models.py:704
 msgid "color"
 msgstr "色彩"
 
-#: models.py:669
+#: models.py:678
 msgid ""
 "A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
 "original image."
 msgstr "数值为 0.0 时将产生黑白图像, 数值为 1.0 时将产生原图."
 
-#: models.py:671
+#: models.py:680
 msgid "brightness"
 msgstr "亮度"
 
-#: models.py:673
+#: models.py:682
 msgid ""
 "A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
 "image."
 msgstr "数值为 0.0 时将产生纯黑色图像, 数值为 1.0 时将产生原图."
 
-#: models.py:675
+#: models.py:684
 msgid "contrast"
 msgstr "对比度"
 
-#: models.py:677
+#: models.py:686
 msgid ""
 "A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
 "image."
 msgstr "数值为 0.0 时将产生纯灰色图像, 数值为 1.0 时将产生原图."
 
-#: models.py:679
+#: models.py:688
 msgid "sharpness"
 msgstr "锐度"
 
-#: models.py:681
+#: models.py:690
 msgid ""
 "A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
 "image."
 msgstr "数值为 0.0 时将产生模糊图像, 数值为 1.0 时将产生原图."
 
-#: models.py:683
+#: models.py:692
 msgid "filters"
 msgstr "滤镜"
 
-#: models.py:687
+#: models.py:696
 msgid "size"
 msgstr "尺寸"
 
-#: models.py:689
+#: models.py:698
 msgid ""
 "The height of the reflection as a percentage of the orignal image. A factor "
 "of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
@@ -437,49 +430,49 @@ msgstr ""
 "倒影的高度占原图高度的百分比. 数值为 0.0 时将不添加倒影, 数值为 1.0 时将添加"
 "一个与原图高度相同的倒影."
 
-#: models.py:692
+#: models.py:701
 msgid "strength"
 msgstr "拉伸"
 
-#: models.py:694
+#: models.py:703
 msgid "The initial opacity of the reflection gradient."
 msgstr "倒影渐变的初始不透明度."
 
-#: models.py:698
+#: models.py:707
 msgid ""
 "The background color of the reflection gradient. Set this to match the "
 "background color of your page."
 msgstr "倒影渐变的背景色. 请将其设置为展示页面的背景色. "
 
-#: models.py:702 models.py:806
+#: models.py:711 models.py:815
 msgid "photo effect"
 msgstr "照片效果"
 
-#: models.py:703
+#: models.py:712
 msgid "photo effects"
 msgstr "照片效果"
 
-#: models.py:734
+#: models.py:743
 msgid "style"
 msgstr "样式"
 
-#: models.py:738
+#: models.py:747
 msgid "opacity"
 msgstr "不透明度"
 
-#: models.py:740
+#: models.py:749
 msgid "The opacity of the overlay."
 msgstr "遮罩的不透明度"
 
-#: models.py:743
+#: models.py:752
 msgid "watermark"
 msgstr "水印"
 
-#: models.py:744
+#: models.py:753
 msgid "watermarks"
 msgstr "水印"
 
-#: models.py:766
+#: models.py:775
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
@@ -487,37 +480,37 @@ msgstr ""
 "照片尺寸名称应当仅包含字母, 数字和下划线. 示例: \"thumbnail\", \"display\", "
 "\"small\", \"main_page_widget\"."
 
-#: models.py:773
+#: models.py:782
 msgid "width"
 msgstr "宽度"
 
-#: models.py:776
+#: models.py:785
 msgid ""
 "If width is set to \"0\" the image will be scaled to the supplied height."
 msgstr "如果宽度设置为 \"0\" 则图像将以高度为准进行缩放."
 
-#: models.py:777
+#: models.py:786
 msgid "height"
 msgstr "高度"
 
-#: models.py:780
+#: models.py:789
 msgid ""
 "If height is set to \"0\" the image will be scaled to the supplied width"
 msgstr "如果高度设置为 \"0\" 则图像将以宽度为准进行缩放."
 
-#: models.py:781
+#: models.py:790
 msgid "quality"
 msgstr "质量"
 
-#: models.py:784
+#: models.py:793
 msgid "JPEG image quality."
 msgstr "JPEG 图像质量"
 
-#: models.py:785
+#: models.py:794
 msgid "upscale images?"
 msgstr "放大图像?"
 
-#: models.py:787
+#: models.py:796
 msgid ""
 "If selected the image will be scaled up if necessary to fit the supplied "
 "dimensions. Cropped sizes will be upscaled regardless of this setting."
@@ -525,47 +518,47 @@ msgstr ""
 "如果勾选此项, 图像将按需放大以适应所提供的尺寸.裁剪后的尺寸将忽略此项设定并被"
 "放大."
 
-#: models.py:791
+#: models.py:800
 msgid "crop to fit?"
 msgstr "裁剪以适应?"
 
-#: models.py:793
+#: models.py:802
 msgid ""
 "If selected the image will be scaled and cropped to fit the supplied "
 "dimensions."
 msgstr "如果勾选此项, 图像将被缩放并裁剪以适应所提供的尺寸."
 
-#: models.py:795
+#: models.py:804
 msgid "pre-cache?"
 msgstr "预缓存?"
 
-#: models.py:797
+#: models.py:806
 msgid "If selected this photo size will be pre-cached as photos are added."
 msgstr "如果勾选此项, 当添加照片被添加时, 将被处理为该尺寸并预先缓存."
 
-#: models.py:798
+#: models.py:807
 msgid "increment view count?"
 msgstr "累计预览次数?"
 
-#: models.py:800
+#: models.py:809
 msgid ""
 "If selected the image's \"view_count\" will be incremented when this photo "
 "size is displayed."
 msgstr "如果勾选此项, 图像的 \"预览次数\" 将在该尺寸的图像被显示时一并累计."
 
-#: models.py:812
+#: models.py:821
 msgid "watermark image"
 msgstr "水印图像"
 
-#: models.py:817
+#: models.py:826
 msgid "photo size"
 msgstr "图像尺寸"
 
-#: models.py:818
+#: models.py:827
 msgid "photo sizes"
 msgstr "图像尺寸"
 
-#: models.py:835
+#: models.py:844
 msgid "Can only crop photos if both width and height dimensions are set."
 msgstr "仅当宽度和高度都被设置时裁剪照片"
 
@@ -757,20 +750,27 @@ msgstr "此照片在下列图库中被找到"
 msgid "All photos"
 msgstr "所有照片"
 
-#~ msgid "Adjustments"
-#~ msgstr "调整"
+#~ msgid ""
+#~ "All uploaded photos will be given a title made up of this title + a "
+#~ "sequential number."
+#~ msgstr ""
+#~ "All photos in the gallery will be given a title made up of the gallery "
+#~ "title + a sequential number."
 
-#~ msgid "Filters"
-#~ msgstr "滤镜"
+#~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
+#~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."
 
-#~ msgid "Reflection"
-#~ msgstr "倒影"
+#~ msgid "Django-tagging was not found, tags will be treated as plain text."
+#~ msgstr "Django-tagging was not found, tags will be treated as plain text."
 
-#~ msgid "Transpose"
-#~ msgstr "变换"
+#~ msgid "tags"
+#~ msgstr "tags"
 
-#~ msgid "Options"
-#~ msgstr "选项"
+#~ msgid "images file (.zip)"
+#~ msgstr "images file (.zip)"
 
-#~ msgid "Enhancements"
-#~ msgstr "增强"
+#~ msgid "gallery upload"
+#~ msgstr "gallery upload"
+
+#~ msgid "gallery uploads"
+#~ msgstr "gallery uploads"
