@@ -1,14 +1,16 @@
 import logging
-import unicodedata
-from importlib import import_module
-from inspect import isclass
-from functools import partial
-
-import exifread
 import os
 import random
-from PIL import Image, ImageFile, ImageFilter, ImageEnhance
+import unicodedata
 from datetime import datetime
+from functools import partial
+from importlib import import_module
+from inspect import isclass
+from io import BytesIO
+
+import boto3
+
+import exifread
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
@@ -19,11 +21,11 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.template.defaultfilters import slugify
 from django.urls import reverse
-from django.utils.encoding import force_text, smart_str, filepath_to_uri
+from django.utils.encoding import filepath_to_uri, force_text, smart_str
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
-from io import BytesIO
+from PIL import Image, ImageEnhance, ImageFile, ImageFilter
 from sortedm2m.fields import SortedManyToManyField
 
 from .managers import GalleryQuerySet, PhotoQuerySet
@@ -436,7 +438,14 @@ class ImageModel(models.Model):
                 im.save(buffer, 'JPEG', quality=int(photosize.quality),
                         optimize=True)
             buffer_contents = ContentFile(buffer.getvalue())
-            self.image.storage.save(im_filename, buffer_contents)
+
+            # Save into S3 if needs
+            if settings.AWS_STORAGE_BUCKET_NAME:
+                s3 = boto3.client('s3')
+                s3.put_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=im_filename, Body=buffer_contents)
+            else:
+                self.image.storage.save(im_filename, buffer_contents)
+
         except OSError as e:
             if self.image.storage.exists(im_filename):
                 self.image.storage.delete(im_filename)
