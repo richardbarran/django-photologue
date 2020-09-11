@@ -440,7 +440,7 @@ class ImageModel(models.Model):
             buffer_contents = ContentFile(buffer.getvalue())
 
             # Save into S3 if needs
-            if settings.AWS_STORAGE_BUCKET_NAME:
+            if hasattr(settings, 'AWS_STORAGE_BUCKET_NAME'):
                 s3 = boto3.client('s3')
                 s3.put_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=im_filename, Body=buffer_contents)
             else:
