@@ -104,3 +104,19 @@ If the setting is ``True``, the admin interface is slightly changed:
    fix this would be welcome!
 
 .. _Django's site framework: http://django.readthedocs.org/en/latest/ref/contrib/sites.html
+
+
+PHOTOLOGUE_RUN_ASYNC
+--------------------
+
+    Default: ``False``
+
+Whether or not Photologue will start processing uploaded files in an async manner.
+
+PHOTOLOGUE_ASYNC_SERVICE
+------------------------
+
+    Default: ``'celery'``
+
+Which async task service Photologue should use. At this moment, only celery is supported.
+Setting up a celery worker is out of the scope of this documentation.
