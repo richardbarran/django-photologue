@@ -1,14 +1,13 @@
 import logging
 import unicodedata
+from datetime import datetime
 from importlib import import_module
 from inspect import isclass
-from functools import partial
 
 import exifread
 import os
 import random
 from PIL import Image, ImageFile, ImageFilter, ImageEnhance
-from datetime import datetime
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
@@ -19,13 +18,14 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.template.defaultfilters import slugify
 from django.urls import reverse
-from django.utils.encoding import force_text, smart_str, filepath_to_uri
+from django.utils.encoding import force_str, smart_str, filepath_to_uri
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+from functools import partial
 from io import BytesIO
-from sortedm2m.fields import SortedManyToManyField
 
+from sortedm2m.fields import SortedManyToManyField
 from .managers import GalleryQuerySet, PhotoQuerySet
 from .utils.reflection import add_reflection
 from .utils.watermark import apply_watermark
@@ -63,7 +63,7 @@ if PHOTOLOGUE_PATH is not None:
         get_storage_path = getattr(module, parts[-1])
 else:
     def get_storage_path(instance, filename):
-        fn = unicodedata.normalize('NFKD', force_text(filename)).encode('ascii', 'ignore').decode('ascii')
+        fn = unicodedata.normalize('NFKD', force_str(filename)).encode('ascii', 'ignore').decode('ascii')
         return os.path.join(PHOTOLOGUE_DIR, 'photos', fn)
 
 # Support CACHEDIR.TAG spec for backups for ignoring cache dir.
@@ -293,7 +293,7 @@ class ImageModel(models.Model):
         return '/'.join([os.path.dirname(self.image.url), "cache"])
 
     def image_filename(self):
-        return os.path.basename(force_text(self.image.name))
+        return os.path.basename(force_str(self.image.name))
 
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)

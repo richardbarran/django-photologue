@@ -1,9 +1,10 @@
-from django.conf.urls import include, url
 from django.contrib.sitemaps.views import sitemap
+from django.urls import path, include
+
 from ..sitemaps import GallerySitemap, PhotoSitemap
 
 urlpatterns = [
-    url(r'^ptests/', include('photologue.urls', namespace='photologue')),
+    path('ptests/', include('photologue.urls', namespace='photologue')),
 ]
 
 sitemaps = {'photologue_galleries': GallerySitemap,
@@ -11,5 +12,5 @@ sitemaps = {'photologue_galleries': GallerySitemap,
             }
 
 urlpatterns += [
-    url(r'^sitemap.xml$', sitemap, {'sitemaps': sitemaps}),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 ]

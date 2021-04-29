@@ -1,13 +1,13 @@
 from django import forms
 from django.conf import settings
-from django.conf.urls import url
 from django.contrib import admin
 from django.contrib import messages
 from django.contrib.admin import helpers
 from django.contrib.sites.models import Site
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.utils.translation import ungettext, ugettext_lazy as _
+from django.urls import path
+from django.utils.translation import ungettext, gettext_lazy as _
 
 from .forms import UploadZipForm
 from .models import Gallery, Photo, PhotoEffect, PhotoSize, \
@@ -186,9 +186,9 @@ class PhotoAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super().get_urls()
         custom_urls = [
-            url(r'^upload_zip/$',
-                self.admin_site.admin_view(self.upload_zip),
-                name='photologue_upload_zip')
+            path('upload_zip/',
+                 self.admin_site.admin_view(self.upload_zip),
+                 name='photologue_upload_zip')
         ]
         return custom_urls + urls
 

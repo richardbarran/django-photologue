@@ -1,20 +1,18 @@
+import logging
 import zipfile
 from zipfile import BadZipFile
-import logging
+
 import os
-from io import BytesIO
-
 from PIL import Image
-
-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.models import Site
-from django.conf import settings
-from django.utils.encoding import force_text
-from django.template.defaultfilters import slugify
 from django.core.files.base import ContentFile
+from django.template.defaultfilters import slugify
+from django.utils.encoding import force_str
+from django.utils.translation import gettext_lazy as _
+from io import BytesIO
 
 from .models import Gallery, Photo
 
@@ -93,7 +91,7 @@ class UploadZipForm(forms.Form):
             gallery = self.cleaned_data['gallery']
         else:
             logger.debug(
-                force_text('Creating new gallery "{0}".').format(self.cleaned_data['title']))
+                force_str('Creating new gallery "{0}".').format(self.cleaned_data['title']))
             gallery = Gallery.objects.create(title=self.cleaned_data['title'],
                                              slug=slugify(self.cleaned_data['title']),
                                              description=self.cleaned_data['description'],
