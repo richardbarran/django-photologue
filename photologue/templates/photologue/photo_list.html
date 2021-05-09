@@ -12,13 +12,13 @@
 </div>
 {% if object_list %}
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 photo-list">
         {% for photo in object_list %}
         <a href="{{ photo.get_absolute_url }}">
-            <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+            <img src="{{ photo.get_thumbnail_url }}" class="img-thumbnail" alt="{{ photo.title }}">
         </a>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% else %}
 <div class="row">{% trans "No photos were found" %}.</div>

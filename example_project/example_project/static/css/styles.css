@@ -23,5 +23,22 @@ td {
     width: 100px;
 }
 
+.gallery-sample a {
+    text-decoration: none;
+}
 
+.gallery-list a {
+    text-decoration: none;
+}
 
+.photo-list a {
+    text-decoration: none;
+}
+
+ul.pagination {
+    margin-top: 2rem;
+}
+
+.img-thumbnail {
+    margin-bottom: 0.25rem;
+}

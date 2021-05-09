@@ -10,11 +10,13 @@
         <h1>{{ gallery.title }}</h1>
         <p class="text-muted small">{% trans "Published" %} {{ gallery.date_added }}</p>
         {% if gallery.description %}{{ gallery.description|safe }}{% endif %}
-        {% for photo in gallery.public %}
-        <a href="{{ photo.get_absolute_url }}">
-            <img src="{{ photo.get_thumbnail_url }}" class="img-thumbnail" alt="{{ photo.title }}">
-        </a>
-        {% endfor %}
+        <div class="gallery-list">
+            {% for photo in gallery.public %}
+            <a href="{{ photo.get_absolute_url }}">
+                <img src="{{ photo.get_thumbnail_url }}" class="img-thumbnail" alt="{{ photo.title }}">
+            </a>
+            {% endfor %}
+        </div>
         <div>
             <a href="{% url 'photologue:gallery-list' %}" class="btn btn-outline-secondary">{% trans "View all galleries" %}</a>
         </div>
