@@ -11,7 +11,7 @@ This project serves 3 purposes:
   and a project that uses it.
 - It's used for Travis CI testing of django-photologue.
 
-It uses the Bootstrap-friendly templates that are supplied in contrib/bootstrap/templates.
+It uses the Bootstrap-friendly templates that come with Photologue.
 
 The rest of the README will assume that you want to set up the test project in
 order to work on django-photologue itself.
@@ -19,7 +19,7 @@ order to work on django-photologue itself.
 Prerequisites
 =============
 
-- python (either 3.7, or 3.x).
+- python 3.
 - virtualenvwrapper makes it easy to manage your virtualenvs. Strongly recommended!
 
 Installation
@@ -58,7 +58,6 @@ The project is set up to run SQLite in dev so that it can be quickly started
 with no configuration required (you can of course specify another database in
 the settings file). To setup the database::
 
-	./manage.py syncdb
 	./manage.py migrate
 
 Follow the instructions to configure photologue here: `Photologue Docs <http://django-photologue.readthedocs.org/en/latest/pages/installation.html>`_

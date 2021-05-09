@@ -4,7 +4,7 @@ Changelog
 3.14 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Updated the sample templates to use Bootstrap 4 (previously used Bootstrap 3).
 
 
 3.13 (2020-09-03)

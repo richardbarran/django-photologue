@@ -5,22 +5,25 @@
 
 {% block content %}
 
-    <div class="row col-lg-12">
-        <h1 class="page-header">{% trans "All photos" %}</h1>
+<div class="row">
+    <div class="col-lg-12">
+        <h1>{% trans "All photos" %}</h1>
     </div>
+</div>
+{% if object_list %}
+<div class="row">
+    <div class="col-lg-12">
+        {% for photo in object_list %}
+        <a href="{{ photo.get_absolute_url }}">
+            <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="row">{% trans "No photos were found" %}.</div>
+{% endif %}
 
-	{% if object_list %}
-		<div class="row col-lg-12">
-		    {% for photo in object_list %}
-		        <a href="{{ photo.get_absolute_url }}">
-		             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
-		        </a>
-		    {% endfor %}
-		</div>
-	{% else %}
-		<div class="row">{% trans "No photos were found" %}.</div>
-	{% endif %}
-
-	{% include "photologue/includes/paginator.html" %}
+{% include "photologue/includes/paginator.html" %}
 
 {% endblock %}

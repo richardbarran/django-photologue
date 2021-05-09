@@ -1,0 +1,27 @@
+/* Some customisation for the Photologue demo site. */
+
+/* Page structure */
+
+h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 0.25rem;
+}
+
+/* Photo galleries */
+
+.gallery-sample {
+    margin-bottom: 2rem;
+}
+
+a.btn {
+    margin-top: 2rem;
+}
+
+td {
+    width: 100px;
+}
+
+
+

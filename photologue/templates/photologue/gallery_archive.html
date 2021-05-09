@@ -5,35 +5,37 @@
 
 {% block content %}
 
-    <div class="row col-lg-12">
-        <h1 class="page-header">{% trans "Latest photo galleries" %}</h1>
+<div class="row">
+    <div class="col-lg-12">
+        <h1>{% trans "Latest photo galleries" %}</h1>
     </div>
+</div>
 
-	<div class="row">
-	
-		<aside class="col-md-2">
+<div class="row">
 
-			<h4>{% trans "Filter by year" %}</h4>
-			<ul>
-			{% for date in date_list %}
-				<li><a href="{% url 'photologue:pl-gallery-archive-year' date.year %}">{{ date|date:"Y" }}</a></li>
-			{% endfor %}
-			</ul>
+    <aside class="col-md-2">
 
-		</aside>
+        <h4>{% trans "Filter by year" %}</h4>
+        <ul>
+            {% for date in date_list %}
+            <li><a href="{% url 'photologue:pl-gallery-archive-year' date.year %}">{{ date|date:"Y" }}</a></li>
+            {% endfor %}
+        </ul>
 
-		<main class="col-md-10">
-			
-			{% if latest %}
-			    {% for gallery in latest %}
-			    	{% include "photologue/includes/gallery_sample.html" %}
-			    {% endfor %}
-			{% else %}
-			    <p>{% trans "No galleries were found" %}.</p>
-			{% endif %}
-			
-		</main>
+    </aside>
 
-	</div>
-	
+    <main class="col-md-10">
+
+        {% if latest %}
+        {% for gallery in latest %}
+        {% include "photologue/includes/gallery_sample.html" %}
+        {% endfor %}
+        {% else %}
+        <p>{% trans "No galleries were found" %}.</p>
+        {% endif %}
+
+    </main>
+
+</div>
+
 {% endblock %}

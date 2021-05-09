@@ -5,22 +5,26 @@
 
 {% block content %}
 
-    <div class="row col-lg-12">
-        <h1 class="page-header">{% blocktrans with show_day=day|date:"d F Y" %}Photos for {{ show_day }}{% endblocktrans %}</h1>
-    </div>
+    <div class="row">
+		<div class="col-lg-12">
+        	<h1>{% blocktrans with show_day=day|date:"d F Y" %}Photos for {{ show_day }}{% endblocktrans %}</h1>
+		</div>
+	</div>
 
 	{% if object_list %}
-		<div class="row col-lg-12">
+		<div class="row">
+			<div class="col-lg-12">
 		    {% for photo in object_list %}
 		        <a href="{{ photo.get_absolute_url }}">
-		             <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+		             <img src="{{ photo.get_thumbnail_url }}" class="img-thumbnail" alt="{{ photo.title }}">
 		        </a>
 		    {% endfor %}
+			</div>
 		</div>
 	{% else %}
 		<p>{% trans "No photos were found" %}.</p>
 	{% endif %}
 
-    <div><a href="{% url 'photologue:photo-archive-month' day.year day|date:"m"|lower %}" class="btn btn-default">{% trans "View all photos for month" %}</a></div>
+    <div><a href="{% url 'photologue:photo-archive-month' day.year day|date:"m"|lower %}" class="btn btn-outline-secondary">{% trans "View all photos for month" %}</a></div>
 
 {% endblock %}
