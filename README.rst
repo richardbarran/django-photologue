@@ -4,11 +4,12 @@ Django-photologue
     :target: https://pypi.python.org/pypi/django-photologue/
     :alt: Latest PyPI version
 
-.. image:: https://travis-ci.org/richardbarran/django-photologue.svg?branch=master
-    :target: https://travis-ci.org/richardbarran/django-photologue
+.. image:: https://github.com/richardbarran/django-photologue/workflows/CI/badge.svg?branch=master
+     :target: https://github.com/richardbarran/django-photologue/actions?workflow=CI
+     :alt: CI Status
 
-.. image:: https://coveralls.io/repos/github/richardbarran/django-photologue/badge.svg?branch=master
-    :target: https://coveralls.io/github/richardbarran/django-photologue?branch=master
+.. image:: https://codecov.io/github/richardbarran/django-photologue/coverage.svg?branch=master
+    :target: https://codecov.io/github/richardbarran/django-photologue?branch=master
 
 
 A powerful image management and gallery application for the Django web framework. Upload photos, group them into

@@ -1,11 +1,11 @@
 .DS_Store
-*.pyc
+*__pycache__*
 django_photologue.egg-info
 build
 .idea
 example_project/db.sqlite3
-example_project/coverage_html_report
-example_project/.coverage
+htmlcov
+.coverage
 
 # Tox workfiles
 .tox/*

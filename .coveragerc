@@ -1,0 +1,4 @@
+[run]
+source = photologue
+omit = *migrations*, *wsgi*, */tests/*
+
