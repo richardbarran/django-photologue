@@ -5,6 +5,7 @@ Changelog
 -----------------
 
 - Updated the sample templates to use Bootstrap 5 (previously used Bootstrap 3).
+- Checked compatibility with Django 3.2.
 
 
 3.13 (2020-09-03)
