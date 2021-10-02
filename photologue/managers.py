@@ -1,5 +1,5 @@
-from django.db.models.query import QuerySet
 from django.conf import settings
+from django.db.models.query import QuerySet
 
 
 class SharedQueries:

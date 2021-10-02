@@ -1,11 +1,12 @@
 # coding=utf-8
 
-import os
 import datetime
+import os
 
+from django.conf import settings
 from django.utils.text import slugify
 from django.utils.timezone import utc
-from django.conf import settings
+
 try:
     import factory
 except ImportError:

@@ -1,4 +1,5 @@
 from django.test import TestCase, override_settings
+
 from .factories import GalleryFactory
 
 

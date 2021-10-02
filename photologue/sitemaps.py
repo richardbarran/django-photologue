@@ -26,6 +26,7 @@ lightbox).
 
 """
 from django.contrib.sitemaps import Sitemap
+
 from .models import Gallery, Photo
 
 # Note: Gallery and Photo are split, because there are use cases for having galleries

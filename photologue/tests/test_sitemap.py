@@ -1,10 +1,10 @@
 import unittest
 
-from django.test import override_settings
 from django.conf import settings
+from django.test import override_settings
 
-from .helpers import PhotologueBaseTest
 from .factories import GalleryFactory
+from .helpers import PhotologueBaseTest
 
 
 @unittest.skipUnless('django.contrib.sitemaps' in settings.INSTALLED_APPS,

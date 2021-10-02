@@ -1,6 +1,7 @@
 import warnings
 
 from django.test import TestCase
+
 from .factories import PhotoFactory, PhotoSizeFactory
 
 

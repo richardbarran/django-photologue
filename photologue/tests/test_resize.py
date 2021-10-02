@@ -1,9 +1,10 @@
 import unittest
 
 from django.core.exceptions import ValidationError
-from ..models import PhotoSizeCache, PhotoSize
+
+from ..models import PhotoSize, PhotoSizeCache
+from .factories import PORTRAIT_IMAGE_PATH, SQUARE_IMAGE_PATH, PhotoFactory
 from .helpers import PhotologueBaseTest
-from .factories import SQUARE_IMAGE_PATH, PORTRAIT_IMAGE_PATH, PhotoFactory
 
 
 class PhotoSizeTest(unittest.TestCase):

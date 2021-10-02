@@ -35,8 +35,7 @@ try:
     import ImageColor
 except ImportError:
     try:
-        from PIL import Image
-        from PIL import ImageColor
+        from PIL import Image, ImageColor
     except ImportError:
         raise ImportError("The Python Imaging Library was not found.")
 

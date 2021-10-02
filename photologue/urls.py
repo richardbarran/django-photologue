@@ -1,10 +1,10 @@
 from django.urls import path, re_path, reverse_lazy
 from django.views.generic import RedirectView
 
-from .views import PhotoListView, PhotoDetailView, GalleryListView, \
-    GalleryDetailView, PhotoArchiveIndexView, PhotoDateDetailView, PhotoDayArchiveView, \
-    PhotoYearArchiveView, PhotoMonthArchiveView, GalleryArchiveIndexView, GalleryYearArchiveView, \
-    GalleryDateDetailView, GalleryDayArchiveView, GalleryMonthArchiveView
+from .views import (GalleryArchiveIndexView, GalleryDateDetailView, GalleryDayArchiveView, GalleryDetailView,
+                    GalleryListView, GalleryMonthArchiveView, GalleryYearArchiveView, PhotoArchiveIndexView,
+                    PhotoDateDetailView, PhotoDayArchiveView, PhotoDetailView, PhotoListView, PhotoMonthArchiveView,
+                    PhotoYearArchiveView)
 
 """NOTE: the url names are changing. In the long term, I want to remove the 'pl-'
 prefix on all urls, and instead rely on an application namespace 'photologue'.

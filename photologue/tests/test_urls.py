@@ -1,5 +1,5 @@
 from django.contrib.sitemaps.views import sitemap
-from django.urls import path, include
+from django.urls import include, path
 
 from ..sitemaps import GallerySitemap, PhotoSitemap
 

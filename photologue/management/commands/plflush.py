@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-from photologue.models import PhotoSize, ImageModel
+
+from photologue.models import ImageModel, PhotoSize
 
 
 class Command(BaseCommand):

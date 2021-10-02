@@ -1,12 +1,12 @@
 import copy
 
-from django.test import TestCase
-from django.contrib.auth.models import User
 from django import VERSION
+from django.contrib.auth.models import User
+from django.test import TestCase
 
 from ..models import Gallery, Photo
-from .factories import GalleryFactory, PhotoFactory, SAMPLE_ZIP_PATH, SAMPLE_NOT_IMAGE_ZIP_PATH, \
-    IGNORED_FILES_ZIP_PATH, LANDSCAPE_IMAGE_PATH
+from .factories import (IGNORED_FILES_ZIP_PATH, LANDSCAPE_IMAGE_PATH, SAMPLE_NOT_IMAGE_ZIP_PATH, SAMPLE_ZIP_PATH,
+                        GalleryFactory, PhotoFactory)
 
 
 class GalleryUploadTest(TestCase):

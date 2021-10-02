@@ -1,10 +1,9 @@
-from django.views.generic.dates import ArchiveIndexView, DateDetailView, DayArchiveView, MonthArchiveView, \
-    YearArchiveView
+from django.views.generic.dates import (ArchiveIndexView, DateDetailView, DayArchiveView, MonthArchiveView,
+                                        YearArchiveView)
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from .models import Photo, Gallery
-
+from .models import Gallery, Photo
 
 # Gallery views.
 

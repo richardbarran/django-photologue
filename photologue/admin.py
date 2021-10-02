@@ -1,17 +1,16 @@
 from django import forms
 from django.conf import settings
-from django.contrib import admin
-from django.contrib import messages
+from django.contrib import admin, messages
 from django.contrib.admin import helpers
 from django.contrib.sites.models import Site
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import path
-from django.utils.translation import ungettext, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ungettext
 
 from .forms import UploadZipForm
-from .models import Gallery, Photo, PhotoEffect, PhotoSize, \
-    Watermark
+from .models import Gallery, Photo, PhotoEffect, PhotoSize, Watermark
 
 MULTISITE = getattr(settings, 'PHOTOLOGUE_MULTISITE', False)
 

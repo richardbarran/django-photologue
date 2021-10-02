@@ -1,9 +1,9 @@
 import logging
+import os
 import zipfile
+from io import BytesIO
 from zipfile import BadZipFile
 
-import os
-from PIL import Image
 from django import forms
 from django.conf import settings
 from django.contrib import messages
@@ -12,7 +12,7 @@ from django.core.files.base import ContentFile
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_str
 from django.utils.translation import gettext_lazy as _
-from io import BytesIO
+from PIL import Image
 
 from .models import Gallery, Photo
 

@@ -1,6 +1,6 @@
 from .. import models
-from .helpers import PhotologueBaseTest
 from .factories import GalleryFactory, PhotoFactory
+from .helpers import PhotologueBaseTest
 
 
 class GalleryTest(PhotologueBaseTest):

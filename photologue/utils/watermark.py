@@ -10,8 +10,7 @@ try:
     import ImageEnhance
 except ImportError:
     try:
-        from PIL import Image
-        from PIL import ImageEnhance
+        from PIL import Image, ImageEnhance
     except ImportError:
         raise ImportError("The Python Imaging Library was not found.")
 

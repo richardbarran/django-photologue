@@ -28,6 +28,9 @@ jobs:
         run: |
           pip install flake8
           flake8 ./
+      - name: Isort
+        if: ${{ matrix.python == 3.8 }}
+        uses: jamescurtin/isort-action@master
       - name: Coverage
         if: ${{ matrix.python == 3.8 }}
         run: |

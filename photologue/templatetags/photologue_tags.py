@@ -1,8 +1,8 @@
 import random
+
 from django import template
 
-from ..models import Gallery
-from ..models import Photo
+from ..models import Gallery, Photo
 
 register = template.Library()
 

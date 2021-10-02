@@ -2,17 +2,18 @@
 
 import os
 import unittest
+from io import BytesIO
+from unittest.mock import patch
+
 from django import VERSION
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
-from io import BytesIO
-from unittest.mock import patch
 
-from .factories import LANDSCAPE_IMAGE_PATH, QUOTING_IMAGE_PATH, \
-    UNICODE_IMAGE_PATH, NONSENSE_IMAGE_PATH, GalleryFactory, PhotoEffectFactory, PhotoFactory
+from ..models import PHOTOLOGUE_CACHEDIRTAG, PHOTOLOGUE_DIR, Image, Photo
+from .factories import (LANDSCAPE_IMAGE_PATH, NONSENSE_IMAGE_PATH, QUOTING_IMAGE_PATH, UNICODE_IMAGE_PATH,
+                        GalleryFactory, PhotoEffectFactory, PhotoFactory)
 from .helpers import PhotologueBaseTest
-from ..models import Image, Photo, PHOTOLOGUE_DIR, PHOTOLOGUE_CACHEDIRTAG
 
 
 class PhotoTest(PhotologueBaseTest):

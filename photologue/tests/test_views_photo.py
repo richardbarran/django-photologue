@@ -1,6 +1,7 @@
 from django.test import TestCase, override_settings
-from .factories import PhotoFactory
+
 from ..models import Photo
+from .factories import PhotoFactory
 
 
 @override_settings(ROOT_URLCONF='photologue.tests.test_urls')
