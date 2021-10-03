@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 # Urtzi Odriozola <urtzi.odriozola@gmail.com>, 2016,2018
@@ -12,12 +12,11 @@ msgstr ""
 "POT-Creation-Date: 2020-09-03 21:22+0000\n"
 "PO-Revision-Date: 2018-03-15 09:14+0000\n"
 "Last-Translator: Urtzi Odriozola <urtzi.odriozola@gmail.com>\n"
-"Language-Team: Basque (http://www.transifex.com/richardbarran/django-"
-"photologue/language/eu/)\n"
-"Language: eu\n"
+"Language-Team: Basque (http://www.transifex.com/richardbarran/django-photologue/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:61
@@ -61,11 +60,8 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully added to "
 "%(site)s"
-msgstr[0] ""
-"%(galleries)s galeriako argazki guztiak arrakastaz gehitu dira %(site)s-(e)ra"
-msgstr[1] ""
-"%(galleries)s galerietako argazki guztiak arrakastaz gehitu dira %(site)s-"
-"(e)ra"
+msgstr[0] "%(galleries)s galeriako argazki guztiak arrakastaz gehitu dira %(site)s-(e)ra"
+msgstr[1] "%(galleries)s galerietako argazki guztiak arrakastaz gehitu dira %(site)s-(e)ra"
 
 #: admin.py:108
 msgid "Add all photos of selected galleries to the current site"
@@ -79,12 +75,8 @@ msgid ""
 msgid_plural ""
 "All photos in galleries %(galleries)s have been successfully removed from "
 "%(site)s"
-msgstr[0] ""
-"%(galleries)s galeriako argazki guztiak arrakastaz ezabatu dira %(site)s-"
-"(e)tik"
-msgstr[1] ""
-"%(galleries)s galerietako argazki guztiak arrakastaz ezabatu dira %(site)s-"
-"(e)tik"
+msgstr[0] "%(galleries)s galeriako argazki guztiak arrakastaz ezabatu dira %(site)s-(e)tik"
+msgstr[1] "%(galleries)s galerietako argazki guztiak arrakastaz ezabatu dira %(site)s-(e)tik"
 
 #: admin.py:123
 msgid "Remove all photos in selected galleries from the current site"
@@ -104,7 +96,8 @@ msgstr "Gehitu aukeratutako argazkiak uneko webgunera"
 #: admin.py:177
 #, python-format
 msgid "The photo has been successfully removed from %(site)s"
-msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgid_plural ""
+"The selected photos have been successfully removed from %(site)s"
 msgstr[0] "Argazkia arrakastaz ezabatu da %(site)s-(e)tik"
 msgstr[1] "Aukeratutako argazkiak arrakastaz ezabatu dira %(site)s-(e)tik"
 
@@ -117,6 +110,7 @@ msgid "Upload a zip archive of photos"
 msgstr "Igo argazkien zip artxiboa"
 
 #: forms.py:27
+#| msgid "title"
 msgid "Title"
 msgstr "Izenburua"
 
@@ -129,6 +123,7 @@ msgid ""
 msgstr ""
 
 #: forms.py:36
+#| msgid "gallery"
 msgid "Gallery"
 msgstr "Galeria"
 
@@ -136,11 +131,10 @@ msgstr "Galeria"
 msgid ""
 "Select a gallery to add these images to. Leave this empty to create a new "
 "gallery from the supplied title."
-msgstr ""
-"Aukeratu irudi hau gehitzeko galeria. Utzi hau hutsik emandako izenburutik "
-"galeria berri bat sortzeko."
+msgstr "Aukeratu irudi hau gehitzeko galeria. Utzi hau hutsik emandako izenburutik galeria berri bat sortzeko."
 
 #: forms.py:40
+#| msgid "caption"
 msgid "Caption"
 msgstr "Irudi testua"
 
@@ -149,33 +143,33 @@ msgid "Caption will be added to all photos."
 msgstr "Irudi testua argazki guztiei gehituko zaie."
 
 #: forms.py:43
+#| msgid "description"
 msgid "Description"
 msgstr "Deskribapena"
 
 #: forms.py:45
+#| msgid "A description of this Gallery."
 msgid "A description of this Gallery. Only required for new galleries."
-msgstr ""
-"Galeria honen deskribapena. Galeria berrientzat bakarrik da beharrezkoa."
+msgstr "Galeria honen deskribapena. Galeria berrientzat bakarrik da beharrezkoa."
 
 #: forms.py:46
+#| msgid "is public"
 msgid "Is public"
 msgstr "Publikoa da"
 
 #: forms.py:49
 msgid ""
 "Uncheck this to make the uploaded gallery and included photographs private."
-msgstr ""
-"Ez markatu hau igotako galeria eta bertako argazkiak pribatu izatea nahi "
-"baduzu."
+msgstr "Ez markatu hau igotako galeria eta bertako argazkiak pribatu izatea nahi baduzu."
 
 #: forms.py:72
 msgid "A gallery with that title already exists."
 msgstr "Izenburu hori duen galeria existitzen da."
 
 #: forms.py:82
+#| msgid "Select a .zip file of images to upload into a new Gallery."
 msgid "Select an existing gallery, or enter a title for a new gallery."
-msgstr ""
-"Aukeratu existitzen den galeria edo sartu galeria berri baten izenburua."
+msgstr "Aukeratu existitzen den galeria edo sartu galeria berri baten izenburua."
 
 #: forms.py:115
 #, python-brace-format
@@ -273,9 +267,9 @@ msgstr "Tamaina"
 #: models.py:136
 #, python-format
 msgid ""
-"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
-">FILTER_THREE\". Image filters will be applied in order. The following "
-"filters are available: %s."
+"Chain multiple filters using the following pattern "
+"\"FILTER_ONE->FILTER_TWO->FILTER_THREE\". Image filters will be applied in "
+"order. The following filters are available: %s."
 msgstr ""
 
 #: models.py:158
@@ -412,8 +406,8 @@ msgstr "kontrastea"
 
 #: models.py:686
 msgid ""
-"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
-"image."
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original"
+" image."
 msgstr ""
 
 #: models.py:688
@@ -487,32 +481,23 @@ msgstr "ur markak"
 msgid ""
 "Photo size name should contain only letters, numbers and underscores. "
 "Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
-msgstr ""
-"Irudiaren tamaina izenak hizkiak, zenbakiak eta beheko marrak bakarrik izan "
-"ditzake. Adibidez: \"thumbnail\", \"display\", \"small\", \"main_page_widget"
-"\"."
+msgstr "Irudiaren tamaina izenak hizkiak, zenbakiak eta beheko marrak bakarrik izan ditzake. Adibidez: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
 
 #: models.py:782
 msgid "width"
 msgstr "zabalera"
 
 #: models.py:785
-msgid ""
-"If width is set to \"0\" the image will be scaled to the supplied height."
-msgstr ""
-"Zabaleran \"0\" jarriz gero, irudiaren tamaina altueraren arabera ezarriko "
-"da."
+msgid "If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr "Zabaleran \"0\" jarriz gero, irudiaren tamaina altueraren arabera ezarriko da."
 
 #: models.py:786
 msgid "height"
 msgstr "altuera"
 
 #: models.py:789
-msgid ""
-"If height is set to \"0\" the image will be scaled to the supplied width"
-msgstr ""
-"Altueran \"0\" jarriz gero, irudiaren tamaina zabaleraren arabera ezarriko "
-"da."
+msgid "If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr "Altueran \"0\" jarriz gero, irudiaren tamaina zabaleraren arabera ezarriko da."
 
 #: models.py:790
 msgid "quality"
@@ -574,8 +559,7 @@ msgstr "argazki tamainak"
 
 #: models.py:844
 msgid "Can only crop photos if both width and height dimensions are set."
-msgstr ""
-"Zabalera eta altuera definituta badaude bakarrik moztu daitezke irudiak."
+msgstr "Zabalera eta altuera definituta badaude bakarrik moztu daitezke irudiak."
 
 #: templates/admin/photologue/photo/change_list.html:9
 msgid "Upload a zip archive"
@@ -695,10 +679,7 @@ msgid ""
 "\n"
 "\t\t\t\t    page %(page_number)s of %(total_pages)s\n"
 "\t\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t\t    %(page_number)s/%(total_pages)s orri\n"
-"\t\t\t\t"
+msgstr "\n\t\t\t\t    %(page_number)s/%(total_pages)s orri\n\t\t\t\t"
 
 #: templates/photologue/includes/paginator.html:16
 #: templates/photologue/includes/paginator.html:18
@@ -761,8 +742,8 @@ msgstr "Argazki guztiak"
 #~ "All uploaded photos will be given a title made up of this title + a "
 #~ "sequential number."
 #~ msgstr ""
-#~ "All photos in the gallery will be given a title made up of the gallery "
-#~ "title + a sequential number."
+#~ "All photos in the gallery will be given a title made up of the gallery title"
+#~ " + a sequential number."
 
 #~ msgid "Separate tags with spaces, put quotes around multiple-word tags."
 #~ msgstr "Separate tags with spaces, put quotes around multiple-word tags."
