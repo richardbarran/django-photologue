@@ -26,9 +26,8 @@ Documentation
 Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.io/en/stable/>`_
 for instructions on installing and configuring this application.
 
-Python 3? Amazon S3?
---------------------
-Yes! Photologue is CI tested against both Python 2 and Python 3.
+Amazon S3
+---------
 
 S3 also works with the standard BOTO package.
 
@@ -36,8 +35,3 @@ Support
 -------
 If you have any questions or need help with any aspect of Photologue then please `join our mailing list
 <http://groups.google.com/group/django-photologue>`_.
-
-Travis CI status
-----------------
-We use Travis to check that the unit test suite is working against various combinations
-of Python, Django, etc... `Click here for the full report <http://travis-ci.org/#!/jdriscoll/django-photologue>`_.
