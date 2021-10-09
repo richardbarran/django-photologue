@@ -7,6 +7,7 @@ from functools import partial
 from importlib import import_module
 from inspect import isclass
 from io import BytesIO
+import itertools
 
 import exifread
 from django.conf import settings
@@ -138,7 +139,6 @@ IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern 
                             % (', '.join(filter_names)))
 
 size_method_map = {}
-
 
 class TagField(models.CharField):
     """Tags have been removed from Photologue, but the migrations still refer to them so this
@@ -538,6 +538,14 @@ class Photo(ImageModel):
     def __str__(self):
         return self.title
 
+    def _generate_slug(self):
+        slug_candidate = slug_original = slugify(self.title)
+        for i in itertools.count(1):
+            if not Photo.objects.filter(slug=slug_candidate).exists()
+                break
+            slug_candidate = '{}-{}'.format(slug_original, i)
+        self.slug = slug_candidate
+
     def save(self, *args, **kwargs):
         # If crop_from or effect property has been changed on existing image,
         # update kwargs to force image recreation in parent class
@@ -545,8 +553,10 @@ class Photo(ImageModel):
         if current and (current.crop_from != self.crop_from or current.effect != self.effect):
             kwargs.update(recreate=True)
 
-        if self.slug is None:
-            self.slug = slugify(self.title)
+        # Only generate slug on update
+        if not self.pk and self.slug is None:
+            self._generate_slug()
+
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

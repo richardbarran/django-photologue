@@ -84,7 +84,6 @@ class UploadZipForm(forms.Form):
         if not zip_file:
             zip_file = self.cleaned_data['zip_file']
         zip = zipfile.ZipFile(zip_file)
-        count = 1
         current_site = Site.objects.get(id=settings.SITE_ID)
         if self.cleaned_data['gallery']:
             logger.debug('Using pre-existing gallery.')
@@ -121,20 +120,7 @@ class UploadZipForm(forms.Form):
                 logger.debug('File "{}" is empty.'.format(filename))
                 continue
 
-            photo_title_root = self.cleaned_data['title'] if self.cleaned_data['title'] else gallery.title
-
-            # A photo might already exist with the same slug. So it's somewhat inefficient,
-            # but we loop until we find a slug that's available.
-            while True:
-                photo_title = ' '.join([photo_title_root, str(count)])
-                slug = slugify(photo_title)
-                if Photo.objects.filter(slug=slug).exists():
-                    count += 1
-                    continue
-                break
-
             photo = Photo(title=photo_title,
-                          slug=slug,
                           caption=self.cleaned_data['caption'],
                           is_public=self.cleaned_data['is_public'])
 
@@ -161,7 +147,6 @@ class UploadZipForm(forms.Form):
             photo.save()
             photo.sites.add(current_site)
             gallery.photos.add(photo)
-            count += 1
 
         zip.close()
 
