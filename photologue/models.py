@@ -541,7 +541,7 @@ class Photo(ImageModel):
     def _generate_slug(self):
         slug_candidate = slug_original = slugify(self.title)
         for i in itertools.count(1):
-            if not Photo.objects.filter(slug=slug_candidate).exists()
+            if not Photo.objects.filter(slug=slug_candidate).exists():
                 break
             slug_candidate = '{}-{}'.format(slug_original, i)
         self.slug = slug_candidate
