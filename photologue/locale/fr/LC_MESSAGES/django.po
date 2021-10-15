@@ -598,17 +598,17 @@ msgstr "Veuillez corriger les erreurs ci-dessous, svp."
 #: templates/photologue/gallery_archive.html:4
 #: templates/photologue/gallery_archive.html:9
 msgid "Latest photo galleries"
-msgstr "Dernières galeries de photos."
+msgstr "Dernières galeries de photos"
 
 #: templates/photologue/gallery_archive.html:16
 #: templates/photologue/photo_archive.html:16
 msgid "Filter by year"
-msgstr "Filtrer par année."
+msgstr "Filtrer par année"
 
 #: templates/photologue/gallery_archive.html:32
 #: templates/photologue/gallery_list.html:26
 msgid "No galleries were found"
-msgstr "Aucune galerie trouvée."
+msgstr "Aucune galerie trouvée"
 
 #: templates/photologue/gallery_archive_day.html:4
 #: templates/photologue/gallery_archive_day.html:9
@@ -624,7 +624,7 @@ msgstr "Aucune galerie trouvée."
 
 #: templates/photologue/gallery_archive_day.html:22
 msgid "View all galleries for month"
-msgstr "Afficher toutes les galeries du mois."
+msgstr "Afficher toutes les galeries du mois"
 
 #: templates/photologue/gallery_archive_month.html:4
 #: templates/photologue/gallery_archive_month.html:9
@@ -635,11 +635,11 @@ msgstr "Galeries de %(show_month)s"
 #: templates/photologue/gallery_archive_month.html:16
 #: templates/photologue/photo_archive_month.html:16
 msgid "Filter by day"
-msgstr "Filtrer par date."
+msgstr "Filtrer par date"
 
 #: templates/photologue/gallery_archive_month.html:35
 msgid "View all galleries for year"
-msgstr "Afficher toutes les galeries de l'année."
+msgstr "Afficher toutes les galeries de l'année"
 
 #: templates/photologue/gallery_archive_year.html:4
 #: templates/photologue/gallery_archive_year.html:9
