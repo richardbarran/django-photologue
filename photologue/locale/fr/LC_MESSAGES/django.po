@@ -121,7 +121,7 @@ msgid ""
 "sequential number.<br>This field is required if creating a new gallery, but "
 "is optional when adding to an existing gallery - if not supplied, the photo "
 "titles will be creating from the existing gallery name."
-msgstr "Ce titre + <un nombre> sera donné à toutes les photos téléchargées.<br/> Ce champ est requis lors de la création d'une nouvelle galerie mais est facultative lors d'un ajout à une galerie existante. S'il n'est pas fourni, les titres des photos seront créés à partir du nom de la galerie existante."
+msgstr "Ce titre + un nombre incrémental sera donné à toutes les photos téléchargées.<br/> Ce champ est requis lors de la création d'une nouvelle galerie mais est facultatif lors d'un ajout à une galerie existante. S'il n'est pas fourni, les titres des photos seront créés à partir du nom de la galerie existante."
 
 #: forms.py:36
 #| msgid "gallery"
