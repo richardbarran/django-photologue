@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
-from django.utils.translation import ungettext
+from django.utils.translation import ngettext
 
 from .forms import UploadZipForm
 from .models import Gallery, Photo, PhotoEffect, PhotoSize, Watermark
@@ -56,7 +56,7 @@ class GalleryAdmin(admin.ModelAdmin):
         super().save_related(request, form, *args, **kwargs)
         orphaned_photos = form.instance.orphaned_photos()
         if orphaned_photos:
-            msg = ungettext(
+            msg = ngettext(
                 'The following photo does not belong to the same site(s)'
                 ' as the gallery, so will never be displayed: %(photo_list)s.',
                 'The following photos do not belong to the same site(s)'
@@ -68,7 +68,7 @@ class GalleryAdmin(admin.ModelAdmin):
     def add_to_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
         current_site.gallery_set.add(*queryset)
-        msg = ungettext(
+        msg = ngettext(
             "The gallery has been successfully added to %(site)s",
             "The galleries have been successfully added to %(site)s",
             len(queryset)
@@ -81,7 +81,7 @@ class GalleryAdmin(admin.ModelAdmin):
     def remove_from_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
         current_site.gallery_set.remove(*queryset)
-        msg = ungettext(
+        msg = ngettext(
             "The gallery has been successfully removed from %(site)s",
             "The selected galleries have been successfully removed from %(site)s",
             len(queryset)
@@ -95,7 +95,7 @@ class GalleryAdmin(admin.ModelAdmin):
         photos = Photo.objects.filter(galleries__in=queryset)
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*photos)
-        msg = ungettext(
+        msg = ngettext(
             'All photos in gallery %(galleries)s have been successfully added to %(site)s',
             'All photos in galleries %(galleries)s have been successfully added to %(site)s',
             len(queryset)
@@ -110,7 +110,7 @@ class GalleryAdmin(admin.ModelAdmin):
         photos = Photo.objects.filter(galleries__in=queryset)
         current_site = Site.objects.get_current()
         current_site.photo_set.remove(*photos)
-        msg = ungettext(
+        msg = ngettext(
             'All photos in gallery %(galleries)s have been successfully removed from %(site)s',
             'All photos in galleries %(galleries)s have been successfully removed from %(site)s',
             len(queryset)
@@ -159,7 +159,7 @@ class PhotoAdmin(admin.ModelAdmin):
     def add_photos_to_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
         current_site.photo_set.add(*queryset)
-        msg = ungettext(
+        msg = ngettext(
             'The photo has been successfully added to %(site)s',
             'The selected photos have been successfully added to %(site)s',
             len(queryset)
@@ -172,7 +172,7 @@ class PhotoAdmin(admin.ModelAdmin):
     def remove_photos_from_current_site(modeladmin, request, queryset):
         current_site = Site.objects.get_current()
         current_site.photo_set.remove(*queryset)
-        msg = ungettext(
+        msg = ngettext(
             'The photo has been successfully removed from %(site)s',
             'The selected photos have been successfully removed from %(site)s',
             len(queryset)
