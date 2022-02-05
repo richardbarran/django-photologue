@@ -4,6 +4,7 @@ Justin Driscoll
 Richard Barran
 Marcos Daniel Petry
 Jannis
+martijnverkleij
 hedleyroos
 Celia Oakley
 Jonas Haag
@@ -16,6 +17,7 @@ Karol Majta
 Urtzi Odriozola
 Alexey Vasilyev
 kdeebee
+Alexandre Iooss
 Alasdair Nicol
 lizwalsh
 Steffen Goertz
