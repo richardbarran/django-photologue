@@ -4,7 +4,7 @@ Changelog
 3.16 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Django 4.0 adds a no-op migration (#221) (reported by rhbvkleef).
 
 
 3.15 (2022-02-05)
