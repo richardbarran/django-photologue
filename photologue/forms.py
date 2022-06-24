@@ -1,7 +1,6 @@
 import logging
 import os
 import zipfile
-from dataclasses import dataclass
 from io import BytesIO
 from typing import List
 from zipfile import BadZipFile
@@ -24,17 +23,24 @@ logger = logging.getLogger('photologue.forms')
 MessageSeverity = int
 MessageContent = str
 
-@dataclass
 class PhotoDefaults:
     title: str
     caption: str
     is_public: bool
 
+    def __init__(self, title: str, caption: str, is_public: bool) -> "PhotoDefaults":
+        self.title = title
+        self.caption = caption
+        self.is_public = is_public
 
-@dataclass
+
 class UploadMessage:
     severity: MessageSeverity
     content: MessageContent
+
+    def __init__(self, severity: MessageSeverity, content: MessageContent) -> "UploadMessage":
+        self.severity = severity
+        self.content = content
 
     def success(content: MessageContent):
         return UploadMessage(severity=constants.SUCCESS, content=content)
