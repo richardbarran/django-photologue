@@ -23,6 +23,7 @@ logger = logging.getLogger('photologue.forms')
 MessageSeverity = int
 MessageContent = str
 
+
 class PhotoDefaults:
     title: str
     caption: str
@@ -115,7 +116,9 @@ class UploadZipForm(forms.Form):
             zip_file = self.cleaned_data['zip_file']
 
         zip = zipfile.ZipFile(zip_file)
-        photo_defaults = PhotoDefaults(title=self.cleaned_data["title"], caption=self.cleaned_data["caption"], is_public=self.cleaned_data["is_public"])
+        photo_defaults = PhotoDefaults(
+            title=self.cleaned_data["title"], caption=self.cleaned_data["caption"],
+            is_public=self.cleaned_data["is_public"])
         current_site = Site.objects.get(id=settings.SITE_ID)
 
         gallery = self._reuse_or_create_gallery_in_site(current_site)
@@ -134,23 +137,24 @@ class UploadZipForm(forms.Form):
             logger.debug(
                 force_str('Creating new gallery "{0}".').format(self.cleaned_data['title']))
             gallery = create_gallery_in_site(current_site,
-                                            title=self.cleaned_data['title'],
-                                            description=self.cleaned_data['description'],
-                                            is_public=self.cleaned_data['is_public'])
+                                             title=self.cleaned_data['title'],
+                                             description=self.cleaned_data['description'],
+                                             is_public=self.cleaned_data['is_public'])
 
         return gallery
 
 
 def create_gallery_in_site(site: Site, title: str, description: str = "", is_public: bool = False) -> Gallery:
     gallery = Gallery.objects.create(title=title,
-                                        slug=slugify(title),
-                                        description=description,
-                                        is_public=is_public)
+                                     slug=slugify(title),
+                                     description=description,
+                                     is_public=is_public)
     gallery.sites.add(site)
     return gallery
 
 
-def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, photo_defaults: PhotoDefaults) -> List[UploadMessage]:
+def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, photo_defaults: PhotoDefaults)\
+        -> List[UploadMessage]:
     upload_messages = []
     count = 1
 
@@ -164,8 +168,10 @@ def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, ph
 
         if os.path.dirname(filename):
             logger.warning('Ignoring file "{}" as it is in a subfolder; all images should be in the top '
-                            'folder of the zip.'.format(filename))
-            upload_messages.append(UploadMessage.warning(_('Ignoring file "{filename}" as it is in a subfolder; all images should be in the top folder of the zip.').format(filename=filename)))
+                           'folder of the zip.'.format(filename))
+            upload_messages.append(UploadMessage.warning(
+                _('Ignoring file "{filename}" as it is in a subfolder; all images should be in the top folder of the '
+                  'zip.').format(filename=filename)))
             continue
 
         data = zip.read(filename)
@@ -187,9 +193,9 @@ def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, ph
             break
 
         photo = Photo(title=photo_title,
-                        slug=slug,
-                        caption=photo_defaults.caption,
-                        is_public=photo_defaults.is_public)
+                      slug=slug,
+                      caption=photo_defaults.caption,
+                      is_public=photo_defaults.is_public)
 
         # Basic check that we have a valid image.
         try:
@@ -202,7 +208,8 @@ def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, ph
             # But we do flag this both in the logs and to the user.
             logger.error('Could not process file "{}" in the .zip archive.'.format(
                 filename))
-            upload_messages.append(UploadMessage.warning(_('Could not process file "{0}" in the .zip archive.').format(filename)))
+            upload_messages.append(UploadMessage.warning(
+                _('Could not process file "{0}" in the .zip archive.').format(filename)))
             continue
 
         contentfile = ContentFile(data)
@@ -214,6 +221,7 @@ def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, ph
 
     zip.close()
 
-    upload_messages.append(UploadMessage.success(_('The photos have been added to gallery "{0}".').format(gallery.title)))
+    upload_messages.append(UploadMessage.success(
+        _('The photos have been added to gallery "{0}".').format(gallery.title)))
 
     return upload_messages
