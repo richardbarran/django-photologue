@@ -34,7 +34,7 @@ jobs:
       - name: Coverage
         if: ${{ matrix.python == '3.8' }}
         run: |
-          pip install coverage[toml] django
+          pip install coverage[toml] django==3.2.15
           coverage run ./example_project/manage.py test photologue
       - name: Upload coverage
         if: ${{ matrix.python == '3.8' }}
