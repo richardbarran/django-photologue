@@ -75,14 +75,17 @@ class GalleryUploadTest(TestCase):
         self.assertEqual(response['Location'], location)
 
         self.assertQuerysetEqual(Gallery.objects.all(),
-                                 ['<Gallery: This is a test title>'])
+                                 ['<Gallery: This is a test title>'],
+                                 transform=repr)
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: This is a test title 1>'])
+                                 ['<Photo: This is a test title 1>'],
+                                 transform=repr)
 
         # The photo is attached to the gallery.
         gallery = Gallery.objects.get(title='This is a test title')
         self.assertQuerysetEqual(gallery.photos.all(),
-                                 ['<Photo: This is a test title 1>'])
+                                 ['<Photo: This is a test title 1>'],
+                                 transform=repr)
 
     def test_duplicate_gallery(self):
         """If we try to create a Gallery with a title that duplicates an existing title, refuse to load."""
@@ -114,9 +117,11 @@ class GalleryUploadTest(TestCase):
             self.assertEqual(response.status_code, 302)
 
         self.assertQuerysetEqual(Gallery.objects.all(),
-                                 ['<Gallery: This is a test title>'])
+                                 ['<Gallery: This is a test title>'],
+                                 transform=repr)
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: This is a test title 1>'])
+                                 ['<Photo: This is a test title 1>'],
+                                 transform=repr)
 
     def test_ignored(self):
         """Ignore anything that does not look like a image file.
@@ -131,9 +136,11 @@ class GalleryUploadTest(TestCase):
             self.assertEqual(response.status_code, 302)
 
         self.assertQuerysetEqual(Gallery.objects.all(),
-                                 ['<Gallery: This is a test title>'])
+                                 ['<Gallery: This is a test title>'],
+                                 transform=repr)
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: This is a test title 1>'])
+                                 ['<Photo: This is a test title 1>'],
+                                 transform=repr)
 
     def test_existing_gallery(self):
         """Add the photos in the zip to an existing gallery."""
@@ -147,13 +154,16 @@ class GalleryUploadTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         self.assertQuerysetEqual(Gallery.objects.all(),
-                                 ['<Gallery: Existing>'])
+                                 ['<Gallery: Existing>'],
+                                 transform=repr)
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: Existing 1>'])
+                                 ['<Photo: Existing 1>'],
+                                 transform=repr)
 
         # The photo is attached to the existing gallery.
         self.assertQuerysetEqual(existing_gallery.photos.all(),
-                                 ['<Photo: Existing 1>'])
+                                 ['<Photo: Existing 1>'],
+                                 transform=repr)
 
     def test_existing_gallery_custom_title(self):
         """Add the photos in the zip to an existing gallery, but specify a
@@ -168,7 +178,8 @@ class GalleryUploadTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         self.assertQuerysetEqual(Photo.objects.all(),
-                                 ['<Photo: Custom title 1>'])
+                                 ['<Photo: Custom title 1>'],
+                                 transform=repr)
 
     def test_duplicate_slug(self):
         """Uploading a zip, but a photo already exists with the target slug."""
@@ -186,7 +197,8 @@ class GalleryUploadTest(TestCase):
                                  '<Photo: This is a test title 2>',
                                  '<Photo: This is a test title 3>'
                                  ],
-                                 ordered=False)
+                                 ordered=False,
+                                 transform=repr)
 
     def test_bad_zip(self):
         """Supplied file is not a zip file - tell user."""
