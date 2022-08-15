@@ -160,10 +160,10 @@ def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, ph
 
     for filename in sorted(zip.namelist()):
 
-        logger.debug('Reading file "{}".'.format(filename))
+        logger.debug(f'Reading file "{filename}".')
 
         if filename.startswith('__') or filename.startswith('.'):
-            logger.debug('Ignoring file "{}".'.format(filename))
+            logger.debug(f'Ignoring file "{filename}".')
             continue
 
         if os.path.dirname(filename):
@@ -177,7 +177,7 @@ def upload_photos_to_site(site: Site, zip: zipfile.ZipFile, gallery: Gallery, ph
         data = zip.read(filename)
 
         if not len(data):
-            logger.debug('File "{}" is empty.'.format(filename))
+            logger.debug(f'File "{filename}" is empty.')
             continue
 
         photo_title_root = photo_defaults.title if photo_defaults.title else gallery.title

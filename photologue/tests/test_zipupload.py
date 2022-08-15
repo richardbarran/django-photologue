@@ -14,7 +14,7 @@ class GalleryUploadTest(TestCase):
     """Testing the admin page that allows users to upload zips."""
 
     def setUp(self):
-        super(GalleryUploadTest, self).setUp()
+        super().setUp()
         user = User.objects.create_user('john.doe',
                                         'john.doe@example.com',
                                         'secret')
@@ -28,7 +28,7 @@ class GalleryUploadTest(TestCase):
                                  'title': 'This is a test title'}
 
     def tearDown(self):
-        super(GalleryUploadTest, self).tearDown()
+        super().tearDown()
         self.zip_file.close()
         for photo in Photo.objects.all():
             photo.delete()

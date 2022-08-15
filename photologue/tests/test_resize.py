@@ -19,14 +19,14 @@ class PhotoSizeTest(unittest.TestCase):
 class ImageResizeTest(PhotologueBaseTest):
 
     def setUp(self):
-        super(ImageResizeTest, self).setUp()
+        super().setUp()
         # Portrait.
         self.pp = PhotoFactory(image__from_path=PORTRAIT_IMAGE_PATH)
         # Square.
         self.ps = PhotoFactory(image__from_path=SQUARE_IMAGE_PATH)
 
     def tearDown(self):
-        super(ImageResizeTest, self).tearDown()
+        super().tearDown()
         self.pp.delete()
         self.ps.delete()
 

@@ -7,14 +7,14 @@ class GalleryTest(PhotologueBaseTest):
 
     def setUp(self):
         """Create a test gallery with 2 photos."""
-        super(GalleryTest, self).setUp()
+        super().setUp()
         self.test_gallery = GalleryFactory()
         self.pl2 = PhotoFactory()
         self.test_gallery.photos.add(self.pl)
         self.test_gallery.photos.add(self.pl2)
 
     def tearDown(self):
-        super(GalleryTest, self).tearDown()
+        super().tearDown()
         self.pl2.delete()
 
     def test_public(self):

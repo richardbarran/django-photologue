@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 import unittest
 from io import BytesIO
@@ -20,7 +18,7 @@ class PhotoTest(PhotologueBaseTest):
 
     def tearDown(self):
         """Delete any extra test files (if created)."""
-        super(PhotoTest, self).tearDown()
+        super().tearDown()
         try:
             self.pl2.delete()
         except:
@@ -132,11 +130,11 @@ class PhotoManagerTest(PhotologueBaseTest):
 
     def setUp(self):
         """Create 2 photos."""
-        super(PhotoManagerTest, self).setUp()
+        super().setUp()
         self.pl2 = PhotoFactory()
 
     def tearDown(self):
-        super(PhotoManagerTest, self).tearDown()
+        super().tearDown()
         self.pl2.delete()
 
     def test_public(self):
@@ -152,7 +150,7 @@ class PreviousNextTest(PhotologueBaseTest):
 
     def setUp(self):
         """Create a test gallery with 2 photos."""
-        super(PreviousNextTest, self).setUp()
+        super().setUp()
         self.test_gallery = GalleryFactory()
         self.pl1 = PhotoFactory()
         self.pl2 = PhotoFactory()
@@ -162,7 +160,7 @@ class PreviousNextTest(PhotologueBaseTest):
         self.test_gallery.photos.add(self.pl3)
 
     def tearDown(self):
-        super(PreviousNextTest, self).tearDown()
+        super().tearDown()
         self.pl1.delete()
         self.pl2.delete()
         self.pl3.delete()
@@ -239,7 +237,7 @@ class PreviousNextTest(PhotologueBaseTest):
 class ImageModelTest(PhotologueBaseTest):
 
     def setUp(self):
-        super(ImageModelTest, self).setUp()
+        super().setUp()
 
         # Unicode image has unicode in the path
         # self.pu = TestPhoto(name='portrait')
@@ -254,7 +252,7 @@ class ImageModelTest(PhotologueBaseTest):
                            ContentFile(open(NONSENSE_IMAGE_PATH, 'rb').read()))
 
     def tearDown(self):
-        super(ImageModelTest, self).tearDown()
+        super().tearDown()
         self.pu.delete()
         self.pn.delete()
 
@@ -278,13 +276,13 @@ def raw_image(mode='RGB', fmt='JPEG'):
 class ImageTransparencyTest(PhotologueBaseTest):
 
     def setUp(self):
-        super(ImageTransparencyTest, self).setUp()
+        super().setUp()
         self.png = PhotoFactory()
         self.png.image.save(
             'trans.png', ContentFile(raw_image('RGBA', 'PNG').read()))
 
     def tearDown(self):
-        super(ImageTransparencyTest, self).tearDown()
+        super().tearDown()
         self.png.clear_cache()
         os.unlink(os.path.join(settings.MEDIA_ROOT, self.png.image.path))
 

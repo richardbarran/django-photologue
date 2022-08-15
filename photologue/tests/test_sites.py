@@ -15,7 +15,7 @@ class SitesTest(TestCase):
         Create two example sites that we can use to test what gets displayed
         where.
         """
-        super(SitesTest, self).setUp()
+        super().setUp()
 
         self.site1, created1 = Site.objects.get_or_create(
             domain="example.com", name="example.com")
@@ -36,7 +36,7 @@ class SitesTest(TestCase):
         self.photo2.sites.clear()
 
     def tearDown(self):
-        super(SitesTest, self).tearDown()
+        super().tearDown()
         self.gallery1.delete()
         self.gallery2.delete()
         self.photo1.delete()

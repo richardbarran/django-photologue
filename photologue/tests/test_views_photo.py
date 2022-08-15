@@ -8,11 +8,11 @@ from .factories import PhotoFactory
 class RequestPhotoTest(TestCase):
 
     def setUp(self):
-        super(RequestPhotoTest, self).setUp()
+        super().setUp()
         self.photo = PhotoFactory(slug='fake-photo')
 
     def tearDown(self):
-        super(RequestPhotoTest, self).tearDown()
+        super().tearDown()
         self.photo.delete()
 
     def test_archive_photo_url_works(self):

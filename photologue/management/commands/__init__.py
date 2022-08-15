@@ -1,4 +1,3 @@
-
 from photologue.models import PhotoSize
 
 

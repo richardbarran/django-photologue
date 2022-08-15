@@ -1,5 +1,3 @@
-# coding=utf-8
-
 import datetime
 import os
 
@@ -32,7 +30,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Gallery
 
-    title = factory.Sequence(lambda n: 'gallery{0:0>3}'.format(n))
+    title = factory.Sequence(lambda n: f'gallery{n:0>3}')
     slug = factory.LazyAttribute(lambda a: slugify(a.title))
 
     @factory.sequence
@@ -77,7 +75,7 @@ class PhotoFactory(ImageModelFactory):
     class Meta:
         model = Photo
 
-    title = factory.Sequence(lambda n: 'photo{0:0>3}'.format(n))
+    title = factory.Sequence(lambda n: f'photo{n:0>3}')
     slug = factory.LazyAttribute(lambda a: slugify(a.title))
     image = factory.django.ImageField(from_path=LANDSCAPE_IMAGE_PATH)
 
@@ -112,7 +110,7 @@ class PhotoSizeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = PhotoSize
 
-    name = factory.Sequence(lambda n: 'name{0:0>3}'.format(n))
+    name = factory.Sequence(lambda n: f'name{n:0>3}')
 
 
 class PhotoEffectFactory(factory.django.DjangoModelFactory):
@@ -120,4 +118,4 @@ class PhotoEffectFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = PhotoEffect
 
-    name = factory.Sequence(lambda n: 'effect{0:0>3}'.format(n))
+    name = factory.Sequence(lambda n: f'effect{n:0>3}')

@@ -7,7 +7,7 @@ from .factories import GalleryFactory
 class RequestGalleryTest(TestCase):
 
     def setUp(self):
-        super(RequestGalleryTest, self).setUp()
+        super().setUp()
         self.gallery = GalleryFactory(slug='test-gallery')
 
     def test_archive_gallery_url_works(self):

@@ -100,7 +100,7 @@ class GalleryAdmin(admin.ModelAdmin):
             'All photos in galleries %(galleries)s have been successfully added to %(site)s',
             len(queryset)
         ) % {'site': current_site.name,
-             'galleries': ", ".join(["'{}'".format(gallery.title) for gallery in queryset])}
+             'galleries': ", ".join([f"'{gallery.title}'" for gallery in queryset])}
         messages.success(request, msg)
 
     add_photos_to_current_site.short_description = \
@@ -115,7 +115,7 @@ class GalleryAdmin(admin.ModelAdmin):
             'All photos in galleries %(galleries)s have been successfully removed from %(site)s',
             len(queryset)
         ) % {'site': current_site.name,
-             'galleries': ", ".join(["'{}'".format(gallery.title) for gallery in queryset])}
+             'galleries': ", ".join([f"'{gallery.title}'" for gallery in queryset])}
         messages.success(request, msg)
 
     remove_photos_from_current_site.short_description = \

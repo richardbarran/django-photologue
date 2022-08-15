@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'django-photologue'
-copyright = '{}, Justin Driscoll/Richard Barran'.format(datetime.datetime.now().year)
+copyright = f'{datetime.datetime.now().year}, Justin Driscoll/Richard Barran'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
