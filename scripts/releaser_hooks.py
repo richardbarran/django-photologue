@@ -46,7 +46,7 @@ def prereleaser_before(data):
     # Now add info from the translator files. This is incomplete, we can only list
     # the 'last contributor' to each translation.
     for language in os.listdir('photologue/locale/'):
-        filename = 'photologue/locale/{}/LC_MESSAGES/django.po'.format(language)
+        filename = f'photologue/locale/{language}/LC_MESSAGES/django.po'
         po = polib.pofile(filename)
         last_translator = po.metadata['Last-Translator']
         contributors_list.append(last_translator[:last_translator.find('<') - 1])
