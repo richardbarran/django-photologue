@@ -54,3 +54,13 @@ class RequestPhotoTest(TestCase):
     def test_detail_photo_works(self):
         response = self.client.get('/ptests/photo/2011/12/23/fake-photo/')
         self.assertEqual(response.status_code, 200)
+    def test_detail_photo_xss(self):
+        """Check that the default templates handle XSS."""
+        self.photo.title = '<img src=x onerror=alert("title")>'
+        self.photo.caption = '<img src=x onerror=alert(origin)>'
+        self.photo.save()
+        response = self.client.get('/ptests/photo/2011/12/23/fake-photo/')
+        self.assertContains(response, 'Photologue Demo - &lt;img src=x onerror=alert(&quot;title&quot;)&gt;')
+        self.assertNotContains(response, '<img src=x onerror=alert("title")>')
+        self.assertContains(response, '&lt;img src=x onerror=alert(origin)&gt;')
+        self.assertNotContains(response, '<img src=x onerror=alert(origin)>')

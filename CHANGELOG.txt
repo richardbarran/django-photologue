@@ -5,6 +5,7 @@ Changelog
 -----------------
 
 - Split out zip upload functionality into a separate function (#222) (contributed by lausek).
+- Do not allow JS injection into the Photo caption field (#223) (bug detected by Domiee13).
 
 
 3.15.1 (2022-02-23)

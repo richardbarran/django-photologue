@@ -43,3 +43,14 @@ These can be used in a custom template to display a thumbnail, e.g.::
 This will display an image, sized to the dimensions specified in the Photosize ``display``,
 and provide a clickable link to the raw image. Please refer to the example templates for ideas on how to use
 ``Photo`` and ``Gallery`` instances!
+
+Data integrity
+--------------
+Photologue will store 'as-is' any data stored for galleries and photos.
+You may want to enforce some data integrity rules - e.g. to sanitise
+any javascript injected into a ``Photo`` ``caption`` field. An easy way to do this
+would be to add extra processing on a ``post-save`` signal.
+
+Photologue does not sanitise data itself as you may legitimately want to store html and
+javascript in a caption field e.g. if you use a rich-text editor.
+
