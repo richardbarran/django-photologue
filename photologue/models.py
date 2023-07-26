@@ -87,10 +87,10 @@ if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
 # Image Orientations (according to EXIF informations) that needs to be
 # transposed and appropriate action
 IMAGE_EXIF_ORIENTATION_MAP = {
-    2: Image.FLIP_LEFT_RIGHT,
-    3: Image.ROTATE_180,
-    6: Image.ROTATE_270,
-    8: Image.ROTATE_90,
+    2: Image.Transpose.FLIP_LEFT_RIGHT,
+    3: Image.Transpose.ROTATE_180,
+    6: Image.Transpose.ROTATE_270,
+    8: Image.Transpose.ROTATE_90,
 }
 
 # Quality options for JPEG images
@@ -374,7 +374,7 @@ class ImageModel(models.Model):
                 box = (int(xd), int(y_diff), int(x), int(y_diff + new_height))
             else:
                 box = (int(x_diff), int(y_diff), int(x_diff + new_width), int(y_diff + new_height))
-            im = im.resize((int(x), int(y)), Image.ANTIALIAS).crop(box)
+            im = im.resize((int(x), int(y)), Image.Resampling.LANCZOS).crop(box)
         else:
             if not new_width == 0 and not new_height == 0:
                 ratio = min(float(new_width) / cur_width,
@@ -390,7 +390,7 @@ class ImageModel(models.Model):
                     new_dimensions[1] > cur_height:
                 if not photosize.upscale:
                     return im
-            im = im.resize(new_dimensions, Image.ANTIALIAS)
+            im = im.resize(new_dimensions, Image.Resampling.LANCZOS)
         return im
 
     def create_size(self, photosize, recreate=False):

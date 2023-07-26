@@ -3,7 +3,6 @@ import os
 
 from django.conf import settings
 from django.utils.text import slugify
-from django.utils.timezone import utc
 
 try:
     import factory
@@ -38,7 +37,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
         # Have to cater projects being non-timezone aware.
         if settings.USE_TZ:
             sample_date = datetime.datetime(
-                year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
+                year=2011, month=12, day=23, hour=17, minute=40, tzinfo=datetime.timezone.utc)
         else:
             sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
         return sample_date + datetime.timedelta(minutes=n)
@@ -84,7 +83,7 @@ class PhotoFactory(ImageModelFactory):
         # Have to cater projects being non-timezone aware.
         if settings.USE_TZ:
             sample_date = datetime.datetime(
-                year=2011, month=12, day=23, hour=17, minute=40, tzinfo=utc)
+                year=2011, month=12, day=23, hour=17, minute=40, tzinfo=datetime.timezone.utc)
         else:
             sample_date = datetime.datetime(year=2011, month=12, day=23, hour=17, minute=40)
         return sample_date + datetime.timedelta(minutes=n)
