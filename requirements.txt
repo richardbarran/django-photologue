@@ -1,6 +1,5 @@
 # Note: Specifying django here crashes tox; it's autoinstalled with other packages it
 # so can be removed from this file.
-# django>=1.11
-Pillow>=6.0.0
+Pillow>=9
 django-sortedm2m>=3.1.1
-ExifRead>=2.1.2
+ExifRead>=3
