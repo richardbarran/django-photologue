@@ -7,6 +7,7 @@ from functools import partial
 from importlib import import_module
 from inspect import isclass
 from io import BytesIO
+import pathlib
 
 import exifread
 from django.conf import settings
@@ -739,7 +740,7 @@ class PhotoEffect(BaseEffect):
 
 class Watermark(BaseEffect):
     image = models.ImageField(_('image'),
-                              upload_to=PHOTOLOGUE_DIR + "/watermarks")
+                              upload_to=pathlib.Path(PHOTOLOGUE_DIR) / "watermarks")
     style = models.CharField(_('style'),
                              max_length=5,
                              choices=WATERMARK_STYLE_CHOICES,

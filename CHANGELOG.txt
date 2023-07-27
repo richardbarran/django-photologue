@@ -6,7 +6,8 @@ Changelog
 
 - Split out zip upload functionality into a separate function (#222) (contributed by lausek).
 - Do not allow JS injection into the Photo caption field (#223) (bug detected by Domiee13).
-- Fixed deprecation warnings from Pillow. Allow should fix #225.
+- Fixed deprecation warnings from Pillow. Should fix #225.
+- Handle when PHOTOLOGUE_DIR is not a string. Should fix #224.
 
 
 3.15.1 (2022-02-23)
