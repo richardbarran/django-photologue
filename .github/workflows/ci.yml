@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [ "3.7", "3.8", "3.9", "3.10" ]
+        python: [ 3.7, 3.8, 3.9, '3.10', '3.11' ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -34,7 +34,7 @@ jobs:
       - name: Coverage
         if: ${{ matrix.python == '3.8' }}
         run: |
-          pip install coverage[toml] django==3.2.15
+          pip install coverage[toml]
           coverage run ./example_project/manage.py test photologue
       - name: Upload coverage
         if: ${{ matrix.python == '3.8' }}
