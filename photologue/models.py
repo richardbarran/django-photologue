@@ -1,5 +1,6 @@
 import logging
 import os
+import pathlib
 import random
 import unicodedata
 from datetime import datetime
@@ -7,7 +8,6 @@ from functools import partial
 from importlib import import_module
 from inspect import isclass
 from io import BytesIO
-import pathlib
 
 import exifread
 from django.conf import settings
