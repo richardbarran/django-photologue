@@ -17,6 +17,7 @@ Karol Majta
 Urtzi Odriozola
 Alexey Vasilyev
 kdeebee
+lausek
 Alexandre Iooss
 Alasdair Nicol
 lizwalsh
