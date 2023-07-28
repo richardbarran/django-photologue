@@ -8,7 +8,9 @@ Changelog
 - Do not allow JS injection into the Photo caption field (#223) (bug detected by Domiee13).
 - Fixed deprecation warnings from Pillow. Should fix #225.
 - Handle when PHOTOLOGUE_DIR is not a string. Should fix #224.
-- Checked compatibility with Django 4.1 and 4.2. Dropped 2.2 and 4.0.
+- Checked compatibility with Django 4.1 and 4.2.
+- Dropped Django 2.2 and 4.0. Dropped Python 3.7.
+- Note: not testing against Python 3.11 as I do not have it installed.
 
 
 3.15.1 (2022-02-23)
