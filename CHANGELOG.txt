@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.16 (unreleased)
+3.16 (2023-07-28)
 -----------------
 
 - Split out zip upload functionality into a separate function (#222) (contributed by lausek).
