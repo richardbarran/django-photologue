@@ -4,7 +4,7 @@ Changelog
 3.17 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixed Python 3.11 bug (#226) (contributed by emirisman).
 
 
 3.16 (2023-07-28)
