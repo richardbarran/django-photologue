@@ -17,7 +17,7 @@ galleries, apply effects such as watermarks.
 
 Take a closer look
 ------------------
-- We have a `demo website <http://www.django-photologue.net/>`_.
+- We have a `demo website <http://www.django-photologue.arbee.design/>`_.
 - We also have some `examples of sites using Photologue
   <https://github.com/richardbarran/django-photologue/wiki/Examples-and-forks>`_ on the wiki.
 
