@@ -1,6 +1,6 @@
 -r ../requirements.txt
 # The following is only required if developing for Photologue.
-factory-boy
+factory-boy>=3.3.2 # Note: version that formally supports Dj5.2 not yet released.
 # The following is only required if you plan on using Amazon AWS S3
 # -r example_storages/s3_requirements.txt
 

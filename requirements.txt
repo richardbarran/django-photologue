@@ -1,5 +1,7 @@
 # Note: Specifying django here crashes tox; it's autoinstalled with other packages it
 # so can be removed from this file.
-Pillow>=9
-django-sortedm2m>=3.1.1
+# Cannot force a precise Pillow version as we need to support Py3.8-Py3.13 and there's
+# no Pillow version that meets both requirements.
+Pillow>=10
+django-sortedm2m>=4.0.0 # Support for Django 5.1.
 ExifRead>=3

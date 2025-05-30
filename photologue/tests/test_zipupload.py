@@ -74,16 +74,16 @@ class GalleryUploadTest(TestCase):
 
         self.assertEqual(response['Location'], location)
 
-        self.assertQuerysetEqual(Gallery.objects.all(),
+        self.assertQuerySetEqual(Gallery.objects.all(),
                                  ['<Gallery: This is a test title>'],
                                  transform=repr)
-        self.assertQuerysetEqual(Photo.objects.all(),
+        self.assertQuerySetEqual(Photo.objects.all(),
                                  ['<Photo: This is a test title 1>'],
                                  transform=repr)
 
         # The photo is attached to the gallery.
         gallery = Gallery.objects.get(title='This is a test title')
-        self.assertQuerysetEqual(gallery.photos.all(),
+        self.assertQuerySetEqual(gallery.photos.all(),
                                  ['<Photo: This is a test title 1>'],
                                  transform=repr)
 
@@ -116,10 +116,10 @@ class GalleryUploadTest(TestCase):
             response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
             self.assertEqual(response.status_code, 302)
 
-        self.assertQuerysetEqual(Gallery.objects.all(),
+        self.assertQuerySetEqual(Gallery.objects.all(),
                                  ['<Gallery: This is a test title>'],
                                  transform=repr)
-        self.assertQuerysetEqual(Photo.objects.all(),
+        self.assertQuerySetEqual(Photo.objects.all(),
                                  ['<Photo: This is a test title 1>'],
                                  transform=repr)
 
@@ -135,10 +135,10 @@ class GalleryUploadTest(TestCase):
             response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
             self.assertEqual(response.status_code, 302)
 
-        self.assertQuerysetEqual(Gallery.objects.all(),
+        self.assertQuerySetEqual(Gallery.objects.all(),
                                  ['<Gallery: This is a test title>'],
                                  transform=repr)
-        self.assertQuerysetEqual(Photo.objects.all(),
+        self.assertQuerySetEqual(Photo.objects.all(),
                                  ['<Photo: This is a test title 1>'],
                                  transform=repr)
 
@@ -153,15 +153,15 @@ class GalleryUploadTest(TestCase):
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         self.assertEqual(response.status_code, 302)
 
-        self.assertQuerysetEqual(Gallery.objects.all(),
+        self.assertQuerySetEqual(Gallery.objects.all(),
                                  ['<Gallery: Existing>'],
                                  transform=repr)
-        self.assertQuerysetEqual(Photo.objects.all(),
+        self.assertQuerySetEqual(Photo.objects.all(),
                                  ['<Photo: Existing 1>'],
                                  transform=repr)
 
         # The photo is attached to the existing gallery.
-        self.assertQuerysetEqual(existing_gallery.photos.all(),
+        self.assertQuerySetEqual(existing_gallery.photos.all(),
                                  ['<Photo: Existing 1>'],
                                  transform=repr)
 
@@ -177,7 +177,7 @@ class GalleryUploadTest(TestCase):
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         self.assertEqual(response.status_code, 302)
 
-        self.assertQuerysetEqual(Photo.objects.all(),
+        self.assertQuerySetEqual(Photo.objects.all(),
                                  ['<Photo: Custom title 1>'],
                                  transform=repr)
 
@@ -191,7 +191,7 @@ class GalleryUploadTest(TestCase):
         response = self.client.post('/admin/photologue/photo/upload_zip/', test_data)
         self.assertEqual(response.status_code, 302)
 
-        self.assertQuerysetEqual(Photo.objects.all(),
+        self.assertQuerySetEqual(Photo.objects.all(),
                                  [
                                  '<Photo: This is a test title 1>',
                                  '<Photo: This is a test title 2>',

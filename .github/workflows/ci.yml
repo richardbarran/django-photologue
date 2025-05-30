@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false # If one test fails, complete the other jobs.
       matrix:
-        python: [ 3.8, 3.9, '3.10' ]
+        python: [ 3.8, 3.9, '3.10', '3.11', '3.12', '3.13' ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -26,20 +26,20 @@ jobs:
       - name: Run tests
         run: tox
       - name: Flake8
-        if: ${{ matrix.python == '3.8' }}
+        if: ${{ matrix.python == '3.12' }}
         run: |
           pip install flake8
           flake8 ./
       - name: Isort
-        if: ${{ matrix.python == '3.8' }}
+        if: ${{ matrix.python == '3.12' }}
         uses: jamescurtin/isort-action@master
       - name: Coverage
-        if: ${{ matrix.python == '3.8' }}
+        if: ${{ matrix.python == '3.12' }}
         run: |
           pip install coverage[toml] django
           coverage run ./example_project/manage.py test photologue
       - name: Upload coverage
-        if: ${{ matrix.python == '3.8' }}
+        if: ${{ matrix.python == '3.12' }}
         uses: codecov/codecov-action@v1
         with:
           name: Python ${{ matrix.python }}
