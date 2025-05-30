@@ -334,7 +334,7 @@ class ImageModel(models.Model):
         models.Model.save(self)
 
     def __getattr__(self, name):
-        global size_method_map
+        global size_method_map  # noqa: F824
         if not size_method_map:
             init_size_method_map()
         di = size_method_map.get(name, None)
@@ -875,13 +875,13 @@ class PhotoSizeCache:
                 self.sizes[size.name] = size
 
     def reset(self):
-        global size_method_map
+        global size_method_map  # noqa: F824
         size_method_map = {}
         self.sizes = {}
 
 
 def init_size_method_map():
-    global size_method_map
+    global size_method_map  # noqa: F824
     for size in PhotoSizeCache().sizes.keys():
         size_method_map['get_%s_size' % size] = \
             {'base_name': '_get_SIZE_size', 'size': size}
