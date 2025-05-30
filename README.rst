@@ -15,6 +15,11 @@ Django-photologue
 A powerful image management and gallery application for the Django web framework. Upload photos, group them into
 galleries, apply effects such as watermarks.
 
+Project status
+--------------
+Message from the current maintainer: I no longer need django-photologue for my own projects, so I've stopped working on it. I will occasionally 
+update it to run with current Django releases, but that's all. Any help in running this project is welcome.
+
 Take a closer look
 ------------------
 - We have a `demo website <http://django-photologue.arbee.design/>`_.
