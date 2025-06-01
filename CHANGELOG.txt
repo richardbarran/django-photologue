@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.18 (unreleased)
+3.18 (2025-06-01)
 -----------------
 
 - Checked compatibility with Django 5.1 and 5.2.
