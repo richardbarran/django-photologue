@@ -1,13 +1,19 @@
 # /usr/bin/env python
-from pkg_resources import parse_requirements
 from setuptools import find_packages, setup
 
 import photologue
 
 
 def get_requirements(source):
+    requirements = set()
+
     with open(source) as f:
-        return sorted({str(req) for req in parse_requirements(f.read())})
+        for line in f:
+            requirement = line.split('#', 1)[0].strip()
+            if requirement:
+                requirements.add(requirement)
+
+    return sorted(requirements)
 
 
 setup(
