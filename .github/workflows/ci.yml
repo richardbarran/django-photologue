@@ -44,6 +44,4 @@ jobs:
         if: ${{ matrix.python == '3.12' }}
         uses: codecov/codecov-action@v7
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: richardbarran/django-photologue
           name: Python ${{ matrix.python }}
