@@ -309,8 +309,9 @@ class ImageModel(models.Model):
         if not self.size_exists(photosize):
             self.create_size(photosize)
         try:
-            return Image.open(self.image.storage.open(
-                self._get_SIZE_filename(size))).size
+            with self.image.storage.open(self._get_SIZE_filename(size)) as file:
+                with Image.open(file) as im:
+                    return im.size
         except:
             return None
 
@@ -398,11 +399,13 @@ class ImageModel(models.Model):
         if self.size_exists(photosize) and not recreate:
             return
         try:
-            im = Image.open(self.image.storage.open(self.image.name))
+            with self.image.storage.open(self.image.name) as file:
+                with Image.open(file) as source:
+                    # Copy the image so processing can continue after the file closes.
+                    im = source.copy()
+                    im_format = source.format
         except OSError:
             return
-        # Save the original format
-        im_format = im.format
         # Apply effect if found
         if self.effect is not None:
             im = self.effect.pre_process(im)
@@ -484,7 +487,11 @@ class ImageModel(models.Model):
         if self.date_taken is None or image_has_changed:
             # Attempt to get the date the photo was taken from the EXIF data.
             try:
-                exif_date = self.EXIF(self.image.file).get('EXIF DateTimeOriginal', None)
+                if self.image._committed:
+                    with self.image.storage.open(self.image.name, 'rb') as file:
+                        exif_date = self.EXIF(file).get('EXIF DateTimeOriginal', None)
+                else:
+                    exif_date = self.EXIF(self.image.file).get('EXIF DateTimeOriginal', None)
                 if exif_date is not None:
                     d, t = exif_date.values.split()
                     year, month, day = d.split(':')
@@ -612,7 +619,8 @@ class BaseEffect(models.Model):
 
     def create_sample(self):
         try:
-            im = Image.open(SAMPLE_IMAGE_PATH)
+            with Image.open(SAMPLE_IMAGE_PATH) as source:
+                im = source.copy()
         except OSError:
             raise OSError(
                 'Photologue was unable to open the sample image: %s.' % SAMPLE_IMAGE_PATH)
@@ -760,7 +768,9 @@ class Watermark(BaseEffect):
         self.image.storage.delete(self.image.name)
 
     def post_process(self, im):
-        mark = Image.open(self.image.storage.open(self.image.name))
+        with self.image.storage.open(self.image.name) as file:
+            with Image.open(file) as source:
+                mark = source.copy()
         return apply_watermark(im, mark, self.style, self.opacity)
 
 

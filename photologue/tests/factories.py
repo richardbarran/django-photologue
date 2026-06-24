@@ -28,6 +28,7 @@ class GalleryFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Gallery
+        skip_postgeneration_save = True
 
     title = factory.Sequence(lambda n: f'gallery{n:0>3}')
     slug = factory.LazyAttribute(lambda a: slugify(a.title))
@@ -73,6 +74,7 @@ class PhotoFactory(ImageModelFactory):
 
     class Meta:
         model = Photo
+        skip_postgeneration_save = True
 
     title = factory.Sequence(lambda n: f'photo{n:0>3}')
     slug = factory.LazyAttribute(lambda a: slugify(a.title))

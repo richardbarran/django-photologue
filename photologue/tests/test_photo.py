@@ -73,9 +73,11 @@ class PhotoTest(PhotologueBaseTest):
 
     def test_accessor_methods(self):
         self.assertEqual(self.pl.get_testPhotoSize_photosize(), self.s)
-        self.assertEqual(self.pl.get_testPhotoSize_size(),
-                         Image.open(self.pl.image.storage.open(
-                             self.pl.get_testPhotoSize_filename())).size)
+        photo_size = self.pl.get_testPhotoSize_size()
+        with self.pl.image.storage.open(self.pl.get_testPhotoSize_filename()) as file:
+            with Image.open(file) as im:
+                image_size = im.size
+        self.assertEqual(photo_size, image_size)
         self.assertEqual(self.pl.get_testPhotoSize_url(),
                          self.pl.cache_url() + '/' + self.pl._get_filename_for_size(self.s))
         self.assertEqual(self.pl.get_testPhotoSize_filename(),
@@ -242,14 +244,18 @@ class ImageModelTest(PhotologueBaseTest):
         # Unicode image has unicode in the path
         # self.pu = TestPhoto(name='portrait')
         self.pu = PhotoFactory()
+        with open(UNICODE_IMAGE_PATH, 'rb') as file:
+            image_content = ContentFile(file.read())
         self.pu.image.save(os.path.basename(UNICODE_IMAGE_PATH),
-                           ContentFile(open(UNICODE_IMAGE_PATH, 'rb').read()))
+                           image_content)
 
         # Nonsense image contains nonsense
         # self.pn = TestPhoto(name='portrait')
         self.pn = PhotoFactory()
+        with open(NONSENSE_IMAGE_PATH, 'rb') as file:
+            image_content = ContentFile(file.read())
         self.pn.image.save(os.path.basename(NONSENSE_IMAGE_PATH),
-                           ContentFile(open(NONSENSE_IMAGE_PATH, 'rb').read()))
+                           image_content)
 
     def tearDown(self):
         super().tearDown()
@@ -288,6 +294,5 @@ class ImageTransparencyTest(PhotologueBaseTest):
 
     def test_create_size_png_keep_alpha_channel(self):
         thumbnail = self.png.get_thumbnail_filename()
-        im = Image.open(
-            os.path.join(settings.MEDIA_ROOT, thumbnail))
-        self.assertEqual('RGBA', im.mode)
+        with Image.open(os.path.join(settings.MEDIA_ROOT, thumbnail)) as im:
+            self.assertEqual('RGBA', im.mode)
