@@ -1,5 +1,13 @@
 # AGENTS.md
 
+## Running the Full Test Matrix
+
+Run tox from the repository root:
+
+```bash
+tox
+```
+
 ## Running Unit Tests
 
 Run the Django unit tests from the example project directory:
