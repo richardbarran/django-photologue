@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.19 (unreleased)
+3.19 (2026-06-28)
 -----------------
 
 - Remove pkg_resources from setup (PR #230).
