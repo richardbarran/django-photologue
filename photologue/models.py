@@ -9,7 +9,6 @@ from importlib import import_module
 from inspect import isclass
 from io import BytesIO
 
-import exifread
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
@@ -24,7 +23,7 @@ from django.utils.encoding import filepath_to_uri, force_str, smart_str
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from PIL import Image, ImageEnhance, ImageFile, ImageFilter
+from PIL import ExifTags, Image, ImageEnhance, ImageFile, ImageFilter
 from sortedm2m.fields import SortedManyToManyField
 
 from .managers import GalleryQuerySet, PhotoQuerySet
@@ -263,17 +262,6 @@ class ImageModel(models.Model):
     class Meta:
         abstract = True
 
-    def EXIF(self, file=None):
-        try:
-            if file:
-                tags = exifread.process_file(file)
-            else:
-                with self.image.storage.open(self.image.name, 'rb') as file:
-                    tags = exifread.process_file(file, details=False)
-            return tags
-        except:
-            return {}
-
     def admin_thumbnail(self):
         func = getattr(self, 'get_admin_thumbnail_url', None)
         if func is None:
@@ -405,17 +393,24 @@ class ImageModel(models.Model):
                     im = source.copy()
                     im_format = source.format
         except OSError:
+            logger.exception('Failed to open image file %s', self.image.name)
             return
         # Apply effect if found
         if self.effect is not None:
             im = self.effect.pre_process(im)
         elif photosize.effect is not None:
             im = photosize.effect.pre_process(im)
-        # Rotate if found & necessary
-        if 'Image Orientation' in self.EXIF() and \
-                self.EXIF().get('Image Orientation').values[0] in IMAGE_EXIF_ORIENTATION_MAP:
-            im = im.transpose(
-                IMAGE_EXIF_ORIENTATION_MAP[self.EXIF().get('Image Orientation').values[0]])
+
+        # Rotate if orientation found & necessary
+        exif = im.getexif()
+        if ExifTags.Base.Orientation in exif:
+            orientation = exif[ExifTags.Base.Orientation]
+            if isinstance(orientation, list):
+                orientation = orientation[0]
+            orientation = IMAGE_EXIF_ORIENTATION_MAP.get(orientation, None)
+            if orientation:
+                im = im.transpose(orientation)
+
         # Resize/crop image
         if (im.size != photosize.size and photosize.size != (0, 0)) or recreate:
             im = self.resize_image(im, photosize)
@@ -487,21 +482,22 @@ class ImageModel(models.Model):
         if self.date_taken is None or image_has_changed:
             # Attempt to get the date the photo was taken from the EXIF data.
             try:
-                if self.image._committed:
-                    with self.image.storage.open(self.image.name, 'rb') as file:
-                        exif_date = self.EXIF(file).get('EXIF DateTimeOriginal', None)
-                else:
-                    exif_date = self.EXIF(self.image.file).get('EXIF DateTimeOriginal', None)
-                if exif_date is not None:
-                    d, t = exif_date.values.split()
-                    year, month, day = d.split(':')
-                    hour, minute, second = t.split(':')
-                    self.date_taken = datetime(int(year), int(month), int(day),
-                                               int(hour), int(minute), int(second))
-            except:
-                logger.error('Failed to read EXIF DateTimeOriginal', exc_info=True)
+                self.date_taken = self._get_original_date()
+            except Exception:
+                logger.exception('Failed to read EXIF DateTimeOriginal')
         super().save(*args, **kwargs)
         self.pre_cache(recreate)
+
+    def _get_original_date(self):
+        with Image.open(self.image.file) as im:
+            exif = im.getexif().get_ifd(ExifTags.IFD.Exif)
+            datetime_str = exif.get(ExifTags.Base.DateTimeOriginal, None)
+            if datetime_str:
+                try:
+                    return datetime.strptime(datetime_str, '%Y:%m:%d %H:%M:%S')
+                except ValueError:
+                    logger.error('Failed to parse EXIF DateTimeOriginal: %s', datetime_str)
+            return None
 
     def delete(self):
         assert self._get_pk_val() is not None, \
