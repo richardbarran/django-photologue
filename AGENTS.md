@@ -152,6 +152,16 @@ When a change affects users, compatibility, migrations, dependencies, or release
 behavior, add an entry to `CHANGELOG.txt` under the current unreleased section.
 Remove `- Nothing changed yet.` when adding the first real entry for that
 release. Keep entries concise and consistent with the existing bullet style.
+When the change is part of a pull request, end each entry with the pull request
+number in parentheses, for example `- Removed the ExifRead dependency. (#231)`.
+
+## Preparing a Pull Request
+
+Before preparing or finalizing a pull request, review all its changes and apply
+the rules in `Updating the Changelog`. Do not consider the pull request ready
+until all required changelog entries are present. If it is unclear whether a
+change needs an entry or how it should be worded, propose the wording to the
+user before finalizing the pull request.
 
 ## Running Unit Tests
 
