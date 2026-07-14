@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-photologue"
+description = "Powerful image management for the Django web framework."
+readme = { file = "README.rst", content-type = "text/x-rst" }
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+dynamic = ["version"]
+authors = [
+    { name = "Justin Driscoll", email = "justin@driscolldev.com" },
+    { name = "Marcos Daniel Petry", email = "marcospetry@gmail.com" },
+    { name = "Richard Barran", email = "richard@arbee.design" },
+]
+dependencies = [
+    "Django>=5.2,<6.1",
+    "Pillow>=12.0.0",
+    "django-sortedm2m>=4.0.0",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/richardbarran/django-photologue"
+Documentation = "https://django-photologue.readthedocs.io/"
+Repository = "https://github.com/richardbarran/django-photologue"
+Issues = "https://github.com/richardbarran/django-photologue/issues"
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.packages.find]
+include = ["photologue*", "scripts*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "photologue.__version__" }
+
+[tool.zest-releaser]
+python-file-with-version = "photologue/__init__.py"

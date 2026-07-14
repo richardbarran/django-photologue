@@ -5,6 +5,10 @@ Changelog
 -----------------
 
 - Replaced ExifRead with Pillow for reading EXIF metadata. (#231)
+- Added a pyproject.toml build-system configuration.
+- Moved package metadata to pyproject.toml.
+- Moved zest.releaser configuration to pyproject.toml.
+- Removed the setup.py compatibility shim.
 
 
 3.19 (2026-06-28)

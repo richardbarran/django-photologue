@@ -81,8 +81,8 @@ current unreleased section:
 Update `tox.ini` so its environment list matches the target supported
 Django/Python matrix.
 
-Update `setup.py` classifiers so supported Python and Django classifiers match
-the target support policy.
+Update `pyproject.toml` classifiers so supported Python and Django classifiers
+match the target support policy.
 
 Update `.github/workflows/ci.yml` so CI runs the intended Python/Django matrix.
 Prefer mirroring tox unless the project deliberately uses a smaller CI matrix.
