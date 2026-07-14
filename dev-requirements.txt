@@ -1,1 +1,1 @@
-factory-boy>=3.3
+factory-boy>=3.3.3
