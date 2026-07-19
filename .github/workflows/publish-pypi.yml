@@ -1,0 +1,112 @@
+name: Publish to PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to publish (for example, 3.20)
+        required: true
+        type: string
+
+concurrency:
+  group: publish-pypi-${{ inputs.release_tag }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require the workflow from master
+        env:
+          DISPATCH_REF: ${{ github.ref }}
+        run: |
+          if [ "$DISPATCH_REF" != "refs/heads/master" ]; then
+            echo "This workflow must be run from master, not $DISPATCH_REF."
+            exit 1
+          fi
+      - uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ inputs.release_tag }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Install build tools
+        run: python -m pip install --upgrade build packaging twine
+      - name: Validate release tag
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          from packaging.version import InvalidVersion, Version
+
+          tag = os.environ["RELEASE_TAG"]
+          try:
+              parsed_tag = Version(tag)
+          except InvalidVersion as error:
+              raise SystemExit(f"Invalid PEP 440 release tag {tag!r}: {error}")
+          if parsed_tag.is_devrelease:
+              raise SystemExit(f"Development version {tag!r} cannot be published to PyPI")
+
+          contents = Path("photologue/__init__.py").read_text(encoding="utf-8")
+          match = re.search(r"(?m)^__version__\s*=\s*(['\"])([^'\"]+)\1\s*$", contents)
+          if match is None:
+              raise SystemExit("Could not find photologue.__version__")
+          package_version = match.group(2)
+          if package_version != tag:
+              raise SystemExit(
+                  f"Release tag {tag!r} does not match photologue.__version__ {package_version!r}"
+              )
+
+          tag_commit = subprocess.check_output(
+              ["git", "rev-parse", f"refs/tags/{tag}^{{commit}}"], text=True
+          ).strip()
+          head_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          if tag_commit != head_commit:
+              raise SystemExit(f"Checked-out commit {head_commit} is not release tag {tag} ({tag_commit})")
+
+          result = subprocess.run(
+              ["git", "merge-base", "--is-ancestor", "HEAD", "refs/remotes/origin/master"]
+          )
+          if result.returncode != 0:
+              raise SystemExit(f"Release tag {tag!r} is not contained in master")
+          PY
+      - name: Build wheel and source distribution
+        run: python -m build
+      - name: Check distributions
+        run: python -m twine check --strict dist/*
+      - name: Store distributions
+        uses: actions/upload-artifact@v5
+        with:
+          name: pypi-distributions-${{ github.run_id }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/django-photologue
+    permissions:
+      id-token: write
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v6
+        with:
+          name: pypi-distributions-${{ github.run_id }}
+          path: dist/
+      - name: Publish distributions
+        uses: pypa/gh-action-pypi-publish@release/v1

@@ -56,3 +56,5 @@ version = { attr = "photologue.__version__" }
 
 [tool.zest-releaser]
 python-file-with-version = "photologue/__init__.py"
+upload-pypi = false
+"postreleaser.after" = ["scripts.release_dispatch.trigger_pypi_workflow"]

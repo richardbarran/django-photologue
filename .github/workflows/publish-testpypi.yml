@@ -1,0 +1,94 @@
+name: Publish to TestPyPI
+
+on:
+  workflow_dispatch:
+  # Bootstrap trigger: remove after this workflow has been tested and before merging.
+  push:
+    branches: [ packaging ]
+
+concurrency:
+  group: publish-testpypi-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Install build tools
+        run: python -m pip install --upgrade build packaging twine
+      - name: Assign a unique development version
+        id: version
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          from packaging.version import Version
+
+          path = Path("photologue/__init__.py")
+          contents = path.read_text(encoding="utf-8")
+          pattern = re.compile(r"(?m)^__version__\s*=\s*(['\"])([^'\"]+)\1\s*$")
+          match = pattern.search(contents)
+          if match is None:
+              raise SystemExit("Could not find photologue.__version__")
+
+          source_version = Version(match.group(2))
+          release = ".".join(str(part) for part in source_version.release)
+          test_version = Version(f"{release}.dev{os.environ['RUN_ID']}")
+          replacement = f"__version__ = '{test_version}'"
+          path.write_text(pattern.sub(replacement, contents, count=1), encoding="utf-8")
+
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a", encoding="utf-8") as output:
+              print(f"version={test_version}", file=output)
+          PY
+      - name: Build wheel and source distribution
+        run: python -m build
+      - name: Check distributions
+        run: python -m twine check --strict dist/*
+      - name: Summarize build
+        env:
+          TEST_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          echo "### TestPyPI build" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source: \`$GITHUB_SHA\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Version: \`$TEST_VERSION\`" >> "$GITHUB_STEP_SUMMARY"
+      - name: Store distributions
+        uses: actions/upload-artifact@v5
+        with:
+          name: testpypi-distributions-${{ github.run_id }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish to TestPyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/django-photologue
+    permissions:
+      id-token: write
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v6
+        with:
+          name: testpypi-distributions-${{ github.run_id }}
+          path: dist/
+      - name: Publish distributions
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
