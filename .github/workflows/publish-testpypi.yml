@@ -2,9 +2,6 @@ name: Publish to TestPyPI
 
 on:
   workflow_dispatch:
-  # Bootstrap trigger: remove after this workflow has been tested and before merging.
-  push:
-    branches: [ packaging ]
 
 concurrency:
   group: publish-testpypi-${{ github.ref }}
