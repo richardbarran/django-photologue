@@ -8,6 +8,25 @@ Run tox from the repository root:
 tox
 ```
 
+## Preparing a Release
+
+Run releases from a clean checkout of `master`. The command below creates a
+temporary, isolated environment using the versions pinned in
+`release/requirements-release.txt`, installs the project into that environment,
+and runs the complete zest.releaser process:
+
+```bash
+uvx --from zest.releaser \
+  --with-requirements release/requirements-release.txt \
+  --with-editable . \
+  fullrelease
+```
+
+The prerelease hook runs the unit tests, checks for missing migrations, and
+updates `CONTRIBUTORS.txt`. The postrelease hook asks GitHub Actions to publish
+the new tag to PyPI. Formatting and import-order checks remain part of CI and
+are not dependencies of the release command.
+
 ## Updating Django and Python Compatibility
 
 Use this runbook when updating the project for the current supported Django and

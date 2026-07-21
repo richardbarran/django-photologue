@@ -1,13 +1,15 @@
-import os
-import subprocess
+"""Hooks used by zest.releaser while preparing and publishing releases."""
 
-try:
-    import polib
-except ImportError:
-    print('Msg to the package releaser: prerelease hooks will not work as you have not installed polib.')
-    raise
 import codecs
 import copy
+import os
+import shlex
+import shutil
+import subprocess
+import sys
+
+REPOSITORY = "richardbarran/django-photologue"
+WORKFLOW = "publish-pypi.yml"
 
 
 def prereleaser_before(data):
@@ -15,15 +17,18 @@ def prereleaser_before(data):
     1. Run the unit tests one last time before we make a release.
     2. Update the CONTRIBUTORS.txt file.
 
-    Note: Install * polib (https://pypi.python.org/pypi/polib).
-                  * pep8.
-
     """
+    try:
+        import polib
+    except ImportError:
+        print('Msg to the package releaser: prerelease hooks will not work as you have not installed polib.')
+        raise
+
     print('Running unit tests.')
-    subprocess.check_output(["python", "example_project/manage.py", "test", "photologue"])
+    subprocess.check_output([sys.executable, "example_project/manage.py", "test", "photologue"])
 
     print('Checking that we have no outstanding DB migrations.')
-    output = subprocess.check_output(["python", "example_project/manage.py", "makemigrations", "--dry-run",
+    output = subprocess.check_output([sys.executable, "example_project/manage.py", "makemigrations", "--dry-run",
                                       "photologue"])
     if not output == b"No changes detected in app 'photologue'\n":
         raise Exception('There are outstanding migrations for Photologue.')
@@ -79,3 +84,80 @@ def prereleaser_before(data):
     # And commit the new contributors file.
     if subprocess.check_output(["git", "diff", "CONTRIBUTORS.txt"]):
         subprocess.check_output(["git", "commit", "-m", "Updated the list of contributors.", "CONTRIBUTORS.txt"])
+
+
+def _run(command, working_dir):
+    return subprocess.run(
+        command,
+        capture_output=True,
+        check=True,
+        cwd=working_dir,
+        text=True,
+    )
+
+
+def _release_tag(working_dir):
+    """Return the tag on the release commit preceding postrelease."""
+    result = _run(
+        ["git", "describe", "--tags", "--exact-match", "HEAD^"],
+        working_dir,
+    )
+    return result.stdout.strip()
+
+
+def _dispatch_command(tag):
+    return [
+        "gh",
+        "workflow",
+        "run",
+        WORKFLOW,
+        "--repo",
+        REPOSITORY,
+        "--ref",
+        "master",
+        "-f",
+        f"release_tag={tag}",
+    ]
+
+
+def _error_detail(error):
+    stderr = getattr(error, "stderr", None)
+    if stderr and stderr.strip():
+        return stderr.strip()
+    return str(error)
+
+
+def trigger_pypi_workflow(data):
+    """Start PyPI publication without failing a completed local release."""
+    working_dir = data.get("workingdir", os.getcwd())
+    retry_command = None
+
+    try:
+        tag = _release_tag(working_dir)
+        if not tag:
+            raise RuntimeError("The release commit has no tag.")
+
+        retry_command = _dispatch_command(tag)
+        _run(
+            ["git", "ls-remote", "--exit-code", "--refs", "origin", f"refs/tags/{tag}"],
+            working_dir,
+        )
+
+        if shutil.which("gh") is None:
+            raise RuntimeError("The GitHub CLI ('gh') is not installed.")
+
+        _run(["gh", "auth", "status", "--hostname", "github.com"], working_dir)
+        result = _run(retry_command, working_dir)
+    except Exception as error:
+        print("\nRelease preparation completed, but the PyPI workflow was not started.")
+        print(f"Reason: {_error_detail(error)}")
+        if retry_command:
+            print("\nRetry with:")
+            print(shlex.join(retry_command))
+        else:
+            print("Resolve the release-tag problem, then start publish-pypi.yml from GitHub Actions.")
+        return
+
+    print(f"\nStarted the PyPI publication workflow for release {tag}.")
+    if result.stdout.strip():
+        print(result.stdout.strip())

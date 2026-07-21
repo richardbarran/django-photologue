@@ -1,0 +1,2 @@
+zest.releaser==9.9.1
+polib==1.2.0

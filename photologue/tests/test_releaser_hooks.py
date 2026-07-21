@@ -4,18 +4,18 @@ from contextlib import redirect_stdout
 from unittest import TestCase
 from unittest.mock import call, patch
 
-from scripts import release_dispatch
+from release import releaser_hooks
 
 
-class ReleaseDispatchTests(TestCase):
+class ReleaserHooksTests(TestCase):
     working_dir = "/checkout"
 
     @staticmethod
     def completed(stdout=""):
         return subprocess.CompletedProcess([], 0, stdout=stdout, stderr="")
 
-    @patch("scripts.release_dispatch.shutil.which", return_value="/usr/bin/gh")
-    @patch("scripts.release_dispatch.subprocess.run")
+    @patch("release.releaser_hooks.shutil.which", return_value="/usr/bin/gh")
+    @patch("release.releaser_hooks.subprocess.run")
     def test_successfully_dispatches_release_tag(self, run, which):
         run.side_effect = [
             self.completed("3.20\n"),
@@ -26,7 +26,7 @@ class ReleaseDispatchTests(TestCase):
 
         output = io.StringIO()
         with redirect_stdout(output):
-            release_dispatch.trigger_pypi_workflow({"workingdir": self.working_dir})
+            releaser_hooks.trigger_pypi_workflow({"workingdir": self.working_dir})
 
         self.assertIn("Started the PyPI publication workflow for release 3.20", output.getvalue())
         self.assertIn("actions/runs/1", output.getvalue())
@@ -53,20 +53,20 @@ class ReleaseDispatchTests(TestCase):
             ),
         )
 
-    @patch("scripts.release_dispatch.shutil.which", return_value=None)
-    @patch("scripts.release_dispatch.subprocess.run")
+    @patch("release.releaser_hooks.shutil.which", return_value=None)
+    @patch("release.releaser_hooks.subprocess.run")
     def test_missing_github_cli_is_recoverable(self, run, which):
         run.side_effect = [self.completed("3.20\n"), self.completed("remote tag\n")]
 
         output = io.StringIO()
         with redirect_stdout(output):
-            result = release_dispatch.trigger_pypi_workflow({"workingdir": self.working_dir})
+            result = releaser_hooks.trigger_pypi_workflow({"workingdir": self.working_dir})
 
         self.assertIsNone(result)
         self.assertIn("is not installed", output.getvalue())
         self.assertIn("gh workflow run publish-pypi.yml", output.getvalue())
 
-    @patch("scripts.release_dispatch.subprocess.run")
+    @patch("release.releaser_hooks.subprocess.run")
     def test_unpushed_tag_is_recoverable(self, run):
         run.side_effect = [
             self.completed("3.20\n"),
@@ -75,14 +75,14 @@ class ReleaseDispatchTests(TestCase):
 
         output = io.StringIO()
         with redirect_stdout(output):
-            result = release_dispatch.trigger_pypi_workflow({"workingdir": self.working_dir})
+            result = releaser_hooks.trigger_pypi_workflow({"workingdir": self.working_dir})
 
         self.assertIsNone(result)
         self.assertIn("tag not found", output.getvalue())
         self.assertIn("release_tag=3.20", output.getvalue())
 
-    @patch("scripts.release_dispatch.shutil.which", return_value="/usr/bin/gh")
-    @patch("scripts.release_dispatch.subprocess.run")
+    @patch("release.releaser_hooks.shutil.which", return_value="/usr/bin/gh")
+    @patch("release.releaser_hooks.subprocess.run")
     def test_authentication_failure_is_recoverable(self, run, which):
         run.side_effect = [
             self.completed("3.20\n"),
@@ -92,14 +92,14 @@ class ReleaseDispatchTests(TestCase):
 
         output = io.StringIO()
         with redirect_stdout(output):
-            result = release_dispatch.trigger_pypi_workflow({"workingdir": self.working_dir})
+            result = releaser_hooks.trigger_pypi_workflow({"workingdir": self.working_dir})
 
         self.assertIsNone(result)
         self.assertIn("not logged in", output.getvalue())
         self.assertIn("gh workflow run publish-pypi.yml", output.getvalue())
 
-    @patch("scripts.release_dispatch.shutil.which", return_value="/usr/bin/gh")
-    @patch("scripts.release_dispatch.subprocess.run")
+    @patch("release.releaser_hooks.shutil.which", return_value="/usr/bin/gh")
+    @patch("release.releaser_hooks.subprocess.run")
     def test_dispatch_failure_is_recoverable(self, run, which):
         run.side_effect = [
             self.completed("3.20\n"),
@@ -110,13 +110,13 @@ class ReleaseDispatchTests(TestCase):
 
         output = io.StringIO()
         with redirect_stdout(output):
-            result = release_dispatch.trigger_pypi_workflow({"workingdir": self.working_dir})
+            result = releaser_hooks.trigger_pypi_workflow({"workingdir": self.working_dir})
 
         self.assertIsNone(result)
         self.assertIn("dispatch failed", output.getvalue())
         self.assertIn("gh workflow run publish-pypi.yml", output.getvalue())
 
-    @patch("scripts.release_dispatch.subprocess.run")
+    @patch("release.releaser_hooks.subprocess.run")
     def test_missing_release_tag_is_recoverable(self, run):
         run.side_effect = subprocess.CalledProcessError(
             128,
@@ -126,7 +126,7 @@ class ReleaseDispatchTests(TestCase):
 
         output = io.StringIO()
         with redirect_stdout(output):
-            result = release_dispatch.trigger_pypi_workflow({"workingdir": self.working_dir})
+            result = releaser_hooks.trigger_pypi_workflow({"workingdir": self.working_dir})
 
         self.assertIsNone(result)
         self.assertIn("no tag exactly matches", output.getvalue())

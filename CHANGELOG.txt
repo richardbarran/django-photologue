@@ -10,6 +10,7 @@ Changelog
 - Moved zest.releaser configuration to pyproject.toml.
 - Removed the setup.py compatibility shim.
 - Moved package publication to GitHub Actions workflows.
+- Added a reproducible, isolated release environment using uv.
 
 
 3.19 (2026-06-28)
