@@ -17,6 +17,7 @@ Karol Majta
 Urtzi Odriozola
 Alexey Vasilyev
 kdeebee
+Bijan Vakili
 lausek
 Alexandre Iooss
 Alasdair Nicol
@@ -26,6 +27,7 @@ Baptiste Mispelon
 FilippoIOVINE
 ferhat elmas
 Benjamin Liles
+Miro
 Emir Isman
 Adam Piskorek
 r0668522
