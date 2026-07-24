@@ -86,7 +86,7 @@ jobs:
       - name: Check distributions
         run: python -m twine check --strict dist/*
       - name: Store distributions
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: pypi-distributions-${{ github.run_id }}
           path: dist/
@@ -104,7 +104,7 @@ jobs:
       id-token: write
     steps:
       - name: Download distributions
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: pypi-distributions-${{ github.run_id }}
           path: dist/
