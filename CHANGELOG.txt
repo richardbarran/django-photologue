@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.20 (unreleased)
+3.20 (2026-07-24)
 -----------------
 
 - Replaced ExifRead with Pillow for reading EXIF metadata. (#231)
