@@ -11,9 +11,9 @@ tox
 ## Preparing a Release
 
 Run releases from a clean checkout of `master`. The command below creates a
-temporary, isolated environment using the versions pinned in
-`release/requirements-release.txt`, installs the project into that environment,
-and runs the complete zest.releaser process:
+temporary, isolated environment using the release tools and test dependencies
+listed in `release/requirements-release.txt`, installs the project into that
+environment, and runs the complete zest.releaser process:
 
 ```bash
 uvx --from zest.releaser \
