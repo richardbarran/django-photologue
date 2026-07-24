@@ -1,5 +1,5 @@
 import os
 
-__version__ = '3.20'
+__version__ = '3.21.dev0'
 
 PHOTOLOGUE_APP_DIR = os.path.dirname(os.path.abspath(__file__))
