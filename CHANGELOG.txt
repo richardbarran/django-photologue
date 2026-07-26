@@ -4,7 +4,7 @@ Changelog
 3.21 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Updated the example project to Bootstrap 5.3.8 and removed jQuery.
 
 
 3.20 (2026-07-24)

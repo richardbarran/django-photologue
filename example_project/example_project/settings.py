@@ -64,7 +64,6 @@ WSGI_APPLICATION = 'example_project.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -75,7 +74,6 @@ DATABASES = {
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-gb'
 
@@ -87,7 +85,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 STATIC_URL = '/static/'
