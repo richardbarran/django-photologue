@@ -16,6 +16,38 @@ from .helpers import PhotologueBaseTest
 
 class PhotoTest(PhotologueBaseTest):
 
+    def test_thumbnail_exif_orientations(self):
+        """Thumbnail pixels follow every EXIF orientation, including mirrors."""
+        orientations = {
+            1: ((3, 2), [1, 2, 3, 4, 5, 6]),
+            2: ((3, 2), [3, 2, 1, 6, 5, 4]),
+            3: ((3, 2), [6, 5, 4, 3, 2, 1]),
+            4: ((3, 2), [4, 5, 6, 1, 2, 3]),
+            5: ((2, 3), [1, 4, 2, 5, 3, 6]),
+            6: ((2, 3), [4, 1, 5, 2, 6, 3]),
+            7: ((2, 3), [6, 3, 5, 2, 4, 1]),
+            8: ((2, 3), [3, 6, 2, 5, 1, 4]),
+        }
+        for orientation, (expected_size, expected_pixels) in orientations.items():
+            with self.subTest(orientation=orientation):
+                source = Image.new('RGB', (3, 2))
+                source.putdata([(pixel, 0, 0) for pixel in range(1, 7)])
+                exif = Image.Exif()
+                exif[274] = orientation
+                buffer = BytesIO()
+                source.save(buffer, 'PNG', exif=exif)
+                photo = PhotoFactory(image=ContentFile(buffer.getvalue(), name='orientation.png'))
+                try:
+                    photo.create_size(self.s)
+                    with photo.image.storage.open(photo.get_testPhotoSize_filename()) as file:
+                        with Image.open(file) as thumbnail:
+                            self.assertEqual(thumbnail.size, expected_size)
+                            expected_bytes = bytes(
+                                value for pixel in expected_pixels for value in (pixel, 0, 0))
+                            self.assertEqual(thumbnail.tobytes(), expected_bytes)
+                finally:
+                    photo.delete()
+
     def tearDown(self):
         """Delete any extra test files (if created)."""
         super().tearDown()

@@ -89,7 +89,10 @@ if not default_storage.exists(PHOTOLOGUE_CACHEDIRTAG):
 IMAGE_EXIF_ORIENTATION_MAP = {
     2: Image.Transpose.FLIP_LEFT_RIGHT,
     3: Image.Transpose.ROTATE_180,
+    4: Image.Transpose.FLIP_TOP_BOTTOM,
+    5: Image.Transpose.TRANSPOSE,
     6: Image.Transpose.ROTATE_270,
+    7: Image.Transpose.TRANSVERSE,
     8: Image.Transpose.ROTATE_90,
 }
 
@@ -408,7 +411,7 @@ class ImageModel(models.Model):
             if isinstance(orientation, list):
                 orientation = orientation[0]
             orientation = IMAGE_EXIF_ORIENTATION_MAP.get(orientation, None)
-            if orientation:
+            if orientation is not None:
                 im = im.transpose(orientation)
 
         # Resize/crop image
