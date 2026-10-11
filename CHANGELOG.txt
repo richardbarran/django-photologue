@@ -5,6 +5,7 @@ Changelog
 -----------------
 
 - Updated the example project to Bootstrap 5.3.8 and removed jQuery.
+- Fixed thumbnail orientation for mirrored images with EXIF metadata. (#232)
 
 
 3.20 (2026-07-24)
