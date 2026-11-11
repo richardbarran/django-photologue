@@ -46,7 +46,8 @@ probably want instead to fork the project on Github, and clone your fork instead
 Install requirements::
 
 	cd example_project
-	pip install -r requirements.txt
+	python -m pip install --upgrade pip
+	pip install -r requirements.txt --group ../pyproject.toml:dev
 
 **Note**: this will install Pillow, which is not always straightforward; sometimes it
 will install smoothly out of the box, sometimes you can spend hours figuring it out - installation

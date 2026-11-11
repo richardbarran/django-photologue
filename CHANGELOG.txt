@@ -4,6 +4,10 @@ Changelog
 3.21 (unreleased)
 -----------------
 
+- Centralized runtime and development dependencies in pyproject.toml and removed
+  requirements.txt and dev-requirements.txt.
+- Updated the isolated release command to install development dependencies from
+  pyproject.toml.
 - Updated the example project to Bootstrap 5.3.8 and removed jQuery.
 - Fixed thumbnail orientation for mirrored images with EXIF metadata. (#232)
 

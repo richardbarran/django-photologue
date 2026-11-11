@@ -38,6 +38,11 @@ classifiers = [
     "Topic :: Utilities",
 ]
 
+[dependency-groups]
+dev = [
+    "factory-boy>=3.3.3",
+]
+
 [project.urls]
 Homepage = "https://github.com/richardbarran/django-photologue"
 Documentation = "https://django-photologue.readthedocs.io/"

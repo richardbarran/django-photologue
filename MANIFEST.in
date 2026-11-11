@@ -1,7 +1,6 @@
 include CHANGELOG.txt
 include CONTRIBUTORS.txt
 include LICENSE.txt
-include requirements.txt
 recursive-include photologue/locale *
 recursive-include photologue/res *.jpg
 recursive-include photologue/res/zips *.zip

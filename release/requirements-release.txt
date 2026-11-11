@@ -1,3 +1,2 @@
 zest.releaser==9.9.1
 polib==1.2.0
--r ../example_project/requirements.txt

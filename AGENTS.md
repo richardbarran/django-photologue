@@ -11,14 +11,14 @@ tox
 ## Preparing a Release
 
 Run releases from a clean checkout of `master`. The command below creates a
-temporary, isolated environment using the release tools and test dependencies
-listed in `release/requirements-release.txt`, installs the project into that
-environment, and runs the complete zest.releaser process:
+temporary, isolated environment using the release tools listed in
+`release/requirements-release.txt` and the development dependencies from
+`pyproject.toml`, installs the project into that environment, and runs the complete
+zest.releaser process:
 
 ```bash
-uvx --from zest.releaser \
+uv run --isolated \
   --with-requirements release/requirements-release.txt \
-  --with-editable . \
   fullrelease
 ```
 
@@ -110,8 +110,8 @@ If the project has other compatibility metadata, update it consistently.
 
 ### 5. Dependency Lower-Bound Review
 
-Read all relevant requirement files, including `requirements.txt`,
-`example_project/requirements.txt`, and any other `requirements*.txt` files that
+Read `pyproject.toml` and all relevant requirement files, including
+`example_project/requirements.txt` and any other `requirements*.txt` files that
 affect tests, docs, or supported installs.
 
 For each lower-bound dependency, verify that the minimum version supports the

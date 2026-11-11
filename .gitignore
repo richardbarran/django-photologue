@@ -6,6 +6,7 @@ build
 example_project/db.sqlite3
 htmlcov
 .coverage
+uv.lock
 
 # Tox workfiles
 .tox/*
