@@ -4,6 +4,7 @@ Changelog
 3.21 (unreleased)
 -----------------
 
+- Escaped gallery descriptions in the default templates to prevent stored XSS.
 - Fixed EXIF capture date parsing for timestamps with trailing NUL padding.
 - Centralized runtime and development dependencies in pyproject.toml and removed
   requirements.txt and dev-requirements.txt.
