@@ -1,5 +1,6 @@
 import os
 import unittest
+from datetime import datetime
 from io import BytesIO
 from unittest.mock import patch
 
@@ -7,6 +8,7 @@ from django import VERSION
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.test import override_settings
 
 from ..models import PHOTOLOGUE_CACHEDIRTAG, PHOTOLOGUE_DIR, Image, Photo
 from .factories import (LANDSCAPE_IMAGE_PATH, NONSENSE_IMAGE_PATH, QUOTING_IMAGE_PATH, UNICODE_IMAGE_PATH,
@@ -15,6 +17,37 @@ from .helpers import PhotologueBaseTest
 
 
 class PhotoTest(PhotologueBaseTest):
+
+    @override_settings(USE_TZ=False)
+    def test_exif_capture_dates(self):
+        expected = datetime(2013, 9, 15, 15, 45, 23)
+        cases = [
+            ('2013:09:15 15:45:23', expected),
+            ('2013:09:15 15:45:23\x00', expected),
+            ('2013:09:15 15:45:23\x00\x00', expected),
+            ('2013:02:30 15:45:23', None),
+            ('2013:02:30 15:45:23\x00', None),
+            ('2013:09:15\x00 15:45:23', None),
+        ]
+        for value, expected_date in cases:
+            with self.subTest(value=value):
+                exif = Image.Exif()
+                exif[34665] = {36867: value}  # Exif IFD, DateTimeOriginal.
+                buffer = BytesIO()
+                with Image.new('RGB', (1, 1)) as source:
+                    source.save(buffer, 'JPEG', exif=exif)
+                with patch('photologue.models.logger.error') as log_error:
+                    photo = PhotoFactory(image=ContentFile(buffer.getvalue(), name='capture-date.jpg'))
+                try:
+                    photo.refresh_from_db()
+                    self.assertEqual(photo.date_taken, expected_date)
+                    if expected_date is None:
+                        log_error.assert_called_once_with(
+                            'Failed to parse EXIF DateTimeOriginal: %r', value)
+                    else:
+                        log_error.assert_not_called()
+                finally:
+                    photo.delete()
 
     def test_thumbnail_exif_orientations(self):
         """Thumbnail pixels follow every EXIF orientation, including mirrors."""

@@ -497,9 +497,10 @@ class ImageModel(models.Model):
             datetime_str = exif.get(ExifTags.Base.DateTimeOriginal, None)
             if datetime_str:
                 try:
-                    return datetime.strptime(datetime_str, '%Y:%m:%d %H:%M:%S')
+                    # Pillow removes one terminating NUL; some images contain extra NUL padding.
+                    return datetime.strptime(datetime_str.rstrip('\x00'), '%Y:%m:%d %H:%M:%S')
                 except ValueError:
-                    logger.error('Failed to parse EXIF DateTimeOriginal: %s', datetime_str)
+                    logger.error('Failed to parse EXIF DateTimeOriginal: %r', datetime_str)
             return None
 
     def delete(self):
