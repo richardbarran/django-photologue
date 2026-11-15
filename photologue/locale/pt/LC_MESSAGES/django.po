@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: Photologue\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-03 21:22+0000\n"
-"PO-Revision-Date: 2017-09-19 14:01+0000\n"
-"Last-Translator: Richard Barran <richard@arbee-design.co.uk>\n"
-"Language-Team: Portuguese (http://www.transifex.com/richardbarran/django-photologue/language/pt/)\n"
+"PO-Revision-Date: 2012-09-03 20:28+0000\n"
+"Last-Translator: David Kwast <david.kwast@gmail.com>, 2009\n"
+"Language-Team: Portuguese (http://app.transifex.com/richardbarran/django-photologue/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: admin.py:61
 #, python-format
@@ -29,6 +29,7 @@ msgid_plural ""
 "will never be displayed: %(photo_list)s."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:73
 #, python-format
@@ -36,6 +37,7 @@ msgid "The gallery has been successfully added to %(site)s"
 msgid_plural "The galleries have been successfully added to %(site)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:80
 msgid "Add selected galleries to the current site"
@@ -48,6 +50,7 @@ msgid_plural ""
 "The selected galleries have been successfully removed from %(site)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:93
 msgid "Remove selected galleries from the current site"
@@ -62,6 +65,7 @@ msgid_plural ""
 "%(site)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:108
 msgid "Add all photos of selected galleries to the current site"
@@ -77,6 +81,7 @@ msgid_plural ""
 "%(site)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:123
 msgid "Remove all photos in selected galleries from the current site"
@@ -88,6 +93,7 @@ msgid "The photo has been successfully added to %(site)s"
 msgid_plural "The selected photos have been successfully added to %(site)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:171
 msgid "Add selected photos to the current site"
@@ -100,6 +106,7 @@ msgid_plural ""
 "The selected photos have been successfully removed from %(site)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: admin.py:184
 msgid "Remove selected photos from the current site"
