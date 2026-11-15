@@ -66,13 +66,50 @@ for publication setup and recovery.
 Translations
 ------------
 `Photologue manages string translations with Transifex
-<https://www.transifex.com/projects/p/django-photologue/>`_. The easiest way to help is
+<https://app.transifex.com/richardbarran/django-photologue/dashboard/>`_. The easiest way to help is
 to add new/updated translations there.
 
-Once you've added translations, give the maintainer a wave and he will pull the updated
-translations into the master branch, so that you can install Photologue directly from the
-Github repository (see :ref:`installing-photologue-label`) and use your translations straight away. Or you can do nothing - just before a release
-any new/updated translations get pulled from Transifex and added to the Photologue project.
+The native Transifex GitHub integration is configured to collect updates for all
+languages in one pull request, batching edits at 60-minute intervals. Partial
+translations are welcome; a language need not be complete. The maintainer reviews
+and merges updates when convenient. Releases include the translations already
+merged into ``master`` and do not wait for pending translation work or Transifex
+availability.
+
+Updating English source strings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When changing translatable strings in Python code or templates, regenerate the
+English source catalogue from the ``photologue`` directory::
+
+    cd photologue
+    python -m django makemessages -l en_US
+
+Commit the updated ``photologue/locale/en_US/LC_MESSAGES/django.po`` with the code
+change. This command requires Django and GNU gettext (``sudo apt install gettext``
+on Ubuntu). Transifex reads this catalogue after it reaches ``master``; the
+integration does not extract strings from Python code or templates. Make source
+string changes in the repository, and translated text changes in Transifex.
+
+Reviewing translation updates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check out the translation PR branch locally. From the repository root, run::
+
+    python bin/compile_translations.py
+
+The command requires GNU gettext. It checks catalogue syntax and marked format
+placeholders, then regenerates the committed ``.mo`` files used by Django. Empty
+and fuzzy translations are left out of compiled catalogues, allowing Django to
+fall back to the source text. A compilation error stops the command; resolve it
+before merging. Earlier catalogues may already have been compiled successfully.
+
+Review the ``.po`` changes and commit the regenerated ``.mo`` files on the PR
+branch before merging. Run the compilation command again if Transifex adds more
+changes after that commit. The same command should be run before merging an
+English source catalogue update. No release-time download is needed.
+
+See :doc:`translations` for integration setup and reconnection instructions.
 
 New features
 ------------

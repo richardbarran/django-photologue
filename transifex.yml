@@ -1,0 +1,11 @@
+filters:
+  - filter_type: file
+    file_format: PO
+    source_file: photologue/locale/en_US/LC_MESSAGES/django.po
+    source_language: en_US
+    translation_files_expression: 'photologue/locale/<lang>/LC_MESSAGES/django.po'
+
+settings:
+  language_mapping:
+    sr@latin: sr_Latn
+    zh-Hans: zh_Hans

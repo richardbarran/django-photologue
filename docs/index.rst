@@ -28,6 +28,7 @@ Contents:
     pages/customising/views
     pages/customising/models
     pages/contributing
+    pages/translations
     pages/releasing
     pages/changelog_page
 

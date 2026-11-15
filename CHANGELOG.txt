@@ -4,6 +4,8 @@ Changelog
 3.21 (unreleased)
 -----------------
 
+- Added native Transifex GitHub integration configuration and a command to
+  validate and compile translations before merging updates.
 - Restored release documentation builds on Read the Docs, added strict prerelease
   documentation validation, and switched to the Alabaster theme.
 - Escaped gallery descriptions in the default templates to prevent stored XSS.
