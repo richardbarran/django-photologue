@@ -13,15 +13,20 @@
 import datetime
 import os
 import sys
+from pathlib import Path
 
 import django
+from django.conf import settings
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('..'))
-sys.path.append('../example_project/')
+import photologue
+
+# Resolve project paths independently of the directory Sphinx is invoked from.
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / 'example_project'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'example_project.settings'
+# Keep Django's example-project logging setup from silencing Sphinx warnings.
+settings.LOGGING_CONFIG = None
 django.setup()
 
 # -- General configuration -----------------------------------------------------
@@ -34,7 +39,7 @@ django.setup()
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = []
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -54,13 +59,8 @@ copyright = f'{datetime.datetime.now().year}, Justin Driscoll/Richard Barran'
 # built documents.
 #
 
-# Dynamically get the version number from the photologue package.
-parent_dir = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(parent_dir)
-import photologue
-
 # The short X.Y version.
-version = '.'.join(photologue.__version__.split('.')[:1])
+version = '.'.join(photologue.__version__.split('.')[:2])
 # The full version, including alpha/beta/rc tags.
 release = photologue.__version__
 
@@ -103,7 +103,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

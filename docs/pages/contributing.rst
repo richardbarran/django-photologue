@@ -13,9 +13,6 @@ Photologue includes an example project under ``/example_project/`` to get you qu
 contributing to the project - do not hesitate to use it! Please refer to ``/example_project/README.rst``
 for installation instructions.
 
-You'll probably also want to manually install
-`Sphinx <http://sphinx.pocoo.org/>`_ if you're going to update the documentation.
-
 Workflow
 --------
 Photologue is hosted on Github, so if you have not already done so, read the excellent
@@ -50,6 +47,15 @@ update it if required.
 
 We use `Sphinx <http://sphinx.pocoo.org/>`_ to prepare the documentation; please refer to the excellent docs
 on that site for help.
+
+From the repository root, install the documentation dependencies and build HTML::
+
+    python -m pip install -r docs/requirements.txt
+    python -m sphinx -E -W --keep-going -b html docs docs/_build/html
+
+Open ``docs/_build/html/index.html`` to preview the result. Warnings fail the
+build, matching the prerelease check and Read the Docs. See :doc:`releasing`
+for publication setup and recovery.
 
 .. note::
 

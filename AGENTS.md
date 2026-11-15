@@ -22,8 +22,10 @@ uv run --isolated \
   fullrelease
 ```
 
-The prerelease hook runs the unit tests, checks for missing migrations, and
-updates `CONTRIBUTORS.txt`. The postrelease hook asks GitHub Actions to publish
+The prerelease hook runs the unit tests, checks for missing migrations, builds
+the documentation with warnings treated as errors, and updates `CONTRIBUTORS.txt`.
+See `docs/pages/releasing.rst` for documentation publication and recovery.
+The postrelease hook asks GitHub Actions to publish
 the new tag to PyPI. Formatting and import-order checks remain part of CI and
 are not dependencies of the release command.
 

@@ -15,7 +15,8 @@ WORKFLOW = "publish-pypi.yml"
 def prereleaser_before(data):
     """
     1. Run the unit tests one last time before we make a release.
-    2. Update the CONTRIBUTORS.txt file.
+    2. Check migrations and build the documentation strictly.
+    3. Update the CONTRIBUTORS.txt file.
 
     """
     try:
@@ -32,6 +33,12 @@ def prereleaser_before(data):
                                       "photologue"])
     if not output == b"No changes detected in app 'photologue'\n":
         raise Exception('There are outstanding migrations for Photologue.')
+
+    print('Building documentation (warnings are errors).')
+    subprocess.check_call([
+        sys.executable, "-m", "sphinx", "-E", "-W", "--keep-going",
+        "-b", "html", "docs", "docs/_build/html",
+    ])
 
     print('Updating CONTRIBUTORS.txt')
 
