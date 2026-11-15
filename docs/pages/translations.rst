@@ -3,36 +3,17 @@ Transifex integration
 
 Photologue uses Transifex's native GitHub integration. The repository owns the
 English source catalogue; Transifex owns translated text. The mapping lives in
-``transifex.yml`` and retains the existing language-code mappings.
+``transifex.yml`` and defines the language-code mappings.
 
 For this low-activity project, the native integration keeps synchronization
 independent of releases and avoids maintaining a custom synchronization workflow.
 
-Connect the existing resource
------------------------------
-
-The repository changes must first be committed and pushed to ``master`` by the
-maintainer so the integration can read ``transifex.yml``.
-
-Before the first sync, link the existing Transifex resource to its repository
-path. Transifex identifies GitHub resources using the MD5 hash of this exact
-text, without a trailing newline::
-
-    github#richardbarran/django-photologue#master#photologue/locale/en_US/LC_MESSAGES/django.po
-
-In the existing resource's settings, set its slug to::
-
-    e4cf37141cca7310ad1aa4f21fbb9263
-
-Verify that this is the existing English (United States) source resource before
-changing its slug. Reusing it preserves its translations and history rather
-than creating a second resource. Do not delete the resource. See Transifex's
-`existing-resource instructions
-<https://help.transifex.com/en/articles/8065148-github-auto-syncing-and-management>`_.
+Integration settings
+--------------------
 
 In the Transifex project's Settings > Integrations > GitHub:
 
-* Install or reconnect the GitHub app, granting access only to
+* Restrict the GitHub app's access to
   ``richardbarran/django-photologue``.
 * Link the repository's ``master`` branch and select the checked-in
   ``transifex.yml`` configuration. Test the configuration and check the detected
@@ -43,11 +24,9 @@ In the Transifex project's Settings > Integrations > GitHub:
 * Set the interval between commits to **60 minutes**.
 * Leave **Receive updates for source files** disabled: English strings are
   maintained in the repository.
-* Save and sync. Confirm in the activity log that the existing resource was
-  linked, and inspect the first translation PR before merging it.
 
 These are account-side settings; ``transifex.yml`` only defines the file and
-language mapping. The old CLI configuration under ``.tx/`` is no longer used.
+language mapping.
 See the `Transifex installation and configuration guide
 <https://help.transifex.com/en/articles/6265125-github-installation-and-configuration>`_
 for the current interface.
