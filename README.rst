@@ -17,8 +17,9 @@ galleries, apply effects such as watermarks.
 
 Project status
 --------------
-Message from the current maintainer: I no longer need django-photologue for my own projects, so I've stopped working on it. I will occasionally 
-update it to run with current Django releases, but that's all. Any help in running this project is welcome.
+Message from the current maintainer: I no longer need django-photologue for my own projects, so I've stopped working
+on it. I will occasionally update it to run with current Django releases, but that's all. Any help in running this
+project is welcome.
 
 Take a closer look
 ------------------
@@ -28,7 +29,7 @@ Take a closer look
 
 Documentation
 -------------
-Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.io/en/stable/>`_
+Please head over to our `online documentation at ReadTheDocs <https://django-photologue.readthedocs.io/>`_
 for instructions on installing and configuring this application.
 
 Amazon S3
@@ -36,7 +37,3 @@ Amazon S3
 
 S3 also works with the standard BOTO package.
 
-Support
--------
-If you have any questions or need help with any aspect of Photologue then please `join our mailing list
-<http://groups.google.com/group/django-photologue>`_.
