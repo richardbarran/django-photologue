@@ -4,6 +4,8 @@ Changelog
 3.21 (unreleased)
 -----------------
 
+- Removed empty English and Turkish (Turkey) translation catalogues rejected by
+  Transifex; retained the English (United States) source and Turkish translations.
 - Added native Transifex GitHub integration configuration and a command to
   validate and compile translations before merging updates.
 - Restored release documentation builds on Read the Docs, added strict prerelease
